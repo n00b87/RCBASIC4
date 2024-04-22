@@ -292,6 +292,8 @@ rc_double readdouble_val;
 
 vector<uint64_t> arr_ref_id(2);
 
+bool redim_toplevel_flag = false;
+
 int rcbasic_exit_code = 0;
 
 #ifdef RCBASIC_DEBUG
@@ -4465,7 +4467,7 @@ void push_t_null_173()
 
 void delete_t_174(uint64_t oid, uint64_t top_level_flag, uint64_t obj_type)
 {
-    cout << "DEBUG: " << oid << ", " << top_level_flag << ", " << obj_type << endl;
+    //cout << "DEBUG: " << oid << ", " << top_level_flag << ", " << obj_type << endl;
     //cout << "Delete Object: " << usr_object.obj_ref->str_var[1].dim[0] << endl;
     if(top_level_flag == 0)
     {
@@ -4478,7 +4480,7 @@ void delete_t_174(uint64_t oid, uint64_t top_level_flag, uint64_t obj_type)
         switch(obj_type)
         {
             case 0:
-                cout << "DBG NDATA: " << usr_object.obj_ref->num_var[oid].dim[0] << endl;
+                //cout << "DBG NDATA: " << usr_object.obj_ref->num_var[oid].dim[0] << endl;
                 usr_object.obj_ref->num_var[oid].nid_value.value.clear();
                 usr_object.obj_ref->num_var[oid].nid_value.value.shrink_to_fit();
                 usr_object.obj_ref->num_var[oid].dimensions = 0;
@@ -4488,7 +4490,7 @@ void delete_t_174(uint64_t oid, uint64_t top_level_flag, uint64_t obj_type)
                 break;
 
             case 1:
-                cout << "DBG SDATA: " << usr_object.obj_ref->str_var[oid].dim[0] << endl;
+                //cout << "DBG SDATA: " << usr_object.obj_ref->str_var[oid].dim[0] << endl;
                 usr_object.obj_ref->str_var[oid].sid_value.value.clear();
                 usr_object.obj_ref->str_var[oid].sid_value.value.shrink_to_fit();
                 usr_object.obj_ref->str_var[oid].dimensions = 0;
@@ -4498,7 +4500,7 @@ void delete_t_174(uint64_t oid, uint64_t top_level_flag, uint64_t obj_type)
                 break;
 
             case 2:
-                cout << "DBG UDATA: " << usr_object.obj_ref->uid_value[oid].dim[0] << endl;
+                //cout << "DBG UDATA: " << usr_object.obj_ref->uid_value[oid].dim[0] << endl;
                 rc_free_type(&usr_object.obj_ref->uid_value[oid]);
                 break;
         }
@@ -4702,6 +4704,149 @@ void preset_t3_191(uint64_t uid, uint64_t utype, int n1, int n2, int n3)
         rc_preset_type(&usr_var[uid]);
     }
 }
+
+
+void redim_type_192(int u1, int udt_index)
+{
+    // Currently unused
+}
+
+void redim_type1_193(int u1, int udt_index, int n1)
+{
+    // Currently unused
+}
+
+void redim_type2_194(int u1, int udt_index, int n1, int n2)
+{
+    // Currently unused
+}
+
+void redim_type3_195(int u1, int udt_index, int n1, int n2, int n3)
+{
+    // Currently unused
+}
+
+
+void redim_type_n_196(uint64_t nid)
+{
+    usr_object.obj_ref->num_var[nid].nid_value.value.resize(1);
+    usr_object.obj_ref->num_var[nid].dimensions = 0;
+    usr_object.obj_ref->num_var[nid].dim[0] = 0;
+    usr_object.obj_ref->num_var[nid].dim[1] = 0;
+    usr_object.obj_ref->num_var[nid].dim[2] = 0;
+}
+
+void redim_type_n1_197(uint64_t nid, int n1)
+{
+    usr_object.obj_ref->num_var[nid].nid_value.value.resize((uint64_t)vm_n[n1].value);
+    usr_object.obj_ref->num_var[nid].dimensions = 1;
+    usr_object.obj_ref->num_var[nid].dim[0] = (uint64_t)vm_n[n1].value;
+    usr_object.obj_ref->num_var[nid].dim[1] = 0;
+    usr_object.obj_ref->num_var[nid].dim[2] = 0;
+}
+
+void redim_type_n2_198(uint64_t nid, int n1, int n2)
+{
+    usr_object.obj_ref->num_var[nid].nid_value.value.resize((uint64_t)(vm_n[n1].value * vm_n[n2].value));
+    usr_object.obj_ref->num_var[nid].dimensions = 2;
+    usr_object.obj_ref->num_var[nid].dim[0] = (uint64_t)vm_n[n1].value;
+    usr_object.obj_ref->num_var[nid].dim[1] = (uint64_t)vm_n[n2].value;
+    usr_object.obj_ref->num_var[nid].dim[2] = 0;
+}
+
+void redim_type_n3_199(uint64_t nid, int n1, int n2, int n3)
+{
+    usr_object.obj_ref->num_var[nid].nid_value.value.resize((uint64_t)(vm_n[n1].value * vm_n[n2].value * vm_n[n3].value));
+    usr_object.obj_ref->num_var[nid].dimensions = 3;
+    usr_object.obj_ref->num_var[nid].dim[0] = (uint64_t)vm_n[n1].value;
+    usr_object.obj_ref->num_var[nid].dim[1] = (uint64_t)vm_n[n2].value;
+    usr_object.obj_ref->num_var[nid].dim[2] = (uint64_t)vm_n[n3].value;
+}
+
+
+void redim_type_s_200(uint64_t sid)
+{
+    usr_object.obj_ref->str_var[sid].sid_value.value.resize(1);
+    usr_object.obj_ref->str_var[sid].dimensions = 0;
+    usr_object.obj_ref->str_var[sid].dim[0] = 0;
+    usr_object.obj_ref->str_var[sid].dim[1] = 0;
+    usr_object.obj_ref->str_var[sid].dim[2] = 0;
+}
+
+void redim_type_s1_201(uint64_t sid, int n1)
+{
+    usr_object.obj_ref->str_var[sid].sid_value.value.resize((uint64_t)vm_n[n1].value);
+    usr_object.obj_ref->str_var[sid].dimensions = 1;
+    usr_object.obj_ref->str_var[sid].dim[0] = (uint64_t)vm_n[n1].value;
+    usr_object.obj_ref->str_var[sid].dim[1] = 0;
+    usr_object.obj_ref->str_var[sid].dim[2] = 0;
+}
+
+void redim_type_s2_202(uint64_t sid, int n1, int n2)
+{
+    usr_object.obj_ref->str_var[sid].sid_value.value.resize((uint64_t)(vm_n[n1].value * vm_n[n2].value));
+    usr_object.obj_ref->str_var[sid].dimensions = 2;
+    usr_object.obj_ref->str_var[sid].dim[0] = (uint64_t)vm_n[n1].value;
+    usr_object.obj_ref->str_var[sid].dim[1] = (uint64_t)vm_n[n2].value;
+    usr_object.obj_ref->str_var[sid].dim[2] = 0;
+}
+
+void redim_type_s3_203(uint64_t sid, int n1, int n2, int n3)
+{
+    usr_object.obj_ref->str_var[sid].sid_value.value.resize((uint64_t)(vm_n[n1].value * vm_n[n2].value * vm_n[n3].value));
+    usr_object.obj_ref->str_var[sid].dimensions = 3;
+    usr_object.obj_ref->str_var[sid].dim[0] = (uint64_t)vm_n[n1].value;
+    usr_object.obj_ref->str_var[sid].dim[1] = (uint64_t)vm_n[n2].value;
+    usr_object.obj_ref->str_var[sid].dim[2] = (uint64_t)vm_n[n3].value;
+}
+
+void redim_type_204(uint64_t uid, int udt_index)
+{
+    if(redim_toplevel_flag)
+        rc_dim_type(&usr_var[uid], udt_index, 0, 0, 0, 0, 0);
+    else
+        rc_dim_type(&usr_object.obj_ref->uid_value[uid], udt_index, 0, 0, 0, 0, 0);
+
+    redim_toplevel_flag = false;
+}
+
+void redim_type1_205(uint64_t uid, int udt_index, int n1)
+{
+    if(redim_toplevel_flag)
+        rc_dim_type(&usr_var[uid], udt_index, 1, (uint64_t)vm_n[n1].value, 0, 0, usr_var[uid].uid_value.size());
+    else
+        rc_dim_type(&usr_object.obj_ref->uid_value[uid], udt_index, 1, (uint64_t)vm_n[n1].value, 0, 0, usr_object.obj_ref->uid_value[uid].uid_value.size());
+
+    redim_toplevel_flag = false;
+}
+
+void redim_type2_206(uint64_t uid, int udt_index, int n1, int n2)
+{
+    if(redim_toplevel_flag)
+        rc_dim_type(&usr_var[uid], udt_index, 2, (uint64_t)vm_n[n1].value, (uint64_t)vm_n[n2].value, 0, usr_var[uid].uid_value.size());
+    else
+        rc_dim_type(&usr_object.obj_ref->uid_value[uid], udt_index, 2, (uint64_t)vm_n[n1].value, (uint64_t)vm_n[n2].value, 0, usr_object.obj_ref->uid_value[uid].uid_value.size());
+
+    cout << "test tl: " << redim_toplevel_flag << " -- " << usr_var[uid].uid_value.size() << endl;
+
+    redim_toplevel_flag = false;
+}
+
+void redim_type3_207(uint64_t uid, int udt_index, int n1, int n2, int n3)
+{
+    if(redim_toplevel_flag)
+        rc_dim_type(&usr_var[uid], udt_index, 3, (uint64_t)vm_n[n1].value, (uint64_t)vm_n[n2].value, (uint64_t)vm_n[n3].value, usr_var[uid].uid_value.size());
+    else
+        rc_dim_type(&usr_object.obj_ref->uid_value[uid], udt_index, 3, (uint64_t)vm_n[n1].value, (uint64_t)vm_n[n2].value, (uint64_t)vm_n[n3].value, usr_object.obj_ref->uid_value[uid].uid_value.size());
+
+    redim_toplevel_flag = false;
+}
+
+void redim_top_208()
+{
+    redim_toplevel_flag = true;
+}
+
 
 bool rcbasic_run()
 {
@@ -5518,6 +5663,105 @@ bool rcbasic_run()
                 i[3] = readInt();
                 i[4] = readInt();
                 preset_t3_191(i[0], i[1], i[2], i[3], i[4]);
+                break;
+            case 192:
+                i[0] = readInt();
+                i[1] = readInt();
+                redim_type_192(i[0], i[1]);
+                break;
+            case 193:
+                i[0] = readInt();
+                i[1] = readInt();
+                i[2] = readInt();
+                redim_type1_193(i[0], i[1], i[2]);
+                break;
+            case 194:
+                i[0] = readInt();
+                i[1] = readInt();
+                i[2] = readInt();
+                i[3] = readInt();
+                redim_type2_194(i[0], i[1], i[2], i[3]);
+                break;
+            case 195:
+                i[0] = readInt();
+                i[1] = readInt();
+                i[2] = readInt();
+                i[3] = readInt();
+                i[4] = readInt();
+                redim_type3_195(i[0], i[1], i[2], i[3], i[4]);
+                break;
+            case 196:
+                i[0] = readInt();
+                redim_type_n_196(i[0]);
+                break;
+            case 197:
+                i[0] = readInt();
+                i[1] = readInt();
+                redim_type_n1_197(i[0], i[1]);
+                break;
+            case 198:
+                i[0] = readInt();
+                i[1] = readInt();
+                i[2] = readInt();
+                redim_type_n2_198(i[0], i[1], i[2]);
+                break;
+            case 199:
+                i[0] = readInt();
+                i[1] = readInt();
+                i[2] = readInt();
+                i[3] = readInt();
+                redim_type_n3_199(i[0], i[1], i[2], i[3]);
+                break;
+            case 200:
+                i[0] = readInt();
+                redim_type_s_200(i[0]);
+                break;
+            case 201:
+                i[0] = readInt();
+                i[1] = readInt();
+                redim_type_s1_201(i[0], i[1]);
+                break;
+            case 202:
+                i[0] = readInt();
+                i[1] = readInt();
+                i[2] = readInt();
+                redim_type_s2_202(i[0], i[1], i[2]);
+                break;
+            case 203:
+                i[0] = readInt();
+                i[1] = readInt();
+                i[2] = readInt();
+                i[3] = readInt();
+                redim_type_s3_203(i[0], i[1], i[2], i[3]);
+                break;
+            case 204:
+                i[0] = readInt();
+                i[1] = readInt();
+                redim_type_204(i[0], i[1]);
+                break;
+            case 205:
+                i[0] = readInt();
+                i[1] = readInt();
+                i[2] = readInt();
+                redim_type1_205(i[0], i[1], i[2]);
+                break;
+            case 206:
+                i[0] = readInt();
+                i[1] = readInt();
+                i[2] = readInt();
+                i[3] = readInt();
+                redim_type2_206(i[0], i[1], i[2], i[3]);
+                break;
+            case 207:
+                i[0] = readInt();
+                i[1] = readInt();
+                i[2] = readInt();
+                i[3] = readInt();
+                i[4] = readInt();
+                redim_type3_207(i[0], i[1], i[2], i[3], i[4]);
+                break;
+            case 208:
+                redim_top_208();
                 break;
             default:
                 cout << "invalid cmd: " << rcbasic_cmd << endl;

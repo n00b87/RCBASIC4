@@ -1480,6 +1480,12 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                             type_redim_dim[0] = args[0];
                             type_redim_dim[1] = args[1];
                             type_redim_dim[2] = args[2];
+
+                            if(arg_count != id[tmp_id].num_args)
+                            {
+                                rc_setError("Expected " + rc_intToString(id[tmp_id].num_args) + " dimensions but found " + rc_intToString(arg_count));
+                                return false;
+                            }
                         }
                         else if(type_delete_flag && (!has_child))
                         {
@@ -3769,8 +3775,6 @@ bool check_rule()
                         }
                         token_index = end_token+1;
 
-                        type_redim_flag = false;
-
                         //cout << "debug 3: " << id_index << endl;
                     }
                     else
@@ -3795,6 +3799,17 @@ bool check_rule()
                     return false;
                 }
 
+                if(!type_redim_flag) //if type_redim_flag is set, then this error will get raised in the pre_parse step
+                {
+                    if(dimensions != id[id_index].num_args) // no longer allowing the user to change dimensions since it can lead to unnecessary confusion
+                    {
+                        rc_setError("Expected " + rc_intToString(id[id_index].num_args) + " dimensions but found " + rc_intToString(dimensions));
+                        return false;
+                    }
+                }
+
+                type_redim_flag = false;
+
                 if(dimensions > 0)
                 {
                     //cout << "debug 5: " << id_index <<  endl;
@@ -3810,10 +3825,10 @@ bool check_rule()
 
                     //cout << "debug 6: " << id_index << endl;
 
-                    if(id[id_index].num_args != dimensions)
-                    {
-                        id[id_index].num_args = dimensions;
-                    }
+                    //if(id[id_index].num_args != dimensions)
+                    //{
+                    //    id[id_index].num_args = dimensions;
+                    //}
 
                     //cout << "debug 7: " << id_index << " -- " << id[id_index].type << endl;
 
@@ -3873,6 +3888,8 @@ bool check_rule()
                     }
                     else if(id[id_index].type == ID_TYPE_USER)
                     {
+                        vm_asm.push_back("redim_top"); //This will set the top level flag for redim_type
+
                         //cout << "debug 8" << endl;
                         switch(dimensions)
                         {

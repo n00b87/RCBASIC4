@@ -1271,6 +1271,10 @@ namespace rc_cbc_assembler
             {
                 writeSegment(203);
             }
+            else if(line_arg[0].compare("redim_top")==0)
+            {
+                writeSegment(208);
+            }
             else
             {
                 cout << "unrecognized cmd: " << line_arg[0] << endl;

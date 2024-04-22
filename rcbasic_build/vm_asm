@@ -305,3 +305,5 @@ OBJ_CURRENT_TYPE
 205 - redim_type1	!id		!id (user type)		n# (dim1)
 206 - redim_type2	!id		!id (user type)		n# (dim1)	n# (dim2)
 207 - redim_type3	!id		!id (user type)		n# (dim1)	n# (dim2)	n# (dim3)
+
+208 - redim_top

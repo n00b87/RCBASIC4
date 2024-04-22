@@ -168,7 +168,7 @@ public:
                 s.substr(0,s.find_first_of(" ")).compare("clear_stack$")==0 || s.substr(0,s.find_first_of(" ")).compare("do")==0 ||
                 s.substr(0,s.find_first_of(" ")).compare("pop_loop_stack")==0 || s.substr(0,s.find_first_of(" ")).compare("return")==0 ||
                 s.substr(0,s.find_first_of(" ")).compare("println")==0 || s.substr(0,s.find_first_of(" ")).compare("for_offset_0")==0 ||
-                s.substr(0,s.find_first_of(" ")).compare("push_t_null")==0)
+                s.substr(0,s.find_first_of(" ")).compare("push_t_null")==0 || s.substr(0,s.find_first_of(" ")).compare("redim_top")==0)
         {
             current_address[current_segment] += 1; //1 byte for instruction and no arguments
         }
