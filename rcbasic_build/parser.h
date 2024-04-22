@@ -23,6 +23,18 @@ int u_reg = 0;
 string expr_result = "";
 bool type_delete_flag = false;
 string type_delete_arg = "";
+int type_delete_arg_type = 0;
+bool type_delete_arg_whole = false;
+
+struct type_error_exception
+{
+    string error_log;
+    string tk_reg;
+    string resolve_reg;
+};
+
+vector<type_error_exception> byref_type_exception; //This will store the error that might be generated if a user type var is in an expression without its dimensions expressed
+
 
 bool pre_parse(int start_token, int end_token, int pp_flags = 0, bool eval_udt = false); //puts number and string values and variables inside number and string registers
 //void getBlock(int& start_block, int& end_block); //gets the start and end index of the next block to evaluate (first and last token if there isnt a block left to evaluate
@@ -1018,6 +1030,8 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
     int expr_id = -1;
     string sdata = "";
 
+    bool byref_type_flag = false;
+
     for(int i = start_token; i <= end_token; i++)
     {
         if(token[i].substr(0,5).compare("<num>")==0)
@@ -1105,7 +1119,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
             }
             else if( (id[expr_id].type == ID_TYPE_BYREF_NUM || id[expr_id].type == ID_TYPE_BYREF_STR) && pp_flags == PP_FLAG_ARRAY)
             {
-                //cout << "found array: " << id[expr_id].name << endl << endl;
+                cout << "found array: " << id[expr_id].name << endl << endl;
                 int s_scope = 0;
                 int arr_token_start = i;
                 int arr_token_end = i;
@@ -1267,19 +1281,30 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                 int tmp_id = 0;
                 bool has_child = false;
 
+                int num_id_parents = 0;
+                int num_id_children = 0;
+                byref_type_flag = false;
+
 
                 for(int t = i; t <= end_token; t++)
                 {
 
                     if(token[t].substr(0,4).compare("<id>")==0)
                     {
-                        cout << "FIGURE IT OUT: " << t  << endl;
+                        if(num_id_parents != num_id_children)
+                        {
+                            rc_setError("Expected member separator or member ID");
+                            return false;
+                        }
+
+                        num_id_parents++;
+                        //cout << "FIGURE IT OUT: " << t  << endl;
                         string args[3];
                         int arg_count = 0;
                         string full_id = token[t].substr(4);
                         token[t] = "";
                         tmp_id = getIDInScope_ByIndex_TypeMatch(full_id, tmp_scope);
-                        //cout << "\ntmp_id = " << tmp_id << endl;
+                        cout << "\ntmp_id = " << tmp_id << endl;
 
                         if(tmp_id < 0)
                         {
@@ -1350,6 +1375,8 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
 
                                 arg_count++;
                             }
+                            else if(type_delete_flag)
+                                t2--;
 
                         }
 
@@ -1364,12 +1391,54 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                             cout << "Has Child = " << has_child << ", " << t << ", " << t2 << endl;
                         }
 
+                        if(type_delete_flag && (!has_child) && arg_count != 0)
+                        {
+                            rc_setError("Expected identifier without index");
+                            return false;
+                        }
+
 
                         if(arg_count != id[tmp_id].num_args)
                         {
                             if(!type_delete_flag)
                             {
-                                rc_setError("[0]Expected " + rc_intToString(id[tmp_id].num_args) + " dimension in " + id[tmp_id].name);
+                                if(arg_count != 0)
+                                    rc_setError("[0]Expected " + rc_intToString(id[tmp_id].num_args) + " dimension in " + id[tmp_id].name);
+
+                                cout << "ID_TYPE = " << id[tmp_id].type << ", " << arg_count << ", " << (has_child ? "true" : "false")  << endl;
+
+                                args[0] = "";
+                                args[1] = "";
+                                args[2] = "";
+
+                                string tmp_instruction = "obj_usr_";
+
+                                //trying stuff out
+                                if(id[tmp_id].type == ID_TYPE_USER_NUM)
+                                {
+                                    vm_asm.push_back("mov " + n + " 0");
+                                    tmp_instruction += "n" + ( id[tmp_id].num_args <= 0 ? "" : rc_intToString(id[tmp_id].num_args) );
+                                    for(int tmp_arg_i = 0; tmp_arg_i < id[tmp_id].num_args; tmp_arg_i++)
+                                        args[tmp_arg_i] = n;
+
+
+                                    vm_asm.push_back(tmp_instruction + " !" + rc_intToString(id[tmp_id].vec_pos) + " " + args[0] + " " + args[1] + " " + args[2]);
+                                    byref_type_flag = true;
+                                    break;
+                                }
+                                else if(id[tmp_id].type == ID_TYPE_USER_STR)
+                                {
+                                    vm_asm.push_back("mov " + n + " 0");
+                                    tmp_instruction += "s" + ( id[tmp_id].num_args <= 0 ? "" : rc_intToString(id[tmp_id].num_args) );
+                                    for(int tmp_arg_i = 0; tmp_arg_i < id[tmp_id].num_args; tmp_arg_i++)
+                                        args[tmp_arg_i] = n;
+
+                                    vm_asm.push_back(tmp_instruction + " !" + rc_intToString(id[tmp_id].vec_pos) + " " + args[0] + " " + args[1] + " " + args[2]);
+                                    byref_type_flag = true;
+                                    break;
+                                }
+                                //-------------------------------
+
                                 return false;
                             }
                             else
@@ -1392,7 +1461,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                         if(type_delete_flag && (!has_child))
                         {
                             //DO NOTHING
-                            //cout << "NO CHILD: " << id[tmp_id].name << endl;
+                            cout << "NO CHILD: " << id[tmp_id].name << endl;
                         }
                         else
                         {
@@ -1483,6 +1552,8 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                     }
                     else if(token[t].compare("<child>")==0)
                     {
+                        num_id_children++;
+                        type_delete_arg_whole = false;
                         token[t] = "";
                         continue;
                     }
@@ -1499,6 +1570,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                 {
                     //cout << "DELETE_VAR = " << id[tmp_id].name << endl;
                     type_delete_arg = "!" + rc_intToString(id[tmp_id].vec_pos);
+                    type_delete_arg_type = id[tmp_id].type;
                 }
                 else
                 switch(id[tmp_id].type)
@@ -1526,6 +1598,15 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                         break;
                     default:
                         break;
+                }
+
+                if(byref_type_flag)
+                {
+                    type_error_exception tx;
+                    tx.error_log = "[0]Expected " + rc_intToString(id[tmp_id].num_args) + " dimension in " + id[tmp_id].name;
+                    tx.tk_reg = token[i];
+                    byref_type_exception.push_back(tx);
+                    byref_type_flag = false;
                 }
 
 
@@ -2048,7 +2129,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                         resolve_index = getResolveReg(args[n]);
                         if(args[n].substr(0,4).compare("<id>")==0)
                         {
-                            //cout << "found id: " << args[n] << " in " << id[expr_id].name << endl;
+                            cout << "found id: " << args[n] << " in " << id[expr_id].name << endl;
                             string t_replace = "";
                             int arg_id = getIDInScope_ByIndex(args[n].substr(4));
                             if(arg_id < 0)
@@ -2089,9 +2170,22 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                             }
                         }
 
-                        if(resolve_index < 0)
+                        //check if byref_type_exception
+                        bool type_exception_found = false;
+                        for(int bt_i = 0; bt_i < byref_type_exception.size(); bt_i++)
                         {
-                            rc_setError("Expected identifier for ByRef argument");
+                            if(args[n].compare(byref_type_exception[bt_i].tk_reg)==0)
+                            {
+                                cout << "FOUND EXCEPTION: " << args[n] << endl;
+                                byref_type_exception[bt_i].tk_reg = "";
+                                type_exception_found = true;
+                            }
+                        }
+                        //----------------
+
+                        if(resolve_index < 0 && (!type_exception_found))
+                        {
+                            rc_setError("[4]Expected identifier for ByRef argument");
                             return false;
                         }
 
@@ -2103,6 +2197,27 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                             return false;
                         }*/
 
+                        if(type_exception_found)
+                        switch(id[expr_id].fn_arg_type[n])
+                        {
+                            case ID_TYPE_BYREF_NUM:
+                                if(args[n].substr(0,1).compare("n")!=0)
+                                {
+                                    rc_setError("Expected number identifier for argument");
+                                    return false;
+                                }
+                                vm_asm.push_back("ptr !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + args[n]);
+                                break;
+                            case ID_TYPE_BYREF_STR:
+                                if(args[n].substr(0,1).compare("s")!=0)
+                                {
+                                    rc_setError("Expected string identifier for argument");
+                                    return false;
+                                }
+                                vm_asm.push_back("ptr$ !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + args[n]);
+                                break;
+                        }
+                        else
                         switch(id[expr_id].fn_arg_type[n])
                         {
                             case ID_TYPE_BYREF_NUM:
@@ -2178,6 +2293,17 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                         vm_asm.push_back("mov_type !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + args[n]);
                     }
                 }
+
+                //check if any exceptions weren't used and return error if there are any left
+                for(int bt_i = 0; bt_i < byref_type_exception.size(); bt_i++)
+                {
+                    if(byref_type_exception[bt_i].tk_reg.compare("")!=0)
+                    {
+                        rc_setError(byref_type_exception[bt_i].error_log);
+                        return false;
+                    }
+                }
+                //-----------------------------------------------------------------------------
 
                 string token_replace = "";
 
@@ -5319,6 +5445,7 @@ bool check_rule()
 
                 type_delete_flag = true;
                 type_delete_arg = "";
+                type_delete_arg_whole = true;
 
                 if(!eval_expression())
                 {
@@ -5330,9 +5457,38 @@ bool check_rule()
                     rc_setError("Could not determine Identifier Type in DELETE: " + type_delete_arg);
                     return false;
                 }
-                vm_asm.push_back("delete_t " + type_delete_arg);
+
+                string d_type = "!";
+                string top_level_flag = "!0";
+
+                if(!type_delete_arg_whole)
+                    top_level_flag = "!1";
+
+                if(type_delete_arg_type == ID_TYPE_USER_STR || type_delete_arg_type == ID_TYPE_USER_STR_ARRAY)
+                {
+                    cout << "DELETE STRING" << endl;
+                    d_type += "1";
+                }
+                else if(type_delete_arg_type == ID_TYPE_USER_NUM || type_delete_arg_type == ID_TYPE_USER_NUM_ARRAY)
+                {
+                    cout << "DELETE NUMBER" << endl;
+                    d_type += "0";
+                }
+                else if(type_delete_arg_type == ID_TYPE_USER)
+                {
+                    cout << "DELETE USER TYPE" << endl;
+                    d_type += "2";
+                }
+                else
+                {
+                    rc_setError("Cannot delete identifier of this type or within this scope");
+                    return false;
+                }
+
+                vm_asm.push_back("delete_t " + type_delete_arg + " " + top_level_flag + " " + d_type);
 
                 type_delete_flag = false;
+                type_delete_arg_whole = true;
             }
             else
             {

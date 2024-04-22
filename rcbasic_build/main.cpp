@@ -524,6 +524,8 @@ bool rc_eval(string line)
     ERROR_MSG = "";
     clearRegs();
     clearTokens();
+    byref_type_exception.clear();
+
     if(line.compare("#var")==0)
     {
         output_vars();

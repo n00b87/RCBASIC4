@@ -4463,9 +4463,47 @@ void push_t_null_173()
     //I will need to do something with this
 }
 
-void delete_t_174(uint64_t uid)
+void delete_t_174(uint64_t oid, uint64_t top_level_flag, uint64_t obj_type)
 {
-    rc_free_type(&usr_object.obj_ref->uid_value[uid]);
+    cout << "DEBUG: " << oid << ", " << top_level_flag << ", " << obj_type << endl;
+    //cout << "Delete Object: " << usr_object.obj_ref->str_var[1].dim[0] << endl;
+    if(top_level_flag == 0)
+    {
+        //cout << "[START] USR TL: " << usr_var[oid].uid_value[0].str_var.size() << endl;
+        rc_free_type(&usr_var[oid]);
+        //cout << "[END]   USR TL: " << usr_var[oid].uid_value[0].str_var.size() << endl;
+    }
+    else
+    {
+        switch(obj_type)
+        {
+            case 0:
+                cout << "DBG NDATA: " << usr_object.obj_ref->num_var[oid].dim[0] << endl;
+                usr_object.obj_ref->num_var[oid].nid_value.value.clear();
+                usr_object.obj_ref->num_var[oid].nid_value.value.shrink_to_fit();
+                usr_object.obj_ref->num_var[oid].dimensions = 0;
+                usr_object.obj_ref->num_var[oid].dim[0] = 0;
+                usr_object.obj_ref->num_var[oid].dim[1] = 0;
+                usr_object.obj_ref->num_var[oid].dim[2] = 0;
+                break;
+
+            case 1:
+                cout << "DBG SDATA: " << usr_object.obj_ref->str_var[oid].dim[0] << endl;
+                usr_object.obj_ref->str_var[oid].sid_value.value.clear();
+                usr_object.obj_ref->str_var[oid].sid_value.value.shrink_to_fit();
+                usr_object.obj_ref->str_var[oid].dimensions = 0;
+                usr_object.obj_ref->str_var[oid].dim[0] = 0;
+                usr_object.obj_ref->str_var[oid].dim[1] = 0;
+                usr_object.obj_ref->str_var[oid].dim[2] = 0;
+                break;
+
+            case 2:
+                cout << "DBG UDATA: " << usr_object.obj_ref->uid_value[oid].dim[0] << endl;
+                rc_free_type(&usr_object.obj_ref->uid_value[oid]);
+                break;
+        }
+    }
+    cout << "Done" << endl;
 }
 
 void dim_type_175(int u1, int udt_index)
@@ -5371,7 +5409,9 @@ bool rcbasic_run()
                 break;
             case 174:
                 i[0] = readInt();
-                delete_t_174(i[0]);
+                i[1] = readInt();
+                i[2] = readInt();
+                delete_t_174(i[0], i[1], i[2]);
                 break;
             case 175:
                 i[0] = readInt();

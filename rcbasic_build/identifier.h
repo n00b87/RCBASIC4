@@ -441,13 +441,34 @@ int getIDInScope_ByIndex_TypeMatch(string id_name, string check_scope="")
     int id_match = -1;
     check_scope = StringToLower(check_scope);
     //cout << "CHECK SCOPE = " << check_scope << endl;
+
+    string id_name_str = "";
+
+    if(id_name.substr(id_name.length()-1,1).compare("$")==0)
+    {
+        id_name_str = id_name;
+    }
+    else
+    {
+        id_name_str = id_name + "$";
+    }
+
     for(int i = 0; i < id.size(); i++)
     {
         if(id[i].scope.compare(check_scope)==0)
         {
-            //cout << id_name << " ~ " << id[i].name << endl;
-            if(id_name.compare(id[i].name)==0)
-                return i;
+            if(id[i].name.substr(id[i].name.length()-1,1).compare("$")==0) //id in type is string
+            {
+                //cout << id_name_str << " ~ " << id[i].name << endl;
+                if(id_name_str.compare(StringToLower(id[i].name))==0)
+                    return i;
+            }
+            else
+            {
+                //cout << id_name << " ~ " << id[i].name << endl;
+                if(id_name.compare(StringToLower(id[i].name))==0)
+                    return i;
+            }
         }
     }
     return id_match;

@@ -258,7 +258,7 @@ OBJ_CURRENT_TYPE
 
 173 - push_t_null
 
-174 - delete_t  !id
+174 - delete_t  !id    !id (0 - top level, 1 - member)    !id (0 - num, 1 - str, 2 - type)
 
 175 - dim_type	u#		raw_number (user_type)
 176 - dim_type1	u#		raw_number (user type)		n# (dim1)
