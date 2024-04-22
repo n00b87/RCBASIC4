@@ -599,11 +599,11 @@ bool rc_eval(string line)
             //cout << "i = " << i << "     tmp_token_size = " << tmp_token.size() << endl;
             if(tmp_token[i].compare("<:>")==0)
                 break;
-            else if(!Array_Macros(i))
-            {
-                //cout << "ERROR:" << rc_getError() << endl;
-                return false;
-            }
+            //else if(!Array_Macros(i))
+            //{
+            //    cout << "ERROR:" << rc_getError() << endl;
+            //    return false;
+            //}
             //cout << "### tmp_token[" << i << "] = ";
             //cout << tmp_token[i] << endl;
             token.push_back(tmp_token[i]);
@@ -998,7 +998,7 @@ int main(int argc, char * argv[])
 {
     string line = "";
 
-    //rcbasic_dev("embedded_functions.bas"); return 0;
+    rcbasic_dev("embedded_functions.bas"); return 0;
 
     string rc_filename = "";// = "tst.bas";
 

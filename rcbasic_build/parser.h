@@ -1961,155 +1961,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                 int resolve_id2 = -1;
                 int arg_index = -1;
 
-                if(StringToLower(id[expr_id].name).compare("arraydim")==0)
-                {
-                    //cout << "HERES JOHNNY" << endl;
-                    resolve_index = getResolveReg(args[0]);
-                    if(resolve_index < 0)
-                    {
-                        rc_setError("Expected Identifier in ArrayDim argument: " + args[0]);
-                        return false;
-                    }
-                    switch(resolveID_id_type[resolve_index])
-                    {
-                        case ID_TYPE_ARR_NUM:
-                        case ID_TYPE_BYREF_NUM:
-                        case ID_TYPE_NUM:
-                            expr_id = getIDInScope_ByIndex("NumberArrayDim");
-                            break;
-                        case ID_TYPE_ARR_STR:
-                        case ID_TYPE_BYREF_STR:
-                        case ID_TYPE_STR:
-                            expr_id = getIDInScope_ByIndex("StringArrayDim");
-                            break;
-                    }
-                    if(expr_id < 0)
-                    {
-                        rc_setError("ArrayDim Syntax Error");
-                        return false;
-                    }
-                }
-                else if(StringToLower(id[expr_id].name).compare("arraysize")==0)
-                {
-                    //cout << "HERES JOHNNY" << endl;
-                    resolve_index = getResolveReg(args[0]);
-                    if(resolve_index < 0)
-                    {
-                        rc_setError("Expected Identifier in ArraySize argument: " +args[0]);
-                        return false;
-                    }
-                    switch(resolveID_id_type[resolve_index])
-                    {
-                        case ID_TYPE_ARR_NUM:
-                        case ID_TYPE_BYREF_NUM:
-                        case ID_TYPE_NUM:
-                            expr_id = getIDInScope_ByIndex("NumberArraySize");
-                            break;
-                        case ID_TYPE_ARR_STR:
-                        case ID_TYPE_BYREF_STR:
-                        case ID_TYPE_STR:
-                            expr_id = getIDInScope_ByIndex("StringArraySize");
-                            break;
-                    }
-                    if(expr_id < 0)
-                    {
-                        rc_setError("ArraySize Syntax Error");
-                        return false;
-                    }
-                }
-                else if(StringToLower(id[expr_id].name).compare("arraycopy")==0)
-                {
-                    //cout << "HERES JOHNNY" << endl;
-                    if(num_args != 2)
-                    {
-                        rc_setError("ArrayCopy expects 2 arguments");
-                        return false;
-                    }
 
-                    resolve_index = getResolveReg(args[0]);
-                    resolve_index2 = getResolveReg(args[1]);
-
-                    if(resolve_index < 0 || resolve_index2 < 0)
-                    {
-                        rc_setError("Expected Identifier in ArrayCopy argument: " +args[0]);
-                        return false;
-                    }
-
-                    resolve_id = resolveID_id_vec_pos[resolve_index];
-                    resolve_id2 = resolveID_id_vec_pos[resolve_index2];
-
-                    switch(resolveID_id_type[resolve_index])
-                    {
-                        case ID_TYPE_ARR_NUM:
-                        case ID_TYPE_BYREF_NUM:
-                        case ID_TYPE_NUM:
-                            expr_id = getIDInScope_ByIndex("NumberArrayCopy");
-                            if(resolveID_id_type[resolve_index2] != ID_TYPE_ARR_NUM &&
-                               resolveID_id_type[resolve_index2] != ID_TYPE_BYREF_NUM &&
-                               resolveID_id_type[resolve_index2] != ID_TYPE_NUM)
-                            {
-                                rc_setError("ArrayCopy argument types don't match");
-                                return false;
-                            }
-
-                            if(id[resolve_id].num_args != id[resolve_id2].num_args)
-                            {
-                                rc_setError("ArrayCopy dimensions don't match");
-                                return false;
-                            }
-                            break;
-                        case ID_TYPE_ARR_STR:
-                        case ID_TYPE_BYREF_STR:
-                        case ID_TYPE_STR:
-                            expr_id = getIDInScope_ByIndex("StringArrayCopy");
-                            if(resolveID_id_type[resolve_index2] != ID_TYPE_ARR_STR &&
-                               resolveID_id_type[resolve_index2] != ID_TYPE_BYREF_STR &&
-                               resolveID_id_type[resolve_index2] != ID_TYPE_STR)
-                            {
-                                rc_setError("ArrayCopy argument types don't match");
-                                return false;
-                            }
-                            if(id[resolve_id].num_args != id[resolve_id2].num_args)
-                            {
-                                rc_setError("ArrayCopy dimensions don't match");
-                                return false;
-                            }
-                            break;
-                    }
-                    if(expr_id < 0)
-                    {
-                        rc_setError("ArrayCopy Syntax Error");
-                        return false;
-                    }
-                }
-                else if(StringToLower(id[expr_id].name).compare("arrayfill")==0)
-                {
-                    //cout << "HERES JOHNNY" << endl;
-                    resolve_index = getResolveReg(args[0]);
-                    if(resolve_index < 0)
-                    {
-                        rc_setError("Expected Identifier in ArrayFill argument: " + args[0]);
-                        return false;
-                    }
-                    switch(resolveID_id_type[resolve_index])
-                    {
-                        case ID_TYPE_ARR_NUM:
-                        case ID_TYPE_BYREF_NUM:
-                        case ID_TYPE_NUM:
-                            expr_id = getIDInScope_ByIndex("NumberArrayFill");
-                            break;
-                        case ID_TYPE_ARR_STR:
-                        case ID_TYPE_BYREF_STR:
-                        case ID_TYPE_STR:
-                            expr_id = getIDInScope_ByIndex("StringArrayFill");
-                            break;
-                    }
-                    if(expr_id < 0)
-                    {
-                        rc_setError("ArrayFill Syntax Error");
-                        return false;
-                    }
-                }
 
                 bool local_state_is_pushed = false; //this variable checks will be set to true if the following function call is recursive
                 if(block_state.size() > 0)
@@ -2232,13 +2084,48 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                             return false;
                         }*/
 
+                        //Array Functions
+                        string tmp_fn_name = StringToLower(id[expr_id].name);
+                        if(tmp_fn_name.compare("arraydim")==0)
+                        {
+                            int tmp_id_type = -1;
+
+                            if(args[n].substr(0,4).compare("<id>")==0)
+                            {
+                                int tmp_id = getIDInScope_ByIndex(args[n].substr(4));
+
+                                if(tmp_id >= 0)
+                                    tmp_id_type = id[tmp_id].type;
+                            }
+
+
+                            if(args[n].substr(0,1).compare("n")==0 || tmp_id_type == ID_TYPE_NUM || tmp_id_type == ID_TYPE_ARR_NUM || tmp_id_type == ID_TYPE_BYREF_NUM)
+                                expr_id = getIDInScope_ByIndex("numberarraydim");
+                            else if(args[n].substr(0,1).compare("s")==0 || tmp_id_type == ID_TYPE_STR || tmp_id_type == ID_TYPE_ARR_STR || tmp_id_type == ID_TYPE_BYREF_STR)
+                                expr_id = getIDInScope_ByIndex("stringarraydim");
+                            else if(args[n].substr(0,1).compare("u")==0)
+                                expr_id = getIDInScope_ByIndex("typearraydim");
+                            else
+                            {
+                                rc_setError("Expected valid array identifier: " + args[n]);
+                                expr_id = -1;
+                            }
+
+                            if(expr_id < 0)
+                            {
+                                rc_setError("ArrayDim macro function does not exists for variable type");
+                                return false;
+                            }
+                        }
+                        //--------------------------------
+
                         if(type_exception_found)
                         switch(id[expr_id].fn_arg_type[n])
                         {
                             case ID_TYPE_BYREF_NUM:
                                 if(args[n].substr(0,1).compare("n")!=0)
                                 {
-                                    rc_setError("Expected number identifier for argument");
+                                    rc_setError("Expected number identifier for argument in " + id[expr_id].name);
                                     return false;
                                 }
                                 vm_asm.push_back("ptr !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + args[n]);

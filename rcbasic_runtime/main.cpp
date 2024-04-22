@@ -82,11 +82,13 @@ string rcbasic_runtime_path = "";
 struct n_value
 {
     vector<double> value;
+    void * ref_parent; // This will be set by the obj_get instructions (ie. obj_get and obj_usr_get)
 };
 
 struct s_value
 {
     vector<string> value;
+    void * ref_parent; // This will be set by the obj_get instructions (ie. obj_get and obj_usr_get)
 };
 
 struct rc_vm_n
@@ -1413,6 +1415,8 @@ void obj_get_85(int n1)
     vm_n[n1].r_index = num_object.index;
     //cout << "t3" << endl;
 
+    num_object.obj_val->ref_parent = num_object.obj_val;
+
     #ifdef RCBASIC_DEBUG
     if(!num_var[num_object.nid].is_debug_var)
         return;
@@ -1428,6 +1432,8 @@ void obj_getS_86(int s1)
     vm_s[s1].value = str_object.obj_val[0].value[str_object.index];
     vm_s[s1].r = str_object.obj_val;
     vm_s[s1].r_index = str_object.index;
+
+    str_object.obj_val->ref_parent = str_object.obj_val;
 
     #ifdef RCBASIC_DEBUG
     if(!str_var[str_object.sid].is_debug_var)
@@ -2108,6 +2114,7 @@ void ptr_126(uint64_t nid, int n1)
     byref_var_byref_offset.push(num_var[nid].byref_offset);
     num_var[nid].nref = vm_n[n1].r;
     num_var[nid].byref_offset = vm_n[n1].r_index;
+    num_var[nid].nid_value.ref_parent = vm_n[n1].r->ref_parent;
 }
 
 void ptrS_127(uint64_t sid, int s1)
@@ -2119,6 +2126,7 @@ void ptrS_127(uint64_t sid, int s1)
     byref_var_byref_offset.push(str_var[sid].byref_offset);
     str_var[sid].sref = vm_s[s1].r;
     str_var[sid].byref_offset = vm_s[s1].r_index;
+    str_var[sid].sid_value.ref_parent = vm_s[s1].r->ref_parent;
 }
 
 void rc_print_num(double n)
@@ -2170,7 +2178,8 @@ void rc_push_str(string s_val)
 
 uint64_t rc_string_array_dim(rc_strId s_var)
 {
-    return s_var.dimensions;
+    rc_strId* s = (rc_strId*)s_var.sid_value.ref_parent;
+    return s->dimensions;
 }
 
 uint64_t rc_string_array_size(rc_strId s_var, int d_num)
@@ -2192,7 +2201,8 @@ uint64_t rc_string_array_size(rc_strId s_var, int d_num)
 
 uint64_t rc_number_array_dim(rc_numId n_var)
 {
-    return n_var.dimensions;
+    rc_numId* n = (rc_numId*)n_var.nid_value.ref_parent;
+    return n->dimensions;
 }
 
 uint64_t rc_number_array_size(rc_numId n_var, int d_num)
@@ -2373,19 +2383,19 @@ void func_130(uint64_t fn)
             rc_push_str( rc_input(INPUT$_PROMPT$) );
             break;
         case FN_StringArrayDim:
-            rc_push_num( rc_string_array_dim( str_var[arr_ref_id[0]] ) );
+            rc_push_num( rc_string_array_dim( str_var[0] ) );
             arr_ref_id.clear();
             break;
         case FN_NumberArrayDim:
-            rc_push_num( rc_number_array_dim( num_var[arr_ref_id[0]] ) );
+            rc_push_num( rc_number_array_dim( num_var[0] ) );
             arr_ref_id.clear();
             break;
         case FN_StringArraySize:
-            rc_push_num( rc_string_array_size( str_var[arr_ref_id[0]], STRINGARRAYSIZE_ARRAY_DIM));
+            rc_push_num( rc_string_array_size( str_var[0], STRINGARRAYSIZE_ARRAY_DIM));
             arr_ref_id.clear();
             break;
         case FN_NumberArraySize:
-            rc_push_num( rc_number_array_size( num_var[arr_ref_id[0]], NUMBERARRAYSIZE_ARRAY_DIM));
+            rc_push_num( rc_number_array_size( num_var[0], NUMBERARRAYSIZE_ARRAY_DIM));
             arr_ref_id.clear();
             break;
         case FN_Abs:
@@ -4382,6 +4392,8 @@ void obj_usr_get_164(int n1)
     vm_n[n1].value = usr_object.num_ref->nref[0].value[usr_object.index];
     vm_n[n1].r = usr_object.num_ref->nref;
     vm_n[n1].r_index = usr_object.index;
+
+    usr_object.num_ref->nid_value.ref_parent = usr_object.num_ref;
     //cout << "obj_usr_get_N done: " << vm_n[n1].r[0].value[vm_n[n1].r_index] << endl;
 }
 
@@ -4390,6 +4402,9 @@ void obj_usr_get_165(int s1)
     vm_s[s1].value = usr_object.str_ref->sref[0].value[usr_object.index];
     vm_s[s1].r = usr_object.str_ref->sref;
     vm_s[s1].r_index = usr_object.index;
+
+    usr_object.str_ref->sid_value.ref_parent = usr_object.str_ref;
+    //cout << "obj_usr_get -- " << usr_object.str_ref->dimensions << " --> " << usr_object.str_ref->dim[0] << ", " << usr_object.str_ref->dim[1] << endl;
 }
 
 void obj_usr_get_166(int u1)

@@ -514,3 +514,10 @@ sub IncrementMatrixRows(mA, mB, r, num_rows, value)
 sub IncrementMatrixColumns(mA, mB, c, num_cols, value)
 sub JoinMatrixRows(mA, mB, mC)
 sub JoinMatrixColumns(mA, mB, mC)
+
+'v4.0
+function TypeArrayDim(Byref id$)
+function TypeArraySize(Byref id, array_dim)
+sub TypeArrayCopy(ByRef src, ByRef dst)
+sub TypeArrayFill(ByRef src, fdata)
+
