@@ -114,10 +114,10 @@ OBJ_CURRENT_TYPE
 
 89 - clear_obj
 
-90 - dim_type	!id		raw_number (user_type)
-91 - dim_type1	!id		raw_number (user type)		n# (dim1)
-92 - dim_type2	!id		raw_number (user type)		n# (dim1)	n# (dim2)
-93 - dim_type3	!id		raw_number (user type)		n# (dim1)	n# (dim2)	n# (dim3)
+90 - dim_type	!id		!id (user_type)
+91 - dim_type1	!id		!id (user type)		n# (dim1)
+92 - dim_type2	!id		!id (user type)		n# (dim1)	n# (dim2)
+93 - dim_type3	!id		!id (user type)		n# (dim1)	n# (dim2)	n# (dim3)
 
 94 - dim_num1	!id		n# (dim1)
 95 - dim_num2	!id		n# (dim1)	n# (dim2)
@@ -260,10 +260,10 @@ OBJ_CURRENT_TYPE
 
 174 - delete_t  !id    !id (0 - top level, 1 - member)    !id (0 - num, 1 - str, 2 - type)
 
-175 - dim_type	u#		raw_number (user_type)
-176 - dim_type1	u#		raw_number (user type)		n# (dim1)
-177 - dim_type2	u#		raw_number (user type)		n# (dim1)	n# (dim2)
-178 - dim_type3	u#		raw_number (user type)		n# (dim1)	n# (dim2)	n# (dim3)
+175 - dim_type	u#		!id (user_type)
+176 - dim_type1	u#		!id (user type)		n# (dim1)
+177 - dim_type2	u#		!id (user type)		n# (dim1)	n# (dim2)
+178 - dim_type3	u#		!id (user type)		n# (dim1)	n# (dim2)	n# (dim3)
 
 179 - dim_tfield  raw_number (user_type)    raw_number (member_type)    raw_number (member_index)    raw_number (dimensions)    n# (dim1)	n# (dim2)	n# (dim3)
 
@@ -283,3 +283,25 @@ OBJ_CURRENT_TYPE
 191 - preset_t3  !id  raw_number (user_type)  n#  n#  n#
 
 
+192 - redim_type	u#		!id (user_type)
+193 - redim_type1	u#		!id (user type)		n# (dim1)
+194 - redim_type2	u#		!id (user type)		n# (dim1)	n# (dim2)
+195 - redim_type3	u#		!id (user type)		n# (dim1)	n# (dim2)	n# (dim3)
+
+
+196 - redim_type_n	!id		
+197 - redim_type_n1	!id		n# (dim1)
+198 - redim_type_n2	!id		n# (dim1)	n# (dim2)
+199 - redim_type_n3	!id		n# (dim1)	n# (dim2)	n# (dim3)
+
+
+200 - redim_type_s	!id
+201 - redim_type_s1	!id		n# (dim1)
+202 - redim_type_s2	!id		n# (dim1)	n# (dim2)
+203 - redim_type_s3	!id		n# (dim1)	n# (dim2)	n# (dim3)
+
+
+204 - redim_type	!id		!id (user_type)
+205 - redim_type1	!id		!id (user type)		n# (dim1)
+206 - redim_type2	!id		!id (user type)		n# (dim1)	n# (dim2)
+207 - redim_type3	!id		!id (user type)		n# (dim1)	n# (dim2)	n# (dim3)

@@ -26,6 +26,13 @@ string type_delete_arg = "";
 int type_delete_arg_type = 0;
 bool type_delete_arg_whole = false;
 
+bool type_redim_flag = false;
+string type_redim_arg = "";
+int type_redim_arg_type = 0;
+string type_redim_arg_utype = "";
+string type_redim_dim[3];
+int type_redim_dim_count = 0;
+
 struct type_error_exception
 {
     string error_log;
@@ -1375,7 +1382,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
 
                                 arg_count++;
                             }
-                            else if(type_delete_flag)
+                            else if(type_delete_flag || type_redim_flag)
                                 t2--;
 
                         }
@@ -1400,7 +1407,15 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
 
                         if(arg_count != id[tmp_id].num_args)
                         {
-                            if(!type_delete_flag)
+                            if(type_redim_flag)
+                            {
+                                if(has_child)
+                                {
+                                    rc_setError("[1]Expected " + rc_intToString(id[tmp_id].num_args) + " dimension in " + id[tmp_id].name);
+                                    return false;
+                                }
+                            }
+                            else if(!type_delete_flag)
                             {
                                 if(arg_count != 0)
                                     rc_setError("[0]Expected " + rc_intToString(id[tmp_id].num_args) + " dimension in " + id[tmp_id].name);
@@ -1458,7 +1473,15 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                             }
                         }
 
-                        if(type_delete_flag && (!has_child))
+                        if(type_redim_flag && (!has_child))
+                        {
+                            cout << "NO CHILD: " << id[tmp_id].name << " -- arg_count = " << arg_count << " -- arg[0] = " << args[0] << endl;
+                            type_redim_dim_count = arg_count;
+                            type_redim_dim[0] = args[0];
+                            type_redim_dim[1] = args[1];
+                            type_redim_dim[2] = args[2];
+                        }
+                        else if(type_delete_flag && (!has_child))
                         {
                             //DO NOTHING
                             cout << "NO CHILD: " << id[tmp_id].name << endl;
@@ -1566,7 +1589,13 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
 
 
                 //START HERE
-                if(type_delete_flag && (!has_child))
+                if(type_redim_flag && (!has_child))
+                {
+                    type_redim_arg = "!" + rc_intToString(id[tmp_id].vec_pos);
+                    type_redim_arg_type = id[tmp_id].type;
+                    type_redim_arg_utype = "!" + rc_intToString(id[tmp_id].type_index);
+                }
+                else if(type_delete_flag && (!has_child))
                 {
                     //cout << "DELETE_VAR = " << id[tmp_id].name << endl;
                     type_delete_arg = "!" + rc_intToString(id[tmp_id].vec_pos);
@@ -3594,6 +3623,7 @@ bool check_rule()
 
 
                     id_type = id[id_index].type;
+                    type_redim_arg_type = 0;
 
                     //cout << "db1\n";
 
@@ -3658,12 +3688,24 @@ bool check_rule()
                         multi_arg_count = 0;
                         int end_token = token_index+1;
                         int sq_scope = 1;
+                        bool has_child = false;
                         for(; end_token < token.size(); end_token++)
                         {
                             if(token[end_token].compare("</square>")==0)
                                 sq_scope--;
                             else if(token[end_token].compare("<square>")==0)
                                 sq_scope++;
+
+                            if( (end_token+1) < token.size() )
+                            {
+                                if(token[end_token+1].compare("<child>")==0 || token[end_token].compare("<child>")==0)
+                                {
+                                    has_child = true;
+                                    continue;
+                                }
+                                else if(token[end_token+1].compare("<square>")==0)
+                                    continue;
+                            }
 
                             if(sq_scope==0)
                                 break;
@@ -3675,6 +3717,20 @@ bool check_rule()
                             return false;
                         }
 
+                        cout << "DEBUG TOKENS: " << endl;
+                        cout << "----------------------" << endl;
+                        for(int tk = token_index; tk < end_token; tk++) cout << token[tk] << endl;
+                        cout << "-------------------------------------" << endl;
+
+                        if(has_child)
+                        {
+                            token_index = 1;
+                            type_redim_flag = true;
+                            type_redim_arg_type = 0;
+                        }
+                        else
+                            type_redim_flag = false;
+
                         //cout << "debug 1: " << id_index << endl;
 
                         if(!eval_expression(token_index, end_token, true))
@@ -3685,7 +3741,21 @@ bool check_rule()
 
                         //cout << "debug 2: " << id_index << endl;
 
-                        if(multi_arg_count <= 0 || multi_arg_count > 3)
+                        if(type_redim_flag)
+                        {
+                            if(type_redim_dim_count <= 0)
+                            {
+                                rc_setError("Expected 1 to 3 Arguments for array re-dimension, Found " + rc_intToString(multi_arg_count));
+                                return false;
+                            }
+                            dimensions = type_redim_dim_count;
+                            multi_arg[0] = type_redim_dim[0];
+                            multi_arg[1] = type_redim_dim[1];
+                            multi_arg[2] = type_redim_dim[2];
+
+                            cout << "type arg = " << type_redim_arg << "  type = " << type_redim_arg_type << "  utype = " << type_redim_arg_utype << endl;
+                        }
+                        else if(multi_arg_count <= 0 || multi_arg_count > 3)
                         {
                             rc_setError("Expected 1 to 3 Arguments for array re-dimension, Found " + rc_intToString(multi_arg_count));
                             return false;
@@ -3698,6 +3768,8 @@ bool check_rule()
                             dimensions = multi_arg_count;
                         }
                         token_index = end_token+1;
+
+                        type_redim_flag = false;
 
                         //cout << "debug 3: " << id_index << endl;
                     }
@@ -3745,7 +3817,80 @@ bool check_rule()
 
                     //cout << "debug 7: " << id_index << " -- " << id[id_index].type << endl;
 
-                    if(id[id_index].type == ID_TYPE_NUM || id[id_index].type == ID_TYPE_ARR_NUM)
+                    if(type_redim_arg_type == ID_TYPE_USER)
+                    {
+                        switch(dimensions)
+                        {
+                            case 1:
+                                vm_asm.push_back("redim_type1 " + type_redim_arg + " " + type_redim_arg_utype + " " + multi_arg[0]);
+                                break;
+                            case 2:
+                                vm_asm.push_back("redim_type2 " + type_redim_arg + " " + type_redim_arg_utype + " " + multi_arg[0] + " " + multi_arg[1]);
+                                break;
+                            case 3:
+                                vm_asm.push_back("redim_type3 " + type_redim_arg + " " + type_redim_arg_utype + " " + multi_arg[0] + " " + multi_arg[1] + " " + multi_arg[2]);
+                                break;
+                            default:
+                                rc_setError("Invalid number of dimensions in REDIM");
+                                return false;
+                        }
+                    }
+                    else if(type_redim_arg_type == ID_TYPE_USER_NUM || type_redim_arg_type == ID_TYPE_USER_NUM_ARRAY)
+                    {
+                        switch(dimensions)
+                        {
+                            case 1:
+                                vm_asm.push_back("redim_type_n1 " + type_redim_arg + " " + multi_arg[0]);
+                                break;
+                            case 2:
+                                vm_asm.push_back("redim_type_n2 " + type_redim_arg + " " + multi_arg[0] + " " + multi_arg[1]);
+                                break;
+                            case 3:
+                                vm_asm.push_back("redim_type_n3 " + type_redim_arg + " " + multi_arg[0] + " " + multi_arg[1] + " " + multi_arg[2]);
+                                break;
+                            default:
+                                rc_setError("Invalid number of dimensions in REDIM");
+                                return false;
+                        }
+                    }
+                    else if(type_redim_arg_type == ID_TYPE_USER_STR || type_redim_arg_type == ID_TYPE_USER_STR_ARRAY)
+                    {
+                        switch(dimensions)
+                        {
+                            case 1:
+                                vm_asm.push_back("redim_type_s1 " + type_redim_arg + " " + multi_arg[0]);
+                                break;
+                            case 2:
+                                vm_asm.push_back("redim_type_s2 " + type_redim_arg + " " + multi_arg[0] + " " + multi_arg[1]);
+                                break;
+                            case 3:
+                                vm_asm.push_back("redim_type_s3 " + type_redim_arg + " " + multi_arg[0] + " " + multi_arg[1] + " " + multi_arg[2]);
+                                break;
+                            default:
+                                rc_setError("Invalid number of dimensions in REDIM");
+                                return false;
+                        }
+                    }
+                    else if(id[id_index].type == ID_TYPE_USER)
+                    {
+                        //cout << "debug 8" << endl;
+                        switch(dimensions)
+                        {
+                            case 1:
+                                vm_asm.push_back("redim_type1 !" + rc_intToString(id[id_index].vec_pos) + " !" + rc_intToString(id[id_index].type_index) + " " + multi_arg[0]);
+                                break;
+                            case 2:
+                                vm_asm.push_back("redim_type2 !" + rc_intToString(id[id_index].vec_pos) + " !" + rc_intToString(id[id_index].type_index) + " " + multi_arg[0] + " " + multi_arg[1]);
+                                break;
+                            case 3:
+                                vm_asm.push_back("redim_type3 !" + rc_intToString(id[id_index].vec_pos) + " !" + rc_intToString(id[id_index].type_index) + " " + multi_arg[0] + " " + multi_arg[1] + " " + multi_arg[2]);
+                                break;
+                            default:
+                                rc_setError("Invalid number of dimensions in REDIM");
+                                return false;
+                        }
+                    }
+                    else if(id[id_index].type == ID_TYPE_NUM || id[id_index].type == ID_TYPE_ARR_NUM)
                     {
                         //cout << "debug 8" << endl;
                         switch(dimensions)
@@ -3784,7 +3929,7 @@ bool check_rule()
                     }
                     else
                     {
-                        rc_setError("Invalid type for REDIM");
+                        rc_setError("Invalid type for REDIM: " + rc_intToString(id[id_index].type));
                         return false;
                     }
                     //cout << "balls" << endl;

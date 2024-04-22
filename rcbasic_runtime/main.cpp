@@ -1449,7 +1449,7 @@ void clear_obj_89()
 {
 }
 
-bool rc_dim_type(rc_usrId* parent, uint64_t udt_index, int num_dim, uint64_t d1, uint64_t d2, uint64_t d3)
+bool rc_dim_type(rc_usrId* parent, uint64_t udt_index, int num_dim, uint64_t d1, uint64_t d2, uint64_t d3, uint64_t start_index = 0)
 {
     uint64_t dim_size = 0;
     switch(num_dim)
@@ -1485,7 +1485,7 @@ bool rc_dim_type(rc_usrId* parent, uint64_t udt_index, int num_dim, uint64_t d1,
 
     //cout << "starting field: " << udt_index << " " << num_dim << " " << d1 << " " << d2 << " " << d3 << ": " << parent->uid_value.size() << endl;
 
-    for(uint64_t i = 0; i < dim_size; i++)
+    for(uint64_t i = start_index; i < dim_size; i++)
     {
         p_obj = &parent->uid_value[i];
 
