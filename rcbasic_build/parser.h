@@ -6049,12 +6049,35 @@ bool check_rule_embedded()
             if(fn_name.substr(fn_name.length()-1,1).compare("$")==0)
                 fn_type = ID_TYPE_FN_STR;
 
-            embed_function(fn_name, fn_type);
+            string fn_type_name = "";
+            if(token.size()>2)
+            {
+                if(token[token.size()-2].compare("<as>")==0)
+                {
+                    fn_type = ID_TYPE_FN_USER;
+                    if(token[token.size()-1].substr(0,4).compare("<id>")==0)
+                        fn_type_name = token[token.size()-1].substr(4);
+                    else
+                    {
+                        rc_setError("Invalid return type in FUNCTION definition");
+                        return false;
+                    }
+                    token.pop_back();
+                    token.pop_back();
+                }
+            }
+
+            if(!create_function(fn_name, fn_type, fn_type_name))
+            {
+                rc_setError("Could not create FUNCTION \"" + fn_name + "\" of type \"" + fn_type_name + "\"");
+                return false;
+            }
             current_block_state = BLOCK_STATE_FUNCTION;
             block_state.push(current_block_state);
 
             string fn_arg = "";
             int fn_arg_type = ID_TYPE_NUM;
+            string fn_arg_user_type = "";
             bool fn_byref = false;
 
             int end_token = 0;
@@ -6073,34 +6096,66 @@ bool check_rule_embedded()
                     else
                         fn_arg_type = ID_TYPE_NUM;
                 }
+                else if(token[i].compare("<as>")==0)
+                {
+                    i++;
+                    fn_arg_type = ID_TYPE_USER;
+                    fn_arg_user_type = "";
+                    int arg_type_index = -1;
+                    if(i < token.size())
+                        if(token[i].substr(0,4).compare("<id>")==0)
+                            fn_arg_user_type = token[i].substr(4);
+
+                    if(fn_arg_user_type.compare("")==0)
+                    {
+                        rc_setError("Invalid Type in FUNCTION Definition");
+                        return false;
+                    }
+
+                }
                 else if(token[i].compare("<comma>")==0)
                 {
+                    //cout << "ADD ARG: " << fn_arg << endl;
                     fn_arg = rc_substr(fn_arg, 4, fn_arg.length()-1);
                     if(!isValidIDName(fn_arg))
                     {
-                        rc_setError("Function argument is not a valid identifier name");
+                        rc_setError("FUNCTION argument is not a valid identifier name");
                         return false;
                     }
                     if(idExistsInScope(fn_arg))
                     {
-                        rc_setError("Function argument identifier already exists in current scope");
+                        rc_setError("FUNCTION argument identifier already exists in current scope");
                         return false;
                     }
+
+                    //cout << "CHECK 1" << endl;
 
                     if(fn_byref)
                     {
                         if(fn_arg_type == ID_TYPE_NUM)
                             fn_arg_type = ID_TYPE_BYREF_NUM;
-                        else
+                        else if(fn_arg_type == ID_TYPE_STR)
                             fn_arg_type = ID_TYPE_BYREF_STR;
+                        else
+                            fn_arg_type = ID_TYPE_BYREF_USER;
                     }
 
-                    add_embedded_arg(fn_arg, fn_arg_type);
+                    if(!add_function_arg(fn_arg, fn_arg_type, fn_arg_user_type))
+                    {
+                        return false;
+                    }
                     fn_arg = "";
                     fn_byref = false;
+
+                    //cout << "DONE" << endl;
                 }
                 else if(token[i].compare("</par>")==0)
                 {
+                    if((i+1) < token.size())
+                    {
+                        rc_setError("Expected End of FUNCTION Declaration");
+                        return false;
+                    }
                     if(fn_arg.compare("")==0)
                     {
                         end_token = i+1;
@@ -6109,12 +6164,12 @@ bool check_rule_embedded()
                     fn_arg = rc_substr(fn_arg, 4, fn_arg.length()-1);
                     if(!isValidIDName(fn_arg))
                     {
-                        rc_setError("Function argument is not a valid identifier name");
+                        rc_setError("FUNCTION argument is not a valid identifier name");
                         return false;
                     }
                     if(idExistsInScope(fn_arg))
                     {
-                        rc_setError("Function argument identifier already exists in current scope: " + fn_arg + " -> " + current_scope + " ? ");
+                        rc_setError("FUNCTION argument identifier already exists in current scope");
                         return false;
                     }
 
@@ -6122,11 +6177,17 @@ bool check_rule_embedded()
                     {
                         if(fn_arg_type == ID_TYPE_NUM)
                             fn_arg_type = ID_TYPE_BYREF_NUM;
-                        else
+                        else if(fn_arg_type == ID_TYPE_STR)
                             fn_arg_type = ID_TYPE_BYREF_STR;
+                        else
+                            fn_arg_type = ID_TYPE_BYREF_USER;
                     }
 
-                    add_embedded_arg(fn_arg, fn_arg_type);
+                    if(!add_function_arg(fn_arg, fn_arg_type, fn_arg_user_type))
+                    {
+                        return false;
+                    }
+
                     fn_arg = "";
                     fn_byref = false;
                     end_token = i+1;
@@ -6134,8 +6195,7 @@ bool check_rule_embedded()
                 }
                 else
                 {
-                    rc_setError("Argument to function must be a valid identifier: " + token[i]);
-                    return false;
+                    rc_setError("Argument to FUNCTION must be a valid identifier: " + token[i]);
                 }
             }
 
@@ -6174,12 +6234,19 @@ bool check_rule_embedded()
 
             int fn_type = ID_TYPE_SUB;
 
-            embed_function(fn_name, fn_type);
+            string fn_type_name = "";
+
+            if(!create_function(fn_name, fn_type, fn_type_name))
+            {
+                rc_setError("Could not create SUB ROUTINE \"" + fn_name + "\"");
+                return false;
+            }
             current_block_state = BLOCK_STATE_SUB;
             block_state.push(current_block_state);
 
             string fn_arg = "";
             int fn_arg_type = ID_TYPE_NUM;
+            string fn_arg_user_type = "";
             bool fn_byref = false;
 
             int end_token = 0;
@@ -6198,34 +6265,66 @@ bool check_rule_embedded()
                     else
                         fn_arg_type = ID_TYPE_NUM;
                 }
+                else if(token[i].compare("<as>")==0)
+                {
+                    i++;
+                    fn_arg_type = ID_TYPE_USER;
+                    fn_arg_user_type = "";
+                    int arg_type_index = -1;
+                    if(i < token.size())
+                        if(token[i].substr(0,4).compare("<id>")==0)
+                            fn_arg_user_type = token[i].substr(4);
+
+                    if(fn_arg_user_type.compare("")==0)
+                    {
+                        rc_setError("Invalid Type in SUB ROUTINE Definition");
+                        return false;
+                    }
+
+                }
                 else if(token[i].compare("<comma>")==0)
                 {
+                    //cout << "ADD ARG: " << fn_arg << endl;
                     fn_arg = rc_substr(fn_arg, 4, fn_arg.length()-1);
                     if(!isValidIDName(fn_arg))
                     {
-                        rc_setError("Function argument is not a valid identifier name");
+                        rc_setError("SUB ROUTINE argument is not a valid identifier name");
                         return false;
                     }
                     if(idExistsInScope(fn_arg))
                     {
-                        rc_setError("Function argument identifier already exists in current scope");
+                        rc_setError("SUB ROUTINE argument identifier already exists in current scope");
                         return false;
                     }
+
+                    //cout << "CHECK 1" << endl;
 
                     if(fn_byref)
                     {
                         if(fn_arg_type == ID_TYPE_NUM)
                             fn_arg_type = ID_TYPE_BYREF_NUM;
-                        else
+                        else if(fn_arg_type == ID_TYPE_STR)
                             fn_arg_type = ID_TYPE_BYREF_STR;
+                        else
+                            fn_arg_type = ID_TYPE_BYREF_USER;
                     }
 
-                    add_embedded_arg(fn_arg, fn_arg_type);
+                    if(!add_function_arg(fn_arg, fn_arg_type, fn_arg_user_type))
+                    {
+                        return false;
+                    }
                     fn_arg = "";
                     fn_byref = false;
+
+                    //cout << "DONE" << endl;
                 }
                 else if(token[i].compare("</par>")==0)
                 {
+                    if((i+1) < token.size())
+                    {
+                        rc_setError("Expected End of SUB ROUTINE Declaration");
+                        return false;
+                    }
                     if(fn_arg.compare("")==0)
                     {
                         end_token = i+1;
@@ -6234,12 +6333,12 @@ bool check_rule_embedded()
                     fn_arg = rc_substr(fn_arg, 4, fn_arg.length()-1);
                     if(!isValidIDName(fn_arg))
                     {
-                        rc_setError("Function argument is not a valid identifier name");
+                        rc_setError("SUB ROUTINE argument is not a valid identifier name");
                         return false;
                     }
                     if(idExistsInScope(fn_arg))
                     {
-                        rc_setError("Function argument identifier already exists in current scope");
+                        rc_setError("SUB ROUTINE argument identifier already exists in current scope");
                         return false;
                     }
 
@@ -6247,11 +6346,17 @@ bool check_rule_embedded()
                     {
                         if(fn_arg_type == ID_TYPE_NUM)
                             fn_arg_type = ID_TYPE_BYREF_NUM;
-                        else
+                        else if(fn_arg_type == ID_TYPE_STR)
                             fn_arg_type = ID_TYPE_BYREF_STR;
+                        else
+                            fn_arg_type = ID_TYPE_BYREF_USER;
                     }
 
-                    add_embedded_arg(fn_arg, fn_arg_type);
+                    if(!add_function_arg(fn_arg, fn_arg_type, fn_arg_user_type))
+                    {
+                        return false;
+                    }
+
                     fn_arg = "";
                     fn_byref = false;
                     end_token = i+1;
@@ -6259,8 +6364,7 @@ bool check_rule_embedded()
                 }
                 else
                 {
-                    rc_setError("Argument to function must be a valid identifier: " + token[i]);
-                    return false;
+                    rc_setError("Argument to SUB ROUTINE must be a valid identifier: " + token[i]);
                 }
             }
 
@@ -6276,6 +6380,37 @@ bool check_rule_embedded()
                 return false;
             }
 
+        }
+        else if(token[0].compare("<type>")==0)
+        {
+            if(current_scope.compare("main")!=0)
+            {
+                rc_setError("TYPE cannot be defined in this scope");
+                return false;
+            }
+            if(token.size() != 2)
+            {
+                rc_setError("Expected TYPE Identifier in TYPE statement");
+                return false;
+            }
+            if(token[1].substr(0,4).compare("<id>")!=0)
+            {
+                rc_setError("Expected TYPE Identifier in TYPE statement");
+                return false;
+            }
+            int id_index = getIDInScope_ByIndex(token[1].substr(4));
+            if(id_index >= 0)
+            {
+                rc_setError("TYPE Identifier exists in current scope");
+                return false;
+            }
+            create_type(token[1].substr(4));
+            current_block_state = BLOCK_STATE_TYPE;
+            block_state.push(current_block_state);
+
+            string start_label = current_scope + ".#TYPE:" + token[1].substr(4);
+
+            current_scope  = start_label;
         }
     }
     return true;
