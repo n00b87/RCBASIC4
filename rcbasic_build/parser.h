@@ -1510,7 +1510,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                         else
                         {
                             //if(type_delete_flag)
-                              //  cout << "TESTING STUFF" << endl;
+                                cout << "TESTING STUFF" << endl;
 
                             switch(arg_count)
                             {
@@ -1639,11 +1639,24 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                     case ID_TYPE_USER_NUM:
                         vm_asm.push_back("obj_usr_get " + n);
                         token[i] = n;
+
+                        cout << "GET N: " << n << ", " << id[tmp_id].scope << " :: " << id[tmp_id].name << endl;
+                        resolveID_id_reg.push_back(token[i]);
+                        resolveID_id_type.push_back(id[tmp_id].type);
+                        resolveID_id_ut_index.push_back(id[tmp_id].type_index);
+                        resolveID_id_vec_pos.push_back(tmp_id);
+
                         inc_n(1);
                         break;
                     case ID_TYPE_USER_STR:
                         vm_asm.push_back("obj_usr_get " + s);
                         token[i] = s;
+
+                        resolveID_id_reg.push_back(token[i]);
+                        resolveID_id_type.push_back(id[tmp_id].type);
+                        resolveID_id_ut_index.push_back(id[tmp_id].type_index);
+                        resolveID_id_vec_pos.push_back(tmp_id);
+
                         inc_s(1);
                         break;
                     default:
@@ -1655,6 +1668,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                     type_error_exception tx;
                     tx.error_log = "[0]Expected " + rc_intToString(id[tmp_id].num_args) + " dimension in " + id[tmp_id].name;
                     tx.tk_reg = token[i];
+                    cout << "store = " << tx.tk_reg << endl;
                     byref_type_exception.push_back(tx);
                     byref_type_flag = false;
                 }
@@ -2071,9 +2085,14 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                                 return false;
                             }
                         }
+                        else if( (args[n].substr(0,1).compare("n")==0 || args[n].substr(0,1).compare("s")==0) && resolve_index >= 0 )
+                        {
+                            //string t_replace = args[n];
+                        }
 
                         //check if byref_type_exception
                         bool type_exception_found = false;
+                        cout << "CHECK EXCEPTION: " << args[n] << endl;
                         for(int bt_i = 0; bt_i < byref_type_exception.size(); bt_i++)
                         {
                             if(args[n].compare(byref_type_exception[bt_i].tk_reg)==0)
@@ -2082,6 +2101,8 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                                 byref_type_exception[bt_i].tk_reg = "";
                                 type_exception_found = true;
                             }
+                            else
+                                cout << "NO MATCH (" << args[n] << ", " << byref_type_exception[bt_i].tk_reg << ")" << endl;
                         }
                         //----------------
 
@@ -2170,7 +2191,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                         switch(id[expr_id].fn_arg_type[n])
                         {
                             case ID_TYPE_BYREF_NUM:
-                                if(resolveID_id_type[resolve_index] != ID_TYPE_NUM && resolveID_id_type[resolve_index] != ID_TYPE_ARR_NUM && resolveID_id_type[resolve_index] != ID_TYPE_BYREF_NUM)
+                                if(resolveID_id_type[resolve_index] != ID_TYPE_NUM && resolveID_id_type[resolve_index] != ID_TYPE_ARR_NUM && resolveID_id_type[resolve_index] != ID_TYPE_BYREF_NUM && resolveID_id_type[resolve_index] != ID_TYPE_USER_NUM && resolveID_id_type[resolve_index] != ID_TYPE_USER_NUM_ARRAY)
                                 {
                                     rc_setError("Expected number identifier for argument");
                                     return false;
@@ -2178,7 +2199,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                                 vm_asm.push_back("ptr !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + resolveID_id_reg[resolve_index]);
                                 break;
                             case ID_TYPE_BYREF_STR:
-                                if(resolveID_id_type[resolve_index] != ID_TYPE_STR && resolveID_id_type[resolve_index] != ID_TYPE_ARR_STR && resolveID_id_type[resolve_index] != ID_TYPE_BYREF_STR)
+                                if(resolveID_id_type[resolve_index] != ID_TYPE_STR && resolveID_id_type[resolve_index] != ID_TYPE_ARR_STR && resolveID_id_type[resolve_index] != ID_TYPE_BYREF_STR && resolveID_id_type[resolve_index] != ID_TYPE_USER_STR && resolveID_id_type[resolve_index] != ID_TYPE_USER_STR_ARRAY)
                                 {
                                     rc_setError("Expected string identifier for argument");
                                     return false;
@@ -2197,6 +2218,24 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                     }
                     else if(id[expr_id].fn_arg_type[n] == ID_TYPE_BYREF_USER)
                     {
+                        cout << "BYREF USER TYPE CHECK" << endl;
+
+                        //check if byref_type_exception
+                        bool type_exception_found = false;
+                        cout << "CHECK EXCEPTION: " << args[n] << endl;
+                        for(int bt_i = 0; bt_i < byref_type_exception.size(); bt_i++)
+                        {
+                            if(args[n].compare(byref_type_exception[bt_i].tk_reg)==0)
+                            {
+                                cout << "FOUND EXCEPTION: " << args[n] << endl;
+                                byref_type_exception[bt_i].tk_reg = "";
+                                type_exception_found = true;
+                            }
+                            else
+                                cout << "NO MATCH (" << args[n] << ", " << byref_type_exception[bt_i].tk_reg << ")" << endl;
+                        }
+                        //----------------
+
                         int ut_info = -1;
                         int ut_index = -1;
                         getRegInfo(args[n], ut_info, ut_index);
@@ -2205,6 +2244,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                             rc_setError("Expected \"" + utype[id[expr_id].fn_arg_utype[n]].name + "\" identifier for ByRef argument");
                             return false;
                         }
+                        cout << "BYREF USER MATCH ID: " << id[expr_id].fn_arg[n] << endl;
                         vm_asm.push_back("uref_ptr !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + args[n]);
                     }
                     else if(id[expr_id].fn_arg_type[n] == ID_TYPE_NUM)
