@@ -1452,6 +1452,21 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                                     byref_type_flag = true;
                                     break;
                                 }
+                                else if(id[tmp_id].type == ID_TYPE_USER)
+                                {
+                                    if(udt_id_init)
+                                        tmp_instruction = "obj_usr_init";
+                                    else
+                                        tmp_instruction = "obj_usr";
+                                    vm_asm.push_back("mov " + n + " 0");
+                                    tmp_instruction += ( id[tmp_id].num_args <= 0 ? "" : rc_intToString(id[tmp_id].num_args) );
+                                    for(int tmp_arg_i = 0; tmp_arg_i < id[tmp_id].num_args; tmp_arg_i++)
+                                        args[tmp_arg_i] = n;
+
+                                    vm_asm.push_back(tmp_instruction + " !" + rc_intToString(id[tmp_id].vec_pos) + " " + args[0] + " " + args[1] + " " + args[2]);
+                                    byref_type_flag = true;
+                                    break;
+                                }
                                 //-------------------------------
 
                                 return false;
@@ -2088,6 +2103,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                         string tmp_fn_name = StringToLower(id[expr_id].name);
                         if(tmp_fn_name.compare("arraydim")==0)
                         {
+                            cout << "found array dim" << endl;
                             int tmp_id_type = -1;
 
                             if(args[n].substr(0,4).compare("<id>")==0)
@@ -2103,7 +2119,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                                 expr_id = getIDInScope_ByIndex("numberarraydim");
                             else if(args[n].substr(0,1).compare("s")==0 || tmp_id_type == ID_TYPE_STR || tmp_id_type == ID_TYPE_ARR_STR || tmp_id_type == ID_TYPE_BYREF_STR)
                                 expr_id = getIDInScope_ByIndex("stringarraydim");
-                            else if(args[n].substr(0,1).compare("u")==0)
+                            else if(args[n].substr(0,1).compare("u")==0 || tmp_id_type == ID_TYPE_USER || tmp_id_type == ID_TYPE_BYREF_USER)
                                 expr_id = getIDInScope_ByIndex("typearraydim");
                             else
                             {
@@ -2138,6 +2154,17 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                                 }
                                 vm_asm.push_back("ptr$ !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + args[n]);
                                 break;
+                            case ID_TYPE_BYREF_USER:
+                                //cout << "start up" << endl;
+                                if(args[n].substr(0,1).compare("u")!=0)
+                                {
+                                    rc_setError("Expected defined type identifier for argument: " + rc_intToString(id[expr_id].fn_arg_utype[n]));
+                                    return false;
+                                }
+                                //cout << "yolo: " << expr_id << " ~ " << id.size() << "  --  " << id[expr_id].num_args << endl;
+                                vm_asm.push_back("uref_ptr !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + args[n]);
+                                //cout << "testing" << endl;
+                                break;
                         }
                         else
                         switch(id[expr_id].fn_arg_type[n])
@@ -2157,6 +2184,14 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                                     return false;
                                 }
                                 vm_asm.push_back("ptr$ !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + resolveID_id_reg[resolve_index]);
+                                break;
+                            case ID_TYPE_BYREF_USER:
+                                if(resolveID_id_type[resolve_index] != ID_TYPE_USER && resolveID_id_type[resolve_index] != ID_TYPE_BYREF_USER)
+                                {
+                                    rc_setError("Expected defined type identifier for argument: " + rc_intToString(id[expr_id].fn_arg_utype[n]));
+                                    return false;
+                                }
+                                vm_asm.push_back("uref_ptr !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + resolveID_id_reg[resolve_index]);
                                 break;
                         }
                     }
@@ -6025,6 +6060,33 @@ bool check_rule_embedded()
 {
     if(token.size() > 0)
     {
+        if(current_block_state == BLOCK_STATE_TYPE)
+        {
+            if(token[0].compare("<dim>")!=0 && token[0].compare("<end>")!=0)
+            {
+                rc_setError("Expected DIM in TYPE definition");
+                return false;
+            }
+        }
+        else if(current_block_state != BLOCK_STATE_MAIN)
+        {
+            if(token[0].compare("<type>")==0)
+            {
+                rc_setError("TYPE cannot be declared in the current scope");
+                return false;
+            }
+            else if(token[0].compare("<function>")==0)
+            {
+                rc_setError("FUNCTION cannot be declared in the current scope");
+                return false;
+            }
+            else if(token[0].compare("<subp>")==0)
+            {
+                rc_setError("SUB ROUTINE cannot be declared in the current scope");
+                return false;
+            }
+        }
+
         if(token[0].compare("<function>")==0)
         {
             if(token.size()<2)
@@ -6067,7 +6129,7 @@ bool check_rule_embedded()
                 }
             }
 
-            if(!create_function(fn_name, fn_type, fn_type_name))
+            if(!embed_function(fn_name, fn_type, getUType(fn_type_name)))
             {
                 rc_setError("Could not create FUNCTION \"" + fn_name + "\" of type \"" + fn_type_name + "\"");
                 return false;
@@ -6140,7 +6202,7 @@ bool check_rule_embedded()
                             fn_arg_type = ID_TYPE_BYREF_USER;
                     }
 
-                    if(!add_function_arg(fn_arg, fn_arg_type, fn_arg_user_type))
+                    if(!add_embedded_arg(fn_arg, fn_arg_type, getUType(fn_arg_user_type)))
                     {
                         return false;
                     }
@@ -6183,7 +6245,7 @@ bool check_rule_embedded()
                             fn_arg_type = ID_TYPE_BYREF_USER;
                     }
 
-                    if(!add_function_arg(fn_arg, fn_arg_type, fn_arg_user_type))
+                    if(!add_embedded_arg(fn_arg, fn_arg_type, getUType(fn_arg_user_type)))
                     {
                         return false;
                     }
@@ -6236,7 +6298,7 @@ bool check_rule_embedded()
 
             string fn_type_name = "";
 
-            if(!create_function(fn_name, fn_type, fn_type_name))
+            if(!embed_function(fn_name, fn_type, getUType(fn_type_name)))
             {
                 rc_setError("Could not create SUB ROUTINE \"" + fn_name + "\"");
                 return false;
@@ -6352,7 +6414,7 @@ bool check_rule_embedded()
                             fn_arg_type = ID_TYPE_BYREF_USER;
                     }
 
-                    if(!add_function_arg(fn_arg, fn_arg_type, fn_arg_user_type))
+                    if(!add_embedded_arg(fn_arg, fn_arg_type, getUType(fn_arg_user_type)))
                     {
                         return false;
                     }
@@ -6411,6 +6473,245 @@ bool check_rule_embedded()
             string start_label = current_scope + ".#TYPE:" + token[1].substr(4);
 
             current_scope  = start_label;
+        }
+        else if(token[0].compare("<dim>")==0)
+        {
+            if(current_block_state != BLOCK_STATE_TYPE)
+            {
+                rc_setError("DIM can only be used for type members when embedding");
+                return false;
+            }
+            //cout << "DIM RULE FOUND" << endl;  //'DIM' [ID]; '[' #; #; # ']' ; 'AS' [TYPE]; '=' (VALUE)
+
+            string id_name = "";
+            int id_type = ID_TYPE_NUM;
+            string id_type_name = "";
+            int dimensions = 0;
+
+            //check if the next token is a identifier
+            if(token.size() > 1)
+            {
+                if(token[1].substr(0,4).compare("<id>")==0)
+                {
+                    //if the identifier is not a valid name then return false
+                    id_name = token[1].substr(4);
+                    id_type = ID_TYPE_NUM;
+                    id_type_name = "";
+                    dimensions = 0;
+
+                    if(!isValidIDName(id_name))
+                    {
+                        rc_setError("Invalid Identifier name");
+                        return false;
+                    }
+
+                    //check if the data type is a string
+                    if(id_name.substr(id_name.length()-1).compare("$")==0)
+                        id_type = ID_TYPE_STR;
+
+                    //if the identifier already exists and current_block state is not type then return false
+                    if(idExistsInScope(id_name))
+                    {
+                        rc_setError("Identifier already defined in current scope");
+                        return false;
+                    }
+
+                    //cout << "db1\n";
+
+                    //if there are only two tokens then return here because there is nothing left to check
+                    if(token.size()==2)
+                    {
+                        if(current_block_state == BLOCK_STATE_TYPE)
+                        {
+                            //cout << "adding type member" << endl;
+                            if(!add_type_member_embedded(id_name, id_type, "", 0, 0, 0, 0))
+                            {
+                                //cout << rc_getError() << endl;
+                                return false;
+                            }
+                        }
+
+                        //cout << "return true here" << endl;
+                        return true;
+                    }
+
+                    //cout << "db2\n";
+
+                    //current token
+                    int token_index = 2;
+
+                    int t_dim_arg[3];
+                    t_dim_arg[0] = 0;
+                    t_dim_arg[1] = 0;
+                    t_dim_arg[2] = 0;
+
+                    //check for the next rule; must be [], AS, or =
+                    //cout << "token = " << token[token_index] << endl;
+                    if(token[token_index].compare("<square>")==0 && current_block_state == BLOCK_STATE_TYPE)
+                    {
+                        //token_index++;
+                        int end_token = token_index+1;
+                        int sq_scope = 1;
+                        multi_arg_count = 0;
+                        int arg_index = 0;
+
+                        t_dim_arg[0] = 0;
+                        t_dim_arg[1] = 0;
+                        t_dim_arg[2] = 0;
+                        for(; end_token < token.size(); end_token++)
+                        {
+                            if(token[end_token].compare("<square>")==0)
+                                sq_scope++;
+                            else if(token[end_token].compare("</square>")==0)
+                                sq_scope--;
+                            else if(token[end_token].substr(0,5).compare("<num>")==0)
+                            {
+                                if(arg_index > 2)
+                                {
+                                    rc_setError("Too many dimensions in type member declaration for embedded");
+                                    return false;
+                                }
+                                multi_arg[arg_index] = token[end_token].substr(5);
+                                t_dim_arg[arg_index] = rc_stringToInt(multi_arg[arg_index]);
+                                multi_arg_count = arg_index+1;
+                            }
+                            else if(token[end_token].compare("<comma>")==0)
+                                arg_index++;
+                            else
+                            {
+                                rc_setError("Expected number constant in type member declaration for embedded: " + token[end_token]);
+                                return false;
+                            }
+
+                            if(sq_scope==0)
+                                break;
+                        }
+                        if(sq_scope != 0)
+                        {
+                            rc_setError("Expected ] in array definition");
+                            return false;
+                        }
+
+                        dimensions = multi_arg_count;
+
+
+                        token_index = end_token+1;
+
+                        //cout << "DBG token = " << token[token_index] << std::endl;
+
+                        if(token.size() > token_index)
+                        {
+                            if(token[token_index].compare("<as>")==0)
+                            {
+                                token_index++;
+                                if(token[token_index].substr(0,4).compare("<id>")!=0)
+                                {
+                                    rc_setError("Invalid type identifier name in DIM");
+                                    return false;
+                                }
+
+                                id_type = ID_TYPE_USER;
+                                id_type_name = token[token_index].substr(4);
+                                //cout << "Add member (" << id_name << ") of type (" << id_type_name << ") with " << dimensions << " dimensions [" << constant_arg[0] << "," << constant_arg[1] << "," << constant_arg[2] << "]" << endl;
+                                //if(!add_type_member(id_name, id_type, id_type_name, dimensions, constant_arg[0], constant_arg[1], constant_arg[2]))
+                                if(!add_type_member_embedded(id_name, id_type, id_type_name, dimensions, t_dim_arg[0], t_dim_arg[1], t_dim_arg[2]))
+                                    return false;
+                            }
+                            else
+                            {
+                                rc_setError("Invalid member array declaration in DIM");
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            //cout << "Add member (" << id_name << ") of type (num/str) with " << dimensions << " dimensions [" << constant_arg[0] << "," << constant_arg[1] << "," << constant_arg[2] << "]" << endl;
+                            //if(!add_type_member(id_name, id_type, "", dimensions, constant_arg[0], constant_arg[1], constant_arg[2]))
+                            if(!add_type_member_embedded(id_name, id_type, "", dimensions, t_dim_arg[0], t_dim_arg[1], t_dim_arg[2]))
+                                return false;
+                        }
+
+                        return true;
+
+                    }
+                    else if(token[token_index].compare("<as>")==0)
+                    {
+                        token_index++;
+
+                        if(token_index >= token.size())
+                        {
+                            rc_setError("Invalid member declaration");
+                            return false;
+                        }
+
+                        if(token[token_index].substr(0,4).compare("<id>")!=0)
+                        {
+                            rc_setError("Invalid type identifier name in DIM");
+                            return false;
+                        }
+
+                        id_type = ID_TYPE_USER;
+                        id_type_name = token[token_index].substr(4);
+                        //cout << "Add member (" << id_name << ") of type (" << id_type_name << ") with " << dimensions << " dimensions [" << constant_arg[0] << "," << constant_arg[1] << "," << constant_arg[2] << "]" << endl;
+                        //if(!add_type_member(id_name, id_type, id_type_name, dimensions, constant_arg[0], constant_arg[1], constant_arg[2]))
+                        if(!add_type_member_embedded(id_name, id_type, id_type_name, 0, 0, 0, 0))
+                            return false;
+
+                        return true;
+                    }
+
+
+                    if(token.size()>token_index)
+                    {
+                        rc_setError("Invalid variable definition: " + token[token_index] + ", " + rc_intToString(current_block_state) + " <--> " + rc_intToString(BLOCK_STATE_TYPE));
+                        return false;
+                    }
+
+                }
+                else
+                {
+                    //if the next token is not an id then the syntax is incorrect and false is returned
+                    rc_setError("Expected Identifier name");
+                    return false;
+                }
+
+            }
+            else
+            {
+                //if the size of the token vector is not greater than one then the syntax for the line is incomplete so I return false
+                rc_setError("Expected Identifier name");
+                return false;
+            }
+        }
+        else if(token[0].compare("<end>")==0)
+        {
+            if(token.size()==1)
+            {
+                rc_setError("END can only be used to end TYPE when embedding");
+                return false;
+            }
+            if(token[1].compare("<type>")==0)
+            {
+                if(token.size()>2)
+                {
+                    rc_setError("Expected End of Line in END TYPE");
+                    return false;
+                }
+                if(current_block_state != BLOCK_STATE_TYPE)
+                {
+                    rc_setError("Cannot exit TYPE definition from this scope");
+                    return false;
+                }
+
+                block_state.pop();
+                current_block_state = BLOCK_STATE_MAIN;
+                current_scope = "main";
+            }
+            else
+            {
+                rc_setError("END can only be used to end TYPE when embedding");
+                return false;
+            }
         }
     }
     return true;

@@ -172,6 +172,8 @@ struct rc_usrId
     rc_usrId * var_ref;
     uint64_t var_ref_index;
 
+    rc_usrId* byref_ptr;
+
     bool preset_init = false;
 
     #ifdef RCBASIC_DEBUG
@@ -1378,30 +1380,71 @@ void obj_usr_81(uint64_t uid)
 {
     //cout << "obj_usr " << uid << ":  size = " << usr_object.obj_ref->uid_value[uid].uid_value.size() << endl;
     usr_object.index = 0;
+
+    rc_usrId* tmp_usr_id = &usr_object.obj_ref->uid_value[uid];
+
     usr_object.obj_ref = &usr_object.obj_ref->uid_value[uid].uid_value[0];
+
+    usr_object.obj_ref->byref_ptr = tmp_usr_id;
+    //usr_object.obj_ref->byref_ptr = &usr_object.obj_ref->uid_value[uid];
 }
 
 void obj_usr1_82(uint64_t uid, int n1)
 {
+    //cout << "obj_usr2 " << uid << " " << (uint64_t)vm_n[n1].value << " " << (uint64_t)vm_n[n2].value << ":  size = " << usr_object.obj_ref->uid_value.size() << endl;
+    //rc_usrId* tmp_usr_id = &usr_object.obj_ref->uid_value[uid];
+    //usr_object.index = (uint64_t)vm_n[n1].value;;
+    //cout << "\n\nuid =" << uid << ",  index = (" << usr_object.index << ")  old_index = " << usr_object.index << endl << endl;
+    //cout << "\n\nusr index = " << usr_object.obj_ref->uid_value[uid].uid_value[usr_object.index].str_var.size() << endl << endl;
+
+
     //cout << "obj_usr1 " << uid << " " << (uint64_t)vm_n[n1].value << endl;
     //cout << "  ---dbg[uid]: " << usr_object.obj_ref->uid_value[uid].uid_value[1].num_var[0].nid_value.value[0] << endl;
     //cout << "  ---dbg[str]: " << usr_object.obj_ref->uid_value[uid].uid_value[0].str_var.size() << endl;
     usr_object.index = (uint64_t)vm_n[n1].value;
+
+    rc_usrId* tmp_usr_id = &usr_object.obj_ref->uid_value[uid];
+
     usr_object.obj_ref = &usr_object.obj_ref->uid_value[uid].uid_value[usr_object.index];
+
+    usr_object.obj_ref->byref_ptr = tmp_usr_id;
+    //usr_object.obj_ref->byref_ptr = &usr_object.obj_ref->uid_value[uid];
 }
 
 void obj_usr2_83(uint64_t uid, int n1, int n2)
 {
     //cout << "obj_usr2 " << uid << " " << (uint64_t)vm_n[n1].value << " " << (uint64_t)vm_n[n2].value << ":  size = " << usr_object.obj_ref->uid_value.size() << endl;
+    //rc_usrId* tmp_usr_id =  &usr_object.obj_ref->uid_value[uid];
+    //usr_object.index = (uint64_t)vm_n[n1].value * usr_object.obj_ref->uid_value[uid].dim[1] + (uint64_t)vm_n[n2].value;
+    //cout << "\n\nuid =" << uid << ",  index = (" << usr_object.index << ")  old_index = " << usr_object.index << endl << endl;
+    //cout << "\n\nusr index = " << usr_object.obj_ref->uid_value[uid].uid_value.size() << endl << endl;
+
     usr_object.index = (uint64_t)vm_n[n1].value * usr_object.obj_ref->uid_value[uid].dim[1] + (uint64_t)vm_n[n2].value;
+
+    rc_usrId* tmp_usr_id = &usr_object.obj_ref->uid_value[uid];
+
     usr_object.obj_ref = &usr_object.obj_ref->uid_value[uid].uid_value[usr_object.index];
+
+    usr_object.obj_ref->byref_ptr = tmp_usr_id;
+    //usr_object.obj_ref->byref_ptr = &usr_object.obj_ref->uid_value[uid];
 }
 
 void obj_usr3_84(uint64_t uid, int n1, int n2, int n3)
 {
+    //rc_usrId* tmp_usr_id =  &usr_object.obj_ref->uid_value[uid];
+
     //cout << "obj_usr3 " << uid << " " << (uint64_t)vm_n[n1].value << " " << (uint64_t)vm_n[n2].value << " " << (uint64_t)vm_n[n3].value <<  endl;
     usr_object.index = ( (uint64_t)vm_n[n1].value * usr_object.obj_ref->uid_value[uid].dim[1] * usr_object.obj_ref->uid_value[uid].dim[2] ) + ((uint64_t)vm_n[n2].value * usr_object.obj_ref->uid_value[uid].dim[2]) + (uint64_t)vm_n[n3].value;;
+
+    //----test
+    rc_usrId* tmp_usr_id = &usr_object.obj_ref->uid_value[uid];
+    //------------------------------------------
+
     usr_object.obj_ref = &usr_object.obj_ref->uid_value[uid].uid_value[usr_object.index];
+
+    usr_object.obj_ref->byref_ptr = tmp_usr_id;
+
+    //usr_object.obj_ref->byref_ptr = &usr_object.obj_ref->uid_value[uid];
 }
 
 void obj_get_85(int n1)
@@ -2203,6 +2246,11 @@ uint64_t rc_number_array_dim(rc_numId n_var)
 {
     rc_numId* n = (rc_numId*)n_var.nid_value.ref_parent;
     return n->dimensions;
+}
+
+uint64_t rc_type_array_dim(rc_usrId* u_var)
+{
+    return u_var->dimensions;
 }
 
 uint64_t rc_number_array_size(rc_numId n_var, int d_num)
@@ -4043,6 +4091,17 @@ void func_130(uint64_t fn)
             JoinMatrixColumns(JOINMATRIXCOLUMNS_MA, JOINMATRIXCOLUMNS_MB, JOINMATRIXCOLUMNS_MC);
         break;
 
+        case FN_TypeArrayDim: //Number Function
+            rc_push_num( rc_type_array_dim( TYPEARRAYDIM_ID ) );
+            arr_ref_id.clear();
+        break;
+        case FN_TypeArraySize: //Number Function
+        break;
+        case FN_TypeArrayCopy: //Sub Procedure
+        break;
+        case FN_TypeArrayFill: //Sub Procedure
+        break;
+
 
     }
 }
@@ -4410,14 +4469,25 @@ void obj_usr_get_165(int s1)
 void obj_usr_get_166(int u1)
 {
     //cout << "obj_usr_get start  u" << u1 << endl;
+    //rc_usrId * tmp_usr_id = usr_object.obj_ref->byref_ptr;
+    //cout << "tmp check = " << usr_object.obj_ref->byref_ptr->dimensions << endl;
+
     rc_free_type(&vm_u[u1]); //this should free any memory previously allocated in u1
+
+    //cout << "tmp check[2] = " << usr_object.obj_ref->byref_ptr->dimensions << endl;
+
     //cout << "mem free: " << usr_object.obj_ref->dimensions << endl;
     vm_u[u1] = usr_object.obj_ref[0];
     //cout << "1: " << usr_object.obj_ref[0].uid_value.size() << endl;
     vm_u[u1].var_ref = usr_object.obj_ref;
     //cout << "2" << endl;
-    vm_u[u1].var_ref_index = 0 ; //usr_object.index;  This has become unnecessary because var_ref points to the correct index
+    vm_u[u1].var_ref_index = usr_object.index; //usr_object.index;
+
     //cout << "obj_usr_get end" << endl;
+
+    //cout << "tmp check[3] = " << vm_u[u1].var_ref->byref_ptr->dimensions << endl;
+
+    //cout << "bcheck = " << tmp_usr_id->dimensions << endl;
 }
 
 void uref_ptr_167(uint64_t uid, int u1)
@@ -4429,8 +4499,17 @@ void uref_ptr_167(uint64_t uid, int u1)
     byref_addr_table.push(byref_id);
     byref_var_byref_offset.push(usr_var[uid].var_ref_index);
 
-    usr_var[uid].var_ref = vm_u[u1].var_ref;
-    usr_var[uid].var_ref_index = vm_u[u1].var_ref_index;
+    //cout << "start index = " << usr_var[uid].var_ref_index << endl;
+
+    int i = vm_u[u1].var_ref_index;
+
+    usr_var[uid].var_ref = vm_u[u1].var_ref->byref_ptr;
+    usr_var[uid].var_ref_index = i; //vm_u[u1].var_ref_index;
+
+    //int i = vm_u[u1].var_ref_index;
+    //cout << "index = " << usr_var[uid].var_ref_index << endl;
+    //cout << "uref end: " << usr_var[uid].var_ref->uid_value.size() << endl;
+    //cout << "debug out = " << usr_var[uid].var_ref->uid_value[i].str_var[0].sid_value.value[3] << endl;
 }
 
 void mov_type_168(uint64_t uid, int u1)
@@ -4520,7 +4599,7 @@ void delete_t_174(uint64_t oid, uint64_t top_level_flag, uint64_t obj_type)
                 break;
         }
     }
-    cout << "Done" << endl;
+    //cout << "Done" << endl;
 }
 
 void dim_type_175(int u1, int udt_index)
@@ -4561,15 +4640,25 @@ void obj_usr_init_180(uint64_t uid)
 {
     //cout << "obj_usr_init " << uid << endl;
     usr_object.index = 0;
+
+    usr_object.index += usr_var[uid].var_ref_index;
+
     usr_object.obj_ref = &usr_var[uid].var_ref->uid_value[usr_object.index]; //need to switch to var_ref
     //cout << "obj_usr_init done: " << usr_object.obj_ref[0].uid_value.size() << endl;
+
+    usr_object.obj_ref->byref_ptr = usr_var[uid].var_ref;
 }
 
 void obj_usr_init1_181(uint64_t uid, int n1)
 {
     //cout << "obj_usr_init1 " << uid << endl;
     usr_object.index = (uint64_t)vm_n[n1].value;
+
+    usr_object.index += usr_var[uid].var_ref_index;
+
     usr_object.obj_ref = &usr_var[uid].var_ref->uid_value[usr_object.index];
+
+    usr_object.obj_ref->byref_ptr = usr_var[uid].var_ref;
 }
 
 void obj_usr_init2_182(uint64_t uid, int n1, int n2)
@@ -4580,14 +4669,27 @@ void obj_usr_init2_182(uint64_t uid, int n1, int n2)
     //d[2] = usr_var[uid].dim[2];
     //cout << "obj_usr_init2: " << uid << "  --dim=[" << d[0] << ", " << d[1] << ", " << d[2] << "]" << endl;
     usr_object.index = (uint64_t)vm_n[n1].value * usr_var[uid].dim[1] + (uint64_t)vm_n[n2].value;
+
+    usr_object.index += usr_var[uid].var_ref_index;
+
     usr_object.obj_ref = &usr_var[uid].var_ref->uid_value[usr_object.index];
+
+    usr_object.obj_ref->byref_ptr = usr_var[uid].var_ref;
+
+    //cout << "dimbr = " << uid << " " << n1 << " " << n2 << " " << usr_object.obj_ref->byref_ptr->dimensions << endl;
+    //cout << "d2_dbg = " << usr_var[uid].var_ref->uid_value.size() << " --- " << usr_object.index << endl;
 }
 
 void obj_usr_init3_183(uint64_t uid, int n1, int n2, int n3)
 {
     //cout << "obj_usr_init3 " << uid << endl;
     usr_object.index = ( (uint64_t)vm_n[n1].value * usr_var[uid].dim[1] * usr_var[uid].dim[2] ) + ((uint64_t)vm_n[n2].value * usr_var[uid].dim[2]) + (uint64_t)vm_n[n3].value;;
+
+    usr_object.index += usr_var[uid].var_ref_index;
+
     usr_object.obj_ref = &usr_var[uid].var_ref->uid_value[usr_object.index];
+
+    usr_object.obj_ref->byref_ptr = usr_var[uid].var_ref;
 }
 
 
@@ -4842,7 +4944,7 @@ void redim_type2_206(uint64_t uid, int udt_index, int n1, int n2)
     else
         rc_dim_type(&usr_object.obj_ref->uid_value[uid], udt_index, 2, (uint64_t)vm_n[n1].value, (uint64_t)vm_n[n2].value, 0, usr_object.obj_ref->uid_value[uid].uid_value.size());
 
-    cout << "test tl: " << redim_toplevel_flag << " -- " << usr_var[uid].uid_value.size() << endl;
+    //cout << "test tl: " << redim_toplevel_flag << " -- " << usr_var[uid].uid_value.size() << endl;
 
     redim_toplevel_flag = false;
 }

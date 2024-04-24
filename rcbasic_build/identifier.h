@@ -426,6 +426,82 @@ bool add_type_member(string member_name, int member_type, string member_utype_na
     return true;
 }
 
+bool add_type_member_embedded(string member_name, int member_type, string member_utype_name, int member_dim_count, int dim1, int dim2, int dim3)
+{
+    int m_utype_index = member_utype_name.compare("")!=0 ? getUType(member_utype_name) : -1;
+    if(m_utype_index == current_type_index)
+    {
+        //cout << "you canno do is" << endl;
+        rc_setError("Cannot create member of type from within itself");
+        return false;
+    }
+    //cout << "utype index = " << current_type_index << endl;
+    int utype_index = current_type_index;
+    int utype_current_member = utype[utype_index].num_members;
+    member_name = StringToLower(member_name);
+    utype[utype_index].member_name.push_back(member_name);
+
+    string dim_mem_type = "";
+
+    switch(member_type)
+    {
+        case ID_TYPE_NUM:
+            dim_mem_type = "!0 !" + rc_intToString(utype_current_member);
+            utype[utype_index].member_type.push_back(ID_TYPE_USER_NUM);
+            utype[utype_index].member_vec_pos.push_back(utype[utype_index].nidCount);
+            utype[utype_index].nidCount++;
+            break;
+        case ID_TYPE_ARR_NUM:
+            dim_mem_type = "!0 !" + rc_intToString(utype_current_member);
+            utype[utype_index].member_type.push_back(ID_TYPE_USER_NUM_ARRAY);
+            utype[utype_index].member_vec_pos.push_back(utype[utype_index].nidCount);
+            utype[utype_index].nidCount++;
+            break;
+        case ID_TYPE_STR:
+            dim_mem_type = "!1 !" + rc_intToString(utype_current_member);
+            utype[utype_index].member_type.push_back(ID_TYPE_USER_STR);
+            utype[utype_index].member_vec_pos.push_back(utype[utype_index].sidCount);
+            utype[utype_index].sidCount++;
+            break;
+        case ID_TYPE_ARR_STR:
+            dim_mem_type = "!1 !" + rc_intToString(utype_current_member);
+            utype[utype_index].member_type.push_back(ID_TYPE_USER_STR_ARRAY);
+            utype[utype_index].member_vec_pos.push_back(utype[utype_index].sidCount);
+            utype[utype_index].sidCount++;
+            break;
+        case ID_TYPE_USER:
+            dim_mem_type = "!2 !" + rc_intToString(utype_current_member);
+            utype[utype_index].member_type.push_back(ID_TYPE_USER);
+            utype[utype_index].member_vec_pos.push_back(utype[utype_index].uidCount);
+            utype[utype_index].uidCount++;
+            break;
+        default:
+            rc_setError("Invalid member type in type definition");
+            return false;
+            break;
+    }
+
+    utype[utype_index].member_dim_count.push_back(member_dim_count);
+    utype[utype_index].member_utype_index.push_back(m_utype_index);
+
+
+    vm_asm.push_back("dim_tfield  !" + rc_intToString(utype_index) + " " + dim_mem_type + " !"
+                                    + rc_intToString(member_dim_count) + " "
+                                    + "n0 n1 n2");
+
+    //NOTE: user_array_dim is no longer used
+    user_array_dim d;
+    d.dim_size[0] = dim1;
+    d.dim_size[1] = dim2;
+    d.dim_size[2] = dim3;
+    utype[utype_index].member_dim.push_back(d);
+    //cout << member_name << " has " << member_dim_count << " dimensions" << endl;
+    //utype[utype_index].member_dim[utype_current_member].dim_size[1] = dim2;
+    //utype[utype_index].member_dim[utype_current_member].dim_size[2] = dim3;
+    utype[utype_index].num_members++;
+    return true;
+}
+
 //return the index of the id name or -1 on failure
 int getIDInScope_ByIndex_TypeMatch(string id_name, string check_scope="")
 {
@@ -961,7 +1037,7 @@ bool create_array(string name, int type, string utype_name, int dim_count, strin
     return true;
 }
 
-bool embed_function(string name, int type)
+bool embed_function(string name, int type, int fn_utype=-1)
 {
     if(getIDInScope(name) >= 0)
     {
@@ -979,6 +1055,7 @@ bool embed_function(string name, int type)
             break;
         case ID_TYPE_FN_NUM:
         case ID_TYPE_FN_STR:
+        case ID_TYPE_FN_USER:
             current_block_state = BLOCK_STATE_FUNCTION;
             break;
         default:
@@ -997,9 +1074,11 @@ bool embed_function(string name, int type)
     fn.name = name;
     fn.scope = "main";
     fn.type = type;
+    fn.type_index = fn_utype;
     fn.isBuiltin = true;
     fn.vmFunctionIndex = current_vmFunction_index;
     current_vmFunction_index++;
+    cout << "current_vmFunction = " << current_vmFunction_index << endl;
 
     fn.num_args = 0;  //function args default to 0; args are added with add_function_args
     current_fn_index = id.size();
@@ -1007,7 +1086,7 @@ bool embed_function(string name, int type)
     return true;
 }
 
-bool add_embedded_arg(string arg_name, int arg_type)
+bool add_embedded_arg(string arg_name, int arg_type, int arg_utype=-1)
 {
     //fn_arg
     //fn_arg_type
@@ -1015,6 +1094,11 @@ bool add_embedded_arg(string arg_name, int arg_type)
     int fn_index = current_fn_index;
     id[fn_index].fn_arg.push_back(arg_name);
     id[fn_index].fn_arg_type.push_back(arg_type);
+    id[fn_index].fn_arg_utype.push_back(arg_utype);
+
+    string fn_arg_utype_name = "";
+    if(arg_utype >= 0)
+        fn_arg_utype_name = utype[arg_utype].name;
 
     string fn_id = "";
     int fn_id_index = -1;
@@ -1033,6 +1117,13 @@ bool add_embedded_arg(string arg_name, int arg_type)
             create_variable(fn_id, ID_TYPE_STR);
         fn_strCount++;
     }
+    else if(arg_type == ID_TYPE_USER)
+    {
+        fn_id = "#fu" + rc_intToString(fn_usrCount);
+        if(getIDInScope(fn_id) < 0)
+            create_variable(fn_id, ID_TYPE_USER, fn_arg_utype_name);
+        fn_usrCount++;
+    }
     else if(arg_type == ID_TYPE_BYREF_NUM)
     {
         fn_id = "#fn" + rc_intToString(fn_numCount);
@@ -1047,6 +1138,13 @@ bool add_embedded_arg(string arg_name, int arg_type)
             create_variable(fn_id, ID_TYPE_BYREF_STR);
         fn_strCount++;
     }
+    else if(arg_type == ID_TYPE_BYREF_USER)
+    {
+        fn_id = "#fu" + rc_intToString(fn_usrCount);
+        if(getIDInScope(fn_id) < 0)
+            create_variable(fn_id, ID_TYPE_BYREF_USER, fn_arg_utype_name);
+        fn_usrCount++;
+    }
     else
     {
         rc_setError("Invalid type in function definition");
@@ -1058,7 +1156,7 @@ bool add_embedded_arg(string arg_name, int arg_type)
 
     isFunctionArg_flag = true;
 
-    create_variable(arg_name, arg_type, "", fn_arg_vec);
+    create_variable(arg_name, arg_type, fn_arg_utype_name, fn_arg_vec);
 
     id[fn_index].fn_reg.push_back( fn_id );
     id[fn_index].fn_arg_vec.push_back(fn_arg_vec);

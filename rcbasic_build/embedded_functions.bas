@@ -516,8 +516,12 @@ sub JoinMatrixRows(mA, mB, mC)
 sub JoinMatrixColumns(mA, mB, mC)
 
 'v4.0
-function TypeArrayDim(Byref id$)
-function TypeArraySize(Byref id, array_dim)
-sub TypeArrayCopy(ByRef src, ByRef dst)
-sub TypeArrayFill(ByRef src, fdata)
 
+'Empty Type is used mainly for built-in functions that need to have a user type specified to be able to compile properly
+type empty
+end type
+
+function TypeArrayDim(Byref id as empty)
+function TypeArraySize(Byref id as empty, array_dim)
+sub TypeArrayCopy(ByRef src as empty, ByRef dst as empty)
+sub TypeArrayFill(ByRef src as empty, fdata as empty)

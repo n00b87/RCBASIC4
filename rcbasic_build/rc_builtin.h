@@ -2,7 +2,7 @@
 #define RC_BUILTIN_H_INCLUDED
 #include "identifier.h"
 
-void init_embedded()
+void init_embedded_functions()
 {
     embed_function("FPrint", ID_TYPE_SUB);
     add_embedded_arg("txt$", ID_TYPE_STR);
@@ -1422,18 +1422,23 @@ void init_embedded()
     add_embedded_arg("mB", ID_TYPE_NUM);
     add_embedded_arg("mC", ID_TYPE_NUM);
     embed_function("TypeArrayDim", ID_TYPE_FN_NUM);
-    add_embedded_arg("id$", ID_TYPE_BYREF_STR);
+    add_embedded_arg("id", ID_TYPE_BYREF_USER, 0);
     embed_function("TypeArraySize", ID_TYPE_FN_NUM);
-    add_embedded_arg("id", ID_TYPE_BYREF_NUM);
+    add_embedded_arg("id", ID_TYPE_BYREF_USER, 0);
     add_embedded_arg("array_dim", ID_TYPE_NUM);
     embed_function("TypeArrayCopy", ID_TYPE_SUB);
-    add_embedded_arg("src", ID_TYPE_BYREF_NUM);
-    add_embedded_arg("dst", ID_TYPE_BYREF_NUM);
+    add_embedded_arg("src", ID_TYPE_BYREF_USER, 0);
+    add_embedded_arg("dst", ID_TYPE_BYREF_USER, 0);
     embed_function("TypeArrayFill", ID_TYPE_SUB);
-    add_embedded_arg("src", ID_TYPE_BYREF_NUM);
-    add_embedded_arg("fdata", ID_TYPE_NUM);
+    add_embedded_arg("src", ID_TYPE_BYREF_USER, 0);
+    add_embedded_arg("fdata", ID_TYPE_USER, 0);
 
 }
 
+
+void init_embedded_types()
+{
+    create_type("empty");
+}
 
 #endif // RC_BUILTIN_H_INCLUDED

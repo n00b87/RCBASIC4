@@ -36,7 +36,8 @@ vector<string> inc_files;
 
 void rcbasic_init()
 {
-    create_type("null");
+    //init built-in types here
+    init_embedded_types();
 
     //init built-in functions here
 
@@ -46,7 +47,7 @@ void rcbasic_init()
     current_scope = "main";
     vm_asm.push_back(".code");
 
-    init_embedded();
+    init_embedded_functions();
 
     //cout << "numid_count = " << num_id_count << endl;
     //cout << "strid_count = " << str_id_count << endl << endl;
@@ -61,7 +62,7 @@ void rcbasic_init()
 
 void rcbasic_dev_init()
 {
-    create_type("null");
+    //create_type("empty");
 
     //init built-in functions here
 
@@ -829,6 +830,7 @@ void rcbasic_export_dev()
     fstream f("rcbasic_dev.txt", fstream::out | fstream::trunc);
     fstream f2("rcbasic_dev2.txt", fstream::out | fstream::trunc);
     fstream f3("rcbasic_dev3.txt", fstream::out | fstream::trunc);
+    fstream f4("rcbasic_dev4.txt", fstream::out | fstream::trunc);
 
     if(!f.is_open())
         return;
@@ -850,6 +852,11 @@ void rcbasic_export_dev()
                 f2 << fn_line << endl;
                 f3 << "case FN_" << id[i].name << ": //String Function" << endl << "break;" << endl;
                 break;
+            case ID_TYPE_FN_USER:
+                output_line += "ID_TYPE_FN_STR);";
+                f2 << fn_line << endl;
+                f3 << "case FN_" << id[i].name << ": //UDT Function" << endl << "break;" << endl;
+                break;
             case ID_TYPE_SUB:
                 output_line += "ID_TYPE_SUB);";
                 f2 << fn_line << endl;
@@ -860,6 +867,7 @@ void rcbasic_export_dev()
         }
         f << output_line << endl;
         output_line = "";
+        string fn_arg_utype = "";
         for(int n = 0; n < id[i].num_args; n++)
         {
             fn_line = "#define " + StringToUpper(id[i].name + "_" + id[i].fn_arg[n]) + " ";
@@ -870,19 +878,33 @@ void rcbasic_export_dev()
                 case ID_TYPE_NUM:
                     output_line += "ID_TYPE_NUM);";
                     //fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nid_value[0].value[0]";
-                    fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nid_value[0].value[ num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
+                    fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nid_value.value[ num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
                     break;
                 case ID_TYPE_BYREF_NUM:
                     output_line += "ID_TYPE_BYREF_NUM);";
-                    fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nid_value[0].value[ num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
+                    fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nid_value.value[ num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
                     break;
                 case ID_TYPE_STR:
                     output_line += "ID_TYPE_STR);";
-                    fn_line += "str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].sid_value[0].value[ str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
+                    fn_line += "str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].sid_value.value[ str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
                     break;
                 case ID_TYPE_BYREF_STR:
                     output_line += "ID_TYPE_BYREF_STR);";
-                    fn_line += "str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].sid_value[0].value[ str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
+                    fn_line += "str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].sid_value.value[ str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
+                    break;
+                case ID_TYPE_USER:
+                    //fn_arg_utype = "";
+                    //if(id[i].fn_arg_utype[n] >= 0)
+                    //    fn_arg_utype = utype[id[i].fn_arg_utype[n]].name;
+                    output_line += "ID_TYPE_USER, " + rc_intToString(id[i].fn_arg_utype[n]) + ");";
+                    fn_line += "usr_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].var_ref->uid_value[0]";
+                    break;
+                case ID_TYPE_BYREF_USER:
+                    //fn_arg_utype = "";
+                    //if(id[i].fn_arg_utype[n] >= 0)
+                    //    fn_arg_utype = utype[id[i].fn_arg_utype[n]].name;
+                    output_line += "ID_TYPE_BYREF_USER, " + rc_intToString(id[i].fn_arg_utype[n]) + ");";
+                    fn_line += "usr_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].var_ref";
                     break;
             }
             f2 << fn_line << endl;
@@ -890,9 +912,50 @@ void rcbasic_export_dev()
         }
 
     }
+
+    for(int i = 0; i < utype.size(); i++)
+    {
+        output_line = "create_type(\"" + utype[i].name + "\");";
+
+        f4 << output_line << endl;
+
+        for(int n = 0; n < utype[i].num_members; n++)
+        {
+            output_line = "vm_asm.push_back(\"mov n0 " + rc_intToString(utype[i].member_dim[n].dim_size[0]) + "\");";
+            f4 << output_line << endl;
+
+            output_line = "vm_asm.push_back(\"mov n1 " + rc_intToString(utype[i].member_dim[n].dim_size[1]) + "\");";
+            f4 << output_line << endl;
+
+            output_line = "vm_asm.push_back(\"mov n2 " + rc_intToString(utype[i].member_dim[n].dim_size[2]) + "\");";
+            f4 << output_line << endl;
+
+            int ut_index = utype[i].member_utype_index[n];
+            string member_utype_name = "";
+
+            if(ut_index >= 0)
+                member_utype_name = utype[ut_index].name;
+            else if(utype[i].member_type[n] == ID_TYPE_USER)
+            {
+                cout << "ERROR CREATING TYPE" << endl;
+                f.close();
+                f2.close();
+                f3.close();
+                f4.close();
+                return;
+            }
+
+
+            output_line = "add_type_member(\"" + utype[i].member_name[n] + "\", " + rc_intToString(utype[i].member_type[n]) + ", \"" + member_utype_name + "\", " +
+                                            rc_intToString(utype[i].member_dim_count[n]) + ", \"n0\", \"n1\", \"n2\");";
+            f4 << output_line << endl;
+        }
+    }
+
     f.close();
     f2.close();
     f3.close();
+    f4.close();
     cout << "rcbasic_dev file was created" << endl;
 }
 
@@ -967,6 +1030,9 @@ void rcbasic_output_debug_info()
             case ID_TYPE_USER:
                 f << "U " << id[i].scope << " " << id[i].name << " " << id[i].vec_pos << "\n";
                 break;
+            case ID_TYPE_BYREF_USER:
+                f << "BU " << id[i].scope << " " << id[i].name << " " << id[i].vec_pos << "\n";
+                break;
             case ID_TYPE_USER_NUM:
                 f << "UN " << id[i].scope << " " << id[i].name << " " << id[i].vec_pos << "\n";
                 break;
@@ -998,7 +1064,7 @@ int main(int argc, char * argv[])
 {
     string line = "";
 
-    rcbasic_dev("embedded_functions.bas"); return 0;
+    //rcbasic_dev("embedded_functions.bas"); return 0;
 
     string rc_filename = "";// = "tst.bas";
 
