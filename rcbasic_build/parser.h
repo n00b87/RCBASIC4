@@ -38,6 +38,7 @@ struct type_error_exception
     string error_log;
     string tk_reg;
     string resolve_reg;
+    int num_args;
 };
 
 vector<type_error_exception> byref_type_exception; //This will store the error that might be generated if a user type var is in an expression without its dimensions expressed
@@ -1133,7 +1134,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
             }
             else if( (id[expr_id].type == ID_TYPE_BYREF_NUM || id[expr_id].type == ID_TYPE_BYREF_STR) && pp_flags == PP_FLAG_ARRAY)
             {
-                cout << "found array: " << id[expr_id].name << endl << endl;
+                //cout << "found array: " << id[expr_id].name << endl << endl;
                 int s_scope = 0;
                 int arr_token_start = i;
                 int arr_token_end = i;
@@ -1425,7 +1426,10 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                             else if(!type_delete_flag)
                             {
                                 if(arg_count != 0)
+                                {
                                     rc_setError("[0]Expected " + rc_intToString(id[tmp_id].num_args) + " dimension in " + id[tmp_id].name);
+                                    return false;
+                                }
 
                                 //cout << "ID_TYPE = " << id[tmp_id].type << ", " << arg_count << ", " << (has_child ? "true" : "false")  << endl;
 
@@ -1675,7 +1679,8 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                     type_error_exception tx;
                     tx.error_log = "[0]Expected " + rc_intToString(id[tmp_id].num_args) + " dimension in " + id[tmp_id].name;
                     tx.tk_reg = token[i];
-                    //cout << "store = " << tx.tk_reg << endl;
+                    tx.num_args = id[tmp_id].num_args;
+                    //cout << "store = " << id[tmp_id].name << " = " << tx.tk_reg << "   arg_count = " << arg_count << ", expected = " << id[tmp_id].num_args << endl;
                     byref_type_exception.push_back(tx);
                     byref_type_flag = false;
                 }
@@ -2252,6 +2257,8 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                                 rc_setError("Expected valid array identifier: " + args[0]);
                                 expr_id = -1;
                             }
+
+                            //cout << "dbg data: " << expr_id << "  arg = " << args[0] << "  type = " << tmp_id_type << "  name = " << id[expr_id].name << endl;
 
                             if(expr_id < 0)
                             {
@@ -5610,8 +5617,13 @@ bool check_rule()
                     }
                     if(expr_result.substr(0,1).compare("n")==0)
                         vm_asm.push_back("print " + expr_result);
-                    else
+                    else if(expr_result.substr(0,1).compare("s")==0)
                         vm_asm.push_back("print$ " + expr_result);
+                    else
+                    {
+                        rc_setError("Invalid expression in PRINT");
+                        return false;
+                    }
                     start_token = i;
                 }
             }
@@ -5624,8 +5636,13 @@ bool check_rule()
                 }
                 if(expr_result.substr(0,1).compare("n")==0)
                     vm_asm.push_back("print " + expr_result);
-                else
+                else if(expr_result.substr(0,1).compare("s")==0)
                     vm_asm.push_back("print$ " + expr_result);
+                else
+                {
+                    rc_setError("Invalid expression in PRINT");
+                    return false;
+                }
             }
             if(last_token.compare("<semi>")!=0)
                 vm_asm.push_back("println");
