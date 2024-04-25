@@ -1021,6 +1021,13 @@ int getArrayObjStart(int arg_id)
 
 }
 
+bool byref_type_generic(string utype_name)
+{
+    if(utype_name.compare("empty")==0)
+        return true;
+    return false;
+}
+
 
 bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_udt)
 {
@@ -1264,15 +1271,15 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
             }
             else if( ID_TYPE_USER_ALL(expr_id) && eval_udt )
             {
-                cout << "-Parsing User Variable: " << id[expr_id].name << endl;
-                cout << "----------------------------------------------- : " << eval_udt << endl;
+                //cout << "-Parsing User Variable: " << id[expr_id].name << endl;
+                //cout << "----------------------------------------------- : " << eval_udt << endl;
 
                 bool udt_id_init = true;
 
                 string tmp_scope = id[expr_id].scope;
 
 
-                for(int t = i; t < token.size(); t++)
+                /*for(int t = i; t < token.size(); t++)
                 {
                     try
                     {
@@ -1282,7 +1289,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                     {
                         cout << "Token Out of Range Error: " << e.what() << endl;
                     }
-                }
+                }*/
 
 
                 int tmp_id = 0;
@@ -1311,7 +1318,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                         string full_id = token[t].substr(4);
                         token[t] = "";
                         tmp_id = getIDInScope_ByIndex_TypeMatch(full_id, tmp_scope);
-                        cout << "\ntmp_id = " << tmp_id << endl;
+                        //cout << "\ntmp_id = " << tmp_id << endl;
 
                         if(tmp_id < 0)
                         {
@@ -1319,7 +1326,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                             return false;
                         }
 
-                        cout << "Scope = " << tmp_scope << "  ID = " << full_id << "  --  " << tmp_id << endl << endl;
+                        //cout << "Scope = " << tmp_scope << "  ID = " << full_id << "  --  " << tmp_id << endl << endl;
 
                         tmp_scope += "." + full_id;
 
@@ -1339,7 +1346,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                                 arg_count = 0;
                                 arr_scope = 1;
                                 t2++;
-                                cout << "T2 = " << t2 << endl << endl;
+                                //cout << "T2 = " << t2 << endl << endl;
 
                                 for(; t2 <= end_token; t2++)
                                 {
@@ -1395,7 +1402,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                             {
                                 has_child = true;
                             }
-                            cout << "Has Child = " << has_child << ", " << t << ", " << t2 << endl;
+                            //cout << "Has Child = " << has_child << ", " << t << ", " << t2 << endl;
                         }
 
                         if(type_delete_flag && (!has_child) && arg_count != 0)
@@ -1420,7 +1427,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                                 if(arg_count != 0)
                                     rc_setError("[0]Expected " + rc_intToString(id[tmp_id].num_args) + " dimension in " + id[tmp_id].name);
 
-                                cout << "ID_TYPE = " << id[tmp_id].type << ", " << arg_count << ", " << (has_child ? "true" : "false")  << endl;
+                                //cout << "ID_TYPE = " << id[tmp_id].type << ", " << arg_count << ", " << (has_child ? "true" : "false")  << endl;
 
                                 args[0] = "";
                                 args[1] = "";
@@ -1490,7 +1497,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
 
                         if(type_redim_flag && (!has_child))
                         {
-                            cout << "NO CHILD: " << id[tmp_id].name << " -- arg_count = " << arg_count << " -- arg[0] = " << args[0] << endl;
+                            //cout << "NO CHILD: " << id[tmp_id].name << " -- arg_count = " << arg_count << " -- arg[0] = " << args[0] << endl;
                             type_redim_dim_count = arg_count;
                             type_redim_dim[0] = args[0];
                             type_redim_dim[1] = args[1];
@@ -1505,12 +1512,12 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                         else if(type_delete_flag && (!has_child))
                         {
                             //DO NOTHING
-                            cout << "NO CHILD: " << id[tmp_id].name << endl;
+                            //cout << "NO CHILD: " << id[tmp_id].name << endl;
                         }
                         else
                         {
                             //if(type_delete_flag)
-                                cout << "TESTING STUFF" << endl;
+                                //cout << "TESTING STUFF" << endl;
 
                             switch(arg_count)
                             {
@@ -1627,7 +1634,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                 {
                     case ID_TYPE_USER:
                     case ID_TYPE_BYREF_USER:
-                        cout << "test --> " << u << ", " << id[tmp_id].name << endl;
+                        //cout << "test --> " << u << ", " << id[tmp_id].name << endl;
                         vm_asm.push_back("obj_usr_get " + u);
                         token[i] = u;
                         resolveID_id_reg.push_back(token[i]);
@@ -1640,7 +1647,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                         vm_asm.push_back("obj_usr_get " + n);
                         token[i] = n;
 
-                        cout << "GET N: " << n << ", " << id[tmp_id].scope << " :: " << id[tmp_id].name << endl;
+                        //cout << "GET N: " << n << ", " << id[tmp_id].scope << " :: " << id[tmp_id].name << endl;
                         resolveID_id_reg.push_back(token[i]);
                         resolveID_id_type.push_back(id[tmp_id].type);
                         resolveID_id_ut_index.push_back(id[tmp_id].type_index);
@@ -1668,12 +1675,13 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                     type_error_exception tx;
                     tx.error_log = "[0]Expected " + rc_intToString(id[tmp_id].num_args) + " dimension in " + id[tmp_id].name;
                     tx.tk_reg = token[i];
-                    cout << "store = " << tx.tk_reg << endl;
+                    //cout << "store = " << tx.tk_reg << endl;
                     byref_type_exception.push_back(tx);
                     byref_type_flag = false;
                 }
 
 
+                /*
                 cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
 
                 for(int t = 0; t < token.size(); t++)
@@ -1689,6 +1697,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                 }
 
                 cout << "-----------------------------------------------" << endl;
+                */
 
 
                 //for(int t = 0; t < id.size(); t++)
@@ -2045,7 +2054,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                         resolve_index = getResolveReg(args[n]);
                         if(args[n].substr(0,4).compare("<id>")==0)
                         {
-                            cout << "found id: " << args[n] << " in " << id[expr_id].name << endl;
+                            //cout << "found id: " << args[n] << " in " << id[expr_id].name << endl;
                             string t_replace = "";
                             int arg_id = getIDInScope_ByIndex(args[n].substr(4));
                             if(arg_id < 0)
@@ -2092,17 +2101,17 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
 
                         //check if byref_type_exception
                         bool type_exception_found = false;
-                        cout << "CHECK EXCEPTION: " << args[n] << endl;
+                        //cout << "CHECK EXCEPTION: " << args[n] << endl;
                         for(int bt_i = 0; bt_i < byref_type_exception.size(); bt_i++)
                         {
                             if(args[n].compare(byref_type_exception[bt_i].tk_reg)==0)
                             {
-                                cout << "FOUND EXCEPTION: " << args[n] << endl;
+                                //cout << "FOUND EXCEPTION: " << args[n] << endl;
                                 byref_type_exception[bt_i].tk_reg = "";
                                 type_exception_found = true;
                             }
-                            else
-                                cout << "NO MATCH (" << args[n] << ", " << byref_type_exception[bt_i].tk_reg << ")" << endl;
+                            //else
+                                //cout << "NO MATCH (" << args[n] << ", " << byref_type_exception[bt_i].tk_reg << ")" << endl;
                         }
                         //----------------
 
@@ -2124,7 +2133,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                         string tmp_fn_name = StringToLower(id[expr_id].name);
                         if(tmp_fn_name.compare("arraydim")==0)
                         {
-                            cout << "found array dim" << endl;
+                            //cout << "found array dim" << endl;
                             int tmp_id_type = -1;
 
                             if(args[n].substr(0,4).compare("<id>")==0)
@@ -2151,6 +2160,102 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                             if(expr_id < 0)
                             {
                                 rc_setError("ArrayDim macro function does not exists for variable type");
+                                return false;
+                            }
+                        }
+                        else if(tmp_fn_name.compare("arraysize")==0)
+                        {
+                            //cout << "found array size: " << args[0] << endl;
+                            int tmp_id_type = -1;
+
+                            if(args[0].substr(0,4).compare("<id>")==0) // arg[0] is what determines the macro function used
+                            {
+                                int tmp_id = getIDInScope_ByIndex(args[n].substr(4));
+
+                                if(tmp_id >= 0)
+                                    tmp_id_type = id[tmp_id].type;
+                            }
+
+
+                            if(args[0].substr(0,1).compare("n")==0 || tmp_id_type == ID_TYPE_NUM || tmp_id_type == ID_TYPE_ARR_NUM || tmp_id_type == ID_TYPE_BYREF_NUM)
+                                expr_id = getIDInScope_ByIndex("numberarraysize");
+                            else if(args[0].substr(0,1).compare("s")==0 || tmp_id_type == ID_TYPE_STR || tmp_id_type == ID_TYPE_ARR_STR || tmp_id_type == ID_TYPE_BYREF_STR)
+                                expr_id = getIDInScope_ByIndex("stringarraysize");
+                            else if(args[0].substr(0,1).compare("u")==0 || tmp_id_type == ID_TYPE_USER || tmp_id_type == ID_TYPE_BYREF_USER)
+                                expr_id = getIDInScope_ByIndex("typearraysize");
+                            else
+                            {
+                                rc_setError("Expected valid array identifier: " + args[0]);
+                                expr_id = -1;
+                            }
+
+                            if(expr_id < 0)
+                            {
+                                rc_setError("ArraySize macro function does not exists for variable type");
+                                return false;
+                            }
+                        }
+                        else if(tmp_fn_name.compare("arraycopy")==0)
+                        {
+                            //cout << "found array copy: " << args[0] << endl;
+                            int tmp_id_type = -1;
+
+                            if(args[0].substr(0,4).compare("<id>")==0) // arg[0] is what determines the macro function used
+                            {
+                                int tmp_id = getIDInScope_ByIndex(args[n].substr(4));
+
+                                if(tmp_id >= 0)
+                                    tmp_id_type = id[tmp_id].type;
+                            }
+
+
+                            if(args[0].substr(0,1).compare("n")==0 || tmp_id_type == ID_TYPE_NUM || tmp_id_type == ID_TYPE_ARR_NUM || tmp_id_type == ID_TYPE_BYREF_NUM)
+                                expr_id = getIDInScope_ByIndex("numberarraycopy");
+                            else if(args[0].substr(0,1).compare("s")==0 || tmp_id_type == ID_TYPE_STR || tmp_id_type == ID_TYPE_ARR_STR || tmp_id_type == ID_TYPE_BYREF_STR)
+                                expr_id = getIDInScope_ByIndex("stringarraycopy");
+                            else if(args[0].substr(0,1).compare("u")==0 || tmp_id_type == ID_TYPE_USER || tmp_id_type == ID_TYPE_BYREF_USER)
+                                expr_id = getIDInScope_ByIndex("typearraycopy");
+                            else
+                            {
+                                rc_setError("Expected valid array identifier: " + args[0]);
+                                expr_id = -1;
+                            }
+
+                            if(expr_id < 0)
+                            {
+                                rc_setError("ArrayCopy macro function does not exists for variable type");
+                                return false;
+                            }
+                        }
+                        else if(tmp_fn_name.compare("arrayfill")==0)
+                        {
+                            //cout << "found array fill: " << args[0] << endl;
+                            int tmp_id_type = -1;
+
+                            if(args[0].substr(0,4).compare("<id>")==0) // arg[0] is what determines the macro function used
+                            {
+                                int tmp_id = getIDInScope_ByIndex(args[n].substr(4));
+
+                                if(tmp_id >= 0)
+                                    tmp_id_type = id[tmp_id].type;
+                            }
+
+
+                            if(args[0].substr(0,1).compare("n")==0 || tmp_id_type == ID_TYPE_NUM || tmp_id_type == ID_TYPE_ARR_NUM || tmp_id_type == ID_TYPE_BYREF_NUM)
+                                expr_id = getIDInScope_ByIndex("numberarrayfill");
+                            else if(args[0].substr(0,1).compare("s")==0 || tmp_id_type == ID_TYPE_STR || tmp_id_type == ID_TYPE_ARR_STR || tmp_id_type == ID_TYPE_BYREF_STR)
+                                expr_id = getIDInScope_ByIndex("stringarrayfill");
+                            else if(args[0].substr(0,1).compare("u")==0 || tmp_id_type == ID_TYPE_USER || tmp_id_type == ID_TYPE_BYREF_USER)
+                                expr_id = getIDInScope_ByIndex("typearrayfill");
+                            else
+                            {
+                                rc_setError("Expected valid array identifier: " + args[0]);
+                                expr_id = -1;
+                            }
+
+                            if(expr_id < 0)
+                            {
+                                rc_setError("ArrayFill macro function does not exists for variable type");
                                 return false;
                             }
                         }
@@ -2218,33 +2323,33 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                     }
                     else if(id[expr_id].fn_arg_type[n] == ID_TYPE_BYREF_USER)
                     {
-                        cout << "BYREF USER TYPE CHECK" << endl;
+                        //cout << "BYREF USER TYPE CHECK" << endl;
 
                         //check if byref_type_exception
                         bool type_exception_found = false;
-                        cout << "CHECK EXCEPTION: " << args[n] << endl;
+                        //cout << "CHECK EXCEPTION: " << args[n] << endl;
                         for(int bt_i = 0; bt_i < byref_type_exception.size(); bt_i++)
                         {
                             if(args[n].compare(byref_type_exception[bt_i].tk_reg)==0)
                             {
-                                cout << "FOUND EXCEPTION: " << args[n] << endl;
+                                //cout << "FOUND EXCEPTION: " << args[n] << endl;
                                 byref_type_exception[bt_i].tk_reg = "";
                                 type_exception_found = true;
                             }
-                            else
-                                cout << "NO MATCH (" << args[n] << ", " << byref_type_exception[bt_i].tk_reg << ")" << endl;
+                            //else
+                                //cout << "NO MATCH (" << args[n] << ", " << byref_type_exception[bt_i].tk_reg << ")" << endl;
                         }
                         //----------------
 
                         int ut_info = -1;
                         int ut_index = -1;
                         getRegInfo(args[n], ut_info, ut_index);
-                        if(ut_index != id[expr_id].fn_arg_utype[n])
+                        if(ut_index != id[expr_id].fn_arg_utype[n] && (!byref_type_generic(utype[id[expr_id].fn_arg_utype[n]].name)))
                         {
                             rc_setError("Expected \"" + utype[id[expr_id].fn_arg_utype[n]].name + "\" identifier for ByRef argument");
                             return false;
                         }
-                        cout << "BYREF USER MATCH ID: " << id[expr_id].fn_arg[n] << endl;
+                        //cout << "BYREF USER MATCH ID: " << id[expr_id].fn_arg[n] << endl;
                         vm_asm.push_back("uref_ptr !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + args[n]);
                     }
                     else if(id[expr_id].fn_arg_type[n] == ID_TYPE_NUM)
@@ -2279,7 +2384,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                         int ut_info = -1;
                         int ut_index = -1;
                         getRegInfo(args[n], ut_info, ut_index);
-                        if(ut_index != id[expr_id].fn_arg_utype[n])
+                        if(ut_index != id[expr_id].fn_arg_utype[n] && (!byref_type_generic(utype[id[expr_id].fn_arg_utype[n]].name)))
                         {
                             rc_setError("Expected \"" + utype[id[expr_id].fn_arg_utype[n]].name + "\" identifier for argument");
                             return false;
@@ -2425,7 +2530,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
         }
         else if(token[i].compare("<child>")==0)
         {
-            cout << "USER DEFINED TYPE REGISTER ARGUMENT" << endl;
+            //cout << "USER DEFINED TYPE REGISTER ARGUMENT" << endl;
 
             n = "n" + rc_intToString(n_reg);
             s = "s" + rc_intToString(s_reg);
@@ -3480,7 +3585,7 @@ bool check_rule()
                         }
                         else
                         {
-                            cout << "create variable (" << id_name << ") of type " << token[3].substr(4) << endl;
+                            //cout << "create variable (" << id_name << ") of type " << token[3].substr(4) << endl;
                             if(!create_variable(id_name, id_type, token[3].substr(4)))
                                 return false;
                         }
@@ -3685,10 +3790,10 @@ bool check_rule()
                             return false;
                         }
 
-                        cout << "DEBUG TOKENS: " << endl;
-                        cout << "----------------------" << endl;
-                        for(int tk = token_index; tk < end_token; tk++) cout << token[tk] << endl;
-                        cout << "-------------------------------------" << endl;
+                        //cout << "DEBUG TOKENS: " << endl;
+                        //cout << "----------------------" << endl;
+                        //for(int tk = token_index; tk < end_token; tk++) cout << token[tk] << endl;
+                        //cout << "-------------------------------------" << endl;
 
                         if(has_child)
                         {
@@ -3721,7 +3826,7 @@ bool check_rule()
                             multi_arg[1] = type_redim_dim[1];
                             multi_arg[2] = type_redim_dim[2];
 
-                            cout << "type arg = " << type_redim_arg << "  type = " << type_redim_arg_type << "  utype = " << type_redim_arg_utype << endl;
+                            //cout << "type arg = " << type_redim_arg << "  type = " << type_redim_arg_type << "  utype = " << type_redim_arg_utype << endl;
                         }
                         else if(multi_arg_count <= 0 || multi_arg_count > 3)
                         {
@@ -6411,7 +6516,7 @@ bool check_rule_embedded()
                             fn_arg_type = ID_TYPE_BYREF_USER;
                     }
 
-                    if(!add_function_arg(fn_arg, fn_arg_type, fn_arg_user_type))
+                    if(!add_embedded_arg(fn_arg, fn_arg_type, getUType(fn_arg_user_type)))
                     {
                         return false;
                     }

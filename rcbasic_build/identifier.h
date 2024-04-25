@@ -912,7 +912,18 @@ bool create_variable(string name, int type, string utype_name="", int vec = -1)
         int var_index = id.size();
         var.num_args = 0;
         var.parent_index = -1;
-        set_vectorPosition(var);
+
+        if(vec == -1)
+        {
+            set_vectorPosition(var);
+            //cout << var.name << " <==> " << var.vec_pos << endl;
+        }
+        else
+        {
+            //cout << "set " << name << " to " << vec << endl;
+            var.vec_pos = vec;
+        }
+
         id.push_back(var);
 
         if(isInFunctionScope && !isFunctionArg_flag)
@@ -1078,7 +1089,7 @@ bool embed_function(string name, int type, int fn_utype=-1)
     fn.isBuiltin = true;
     fn.vmFunctionIndex = current_vmFunction_index;
     current_vmFunction_index++;
-    cout << "current_vmFunction = " << current_vmFunction_index << endl;
+    //cout << "current_vmFunction = " << current_vmFunction_index << endl;
 
     fn.num_args = 0;  //function args default to 0; args are added with add_function_args
     current_fn_index = id.size();

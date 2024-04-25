@@ -2253,6 +2253,117 @@ uint64_t rc_type_array_dim(rc_usrId* u_var)
     return u_var->dimensions;
 }
 
+uint64_t rc_type_array_size(rc_usrId* u_var, int d_num)
+{
+    switch(d_num)
+    {
+        case 1:
+            return u_var->dim[0];
+            break;
+        case 2:
+            return u_var->dim[1];
+            break;
+        case 3:
+            return u_var->dim[2];
+            break;
+    }
+    return 0;
+}
+
+void rc_type_array_copy(rc_usrId* src, rc_usrId* dst)
+{
+    //cout << "Copy Type" << endl;
+    rc_usrId* parent = dst;
+
+    //cout << "freed up" << endl;
+
+    //parent[0] = src[0];
+
+    //cout << "done" << endl;
+
+    //return;
+
+
+    //cout << "db[1]" << endl;
+    parent->dimensions = src->dimensions;
+    //cout << "db[2]" << endl;
+    parent->dim[0] = src->dim[0];
+    parent->dim[1] = src->dim[1];
+    parent->dim[2] = src->dim[2];
+    //cout << "db[3]" << endl;
+
+    parent->byref_offset = 0;
+    //cout << "db[4]" << endl;
+    parent->uid_value.resize(src->uid_value.size());
+    //cout << "db[5]" << endl;
+
+    parent->var_ref = parent;
+    parent->var_ref_index = 0;
+
+
+
+    rc_usrId* p_obj;
+
+    uint64_t field_size = 0;
+
+    rc_usrId* s_obj;
+    //cout << "starting field: " << endl;
+
+    for(uint64_t i = 0; i < src->uid_value.size(); i++)
+    {
+        s_obj = &src->uid_value[i];
+        p_obj = &parent->uid_value[i];
+
+        p_obj->byref_offset = 0;
+        p_obj->byref_ptr = parent;
+        p_obj->dim[0] = s_obj->dim[0];
+        p_obj->dim[1] = s_obj->dim[1];
+        p_obj->dim[2] = s_obj->dim[2];
+        p_obj->dimensions = s_obj->dimensions;
+        p_obj->preset_init = s_obj->preset_init;
+        p_obj->udt_index = s_obj->udt_index;
+        p_obj->var_ref = p_obj;
+        p_obj->var_ref_index = 0;
+
+        //cout << "num" << endl;
+        p_obj->num_var.resize(s_obj->num_var.size());
+        for(int nfield = 0; nfield < s_obj->num_var.size(); nfield++)
+        {
+            p_obj->num_var[nfield] = s_obj->num_var[nfield];
+        }
+
+        //cout << "str" << endl;
+        p_obj->str_var.resize(s_obj->str_var.size());
+        for(int sfield = 0; sfield < s_obj->str_var.size(); sfield++)
+        {
+            p_obj->str_var[sfield] = s_obj->str_var[sfield];
+        }
+
+        //cout << "copy uid field" << endl;
+        p_obj->uid_value.resize(s_obj->uid_value.size());
+        for(int ufield = 0; ufield < s_obj->uid_value.size(); ufield++)
+        {
+            rc_type_array_copy(s_obj, p_obj);
+        }
+    }
+
+    //cout << "done" << endl;
+
+}
+
+void rc_type_array_fill(rc_usrId* src, rc_usrId* fdata)
+{
+    rc_usrId* p_obj;
+
+    for(int i = 0; i < src->uid_value.size(); i++)
+    {
+        p_obj = &src->uid_value[i];
+        p_obj[0] = fdata[0];
+    }
+
+}
+
+
 uint64_t rc_number_array_size(rc_numId n_var, int d_num)
 {
     switch(d_num)
@@ -4096,10 +4207,18 @@ void func_130(uint64_t fn)
             arr_ref_id.clear();
         break;
         case FN_TypeArraySize: //Number Function
+            rc_push_num( rc_type_array_size( TYPEARRAYSIZE_ID, TYPEARRAYSIZE_ARRAY_DIM ) );
+            arr_ref_id.clear();
         break;
         case FN_TypeArrayCopy: //Sub Procedure
+            //cout << "TAS: " << TYPEARRAYCOPY_SRC->uid_value.size() << endl;
+            //cout << "TAD: " << TYPEARRAYCOPY_DST->uid_value.size() << endl;
+            rc_free_type(TYPEARRAYCOPY_DST); //cout << "TA[2]: " << TYPEARRAYCOPY_DST->uid_value.size() << endl;
+            rc_type_array_copy( TYPEARRAYCOPY_SRC, TYPEARRAYCOPY_DST );
         break;
         case FN_TypeArrayFill: //Sub Procedure
+            //cout << "test type fill" << endl;
+            rc_type_array_fill( TYPEARRAYFILL_SRC, &TYPEARRAYFILL_FDATA );
         break;
 
 
@@ -5970,7 +6089,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Runtime v4.0a1" << endl;
+        cout << "RCBASIC Runtime v4.0a" << endl;
         return 0;
     }
 
