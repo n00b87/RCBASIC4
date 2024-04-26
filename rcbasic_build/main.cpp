@@ -49,6 +49,8 @@ void rcbasic_init()
 
     init_embedded_functions();
 
+    init_embedded_variables();
+
     //cout << "numid_count = " << num_id_count << endl;
     //cout << "strid_count = " << str_id_count << endl << endl;
 

@@ -33,6 +33,8 @@ string type_redim_arg_utype = "";
 string type_redim_dim[3];
 int type_redim_dim_count = 0;
 
+bool type_no_arg_exception_raised = false;
+
 struct type_error_exception
 {
     string error_log;
@@ -1680,9 +1682,11 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                     tx.error_log = "[0]Expected " + rc_intToString(id[tmp_id].num_args) + " dimension in " + id[tmp_id].name;
                     tx.tk_reg = token[i];
                     tx.num_args = id[tmp_id].num_args;
+                    //cout << "!!!! type_no_arg_exception_raised = false;" << endl;
                     //cout << "store = " << id[tmp_id].name << " = " << tx.tk_reg << "   arg_count = " << arg_count << ", expected = " << id[tmp_id].num_args << endl;
                     byref_type_exception.push_back(tx);
                     byref_type_flag = false;
+                    type_no_arg_exception_raised = true;
                 }
 
 
@@ -5058,6 +5062,10 @@ bool check_rule()
             string start_value = "";
             string end_value = "";
             string step_value = "";
+
+            bool d_type_counter = false;
+            int d_type_equal_index = 0;
+
             if(rc_substr(token[1], 0, 4).compare("<id>")==0)
             {
                 counter_var = token[1].substr(4);
@@ -5083,6 +5091,55 @@ bool check_rule()
                         return false;
                     }
                 }
+                else if(id[counter_id].type == ID_TYPE_USER)
+                {
+                    //cout << "FOR debug: " << token[1].substr(4) << endl;
+
+                    int end_token = 0;
+                    int scope = 0;
+                    bool expr_start = false;
+                    for(end_token = 0; end_token < token.size(); end_token++)
+                    {
+                        if(token[end_token].compare("<square>")==0 || token[end_token].compare("<par>")==0)
+                            scope++;
+                        else if(token[end_token].compare("</square>")==0 || token[end_token].compare("</par>")==0)
+                            scope--;
+
+                        if(scope == 0 && token[end_token].compare("<equal>")==0)
+                        {
+                            d_type_equal_index = end_token;
+                            end_token--;
+                            expr_start = true;
+                            break;
+                        }
+                    }
+
+                    if(!expr_start)
+                    {
+                        rc_setError("[0]Could not evaluate defined type member in FOR identifier");
+                        return false;
+                    }
+
+                    if(!eval_expression(1, end_token))
+                    {
+                        rc_setError("[1]Could not evaluate defined type member in FOR identifier");
+                        return false;
+                    }
+
+                    if(multi_arg_count != 1)
+                    {
+                        rc_setError("[2]Could not evaluate defined type member in FOR identifier");
+                        return false;
+                    }
+
+                    if(multi_arg[0].substr(0,1).compare("n") != 0)
+                    {
+                        rc_setError("[3]Could not evaluate defined type member in FOR identifier");
+                        return false;
+                    }
+
+                    d_type_counter = true;
+                }
                 else if(id[counter_id].type != ID_TYPE_NUM && id[counter_id].type != ID_TYPE_BYREF_NUM && id[counter_id].type != ID_TYPE_ARR_NUM)
                 {
                     rc_setError("Expected number identifier in for");
@@ -5093,8 +5150,26 @@ bool check_rule()
                     rc_setError("Expected \"[\" in array");
                     return false;
                 }
-                counter_id = getIDInScope_ByIndex(counter_var);
-                for_counter.push(counter_id);
+
+                if(d_type_counter)
+                {
+                    //DO STUFF HERE
+                    create_variable("!FOR_TYPE_COUNTER[" + rc_intToString(current_for_index) + "]", ID_TYPE_NUM,"");
+                    counter_id = getIDInScope_ByIndex("!FOR_TYPE_COUNTER[" + rc_intToString(current_for_index) + "]");
+                    if(counter_id < 0)
+                    {
+                        rc_setError("RCBasic Compiler ERROR: Type member in FOR caused internal error");
+                        return false;
+                    }
+
+                    vm_asm.push_back("ptr !" + rc_intToString(id[counter_id].vec_pos) + " " + multi_arg[0]);
+                    for_counter.push(counter_id);
+                }
+                else
+                {
+                    counter_id = getIDInScope_ByIndex(counter_var);
+                    for_counter.push(counter_id);
+                }
 
             }
             else
@@ -5105,6 +5180,9 @@ bool check_rule()
 
             int for_equal_op_offset = 2;
             int for_counter_args = 0;
+
+            if(d_type_counter)
+                for_equal_op_offset = d_type_equal_index;
 
             if(id[counter_id].type == ID_TYPE_ARR_NUM || id[counter_id].type == ID_TYPE_BYREF_NUM)
             {
