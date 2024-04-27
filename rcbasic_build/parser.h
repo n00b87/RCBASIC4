@@ -41,6 +41,7 @@ struct type_error_exception
     string tk_reg;
     string resolve_reg;
     int num_args;
+    bool exception_used;
 };
 
 vector<type_error_exception> byref_type_exception; //This will store the error that might be generated if a user type var is in an expression without its dimensions expressed
@@ -1682,6 +1683,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                     tx.error_log = "[0]Expected " + rc_intToString(id[tmp_id].num_args) + " dimension in " + id[tmp_id].name;
                     tx.tk_reg = token[i];
                     tx.num_args = id[tmp_id].num_args;
+                    tx.exception_used = false;
                     //cout << "!!!! type_no_arg_exception_raised = false;" << endl;
                     //cout << "store = " << id[tmp_id].name << " = " << tx.tk_reg << "   arg_count = " << arg_count << ", expected = " << id[tmp_id].num_args << endl;
                     byref_type_exception.push_back(tx);
@@ -2110,6 +2112,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
 
                         //check if byref_type_exception
                         bool type_exception_found = false;
+                        int type_exception_index = -1;
                         //cout << "CHECK EXCEPTION: " << args[n] << endl;
                         for(int bt_i = 0; bt_i < byref_type_exception.size(); bt_i++)
                         {
@@ -2118,6 +2121,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                                 //cout << "FOUND EXCEPTION: " << args[n] << endl;
                                 byref_type_exception[bt_i].tk_reg = "";
                                 type_exception_found = true;
+                                type_exception_index = bt_i;
                             }
                             //else
                                 //cout << "NO MATCH (" << args[n] << ", " << byref_type_exception[bt_i].tk_reg << ")" << endl;
@@ -2281,6 +2285,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                                     rc_setError("Expected number identifier for argument in " + id[expr_id].name);
                                     return false;
                                 }
+                                byref_type_exception[type_exception_index].exception_used = true;
                                 vm_asm.push_back("ptr !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + args[n]);
                                 break;
                             case ID_TYPE_BYREF_STR:
@@ -2289,6 +2294,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                                     rc_setError("Expected string identifier for argument");
                                     return false;
                                 }
+                                byref_type_exception[type_exception_index].exception_used = true;
                                 vm_asm.push_back("ptr$ !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + args[n]);
                                 break;
                             case ID_TYPE_BYREF_USER:
@@ -2299,6 +2305,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                                     return false;
                                 }
                                 //cout << "yolo: " << expr_id << " ~ " << id.size() << "  --  " << id[expr_id].num_args << endl;
+                                byref_type_exception[type_exception_index].exception_used = true;
                                 vm_asm.push_back("uref_ptr !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + args[n]);
                                 //cout << "testing" << endl;
                                 break;

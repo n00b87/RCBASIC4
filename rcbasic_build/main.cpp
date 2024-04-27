@@ -275,6 +275,20 @@ bool rc_eval(string line)
         }
     }
 
+    if(byref_type_exception.size() > 0)
+    {
+        for(int i = 0; i < byref_type_exception.size(); i++)
+        {
+            //cout << "type exception: [" << byref_type_exception[i].tk_reg << "]  exception_status = " << byref_type_exception[i].exception_used << endl;
+
+            if(!byref_type_exception[i].exception_used)
+            {
+                rc_setError(byref_type_exception[i].error_log);
+                return false;
+            }
+        }
+    }
+
     return true;
 
     //if(!eval_expression())
