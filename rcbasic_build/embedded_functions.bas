@@ -514,3 +514,14 @@ sub IncrementMatrixRows(mA, mB, r, num_rows, value)
 sub IncrementMatrixColumns(mA, mB, c, num_cols, value)
 sub JoinMatrixRows(mA, mB, mC)
 sub JoinMatrixColumns(mA, mB, mC)
+
+'v4.0
+
+'Empty Type is used mainly for built-in functions that need to have a user type specified to be able to compile properly
+type empty
+end type
+
+function TypeArrayDim(Byref id as empty)
+function TypeArraySize(Byref id as empty, array_dim)
+sub TypeArrayCopy(ByRef src as empty, ByRef dst as empty)
+sub TypeArrayFill(ByRef src as empty, fdata as empty)

@@ -1207,6 +1207,74 @@ namespace rc_cbc_assembler
             {
                 writeSegment(191);
             }
+            else if(line_arg[0].compare("redim_type")==0)
+            {
+                string arg_type = line_arg[1].substr(0,1);
+                if(arg_type.compare("u")==0)
+                    writeSegment(192);
+                else if(arg_type.compare("!")==0)
+                    writeSegment(204);
+            }
+            else if(line_arg[0].compare("redim_type1")==0)
+            {
+                string arg_type = line_arg[1].substr(0,1);
+                if(arg_type.compare("u")==0)
+                    writeSegment(193);
+                else if(arg_type.compare("!")==0)
+                    writeSegment(205);
+            }
+            else if(line_arg[0].compare("redim_type2")==0)
+            {
+                string arg_type = line_arg[1].substr(0,1);
+                if(arg_type.compare("u")==0)
+                    writeSegment(194);
+                else if(arg_type.compare("!")==0)
+                    writeSegment(206);
+            }
+            else if(line_arg[0].compare("redim_type3")==0)
+            {
+                string arg_type = line_arg[1].substr(0,1);
+                if(arg_type.compare("u")==0)
+                    writeSegment(195);
+                else if(arg_type.compare("!")==0)
+                    writeSegment(207);
+            }
+            else if(line_arg[0].compare("redim_type_n")==0)
+            {
+                writeSegment(196);
+            }
+            else if(line_arg[0].compare("redim_type_n1")==0)
+            {
+                writeSegment(197);
+            }
+            else if(line_arg[0].compare("redim_type_n2")==0)
+            {
+                writeSegment(198);
+            }
+            else if(line_arg[0].compare("redim_type_n3")==0)
+            {
+                writeSegment(199);
+            }
+            else if(line_arg[0].compare("redim_type_s")==0)
+            {
+                writeSegment(200);
+            }
+            else if(line_arg[0].compare("redim_type_s1")==0)
+            {
+                writeSegment(201);
+            }
+            else if(line_arg[0].compare("redim_type_s2")==0)
+            {
+                writeSegment(202);
+            }
+            else if(line_arg[0].compare("redim_type_s3")==0)
+            {
+                writeSegment(203);
+            }
+            else if(line_arg[0].compare("redim_top")==0)
+            {
+                writeSegment(208);
+            }
             else
             {
                 cout << "unrecognized cmd: " << line_arg[0] << endl;

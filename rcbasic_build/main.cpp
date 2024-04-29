@@ -36,7 +36,8 @@ vector<string> inc_files;
 
 void rcbasic_init()
 {
-    create_type("null");
+    //init built-in types here
+    init_embedded_types();
 
     //init built-in functions here
 
@@ -46,7 +47,9 @@ void rcbasic_init()
     current_scope = "main";
     vm_asm.push_back(".code");
 
-    init_embedded();
+    init_embedded_functions();
+
+    init_embedded_variables();
 
     //cout << "numid_count = " << num_id_count << endl;
     //cout << "strid_count = " << str_id_count << endl << endl;
@@ -61,7 +64,7 @@ void rcbasic_init()
 
 void rcbasic_dev_init()
 {
-    create_type("null");
+    //create_type("empty");
 
     //init built-in functions here
 
@@ -166,354 +169,7 @@ bool rc_preprocessor()
     return true;
 }
 
-bool Array_Macros(int tmp_start_token)
-{
-    //returning true is just saying there were no syntax errors found
-    if(tmp_token[tmp_start_token].length() < 5)
-        return true;
-    if(StringToLower(tmp_token[tmp_start_token].substr(4)).compare("arraydim")!=0 && StringToLower(tmp_token[tmp_start_token].substr(4)).compare("arraysize")!=0 &&
-       StringToLower(tmp_token[tmp_start_token].substr(4)).compare("arraycopy")!=0 && StringToLower(tmp_token[tmp_start_token].substr(4)).compare("arrayfill")!=0)
-        return true;
 
-    int64_t arr_id = 0;
-    vector<string> tmp_macro_token;
-    vector<string> tmp_current_token;
-    //int ArrayDim_id = getIDInScope_ByIndex("ArrayDim");
-    for(int i = tmp_start_token; i < tmp_token.size(); i++)
-    {
-        if(tmp_token[i].substr(0,4).compare("<id>")==0)
-        {
-            if(StringToLower(tmp_token[i].substr(4)).compare("arraydim")==0)
-            {
-                if(tmp_token[i+1].compare("<par>")!=0)
-                {
-                    rc_setError("Invalid use of ArrayDim");
-                    return false;
-                }
-                if(tmp_token[i+2].substr(0,4).compare("<id>")==0)
-                {
-                    arr_id = getIDInScope_ByIndex(tmp_token[i+2].substr(4));
-                    if(arr_id < 0)
-                    {
-                        rc_setError("Identifier must be declared before call to ArrayDim");
-                        return false;
-                    }
-
-                    id[arr_id].isArrayArg = true;
-
-                }
-                else
-                {
-                    rc_setError("Expected Identifier in ArrayDim");
-                    return false;
-                }
-
-                int end_token = i+2;
-                int expr_scope = 1;
-                for(end_token; end_token < tmp_token.size(); end_token++)
-                {
-                    if(tmp_token[end_token].compare("<par>")==0 || tmp_token[end_token].compare("<square>")==0)
-                        expr_scope++;
-                    else if(tmp_token[end_token].compare("</par>")==0 || tmp_token[end_token].compare("</square>")==0)
-                        expr_scope--;
-
-                    if(expr_scope==0 && tmp_token[end_token].compare("</par>")==0)
-                        break;
-                }
-
-                tmp_macro_token.clear();
-                for(int n = i; n <= end_token; n++)
-                        tmp_macro_token.push_back(tmp_token[n]);
-
-                //cout << "<---- DEBUG ---->" << i << endl;
-                //for(int n = 0; n < token.size(); n++)
-                //    cout <<"token[" << n << "] = " << token[n] << endl;
-
-                tmp_current_token.clear();
-                for(int n = 0; n < token.size(); n++)
-                    tmp_current_token.push_back(token[n]);
-
-                token.clear();
-                for(int n = 0; n < tmp_macro_token.size(); n++)
-                    token.push_back(tmp_macro_token[n]);
-
-                //for(int n = 0; n < token.size(); n++)
-                //    cout <<"new token[" << n << "] = " << token[n] << endl;
-
-
-                if(!eval_expression())
-                {
-                    rc_setError("Could not evaluate ArrayDim");
-                    return false;
-                }
-
-                for(int n = i; n <= end_token; n++)
-                        tmp_token[n] = token[n-i];
-
-                token.clear();
-                for(int n = 0; n < tmp_current_token.size(); n++)
-                    token.push_back(tmp_current_token[n]);
-
-                //for(int n = 0; n < token.size(); n++)
-                //    cout <<"final token[" << n << "] = " << token[n] << endl;
-                return true;
-
-            }
-            else if(StringToLower(tmp_token[i].substr(4)).compare("arraysize")==0)
-            {
-                if(tmp_token[i+1].compare("<par>")!=0)
-                {
-                    rc_setError("Invalid use of ArraySize");
-                    return false;
-                }
-                if(tmp_token[i+2].substr(0,4).compare("<id>")==0)
-                {
-                    arr_id = getIDInScope_ByIndex(tmp_token[i+2].substr(4));
-                    if(arr_id < 0)
-                    {
-                        rc_setError("Identifier must be declared before call to ArraySize");
-                        return false;
-                    }
-
-                    id[arr_id].isArrayArg = true;
-
-                }
-                else
-                {
-                    rc_setError("Expected Identifier in ArraySize");
-                    return false;
-                }
-
-                int end_token = i+2;
-                int expr_scope = 1;
-                for(end_token; end_token < tmp_token.size(); end_token++)
-                {
-                    if(tmp_token[end_token].compare("<par>")==0 || tmp_token[end_token].compare("<square>")==0)
-                        expr_scope++;
-                    else if(tmp_token[end_token].compare("</par>")==0 || tmp_token[end_token].compare("</square>")==0)
-                        expr_scope--;
-
-                    if(expr_scope==0 && tmp_token[end_token].compare("</par>")==0)
-                        break;
-                }
-
-                tmp_macro_token.clear();
-                for(int n = i; n <= end_token; n++)
-                        tmp_macro_token.push_back(tmp_token[n]);
-
-
-                tmp_current_token.clear();
-                for(int n = 0; n < token.size(); n++)
-                    tmp_current_token.push_back(token[n]);
-
-                token.clear();
-                for(int n = 0; n < tmp_macro_token.size(); n++)
-                    token.push_back(tmp_macro_token[n]);
-
-                if(!eval_expression(0, token.size()-1, true))//i, end_token))
-                {
-                    rc_setError("Could not evaluate ArraySize expression");
-                    //for(int n = 0; n < token.size(); n++)
-                    //    cout << "token["<< n << "] = " << token[n] << endl;
-                    return false;
-                }
-
-                for(int n = i; n <= end_token; n++)
-                        tmp_token[n] = token[n-i];
-
-                token.clear();
-                for(int n = 0; n < tmp_current_token.size(); n++)
-                    token.push_back(tmp_current_token[n]);
-
-                return true;
-            }
-            else if(StringToLower(tmp_token[i].substr(4)).compare("arraycopy")==0)
-            {
-                if(tmp_token.size() < 5)
-                {
-                    rc_setError("Ivalid use of ArrayCopy");
-                    return false;
-                }
-
-                if(tmp_token[i+1].compare("<par>")!=0)
-                {
-                    rc_setError("Invalid use of ArrayCopy");
-                    return false;
-                }
-
-                if(tmp_token[i+2].substr(0,4).compare("<id>")==0)
-                {
-                    arr_id = getIDInScope_ByIndex(tmp_token[i+2].substr(4));
-                    if(arr_id < 0)
-                    {
-                        rc_setError("Identifier must be declared before call to ArrayCopy");
-                        return false;
-                    }
-
-                    id[arr_id].isArrayArg = true;
-
-                }
-                else
-                {
-                    rc_setError("Expected Identifier in ArrayCopy");
-                    return false;
-                }
-
-                if(!tmp_token[i+3].substr(0,7).compare("<comma>")==0)
-                {
-                    rc_setError("Expected comma in ArrayCopy");
-                    return false;
-                }
-
-                if(tmp_token[i+4].substr(0,4).compare("<id>")==0)
-                {
-                    arr_id = getIDInScope_ByIndex(tmp_token[i+4].substr(4));
-                    if(arr_id < 0)
-                    {
-                        rc_setError("Identifier must be declared before call to ArrayCopy");
-                        return false;
-                    }
-
-                    id[arr_id].isArrayArg = true;
-
-                }
-                else
-                {
-                    rc_setError("Expected Identifier in ArrayCopy");
-                    return false;
-                }
-
-                int end_token = i+4;
-                int expr_scope = 1;
-                for(end_token; end_token < tmp_token.size(); end_token++)
-                {
-                    if(tmp_token[end_token].compare("<par>")==0 || tmp_token[end_token].compare("<square>")==0)
-                        expr_scope++;
-                    else if(tmp_token[end_token].compare("</par>")==0 || tmp_token[end_token].compare("</square>")==0)
-                        expr_scope--;
-
-                    if(expr_scope==0 && tmp_token[end_token].compare("</par>")==0)
-                        break;
-                }
-
-                tmp_macro_token.clear();
-                for(int n = i; n <= end_token; n++)
-                        tmp_macro_token.push_back(tmp_token[n]);
-
-                //cout << "<---- DEBUG ---->" << i << endl;
-                //for(int n = 0; n < token.size(); n++)
-                //    cout <<"token[" << n << "] = " << token[n] << endl;
-
-                tmp_current_token.clear();
-                for(int n = 0; n < token.size(); n++)
-                    tmp_current_token.push_back(token[n]);
-
-                token.clear();
-                for(int n = 0; n < tmp_macro_token.size(); n++)
-                    token.push_back(tmp_macro_token[n]);
-
-                //for(int n = 0; n < token.size(); n++)
-                //    cout <<"new token[" << n << "] = " << token[n] << endl;
-
-
-                if(!eval_expression())
-                {
-                    rc_setError("Could not evaluate ArrayCopy");
-                    return false;
-                }
-
-                for(int n = i; n <= end_token; n++)
-                        tmp_token[n] = token[n-i];
-
-                token.clear();
-                for(int n = 0; n < tmp_current_token.size(); n++)
-                    token.push_back(tmp_current_token[n]);
-
-                //for(int n = 0; n < token.size(); n++)
-                //    cout <<"final token[" << n << "] = " << token[n] << endl;
-                return true;
-
-            }
-            else if(StringToLower(tmp_token[i].substr(4)).compare("arrayfill")==0)
-            {
-                if(tmp_token[i+1].compare("<par>")!=0)
-                {
-                    rc_setError("Invalid use of ArrayFill");
-                    return false;
-                }
-                if(tmp_token[i+2].substr(0,4).compare("<id>")==0)
-                {
-                    arr_id = getIDInScope_ByIndex(tmp_token[i+2].substr(4));
-                    if(arr_id < 0)
-                    {
-                        rc_setError("Identifier must be declared before call to ArrayFill");
-                        return false;
-                    }
-
-                    id[arr_id].isArrayArg = true;
-
-                }
-                else
-                {
-                    rc_setError("Expected Identifier in ArrayFill");
-                    return false;
-                }
-
-                int end_token = i+2;
-                int expr_scope = 1;
-                for(end_token; end_token < tmp_token.size(); end_token++)
-                {
-                    if(tmp_token[end_token].compare("<par>")==0 || tmp_token[end_token].compare("<square>")==0)
-                        expr_scope++;
-                    else if(tmp_token[end_token].compare("</par>")==0 || tmp_token[end_token].compare("</square>")==0)
-                        expr_scope--;
-
-                    if(expr_scope==0 && tmp_token[end_token].compare("</par>")==0)
-                        break;
-                }
-
-                tmp_macro_token.clear();
-                for(int n = i; n <= end_token; n++)
-                        tmp_macro_token.push_back(tmp_token[n]);
-
-                //cout << "<---- DEBUG ---->" << i << endl;
-                //for(int n = 0; n < token.size(); n++)
-                //    cout <<"token[" << n << "] = " << token[n] << endl;
-
-                tmp_current_token.clear();
-                for(int n = 0; n < token.size(); n++)
-                    tmp_current_token.push_back(token[n]);
-
-                token.clear();
-                for(int n = 0; n < tmp_macro_token.size(); n++)
-                    token.push_back(tmp_macro_token[n]);
-
-                //for(int n = 0; n < token.size(); n++)
-                //    cout <<"new token[" << n << "] = " << token[n] << endl;
-
-
-                if(!eval_expression())
-                {
-                    rc_setError("Could not evaluate ArrayFill");
-                    return false;
-                }
-
-                for(int n = i; n <= end_token; n++)
-                        tmp_token[n] = token[n-i];
-
-                token.clear();
-                for(int n = 0; n < tmp_current_token.size(); n++)
-                    token.push_back(tmp_current_token[n]);
-
-                //for(int n = 0; n < token.size(); n++)
-                //    cout <<"final token[" << n << "] = " << token[n] << endl;
-                return true;
-
-            }
-        }
-    }
-    return false;
-}
 
 bool rc_eval(string line)
 {
@@ -524,6 +180,8 @@ bool rc_eval(string line)
     ERROR_MSG = "";
     clearRegs();
     clearTokens();
+    byref_type_exception.clear();
+
     if(line.compare("#var")==0)
     {
         output_vars();
@@ -597,11 +255,11 @@ bool rc_eval(string line)
             //cout << "i = " << i << "     tmp_token_size = " << tmp_token.size() << endl;
             if(tmp_token[i].compare("<:>")==0)
                 break;
-            else if(!Array_Macros(i))
-            {
-                //cout << "ERROR:" << rc_getError() << endl;
-                return false;
-            }
+            //else if(!Array_Macros(i))
+            //{
+            //    cout << "ERROR:" << rc_getError() << endl;
+            //    return false;
+            //}
             //cout << "### tmp_token[" << i << "] = ";
             //cout << tmp_token[i] << endl;
             token.push_back(tmp_token[i]);
@@ -614,6 +272,20 @@ bool rc_eval(string line)
         {
             //cout << "ERROR:" << rc_getError() << endl;
             return false;
+        }
+    }
+
+    if(byref_type_exception.size() > 0)
+    {
+        for(int i = 0; i < byref_type_exception.size(); i++)
+        {
+            //cout << "type exception: [" << byref_type_exception[i].tk_reg << "]  exception_status = " << byref_type_exception[i].exception_used << endl;
+
+            if(!byref_type_exception[i].exception_used)
+            {
+                rc_setError(byref_type_exception[i].error_log);
+                return false;
+            }
         }
     }
 
@@ -762,7 +434,7 @@ bool rcbasic_compile()
         {
             vm_asm.push_back("dbg uint=0 uint=" + rc_uint64ToString(rcbasic_program.top().dbg_inc_index) + " uint=" + rc_uint64ToString(rcbasic_program.top().line_number));
         }
-        cout << "line " << rcbasic_program.top().line_number << ": " << rcbasic_file.tellg() << " -> " << line << endl;
+        //cout << "line " << rcbasic_program.top().line_number << ": " << rcbasic_file.tellg() << " -> " << line << endl;
         if(!rcbasic_program.top().eof_reached)
             rcbasic_program.top().line_position = rcbasic_file.tellg();
         //vm_asm.push_back("mov n0 " + rc_intToString(rcbasic_program.top().line_number));
@@ -827,6 +499,7 @@ void rcbasic_export_dev()
     fstream f("rcbasic_dev.txt", fstream::out | fstream::trunc);
     fstream f2("rcbasic_dev2.txt", fstream::out | fstream::trunc);
     fstream f3("rcbasic_dev3.txt", fstream::out | fstream::trunc);
+    fstream f4("rcbasic_dev4.txt", fstream::out | fstream::trunc);
 
     if(!f.is_open())
         return;
@@ -848,6 +521,11 @@ void rcbasic_export_dev()
                 f2 << fn_line << endl;
                 f3 << "case FN_" << id[i].name << ": //String Function" << endl << "break;" << endl;
                 break;
+            case ID_TYPE_FN_USER:
+                output_line += "ID_TYPE_FN_STR);";
+                f2 << fn_line << endl;
+                f3 << "case FN_" << id[i].name << ": //UDT Function" << endl << "break;" << endl;
+                break;
             case ID_TYPE_SUB:
                 output_line += "ID_TYPE_SUB);";
                 f2 << fn_line << endl;
@@ -858,6 +536,7 @@ void rcbasic_export_dev()
         }
         f << output_line << endl;
         output_line = "";
+        string fn_arg_utype = "";
         for(int n = 0; n < id[i].num_args; n++)
         {
             fn_line = "#define " + StringToUpper(id[i].name + "_" + id[i].fn_arg[n]) + " ";
@@ -868,19 +547,33 @@ void rcbasic_export_dev()
                 case ID_TYPE_NUM:
                     output_line += "ID_TYPE_NUM);";
                     //fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nid_value[0].value[0]";
-                    fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nid_value[0].value[ num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
+                    fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nid_value.value[ num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
                     break;
                 case ID_TYPE_BYREF_NUM:
                     output_line += "ID_TYPE_BYREF_NUM);";
-                    fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nid_value[0].value[ num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
+                    fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nid_value.value[ num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
                     break;
                 case ID_TYPE_STR:
                     output_line += "ID_TYPE_STR);";
-                    fn_line += "str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].sid_value[0].value[ str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
+                    fn_line += "str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].sid_value.value[ str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
                     break;
                 case ID_TYPE_BYREF_STR:
                     output_line += "ID_TYPE_BYREF_STR);";
-                    fn_line += "str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].sid_value[0].value[ str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
+                    fn_line += "str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].sid_value.value[ str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
+                    break;
+                case ID_TYPE_USER:
+                    //fn_arg_utype = "";
+                    //if(id[i].fn_arg_utype[n] >= 0)
+                    //    fn_arg_utype = utype[id[i].fn_arg_utype[n]].name;
+                    output_line += "ID_TYPE_USER, " + rc_intToString(id[i].fn_arg_utype[n]) + ");";
+                    fn_line += "usr_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].var_ref->uid_value[0]";
+                    break;
+                case ID_TYPE_BYREF_USER:
+                    //fn_arg_utype = "";
+                    //if(id[i].fn_arg_utype[n] >= 0)
+                    //    fn_arg_utype = utype[id[i].fn_arg_utype[n]].name;
+                    output_line += "ID_TYPE_BYREF_USER, " + rc_intToString(id[i].fn_arg_utype[n]) + ");";
+                    fn_line += "usr_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].var_ref";
                     break;
             }
             f2 << fn_line << endl;
@@ -888,9 +581,50 @@ void rcbasic_export_dev()
         }
 
     }
+
+    for(int i = 0; i < utype.size(); i++)
+    {
+        output_line = "create_type(\"" + utype[i].name + "\");";
+
+        f4 << output_line << endl;
+
+        for(int n = 0; n < utype[i].num_members; n++)
+        {
+            output_line = "vm_asm.push_back(\"mov n0 " + rc_intToString(utype[i].member_dim[n].dim_size[0]) + "\");";
+            f4 << output_line << endl;
+
+            output_line = "vm_asm.push_back(\"mov n1 " + rc_intToString(utype[i].member_dim[n].dim_size[1]) + "\");";
+            f4 << output_line << endl;
+
+            output_line = "vm_asm.push_back(\"mov n2 " + rc_intToString(utype[i].member_dim[n].dim_size[2]) + "\");";
+            f4 << output_line << endl;
+
+            int ut_index = utype[i].member_utype_index[n];
+            string member_utype_name = "";
+
+            if(ut_index >= 0)
+                member_utype_name = utype[ut_index].name;
+            else if(utype[i].member_type[n] == ID_TYPE_USER)
+            {
+                cout << "ERROR CREATING TYPE" << endl;
+                f.close();
+                f2.close();
+                f3.close();
+                f4.close();
+                return;
+            }
+
+
+            output_line = "add_type_member(\"" + utype[i].member_name[n] + "\", " + rc_intToString(utype[i].member_type[n]) + ", \"" + member_utype_name + "\", " +
+                                            rc_intToString(utype[i].member_dim_count[n]) + ", \"n0\", \"n1\", \"n2\");";
+            f4 << output_line << endl;
+        }
+    }
+
     f.close();
     f2.close();
     f3.close();
+    f4.close();
     cout << "rcbasic_dev file was created" << endl;
 }
 
@@ -965,6 +699,9 @@ void rcbasic_output_debug_info()
             case ID_TYPE_USER:
                 f << "U " << id[i].scope << " " << id[i].name << " " << id[i].vec_pos << "\n";
                 break;
+            case ID_TYPE_BYREF_USER:
+                f << "BU " << id[i].scope << " " << id[i].name << " " << id[i].vec_pos << "\n";
+                break;
             case ID_TYPE_USER_NUM:
                 f << "UN " << id[i].scope << " " << id[i].name << " " << id[i].vec_pos << "\n";
                 break;
@@ -996,7 +733,7 @@ int main(int argc, char * argv[])
 {
     string line = "";
 
-    //rcbasic_dev("embedded_functions.bas"); return 0;
+    //rcbasic_dev("embedded_functions.bas"); rcbasic_output_debug_info(); return 0;
 
     string rc_filename = "";// = "tst.bas";
 

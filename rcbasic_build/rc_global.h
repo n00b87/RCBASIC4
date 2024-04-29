@@ -70,7 +70,9 @@ public:
             s.substr(0,s.find_first_of(" ")).compare("redim1")==0 || s.substr(0,s.find_first_of(" ")).compare("redim1$")==0 ||
             s.substr(0,s.find_first_of(" ")).compare("for_offset_arr2")==0 || s.substr(0,s.find_first_of(" ")).compare("obj_usr_n1")==0 ||
             s.substr(0,s.find_first_of(" ")).compare("obj_usr_s1")==0 || s.substr(0,s.find_first_of(" ")).compare("uref_ptr")==0 ||
-            s.substr(0,s.find_first_of(" ")).compare("obj_usr_init1")==0 || s.substr(0,s.find_first_of(" ")).compare("preset_t")==0)
+            s.substr(0,s.find_first_of(" ")).compare("obj_usr_init1")==0 || s.substr(0,s.find_first_of(" ")).compare("preset_t")==0 ||
+            s.substr(0,s.find_first_of(" ")).compare("redim_type")==0 || s.substr(0,s.find_first_of(" ")).compare("redim_type_n1")==0 ||
+            s.substr(0,s.find_first_of(" ")).compare("redim_type_s1")==0)
         {
             current_address[current_segment] += 17; //1 byte for instruction and 8 bytes for each argument
         }
@@ -128,7 +130,8 @@ public:
                 s.substr(0,s.find_first_of(" ")).compare("end_x")==0 || s.substr(0,s.find_first_of(" ")).compare("lval")==0 ||
                 s.substr(0,s.find_first_of(" ")).compare("lval$")==0 || s.substr(0,s.find_first_of(" ")).compare("obj_usr_n")==0 ||
                 s.substr(0,s.find_first_of(" ")).compare("obj_usr_s")==0 || s.substr(0,s.find_first_of(" ")).compare("obj_usr_get")==0 ||
-                s.substr(0,s.find_first_of(" ")).compare("delete_t")==0 || s.substr(0,s.find_first_of(" ")).compare("obj_usr_init")==0)
+                s.substr(0,s.find_first_of(" ")).compare("obj_usr_init")==0 || s.substr(0,s.find_first_of(" ")).compare("redim_type_n")==0 ||
+                s.substr(0,s.find_first_of(" ")).compare("redim_type_s")==0)
         {
             current_address[current_segment] += 9; //1 byte for instruction and 8 bytes a single argument
         }
@@ -138,7 +141,9 @@ public:
                 s.substr(0,s.find_first_of(" ")).compare("redim2")==0 || s.substr(0,s.find_first_of(" ")).compare("redim2$")==0 ||
                 s.substr(0,s.find_first_of(" ")).compare("for_offset_arr3")==0 || s.substr(0,s.find_first_of(" ")).compare("dbg")==0 ||
                 s.substr(0,s.find_first_of(" ")).compare("obj_usr_n2")==0 || s.substr(0,s.find_first_of(" ")).compare("obj_usr_s2")==0 ||
-                s.substr(0,s.find_first_of(" ")).compare("obj_usr_init2")==0 || s.substr(0,s.find_first_of(" ")).compare("preset_t1")==0)
+                s.substr(0,s.find_first_of(" ")).compare("obj_usr_init2")==0 || s.substr(0,s.find_first_of(" ")).compare("preset_t1")==0 ||
+                s.substr(0,s.find_first_of(" ")).compare("delete_t")==0 || s.substr(0,s.find_first_of(" ")).compare("redim_type1")==0 ||
+                s.substr(0,s.find_first_of(" ")).compare("redim_type_n2")==0 || s.substr(0,s.find_first_of(" ")).compare("redim_type_s2")==0)
         {
             current_address[current_segment] += 25; //1 byte for instruction and 8 bytes for 3 arguments
         }
@@ -148,11 +153,13 @@ public:
                 s.substr(0,s.find_first_of(" ")).compare("redim3")==0 || s.substr(0,s.find_first_of(" ")).compare("redim3$")==0 ||
                 s.substr(0,s.find_first_of(" ")).compare("obj_usr_n3")==0 || s.substr(0,s.find_first_of(" ")).compare("obj_usr_s3")==0 ||
                 s.substr(0,s.find_first_of(" ")).compare("obj_usr3")==0 || s.substr(0,s.find_first_of(" ")).compare("obj_usr_init3")==0 ||
-                s.substr(0,s.find_first_of(" ")).compare("preset_t2")==0)
+                s.substr(0,s.find_first_of(" ")).compare("preset_t2")==0 || s.substr(0,s.find_first_of(" ")).compare("redim_type2")==0 ||
+                s.substr(0,s.find_first_of(" ")).compare("redim_type_n3")==0 || s.substr(0,s.find_first_of(" ")).compare("redim_type_s3")==0)
         {
             current_address[current_segment] += 33; //1 byte for instruction and 8 bytes for 4 arguments
         }
-        else if(s.substr(0,s.find_first_of(" ")).compare("dim_type3")==0 || s.substr(0,s.find_first_of(" ")).compare("preset_t3")==0)
+        else if(s.substr(0,s.find_first_of(" ")).compare("dim_type3")==0 || s.substr(0,s.find_first_of(" ")).compare("preset_t3")==0 ||
+                s.substr(0,s.find_first_of(" ")).compare("redim_type3")==0)
         {
             current_address[current_segment] += 41; //1 byte for instruction and 8 bytes for 5 arguments
         }
@@ -161,7 +168,7 @@ public:
                 s.substr(0,s.find_first_of(" ")).compare("clear_stack$")==0 || s.substr(0,s.find_first_of(" ")).compare("do")==0 ||
                 s.substr(0,s.find_first_of(" ")).compare("pop_loop_stack")==0 || s.substr(0,s.find_first_of(" ")).compare("return")==0 ||
                 s.substr(0,s.find_first_of(" ")).compare("println")==0 || s.substr(0,s.find_first_of(" ")).compare("for_offset_0")==0 ||
-                s.substr(0,s.find_first_of(" ")).compare("push_t_null")==0)
+                s.substr(0,s.find_first_of(" ")).compare("push_t_null")==0 || s.substr(0,s.find_first_of(" ")).compare("redim_top")==0)
         {
             current_address[current_segment] += 1; //1 byte for instruction and no arguments
         }
