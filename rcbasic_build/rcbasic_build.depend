@@ -1,0 +1,83 @@
+# depslib dependency file v1.0
+1714236935 source:/home/n00b/Projects/RCBASIC4/rcbasic_build/main.cpp
+	<iostream>
+	<stack>
+	<vector>
+	<fstream>
+	<stdio.h>
+	<string>
+	"tokenizer.h"
+	"parser.h"
+	"rc_builtin.h"
+	"rc_vm_asm.h"
+	"file_directory.h"
+	"env_resolve.h"
+	"identifier.h"
+
+1705468198 /home/n00b/Projects/RCBASIC4/rcbasic_build/tokenizer.h
+	<iostream>
+	<string>
+	<cctype>
+	<vector>
+	<SDL2/SDL.h>
+	"rc_utility.h"
+	"rc_debug.h"
+	"keywords.h"
+	"constants.h"
+
+1686539631 /home/n00b/Projects/RCBASIC4/rcbasic_build/rc_utility.h
+	<fstream>
+	<sstream>
+	<ctype.h>
+
+1686539631 /home/n00b/Projects/RCBASIC4/rcbasic_build/rc_debug.h
+
+1702165261 /home/n00b/Projects/RCBASIC4/rcbasic_build/keywords.h
+
+1686539631 /home/n00b/Projects/RCBASIC4/rcbasic_build/constants.h
+	<vector>
+
+1714235947 /home/n00b/Projects/RCBASIC4/rcbasic_build/parser.h
+	"tokenizer.h"
+	"identifier.h"
+	"rc_global.h"
+	"constants.h"
+	<inttypes.h>
+
+1714029245 /home/n00b/Projects/RCBASIC4/rcbasic_build/identifier.h
+	<inttypes.h>
+	<stack>
+	"rc_global.h"
+	"rc_utility.h"
+	"rc_debug.h"
+
+1713771342 /home/n00b/Projects/RCBASIC4/rcbasic_build/rc_global.h
+	<inttypes.h>
+
+1714106152 /home/n00b/Projects/RCBASIC4/rcbasic_build/rc_builtin.h
+	"identifier.h"
+
+1713771342 /home/n00b/Projects/RCBASIC4/rcbasic_build/rc_vm_asm.h
+	<iostream>
+	<fstream>
+	<inttypes.h>
+	<vector>
+	<sstream>
+	<string>
+	<stdlib.h>
+
+1686539631 /home/n00b/Projects/RCBASIC4/rcbasic_build/file_directory.h
+	<sys/stat.h>
+	<sys/types.h>
+	<unistd.h>
+	<dirent.h>
+	<stdlib.h>
+	<sys/param.h>
+	<tchar.h>
+	<windows.h>
+	<winbase.h>
+
+1686539631 /home/n00b/Projects/RCBASIC4/rcbasic_build/env_resolve.h
+	<winbase.h>
+	<cstdlib>
+

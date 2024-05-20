@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="rcbasic_runtime" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/rcbasic_runtime" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/rcbasic_runtime" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Linker>
+			<Add option="-lSDL2main -lSDL2 -lSDL2_image -lSDL2_gfx -lSDL2_ttf -lSDL2_mixer -lSDL2_net -logg -lvorbis -lvorbisfile -ltheora -ltheoradec -lIrrlicht -pthread" />
+		</Linker>
+		<Unit filename="main.cpp" />
+		<Unit filename="rc_defines.h" />
+		<Unit filename="rc_geometry.h" />
+		<Unit filename="rc_matrix.h" />
+		<Unit filename="rc_media.h" />
+		<Unit filename="rc_os_defines.h" />
+		<Unit filename="rc_process.h" />
+		<Unit filename="rc_stdlib.h" />
+		<Unit filename="theoraplay.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="theoraplay.h" />
+		<Unit filename="theoraplay_cvtrgb.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

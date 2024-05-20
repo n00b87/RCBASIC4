@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<FileVersion major="1" minor="0" />
+	<ActiveTarget name="Release" />
+	<File name="keywords.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="rc_vm_asm.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="38811" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="rc_utility.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="constants.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="rc_global.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="13014" topLine="163" />
+		</Cursor>
+	</File>
+	<File name="parser.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="94628" topLine="1969" />
+		</Cursor>
+		<Folding>
+			<Collapse line="1718" />
+			<Collapse line="2147" />
+			<Collapse line="2179" />
+			<Collapse line="2211" />
+			<Collapse line="2243" />
+			<Collapse line="3267" />
+			<Collapse line="3413" />
+			<Collapse line="4777" />
+			<Collapse line="4856" />
+			<Collapse line="4890" />
+			<Collapse line="4949" />
+			<Collapse line="4969" />
+			<Collapse line="4988" />
+			<Collapse line="5194" />
+			<Collapse line="5342" />
+			<Collapse line="5365" />
+			<Collapse line="5431" />
+			<Collapse line="5495" />
+			<Collapse line="5515" />
+			<Collapse line="5560" />
+			<Collapse line="5649" />
+			<Collapse line="5680" />
+			<Collapse line="5735" />
+			<Collapse line="6306" />
+			<Collapse line="6851" />
+		</Folding>
+	</File>
+	<File name="rc_builtin.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="65566" topLine="1391" />
+		</Cursor>
+	</File>
+	<File name="tokenizer.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="995" />
+		</Cursor>
+	</File>
+	<File name="env_resolve.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="615" topLine="32" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="11984" topLine="417" />
+		</Cursor>
+	</File>
+	<File name="identifier.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12390" topLine="246" />
+		</Cursor>
+	</File>
+</CodeBlocks_layout_file>
