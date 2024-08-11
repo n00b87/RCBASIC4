@@ -322,6 +322,11 @@ bool rc_eval_embedded(string line)
         return false;
     }
 
+    if(!rc_preprocessor())
+    {
+        return false;
+    }
+
     if(tmp_token.size()==0)
         return true;
     //cout << "-------START TOKENS--------" << endl;
@@ -733,7 +738,7 @@ int main(int argc, char * argv[])
 {
     string line = "";
 
-    //rcbasic_dev("embedded_functions.bas"); rcbasic_output_debug_info(); return 0;
+    rcbasic_dev("embedded_functions.bas"); rcbasic_output_debug_info(); return 0;
 
     string rc_filename = "";// = "tst.bas";
 
