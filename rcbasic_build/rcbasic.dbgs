@@ -973,3 +973,5 @@ BU main #fu1 1
 BU main.TypeArrayCopy dst 1
 BU main.TypeArrayFill src 0
 U main.TypeArrayFill fdata 1
+N main.test_include_fn test1 0
+N main.test_include_fn test2 1

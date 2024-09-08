@@ -1426,3 +1426,6 @@
 #define FN_TypeArrayFill 474
 #define TYPEARRAYFILL_SRC usr_var[0].var_ref
 #define TYPEARRAYFILL_FDATA usr_var[1].var_ref->uid_value[0]
+#define FN_test_include_fn 475
+#define TEST_INCLUDE_FN_TEST1 num_var[0].nid_value.value[ num_var[0].byref_offset ]
+#define TEST_INCLUDE_FN_TEST2 num_var[1].nid_value.value[ num_var[1].byref_offset ]

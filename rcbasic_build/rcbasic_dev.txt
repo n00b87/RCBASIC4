@@ -1426,3 +1426,6 @@ add_embedded_arg("dst", ID_TYPE_BYREF_USER, 0);
 embed_function("TypeArrayFill", ID_TYPE_SUB);
 add_embedded_arg("src", ID_TYPE_BYREF_USER, 0);
 add_embedded_arg("fdata", ID_TYPE_USER, 0);
+embed_function("test_include_fn", ID_TYPE_SUB);
+add_embedded_arg("test1", ID_TYPE_NUM);
+add_embedded_arg("test2", ID_TYPE_NUM);
