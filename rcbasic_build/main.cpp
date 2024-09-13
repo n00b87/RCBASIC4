@@ -638,10 +638,13 @@ bool rcbasic_embedded()
     int current_file = 0;
     string line = "";
 
-    while( getline(rcbasic_file, line) )
+    while( rc_getline(line) )
     {
         cout << "line " << rcbasic_program.top().line_number << ": " << rcbasic_file.tellg() << " -> " << line << endl;
         //rcbasic_program.top().line_position = rcbasic_file.tellg();
+        if(!rcbasic_program.top().eof_reached)
+            rcbasic_program.top().line_position = rcbasic_file.tellg();
+
         if(!rc_eval_embedded(line))
         {
             cout << "Error on Line " << rcbasic_program.top().line_number << ": " << rc_getError() << endl;
@@ -669,7 +672,11 @@ void rcbasic_dev(string dev_input_file)
 
     if(rcbasic_loadProgram(dev_input_file))
     {
-        rcbasic_embedded();
+        if(!rcbasic_embedded())
+		{
+			std::cout << "ERROR: Failed to compose embedded args" << std::endl;
+			return;
+		}
         rcbasic_export_dev();
         rcbasic_clean();
     }
