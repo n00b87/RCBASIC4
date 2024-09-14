@@ -498,8 +498,73 @@ bool rcbasic_compile()
     //debug_output_VMASM();
 }
 
+struct rc_dev_case_functions
+{
+	std::string code;
+	bool case_exception = false;
+};
+
 void rcbasic_export_dev()
 {
+	std::vector<rc_dev_case_functions> rt_case_functions;
+	std::string input_line = "";
+
+	std::vector<std::string> builtin_fn;
+	std::vector<std::string> builtin_types;
+	std::vector<std::string> builtin_var;
+
+
+	std::string builtin_temp = "";
+	fstream rt_builtin_temp_file("intern_inc/rc_builtin_template.h", fstream::in);
+	while(!rt_builtin_temp_file.eof())
+	{
+		getline(rt_builtin_temp_file, input_line);
+		builtin_temp += input_line + "\n";
+	}
+	rt_builtin_temp_file.close();
+
+	fstream rt_case_file("intern_inc/switch_cases.h", fstream::in);
+
+	if(!rt_case_file.is_open())
+		return;
+
+	while(!rt_case_file.eof())
+	{
+		getline(rt_case_file, input_line);
+		if(input_line.substr(0,1).compare("#")==0)
+		{
+			std::string case_exception_file = input_line.substr(1);
+			fstream cf(case_exception_file, fstream::in);
+			input_line = "";
+			std::string cf_contents = "";
+			while(!cf.eof())
+			{
+				getline(cf, input_line);
+				if(input_line.compare("") != 0)
+					cf_contents += "\t" + input_line + "\n";
+			}
+			cf.close();
+
+			rc_dev_case_functions obj;
+			obj.case_exception = true;
+			obj.code = cf_contents;
+			rt_case_functions.push_back(obj);
+		}
+		else if(input_line.compare("") != 0)
+		{
+			rc_dev_case_functions obj;
+			obj.case_exception = false;
+			obj.code = input_line;
+			rt_case_functions.push_back(obj);
+		}
+	}
+
+	rt_case_file.close();
+
+	//std::cout << "id_size ( " << rt_case_functions.size() << " ~ " << id[i].vmFunctionIndex << " ) " << std::endl << std::endl;
+	//return;
+
+
     string fn_line = "";
     fstream f("rcbasic_dev.txt", fstream::out | fstream::trunc);
     fstream f2("rcbasic_dev2.txt", fstream::out | fstream::trunc);
@@ -519,29 +584,52 @@ void rcbasic_export_dev()
             case ID_TYPE_FN_NUM:
                 output_line += "ID_TYPE_FN_NUM);";
                 f2 << fn_line << endl;
-                f3 << "case FN_" << id[i].name << ": //Number Function" << endl << "break;" << endl;
+                f3 << "case FN_" << id[i].name << ": //Number Function" << endl;
+                if(rt_case_functions[id[i].vmFunctionIndex].case_exception)
+					f3 << rt_case_functions[id[i].vmFunctionIndex].code << endl;
+				else
+					f3 << "\t" << " rc_push_num(" << rt_case_functions[id[i].vmFunctionIndex].code << ");" << endl;
+                f3 << "\tbreak;" << endl;
                 break;
             case ID_TYPE_FN_STR:
                 output_line += "ID_TYPE_FN_STR);";
                 f2 << fn_line << endl;
-                f3 << "case FN_" << id[i].name << ": //String Function" << endl << "break;" << endl;
+                f3 << "case FN_" << id[i].name << ": //String Function" << endl;
+                if(rt_case_functions[id[i].vmFunctionIndex].case_exception)
+					f3 << rt_case_functions[id[i].vmFunctionIndex].code << endl;
+				else
+					f3 << "\t" << " rc_push_str(" << rt_case_functions[id[i].vmFunctionIndex].code << ");" << endl;
+                f3 << "\tbreak;" << endl;
                 break;
             case ID_TYPE_FN_USER:
-                output_line += "ID_TYPE_FN_STR);";
+                output_line += "ID_TYPE_FN_USER);";
                 f2 << fn_line << endl;
-                f3 << "case FN_" << id[i].name << ": //UDT Function" << endl << "break;" << endl;
+                f3 << "case FN_" << id[i].name << ": //UDT Function" << endl;
+                if(rt_case_functions[id[i].vmFunctionIndex].case_exception)
+					f3 << rt_case_functions[id[i].vmFunctionIndex].code << endl;
+				else
+					f3 << "\t" << " rc_push_usr(" << rt_case_functions[id[i].vmFunctionIndex].code << ");" << endl;
+                f3 << "\tbreak;" << endl;
                 break;
             case ID_TYPE_SUB:
                 output_line += "ID_TYPE_SUB);";
                 f2 << fn_line << endl;
-                f3 << "case FN_" << id[i].name << ": //Sub Procedure" << endl << "break;" << endl;
+                f3 << "case FN_" << id[i].name << ": //Sub Procedure" << endl;
+                if(rt_case_functions[id[i].vmFunctionIndex].case_exception)
+					f3 << rt_case_functions[id[i].vmFunctionIndex].code << endl;
+                else
+					f3 << "\t" << rt_case_functions[id[i].vmFunctionIndex].code << ";" << endl;
+                f3 << "\tbreak;" << endl;
                 break;
             default:
                 continue;
         }
         f << output_line << endl;
+        builtin_fn.push_back(output_line);
+
         output_line = "";
         string fn_arg_utype = "";
+
         for(int n = 0; n < id[i].num_args; n++)
         {
             fn_line = "#define " + StringToUpper(id[i].name + "_" + id[i].fn_arg[n]) + " ";
@@ -582,7 +670,8 @@ void rcbasic_export_dev()
                     break;
             }
             f2 << fn_line << endl;
-            f << output_line << endl;
+            f << output_line << endl; //I am generating the dev file for debug purposes only
+            builtin_fn.push_back(output_line);
         }
 
     }
@@ -592,17 +681,21 @@ void rcbasic_export_dev()
         output_line = "create_type(\"" + utype[i].name + "\");";
 
         f4 << output_line << endl;
+        builtin_types.push_back(output_line);
 
         for(int n = 0; n < utype[i].num_members; n++)
         {
             output_line = "vm_asm.push_back(\"mov n0 " + rc_intToString(utype[i].member_dim[n].dim_size[0]) + "\");";
             f4 << output_line << endl;
+            builtin_types.push_back(output_line);
 
             output_line = "vm_asm.push_back(\"mov n1 " + rc_intToString(utype[i].member_dim[n].dim_size[1]) + "\");";
             f4 << output_line << endl;
+            builtin_types.push_back(output_line);
 
             output_line = "vm_asm.push_back(\"mov n2 " + rc_intToString(utype[i].member_dim[n].dim_size[2]) + "\");";
             f4 << output_line << endl;
+            builtin_types.push_back(output_line);
 
             int ut_index = utype[i].member_utype_index[n];
             string member_utype_name = "";
@@ -623,6 +716,7 @@ void rcbasic_export_dev()
             output_line = "add_type_member(\"" + utype[i].member_name[n] + "\", " + rc_intToString(utype[i].member_type[n]) + ", \"" + member_utype_name + "\", " +
                                             rc_intToString(utype[i].member_dim_count[n]) + ", \"n0\", \"n1\", \"n2\");";
             f4 << output_line << endl;
+            builtin_types.push_back(output_line);
         }
     }
 
@@ -630,6 +724,79 @@ void rcbasic_export_dev()
     f2.close();
     f3.close();
     f4.close();
+
+    //Generate rc_builtin.h
+    fstream rt_builtin_gen_file("rc_builtin.h", fstream::out | fstream::trunc);
+    rt_builtin_gen_file << "#ifndef RC_BUILTIN_H_INCLUDED" << endl;
+	rt_builtin_gen_file << "#define RC_BUILTIN_H_INCLUDED" << endl;
+	rt_builtin_gen_file << "#include \"identifier.h\"" << endl;
+	rt_builtin_gen_file << endl;
+
+	rt_builtin_gen_file << "void init_embedded_functions()" << endl;
+	rt_builtin_gen_file << "{" << endl;
+	for(int i = 0; i < builtin_fn.size(); i++)
+		rt_builtin_gen_file << "\t" << builtin_fn[i] << endl;
+	rt_builtin_gen_file << "}" << endl;
+	rt_builtin_gen_file << endl;
+
+	rt_builtin_gen_file << "void init_embedded_types()" << endl;
+	rt_builtin_gen_file << "{" << endl;
+	for(int i = 0; i < builtin_types.size(); i++)
+		rt_builtin_gen_file << "\t" << builtin_types[i] << endl;
+	rt_builtin_gen_file << "}" << endl;
+	rt_builtin_gen_file << endl;
+
+
+	rt_builtin_gen_file << "void init_embedded_variables()" << endl;
+	rt_builtin_gen_file << "{" << endl;
+	for(int i = 0; i < builtin_var.size(); i++)
+		rt_builtin_gen_file << "\t" << builtin_var[i] << endl;
+	rt_builtin_gen_file << "}" << endl;
+	rt_builtin_gen_file << endl;
+
+    rt_builtin_gen_file << "#endif // RC_BUILTIN_H_INCLUDED" << endl;
+    rt_builtin_gen_file.close();
+
+
+    //Generate rc_defines.h
+    fstream rt_defines_gen_file("../rcbasic_runtime/rc_defines.h", fstream::out | fstream::trunc);
+    fstream dev_defines_file("rcbasic_dev2.txt", fstream::in);
+    input_line = "";
+
+    rt_defines_gen_file << "#ifndef RC_DEFINES_H_INCLUDED" << endl;
+	rt_defines_gen_file << "#define RC_DEFINES_H_INCLUDED" << endl;
+	rt_defines_gen_file << endl;
+
+    while(!dev_defines_file.eof())
+	{
+		getline(dev_defines_file, input_line);
+		rt_defines_gen_file << input_line << endl;
+	}
+
+	rt_defines_gen_file << endl;
+	rt_defines_gen_file << "#endif // RC_DEFINES_H_INCLUDED" << endl;
+
+	dev_defines_file.close();
+	rt_defines_gen_file.close();
+
+
+	//Generate RCBasic to C++ function map cases
+	fstream dev_case_file("rcbasic_dev3.txt", fstream::in);
+	fstream rt_switch_case_file("../rcbasic_runtime/rc_func130_cases.h", fstream::out | fstream::trunc);
+
+	input_line = "";
+
+	while(!dev_case_file.eof())
+	{
+		getline(dev_case_file, input_line);
+		rt_switch_case_file << input_line << endl;
+	}
+
+	dev_case_file.close();
+	rt_switch_case_file.close();
+
+
+
     cout << "rcbasic_dev file was created" << endl;
 }
 
