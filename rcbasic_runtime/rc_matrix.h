@@ -13,6 +13,8 @@
 #include <cstdlib>
 #include <ctime>
 
+#include <irrlicht.h>
+
 using namespace std;
 
 
@@ -23,20 +25,46 @@ int64_t rand_int(int64_t vmin, int64_t vmax) {
 
 struct rc_matrix_type
 {
+	bool active = false;
     uint32_t r = 0;
     uint32_t c = 0;
     vector<double> data;
 };
 
-rc_matrix_type rc_matrix[1048];
+std::vector<rc_matrix_type> rc_matrix(64);
 
 #define RC_TMP_MATRIX 1024
 #define RC_TMP_MATRIX_2 1025
 
 #define RC_PROCESS_TMP_MATRIX_OFFSET 1026
 
-void DimMatrix(int m, uint32_t m_rows, uint32_t m_cols, bool preserve_flag=false)
+#define NEW_MATRIX -1
+
+int DimMatrix(int m, uint32_t m_rows, uint32_t m_cols, bool preserve_flag=false)
 {
+	if(m < 0)
+	{
+		for(int i = 0; i < rc_matrix.size(); i++)
+		{
+			if(!rc_matrix[i].active)
+			{
+				m = i;
+				break;
+			}
+		}
+
+		if(m < 0)
+		{
+			rc_matrix_type mat;
+			mat.active = true;
+			m = rc_matrix.size();
+			rc_matrix.push_back(mat);
+		}
+	}
+
+	if(!preserve_flag)
+		rc_matrix[m].data.clear();
+
     rc_matrix[m].data.resize(m_rows*m_cols);
 
     if(rc_matrix[m].c != m_cols && preserve_flag)
@@ -57,6 +85,17 @@ void DimMatrix(int m, uint32_t m_rows, uint32_t m_cols, bool preserve_flag=false
 
     rc_matrix[m].r = m_rows;
     rc_matrix[m].c = m_cols;
+    rc_matrix[m].active = true;
+
+    return m;
+}
+
+void DeleteMatrix(int mA)
+{
+	rc_matrix[mA].data.clear();
+	rc_matrix[mA].c = 0;
+	rc_matrix[mA].r = 0;
+	rc_matrix[mA].active = false;
 }
 
 //Adds Matrix A() to Matrix B(), answer is Matrix C()
@@ -503,11 +542,11 @@ bool GetMatrixRows (uint32_t mA, uint32_t mB, uint32_t r, uint32_t num_rows)
 }
 
 // Creates Identity Matrix A() of order N%
-void IdentityMatrix(uint32_t mA, uint32_t n)
+void setIdentityMatrix(uint32_t mA, uint32_t n)
 {
     DimMatrix(mA, n, n);
     for(int i = 0; i < n; i++)
-        rc_matrix[mA].data[i*n+n] = 1;
+        rc_matrix[mA].data[i*(n+1)] = 1;
 }
 
 bool GaussianElimination(vector< vector<double> > &A, vector<double> &b, uint32_t mC) {
@@ -630,7 +669,7 @@ void getCofactor(uint32_t A_dim, double* A, double* temp, int p, int q,
 	}
 }
 
-bool CofactorMatrix(uint32_t mA, int p, int q, int n)
+void CofactorMatrix(uint32_t mA, int p, int q, int n)
 {
 
     uint32_t m_size = rc_matrix[mA].c;
@@ -1184,6 +1223,136 @@ void JoinMatrixColumns(uint32_t mA, uint32_t mB, uint32_t mC)
             SetMatrixValue(mC, rc_matrix[mA].r + r, c, mv);
         }
     }
+}
+
+
+
+void ClipMatrix(int mA, int r, int c, int num_rows, int num_cols, int mB)
+{
+	int mA_rows = rc_matrix[mA].r;
+	int mA_cols = rc_matrix[mA].c;
+
+	int mB_rows = num_rows;
+	int mB_cols = num_cols;
+
+	if((r + num_rows) > mA_rows)
+		mB_rows = mA_rows - r;
+
+	if(mB_rows < 0)
+	{
+		DimMatrix(mB, mA_rows, mA_cols, false);
+		ClearMatrix(mB);
+		return;
+	}
+
+	if((c + num_cols) > mA_cols)
+		mB_cols = mA_cols - c;
+
+	if(mB_cols < 0)
+	{
+		DimMatrix(mB, mA_rows, mA_cols, false);
+		ClearMatrix(mB);
+		return;
+	}
+
+	DimMatrix(mB, mB_rows, mB_cols, false);
+
+	for(int row = r; row < (r+num_rows); row++)
+		for(int col = c; col < (c+num_cols); col++)
+			SetMatrixValue( mB, row-r, col-c, MatrixValue(mA, row, col));
+}
+
+int rc_convertFromIrrMatrix(irr::core::matrix4 irr_mat, int mB = -1)
+{
+	int mA = DimMatrix(NEW_MATRIX, 4, 4);
+
+	if(mB < 0)
+		mB = DimMatrix(NEW_MATRIX, 4, 4);
+	else
+		DimMatrix(mB, 4, 4);
+
+	for(int i = 0; i < 4; i++)
+	{
+		rc_matrix[mA].data[i*4] = irr_mat[i*4];
+		rc_matrix[mA].data[i*4+1] = irr_mat[i*4+1];
+		rc_matrix[mA].data[i*4+2] = irr_mat[i*4+2];
+		rc_matrix[mA].data[i*4+3] = irr_mat[i*4+3];
+	}
+
+	TransposeMatrix(mA, mB);
+	DeleteMatrix(mA);
+	return mB;
+}
+
+irr::core::matrix4 rc_convertToIrrMatrix(int mA)
+{
+	int mB = DimMatrix(NEW_MATRIX, 4, 4);
+	TransposeMatrix(mA, mB);
+
+	irr::core::matrix4 irr_mat;
+
+	for(int i = 0; i < 4; i++)
+	{
+		irr_mat[i*4] = rc_matrix[mB].data[i*4];
+		irr_mat[i*4+1] = rc_matrix[mB].data[i*4+1];
+		irr_mat[i*4+2] = rc_matrix[mB].data[i*4+2];
+		irr_mat[i*4+3] = rc_matrix[mB].data[i*4+3];
+	}
+
+	DeleteMatrix(mB);
+	return irr_mat;
+}
+
+void printRCMatrix(int m)
+{
+	for(int i = 0; i < 4; i++)
+		std::cout << "[ " << rc_matrix[m].data[i*4] << ", " << rc_matrix[m].data[i*4+1] << ", " << rc_matrix[m].data[i*4+2] << ", " << rc_matrix[m].data[i*4+3] << " ]" << std::endl;
+}
+
+
+void rc_setMatrixTranslation(int mA, double x, double y, double z)
+{
+	irr::core::matrix4 m = rc_convertToIrrMatrix(mA);
+	m.setTranslation(irr::core::vector3df(x, y, z));
+	rc_convertFromIrrMatrix(m, mA);
+}
+
+void rc_setMatrixRotation(int mA, double x, double y, double z)
+{
+	irr::core::matrix4 m = rc_convertToIrrMatrix(mA);
+	m.setRotationDegrees(irr::core::vector3df(x, y, z));
+	rc_convertFromIrrMatrix(m, mA);
+}
+
+void rc_setMatrixScale(int mA, double x, double y, double z)
+{
+	irr::core::matrix4 m = rc_convertToIrrMatrix(mA);
+	m.setScale(irr::core::vector3df(x, y, z));
+	rc_convertFromIrrMatrix(m, mA);
+}
+
+void rc_getMatrixTranslation(int mA, double* x, double* y, double* z)
+{
+	irr::core::matrix4 m = rc_convertToIrrMatrix(mA);
+	*x = m.getTranslation().X;
+	*y = m.getTranslation().Y;
+	*z = m.getTranslation().Z;
+}
+
+void rc_getMatrixRotation(int mA, double* x, double* y, double* z)
+{
+	irr::core::matrix4 m = rc_convertToIrrMatrix(mA);
+	*x = m.getRotationDegrees().X;
+	*y = m.getRotationDegrees().Y;
+	*z = m.getRotationDegrees().Z;
+}
+
+void rc_getMatrixScale(int mA, double* x, double* y, double* z)
+{
+	irr::core::matrix4 m = rc_convertToIrrMatrix(mA);
+	*x = m.getScale().X;
+	*y = m.getScale().Y;
+	*z = m.getScale().Z;
 }
 
 #endif // RC_MATRIX_H_INCLUDED

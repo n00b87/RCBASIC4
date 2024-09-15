@@ -71,20 +71,20 @@ using namespace std;
 
 struct dirent *rc_entry;
 DIR *rc_dir;
-string rc_dir_path = "";
+std::string rc_dir_path = "";
 
 #else
 
 struct dirent *rc_entry;
-string rc_dir;
-string rc_dir_path = "";
+std::string rc_dir;
+std::string rc_dir_path = "";
 HANDLE hfind;
 
 #endif // RC_LINUX
 
 
 int rc_cmd_count = 0;
-string * rc_cmd_args;
+std::string * rc_cmd_args;
 
 
 SDL_RWops * rc_fstream[RC_MAX_FILES];
@@ -94,8 +94,20 @@ bool rc_eof[RC_MAX_FILES];
 int rc_user_active_n_stack = 0;
 int rc_user_active_s_stack = 0;
 
-stack<double> rc_user_n_stack[MAX_USER_STACKS];
-stack<string> rc_user_s_stack[MAX_USER_STACKS];
+struct rc_num_stack_obj
+{
+	bool active = false;
+	stack<double> data;
+};
+
+struct rc_str_stack_obj
+{
+	bool active = false;
+	stack<std::string> data;
+};
+
+vector<rc_num_stack_obj> rc_user_n_stack;
+vector<rc_str_stack_obj> rc_user_s_stack;
 
 #ifdef RC_WINDOWS
 #define MAX_INPUT_LENGTH 32767
@@ -138,16 +150,16 @@ std::size_t utf8_length(std::string const &s)
 }
 
 
-void rc_fprint(string txt)
+void rc_fprint(std::string txt)
 {
     cout << txt;
 }
 
-string rc_input(string prompt)
+std::string rc_input(std::string prompt)
 {
     #ifdef RC_WINDOWS
 
-    string line = "";
+    std::string line = "";
     cout << prompt;
 
     unsigned long read;
@@ -167,11 +179,11 @@ string rc_input(string prompt)
             mb_str[s_size-1] = 0;
     }
 
-    return (string) mb_str;
+    return (std::string) mb_str;
 
     #else
 
-    string line = "";
+    std::string line = "";
     cout << prompt;
     getline(cin, line);
     return line;
@@ -185,12 +197,12 @@ std::u32string to_utf32(const std::string &s)
     return conv.from_bytes(s);
 }
 
-inline int rc_intern_asc(string c)
+inline int rc_intern_asc(std::string c)
 {
     return (uint32_t)to_utf32(utf8_substr(c, 0, 1))[0];
 }
 
-inline size_t rc_intern_bufferFromString(string s, double* buffer)
+inline size_t rc_intern_bufferFromString(std::string s, double* buffer)
 {
     for(int i = 0; i < s.length(); i++)
     {
@@ -241,14 +253,14 @@ std::string cpToUTF8(uint32_t cp)
     return std::string(utf8, len);
 }
 
-inline string rc_intern_chr(uint32_t n)
+inline std::string rc_intern_chr(uint32_t n)
 {
-    string s = cpToUTF8(n);
+    std::string s = cpToUTF8(n);
     //s += (char) n;
     return s;
 }
 
-inline string rc_intern_insert(string src, string tgt, size_t pos)
+inline std::string rc_intern_insert(std::string src, std::string tgt, size_t pos)
 {
     if(pos < 0 || pos > utf8_length(src))
         return src;
@@ -256,7 +268,7 @@ inline string rc_intern_insert(string src, string tgt, size_t pos)
     return utf8_substr(src, 0, pos) + tgt + utf8_substr(src, pos, utf8_length(src)-pos);
 }
 
-inline double rc_intern_instr(string in_string, string in_substring)
+inline double rc_intern_instr(std::string in_string, std::string in_substring)
 {
     //cout << "Cant find " << rc_sid[INSTR_SUBSTR][0] << " in " << rc_sid[INSTR_STR][0] << endl;
     bool found = false;
@@ -275,9 +287,9 @@ inline double rc_intern_instr(string in_string, string in_substring)
     return found ? (double)n : -1;
 }
 
-inline string rc_intern_lcase(string u_string)
+inline std::string rc_intern_lcase(std::string u_string)
 {
-    string u_string_out = "";
+    std::string u_string_out = "";
     for(size_t i=0;i<u_string.length();i++)
     {
         u_string_out += tolower(u_string[i]);
@@ -285,7 +297,7 @@ inline string rc_intern_lcase(string u_string)
    return u_string_out;
 }
 
-inline string rc_intern_left(string l_string, size_t n)
+inline std::string rc_intern_left(std::string l_string, size_t n)
 {
     if(n >= utf8_length(l_string))
         return l_string;
@@ -293,21 +305,21 @@ inline string rc_intern_left(string l_string, size_t n)
     return utf8_substr(l_string,0,n);
 }
 
-inline size_t rc_intern_length(string l_string)
+inline size_t rc_intern_length(std::string l_string)
 {
     //cout << "DBG_LEN" << endl;
     return utf8_length(l_string);
 }
 
-inline string rc_intern_ltrim(string l_string)
+inline std::string rc_intern_ltrim(std::string l_string)
 {
     size_t first_index = l_string.find_first_not_of(" ");
-    if(first_index != string::npos)
+    if(first_index != std::string::npos)
         return l_string.substr(first_index);
     return l_string;
 }
 
-inline string rc_intern_mid(string m_string, size_t m_start, size_t n)
+inline std::string rc_intern_mid(std::string m_string, size_t m_start, size_t n)
 {
     //cout << "DBG_MID" << endl;
     if(m_start < 0 || n < 0)
@@ -320,10 +332,10 @@ inline string rc_intern_mid(string m_string, size_t m_start, size_t n)
     return utf8_substr(m_string, m_start, n);
 }
 
-inline string rc_intern_replaceSubstr(string src, string rpc, size_t pos)
+inline std::string rc_intern_replaceSubstr(std::string src, std::string rpc, size_t pos)
 {
     size_t rpc_i = 0;
-    string n_str = utf8_substr(src, 0, pos);
+    std::string n_str = utf8_substr(src, 0, pos);
 
     if(pos < 0)
         return src;
@@ -341,14 +353,14 @@ inline string rc_intern_replaceSubstr(string src, string rpc, size_t pos)
     return n_str;
 }
 
-inline string rc_intern_replace(string src, string tgt, string rpc)
+inline std::string rc_intern_replace(std::string src, std::string tgt, std::string rpc)
 {
     if(tgt.length()==0)
         return src;
     size_t found_inc = rpc.length() > 0 ? rpc.length() : 1;
     size_t found = 0;
     found = src.find(tgt);
-    while( found != string::npos && found < src.length())
+    while( found != std::string::npos && found < src.length())
     {
         src = src.substr(0,found) + rpc + src.substr(found + tgt.length());
         found = src.find(tgt,found+found_inc);
@@ -356,9 +368,9 @@ inline string rc_intern_replace(string src, string tgt, string rpc)
     return src;
 }
 
-inline string rc_intern_reverse(string rpc_string)
+inline string rc_intern_reverse(std::string rpc_string)
 {
-    string n_str = "";
+    std::string n_str = "";
     if(rpc_string.length()==0)
         return "";
 
@@ -371,7 +383,7 @@ inline string rc_intern_reverse(string rpc_string)
     return n_str;
 }
 
-inline string rc_intern_right(string src, size_t n)
+inline std::string rc_intern_right(std::string src, size_t n)
 {
     size_t src_length = utf8_length(src);
     if(n < 0)
@@ -381,7 +393,7 @@ inline string rc_intern_right(string src, size_t n)
     return utf8_substr(src,src_length-n, src_length -(src_length-n));
 }
 
-inline string rc_intern_rtrim(string src)
+inline std::string rc_intern_rtrim(std::string src)
 {
     if(src.length()==0)
         return "";
@@ -398,12 +410,12 @@ inline string rc_intern_rtrim(string src)
     return utf8_substr(src,0,i+1);
 }
 
-inline size_t rc_intern_size(string src)
+inline size_t rc_intern_size(std::string src)
 {
     return src.length();
 }
 
-inline string rc_intern_stringFromBuffer(double* buffer, size_t buffer_size)
+inline std::string rc_intern_stringFromBuffer(double* buffer, size_t buffer_size)
 {
     if(buffer_size <= 0)
         return "";
@@ -416,46 +428,46 @@ inline string rc_intern_stringFromBuffer(double* buffer, size_t buffer_size)
     }
 
     c_buf[buffer_size] = '\0';
-    return (string)c_buf;
+    return (std::string)c_buf;
 }
 
-inline string rc_intern_stringfill(string f_string, size_t n)
+inline string rc_intern_stringfill(std::string f_string, size_t n)
 {
-    string f = "";
+    std::string f = "";
     for(size_t i = 0; i < n; i++)
         f += f_string;
     return f;
 }
 
-inline string rc_intern_str(double n)
+inline std::string rc_intern_str(double n)
 {
     stringstream ss;
     ss << n;
     return ss.str();
 }
 
-inline string rc_intern_str_f(double n)
+inline std::string rc_intern_str_f(double n)
 {
     stringstream ss;
     ss << fixed << n;
     return ss.str();
 }
 
-inline string rc_intern_str_s(double n)
+inline std::string rc_intern_str_s(double n)
 {
     stringstream ss;
     ss << scientific << n;
     return ss.str();
 }
 
-inline unsigned long rc_intern_tally(string t_string, string t_substring)
+inline unsigned long rc_intern_tally(std::string t_string, std::string t_substring)
 {
     size_t found = 0;
-    string t_str = t_string;
-    string t_substr = t_substring;
+    std::string t_str = t_string;
+    std::string t_substr = t_substring;
     found = t_str.find(t_substr);
     unsigned long tally_count = 0;
-    while( found != string::npos)
+    while( found != std::string::npos)
     {
         tally_count++;
         found = t_str.find(t_substr,found+1);
@@ -463,14 +475,14 @@ inline unsigned long rc_intern_tally(string t_string, string t_substring)
     return tally_count;
 }
 
-inline string rc_intern_trim(string t_string)
+inline std::string rc_intern_trim(std::string t_string)
 {
     return rc_intern_ltrim(rc_intern_rtrim(t_string));
 }
 
-inline string rc_intern_ucase(string u_string)
+inline std::string rc_intern_ucase(std::string u_string)
 {
-    string u_string_out = "";
+    std::string u_string_out = "";
     for(size_t i=0;i<u_string.length();i++)
     {
         u_string_out += toupper(u_string[i]);
@@ -478,7 +490,7 @@ inline string rc_intern_ucase(string u_string)
    return u_string_out;
 }
 
-inline double rc_intern_val(string v_string)
+inline double rc_intern_val(std::string v_string)
 {
     return atof(v_string.c_str());
 }
@@ -512,10 +524,10 @@ inline double rc_intern_aTan(double n)
 }
 
 #ifdef RC_ANDROID
-string Convert(unsigned int val)
+std::string Convert(unsigned int val)
 {
    unsigned int mask = 1 << (sizeof(int) * 8 - 1);
-   string binstr = "";
+   std::string binstr = "";
 
    for(int i = 0; i < sizeof(int) * 8; i++)
    {
@@ -531,18 +543,18 @@ string Convert(unsigned int val)
    return binstr;
 }
 
-inline string rc_intern_bin(uint64_t n)
+inline std::string rc_intern_bin(uint64_t n)
 {
     //string bin_str = bitset<64>(n).to_string();
     //bin_str = bin_str.substr(bin_str.find_first_not_of("0"));
-    string binstr = Convert(n);// bin_str;
+    std::string binstr = Convert(n);// bin_str;
     return binstr.substr(binstr.find_first_not_of("0"));
 }
 #else
 
-inline string rc_intern_bin(uint64_t n)
+inline std::string rc_intern_bin(uint64_t n)
 {
-    string bin_str = bitset<64>(n).to_string();
+    std::string bin_str = bitset<64>(n).to_string();
     bin_str = bin_str.substr(bin_str.find_first_not_of("0"));
     return bin_str;
 }
@@ -586,14 +598,14 @@ inline double rc_intern_frac(double n)
     return n - floor(n);
 }
 
-inline string rc_intern_hex(uint64_t n)
+inline std::string rc_intern_hex(uint64_t n)
 {
     stringstream ss;
     ss << hex << n;
     return ss.str();
 }
 
-inline double rc_intern_hexInt(string n)
+inline double rc_intern_hexInt(std::string n)
 {
     uint64_t x;
     stringstream ss;
@@ -689,8 +701,18 @@ inline double rc_intern_xorbit(uint64_t a, uint64_t b)
     return (a ^ b);
 }
 
-inline int rc_intern_fileOpen(int fo_stream, string fo_file, int fo_mode)
+inline int rc_intern_freeFile()
 {
+    for(int i = 0; i < RC_MAX_FILES; i++)
+        if(rc_fstream[i] == NULL)
+        return i;
+    return -1;
+}
+
+inline int rc_intern_fileOpen(std::string fo_file, int fo_mode)
+{
+	int fo_stream = rc_intern_freeFile();
+
     if(fo_stream >= 0 && fo_stream < RC_MAX_FILES)
     {
         if(rc_fstream[fo_stream] != NULL)
@@ -742,10 +764,10 @@ inline int rc_intern_fileOpen(int fo_stream, string fo_file, int fo_mode)
         if(rc_fstream[fo_stream] == NULL)
         {
             //cout << "RC_DEBUG: FILE NOT OPEN" << endl;
-            return 0;
+            return -1;
         }
     }
-    return 1;
+    return fo_stream;
 }
 
 inline int rc_intern_fileClose(int fc_stream)
@@ -802,9 +824,9 @@ inline int rc_intern_fileWriteByte(int f_stream, char wb)
     return 1;
 }
 
-inline string rc_intern_fileReadLine(int f_stream)
+inline std::string rc_intern_fileReadLine(int f_stream)
 {
-    string rline = "";
+    std::string rline = "";
     unsigned char buf[5];
     if(SDL_RWread(rc_fstream[f_stream], buf, 1, 1)==0)
     {
@@ -826,7 +848,7 @@ inline string rc_intern_fileReadLine(int f_stream)
     return rline;
 }
 
-inline int rc_intern_fileWrite(int f_stream, string line)
+inline int rc_intern_fileWrite(int f_stream, std::string line)
 {
     //cout << "DEBUG: WRITELINE" << endl;
     if(rc_fstream[f_stream]!=NULL)
@@ -835,17 +857,17 @@ inline int rc_intern_fileWrite(int f_stream, string line)
     return 1;
 }
 
-inline int rc_intern_fileWriteLine(int f_stream, string line)
+inline int rc_intern_fileWriteLine(int f_stream, std::string line)
 {
     //cout << "DEBUG: WRITELINE" << endl;
-    string line_out = line + "\n";
+    std::string line_out = line + "\n";
     if(rc_fstream[f_stream]!=NULL)
         SDL_RWwrite(rc_fstream[f_stream], line_out.c_str(), line_out.length(), 1);
     //cout << "WRITELINE_END" << endl;
     return 1;
 }
 
-inline int rc_intern_fileCopy(string src_file, string dst_file)
+inline int rc_intern_fileCopy(std::string src_file, std::string dst_file)
 {
     std::ifstream  src(src_file.c_str(), std::ios::binary);
     std::ofstream  dst(dst_file.c_str(), std::ios::binary);
@@ -863,7 +885,7 @@ inline int rc_intern_fileCopy(string src_file, string dst_file)
     return 1;
 }
 
-inline int rc_intern_fileDelete(string tgt_file)
+inline int rc_intern_fileDelete(std::string tgt_file)
 {
     if(remove(tgt_file.c_str())==0)
         return 1;
@@ -871,7 +893,7 @@ inline int rc_intern_fileDelete(string tgt_file)
         return 0;
 }
 
-inline int rc_intern_fileExist(string tgt_file)
+inline int rc_intern_fileExist(std::string tgt_file)
 {
     std::ifstream infile(tgt_file.c_str());
     bool fx = infile.good();
@@ -879,7 +901,7 @@ inline int rc_intern_fileExist(string tgt_file)
     return (int)fx;
 }
 
-inline int rc_intern_fileMove(string src, string dst)
+inline int rc_intern_fileMove(std::string src, std::string dst)
 {
     int fm = rename(src.c_str(), dst.c_str());
     if(fm == 0)
@@ -888,7 +910,7 @@ inline int rc_intern_fileMove(string src, string dst)
         return 0;
 }
 
-inline int rc_intern_fileRename(string src, string dst)
+inline int rc_intern_fileRename(std::string src, std::string dst)
 {
     int fm = rename(src.c_str(), dst.c_str());
     if(fm == 0)
@@ -897,7 +919,7 @@ inline int rc_intern_fileRename(string src, string dst)
         return 0;
 }
 
-inline unsigned long rc_intern_fileLength(string filename)
+inline unsigned long rc_intern_fileLength(std::string filename)
 {
     //struct stat st;
     SDL_RWops * fl_file = SDL_RWFromFile(filename.c_str(), "r");
@@ -925,18 +947,11 @@ inline int rc_intern_eof(int f_stream)
     return rc_eof[f_stream];
 }
 
-inline int rc_intern_freeFile()
-{
-    for(int i = 0; i < RC_MAX_FILES; i++)
-        if(rc_fstream[i] == NULL)
-        return i;
-    return -1;
-}
 
 #ifndef RC_WINDOWS
 
 #ifdef RC_LINUX
-inline int rc_intern_dirChange(string ch_path)
+inline int rc_intern_dirChange(std::string ch_path)
 {
     if(chdir(ch_path.c_str())!=0)
     {
@@ -948,7 +963,7 @@ inline int rc_intern_dirChange(string ch_path)
 }
 #endif // RC_LINUX
 
-inline int rc_intern_dirExist(string d_path)
+inline int rc_intern_dirExist(std::string d_path)
 {
     struct stat info;
 
@@ -960,7 +975,7 @@ inline int rc_intern_dirExist(string d_path)
         return 0;
 }
 
-inline string rc_intern_dirFirst ()
+inline std::string rc_intern_dirFirst ()
 {
     rc_dir = opendir (rc_dir_path.c_str());
     //string s = "";
@@ -974,24 +989,24 @@ inline string rc_intern_dirFirst ()
 }
 
 #ifdef RC_GETCWD
-string getcwd_str()
+std::string getcwd_str()
 {
     char *buffer = new char[MAXPATHLEN];
     getcwd(buffer,MAXPATHLEN);
     if(buffer != NULL)
     {
-        string ret(buffer);
+        std::string ret(buffer);
         delete[] buffer;
         return ret;
     }
     else
     {
-        return string();
+        return std::string();
     }
 }
 
 
-inline int rc_intern_dirChange(string ch_path)
+inline int rc_intern_dirChange(std::string ch_path)
 {
     if(chdir(ch_path.c_str())!=0)
     {
@@ -1002,9 +1017,9 @@ inline int rc_intern_dirChange(string ch_path)
     return 0;
 }
 
-inline string rc_intern_dir()
+inline std::string rc_intern_dir()
 {
-    string d = getcwd_str();
+    std::string d = getcwd_str();
     //__android_log_print(ANDROID_LOG_ERROR, "RC_DEBUG_DIR", "%s", SDL_GetPrefPath("rcbasic","lucky"));
     if(d.compare("")==0)
     {
@@ -1017,9 +1032,9 @@ inline string rc_intern_dir()
 
 #else
 
-inline string rc_intern_dir()
+inline std::string rc_intern_dir()
 {
-    string d = get_current_dir_name();
+    std::string d = get_current_dir_name();
     if(d.compare("")==0)
     {
         cout << "Could not get current directory" << endl;
@@ -1031,14 +1046,14 @@ inline string rc_intern_dir()
 
 #endif // RC_ANDROID
 
-inline string rc_intern_dirNext()
+inline std::string rc_intern_dirNext()
 {
     if( (rc_entry = readdir(rc_dir))!=NULL)
         return rc_entry->d_name;
     return "";
 }
 
-inline int rc_intern_dirCreate(string d_path)
+inline int rc_intern_dirCreate(std::string d_path)
 {
     if(mkdir(d_path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)!=0)
     {
@@ -1048,7 +1063,7 @@ inline int rc_intern_dirCreate(string d_path)
     return 1;
 }
 
-inline int rc_intern_dirDelete(string d_path)
+inline int rc_intern_dirDelete(std::string d_path)
 {
     if(rmdir(d_path.c_str())!=0)
     {
@@ -1058,7 +1073,7 @@ inline int rc_intern_dirDelete(string d_path)
     return 1;
 }
 
-inline string rc_intern_OS()
+inline std::string rc_intern_OS()
 {
     #ifdef RC_WEB
         return "WEB";
@@ -1115,7 +1130,7 @@ std::wstring ConvertUtf8ToWide(const std::string& str)
     return wstr;
 }
 
-inline int rc_intern_dirChange(string dpath)
+inline int rc_intern_dirChange(std::string dpath)
 {
     if(SetCurrentDirectoryW(ConvertUtf8ToWide(dpath).c_str())==0)
     {
@@ -1144,7 +1159,7 @@ bool dirExists(const std::string& dirName_in)
   return false;    // this is not a directory!
 }
 
-inline int rc_intern_dirExist(string dpath)
+inline int rc_intern_dirExist(std::string dpath)
 {
     return dirExists(dpath);
 }
@@ -1152,7 +1167,7 @@ inline int rc_intern_dirExist(string dpath)
 HANDLE hFind;
 WIN32_FIND_DATAW ffd;
 
-string rc_intern_dirFirst()
+std::string rc_intern_dirFirst()
 {
 
     //char* path = new char[rc_dir_path.length()+1];
@@ -1168,7 +1183,7 @@ string rc_intern_dirFirst()
     //_tcscat(path, _T("*.*"));
 
 
-    string path = rc_dir_path;
+    std::string path = rc_dir_path;
 
     if(path.substr(path.length()-1, 1).compare("\\")!=0)
         path += "\\";
@@ -1185,11 +1200,11 @@ string rc_intern_dirFirst()
         cerr << _T("Invalid handle value.") << GetLastError() << endl;
         return "";
     }
-    string fname_utf8 = ConvertWideToUtf8(ffd.cFileName);
+    std::string fname_utf8 = ConvertWideToUtf8(ffd.cFileName);
     return fname_utf8;
 }
 
-inline string rc_intern_dir()
+inline std::string rc_intern_dir()
 {
     wchar_t buf[MAX_PATH+1];
     GetCurrentDirectoryW(MAX_PATH, buf);
@@ -1204,14 +1219,14 @@ inline string rc_intern_dir()
     return ConvertWideToUtf8(d.c_str());
 }
 
-string rc_intern_dirNext()
+std::string rc_intern_dirNext()
 {
     if(!FindNextFileW(hFind,&ffd))
         return "";
     return ConvertWideToUtf8(ffd.cFileName);
 }
 
-inline int rc_intern_dirCreate(string dpath)
+inline int rc_intern_dirCreate(std::string dpath)
 {
     if(CreateDirectoryW(ConvertUtf8ToWide(dpath).c_str(),NULL)==0)
     {
@@ -1221,7 +1236,7 @@ inline int rc_intern_dirCreate(string dpath)
     return 1;
 }
 
-inline int rc_intern_dirDelete(string dpath)
+inline int rc_intern_dirDelete(std::string dpath)
 {
     if(RemoveDirectoryW(ConvertUtf8ToWide(dpath).c_str())==0)
     {
@@ -1231,7 +1246,7 @@ inline int rc_intern_dirDelete(string dpath)
     return 1;
 }
 
-inline string rc_intern_OS()
+inline std::string rc_intern_OS()
 {
     return "WINDOWS";
 }
@@ -1239,7 +1254,7 @@ inline string rc_intern_OS()
 #endif // RC_WINDOWS
 
 
-inline string rc_intern_date()
+inline std::string rc_intern_date()
 {
     time_t t = time(0);   // get time now
     struct tm * now = localtime( & t );
@@ -1256,12 +1271,12 @@ inline string rc_intern_date()
     return d.str();
 }
 
-string ZeroPadNumber(int num)
+std::string ZeroPadNumber(int num)
 {
     stringstream ss;
     // the number is converted to string with the help of stringstream
     ss << num;
-    string ret;
+    std::string ret;
     ss >> ret;
     // Append zero chars
     int str_length = ret.length();
@@ -1270,7 +1285,7 @@ string ZeroPadNumber(int num)
     return ret;
 }
 
-string rc_intern_easter(int X)
+std::string rc_intern_easter(int X)
 {
     stringstream ss;                             // X = year to compute
     int K, M, S, A, D, R, OG, SZ, OE;
@@ -1293,7 +1308,7 @@ inline unsigned long rc_intern_ticks()
     return clock();
 }
 
-inline string rc_intern_time()
+inline std::string rc_intern_time()
 {
     time_t t = time(0);   // get time now
     struct tm * now = localtime( & t );
@@ -1326,7 +1341,7 @@ inline void rc_intern_wait(double m_sec)
     SDL_Delay(m_sec);
 }
 
-inline int rc_intern_system(string rc_sys_cmd)
+inline int rc_intern_system(std::string rc_sys_cmd)
 {
 #ifdef RC_IOS
     return 0;
@@ -1335,7 +1350,7 @@ inline int rc_intern_system(string rc_sys_cmd)
 #endif
 }
 
-inline string rc_intern_sysReturnOutput(string rc_sys_cmd)
+inline std::string rc_intern_sysReturnOutput(std::string rc_sys_cmd)
 {
     #if defined(RC_ANDROID) || defined(RC_IOS) || defined(RC_WEB)
         return "";
@@ -1358,7 +1373,7 @@ inline string rc_intern_sysReturnOutput(string rc_sys_cmd)
     #endif
 }
 
-inline string rc_intern_command(int num)
+inline std::string rc_intern_command(int num)
 {
     if(num < rc_cmd_count)
     {
@@ -1372,25 +1387,25 @@ inline int rc_intern_numCommands()
     return rc_cmd_count;
 }
 
-inline string rc_intern_env(string v)
+inline std::string rc_intern_env(std::string v)
 {
     #ifdef RC_WINDOWS
     char * val = new char[32767];
     int n = GetEnvironmentVariable(v.c_str(), val, 32767);
-    string rtn = "";
+    std::string rtn = "";
     if (n>0)
-        rtn = (string)val;
+        rtn = (std::string)val;
     delete val;
     return rtn;
     #else
     char * c = getenv(v.c_str());
     if(c != NULL)
-        return (string) c;
+        return (std::string) c;
     return "";
     #endif
 }
 
-inline int rc_intern_setEnv(string name, string value, int overwrite)
+inline int rc_intern_setEnv(std::string name, std::string value, int overwrite)
 {
     #ifdef RC_WINDOWS
     //string env_cmd = name + "=" + value;
@@ -1401,45 +1416,126 @@ inline int rc_intern_setEnv(string name, string value, int overwrite)
     #endif
 }
 
-inline string rc_intern_prefPath(string org_name, string app_name)
+inline std::string rc_intern_prefPath(std::string org_name, std::string app_name)
 {
-    return (string) SDL_GetPrefPath(org_name.c_str(), app_name.c_str());
+    return (std::string) SDL_GetPrefPath(org_name.c_str(), app_name.c_str());
 }
 
-inline int rc_intern_push_n(double n)
+
+inline int rc_intern_createStack_N()
 {
-    rc_user_n_stack[rc_user_active_n_stack].push(n);
-    return 1;
+	int id = -1;
+	for(int i = 0; i < rc_user_n_stack.size(); i++)
+	{
+		if(!rc_user_n_stack[i].active)
+		{
+			id = i;
+			break;
+		}
+	}
+
+	if(id < 0)
+	{
+		rc_num_stack_obj usr_stack;
+		usr_stack.active = true;
+		id = rc_user_n_stack.size();
+		rc_user_n_stack.push_back(usr_stack);
+	}
+	else
+	{
+		while(!rc_user_n_stack[id].data.empty())
+			rc_user_n_stack[id].data.pop();
+		rc_user_n_stack[id].active = true;
+	}
+
+	return id;
 }
 
-inline int rc_intern_push_s(string s)
+inline int rc_intern_createStack_S()
 {
-    rc_user_s_stack[rc_user_active_s_stack].push(s);
-    return 1;
+	int id = -1;
+	for(int i = 0; i < rc_user_s_stack.size(); i++)
+	{
+		if(!rc_user_s_stack[i].active)
+		{
+			id = i;
+			break;
+		}
+	}
+
+	if(id < 0)
+	{
+		rc_str_stack_obj usr_stack;
+		usr_stack.active = true;
+		id = rc_user_s_stack.size();
+		rc_user_s_stack.push_back(usr_stack);
+	}
+	else
+	{
+		while(!rc_user_s_stack[id].data.empty())
+			rc_user_s_stack[id].data.pop();
+		rc_user_s_stack[id].active = true;
+	}
+
+	return id;
 }
 
-inline double rc_intern_pop_n()
+inline void rc_intern_clearStack_N( int stack_id )
 {
-    double n = rc_user_n_stack[rc_user_active_n_stack].top();
-    rc_user_n_stack[rc_user_active_n_stack].pop();
+	while(!rc_user_n_stack[stack_id].data.empty())
+			rc_user_n_stack[stack_id].data.pop();
+}
+
+inline void rc_intern_clearStack_S( int stack_id )
+{
+	while(!rc_user_s_stack[stack_id].data.empty())
+			rc_user_s_stack[stack_id].data.pop();
+}
+
+inline void rc_intern_deleteStack_N( int stack_id )
+{
+	rc_intern_clearStack_N(stack_id);
+	rc_user_n_stack[stack_id].active = false;
+}
+
+inline void rc_intern_deleteStack_S( int stack_id )
+{
+	rc_intern_clearStack_S(stack_id);
+	rc_user_s_stack[stack_id].active = false;
+}
+
+inline void rc_intern_push_n( int stack_id, double n)
+{
+    rc_user_n_stack[stack_id].data.push(n);
+}
+
+inline void rc_intern_push_s( int stack_id, std::string s)
+{
+    rc_user_s_stack[stack_id].data.push(s);
+}
+
+inline double rc_intern_pop_n( int stack_id )
+{
+    double n = rc_user_n_stack[stack_id].data.top();
+    rc_user_n_stack[stack_id].data.pop();
     return n;
 }
 
-inline string rc_intern_pop_s()
+inline std::string rc_intern_pop_s( int stack_id )
 {
-    string s = rc_user_s_stack[rc_user_active_s_stack].top();
-    rc_user_s_stack[rc_user_active_s_stack].pop();
+    std::string s = rc_user_s_stack[stack_id].data.top();
+    rc_user_s_stack[stack_id].data.pop();
     return s;
 }
 
-inline unsigned long rc_intern_n_stack_size()
+inline unsigned long rc_intern_n_stack_size( int stack_id )
 {
-    return rc_user_n_stack[rc_user_active_n_stack].size();
+    return rc_user_n_stack[stack_id].data.size();
 }
 
-inline unsigned long rc_intern_s_stack_size()
+inline unsigned long rc_intern_s_stack_size( int stack_id )
 {
-    return rc_user_s_stack[rc_user_active_s_stack].size();
+    return rc_user_s_stack[stack_id].data.size();
 }
 
 inline void rc_intern_getPowerInfo(double * status, double * secs, double * pct)
@@ -1469,12 +1565,12 @@ int rc_intern_systemRam()
 }
 
 #ifdef RC_WEB
-string rc_intern_evalJS(string js_code)
+std::string rc_intern_evalJS(std::string js_code)
 {
     return emscripten_run_script_string(js_code.c_str());
 }
 #else
-string rc_intern_evalJS(string js_code)
+std::string rc_intern_evalJS(std::string js_code)
 {
     return "ONLY IN WEB";
 }
@@ -1482,7 +1578,7 @@ string rc_intern_evalJS(string js_code)
 
 
 //MOBILE OS STUFF
-inline string rc_intern_android_getInternalStoragePath()
+inline std::string rc_intern_android_getInternalStoragePath()
 {
     #ifdef RC_ANDROID
         return SDL_AndroidGetInternalStoragePath();
@@ -1491,7 +1587,7 @@ inline string rc_intern_android_getInternalStoragePath()
     #endif
 }
 
-inline string rc_intern_android_getExternalStoragePath()
+inline std::string rc_intern_android_getExternalStoragePath()
 {
     #ifdef RC_ANDROID
         return SDL_AndroidGetExternalStoragePath();
@@ -1509,7 +1605,7 @@ inline int rc_intern_android_getExternalStorageState()
     #endif
 }
 
-string rc_intern_android_jni_message(string arg_c)
+std::string rc_intern_android_jni_message(std::string arg_c)
 {
     #ifdef RC_ANDROID
 
@@ -1537,7 +1633,7 @@ string rc_intern_android_jni_message(string arg_c)
     env->DeleteLocalRef(activity);
     env->DeleteLocalRef(clazz);
 
-    return (string)strReturn;
+    return (std::string)strReturn;
 
     #else
         return "";
@@ -1547,7 +1643,7 @@ string rc_intern_android_jni_message(string arg_c)
 #ifdef RC_IOS
     #include "rcbasic_ios_native.h"
 #else
-    string rc_intern_runtime_utility(string arg)
+    std::string rc_intern_runtime_utility(std::string arg)
     {
         return "";
     }

@@ -48,11 +48,11 @@
 #include <iomanip>
 #include "rc_defines.h"
 #include "rc_stdlib.h"
-#include "rc_media.h"
+#include "rc_gfx.h"
 #include "rc_matrix.h"
 #include "rc_geometry.h"
+#include <irrtheora.h>
 
-using namespace std;
 
 #define LESS_FLAG 0
 #define LESS_EQUAL_FLAG 1
@@ -76,7 +76,7 @@ bool CMP_FLAG_GREATER = false;
 bool CMP_FLAG_GREATER_EQUAL = false;
 bool CMP_FLAG_NOT_EQUAL = false;
 
-string rcbasic_runtime_path = "";
+std::string rcbasic_runtime_path = "";
 
 struct n_value
 {
@@ -86,7 +86,7 @@ struct n_value
 
 struct s_value
 {
-    vector<string> value;
+    vector<std::string> value;
     void * ref_parent; // This will be set by the obj_get instructions (ie. obj_get and obj_usr_get)
 };
 
@@ -103,7 +103,7 @@ struct rc_vm_n
 
 struct rc_vm_s
 {
-    string value;
+    std::string value;
     s_value * r;
     uint64_t r_index;
 
@@ -316,7 +316,7 @@ struct rcbasic_debug_access_status
     int dimensions;
     int dim[3];
     double num_val;
-    string str_val;
+    std::string str_val;
     int reg;
     bool is_error = false;
 };
@@ -324,14 +324,14 @@ struct rcbasic_debug_access_status
 struct rcbasic_debug_vars
 {
     int type;
-    string scope;
-    string name;
+    std::string scope;
+    std::string name;
     int index;
     vector<rcbasic_debug_access_status> usage_data;
 };
 
 vector<rcbasic_debug_vars> dbg_vars;
-vector<string> dbg_files;
+vector<std::string> dbg_files;
 
 uint64_t current_src_line = 1;
 uint64_t current_src_file = 0;
@@ -343,16 +343,16 @@ uint64_t current_src_file = 0;
 #define DBG_REDIM_LEQ_ZERO "Array Size must be greater than Zero"
 
 bool dbg_error_found = false;
-string dbg_error_message = "";
+std::string dbg_error_message = "";
 
 
-void loadDebugData(string sym_file, string inc_file)
+void loadDebugData(std::string sym_file, std::string inc_file)
 {
     fstream f(sym_file, fstream::in);
 
-    string f_line;
+    std::string f_line;
 
-    string type_str = "";
+    std::string type_str = "";
     rcbasic_debug_vars tmp;
 
     while(!f.eof())
@@ -421,16 +421,16 @@ void loadDebugData(string sym_file, string inc_file)
     while(!f.eof())
     {
         getline(f, f_line);
-        if(f_line.find_first_not_of(" ")!=string::npos)
+        if(f_line.find_first_not_of(" ")!=std::string::npos)
             dbg_files.push_back(f_line);
     }
 
     f.close();
 }
 
-string dbg_format_string(string dbg_str_val)
+std::string dbg_format_string(std::string dbg_str_val)
 {
-    string rtn = dbg_str_val;
+    std::string rtn = dbg_str_val;
     rtn = rc_intern_replace(rtn, "\n", "\\n");
     rtn = rc_intern_replace(rtn, "\r", "\\r");
     rtn = rc_intern_replace(rtn, "\t", "\\t");
@@ -526,7 +526,7 @@ uint64_t rcbasic_readInt()
 }
 
 
-bool rcbasic_load(string filename)
+bool rcbasic_load(std::string filename)
 {
     char rc[5];
 
@@ -544,7 +544,7 @@ bool rcbasic_load(string filename)
 
     if(! (rc[0]=='R' && rc[1] =='C' && rc[2]=='4') )
     {
-        string rcs = rc;
+        std::string rcs = rc;
         cout << "This program was not built for this version of the runtime: " << rcs << endl;
         return false;
     }
@@ -652,42 +652,6 @@ bool rcbasic_load(string filename)
     //cout << "DEBUG: Program has been loaded" << endl;
 
     return true;
-}
-
-bool rc_checkEvent()
-{
-    for(int i = 0; i < MAX_WINDOWS; i++)
-        if(rc_win[i]!=NULL)
-            return true;
-    return false;
-}
-
-void rc_events()
-{
-    //rc_textinput_flag = false;
-    cycleVideo();
-    if(rc_checkEvent())
-    {
-        rc_fingers_pressed.clear();
-        rc_inkey = 0;
-        rc_mouseX = -1;
-        rc_mouseY = -1;
-        rc_global_mouseX = -1;
-        rc_global_mouseY = -1;
-        rc_mwheelx = 0;
-        rc_mwheely = 0;
-        for(int i = 0; i < MAX_WINDOWS; i++)
-            rc_win_event[i] = 0;
-        while(rc_getEvents()){}
-        keyState = SDL_GetKeyboardState(NULL);
-        SDL_GetMouseState(&rc_mouseX, &rc_mouseY);
-        SDL_GetGlobalMouseState(&rc_global_mouseX, &rc_global_mouseY);
-        //rc_getEvents();
-        #ifndef RC_WINDOWS
-            SDL_PumpEvents();
-        #endif // RC_WINDOWS
-        //SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);//
-    }
 }
 
 uint64_t readInt()
@@ -2175,9 +2139,9 @@ void rc_print_num(double n)
 {
     stringstream s;
     s << fixed << n;
-    string s_out = s.str();
+    std::string s_out = s.str();
     int s_decimal = s_out.find_first_of(".");
-    if(s_decimal != string::npos)
+    if(s_decimal != std::string::npos)
     {
         int trail_end = s_out.length();
         for(int i = s_decimal; i < s_out.length(); i++)
@@ -2210,7 +2174,7 @@ void rc_push_num(double n_val)
     //current_n_stack_count++;
 }
 
-void rc_push_str(string s_val)
+void rc_push_str(std::string s_val)
 {
     rc_vm_s s;
     s.value = s_val;
@@ -2521,7 +2485,7 @@ void rc_number_array_fill(rc_numId* n_var, double n)
 }
 
 
-void rc_string_array_fill(rc_strId* s_var, string s)
+void rc_string_array_fill(rc_strId* s_var, std::string s)
 {
     uint64_t src_dim, src_dim_size[3];
     rc_strId* src = (rc_strId*)s_var->sid_value.ref_parent;
@@ -4401,13 +4365,13 @@ int main(int argc, char * argv[])
 		#ifdef RC_GETCWD
 			char buf[2048];
 			getcwd(buf, 2048);
-			rc_dir_path = (string)buf;
+			rc_dir_path = (std::string)buf;
 		#else
 			rc_dir_path = get_current_dir_name();
 		#endif
     #endif // RC_WINDOWS
 
-    string rc_filename = "main.cbc";
+    std::string rc_filename = "main.cbc";
 
     if(argc > 1)
         rc_filename = argv[1];
@@ -4441,7 +4405,7 @@ int main(int argc, char * argv[])
     if(argc >1)
     {
         rc_cmd_count = argc - 1;
-        rc_cmd_args = new string[rc_cmd_count];
+        rc_cmd_args = new std::string[rc_cmd_count];
         for(int i = 1; i < argc; i++)
             rc_cmd_args[i-1] = argv[i];
     }
