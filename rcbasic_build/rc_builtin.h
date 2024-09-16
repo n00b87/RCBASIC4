@@ -493,7 +493,7 @@ void init_embedded_functions()
 	add_embedded_arg("a", ID_TYPE_NUM);
 	embed_function("GetCanvasAlpha", ID_TYPE_FN_NUM);
 	add_embedded_arg("c_num", ID_TYPE_NUM);
-	embed_function("SetCanvasColorMod", ID_TYPE_FN_NUM);
+	embed_function("SetCanvasColorMod", ID_TYPE_SUB);
 	add_embedded_arg("c_num", ID_TYPE_NUM);
 	add_embedded_arg("c", ID_TYPE_NUM);
 	embed_function("GetCanvasColorMod", ID_TYPE_FN_NUM);
@@ -610,11 +610,10 @@ void init_embedded_functions()
 	embed_function("SetBlendMode", ID_TYPE_SUB);
 	add_embedded_arg("blend_mode", ID_TYPE_NUM);
 	embed_function("GetBlendMode", ID_TYPE_FN_NUM);
-	add_embedded_arg("blend_mode", ID_TYPE_NUM);
-	embed_function("SetImageColorMod", ID_TYPE_FN_NUM);
+	embed_function("SetImageColorMod", ID_TYPE_SUB);
 	add_embedded_arg("slot", ID_TYPE_NUM);
 	add_embedded_arg("c", ID_TYPE_NUM);
-	embed_function("ImageColorMod", ID_TYPE_FN_NUM);
+	embed_function("GetImageColorMod", ID_TYPE_FN_NUM);
 	add_embedded_arg("slot", ID_TYPE_NUM);
 	embed_function("DrawImage", ID_TYPE_SUB);
 	add_embedded_arg("slot", ID_TYPE_NUM);
@@ -744,7 +743,7 @@ void init_embedded_functions()
 	add_embedded_arg("w", ID_TYPE_NUM);
 	add_embedded_arg("h", ID_TYPE_NUM);
 	embed_function("ClearMouseZone", ID_TYPE_SUB);
-	embed_function("SoundFromBuffer", ID_TYPE_FN_NUM);
+	embed_function("CreateSound", ID_TYPE_FN_NUM);
 	add_embedded_arg("buffer", ID_TYPE_BYREF_NUM);
 	add_embedded_arg("buffer_size", ID_TYPE_NUM);
 	add_embedded_arg("vol", ID_TYPE_NUM);
@@ -872,9 +871,6 @@ void init_embedded_functions()
 	add_embedded_arg("txt$", ID_TYPE_STR);
 	add_embedded_arg("x", ID_TYPE_NUM);
 	add_embedded_arg("y", ID_TYPE_NUM);
-	embed_function("RenderText", ID_TYPE_SUB);
-	add_embedded_arg("slot", ID_TYPE_NUM);
-	add_embedded_arg("txt$", ID_TYPE_STR);
 	embed_function("GetTextSize", ID_TYPE_SUB);
 	add_embedded_arg("txt$", ID_TYPE_STR);
 	add_embedded_arg("w", ID_TYPE_BYREF_NUM);
@@ -936,8 +932,8 @@ void init_embedded_functions()
 	add_embedded_arg("socket", ID_TYPE_NUM);
 	embed_function("TCP_GetData", ID_TYPE_FN_NUM);
 	add_embedded_arg("socket", ID_TYPE_NUM);
-	add_embedded_arg("sData$", ID_TYPE_BYREF_STR);
 	add_embedded_arg("numBytes", ID_TYPE_NUM);
+	add_embedded_arg("sData$", ID_TYPE_BYREF_STR);
 	embed_function("TCP_SendData", ID_TYPE_SUB);
 	add_embedded_arg("socket", ID_TYPE_NUM);
 	add_embedded_arg("sData$", ID_TYPE_STR);
@@ -950,9 +946,9 @@ void init_embedded_functions()
 	add_embedded_arg("socket", ID_TYPE_NUM);
 	embed_function("UDP_GetData", ID_TYPE_FN_NUM);
 	add_embedded_arg("socket", ID_TYPE_NUM);
-	add_embedded_arg("sData$", ID_TYPE_BYREF_STR);
 	add_embedded_arg("host$", ID_TYPE_BYREF_STR);
 	add_embedded_arg("port", ID_TYPE_BYREF_NUM);
+	add_embedded_arg("sData$", ID_TYPE_BYREF_STR);
 	embed_function("UDP_Length", ID_TYPE_FN_NUM);
 	embed_function("UDP_MaxLength", ID_TYPE_FN_NUM);
 	embed_function("UDP_RemoteHost$", ID_TYPE_FN_STR);
@@ -961,9 +957,9 @@ void init_embedded_functions()
 	add_embedded_arg("socket", ID_TYPE_NUM);
 	embed_function("UDP_SendData", ID_TYPE_SUB);
 	add_embedded_arg("socket", ID_TYPE_NUM);
-	add_embedded_arg("sData$", ID_TYPE_STR);
 	add_embedded_arg("host$", ID_TYPE_STR);
 	add_embedded_arg("port", ID_TYPE_NUM);
+	add_embedded_arg("sData$", ID_TYPE_STR);
 	embed_function("LoadVideo", ID_TYPE_SUB);
 	add_embedded_arg("vid$", ID_TYPE_STR);
 	embed_function("PlayVideo", ID_TYPE_SUB);
@@ -997,12 +993,9 @@ void init_embedded_functions()
 	add_embedded_arg("w", ID_TYPE_BYREF_NUM);
 	add_embedded_arg("h", ID_TYPE_BYREF_NUM);
 	embed_function("VideoExists", ID_TYPE_FN_NUM);
-	embed_function("SetVideoAlpha", ID_TYPE_SUB);
-	add_embedded_arg("a", ID_TYPE_NUM);
 	embed_function("SetVideoVolume", ID_TYPE_SUB);
 	add_embedded_arg("vol", ID_TYPE_NUM);
 	embed_function("GetVideoVolume", ID_TYPE_FN_NUM);
-	add_embedded_arg("vol", ID_TYPE_NUM);
 	embed_function("System", ID_TYPE_FN_NUM);
 	add_embedded_arg("cmd$", ID_TYPE_STR);
 	embed_function("OS$", ID_TYPE_FN_STR);
@@ -1044,6 +1037,7 @@ void init_embedded_functions()
 	add_embedded_arg("msg$", ID_TYPE_STR);
 	embed_function("Runtime$", ID_TYPE_FN_STR);
 	embed_function("NumCPUs", ID_TYPE_FN_NUM);
+	embed_function("SystemRam", ID_TYPE_FN_NUM);
 	embed_function("DimMatrix", ID_TYPE_FN_NUM);
 	add_embedded_arg("m_rows", ID_TYPE_NUM);
 	add_embedded_arg("m_cols", ID_TYPE_NUM);
@@ -1116,7 +1110,7 @@ void init_embedded_functions()
 	add_embedded_arg("mB", ID_TYPE_NUM);
 	add_embedded_arg("r", ID_TYPE_NUM);
 	add_embedded_arg("num_rows", ID_TYPE_NUM);
-	embed_function("IdentityMatrix", ID_TYPE_SUB);
+	embed_function("SetIdentityMatrix", ID_TYPE_SUB);
 	add_embedded_arg("mA", ID_TYPE_NUM);
 	add_embedded_arg("n", ID_TYPE_NUM);
 	embed_function("SolveMatrix", ID_TYPE_FN_NUM);
@@ -1140,7 +1134,7 @@ void init_embedded_functions()
 	add_embedded_arg("r", ID_TYPE_NUM);
 	add_embedded_arg("c", ID_TYPE_NUM);
 	add_embedded_arg("buffer", ID_TYPE_BYREF_NUM);
-	embed_function("GetMatrix", ID_TYPE_SUB);
+	embed_function("BufferFromMatrix", ID_TYPE_SUB);
 	add_embedded_arg("buffer", ID_TYPE_BYREF_NUM);
 	add_embedded_arg("mA", ID_TYPE_NUM);
 	embed_function("RandomizeMatrix", ID_TYPE_SUB);
@@ -1264,7 +1258,7 @@ void init_embedded_functions()
 	add_embedded_arg("x", ID_TYPE_BYREF_NUM);
 	add_embedded_arg("y", ID_TYPE_BYREF_NUM);
 	add_embedded_arg("z", ID_TYPE_BYREF_NUM);
-	embed_function("ClipboardText$", ID_TYPE_FN_STR);
+	embed_function("GetClipboardText$", ID_TYPE_FN_STR);
 	embed_function("SetClipboardText", ID_TYPE_SUB);
 	add_embedded_arg("txt$", ID_TYPE_STR);
 	embed_function("HasClipboardText", ID_TYPE_FN_NUM);
@@ -1450,6 +1444,7 @@ void init_embedded_functions()
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	embed_function("integrateActorVelocities", ID_TYPE_SUB);
 	add_embedded_arg("actor", ID_TYPE_NUM);
+	add_embedded_arg("v_step", ID_TYPE_NUM);
 	embed_function("applyActorCentralForceLocal", ID_TYPE_SUB);
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	add_embedded_arg("x", ID_TYPE_NUM);
@@ -2077,6 +2072,7 @@ void init_embedded_functions()
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	embed_function("setParticleNormalDirectionMod", ID_TYPE_SUB);
 	add_embedded_arg("actor", ID_TYPE_NUM);
+	add_embedded_arg("nd_mod", ID_TYPE_NUM);
 	embed_function("getParticleNormalDirectionMod", ID_TYPE_FN_NUM);
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	embed_function("useParticleNormalDirection", ID_TYPE_SUB);
@@ -2329,10 +2325,10 @@ void init_embedded_functions()
 	embed_function("SetActorFrame", ID_TYPE_SUB);
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	add_embedded_arg("frame", ID_TYPE_NUM);
-	embed_function("SetActorMD2Animation", ID_TYPE_FN_NUM);
+	embed_function("SetActorMD2Animation", ID_TYPE_SUB);
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	add_embedded_arg("anim", ID_TYPE_NUM);
-	embed_function("SetActorMD2AnimationByName", ID_TYPE_FN_NUM);
+	embed_function("SetActorMD2AnimationByName", ID_TYPE_SUB);
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	add_embedded_arg("anim_name$", ID_TYPE_STR);
 	embed_function("GetActorAnimationSpeed", ID_TYPE_FN_NUM);
@@ -2435,7 +2431,7 @@ void init_embedded_functions()
 	embed_function("setMaterialGouraudShading", ID_TYPE_SUB);
 	add_embedded_arg("material_id", ID_TYPE_NUM);
 	add_embedded_arg("flag", ID_TYPE_NUM);
-	embed_function("materialGouraudShading", ID_TYPE_FN_NUM);
+	embed_function("materialIsGouraudShaded", ID_TYPE_FN_NUM);
 	add_embedded_arg("material_id", ID_TYPE_NUM);
 	embed_function("materialIsAplhaBlend", ID_TYPE_FN_NUM);
 	add_embedded_arg("material_id", ID_TYPE_NUM);

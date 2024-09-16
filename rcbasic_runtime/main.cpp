@@ -49,8 +49,12 @@
 #include "rc_defines.h"
 #include "rc_stdlib.h"
 #include "rc_gfx.h"
+#include "rc_gfx3D.h"
 #include "rc_matrix.h"
 #include "rc_geometry.h"
+#include "rc_audio.h"
+#include "rc_net.h"
+#include "rc_video.h"
 #include <irrtheora.h>
 
 
@@ -4311,15 +4315,17 @@ bool rcbasic_run()
 
 void rcbasic_init()
 {
-    for(int i = 0; i < RC_MAX_FILES; i++)
-        rc_fstream[i] = NULL;
-    rc_media_init();
+	rc_audio_init();
+    rc_gfx_init();
+    rc_net_init();
     arr_ref_id.clear();
 }
 
 void rcbasic_clean()
 {
-    rc_media_quit();
+    rc_audio_quit();
+    rc_net_quit();
+    rc_gfx_quit();
     byref_addr_table.empty();
     loop_stack.empty();
     n_stack.empty();
@@ -4411,7 +4417,7 @@ int main(int argc, char * argv[])
     }
 
     rcbasic_init();
-    rc_initSubprocessSystem();
+    //rc_initSubprocessSystem();
 
     if(rc_filename.length()>=4)
     {
@@ -4465,7 +4471,7 @@ int main(int argc, char * argv[])
     else
         cout << "++Could not load rcbasic program" << endl;
 
-    rc_cleanSubprocessSystem();
+    //rc_cleanSubprocessSystem();
     rcbasic_clean();
 
     exit(rcbasic_exit_code);

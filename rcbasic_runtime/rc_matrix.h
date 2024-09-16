@@ -33,10 +33,6 @@ struct rc_matrix_type
 
 std::vector<rc_matrix_type> rc_matrix(64);
 
-#define RC_TMP_MATRIX 1024
-#define RC_TMP_MATRIX_2 1025
-
-#define RC_PROCESS_TMP_MATRIX_OFFSET 1026
 
 #define NEW_MATRIX -1
 
@@ -90,8 +86,15 @@ int DimMatrix(int m, uint32_t m_rows, uint32_t m_cols, bool preserve_flag=false)
     return m;
 }
 
-void DeleteMatrix(int mA)
+int rc_dimMatrix(uint32_t m_rows, uint32_t m_cols)
 {
+	return DimMatrix(NEW_MATRIX, m_rows, m_cols, false);
+}
+
+void rc_deleteMatrix(int mA)
+{
+	if(mA < 0 || mA >= rc_matrix.size())
+		return;
 	rc_matrix[mA].data.clear();
 	rc_matrix[mA].c = 0;
 	rc_matrix[mA].r = 0;
@@ -99,7 +102,7 @@ void DeleteMatrix(int mA)
 }
 
 //Adds Matrix A() to Matrix B(), answer is Matrix C()
-bool AddMatrix(int mA, int mB, int mC)
+bool rc_addMatrix(int mA, int mB, int mC)
 {
     if( (rc_matrix[mA].r != rc_matrix[mB].r) || (rc_matrix[mA].c != rc_matrix[mB].c) )
     {
@@ -123,7 +126,7 @@ bool AddMatrix(int mA, int mB, int mC)
 }
 
 //Concatenates matrix A() and B(), output is matrix C()
-bool AugmentMatrix (int mA, int mB, int mC)
+bool rc_augmentMatrix (int mA, int mB, int mC)
 {
     if(rc_matrix[mA].r != rc_matrix[mB].r)
     {
@@ -159,7 +162,7 @@ bool AugmentMatrix (int mA, int mB, int mC)
 }
 
 //Copies contents of matrix A() to B()
-void CopyMatrix(int mA, int mB)
+void rc_copyMatrix(int mA, int mB)
 {
     DimMatrix(mB, rc_matrix[mA].r, rc_matrix[mA].c);
 
@@ -175,7 +178,7 @@ void CopyMatrix(int mA, int mB)
 }
 
 //Inserts specified number of columns in matrix A before c and shifts values to the right
-bool InsertMatrixColumn(int mA, uint32_t c, uint32_t num_cols)
+bool rc_insertMatrixColumns(int mA, uint32_t c, uint32_t num_cols)
 {
     if(c >= rc_matrix[mA].c)
     {
@@ -214,7 +217,7 @@ bool InsertMatrixColumn(int mA, uint32_t c, uint32_t num_cols)
 }
 
 //Creates new zero row M% in matrix A(), moves values down
-bool InsertMatrixRow (int mA, uint32_t r, uint32_t num_rows)
+bool rc_insertMatrixRows(int mA, uint32_t r, uint32_t num_rows)
 {
     if(r >= rc_matrix[mA].r)
     {
@@ -249,7 +252,7 @@ bool InsertMatrixRow (int mA, uint32_t r, uint32_t num_rows)
 }
 
 //Multiplies Matrix A() with Matrix B(), answer is Matrix C()
-bool MultiplyMatrix (int mA, int mB, int mC)
+bool rc_multiplyMatrix (int mA, int mB, int mC)
 {
     if( rc_matrix[mA].c != rc_matrix[mB].r )
     {
@@ -283,7 +286,7 @@ bool MultiplyMatrix (int mA, int mB, int mC)
 }
 
 //Multiplies matrix A() * A() * A(), returns matrix B()
-bool CubeMatrix(int mA, int mB, int process_num)
+bool rc_cubeMatrix(int mA, int mB)
 {
     if(rc_matrix[mA].r != rc_matrix[mA].c)
     {
@@ -291,19 +294,16 @@ bool CubeMatrix(int mA, int mB, int process_num)
         return false;
     }
 
-    int tmp_mat1 = process_num < 0 ? RC_TMP_MATRIX : (process_num*2) + RC_PROCESS_TMP_MATRIX_OFFSET;
-    //int tmp_mat2 = process_num < 0 ? RC_TMP_MATRIX : (process_num*2) + RC_PROCESS_TMP_MATRIX_OFFSET + 1;
+    int tmp_mat1 = DimMatrix(NEW_MATRIX, rc_matrix[mA].r, rc_matrix[mA].c);
+    rc_multiplyMatrix(mA, mA, tmp_mat1);
+    rc_multiplyMatrix(tmp_mat1, mA, mB);
 
-    DimMatrix(tmp_mat1, rc_matrix[mA].r, rc_matrix[mA].c);
-    MultiplyMatrix(mA, mA, tmp_mat1);
-    MultiplyMatrix(tmp_mat1, mA, mB);
-
-    DimMatrix(tmp_mat1, 1, 1);
+    rc_deleteMatrix(tmp_mat1);
     return true;
 }
 
 // Deletes column N% from matrix
-bool DeleteMatrixColumns(int mA, uint32_t c, uint32_t num_cols, int process_num)
+bool rc_deleteMatrixColumns(int mA, uint32_t c, uint32_t num_cols)
 {
     if(c >= rc_matrix[mA].c)
     {
@@ -314,10 +314,7 @@ bool DeleteMatrixColumns(int mA, uint32_t c, uint32_t num_cols, int process_num)
     if((c + num_cols) > rc_matrix[mA].c)
         num_cols = rc_matrix[mA].c - c;
 
-    int tmp_mat1 = process_num < 0 ? RC_TMP_MATRIX : (process_num*2) + RC_PROCESS_TMP_MATRIX_OFFSET;
-    //int tmp_mat2 = process_num < 0 ? RC_TMP_MATRIX : (process_num*2) + RC_PROCESS_TMP_MATRIX_OFFSET + 1;
-
-    DimMatrix( tmp_mat1, rc_matrix[mA].r, rc_matrix[mA].c - num_cols);
+    int tmp_mat1 = DimMatrix( NEW_MATRIX, rc_matrix[mA].r, rc_matrix[mA].c - num_cols);
 
     uint32_t old_offset = 0;
     uint32_t row_offset = 0;
@@ -335,13 +332,13 @@ bool DeleteMatrixColumns(int mA, uint32_t c, uint32_t num_cols, int process_num)
                 rc_matrix[tmp_mat1].data[row_offset + col] = rc_matrix[mA].data[old_offset + col];
         }
     }
-    CopyMatrix(tmp_mat1, mA);
-    DimMatrix(tmp_mat1, 1, 1);
+    rc_copyMatrix(tmp_mat1, mA);
+    rc_deleteMatrix(tmp_mat1);
     return true;
 }
 
 //Deletes row M% from matrix
-bool DeleteMatrixRows(int mA, uint32_t r, uint32_t num_rows)
+bool rc_deleteMatrixRows(int mA, uint32_t r, uint32_t num_rows)
 {
     if(r >= rc_matrix[mA].r)
     {
@@ -373,14 +370,14 @@ bool DeleteMatrixRows(int mA, uint32_t r, uint32_t num_rows)
 }
 
 //Clears contents of matrix A()
-void ClearMatrix(int mA)
+void rc_clearMatrix(int mA)
 {
     for(int i = 0; i < rc_matrix[mA].data.size(); i++)
         rc_matrix[mA].data[i] = 0;
 }
 
 //Fills column J% of matrix A() with zeros
-bool ClearMatrixColumns (int mA, uint32_t c, uint32_t num_cols)
+bool rc_clearMatrixColumns (int mA, uint32_t c, uint32_t num_cols)
 {
     if(c >= rc_matrix[mA].c)
     {
@@ -403,7 +400,7 @@ bool ClearMatrixColumns (int mA, uint32_t c, uint32_t num_cols)
 }
 
 // Fills row I% of matrix A() with zeros
-bool ClearMatrixRows(int mA, uint32_t r, uint32_t num_rows)
+bool rc_clearMatrixRows(int mA, uint32_t r, uint32_t num_rows)
 {
     if(r >= rc_matrix[mA].r)
     {
@@ -429,14 +426,14 @@ bool ClearMatrixRows(int mA, uint32_t r, uint32_t num_rows)
 }
 
 // Fills matrix A() with value V
-void FillMatrix(int mA, double v)
+void rc_fillMatrix(int mA, double v)
 {
     for(uint32_t i = 0; i < rc_matrix[mA].data.size(); i++)
         rc_matrix[mA].data[i] = v;
 }
 
 // Fills matrix A() column J% with value V
-bool FillMatrixColumns(int mA, uint32_t c, uint32_t num_cols, double v)
+bool rc_fillMatrixColumns(int mA, uint32_t c, uint32_t num_cols, double v)
 {
     if(c >= rc_matrix[mA].c)
     {
@@ -459,7 +456,7 @@ bool FillMatrixColumns(int mA, uint32_t c, uint32_t num_cols, double v)
 }
 
 // Fills matrix A() row I% with value V
-bool FillMatrixRows(int mA, uint32_t r, uint32_t num_rows, double v)
+bool rc_fillMatrixRows(int mA, uint32_t r, uint32_t num_rows, double v)
 {
     if(r >= rc_matrix[mA].r)
     {
@@ -485,7 +482,7 @@ bool FillMatrixRows(int mA, uint32_t r, uint32_t num_rows, double v)
 }
 
 // Copies A() column J% to column matrix B()
-bool GetMatrixColumns(uint32_t mA, uint32_t mB, uint32_t c, uint32_t num_cols)
+bool rc_copyMatrixColumns(uint32_t mA, uint32_t mB, uint32_t c, uint32_t num_cols)
 {
     if(c >= rc_matrix[mA].c)
     {
@@ -512,7 +509,7 @@ bool GetMatrixColumns(uint32_t mA, uint32_t mB, uint32_t c, uint32_t num_cols)
 }
 
 // Copies A() row I% to row matrix B()
-bool GetMatrixRows (uint32_t mA, uint32_t mB, uint32_t r, uint32_t num_rows)
+bool rc_copyMatrixRows (uint32_t mA, uint32_t mB, uint32_t r, uint32_t num_rows)
 {
 
     if(r > rc_matrix[mA].r)
@@ -542,7 +539,7 @@ bool GetMatrixRows (uint32_t mA, uint32_t mB, uint32_t r, uint32_t num_rows)
 }
 
 // Creates Identity Matrix A() of order N%
-void setIdentityMatrix(uint32_t mA, uint32_t n)
+void rc_setIdentityMatrix(uint32_t mA, uint32_t n)
 {
     DimMatrix(mA, n, n);
     for(int i = 0; i < n; i++)
@@ -576,7 +573,7 @@ bool GaussianElimination(vector< vector<double> > &A, vector<double> &b, uint32_
 
     vector<double> x(n);
     DimMatrix(mC, n, 1);
-    ClearMatrix(mC);
+    rc_clearMatrix(mC);
 
     for (int i = n - 1; i >= 0; i--) {
         double sum = 0.0;
@@ -593,7 +590,7 @@ bool GaussianElimination(vector< vector<double> > &A, vector<double> &b, uint32_
 
 // Solve the system that has A as coefficient matrix and B is the right hand side of the equation
 // Solution will be stored in C
-bool SolveMatrix(uint32_t mA, uint32_t mB, uint32_t mC)
+bool rc_solveMatrix(uint32_t mA, uint32_t mB, uint32_t mC)
 {
     if(rc_matrix[mA].r != rc_matrix[mA].c || rc_matrix[mA].r != rc_matrix[mB].r || rc_matrix[mB].c != 1)
         return false;
@@ -623,7 +620,7 @@ double d_abs(double n)
 }
 
 //Determines if matrix A() is equal (within Tol constant) to matrix B()
-bool IsEqualMatrix(uint32_t mA, uint32_t mB, double tolerance)
+bool rc_isEqualMatrix(uint32_t mA, uint32_t mB, double tolerance)
 {
     if( (rc_matrix[mA].r != rc_matrix[mB].r) || (rc_matrix[mA].c != rc_matrix[mB].c) )
         return false;
@@ -669,7 +666,7 @@ void getCofactor(uint32_t A_dim, double* A, double* temp, int p, int q,
 	}
 }
 
-void CofactorMatrix(uint32_t mA, int p, int q, int n)
+void rc_cofactorMatrix(uint32_t mA, int p, int q, int n)
 {
 
     uint32_t m_size = rc_matrix[mA].c;
@@ -716,13 +713,13 @@ double determinant(double* A, int n, uint32_t m_size)
 	return D;
 }
 
-double Determinant(uint32_t mA)
+double rc_determinant(uint32_t mA)
 {
     uint32_t m_size = rc_matrix[mA].r;
     if(rc_matrix[mA].c != m_size)
     {
         cout << "Determinant Error: matrix must be square" << endl;
-        return false;
+        return 0;
     }
     return determinant(rc_matrix[mA].data.data(), m_size, m_size);
 }
@@ -756,7 +753,7 @@ void adjoint(double* A, double* adj, uint32_t n, uint32_t m_size)
 	}
 }
 
-bool AdjointMatrix(uint32_t mA, uint32_t mB)
+bool rc_adjointMatrix(uint32_t mA, uint32_t mB)
 {
     uint32_t m_size = rc_matrix[mA].r;
     if(rc_matrix[mA].c != m_size)
@@ -792,7 +789,7 @@ bool inverse(double* A, double* inv, uint32_t n)
 	return true;
 }
 
-bool InvertMatrix(uint32_t mA, uint32_t mB)
+bool rc_invertMatrix(uint32_t mA, uint32_t mB)
 {
     uint32_t m_size = rc_matrix[mA].r;
     if(rc_matrix[mA].c != m_size)
@@ -811,7 +808,7 @@ bool InvertMatrix(uint32_t mA, uint32_t mB)
 
 
 //Loads contents of FileName$ into matrix A()
-void MatrixFromBuffer(uint32_t mA, uint32_t r, uint32_t c, double* buffer)
+void rc_matrixFromBuffer(uint32_t mA, uint32_t r, uint32_t c, double* buffer)
 {
     uint32_t row_offset = 0;
     DimMatrix(mA, r, c);
@@ -827,7 +824,7 @@ void MatrixFromBuffer(uint32_t mA, uint32_t r, uint32_t c, double* buffer)
 }
 
 //Loads contents of FileName$ into matrix A()
-void BufferFromMatrix(double* buffer, uint32_t mA)
+void rc_bufferFromMatrix(double* buffer, uint32_t mA)
 {
     uint32_t row_offset = 0;
     for(uint32_t row = 0; row < rc_matrix[mA].r; row++)
@@ -841,7 +838,7 @@ void BufferFromMatrix(double* buffer, uint32_t mA)
 }
 
 //Fills matrix A() with random values ranging from VMin to VMax
-void RandomizeMatrix(uint32_t mA, double vmin, double vmax)
+void rc_randomizeMatrix(uint32_t mA, double vmin, double vmax)
 {
     uint32_t row_offset = 0;
     for(uint32_t row = 0; row < rc_matrix[mA].r; row++)
@@ -855,7 +852,7 @@ void RandomizeMatrix(uint32_t mA, double vmin, double vmax)
 }
 
 //get value from matrix A
-double MatrixValue(uint32_t mA, uint32_t r, uint32_t c)
+double rc_matrixValue(uint32_t mA, uint32_t r, uint32_t c)
 {
     uint32_t pos = r*rc_matrix[mA].c + c;
     if(pos >= rc_matrix[mA].data.size())
@@ -865,7 +862,7 @@ double MatrixValue(uint32_t mA, uint32_t r, uint32_t c)
 }
 
 //set value at (r, c) in matrix
-void SetMatrixValue(uint32_t mA, uint32_t r, uint32_t c, double v)
+void rc_setMatrixValue(uint32_t mA, uint32_t r, uint32_t c, double v)
 {
     uint32_t pos = r*rc_matrix[mA].c + c;
     if(pos >= rc_matrix[mA].data.size())
@@ -875,7 +872,7 @@ void SetMatrixValue(uint32_t mA, uint32_t r, uint32_t c, double v)
 }
 
 //Multiplies matrix A() by scalar, output matrix B()
-void ScalarMatrix (uint32_t mA, uint32_t mB, double s_value)
+void rc_scalarMatrix (uint32_t mA, uint32_t mB, double s_value)
 {
     uint32_t row_offset = 0;
     DimMatrix(mB, rc_matrix[mA].r, rc_matrix[mA].c);
@@ -890,7 +887,7 @@ void ScalarMatrix (uint32_t mA, uint32_t mB, double s_value)
 }
 
 // Multiplies matrix A() by scalar S at column J%, output matrix B()
-bool ScalarMatrixColumns(uint32_t mA, uint32_t mB, uint32_t c, uint32_t num_cols, double s_value)
+bool rc_scalarMatrixColumns(uint32_t mA, uint32_t mB, uint32_t c, uint32_t num_cols, double s_value)
 {
     if(c >= rc_matrix[mA].c)
     {
@@ -901,7 +898,7 @@ bool ScalarMatrixColumns(uint32_t mA, uint32_t mB, uint32_t c, uint32_t num_cols
     if( (c+num_cols) >= rc_matrix[mA].c)
         num_cols = rc_matrix[mA].c - c;
 
-    CopyMatrix(mA, mB);
+    rc_copyMatrix(mA, mB);
 
     int row_offset = 0;
     int b_offset = 0;
@@ -916,7 +913,7 @@ bool ScalarMatrixColumns(uint32_t mA, uint32_t mB, uint32_t c, uint32_t num_cols
 }
 
 //Multiplies matrix A() by scalar S at row I%, output matrix B()
-bool ScalarMatrixRows(uint32_t mA, uint32_t mB, uint32_t r, uint32_t num_rows, double s_value)
+bool rc_scalarMatrixRows(uint32_t mA, uint32_t mB, uint32_t r, uint32_t num_rows, double s_value)
 {
 
     if(r > rc_matrix[mA].r)
@@ -928,7 +925,7 @@ bool ScalarMatrixRows(uint32_t mA, uint32_t mB, uint32_t r, uint32_t num_rows, d
     if( (r+num_rows) > rc_matrix[mA].r)
         num_rows = rc_matrix[mA].r - r;
 
-    CopyMatrix(mA, mB);
+    rc_copyMatrix(mA, mB);
 
     uint32_t row_offset = 0;
 
@@ -946,7 +943,7 @@ bool ScalarMatrixRows(uint32_t mA, uint32_t mB, uint32_t r, uint32_t num_rows, d
 }
 
 // Multiplies matrix A() * A(), returns matrix B()
-bool SquareMatrix(uint32_t mA, uint32_t mB)
+bool rc_squareMatrix(uint32_t mA, uint32_t mB)
 {
     if(rc_matrix[mA].r != rc_matrix[mA].c)
     {
@@ -954,17 +951,17 @@ bool SquareMatrix(uint32_t mA, uint32_t mB)
         return false;
     }
 
-    return MultiplyMatrix(mA, mA, mB);
+    return rc_multiplyMatrix(mA, mA, mB);
 }
 
 // Deletes row r and column c from matrix A
-void SubMatrix(uint32_t mA, uint32_t r, uint32_t c)
+void rc_subMatrix(uint32_t mA, uint32_t r, uint32_t c)
 {
-    CofactorMatrix(mA, r, c, rc_matrix[mA].c);
+    rc_cofactorMatrix(mA, r, c, rc_matrix[mA].c);
 }
 
 // Subtracts Matrix B() from Matrix A(), answer is Matrix C()
-bool SubtractMatrix (uint32_t mA, uint32_t mB, uint32_t mC)
+bool rc_subtractMatrix (uint32_t mA, uint32_t mB, uint32_t mC)
 {
     if(rc_matrix[mA].r != rc_matrix[mB].r || rc_matrix[mA].c != rc_matrix[mB].c)
     {
@@ -988,20 +985,17 @@ bool SubtractMatrix (uint32_t mA, uint32_t mB, uint32_t mC)
 }
 
 // Swaps contents of Matrix A() with Matrix B()
-void SwapMatrix(uint32_t mA, uint32_t mB, int process_num)
+void rc_swapMatrix(uint32_t mA, uint32_t mB)
 {
-    int tmp_mat1 = process_num < 0 ? RC_TMP_MATRIX : (process_num*2) + RC_PROCESS_TMP_MATRIX_OFFSET;
-    //int tmp_mat2 = process_num < 0 ? RC_TMP_MATRIX : (process_num*2) + RC_PROCESS_TMP_MATRIX_OFFSET + 1;
-
-    DimMatrix(tmp_mat1, rc_matrix[mA].r, rc_matrix[mA].c);
-    CopyMatrix(mB, tmp_mat1);
-    CopyMatrix(mA, mB);
-    CopyMatrix(tmp_mat1, mA);
-    DimMatrix(tmp_mat1, 1, 1);
+    int tmp_mat1 = DimMatrix(NEW_MATRIX, rc_matrix[mA].r, rc_matrix[mA].c);
+    rc_copyMatrix(mB, tmp_mat1);
+    rc_copyMatrix(mA, mB);
+    rc_copyMatrix(tmp_mat1, mA);
+    rc_deleteMatrix(tmp_mat1);
 }
 
 // Swaps columns C1% and C2% in matrix A()
-bool SwapMatrixColumn(uint32_t mA, uint32_t C1, uint32_t C2)
+bool rc_swapMatrixColumn(uint32_t mA, uint32_t C1, uint32_t C2)
 {
     if(C1 >= rc_matrix[mA].c || C2 >= rc_matrix[mA].c)
     {
@@ -1024,7 +1018,7 @@ bool SwapMatrixColumn(uint32_t mA, uint32_t C1, uint32_t C2)
 }
 
 // Swaps rows R1% and R2% in matrix A()
-bool SwapMatrixRow(uint32_t mA, uint32_t R1, uint32_t R2)
+bool rc_swapMatrixRow(uint32_t mA, uint32_t R1, uint32_t R2)
 {
     if(R1 >= rc_matrix[mA].r || R2 >= rc_matrix[mA].r)
     {
@@ -1047,7 +1041,7 @@ bool SwapMatrixRow(uint32_t mA, uint32_t R1, uint32_t R2)
 }
 
 // Transposes matrix A(), output matrix B()
-bool TransposeMatrix(uint32_t mA, uint32_t mB)
+bool rc_transposeMatrix(uint32_t mA, uint32_t mB)
 {
     DimMatrix(mB, rc_matrix[mA].c, rc_matrix[mA].r);
 
@@ -1067,7 +1061,7 @@ bool TransposeMatrix(uint32_t mA, uint32_t mB)
 
 
 // Splits matrix A() into square Coefficient B() and remaining Augment C()
-bool UnAugmentMatrix(uint32_t mA, uint32_t mB, uint32_t mC)
+bool rc_unAugmentMatrix(uint32_t mA, uint32_t mB, uint32_t mC)
 {
     if(rc_matrix[mA].c <= rc_matrix[mA].r)
     {
@@ -1110,18 +1104,18 @@ bool UnAugmentMatrix(uint32_t mA, uint32_t mB, uint32_t mC)
 
 
 // Clears contents of matrix A().
-void ZeroMatrix (uint32_t mA)
+void rc_zeroMatrix (uint32_t mA)
 {
-    ClearMatrix(mA);
+    rc_clearMatrix(mA);
 }
 
-void GetMatrixSize(uint32_t mA, double* r, double* c)
+void rc_getMatrixSize(uint32_t mA, double* r, double* c)
 {
     *r = rc_matrix[mA].r;
     *c = rc_matrix[mA].c;
 }
 
-void IncrementMatrixRows(uint32_t mA, uint32_t mB, uint32_t r, uint32_t num_rows, double value)
+void rc_incrementMatrixRows(uint32_t mA, uint32_t mB, uint32_t r, uint32_t num_rows, double value)
 {
     if(num_rows < 0)
         return;
@@ -1132,19 +1126,19 @@ void IncrementMatrixRows(uint32_t mA, uint32_t mB, uint32_t r, uint32_t num_rows
     if( (r+num_rows) >= rc_matrix[mA].r )
         num_rows = rc_matrix[mA].r - r;
 
-    CopyMatrix(mA, mB);
+    rc_copyMatrix(mA, mB);
 
     for(int mr = r; mr < (r+num_rows); mr++)
     {
         for(int mc = 0; mc < rc_matrix[mA].c; mc++)
         {
-            double mv = MatrixValue(mA, mr, mc) + value;
-            SetMatrixValue(mB, mr, mc, mv);
+            double mv = rc_matrixValue(mA, mr, mc) + value;
+            rc_setMatrixValue(mB, mr, mc, mv);
         }
     }
 }
 
-void IncrementMatrixColumns(uint32_t mA, uint32_t mB, uint32_t c, uint32_t num_cols, double value)
+void rc_incrementMatrixColumns(uint32_t mA, uint32_t mB, uint32_t c, uint32_t num_cols, double value)
 {
     if(num_cols < 0)
         return;
@@ -1155,19 +1149,19 @@ void IncrementMatrixColumns(uint32_t mA, uint32_t mB, uint32_t c, uint32_t num_c
     if( (c+num_cols) >= rc_matrix[mA].c )
         num_cols = rc_matrix[mA].c - c;
 
-    CopyMatrix(mA, mB);
+    rc_copyMatrix(mA, mB);
 
     for(int mr = 0; mr < rc_matrix[mA].r; mr++)
     {
         for(int mc = c; mc < (c+num_cols); mc++)
         {
-            double mv = MatrixValue(mA, mr, mc) + value;
-            SetMatrixValue(mB, mr, mc, mv);
+            double mv = rc_matrixValue(mA, mr, mc) + value;
+            rc_setMatrixValue(mB, mr, mc, mv);
         }
     }
 }
 
-void JoinMatrixRows(uint32_t mA, uint32_t mB, uint32_t mC)
+void rc_joinMatrixRows(uint32_t mA, uint32_t mB, uint32_t mC)
 {
     if(rc_matrix[mA].r != rc_matrix[mB].r)
         return;
@@ -1181,8 +1175,8 @@ void JoinMatrixRows(uint32_t mA, uint32_t mB, uint32_t mC)
     {
         for(int r = 0; r < num_rows; r++)
         {
-            double mv = MatrixValue(mA, r, c);
-            SetMatrixValue(mC, r, c, mv);
+            double mv = rc_matrixValue(mA, r, c);
+            rc_setMatrixValue(mC, r, c, mv);
         }
     }
 
@@ -1190,13 +1184,13 @@ void JoinMatrixRows(uint32_t mA, uint32_t mB, uint32_t mC)
     {
         for(int r = 0; r < num_rows; r++)
         {
-            double mv = MatrixValue(mB, r, c);
-            SetMatrixValue(mC, r, rc_matrix[mA].c + c, mv);
+            double mv = rc_matrixValue(mB, r, c);
+            rc_setMatrixValue(mC, r, rc_matrix[mA].c + c, mv);
         }
     }
 }
 
-void JoinMatrixColumns(uint32_t mA, uint32_t mB, uint32_t mC)
+void rc_joinMatrixColumns(uint32_t mA, uint32_t mB, uint32_t mC)
 {
     if(rc_matrix[mA].c != rc_matrix[mB].c)
         return;
@@ -1210,8 +1204,8 @@ void JoinMatrixColumns(uint32_t mA, uint32_t mB, uint32_t mC)
     {
         for(int r = 0; r < rc_matrix[mA].r; r++)
         {
-            double mv = MatrixValue(mA, r, c);
-            SetMatrixValue(mC, r, c, mv);
+            double mv = rc_matrixValue(mA, r, c);
+            rc_setMatrixValue(mC, r, c, mv);
         }
     }
 
@@ -1219,15 +1213,15 @@ void JoinMatrixColumns(uint32_t mA, uint32_t mB, uint32_t mC)
     {
         for(int r = 0; r < rc_matrix[mB].r; r++)
         {
-            double mv = MatrixValue(mB, r, c);
-            SetMatrixValue(mC, rc_matrix[mA].r + r, c, mv);
+            double mv = rc_matrixValue(mB, r, c);
+            rc_setMatrixValue(mC, rc_matrix[mA].r + r, c, mv);
         }
     }
 }
 
 
 
-void ClipMatrix(int mA, int r, int c, int num_rows, int num_cols, int mB)
+void rc_clipMatrix(int mA, int r, int c, int num_rows, int num_cols, int mB)
 {
 	int mA_rows = rc_matrix[mA].r;
 	int mA_cols = rc_matrix[mA].c;
@@ -1241,7 +1235,7 @@ void ClipMatrix(int mA, int r, int c, int num_rows, int num_cols, int mB)
 	if(mB_rows < 0)
 	{
 		DimMatrix(mB, mA_rows, mA_cols, false);
-		ClearMatrix(mB);
+		rc_clearMatrix(mB);
 		return;
 	}
 
@@ -1251,7 +1245,7 @@ void ClipMatrix(int mA, int r, int c, int num_rows, int num_cols, int mB)
 	if(mB_cols < 0)
 	{
 		DimMatrix(mB, mA_rows, mA_cols, false);
-		ClearMatrix(mB);
+		rc_clearMatrix(mB);
 		return;
 	}
 
@@ -1259,7 +1253,7 @@ void ClipMatrix(int mA, int r, int c, int num_rows, int num_cols, int mB)
 
 	for(int row = r; row < (r+num_rows); row++)
 		for(int col = c; col < (c+num_cols); col++)
-			SetMatrixValue( mB, row-r, col-c, MatrixValue(mA, row, col));
+			rc_setMatrixValue( mB, row-r, col-c, rc_matrixValue(mA, row, col));
 }
 
 int rc_convertFromIrrMatrix(irr::core::matrix4 irr_mat, int mB = -1)
@@ -1279,15 +1273,15 @@ int rc_convertFromIrrMatrix(irr::core::matrix4 irr_mat, int mB = -1)
 		rc_matrix[mA].data[i*4+3] = irr_mat[i*4+3];
 	}
 
-	TransposeMatrix(mA, mB);
-	DeleteMatrix(mA);
+	rc_transposeMatrix(mA, mB);
+	rc_deleteMatrix(mA);
 	return mB;
 }
 
 irr::core::matrix4 rc_convertToIrrMatrix(int mA)
 {
 	int mB = DimMatrix(NEW_MATRIX, 4, 4);
-	TransposeMatrix(mA, mB);
+	rc_transposeMatrix(mA, mB);
 
 	irr::core::matrix4 irr_mat;
 
@@ -1299,7 +1293,7 @@ irr::core::matrix4 rc_convertToIrrMatrix(int mA)
 		irr_mat[i*4+3] = rc_matrix[mB].data[i*4+3];
 	}
 
-	DeleteMatrix(mB);
+	rc_deleteMatrix(mB);
 	return irr_mat;
 }
 

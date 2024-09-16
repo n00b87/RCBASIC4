@@ -1405,8 +1405,9 @@ inline std::string rc_intern_env(std::string v)
     #endif
 }
 
-inline int rc_intern_setEnv(std::string name, std::string value, int overwrite)
+inline int rc_intern_setEnv(std::string name, std::string value)
 {
+	int overwrite = 1;
     #ifdef RC_WINDOWS
     //string env_cmd = name + "=" + value;
     return SetEnvironmentVariable(name.c_str(), value.c_str()) ? 1 : 0;
@@ -1648,5 +1649,11 @@ std::string rc_intern_android_jni_message(std::string arg_c)
         return "";
     }
 #endif
+
+
+int rc_numCPUs()
+{
+    return SDL_GetCPUCount();
+}
 
 #endif // RC_STDLIB_H_INCLUDED

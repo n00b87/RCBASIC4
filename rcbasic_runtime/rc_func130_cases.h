@@ -587,10 +587,10 @@ case FN_SetCanvasAlpha: //Sub Procedure
 	rc_setCanvasAlpha( SETCANVASALPHA_C_NUM,  SETCANVASALPHA_A );
 	break;
 case FN_GetCanvasAlpha: //Number Function
-	 rc_push_num(rc_getCanvasAlpha( GETCANVASALPHA_C_NUM ));
+	 rc_push_num(rc_canvasAlpha( GETCANVASALPHA_C_NUM ));
 	break;
-case FN_SetCanvasColorMod: //Number Function
-	 rc_push_num(rc_setCanvasColorMod( SETCANVASCOLORMOD_C_NUM,  SETCANVASCOLORMOD_C ));
+case FN_SetCanvasColorMod: //Sub Procedure
+	rc_setCanvasColorMod( SETCANVASCOLORMOD_C_NUM,  SETCANVASCOLORMOD_C );
 	break;
 case FN_GetCanvasColorMod: //Number Function
 	 rc_push_num(rc_getCanvasColorMod( GETCANVASCOLORMOD_C_NUM ));
@@ -671,7 +671,7 @@ case FN_ImageExists: //Number Function
 	 rc_push_num(rc_imageExists( IMAGEEXISTS_SLOT ));
 	break;
 case FN_ColorKey: //Sub Procedure
-	rc_colorKey( COLORKEY_SLOT,  COLORKEY_C );
+	rc_setColorKey( COLORKEY_SLOT,  COLORKEY_C );
 	break;
 case FN_setBilinearFilter: //Sub Procedure
 	rc_setBilinearFilter( SETBILINEARFILTER_FLAG );
@@ -698,13 +698,13 @@ case FN_SetBlendMode: //Sub Procedure
 	rc_setBlendMode( SETBLENDMODE_BLEND_MODE );
 	break;
 case FN_GetBlendMode: //Number Function
-	 rc_push_num(rc_getBlendMode( GETBLENDMODE_BLEND_MODE ));
+	 rc_push_num(rc_getBlendMode(  ));
 	break;
-case FN_SetImageColorMod: //Number Function
-	 rc_push_num(rc_setImageColorMod( SETIMAGECOLORMOD_SLOT,  SETIMAGECOLORMOD_C ));
+case FN_SetImageColorMod: //Sub Procedure
+	rc_setImageColorMod( SETIMAGECOLORMOD_SLOT,  SETIMAGECOLORMOD_C );
 	break;
-case FN_ImageColorMod: //Number Function
-	 rc_push_num(rc_imageColorMod( IMAGECOLORMOD_SLOT ));
+case FN_GetImageColorMod: //Number Function
+	 rc_push_num(rc_getImageColorMod( GETIMAGECOLORMOD_SLOT ));
 	break;
 case FN_DrawImage: //Sub Procedure
 	rc_drawImage( DRAWIMAGE_SLOT,  DRAWIMAGE_X,  DRAWIMAGE_Y );
@@ -799,8 +799,8 @@ case FN_SetMouseZone: //Sub Procedure
 case FN_ClearMouseZone: //Sub Procedure
 	rc_clearMouseZone(  );
 	break;
-case FN_SoundFromBuffer: //Number Function
-	 rc_push_num(rc_soundFromBuffer( &SOUNDFROMBUFFER_BUFFER,  SOUNDFROMBUFFER_BUFFER_SIZE,  SOUNDFROMBUFFER_VOL ));
+case FN_CreateSound: //Number Function
+	 rc_push_num(rc_createSound( &CREATESOUND_BUFFER,  CREATESOUND_BUFFER_SIZE,  CREATESOUND_VOL ));
 	break;
 case FN_LoadSound: //Number Function
 	 rc_push_num(rc_loadSound( LOADSOUND_SND_FILE$ ));
@@ -863,7 +863,7 @@ case FN_SetSoundChannels: //Sub Procedure
 	rc_setSoundChannels( SETSOUNDCHANNELS_MAX_CHANNELS );
 	break;
 case FN_NumSoundChannels: //Number Function
-	 rc_push_num(rc_numSoundChannels(  ));
+	 rc_push_num(rc_getSoundChannels(  ));
 	break;
 case FN_SoundIsEnabled: //Number Function
 	 rc_push_num(rc_soundIsEnabled(  ));
@@ -967,9 +967,6 @@ case FN_SetFont: //Sub Procedure
 case FN_DrawText: //Sub Procedure
 	rc_drawText( DRAWTEXT_TXT$,  DRAWTEXT_X,  DRAWTEXT_Y );
 	break;
-case FN_RenderText: //Sub Procedure
-	rc_renderText( RENDERTEXT_SLOT,  RENDERTEXT_TXT$ );
-	break;
 case FN_GetTextSize: //Sub Procedure
 	rc_getTextSize( GETTEXTSIZE_TXT$,  &GETTEXTSIZE_W,  &GETTEXTSIZE_H );
 	break;
@@ -1013,58 +1010,58 @@ case FN_NumGyros: //Number Function
 	 rc_push_num(rc_numGyros(  ));
 	break;
 case FN_CheckSockets: //Number Function
-	 rc_push_num(rc_checkSockets( CHECKSOCKETS_TIMEOUT_MS ));
+	 rc_push_num(rc_net_checkSockets( CHECKSOCKETS_TIMEOUT_MS ));
 	break;
 case FN_TCP_SocketReady: //Number Function
-	 rc_push_num(rc_tCP_SocketReady( TCP_SOCKETREADY_SOCKET ));
+	 rc_push_num(rc_net_tcp_socketReady( TCP_SOCKETREADY_SOCKET ));
 	break;
 case FN_UDP_SocketReady: //Number Function
-	 rc_push_num(rc_uDP_SocketReady( UDP_SOCKETREADY_SOCKET ));
+	 rc_push_num(rc_net_udp_socketReady( UDP_SOCKETREADY_SOCKET ));
 	break;
 case FN_TCP_OpenSocket: //Number Function
-	 rc_push_num(rc_tCP_OpenSocket( TCP_OPENSOCKET_HOST$,  TCP_OPENSOCKET_PORT ));
+	 rc_push_num(rc_net_tcp_openSocket( TCP_OPENSOCKET_HOST$,  TCP_OPENSOCKET_PORT ));
 	break;
 case FN_TCP_CloseSocket: //Sub Procedure
-	rc_tCP_CloseSocket( TCP_CLOSESOCKET_SOCKET );
+	rc_net_tcp_closeSocket( TCP_CLOSESOCKET_SOCKET );
 	break;
 case FN_TCP_RemoteHost: //Number Function
-	 rc_push_num(rc_tCP_RemoteHost( TCP_REMOTEHOST_SOCKET ));
+	 rc_push_num(rc_net_tcp_remoteHost( TCP_REMOTEHOST_SOCKET ));
 	break;
 case FN_TCP_RemotePort: //Number Function
-	 rc_push_num(rc_tCP_RemotePort( TCP_REMOTEPORT_SOCKET ));
+	 rc_push_num(rc_net_tcp_remotePort( TCP_REMOTEPORT_SOCKET ));
 	break;
 case FN_TCP_GetData: //Number Function
-	 rc_push_num(rc_tCP_GetData( TCP_GETDATA_SOCKET,  &TCP_GETDATA_SDATA$,  TCP_GETDATA_NUMBYTES ));
+	 rc_push_num(rc_net_tcp_getData_str( TCP_GETDATA_SOCKET,  TCP_GETDATA_NUMBYTES,  &TCP_GETDATA_SDATA$ ));
 	break;
 case FN_TCP_SendData: //Sub Procedure
-	rc_tCP_SendData( TCP_SENDDATA_SOCKET,  TCP_SENDDATA_SDATA$ );
+	rc_net_tcp_sendData( TCP_SENDDATA_SOCKET,  TCP_SENDDATA_SDATA$ );
 	break;
 case FN_TCP_AcceptSocket: //Number Function
-	 rc_push_num(rc_tCP_AcceptSocket( TCP_ACCEPTSOCKET_SERVER,  TCP_ACCEPTSOCKET_CLIENT ));
+	 rc_push_num(rc_net_tcp_acceptSocket( TCP_ACCEPTSOCKET_SERVER,  TCP_ACCEPTSOCKET_CLIENT ));
 	break;
 case FN_UDP_OpenSocket: //Number Function
-	 rc_push_num(rc_uDP_OpenSocket( UDP_OPENSOCKET_PORT ));
+	 rc_push_num(rc_net_udp_openSocket( UDP_OPENSOCKET_PORT ));
 	break;
 case FN_UDP_CloseSocket: //Sub Procedure
-	rc_uDP_CloseSocket( UDP_CLOSESOCKET_SOCKET );
+	rc_net_udp_closeSocket( UDP_CLOSESOCKET_SOCKET );
 	break;
 case FN_UDP_GetData: //Number Function
-	 rc_push_num(rc_uDP_GetData( UDP_GETDATA_SOCKET,  &UDP_GETDATA_SDATA$,  &UDP_GETDATA_HOST$,  &UDP_GETDATA_PORT ));
+	 rc_push_num(rc_net_udp_readStream( UDP_GETDATA_SOCKET,  &UDP_GETDATA_HOST$,  &UDP_GETDATA_PORT,  &UDP_GETDATA_SDATA$ ));
 	break;
 case FN_UDP_Length: //Number Function
-	 rc_push_num(rc_uDP_Length(  ));
+	 rc_push_num(rc_net_udp_len(  ));
 	break;
 case FN_UDP_MaxLength: //Number Function
-	 rc_push_num(rc_uDP_MaxLength(  ));
+	 rc_push_num(rc_net_udp_maxlen(  ));
 	break;
 case FN_UDP_RemoteHost$: //String Function
-	 rc_push_str(rc_uDP_RemoteHost( UDP_REMOTEHOST$_SOCKET ));
+	 rc_push_str(rc_net_udp_getRemoteHost( UDP_REMOTEHOST$_SOCKET ));
 	break;
 case FN_UDP_RemotePort: //Number Function
-	 rc_push_num(rc_uDP_RemotePort( UDP_REMOTEPORT_SOCKET ));
+	 rc_push_num(rc_net_udp_getRemotePort( UDP_REMOTEPORT_SOCKET ));
 	break;
 case FN_UDP_SendData: //Sub Procedure
-	rc_uDP_SendData( UDP_SENDDATA_SOCKET,  UDP_SENDDATA_SDATA$,  UDP_SENDDATA_HOST$,  UDP_SENDDATA_PORT );
+	rc_net_udp_sendData( UDP_SENDDATA_SOCKET,  UDP_SENDDATA_HOST$,  UDP_SENDDATA_PORT,  UDP_SENDDATA_SDATA$ );
 	break;
 case FN_LoadVideo: //Sub Procedure
 	rc_loadVideo( LOADVIDEO_VID$ );
@@ -1111,62 +1108,59 @@ case FN_GetVideoSize: //Sub Procedure
 case FN_VideoExists: //Number Function
 	 rc_push_num(rc_videoExists(  ));
 	break;
-case FN_SetVideoAlpha: //Sub Procedure
-	rc_setVideoAlpha( SETVIDEOALPHA_A );
-	break;
 case FN_SetVideoVolume: //Sub Procedure
 	rc_setVideoVolume( SETVIDEOVOLUME_VOL );
 	break;
 case FN_GetVideoVolume: //Number Function
-	 rc_push_num(rc_getVideoVolume( GETVIDEOVOLUME_VOL ));
+	 rc_push_num(rc_getVideoVolume(  ));
 	break;
 case FN_System: //Number Function
-	 rc_push_num(rc_system( SYSTEM_CMD$ ));
+	 rc_push_num(rc_intern_system( SYSTEM_CMD$ ));
 	break;
 case FN_OS$: //String Function
-	 rc_push_str(rc_oS(  ));
+	 rc_push_str(rc_intern_OS(  ));
 	break;
 case FN_Command$: //String Function
-	 rc_push_str(rc_command( COMMAND$_ARG ));
+	 rc_push_str(rc_intern_command( COMMAND$_ARG ));
 	break;
 case FN_NumCommands: //Number Function
-	 rc_push_num(rc_numCommands(  ));
+	 rc_push_num(rc_intern_numCommands(  ));
 	break;
 case FN_Env$: //String Function
-	 rc_push_str(rc_env( ENV$_V$ ));
+	 rc_push_str(rc_intern_env( ENV$_V$ ));
 	break;
 case FN_SetEnv: //Sub Procedure
-	rc_setEnv( SETENV_VAR$,  SETENV_VALUE$ );
+	rc_intern_setEnv( SETENV_VAR$,  SETENV_VALUE$ );
 	break;
 case FN_PrefPath$: //String Function
-	 rc_push_str(rc_prefPath( PREFPATH$_ORG_NAME$,  PREFPATH$_APP_NAME$ ));
+	 rc_push_str(rc_intern_prefPath( PREFPATH$_ORG_NAME$,  PREFPATH$_APP_NAME$ ));
 	break;
 case FN_Android_GetExternalStoragePath$: //String Function
-	 rc_push_str(rc_android_GetExternalStoragePath(  ));
+	 rc_push_str(rc_intern_android_getExternalStoragePath(  ));
 	break;
 case FN_Android_GetExternalStorageState: //Number Function
-	 rc_push_num(rc_android_GetExternalStorageState(  ));
+	 rc_push_num(rc_intern_android_getExternalStorageState(  ));
 	break;
 case FN_Android_GetInternalStoragePath$: //String Function
-	 rc_push_str(rc_android_GetInternalStoragePath(  ));
+	 rc_push_str(rc_intern_android_getInternalStoragePath(  ));
 	break;
 case FN_Android_JNI_Message$: //String Function
-	 rc_push_str(rc_android_JNI_Message( ANDROID_JNI_MESSAGE$_ARG$ ));
+	 rc_push_str(rc_intern_android_jni_message( ANDROID_JNI_MESSAGE$_ARG$ ));
 	break;
 case FN_Runtime_Utility_Message$: //String Function
-	 rc_push_str(rc_runtime_Utility_Message( RUNTIME_UTILITY_MESSAGE$_ARG$ ));
+	 rc_push_str(rc_intern_runtime_utility( RUNTIME_UTILITY_MESSAGE$_ARG$ ));
 	break;
 case FN_GetDesktopDisplayMode: //Sub Procedure
 	rc_getDesktopDisplayMode( GETDESKTOPDISPLAYMODE_INDEX,  &GETDESKTOPDISPLAYMODE_W,  &GETDESKTOPDISPLAYMODE_H,  &GETDESKTOPDISPLAYMODE_FREQ );
 	break;
 case FN_GetPowerInfo: //Sub Procedure
-	rc_getPowerInfo( &GETPOWERINFO_STATUS,  &GETPOWERINFO_SECS,  &GETPOWERINFO_PCT );
+	rc_intern_getPowerInfo( &GETPOWERINFO_STATUS,  &GETPOWERINFO_SECS,  &GETPOWERINFO_PCT );
 	break;
 case FN_EvalJS$: //String Function
-	 rc_push_str(rc_evalJS( EVALJS$_JS_CODE$ ));
+	 rc_push_str(rc_intern_evalJS( EVALJS$_JS_CODE$ ));
 	break;
 case FN_SystemReturnStdOut$: //String Function
-	 rc_push_str(rc_systemReturnStdOut( SYSTEMRETURNSTDOUT$_CMD$ ));
+	 rc_push_str(rc_intern_sysReturnOutput( SYSTEMRETURNSTDOUT$_CMD$ ));
 	break;
 case FN_OpenURL: //Number Function
 	 rc_push_num(rc_openURL( OPENURL_URL$ ));
@@ -1181,6 +1175,9 @@ case FN_Runtime$: //String Function
 case FN_NumCPUs: //Number Function
 	 rc_push_num(rc_numCPUs(  ));
 	break;
+case FN_SystemRam: //Number Function
+	 rc_push_num(rc_intern_systemRam(  ));
+	break;
 case FN_DimMatrix: //Number Function
 	 rc_push_num(rc_dimMatrix( DIMMATRIX_M_ROWS,  DIMMATRIX_M_COLS ));
 	break;
@@ -1191,7 +1188,7 @@ case FN_AddMatrix: //Number Function
 	 rc_push_num(rc_addMatrix( ADDMATRIX_MA,  ADDMATRIX_MB,  ADDMATRIX_MC ));
 	break;
 case FN_AugmentMatrix: //Number Function
-	 rc_push_num(rc_augmentMatrix ( AUGMENTMATRIX _MA,  AUGMENTMATRIX _MB,  AUGMENTMATRIX _MC ));
+	 rc_push_num(rc_augmentMatrix( AUGMENTMATRIX_MA,  AUGMENTMATRIX_MB,  AUGMENTMATRIX_MC ));
 	break;
 case FN_CopyMatrix: //Sub Procedure
 	rc_copyMatrix( COPYMATRIX_MA,  COPYMATRIX_MB );
@@ -1203,7 +1200,7 @@ case FN_InsertMatrixRows: //Number Function
 	 rc_push_num(rc_insertMatrixRows( INSERTMATRIXROWS_MA,  INSERTMATRIXROWS_R,  INSERTMATRIXROWS_NUM_ROWS ));
 	break;
 case FN_MultiplyMatrix: //Number Function
-	 rc_push_num(rc_multiplyMatrix ( MULTIPLYMATRIX _MA,  MULTIPLYMATRIX _MB,  MULTIPLYMATRIX _MC ));
+	 rc_push_num(rc_multiplyMatrix( MULTIPLYMATRIX_MA,  MULTIPLYMATRIX_MB,  MULTIPLYMATRIX_MC ));
 	break;
 case FN_CubeMatrix: //Number Function
 	 rc_push_num(rc_cubeMatrix( CUBEMATRIX_MA,  CUBEMATRIX_MB ));
@@ -1218,7 +1215,7 @@ case FN_ClearMatrix: //Sub Procedure
 	rc_clearMatrix( CLEARMATRIX_MA );
 	break;
 case FN_ClearMatrixColumns: //Number Function
-	 rc_push_num(rc_clearMatrixColumns ( CLEARMATRIXCOLUMNS _MA,  CLEARMATRIXCOLUMNS _C,  CLEARMATRIXCOLUMNS _NUM_COLS ));
+	 rc_push_num(rc_clearMatrixColumns( CLEARMATRIXCOLUMNS_MA,  CLEARMATRIXCOLUMNS_C,  CLEARMATRIXCOLUMNS_NUM_COLS ));
 	break;
 case FN_ClearMatrixRows: //Number Function
 	 rc_push_num(rc_clearMatrixRows( CLEARMATRIXROWS_MA,  CLEARMATRIXROWS_R,  CLEARMATRIXROWS_NUM_ROWS ));
@@ -1236,10 +1233,10 @@ case FN_CopyMatrixColumns: //Number Function
 	 rc_push_num(rc_copyMatrixColumns( COPYMATRIXCOLUMNS_MA,  COPYMATRIXCOLUMNS_MB,  COPYMATRIXCOLUMNS_C,  COPYMATRIXCOLUMNS_NUM_COLS ));
 	break;
 case FN_CopyMatrixRows: //Number Function
-	 rc_push_num(rc_copyMatrixRows ( COPYMATRIXROWS _MA,  COPYMATRIXROWS _MB,  COPYMATRIXROWS _R,  COPYMATRIXROWS _NUM_ROWS ));
+	 rc_push_num(rc_copyMatrixRows( COPYMATRIXROWS_MA,  COPYMATRIXROWS_MB,  COPYMATRIXROWS_R,  COPYMATRIXROWS_NUM_ROWS ));
 	break;
-case FN_IdentityMatrix: //Sub Procedure
-	rc_identityMatrix( IDENTITYMATRIX_MA,  IDENTITYMATRIX_N );
+case FN_SetIdentityMatrix: //Sub Procedure
+	rc_setIdentityMatrix( SETIDENTITYMATRIX_MA,  SETIDENTITYMATRIX_N );
 	break;
 case FN_SolveMatrix: //Number Function
 	 rc_push_num(rc_solveMatrix( SOLVEMATRIX_MA,  SOLVEMATRIX_MB,  SOLVEMATRIX_MC ));
@@ -1259,8 +1256,8 @@ case FN_InvertMatrix: //Number Function
 case FN_MatrixFromBuffer: //Sub Procedure
 	rc_matrixFromBuffer( MATRIXFROMBUFFER_MA,  MATRIXFROMBUFFER_R,  MATRIXFROMBUFFER_C,  &MATRIXFROMBUFFER_BUFFER );
 	break;
-case FN_GetMatrix: //Sub Procedure
-	rc_getMatrix( &GETMATRIX_BUFFER,  GETMATRIX_MA );
+case FN_BufferFromMatrix: //Sub Procedure
+	rc_bufferFromMatrix( &BUFFERFROMMATRIX_BUFFER,  BUFFERFROMMATRIX_MA );
 	break;
 case FN_RandomizeMatrix: //Sub Procedure
 	rc_randomizeMatrix( RANDOMIZEMATRIX_MA,  RANDOMIZEMATRIX_VMIN,  RANDOMIZEMATRIX_VMAX );
@@ -1272,7 +1269,7 @@ case FN_SetMatrixValue: //Sub Procedure
 	rc_setMatrixValue( SETMATRIXVALUE_MA,  SETMATRIXVALUE_R,  SETMATRIXVALUE_C,  SETMATRIXVALUE_V );
 	break;
 case FN_ScalarMatrix: //Sub Procedure
-	rc_scalarMatrix ( SCALARMATRIX _MA,  SCALARMATRIX _MB,  SCALARMATRIX _S_VALUE );
+	rc_scalarMatrix( SCALARMATRIX_MA,  SCALARMATRIX_MB,  SCALARMATRIX_S_VALUE );
 	break;
 case FN_ScalarMatrixColumns: //Number Function
 	 rc_push_num(rc_scalarMatrixColumns( SCALARMATRIXCOLUMNS_MA,  SCALARMATRIXCOLUMNS_MB,  SCALARMATRIXCOLUMNS_C,  SCALARMATRIXCOLUMNS_NUM_COLS,  SCALARMATRIXCOLUMNS_S_VALUE ));
@@ -1284,10 +1281,10 @@ case FN_SquareMatrix: //Number Function
 	 rc_push_num(rc_squareMatrix( SQUAREMATRIX_MA,  SQUAREMATRIX_MB ));
 	break;
 case FN_CofactorMatrix: //Sub Procedure
-	rc_cofactorMatrix( COFACTORMATRIX_MA,  COFACTORMATRIX_R,  COFACTORMATRIX_C );
+	rc_subMatrix( COFACTORMATRIX_MA,  COFACTORMATRIX_R,  COFACTORMATRIX_C );
 	break;
 case FN_SubtractMatrix: //Number Function
-	 rc_push_num(rc_subtractMatrix ( SUBTRACTMATRIX _MA,  SUBTRACTMATRIX _MB,  SUBTRACTMATRIX _MC ));
+	 rc_push_num(rc_subtractMatrix( SUBTRACTMATRIX_MA,  SUBTRACTMATRIX_MB,  SUBTRACTMATRIX_MC ));
 	break;
 case FN_SwapMatrix: //Sub Procedure
 	rc_swapMatrix( SWAPMATRIX_MA,  SWAPMATRIX_MB );
@@ -1343,8 +1340,8 @@ case FN_GetMatrixRotation: //Sub Procedure
 case FN_GetMatrixScale: //Sub Procedure
 	rc_getMatrixScale( GETMATRIXSCALE_MA,  &GETMATRIXSCALE_X,  &GETMATRIXSCALE_Y,  &GETMATRIXSCALE_Z );
 	break;
-case FN_ClipboardText$: //String Function
-	 rc_push_str(rc_clipboardText(  ));
+case FN_GetClipboardText$: //String Function
+	 rc_push_str(rc_getClipboardText(  ));
 	break;
 case FN_SetClipboardText: //Sub Procedure
 	rc_setClipboardText( SETCLIPBOARDTEXT_TXT$ );
@@ -1500,16 +1497,16 @@ case FN_setActorDamping: //Sub Procedure
 	rc_setActorDamping( SETACTORDAMPING_ACTOR,  SETACTORDAMPING_LIN_DAMPING,  SETACTORDAMPING_ANG_DAMPING );
 	break;
 case FN_getActorLinearDamping: //Number Function
-	 rc_push_num(rc_ getActorLinearDamping(  GETACTORLINEARDAMPING_ACTOR ));
+	 rc_push_num(rc_getActorLinearDamping( GETACTORLINEARDAMPING_ACTOR ));
 	break;
 case FN_getActorAngularDamping: //Number Function
-	 rc_push_num(rc_ getActorAngularDamping(  GETACTORANGULARDAMPING_ACTOR ));
+	 rc_push_num(rc_getActorAngularDamping(  GETACTORANGULARDAMPING_ACTOR ));
 	break;
 case FN_getActorLinearSleepThreshold: //Number Function
-	 rc_push_num(rc_ getActorLinearSleepThreshold(  GETACTORLINEARSLEEPTHRESHOLD_ACTOR ));
+	 rc_push_num(rc_getActorLinearSleepThreshold(  GETACTORLINEARSLEEPTHRESHOLD_ACTOR ));
 	break;
 case FN_getActorAngularSleepThreshold: //Number Function
-	 rc_push_num(rc_ getActorAngularSleepThreshold(  GETACTORANGULARSLEEPTHRESHOLD_ACTOR ));
+	 rc_push_num(rc_getActorAngularSleepThreshold(  GETACTORANGULARSLEEPTHRESHOLD_ACTOR ));
 	break;
 case FN_applyActorDamping: //Sub Procedure
 	rc_applyActorDamping( APPLYACTORDAMPING_ACTOR,  APPLYACTORDAMPING_TIMESTEP );
@@ -1524,10 +1521,10 @@ case FN_setActorLinearFactor: //Sub Procedure
 	rc_setActorLinearFactor( SETACTORLINEARFACTOR_ACTOR,  SETACTORLINEARFACTOR_X,  SETACTORLINEARFACTOR_Y,  SETACTORLINEARFACTOR_Z );
 	break;
 case FN_getActorInverseMass: //Number Function
-	 rc_push_num(rc_ getActorInverseMass(  GETACTORINVERSEMASS_ACTOR ));
+	 rc_push_num(rc_getActorInverseMass(  GETACTORINVERSEMASS_ACTOR ));
 	break;
 case FN_integrateActorVelocities: //Sub Procedure
-	rc_integrateActorVelocities( INTEGRATEACTORVELOCITIES_ACTOR,  INTEGRATEACTORVELOCITIES_STEP );
+	rc_integrateActorVelocities( INTEGRATEACTORVELOCITIES_ACTOR,  INTEGRATEACTORVELOCITIES_V_STEP );
 	break;
 case FN_applyActorCentralForceLocal: //Sub Procedure
 	rc_applyActorCentralForceLocal( APPLYACTORCENTRALFORCELOCAL_ACTOR,  APPLYACTORCENTRALFORCELOCAL_X,  APPLYACTORCENTRALFORCELOCAL_Y,  APPLYACTORCENTRALFORCELOCAL_Z );
@@ -1623,10 +1620,10 @@ case FN_getActorAABB: //Sub Procedure
 	rc_getActorAABB( GETACTORAABB_ACTOR,  &GETACTORAABB_MIN_X,  &GETACTORAABB_MIN_Y,  &GETACTORAABB_MIN_Z,  &GETACTORAABB_MAX_X,  &GETACTORAABB_MAX_Y,  &GETACTORAABB_MAX_Z );
 	break;
 case FN_computeActorImpulseDenominator: //Number Function
-	 rc_push_num(rc_ computeActorImpulseDenominator(  COMPUTEACTORIMPULSEDENOMINATOR_ACTOR,   COMPUTEACTORIMPULSEDENOMINATOR_POS_X,   COMPUTEACTORIMPULSEDENOMINATOR_POS_Y,   COMPUTEACTORIMPULSEDENOMINATOR_POS_Z,   COMPUTEACTORIMPULSEDENOMINATOR_NORMAL_X,   COMPUTEACTORIMPULSEDENOMINATOR_NORMAL_Y,   COMPUTEACTORIMPULSEDENOMINATOR_NORMAL_Z ));
+	 rc_push_num(rc_computeActorImpulseDenominator(  COMPUTEACTORIMPULSEDENOMINATOR_ACTOR,   COMPUTEACTORIMPULSEDENOMINATOR_POS_X,   COMPUTEACTORIMPULSEDENOMINATOR_POS_Y,   COMPUTEACTORIMPULSEDENOMINATOR_POS_Z,   COMPUTEACTORIMPULSEDENOMINATOR_NORMAL_X,   COMPUTEACTORIMPULSEDENOMINATOR_NORMAL_Y,   COMPUTEACTORIMPULSEDENOMINATOR_NORMAL_Z ));
 	break;
 case FN_computeActorAngularImpulseDenominator: //Number Function
-	 rc_push_num(rc_ computeActorAngularImpulseDenominator(  COMPUTEACTORANGULARIMPULSEDENOMINATOR_ACTOR,   COMPUTEACTORANGULARIMPULSEDENOMINATOR_X,   COMPUTEACTORANGULARIMPULSEDENOMINATOR_Y,   COMPUTEACTORANGULARIMPULSEDENOMINATOR_Z ));
+	 rc_push_num(rc_computeActorAngularImpulseDenominator(  COMPUTEACTORANGULARIMPULSEDENOMINATOR_ACTOR,   COMPUTEACTORANGULARIMPULSEDENOMINATOR_X,   COMPUTEACTORANGULARIMPULSEDENOMINATOR_Y,   COMPUTEACTORANGULARIMPULSEDENOMINATOR_Z ));
 	break;
 case FN_setActorAngularFactor: //Sub Procedure
 	rc_setActorAngularFactor( SETACTORANGULARFACTOR_ACTOR,  SETACTORANGULARFACTOR_X,  SETACTORANGULARFACTOR_Y,  SETACTORANGULARFACTOR_Z );
@@ -1644,328 +1641,328 @@ case FN_getActorLocalInertia: //Sub Procedure
 	rc_getActorLocalInertia( GETACTORLOCALINERTIA_ACTOR,  &GETACTORLOCALINERTIA_X,  &GETACTORLOCALINERTIA_Y,  &GETACTORLOCALINERTIA_Z );
 	break;
 case FN_createPointConstraint: //Number Function
-	 rc_push_num(rc_ createPointConstraint(  CREATEPOINTCONSTRAINT_ACTORA,   CREATEPOINTCONSTRAINT_PXA,   CREATEPOINTCONSTRAINT_PYA,   CREATEPOINTCONSTRAINT_PZA ));
+	 rc_push_num(rc_createPointConstraint(  CREATEPOINTCONSTRAINT_ACTORA,   CREATEPOINTCONSTRAINT_PXA,   CREATEPOINTCONSTRAINT_PYA,   CREATEPOINTCONSTRAINT_PZA ));
 	break;
 case FN_createPointConstraintEx: //Number Function
-	 rc_push_num(rc_ createPointConstraintEx(  CREATEPOINTCONSTRAINTEX_ACTORA,   CREATEPOINTCONSTRAINTEX_ACTORB,   CREATEPOINTCONSTRAINTEX_PXA,   CREATEPOINTCONSTRAINTEX_PYA,   CREATEPOINTCONSTRAINTEX_PZA,   CREATEPOINTCONSTRAINTEX_PXB,   CREATEPOINTCONSTRAINTEX_PYB,   CREATEPOINTCONSTRAINTEX_PZB ));
+	 rc_push_num(rc_createPointConstraintEx(  CREATEPOINTCONSTRAINTEX_ACTORA,   CREATEPOINTCONSTRAINTEX_ACTORB,   CREATEPOINTCONSTRAINTEX_PXA,   CREATEPOINTCONSTRAINTEX_PYA,   CREATEPOINTCONSTRAINTEX_PZA,   CREATEPOINTCONSTRAINTEX_PXB,   CREATEPOINTCONSTRAINTEX_PYB,   CREATEPOINTCONSTRAINTEX_PZB ));
 	break;
 case FN_setConstraintPivotA: //Sub Procedure
-	rc_ setConstraintPivotA(  SETCONSTRAINTPIVOTA_CONSTRAINT_ID,   SETCONSTRAINTPIVOTA_X,   SETCONSTRAINTPIVOTA_Y,   SETCONSTRAINTPIVOTA_Z );
+	rc_setConstraintPivotA(  SETCONSTRAINTPIVOTA_CONSTRAINT_ID,   SETCONSTRAINTPIVOTA_X,   SETCONSTRAINTPIVOTA_Y,   SETCONSTRAINTPIVOTA_Z );
 	break;
 case FN_setConstraintPivotB: //Sub Procedure
-	rc_ setConstraintPivotB(  SETCONSTRAINTPIVOTB_CONSTRAINT_ID,   SETCONSTRAINTPIVOTB_X,   SETCONSTRAINTPIVOTB_Y,   SETCONSTRAINTPIVOTB_Z );
+	rc_setConstraintPivotB(  SETCONSTRAINTPIVOTB_CONSTRAINT_ID,   SETCONSTRAINTPIVOTB_X,   SETCONSTRAINTPIVOTB_Y,   SETCONSTRAINTPIVOTB_Z );
 	break;
 case FN_createHingeConstraint: //Number Function
-	 rc_push_num(rc_ createHingeConstraint(  CREATEHINGECONSTRAINT_ACTORA,   CREATEHINGECONSTRAINT_PXA,   CREATEHINGECONSTRAINT_PYA,   CREATEHINGECONSTRAINT_PZA,   CREATEHINGECONSTRAINT_AXA,   CREATEHINGECONSTRAINT_AYA,   CREATEHINGECONSTRAINT_AZA ));
+	 rc_push_num(rc_createHingeConstraint(  CREATEHINGECONSTRAINT_ACTORA,   CREATEHINGECONSTRAINT_PXA,   CREATEHINGECONSTRAINT_PYA,   CREATEHINGECONSTRAINT_PZA,   CREATEHINGECONSTRAINT_AXA,   CREATEHINGECONSTRAINT_AYA,   CREATEHINGECONSTRAINT_AZA ));
 	break;
 case FN_createHingeConstraintEx: //Number Function
-	 rc_push_num(rc_ createHingeConstraintEx(  CREATEHINGECONSTRAINTEX_ACTORA,   CREATEHINGECONSTRAINTEX_ACTORB,   CREATEHINGECONSTRAINTEX_PXA,   CREATEHINGECONSTRAINTEX_PYA,   CREATEHINGECONSTRAINTEX_PZA,   CREATEHINGECONSTRAINTEX_PXB,   CREATEHINGECONSTRAINTEX_PYB,   CREATEHINGECONSTRAINTEX_PZB,   CREATEHINGECONSTRAINTEX_AXA,   CREATEHINGECONSTRAINTEX_AYA,   CREATEHINGECONSTRAINTEX_AZA,   CREATEHINGECONSTRAINTEX_AXB,   CREATEHINGECONSTRAINTEX_AYB,   CREATEHINGECONSTRAINTEX_AZB ));
+	 rc_push_num(rc_createHingeConstraintEx(  CREATEHINGECONSTRAINTEX_ACTORA,   CREATEHINGECONSTRAINTEX_ACTORB,   CREATEHINGECONSTRAINTEX_PXA,   CREATEHINGECONSTRAINTEX_PYA,   CREATEHINGECONSTRAINTEX_PZA,   CREATEHINGECONSTRAINTEX_PXB,   CREATEHINGECONSTRAINTEX_PYB,   CREATEHINGECONSTRAINTEX_PZB,   CREATEHINGECONSTRAINTEX_AXA,   CREATEHINGECONSTRAINTEX_AYA,   CREATEHINGECONSTRAINTEX_AZA,   CREATEHINGECONSTRAINTEX_AXB,   CREATEHINGECONSTRAINTEX_AYB,   CREATEHINGECONSTRAINTEX_AZB ));
 	break;
 case FN_createSlideConstraint: //Number Function
-	 rc_push_num(rc_ createSlideConstraint(  CREATESLIDECONSTRAINT_ACTORA,   CREATESLIDECONSTRAINT_FRAMEINB_MATRIX,   CREATESLIDECONSTRAINT_USELINEARREFERENCEFRAMEA ));
+	 rc_push_num(rc_createSlideConstraint(  CREATESLIDECONSTRAINT_ACTORA,   CREATESLIDECONSTRAINT_FRAMEINB_MATRIX,   CREATESLIDECONSTRAINT_USELINEARREFERENCEFRAMEA ));
 	break;
 case FN_createSlideConstraintEx: //Number Function
-	 rc_push_num(rc_ createSlideConstraintEx(  CREATESLIDECONSTRAINTEX_ACTORA,   CREATESLIDECONSTRAINTEX_ACTORB,   CREATESLIDECONSTRAINTEX_FRAMEINA_MATRIX,   CREATESLIDECONSTRAINTEX_FRAMEINB_MATRIX,   CREATESLIDECONSTRAINTEX_USELINEARREFERENCEFRAMEA ));
+	 rc_push_num(rc_createSlideConstraintEx(  CREATESLIDECONSTRAINTEX_ACTORA,   CREATESLIDECONSTRAINTEX_ACTORB,   CREATESLIDECONSTRAINTEX_FRAMEINA_MATRIX,   CREATESLIDECONSTRAINTEX_FRAMEINB_MATRIX,   CREATESLIDECONSTRAINTEX_USELINEARREFERENCEFRAMEA ));
 	break;
 case FN_createConeConstraint: //Number Function
-	 rc_push_num(rc_ createConeConstraint(  CREATECONECONSTRAINT_ACTORA,   CREATECONECONSTRAINT_RBAFRAME_MATRIX ));
+	 rc_push_num(rc_createConeConstraint(  CREATECONECONSTRAINT_ACTORA,   CREATECONECONSTRAINT_RBAFRAME_MATRIX ));
 	break;
 case FN_createConeConstraintEx: //Number Function
-	 rc_push_num(rc_ createConeConstraintEx(  CREATECONECONSTRAINTEX_ACTORA,   CREATECONECONSTRAINTEX_ACTORB,   CREATECONECONSTRAINTEX_RBAFRAME_MATRIX,   CREATECONECONSTRAINTEX_RBBFRAME_MATRIX ));
+	 rc_push_num(rc_createConeConstraintEx(  CREATECONECONSTRAINTEX_ACTORA,   CREATECONECONSTRAINTEX_ACTORB,   CREATECONECONSTRAINTEX_RBAFRAME_MATRIX,   CREATECONECONSTRAINTEX_RBBFRAME_MATRIX ));
 	break;
 case FN_deleteConstraint: //Sub Procedure
-	rc_ deleteConstraint(  DELETECONSTRAINT_CONSTRAINT_ID );
+	rc_deleteConstraint(  DELETECONSTRAINT_CONSTRAINT_ID );
 	break;
 case FN_getConstraintFrameOffsetA: //Sub Procedure
-	rc_ getConstraintFrameOffsetA(  GETCONSTRAINTFRAMEOFFSETA_CONSTRAINT_ID,  & GETCONSTRAINTFRAMEOFFSETA_X,  & GETCONSTRAINTFRAMEOFFSETA_Y,  & GETCONSTRAINTFRAMEOFFSETA_Z,  & GETCONSTRAINTFRAMEOFFSETA_RX,  & GETCONSTRAINTFRAMEOFFSETA_RY,  & GETCONSTRAINTFRAMEOFFSETA_RZ );
+	rc_getConstraintFrameOffsetA(  GETCONSTRAINTFRAMEOFFSETA_CONSTRAINT_ID,  & GETCONSTRAINTFRAMEOFFSETA_X,  & GETCONSTRAINTFRAMEOFFSETA_Y,  & GETCONSTRAINTFRAMEOFFSETA_Z,  & GETCONSTRAINTFRAMEOFFSETA_RX,  & GETCONSTRAINTFRAMEOFFSETA_RY,  & GETCONSTRAINTFRAMEOFFSETA_RZ );
 	break;
 case FN_getConstraintFrameOffsetB: //Sub Procedure
-	rc_ getConstraintFrameOffsetB(  GETCONSTRAINTFRAMEOFFSETB_CONSTRAINT_ID,  & GETCONSTRAINTFRAMEOFFSETB_X,  & GETCONSTRAINTFRAMEOFFSETB_Y,  & GETCONSTRAINTFRAMEOFFSETB_Z,  & GETCONSTRAINTFRAMEOFFSETB_RX,  & GETCONSTRAINTFRAMEOFFSETB_RY,  & GETCONSTRAINTFRAMEOFFSETB_RZ );
+	rc_getConstraintFrameOffsetB(  GETCONSTRAINTFRAMEOFFSETB_CONSTRAINT_ID,  & GETCONSTRAINTFRAMEOFFSETB_X,  & GETCONSTRAINTFRAMEOFFSETB_Y,  & GETCONSTRAINTFRAMEOFFSETB_Z,  & GETCONSTRAINTFRAMEOFFSETB_RX,  & GETCONSTRAINTFRAMEOFFSETB_RY,  & GETCONSTRAINTFRAMEOFFSETB_RZ );
 	break;
 case FN_useConstraintFrameOffset: //Sub Procedure
-	rc_ useConstraintFrameOffset(  USECONSTRAINTFRAMEOFFSET_CONSTRAINT_ID,   USECONSTRAINTFRAMEOFFSET_FLAG );
+	rc_useConstraintFrameOffset(  USECONSTRAINTFRAMEOFFSET_CONSTRAINT_ID,   USECONSTRAINTFRAMEOFFSET_FLAG );
 	break;
 case FN_getHingeAngle: //Number Function
-	 rc_push_num(rc_ getHingeAngle(  GETHINGEANGLE_CONSTRAINT_ID ));
+	 rc_push_num(rc_getHingeAngle(  GETHINGEANGLE_CONSTRAINT_ID ));
 	break;
 case FN_getHingeAngleEx: //Number Function
-	 rc_push_num(rc_ getHingeAngleEx(  GETHINGEANGLEEX_CONSTRAINT_ID,   GETHINGEANGLEEX_T_MATRIXA,   GETHINGEANGLEEX_T_MATRIXB ));
+	 rc_push_num(rc_getHingeAngleEx(  GETHINGEANGLEEX_CONSTRAINT_ID,   GETHINGEANGLEEX_T_MATRIXA,   GETHINGEANGLEEX_T_MATRIXB ));
 	break;
 case FN_getConstraintBreakingImpulseThreshold: //Number Function
-	 rc_push_num(rc_ getConstraintBreakingImpulseThreshold(  GETCONSTRAINTBREAKINGIMPULSETHRESHOLD_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintBreakingImpulseThreshold(  GETCONSTRAINTBREAKINGIMPULSETHRESHOLD_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintAFrame: //Number Function
-	 rc_push_num(rc_ getConstraintAFrame(  GETCONSTRAINTAFRAME_CONSTRAINT_ID,   GETCONSTRAINTAFRAME_MA ));
+	 rc_push_num(rc_getConstraintAFrame(  GETCONSTRAINTAFRAME_CONSTRAINT_ID,   GETCONSTRAINTAFRAME_MA ));
 	break;
 case FN_getConstraintBFrame: //Number Function
-	 rc_push_num(rc_ getConstraintBFrame(  GETCONSTRAINTBFRAME_CONSTRAINT_ID,   GETCONSTRAINTBFRAME_MA ));
+	 rc_push_num(rc_getConstraintBFrame(  GETCONSTRAINTBFRAME_CONSTRAINT_ID,   GETCONSTRAINTBFRAME_MA ));
 	break;
 case FN_setConstraintAxis: //Sub Procedure
-	rc_ setConstraintAxis(  SETCONSTRAINTAXIS_CONSTRAINT_ID,   SETCONSTRAINTAXIS_X,   SETCONSTRAINTAXIS_Y,   SETCONSTRAINTAXIS_Z );
+	rc_setConstraintAxis(  SETCONSTRAINTAXIS_CONSTRAINT_ID,   SETCONSTRAINTAXIS_X,   SETCONSTRAINTAXIS_Y,   SETCONSTRAINTAXIS_Z );
 	break;
 case FN_setConstraintBreakingImpulseThreshold: //Sub Procedure
-	rc_ setConstraintBreakingImpulseThreshold(  SETCONSTRAINTBREAKINGIMPULSETHRESHOLD_CONSTRAINT_ID,   SETCONSTRAINTBREAKINGIMPULSETHRESHOLD_THRESHOLD );
+	rc_setConstraintBreakingImpulseThreshold(  SETCONSTRAINTBREAKINGIMPULSETHRESHOLD_CONSTRAINT_ID,   SETCONSTRAINTBREAKINGIMPULSETHRESHOLD_THRESHOLD );
 	break;
 case FN_setConstraintFrames: //Sub Procedure
-	rc_ setConstraintFrames(  SETCONSTRAINTFRAMES_CONSTRAINT_ID,   SETCONSTRAINTFRAMES_FRAMEA_MATRIX,   SETCONSTRAINTFRAMES_FRAMEB_MATRIX );
+	rc_setConstraintFrames(  SETCONSTRAINTFRAMES_CONSTRAINT_ID,   SETCONSTRAINTFRAMES_FRAMEA_MATRIX,   SETCONSTRAINTFRAMES_FRAMEB_MATRIX );
 	break;
 case FN_setHingeLimit: //Sub Procedure
-	rc_ setHingeLimit(  SETHINGELIMIT_CONSTRAINT_ID,   SETHINGELIMIT_LOW,   SETHINGELIMIT_HIGH,   SETHINGELIMIT_SOFTNESS,   SETHINGELIMIT_BIAS_FACTOR,   SETHINGELIMIT_RELAXATION_FACTOR );
+	rc_setHingeLimit(  SETHINGELIMIT_CONSTRAINT_ID,   SETHINGELIMIT_LOW,   SETHINGELIMIT_HIGH,   SETHINGELIMIT_SOFTNESS,   SETHINGELIMIT_BIAS_FACTOR,   SETHINGELIMIT_RELAXATION_FACTOR );
 	break;
 case FN_setConeLimit: //Sub Procedure
-	rc_ setConeLimit(  SETCONELIMIT_CONSTRAINT_ID,   SETCONELIMIT_SWINGSPAN1,   SETCONELIMIT_SWINGSPAN2,   SETCONELIMIT_TWISTSPAN,   SETCONELIMIT_SOFTNESS,   SETCONELIMIT_BIAS_FACTOR,   SETCONELIMIT_RELAXATION_FACTOR );
+	rc_setConeLimit(  SETCONELIMIT_CONSTRAINT_ID,   SETCONELIMIT_SWINGSPAN1,   SETCONELIMIT_SWINGSPAN2,   SETCONELIMIT_TWISTSPAN,   SETCONELIMIT_SOFTNESS,   SETCONELIMIT_BIAS_FACTOR,   SETCONELIMIT_RELAXATION_FACTOR );
 	break;
 case FN_getConstraintLimitBiasFactor: //Number Function
-	 rc_push_num(rc_ getConstraintLimitBiasFactor(  GETCONSTRAINTLIMITBIASFACTOR_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintLimitBiasFactor(  GETCONSTRAINTLIMITBIASFACTOR_CONSTRAINT_ID ));
 	break;
 case FN_getLimitRelaxationFactor: //Number Function
-	 rc_push_num(rc_ getLimitRelaxationFactor(  GETLIMITRELAXATIONFACTOR_CONSTRAINT_ID ));
+	 rc_push_num(rc_getLimitRelaxationFactor(  GETLIMITRELAXATIONFACTOR_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintLimitSign: //Number Function
-	 rc_push_num(rc_ getConstraintLimitSign(  GETCONSTRAINTLIMITSIGN_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintLimitSign(  GETCONSTRAINTLIMITSIGN_CONSTRAINT_ID ));
 	break;
 case FN_getHingeSolveLimit: //Number Function
-	 rc_push_num(rc_ getHingeSolveLimit(  GETHINGESOLVELIMIT_CONSTRAINT_ID ));
+	 rc_push_num(rc_getHingeSolveLimit(  GETHINGESOLVELIMIT_CONSTRAINT_ID ));
 	break;
 case FN_useHingeReferenceFrameA: //Sub Procedure
-	rc_ useHingeReferenceFrameA(  USEHINGEREFERENCEFRAMEA_CONSTRAINT_ID,   USEHINGEREFERENCEFRAMEA_FLAG );
+	rc_useHingeReferenceFrameA(  USEHINGEREFERENCEFRAMEA_CONSTRAINT_ID,   USEHINGEREFERENCEFRAMEA_FLAG );
 	break;
 case FN_getConstraintAppliedImpulse: //Number Function
-	 rc_push_num(rc_ getConstraintAppliedImpulse(  GETCONSTRAINTAPPLIEDIMPULSE_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintAppliedImpulse(  GETCONSTRAINTAPPLIEDIMPULSE_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintFixedActor: //Number Function
-	 rc_push_num(rc_ getConstraintFixedActor(  GETCONSTRAINTFIXEDACTOR_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintFixedActor(  GETCONSTRAINTFIXEDACTOR_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintPivotA: //Sub Procedure
-	rc_ getConstraintPivotA(  GETCONSTRAINTPIVOTA_CONSTRAINT_ID,  & GETCONSTRAINTPIVOTA_X,  & GETCONSTRAINTPIVOTA_Y,  & GETCONSTRAINTPIVOTA_Z );
+	rc_getConstraintPivotA(  GETCONSTRAINTPIVOTA_CONSTRAINT_ID,  & GETCONSTRAINTPIVOTA_X,  & GETCONSTRAINTPIVOTA_Y,  & GETCONSTRAINTPIVOTA_Z );
 	break;
 case FN_getConstraintPivotB: //Sub Procedure
-	rc_ getConstraintPivotB(  GETCONSTRAINTPIVOTB_CONSTRAINT_ID,  & GETCONSTRAINTPIVOTB_X,  & GETCONSTRAINTPIVOTB_Y,  & GETCONSTRAINTPIVOTB_Z );
+	rc_getConstraintPivotB(  GETCONSTRAINTPIVOTB_CONSTRAINT_ID,  & GETCONSTRAINTPIVOTB_X,  & GETCONSTRAINTPIVOTB_Y,  & GETCONSTRAINTPIVOTB_Z );
 	break;
 case FN_getConstraintActorA: //Number Function
-	 rc_push_num(rc_ getConstraintActorA(  GETCONSTRAINTACTORA_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintActorA(  GETCONSTRAINTACTORA_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintActorB: //Number Function
-	 rc_push_num(rc_ getConstraintActorB(  GETCONSTRAINTACTORB_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintActorB(  GETCONSTRAINTACTORB_CONSTRAINT_ID ));
 	break;
 case FN_setConstraintSolverIterations: //Sub Procedure
-	rc_ setConstraintSolverIterations(  SETCONSTRAINTSOLVERITERATIONS_CONSTRAINT_ID,   SETCONSTRAINTSOLVERITERATIONS_NUM );
+	rc_setConstraintSolverIterations(  SETCONSTRAINTSOLVERITERATIONS_CONSTRAINT_ID,   SETCONSTRAINTSOLVERITERATIONS_NUM );
 	break;
 case FN_getConstraintBiasFactor: //Number Function
-	 rc_push_num(rc_ getConstraintBiasFactor(  GETCONSTRAINTBIASFACTOR_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintBiasFactor(  GETCONSTRAINTBIASFACTOR_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintDamping: //Number Function
-	 rc_push_num(rc_ getConstraintDamping(  GETCONSTRAINTDAMPING_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintDamping(  GETCONSTRAINTDAMPING_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintFixThresh: //Number Function
-	 rc_push_num(rc_ getConstraintFixThresh(  GETCONSTRAINTFIXTHRESH_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintFixThresh(  GETCONSTRAINTFIXTHRESH_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintLimit: //Number Function
-	 rc_push_num(rc_ getConstraintLimit(  GETCONSTRAINTLIMIT_CONSTRAINT_ID,   GETCONSTRAINTLIMIT_LIMIT_INDEX ));
+	 rc_push_num(rc_getConstraintLimit(  GETCONSTRAINTLIMIT_CONSTRAINT_ID,   GETCONSTRAINTLIMIT_LIMIT_INDEX ));
 	break;
 case FN_getConstraintLimitSoftness: //Number Function
-	 rc_push_num(rc_ getConstraintLimitSoftness(  GETCONSTRAINTLIMITSOFTNESS_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintLimitSoftness(  GETCONSTRAINTLIMITSOFTNESS_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintSolverIterations: //Number Function
-	 rc_push_num(rc_ getConstraintSolverIterations(  GETCONSTRAINTSOLVERITERATIONS_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintSolverIterations(  GETCONSTRAINTSOLVERITERATIONS_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintAnglePoint: //Sub Procedure
-	rc_ getConstraintAnglePoint(  GETCONSTRAINTANGLEPOINT_CONSTRAINT_ID,   GETCONSTRAINTANGLEPOINT_ANGLE,   GETCONSTRAINTANGLEPOINT_C_LEN,  & GETCONSTRAINTANGLEPOINT_X,  & GETCONSTRAINTANGLEPOINT_Y,  & GETCONSTRAINTANGLEPOINT_Z );
+	rc_getConstraintAnglePoint(  GETCONSTRAINTANGLEPOINT_CONSTRAINT_ID,   GETCONSTRAINTANGLEPOINT_ANGLE,   GETCONSTRAINTANGLEPOINT_C_LEN,  & GETCONSTRAINTANGLEPOINT_X,  & GETCONSTRAINTANGLEPOINT_Y,  & GETCONSTRAINTANGLEPOINT_Z );
 	break;
 case FN_getConstraintAngularOnly: //Number Function
-	 rc_push_num(rc_ getConstraintAngularOnly(  GETCONSTRAINTANGULARONLY_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintAngularOnly(  GETCONSTRAINTANGULARONLY_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintSolveSwingLimit: //Number Function
-	 rc_push_num(rc_ getConstraintSolveSwingLimit(  GETCONSTRAINTSOLVESWINGLIMIT_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintSolveSwingLimit(  GETCONSTRAINTSOLVESWINGLIMIT_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintSolveTwistLimit: //Number Function
-	 rc_push_num(rc_ getConstraintSolveTwistLimit(  GETCONSTRAINTSOLVETWISTLIMIT_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintSolveTwistLimit(  GETCONSTRAINTSOLVETWISTLIMIT_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintSolveLimit: //Number Function
-	 rc_push_num(rc_ getConstraintSolveLimit(  GETCONSTRAINTSOLVELIMIT_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintSolveLimit(  GETCONSTRAINTSOLVELIMIT_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintSwingSpan1: //Number Function
-	 rc_push_num(rc_ getConstraintSwingSpan1(  GETCONSTRAINTSWINGSPAN1_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintSwingSpan1(  GETCONSTRAINTSWINGSPAN1_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintSwingSpan2: //Number Function
-	 rc_push_num(rc_ getConstraintSwingSpan2(  GETCONSTRAINTSWINGSPAN2_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintSwingSpan2(  GETCONSTRAINTSWINGSPAN2_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintTwistAngle: //Number Function
-	 rc_push_num(rc_ getConstraintTwistAngle(  GETCONSTRAINTTWISTANGLE_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintTwistAngle(  GETCONSTRAINTTWISTANGLE_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintTwistLimitSign: //Number Function
-	 rc_push_num(rc_ getConstraintTwistLimitSign(  GETCONSTRAINTTWISTLIMITSIGN_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintTwistLimitSign(  GETCONSTRAINTTWISTLIMITSIGN_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintTwistSpan: //Number Function
-	 rc_push_num(rc_ getConstraintTwistSpan(  GETCONSTRAINTTWISTSPAN_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintTwistSpan(  GETCONSTRAINTTWISTSPAN_CONSTRAINT_ID ));
 	break;
 case FN_setConstraintAngularOnly: //Sub Procedure
-	rc_ setConstraintAngularOnly(  SETCONSTRAINTANGULARONLY_CONSTRAINT_ID,   SETCONSTRAINTANGULARONLY_FLAG );
+	rc_setConstraintAngularOnly(  SETCONSTRAINTANGULARONLY_CONSTRAINT_ID,   SETCONSTRAINTANGULARONLY_FLAG );
 	break;
 case FN_setConstraintDamping: //Sub Procedure
-	rc_ setConstraintDamping(  SETCONSTRAINTDAMPING_CONSTRAINT_ID,   SETCONSTRAINTDAMPING_DAMPING );
+	rc_setConstraintDamping(  SETCONSTRAINTDAMPING_CONSTRAINT_ID,   SETCONSTRAINTDAMPING_DAMPING );
 	break;
 case FN_setConstraintFixThresh: //Sub Procedure
-	rc_ setConstraintFixThresh(  SETCONSTRAINTFIXTHRESH_CONSTRAINT_ID,   SETCONSTRAINTFIXTHRESH_FIXTHRESH );
+	rc_setConstraintFixThresh(  SETCONSTRAINTFIXTHRESH_CONSTRAINT_ID,   SETCONSTRAINTFIXTHRESH_FIXTHRESH );
 	break;
 case FN_getConstraintAnchorA: //Sub Procedure
-	rc_ getConstraintAnchorA(  GETCONSTRAINTANCHORA_CONSTRAINT_ID,  & GETCONSTRAINTANCHORA_X,  & GETCONSTRAINTANCHORA_Y,  & GETCONSTRAINTANCHORA_Z );
+	rc_getConstraintAnchorA(  GETCONSTRAINTANCHORA_CONSTRAINT_ID,  & GETCONSTRAINTANCHORA_X,  & GETCONSTRAINTANCHORA_Y,  & GETCONSTRAINTANCHORA_Z );
 	break;
 case FN_getConstraintAnchorB: //Sub Procedure
-	rc_ getConstraintAnchorB(  GETCONSTRAINTANCHORB_CONSTRAINT_ID,  & GETCONSTRAINTANCHORB_X,  & GETCONSTRAINTANCHORB_Y,  & GETCONSTRAINTANCHORB_Z );
+	rc_getConstraintAnchorB(  GETCONSTRAINTANCHORB_CONSTRAINT_ID,  & GETCONSTRAINTANCHORB_X,  & GETCONSTRAINTANCHORB_Y,  & GETCONSTRAINTANCHORB_Z );
 	break;
 case FN_getConstraintAngDepth: //Number Function
-	 rc_push_num(rc_ getConstraintAngDepth(  GETCONSTRAINTANGDEPTH_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintAngDepth(  GETCONSTRAINTANGDEPTH_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintAngularPos: //Number Function
-	 rc_push_num(rc_ getConstraintAngularPos(  GETCONSTRAINTANGULARPOS_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintAngularPos(  GETCONSTRAINTANGULARPOS_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintDampingDirAng: //Number Function
-	 rc_push_num(rc_ getConstraintDampingDirAng(  GETCONSTRAINTDAMPINGDIRANG_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintDampingDirAng(  GETCONSTRAINTDAMPINGDIRANG_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintDampingDirLin: //Number Function
-	 rc_push_num(rc_ getConstraintDampingDirLin(  GETCONSTRAINTDAMPINGDIRLIN_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintDampingDirLin(  GETCONSTRAINTDAMPINGDIRLIN_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintDampingLimAng: //Number Function
-	 rc_push_num(rc_ getConstraintDampingLimAng(  GETCONSTRAINTDAMPINGLIMANG_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintDampingLimAng(  GETCONSTRAINTDAMPINGLIMANG_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintDampingLimLin: //Number Function
-	 rc_push_num(rc_ getConstraintDampingLimLin(  GETCONSTRAINTDAMPINGLIMLIN_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintDampingLimLin(  GETCONSTRAINTDAMPINGLIMLIN_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintDampingOrthoAng: //Number Function
-	 rc_push_num(rc_ getConstraintDampingOrthoAng(  GETCONSTRAINTDAMPINGORTHOANG_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintDampingOrthoAng(  GETCONSTRAINTDAMPINGORTHOANG_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintDampingOrthoLin: //Number Function
-	 rc_push_num(rc_ getConstraintDampingOrthoLin(  GETCONSTRAINTDAMPINGORTHOLIN_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintDampingOrthoLin(  GETCONSTRAINTDAMPINGORTHOLIN_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintLinearPos: //Number Function
-	 rc_push_num(rc_ getConstraintLinearPos(  GETCONSTRAINTLINEARPOS_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintLinearPos(  GETCONSTRAINTLINEARPOS_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintLinDepth: //Number Function
-	 rc_push_num(rc_ getConstraintLinDepth(  GETCONSTRAINTLINDEPTH_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintLinDepth(  GETCONSTRAINTLINDEPTH_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintLowerAngLimit: //Number Function
-	 rc_push_num(rc_ getConstraintLowerAngLimit(  GETCONSTRAINTLOWERANGLIMIT_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintLowerAngLimit(  GETCONSTRAINTLOWERANGLIMIT_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintLowerLinLimit: //Number Function
-	 rc_push_num(rc_ getConstraintLowerLinLimit(  GETCONSTRAINTLOWERLINLIMIT_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintLowerLinLimit(  GETCONSTRAINTLOWERLINLIMIT_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintRestitutionDirAng: //Number Function
-	 rc_push_num(rc_ getConstraintRestitutionDirAng(  GETCONSTRAINTRESTITUTIONDIRANG_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintRestitutionDirAng(  GETCONSTRAINTRESTITUTIONDIRANG_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintRestitutionDirLin: //Number Function
-	 rc_push_num(rc_ getConstraintRestitutionDirLin(  GETCONSTRAINTRESTITUTIONDIRLIN_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintRestitutionDirLin(  GETCONSTRAINTRESTITUTIONDIRLIN_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintRestitutionLimAng: //Number Function
-	 rc_push_num(rc_ getConstraintRestitutionLimAng(  GETCONSTRAINTRESTITUTIONLIMANG_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintRestitutionLimAng(  GETCONSTRAINTRESTITUTIONLIMANG_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintRestitutionLimLin: //Number Function
-	 rc_push_num(rc_ getConstraintRestitutionLimLin(  GETCONSTRAINTRESTITUTIONLIMLIN_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintRestitutionLimLin(  GETCONSTRAINTRESTITUTIONLIMLIN_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintRestitutionOrthoAng: //Number Function
-	 rc_push_num(rc_ getConstraintRestitutionOrthoAng(  GETCONSTRAINTRESTITUTIONORTHOANG_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintRestitutionOrthoAng(  GETCONSTRAINTRESTITUTIONORTHOANG_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintRestitutionOrthoLin: //Number Function
-	 rc_push_num(rc_ getConstraintRestitutionOrthoLin(  GETCONSTRAINTRESTITUTIONORTHOLIN_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintRestitutionOrthoLin(  GETCONSTRAINTRESTITUTIONORTHOLIN_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintSoftnessDirAng: //Number Function
-	 rc_push_num(rc_ getConstraintSoftnessDirAng(  GETCONSTRAINTSOFTNESSDIRANG_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintSoftnessDirAng(  GETCONSTRAINTSOFTNESSDIRANG_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintSoftnessDirLin: //Number Function
-	 rc_push_num(rc_ getConstraintSoftnessDirLin(  GETCONSTRAINTSOFTNESSDIRLIN_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintSoftnessDirLin(  GETCONSTRAINTSOFTNESSDIRLIN_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintSoftnessLimAng: //Number Function
-	 rc_push_num(rc_ getConstraintSoftnessLimAng(  GETCONSTRAINTSOFTNESSLIMANG_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintSoftnessLimAng(  GETCONSTRAINTSOFTNESSLIMANG_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintSoftnessLimLin: //Number Function
-	 rc_push_num(rc_ getConstraintSoftnessLimLin(  GETCONSTRAINTSOFTNESSLIMLIN_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintSoftnessLimLin(  GETCONSTRAINTSOFTNESSLIMLIN_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintSoftnessOrthoAng: //Number Function
-	 rc_push_num(rc_ getConstraintSoftnessOrthoAng(  GETCONSTRAINTSOFTNESSORTHOANG_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintSoftnessOrthoAng(  GETCONSTRAINTSOFTNESSORTHOANG_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintSoftnessOrthoLin: //Number Function
-	 rc_push_num(rc_ getConstraintSoftnessOrthoLin(  GETCONSTRAINTSOFTNESSORTHOLIN_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintSoftnessOrthoLin(  GETCONSTRAINTSOFTNESSORTHOLIN_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintSolveAngLimit: //Number Function
-	 rc_push_num(rc_ getConstraintSolveAngLimit(  GETCONSTRAINTSOLVEANGLIMIT_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintSolveAngLimit(  GETCONSTRAINTSOLVEANGLIMIT_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintSolveLinLimit: //Number Function
-	 rc_push_num(rc_ getConstraintSolveLinLimit(  GETCONSTRAINTSOLVELINLIMIT_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintSolveLinLimit(  GETCONSTRAINTSOLVELINLIMIT_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintUpperAngLimit: //Number Function
-	 rc_push_num(rc_ getConstraintUpperAngLimit(  GETCONSTRAINTUPPERANGLIMIT_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintUpperAngLimit(  GETCONSTRAINTUPPERANGLIMIT_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintUpperLinLimit: //Number Function
-	 rc_push_num(rc_ getConstraintUpperLinLimit(  GETCONSTRAINTUPPERLINLIMIT_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintUpperLinLimit(  GETCONSTRAINTUPPERLINLIMIT_CONSTRAINT_ID ));
 	break;
 case FN_getConstraintUseFrameOffset: //Number Function
-	 rc_push_num(rc_ getConstraintUseFrameOffset(  GETCONSTRAINTUSEFRAMEOFFSET_CONSTRAINT_ID ));
+	 rc_push_num(rc_getConstraintUseFrameOffset(  GETCONSTRAINTUSEFRAMEOFFSET_CONSTRAINT_ID ));
 	break;
 case FN_setConstraintDampingDirAng: //Sub Procedure
-	rc_ setConstraintDampingDirAng(  SETCONSTRAINTDAMPINGDIRANG_CONSTRAINT_ID,   SETCONSTRAINTDAMPINGDIRANG_N );
+	rc_setConstraintDampingDirAng(  SETCONSTRAINTDAMPINGDIRANG_CONSTRAINT_ID,   SETCONSTRAINTDAMPINGDIRANG_N );
 	break;
 case FN_setConstraintDampingDirLin: //Sub Procedure
-	rc_ setConstraintDampingDirLin(  SETCONSTRAINTDAMPINGDIRLIN_CONSTRAINT_ID,   SETCONSTRAINTDAMPINGDIRLIN_N );
+	rc_setConstraintDampingDirLin(  SETCONSTRAINTDAMPINGDIRLIN_CONSTRAINT_ID,   SETCONSTRAINTDAMPINGDIRLIN_N );
 	break;
 case FN_setConstraintDampingLimAng: //Sub Procedure
-	rc_ setConstraintDampingLimAng(  SETCONSTRAINTDAMPINGLIMANG_CONSTRAINT_ID,   SETCONSTRAINTDAMPINGLIMANG_N );
+	rc_setConstraintDampingLimAng(  SETCONSTRAINTDAMPINGLIMANG_CONSTRAINT_ID,   SETCONSTRAINTDAMPINGLIMANG_N );
 	break;
 case FN_setConstraintDampingLimLin: //Sub Procedure
-	rc_ setConstraintDampingLimLin(  SETCONSTRAINTDAMPINGLIMLIN_CONSTRAINT_ID,   SETCONSTRAINTDAMPINGLIMLIN_N );
+	rc_setConstraintDampingLimLin(  SETCONSTRAINTDAMPINGLIMLIN_CONSTRAINT_ID,   SETCONSTRAINTDAMPINGLIMLIN_N );
 	break;
 case FN_setConstraintDampingOrthoAng: //Sub Procedure
-	rc_ setConstraintDampingOrthoAng(  SETCONSTRAINTDAMPINGORTHOANG_CONSTRAINT_ID,   SETCONSTRAINTDAMPINGORTHOANG_N );
+	rc_setConstraintDampingOrthoAng(  SETCONSTRAINTDAMPINGORTHOANG_CONSTRAINT_ID,   SETCONSTRAINTDAMPINGORTHOANG_N );
 	break;
 case FN_setConstraintDampingOrthoLin: //Sub Procedure
-	rc_ setConstraintDampingOrthoLin(  SETCONSTRAINTDAMPINGORTHOLIN_CONSTRAINT_ID,   SETCONSTRAINTDAMPINGORTHOLIN_N );
+	rc_setConstraintDampingOrthoLin(  SETCONSTRAINTDAMPINGORTHOLIN_CONSTRAINT_ID,   SETCONSTRAINTDAMPINGORTHOLIN_N );
 	break;
 case FN_setConstraintLowerAngLimit: //Sub Procedure
-	rc_ setConstraintLowerAngLimit(  SETCONSTRAINTLOWERANGLIMIT_CONSTRAINT_ID,   SETCONSTRAINTLOWERANGLIMIT_N );
+	rc_setConstraintLowerAngLimit(  SETCONSTRAINTLOWERANGLIMIT_CONSTRAINT_ID,   SETCONSTRAINTLOWERANGLIMIT_N );
 	break;
 case FN_setConstraintLowerLinLimit: //Sub Procedure
-	rc_ setConstraintLowerLinLimit(  SETCONSTRAINTLOWERLINLIMIT_CONSTRAINT_ID,   SETCONSTRAINTLOWERLINLIMIT_N );
+	rc_setConstraintLowerLinLimit(  SETCONSTRAINTLOWERLINLIMIT_CONSTRAINT_ID,   SETCONSTRAINTLOWERLINLIMIT_N );
 	break;
 case FN_setConstraintRestitutionDirAng: //Sub Procedure
-	rc_ setConstraintRestitutionDirAng(  SETCONSTRAINTRESTITUTIONDIRANG_CONSTRAINT_ID,   SETCONSTRAINTRESTITUTIONDIRANG_N );
+	rc_setConstraintRestitutionDirAng(  SETCONSTRAINTRESTITUTIONDIRANG_CONSTRAINT_ID,   SETCONSTRAINTRESTITUTIONDIRANG_N );
 	break;
 case FN_setConstraintRestitutionDirLin: //Sub Procedure
-	rc_ setConstraintRestitutionDirLin(  SETCONSTRAINTRESTITUTIONDIRLIN_CONSTRAINT_ID,   SETCONSTRAINTRESTITUTIONDIRLIN_N );
+	rc_setConstraintRestitutionDirLin(  SETCONSTRAINTRESTITUTIONDIRLIN_CONSTRAINT_ID,   SETCONSTRAINTRESTITUTIONDIRLIN_N );
 	break;
 case FN_setConstraintRestitutionLimAng: //Sub Procedure
-	rc_ setConstraintRestitutionLimAng(  SETCONSTRAINTRESTITUTIONLIMANG_CONSTRAINT_ID,   SETCONSTRAINTRESTITUTIONLIMANG_N );
+	rc_setConstraintRestitutionLimAng(  SETCONSTRAINTRESTITUTIONLIMANG_CONSTRAINT_ID,   SETCONSTRAINTRESTITUTIONLIMANG_N );
 	break;
 case FN_setConstraintRestitutionLimLin: //Sub Procedure
-	rc_ setConstraintRestitutionLimLin(  SETCONSTRAINTRESTITUTIONLIMLIN_CONSTRAINT_ID,   SETCONSTRAINTRESTITUTIONLIMLIN_N );
+	rc_setConstraintRestitutionLimLin(  SETCONSTRAINTRESTITUTIONLIMLIN_CONSTRAINT_ID,   SETCONSTRAINTRESTITUTIONLIMLIN_N );
 	break;
 case FN_setConstraintRestitutionOrthoAng: //Sub Procedure
-	rc_ setConstraintRestitutionOrthoAng(  SETCONSTRAINTRESTITUTIONORTHOANG_CONSTRAINT_ID,   SETCONSTRAINTRESTITUTIONORTHOANG_N );
+	rc_setConstraintRestitutionOrthoAng(  SETCONSTRAINTRESTITUTIONORTHOANG_CONSTRAINT_ID,   SETCONSTRAINTRESTITUTIONORTHOANG_N );
 	break;
 case FN_setConstraintRestitutionOrthoLin: //Sub Procedure
-	rc_ setConstraintRestitutionOrthoLin(  SETCONSTRAINTRESTITUTIONORTHOLIN_CONSTRAINT_ID,   SETCONSTRAINTRESTITUTIONORTHOLIN_N );
+	rc_setConstraintRestitutionOrthoLin(  SETCONSTRAINTRESTITUTIONORTHOLIN_CONSTRAINT_ID,   SETCONSTRAINTRESTITUTIONORTHOLIN_N );
 	break;
 case FN_setConstraintSoftnessDirAng: //Sub Procedure
-	rc_ setConstraintSoftnessDirAng(  SETCONSTRAINTSOFTNESSDIRANG_CONSTRAINT_ID,   SETCONSTRAINTSOFTNESSDIRANG_N );
+	rc_setConstraintSoftnessDirAng(  SETCONSTRAINTSOFTNESSDIRANG_CONSTRAINT_ID,   SETCONSTRAINTSOFTNESSDIRANG_N );
 	break;
 case FN_setConstraintSoftnessDirLin: //Sub Procedure
-	rc_ setConstraintSoftnessDirLin(  SETCONSTRAINTSOFTNESSDIRLIN_CONSTRAINT_ID,   SETCONSTRAINTSOFTNESSDIRLIN_N );
+	rc_setConstraintSoftnessDirLin(  SETCONSTRAINTSOFTNESSDIRLIN_CONSTRAINT_ID,   SETCONSTRAINTSOFTNESSDIRLIN_N );
 	break;
 case FN_setConstraintSoftnessLimAng: //Sub Procedure
-	rc_ setConstraintSoftnessLimAng(  SETCONSTRAINTSOFTNESSLIMANG_CONSTRAINT_ID,   SETCONSTRAINTSOFTNESSLIMANG_N );
+	rc_setConstraintSoftnessLimAng(  SETCONSTRAINTSOFTNESSLIMANG_CONSTRAINT_ID,   SETCONSTRAINTSOFTNESSLIMANG_N );
 	break;
 case FN_setConstraintSoftnessLimLin: //Sub Procedure
-	rc_ setConstraintSoftnessLimLin(  SETCONSTRAINTSOFTNESSLIMLIN_CONSTRAINT_ID,   SETCONSTRAINTSOFTNESSLIMLIN_N );
+	rc_setConstraintSoftnessLimLin(  SETCONSTRAINTSOFTNESSLIMLIN_CONSTRAINT_ID,   SETCONSTRAINTSOFTNESSLIMLIN_N );
 	break;
 case FN_setConstraintSoftnessOrthoAng: //Sub Procedure
-	rc_ setConstraintSoftnessOrthoAng(  SETCONSTRAINTSOFTNESSORTHOANG_CONSTRAINT_ID,   SETCONSTRAINTSOFTNESSORTHOANG_N );
+	rc_setConstraintSoftnessOrthoAng(  SETCONSTRAINTSOFTNESSORTHOANG_CONSTRAINT_ID,   SETCONSTRAINTSOFTNESSORTHOANG_N );
 	break;
 case FN_setConstraintSoftnessOrthoLin: //Sub Procedure
-	rc_ setConstraintSoftnessOrthoLin(  SETCONSTRAINTSOFTNESSORTHOLIN_CONSTRAINT_ID,   SETCONSTRAINTSOFTNESSORTHOLIN_N );
+	rc_setConstraintSoftnessOrthoLin(  SETCONSTRAINTSOFTNESSORTHOLIN_CONSTRAINT_ID,   SETCONSTRAINTSOFTNESSORTHOLIN_N );
 	break;
 case FN_setConstraintUpperAngLimit: //Sub Procedure
-	rc_ setConstraintUpperAngLimit(  SETCONSTRAINTUPPERANGLIMIT_CONSTRAINT_ID,   SETCONSTRAINTUPPERANGLIMIT_N );
+	rc_setConstraintUpperAngLimit(  SETCONSTRAINTUPPERANGLIMIT_CONSTRAINT_ID,   SETCONSTRAINTUPPERANGLIMIT_N );
 	break;
 case FN_setConstraintUpperLinLimit: //Sub Procedure
-	rc_ setConstraintUpperLinLimit(  SETCONSTRAINTUPPERLINLIMIT_CONSTRAINT_ID,   SETCONSTRAINTUPPERLINLIMIT_N );
+	rc_setConstraintUpperLinLimit(  SETCONSTRAINTUPPERLINLIMIT_CONSTRAINT_ID,   SETCONSTRAINTUPPERLINLIMIT_N );
 	break;
 case FN_SetCameraPosition: //Sub Procedure
 	rc_setCameraPosition( SETCAMERAPOSITION_X,  SETCAMERAPOSITION_Y,  SETCAMERAPOSITION_Z );
@@ -2031,133 +2028,133 @@ case FN_SetWorld3DTimeStep: //Sub Procedure
 	rc_setWorld3DTimeStep( SETWORLD3DTIMESTEP_TS );
 	break;
 case FN_startParticleEmitter: //Sub Procedure
-	rc_ startParticleEmitter(  STARTPARTICLEEMITTER_ACTOR );
+	rc_startParticleEmitter(  STARTPARTICLEEMITTER_ACTOR );
 	break;
 case FN_stopParticleEmitter: //Sub Procedure
-	rc_ stopParticleEmitter(  STOPPARTICLEEMITTER_ACTOR );
+	rc_stopParticleEmitter(  STOPPARTICLEEMITTER_ACTOR );
 	break;
 case FN_setParticleDirection: //Sub Procedure
-	rc_ setParticleDirection(  SETPARTICLEDIRECTION_ACTOR,   SETPARTICLEDIRECTION_X,   SETPARTICLEDIRECTION_Y,   SETPARTICLEDIRECTION_Z );
+	rc_setParticleDirection(  SETPARTICLEDIRECTION_ACTOR,   SETPARTICLEDIRECTION_X,   SETPARTICLEDIRECTION_Y,   SETPARTICLEDIRECTION_Z );
 	break;
 case FN_getParticleDirection: //Sub Procedure
-	rc_ getParticleDirection(  GETPARTICLEDIRECTION_ACTOR,  & GETPARTICLEDIRECTION_X,  & GETPARTICLEDIRECTION_Y,  & GETPARTICLEDIRECTION_Z );
+	rc_getParticleDirection(  GETPARTICLEDIRECTION_ACTOR,  & GETPARTICLEDIRECTION_X,  & GETPARTICLEDIRECTION_Y,  & GETPARTICLEDIRECTION_Z );
 	break;
 case FN_useParticleEveryMeshVertex: //Sub Procedure
-	rc_ useParticleEveryMeshVertex(  USEPARTICLEEVERYMESHVERTEX_ACTOR,   USEPARTICLEEVERYMESHVERTEX_FLAG );
+	rc_useParticleEveryMeshVertex(  USEPARTICLEEVERYMESHVERTEX_ACTOR,   USEPARTICLEEVERYMESHVERTEX_FLAG );
 	break;
 case FN_particleIsUsingEveryMeshVertex: //Number Function
-	 rc_push_num(rc_ particleIsUsingEveryMeshVertex(  PARTICLEISUSINGEVERYMESHVERTEX_ACTOR ));
+	 rc_push_num(rc_particleIsUsingEveryMeshVertex(  PARTICLEISUSINGEVERYMESHVERTEX_ACTOR ));
 	break;
 case FN_setParticleNormalDirectionMod: //Sub Procedure
-	rc_ setParticleNormalDirectionMod(  SETPARTICLENORMALDIRECTIONMOD_ACTOR,   SETPARTICLENORMALDIRECTIONMOD_MOD );
+	rc_setParticleNormalDirectionMod(  SETPARTICLENORMALDIRECTIONMOD_ACTOR,   SETPARTICLENORMALDIRECTIONMOD_ND_MOD );
 	break;
 case FN_getParticleNormalDirectionMod: //Number Function
-	 rc_push_num(rc_ getParticleNormalDirectionMod(  GETPARTICLENORMALDIRECTIONMOD_ACTOR ));
+	 rc_push_num(rc_getParticleNormalDirectionMod(  GETPARTICLENORMALDIRECTIONMOD_ACTOR ));
 	break;
 case FN_useParticleNormalDirection: //Sub Procedure
-	rc_ useParticleNormalDirection(  USEPARTICLENORMALDIRECTION_ACTOR,   USEPARTICLENORMALDIRECTION_FLAG );
+	rc_useParticleNormalDirection(  USEPARTICLENORMALDIRECTION_ACTOR,   USEPARTICLENORMALDIRECTION_FLAG );
 	break;
 case FN_particleIsUsingNormalDirection: //Number Function
-	 rc_push_num(rc_ particleIsUsingNormalDirection(  PARTICLEISUSINGNORMALDIRECTION_ACTOR ));
+	 rc_push_num(rc_particleIsUsingNormalDirection(  PARTICLEISUSINGNORMALDIRECTION_ACTOR ));
 	break;
 case FN_setParticleMesh: //Sub Procedure
-	rc_ setParticleMesh(  SETPARTICLEMESH_ACTOR,   SETPARTICLEMESH_MESH );
+	rc_setParticleMesh(  SETPARTICLEMESH_ACTOR,   SETPARTICLEMESH_MESH );
 	break;
 case FN_setParticleMinParticlesPerSecond: //Sub Procedure
-	rc_ setParticleMinParticlesPerSecond(  SETPARTICLEMINPARTICLESPERSECOND_ACTOR,   SETPARTICLEMINPARTICLESPERSECOND_MINPARTICLESPERSECOND );
+	rc_setParticleMinParticlesPerSecond(  SETPARTICLEMINPARTICLESPERSECOND_ACTOR,   SETPARTICLEMINPARTICLESPERSECOND_MINPARTICLESPERSECOND );
 	break;
 case FN_getParticleMinParticlesPerSecond: //Number Function
-	 rc_push_num(rc_ getParticleMinParticlesPerSecond(  GETPARTICLEMINPARTICLESPERSECOND_ACTOR ));
+	 rc_push_num(rc_getParticleMinParticlesPerSecond(  GETPARTICLEMINPARTICLESPERSECOND_ACTOR ));
 	break;
 case FN_setParticleMaxParticlesPerSecond: //Sub Procedure
-	rc_ setParticleMaxParticlesPerSecond(  SETPARTICLEMAXPARTICLESPERSECOND_ACTOR,   SETPARTICLEMAXPARTICLESPERSECOND_MAXPARTICLESPERSECOND );
+	rc_setParticleMaxParticlesPerSecond(  SETPARTICLEMAXPARTICLESPERSECOND_ACTOR,   SETPARTICLEMAXPARTICLESPERSECOND_MAXPARTICLESPERSECOND );
 	break;
 case FN_getParticleMaxParticlesPerSecond: //Number Function
-	 rc_push_num(rc_ getParticleMaxParticlesPerSecond(  GETPARTICLEMAXPARTICLESPERSECOND_ACTOR ));
+	 rc_push_num(rc_getParticleMaxParticlesPerSecond(  GETPARTICLEMAXPARTICLESPERSECOND_ACTOR ));
 	break;
 case FN_setParticleMinStartColor: //Sub Procedure
-	rc_ setParticleMinStartColor(  SETPARTICLEMINSTARTCOLOR_ACTOR,   SETPARTICLEMINSTARTCOLOR_COLOR );
+	rc_setParticleMinStartColor(  SETPARTICLEMINSTARTCOLOR_ACTOR,   SETPARTICLEMINSTARTCOLOR_COLOR );
 	break;
 case FN_getParticleMinStartColor: //Number Function
-	 rc_push_num(rc_ getParticleMinStartColor(  GETPARTICLEMINSTARTCOLOR_ACTOR ));
+	 rc_push_num(rc_getParticleMinStartColor(  GETPARTICLEMINSTARTCOLOR_ACTOR ));
 	break;
 case FN_setParticleMaxStartColor: //Sub Procedure
-	rc_ setParticleMaxStartColor(  SETPARTICLEMAXSTARTCOLOR_ACTOR,   SETPARTICLEMAXSTARTCOLOR_COLOR );
+	rc_setParticleMaxStartColor(  SETPARTICLEMAXSTARTCOLOR_ACTOR,   SETPARTICLEMAXSTARTCOLOR_COLOR );
 	break;
 case FN_getParticleMaxStartColor: //Number Function
-	 rc_push_num(rc_ getParticleMaxStartColor(  GETPARTICLEMAXSTARTCOLOR_ACTOR ));
+	 rc_push_num(rc_getParticleMaxStartColor(  GETPARTICLEMAXSTARTCOLOR_ACTOR ));
 	break;
 case FN_setParticleMinLife: //Sub Procedure
-	rc_ setParticleMinLife(  SETPARTICLEMINLIFE_ACTOR,   SETPARTICLEMINLIFE_MINLIFE );
+	rc_setParticleMinLife(  SETPARTICLEMINLIFE_ACTOR,   SETPARTICLEMINLIFE_MINLIFE );
 	break;
 case FN_getParticleMinLife: //Number Function
-	 rc_push_num(rc_ getParticleMinLife(  GETPARTICLEMINLIFE_ACTOR ));
+	 rc_push_num(rc_getParticleMinLife(  GETPARTICLEMINLIFE_ACTOR ));
 	break;
 case FN_setParticleMaxLife: //Sub Procedure
-	rc_ setParticleMaxLife(  SETPARTICLEMAXLIFE_ACTOR,   SETPARTICLEMAXLIFE_MAXLIFE );
+	rc_setParticleMaxLife(  SETPARTICLEMAXLIFE_ACTOR,   SETPARTICLEMAXLIFE_MAXLIFE );
 	break;
 case FN_getParticleMaxLife: //Number Function
-	 rc_push_num(rc_ getParticleMaxLife(  GETPARTICLEMAXLIFE_ACTOR ));
+	 rc_push_num(rc_getParticleMaxLife(  GETPARTICLEMAXLIFE_ACTOR ));
 	break;
 case FN_setParticleMaxAngle: //Sub Procedure
-	rc_ setParticleMaxAngle(  SETPARTICLEMAXANGLE_ACTOR,   SETPARTICLEMAXANGLE_MAXANGLE );
+	rc_setParticleMaxAngle(  SETPARTICLEMAXANGLE_ACTOR,   SETPARTICLEMAXANGLE_MAXANGLE );
 	break;
 case FN_getParticleMaxAngle: //Number Function
-	 rc_push_num(rc_ getParticleMaxAngle(  GETPARTICLEMAXANGLE_ACTOR ));
+	 rc_push_num(rc_getParticleMaxAngle(  GETPARTICLEMAXANGLE_ACTOR ));
 	break;
 case FN_setParticleMinStartSize: //Sub Procedure
-	rc_ setParticleMinStartSize(  SETPARTICLEMINSTARTSIZE_ACTOR,   SETPARTICLEMINSTARTSIZE_W,   SETPARTICLEMINSTARTSIZE_H );
+	rc_setParticleMinStartSize(  SETPARTICLEMINSTARTSIZE_ACTOR,   SETPARTICLEMINSTARTSIZE_W,   SETPARTICLEMINSTARTSIZE_H );
 	break;
 case FN_getParticleMinStartSize: //Sub Procedure
-	rc_ getParticleMinStartSize(  GETPARTICLEMINSTARTSIZE_ACTOR,  & GETPARTICLEMINSTARTSIZE_W,  & GETPARTICLEMINSTARTSIZE_H );
+	rc_getParticleMinStartSize(  GETPARTICLEMINSTARTSIZE_ACTOR,  & GETPARTICLEMINSTARTSIZE_W,  & GETPARTICLEMINSTARTSIZE_H );
 	break;
 case FN_setParticleMaxStartSize: //Sub Procedure
-	rc_ setParticleMaxStartSize(  SETPARTICLEMAXSTARTSIZE_ACTOR,   SETPARTICLEMAXSTARTSIZE_W,   SETPARTICLEMAXSTARTSIZE_H );
+	rc_setParticleMaxStartSize(  SETPARTICLEMAXSTARTSIZE_ACTOR,   SETPARTICLEMAXSTARTSIZE_W,   SETPARTICLEMAXSTARTSIZE_H );
 	break;
 case FN_getParticleMaxStartSize: //Sub Procedure
-	rc_ getParticleMaxStartSize(  GETPARTICLEMAXSTARTSIZE_ACTOR,  & GETPARTICLEMAXSTARTSIZE_W,  & GETPARTICLEMAXSTARTSIZE_H );
+	rc_getParticleMaxStartSize(  GETPARTICLEMAXSTARTSIZE_ACTOR,  & GETPARTICLEMAXSTARTSIZE_W,  & GETPARTICLEMAXSTARTSIZE_H );
 	break;
 case FN_setParticleCenter: //Sub Procedure
-	rc_ setParticleCenter(  SETPARTICLECENTER_ACTOR,   SETPARTICLECENTER_X,   SETPARTICLECENTER_Y,   SETPARTICLECENTER_Z );
+	rc_setParticleCenter(  SETPARTICLECENTER_ACTOR,   SETPARTICLECENTER_X,   SETPARTICLECENTER_Y,   SETPARTICLECENTER_Z );
 	break;
 case FN_getParticleCenter: //Sub Procedure
-	rc_ getParticleCenter(  GETPARTICLECENTER_ACTOR,  & GETPARTICLECENTER_X,  & GETPARTICLECENTER_Y,  & GETPARTICLECENTER_Z );
+	rc_getParticleCenter(  GETPARTICLECENTER_ACTOR,  & GETPARTICLECENTER_X,  & GETPARTICLECENTER_Y,  & GETPARTICLECENTER_Z );
 	break;
 case FN_setParticleRadius: //Sub Procedure
-	rc_ setParticleRadius(  SETPARTICLERADIUS_ACTOR,   SETPARTICLERADIUS_RADIUS );
+	rc_setParticleRadius(  SETPARTICLERADIUS_ACTOR,   SETPARTICLERADIUS_RADIUS );
 	break;
 case FN_getParticleRadius: //Number Function
-	 rc_push_num(rc_ getParticleRadius(  GETPARTICLERADIUS_ACTOR ));
+	 rc_push_num(rc_getParticleRadius(  GETPARTICLERADIUS_ACTOR ));
 	break;
 case FN_setParticleRingThickness: //Sub Procedure
-	rc_ setParticleRingThickness(  SETPARTICLERINGTHICKNESS_ACTOR,   SETPARTICLERINGTHICKNESS_RINGTHICKNESS );
+	rc_setParticleRingThickness(  SETPARTICLERINGTHICKNESS_ACTOR,   SETPARTICLERINGTHICKNESS_RINGTHICKNESS );
 	break;
 case FN_getParticleRingThickness: //Number Function
-	 rc_push_num(rc_ getParticleRingThickness(  GETPARTICLERINGTHICKNESS_ACTOR ));
+	 rc_push_num(rc_getParticleRingThickness(  GETPARTICLERINGTHICKNESS_ACTOR ));
 	break;
 case FN_setParticleBox: //Sub Procedure
-	rc_ setParticleBox(  SETPARTICLEBOX_ACTOR,   SETPARTICLEBOX_MIN_X,   SETPARTICLEBOX_MIN_Y,   SETPARTICLEBOX_MIN_Z,   SETPARTICLEBOX_MAX_X,   SETPARTICLEBOX_MAX_Y,   SETPARTICLEBOX_MAX_Z );
+	rc_setParticleBox(  SETPARTICLEBOX_ACTOR,   SETPARTICLEBOX_MIN_X,   SETPARTICLEBOX_MIN_Y,   SETPARTICLEBOX_MIN_Z,   SETPARTICLEBOX_MAX_X,   SETPARTICLEBOX_MAX_Y,   SETPARTICLEBOX_MAX_Z );
 	break;
 case FN_getParticleBox: //Sub Procedure
-	rc_ getParticleBox(  GETPARTICLEBOX_ACTOR,  & GETPARTICLEBOX_MIN_X,  & GETPARTICLEBOX_MIN_Y,  & GETPARTICLEBOX_MIN_Z,  & GETPARTICLEBOX_MAX_X,  & GETPARTICLEBOX_MAX_Y,  & GETPARTICLEBOX_MAX_Z );
+	rc_getParticleBox(  GETPARTICLEBOX_ACTOR,  & GETPARTICLEBOX_MIN_X,  & GETPARTICLEBOX_MIN_Y,  & GETPARTICLEBOX_MIN_Z,  & GETPARTICLEBOX_MAX_X,  & GETPARTICLEBOX_MAX_Y,  & GETPARTICLEBOX_MAX_Z );
 	break;
 case FN_setParticleNormal: //Sub Procedure
-	rc_ setParticleNormal(  SETPARTICLENORMAL_ACTOR,   SETPARTICLENORMAL_X,   SETPARTICLENORMAL_Y,   SETPARTICLENORMAL_Z );
+	rc_setParticleNormal(  SETPARTICLENORMAL_ACTOR,   SETPARTICLENORMAL_X,   SETPARTICLENORMAL_Y,   SETPARTICLENORMAL_Z );
 	break;
 case FN_getParticleNormal: //Sub Procedure
-	rc_ getParticleNormal(  GETPARTICLENORMAL_ACTOR,  & GETPARTICLENORMAL_X,  & GETPARTICLENORMAL_Y,  & GETPARTICLENORMAL_Z );
+	rc_getParticleNormal(  GETPARTICLENORMAL_ACTOR,  & GETPARTICLENORMAL_X,  & GETPARTICLENORMAL_Y,  & GETPARTICLENORMAL_Z );
 	break;
 case FN_setParticleLength: //Sub Procedure
-	rc_ setParticleLength(  SETPARTICLELENGTH_ACTOR,   SETPARTICLELENGTH_P_LEN );
+	rc_setParticleLength(  SETPARTICLELENGTH_ACTOR,   SETPARTICLELENGTH_P_LEN );
 	break;
 case FN_getParticleLength: //Number Function
-	 rc_push_num(rc_ getParticleLength(  GETPARTICLELENGTH_ACTOR ));
+	 rc_push_num(rc_getParticleLength(  GETPARTICLELENGTH_ACTOR ));
 	break;
 case FN_useParticleOutlineOnly: //Sub Procedure
-	rc_ useParticleOutlineOnly(  USEPARTICLEOUTLINEONLY_ACTOR,   USEPARTICLEOUTLINEONLY_FLAG );
+	rc_useParticleOutlineOnly(  USEPARTICLEOUTLINEONLY_ACTOR,   USEPARTICLEOUTLINEONLY_FLAG );
 	break;
 case FN_particleIsUsingOutlineOnly: //Number Function
-	 rc_push_num(rc_ particleIsUsingOutlineOnly(  PARTICLEISUSINGOUTLINEONLY_ACTOR ));
+	 rc_push_num(rc_particleIsUsingOutlineOnly(  PARTICLEISUSINGOUTLINEONLY_ACTOR ));
 	break;
 case FN_lightIsCastingShadow: //Number Function
 	 rc_push_num(rc_lightIsCastingShadow( LIGHTISCASTINGSHADOW_ACTOR ));
@@ -2250,13 +2247,13 @@ case FN_setWaterWindForce: //Sub Procedure
 	rc_setWaterWindForce( SETWATERWINDFORCE_ACTOR,  SETWATERWINDFORCE_F );
 	break;
 case FN_getWaterWindForce: //Number Function
-	 rc_push_num(rc_ getWaterWindForce(  GETWATERWINDFORCE_ACTOR ));
+	 rc_push_num(rc_getWaterWindForce(  GETWATERWINDFORCE_ACTOR ));
 	break;
 case FN_setWaterWaveHeight: //Sub Procedure
 	rc_setWaterWaveHeight( SETWATERWAVEHEIGHT_ACTOR,  SETWATERWAVEHEIGHT_H );
 	break;
 case FN_getWaterWaveHeight: //Number Function
-	 rc_push_num(rc_ getWaterWaveHeight(  GETWATERWAVEHEIGHT_ACTOR ));
+	 rc_push_num(rc_getWaterWaveHeight(  GETWATERWAVEHEIGHT_ACTOR ));
 	break;
 case FN_setWaterWindDirection: //Sub Procedure
 	rc_setWaterWindDirection( SETWATERWINDDIRECTION_ACTOR,  SETWATERWINDDIRECTION_X,  SETWATERWINDDIRECTION_Z );
@@ -2274,7 +2271,7 @@ case FN_setWaterColorBlendFactor: //Sub Procedure
 	rc_setWaterColorBlendFactor( SETWATERCOLORBLENDFACTOR_ACTOR,  SETWATERCOLORBLENDFACTOR_CBFACTOR );
 	break;
 case FN_getWaterColorBlendFactor: //Number Function
-	 rc_push_num(rc_ getWaterColorBlendFactor(  GETWATERCOLORBLENDFACTOR_ACTOR ));
+	 rc_push_num(rc_getWaterColorBlendFactor(  GETWATERCOLORBLENDFACTOR_ACTOR ));
 	break;
 case FN_SetActorAnimation: //Sub Procedure
 	rc_setActorAnimation( SETACTORANIMATION_ACTOR,  SETACTORANIMATION_START_FRAME,  SETACTORANIMATION_END_FRAME );
@@ -2285,11 +2282,11 @@ case FN_SetActorAnimationSpeed: //Sub Procedure
 case FN_SetActorFrame: //Sub Procedure
 	rc_setActorFrame( SETACTORFRAME_ACTOR,  SETACTORFRAME_FRAME );
 	break;
-case FN_SetActorMD2Animation: //Number Function
-	 rc_push_num(rc_setActorMD2Animation( SETACTORMD2ANIMATION_ACTOR,  SETACTORMD2ANIMATION_ANIM ));
+case FN_SetActorMD2Animation: //Sub Procedure
+	rc_setActorMD2Animation( SETACTORMD2ANIMATION_ACTOR,  SETACTORMD2ANIMATION_ANIM );
 	break;
-case FN_SetActorMD2AnimationByName: //Number Function
-	 rc_push_num(rc_setActorMD2AnimationByName( SETACTORMD2ANIMATIONBYNAME_ACTOR,  SETACTORMD2ANIMATIONBYNAME_ANIM_NAME$ ));
+case FN_SetActorMD2AnimationByName: //Sub Procedure
+	rc_setActorMD2AnimationByName( SETACTORMD2ANIMATIONBYNAME_ACTOR,  SETACTORMD2ANIMATIONBYNAME_ANIM_NAME$ );
 	break;
 case FN_GetActorAnimationSpeed: //Number Function
 	 rc_push_num(rc_getActorAnimationSpeed( GETACTORANIMATIONSPEED_ACTOR ));
@@ -2322,177 +2319,177 @@ case FN_loopActorAnimation: //Sub Procedure
 	rc_loopActorAnimation( LOOPACTORANIMATION_ACTOR,  LOOPACTORANIMATION_FLAG );
 	break;
 case FN_createMaterial: //Number Function
-	 rc_push_num(rc_ createMaterial(  ));
+	 rc_push_num(rc_createMaterial(  ));
 	break;
 case FN_deleteMaterial: //Sub Procedure
-	rc_ deleteMaterial(  DELETEMATERIAL_MATERIAL_ID );
+	rc_deleteMaterial(  DELETEMATERIAL_MATERIAL_ID );
 	break;
 case FN_setActorMaterial: //Sub Procedure
-	rc_ setActorMaterial(  SETACTORMATERIAL_ACTOR,   SETACTORMATERIAL_MATERIAL_NUM,   SETACTORMATERIAL_MATERIAL_ID );
+	rc_setActorMaterial(  SETACTORMATERIAL_ACTOR,   SETACTORMATERIAL_MATERIAL_NUM,   SETACTORMATERIAL_MATERIAL_ID );
 	break;
 case FN_getActorMaterial: //Number Function
-	 rc_push_num(rc_ getActorMaterial(  GETACTORMATERIAL_ACTOR,   GETACTORMATERIAL_MATERIAL_NUM ));
+	 rc_push_num(rc_getActorMaterial(  GETACTORMATERIAL_ACTOR,   GETACTORMATERIAL_MATERIAL_NUM ));
 	break;
 case FN_copyActorMaterial: //Number Function
-	 rc_push_num(rc_ copyActorMaterial(  COPYACTORMATERIAL_ACTOR,   COPYACTORMATERIAL_MATERIAL_NUM ));
+	 rc_push_num(rc_copyActorMaterial(  COPYACTORMATERIAL_ACTOR,   COPYACTORMATERIAL_MATERIAL_NUM ));
 	break;
 case FN_copyMaterial: //Number Function
-	 rc_push_num(rc_ copyMaterial(  COPYMATERIAL_SMATERIAL_ID ));
+	 rc_push_num(rc_copyMaterial(  COPYMATERIAL_SMATERIAL_ID ));
 	break;
 case FN_setMaterialTextureCanvas: //Sub Procedure
-	rc_ setMaterialTextureCanvas(  SETMATERIALTEXTURECANVAS_MATERIAL_ID,   SETMATERIALTEXTURECANVAS_LEVEL,   SETMATERIALTEXTURECANVAS_CANVAS_ID );
+	rc_setMaterialTextureCanvas(  SETMATERIALTEXTURECANVAS_MATERIAL_ID,   SETMATERIALTEXTURECANVAS_LEVEL,   SETMATERIALTEXTURECANVAS_CANVAS_ID );
 	break;
 case FN_setMaterialAmbientColor: //Sub Procedure
-	rc_ setMaterialAmbientColor(  SETMATERIALAMBIENTCOLOR_MATERIAL_ID,   SETMATERIALAMBIENTCOLOR_COLOR );
+	rc_setMaterialAmbientColor(  SETMATERIALAMBIENTCOLOR_MATERIAL_ID,   SETMATERIALAMBIENTCOLOR_COLOR );
 	break;
 case FN_getMaterialAmbientColor: //Number Function
-	 rc_push_num(rc_ getMaterialAmbientColor(  GETMATERIALAMBIENTCOLOR_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialAmbientColor(  GETMATERIALAMBIENTCOLOR_MATERIAL_ID ));
 	break;
 case FN_setMaterialAntiAliasing: //Sub Procedure
-	rc_ setMaterialAntiAliasing(  SETMATERIALANTIALIASING_MATERIAL_ID,   SETMATERIALANTIALIASING_AA );
+	rc_setMaterialAntiAliasing(  SETMATERIALANTIALIASING_MATERIAL_ID,   SETMATERIALANTIALIASING_AA );
 	break;
 case FN_getMaterialAntiAliasing: //Number Function
-	 rc_push_num(rc_ getMaterialAntiAliasing(  GETMATERIALANTIALIASING_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialAntiAliasing(  GETMATERIALANTIALIASING_MATERIAL_ID ));
 	break;
 case FN_setMaterialBackfaceCulling: //Sub Procedure
-	rc_ setMaterialBackfaceCulling(  SETMATERIALBACKFACECULLING_MATERIAL_ID,   SETMATERIALBACKFACECULLING_FLAG );
+	rc_setMaterialBackfaceCulling(  SETMATERIALBACKFACECULLING_MATERIAL_ID,   SETMATERIALBACKFACECULLING_FLAG );
 	break;
 case FN_getMaterialBackfaceCulling: //Number Function
-	 rc_push_num(rc_ getMaterialBackfaceCulling(  GETMATERIALBACKFACECULLING_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialBackfaceCulling(  GETMATERIALBACKFACECULLING_MATERIAL_ID ));
 	break;
 case FN_setMaterialBlendFactor: //Sub Procedure
-	rc_ setMaterialBlendFactor(  SETMATERIALBLENDFACTOR_MATERIAL_ID,   SETMATERIALBLENDFACTOR_BF );
+	rc_setMaterialBlendFactor(  SETMATERIALBLENDFACTOR_MATERIAL_ID,   SETMATERIALBLENDFACTOR_BF );
 	break;
 case FN_getMaterialBlendFactor: //Number Function
-	 rc_push_num(rc_ getMaterialBlendFactor(  GETMATERIALBLENDFACTOR_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialBlendFactor(  GETMATERIALBLENDFACTOR_MATERIAL_ID ));
 	break;
 case FN_setMaterialBlendMode: //Sub Procedure
-	rc_ setMaterialBlendMode(  SETMATERIALBLENDMODE_MATERIAL_ID,   SETMATERIALBLENDMODE_BLEND_MODE );
+	rc_setMaterialBlendMode(  SETMATERIALBLENDMODE_MATERIAL_ID,   SETMATERIALBLENDMODE_BLEND_MODE );
 	break;
 case FN_getMaterialBlendMode: //Number Function
-	 rc_push_num(rc_ getMaterialBlendMode(  GETMATERIALBLENDMODE_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialBlendMode(  GETMATERIALBLENDMODE_MATERIAL_ID ));
 	break;
 case FN_setMaterialColorMask: //Sub Procedure
-	rc_ setMaterialColorMask(  SETMATERIALCOLORMASK_MATERIAL_ID,   SETMATERIALCOLORMASK_COLOR_MASK );
+	rc_setMaterialColorMask(  SETMATERIALCOLORMASK_MATERIAL_ID,   SETMATERIALCOLORMASK_COLOR_MASK );
 	break;
 case FN_getMaterialColorMask: //Number Function
-	 rc_push_num(rc_ getMaterialColorMask(  GETMATERIALCOLORMASK_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialColorMask(  GETMATERIALCOLORMASK_MATERIAL_ID ));
 	break;
 case FN_setMaterialColorMode: //Sub Procedure
-	rc_ setMaterialColorMode(  SETMATERIALCOLORMODE_MATERIAL_ID,   SETMATERIALCOLORMODE_COLOR_MODE );
+	rc_setMaterialColorMode(  SETMATERIALCOLORMODE_MATERIAL_ID,   SETMATERIALCOLORMODE_COLOR_MODE );
 	break;
 case FN_getMaterialColorMode: //Number Function
-	 rc_push_num(rc_ getMaterialColorMode(  GETMATERIALCOLORMODE_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialColorMode(  GETMATERIALCOLORMODE_MATERIAL_ID ));
 	break;
 case FN_setMaterialDiffuseColor: //Sub Procedure
-	rc_ setMaterialDiffuseColor(  SETMATERIALDIFFUSECOLOR_MATERIAL_ID,   SETMATERIALDIFFUSECOLOR_COLOR );
+	rc_setMaterialDiffuseColor(  SETMATERIALDIFFUSECOLOR_MATERIAL_ID,   SETMATERIALDIFFUSECOLOR_COLOR );
 	break;
 case FN_getMaterialDiffuseColor: //Number Function
-	 rc_push_num(rc_ getMaterialDiffuseColor(  GETMATERIALDIFFUSECOLOR_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialDiffuseColor(  GETMATERIALDIFFUSECOLOR_MATERIAL_ID ));
 	break;
 case FN_setMaterialEmissiveColor: //Sub Procedure
-	rc_ setMaterialEmissiveColor(  SETMATERIALEMISSIVECOLOR_MATERIAL_ID,   SETMATERIALEMISSIVECOLOR_COLOR );
+	rc_setMaterialEmissiveColor(  SETMATERIALEMISSIVECOLOR_MATERIAL_ID,   SETMATERIALEMISSIVECOLOR_COLOR );
 	break;
 case FN_getMaterialEmissiveColor: //Number Function
-	 rc_push_num(rc_ getMaterialEmissiveColor(  GETMATERIALEMISSIVECOLOR_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialEmissiveColor(  GETMATERIALEMISSIVECOLOR_MATERIAL_ID ));
 	break;
 case FN_setMaterialFog: //Sub Procedure
-	rc_ setMaterialFog(  SETMATERIALFOG_MATERIAL_ID,   SETMATERIALFOG_FLAG );
+	rc_setMaterialFog(  SETMATERIALFOG_MATERIAL_ID,   SETMATERIALFOG_FLAG );
 	break;
 case FN_getMaterialFog: //Number Function
-	 rc_push_num(rc_ getMaterialFog(  GETMATERIALFOG_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialFog(  GETMATERIALFOG_MATERIAL_ID ));
 	break;
 case FN_setMaterialFrontfaceCulling: //Sub Procedure
-	rc_ setMaterialFrontfaceCulling(  SETMATERIALFRONTFACECULLING_MATERIAL_ID,   SETMATERIALFRONTFACECULLING_FLAG );
+	rc_setMaterialFrontfaceCulling(  SETMATERIALFRONTFACECULLING_MATERIAL_ID,   SETMATERIALFRONTFACECULLING_FLAG );
 	break;
 case FN_getMaterialFrontfaceCulling: //Number Function
-	 rc_push_num(rc_ getMaterialFrontfaceCulling(  GETMATERIALFRONTFACECULLING_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialFrontfaceCulling(  GETMATERIALFRONTFACECULLING_MATERIAL_ID ));
 	break;
 case FN_setMaterialGouraudShading: //Sub Procedure
-	rc_ setMaterialGouraudShading(  SETMATERIALGOURAUDSHADING_MATERIAL_ID,   SETMATERIALGOURAUDSHADING_FLAG );
+	rc_setMaterialGouraudShading(  SETMATERIALGOURAUDSHADING_MATERIAL_ID,   SETMATERIALGOURAUDSHADING_FLAG );
 	break;
-case FN_materialGouraudShading: //Number Function
-	 rc_push_num(rc_ materialGouraudShading(  MATERIALGOURAUDSHADING_MATERIAL_ID ));
+case FN_materialIsGouraudShaded: //Number Function
+	 rc_push_num(rc_materialIsGouraudShaded(  MATERIALISGOURAUDSHADED_MATERIAL_ID ));
 	break;
 case FN_materialIsAplhaBlend: //Number Function
-	 rc_push_num(rc_ materialIsAplhaBlend(  MATERIALISAPLHABLEND_MATERIAL_ID ));
+	 rc_push_num(rc_materialIsAplhaBlend(  MATERIALISAPLHABLEND_MATERIAL_ID ));
 	break;
 case FN_materialIsTransparent: //Number Function
-	 rc_push_num(rc_ materialIsTransparent(  MATERIALISTRANSPARENT_MATERIAL_ID ));
+	 rc_push_num(rc_materialIsTransparent(  MATERIALISTRANSPARENT_MATERIAL_ID ));
 	break;
 case FN_setMaterialLighting: //Sub Procedure
-	rc_ setMaterialLighting(  SETMATERIALLIGHTING_MATERIAL_ID,   SETMATERIALLIGHTING_FLAG );
+	rc_setMaterialLighting(  SETMATERIALLIGHTING_MATERIAL_ID,   SETMATERIALLIGHTING_FLAG );
 	break;
 case FN_materialIsLit: //Number Function
-	 rc_push_num(rc_ materialIsLit(  MATERIALISLIT_MATERIAL_ID ));
+	 rc_push_num(rc_materialIsLit(  MATERIALISLIT_MATERIAL_ID ));
 	break;
 case FN_setMaterialType: //Sub Procedure
-	rc_ setMaterialType(  SETMATERIALTYPE_MATERIAL_ID,   SETMATERIALTYPE_MAT_TYPE );
+	rc_setMaterialType(  SETMATERIALTYPE_MATERIAL_ID,   SETMATERIALTYPE_MAT_TYPE );
 	break;
 case FN_getMaterialType: //Number Function
-	 rc_push_num(rc_ getMaterialType(  GETMATERIALTYPE_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialType(  GETMATERIALTYPE_MATERIAL_ID ));
 	break;
 case FN_setMaterialNormalize: //Sub Procedure
-	rc_ setMaterialNormalize(  SETMATERIALNORMALIZE_MATERIAL_ID,   SETMATERIALNORMALIZE_FLAG );
+	rc_setMaterialNormalize(  SETMATERIALNORMALIZE_MATERIAL_ID,   SETMATERIALNORMALIZE_FLAG );
 	break;
 case FN_materialIsNormalized: //Number Function
-	 rc_push_num(rc_ materialIsNormalized(  MATERIALISNORMALIZED_MATERIAL_ID ));
+	 rc_push_num(rc_materialIsNormalized(  MATERIALISNORMALIZED_MATERIAL_ID ));
 	break;
 case FN_setMaterialPointCloud: //Sub Procedure
-	rc_ setMaterialPointCloud(  SETMATERIALPOINTCLOUD_MATERIAL_ID,   SETMATERIALPOINTCLOUD_FLAG );
+	rc_setMaterialPointCloud(  SETMATERIALPOINTCLOUD_MATERIAL_ID,   SETMATERIALPOINTCLOUD_FLAG );
 	break;
 case FN_materialIsPointCloud: //Number Function
-	 rc_push_num(rc_ materialIsPointCloud(  MATERIALISPOINTCLOUD_MATERIAL_ID ));
+	 rc_push_num(rc_materialIsPointCloud(  MATERIALISPOINTCLOUD_MATERIAL_ID ));
 	break;
 case FN_setMaterialFlag: //Sub Procedure
-	rc_ setMaterialFlag(  SETMATERIALFLAG_MATERIAL_ID,   SETMATERIALFLAG_MATERIAL_FLAG,   SETMATERIALFLAG_F_VALUE );
+	rc_setMaterialFlag(  SETMATERIALFLAG_MATERIAL_ID,   SETMATERIALFLAG_MATERIAL_FLAG,   SETMATERIALFLAG_F_VALUE );
 	break;
 case FN_getMaterialFlag: //Number Function
-	 rc_push_num(rc_ getMaterialFlag(  GETMATERIALFLAG_MATERIAL_ID,   GETMATERIALFLAG_MATERIAL_FLAG ));
+	 rc_push_num(rc_getMaterialFlag(  GETMATERIALFLAG_MATERIAL_ID,   GETMATERIALFLAG_MATERIAL_FLAG ));
 	break;
 case FN_setMaterialTexture: //Sub Procedure
-	rc_ setMaterialTexture(  SETMATERIALTEXTURE_MATERIAL_ID,   SETMATERIALTEXTURE_LEVEL,   SETMATERIALTEXTURE_IMG_ID );
+	rc_setMaterialTexture(  SETMATERIALTEXTURE_MATERIAL_ID,   SETMATERIALTEXTURE_LEVEL,   SETMATERIALTEXTURE_IMG_ID );
 	break;
 case FN_setMaterialShininess: //Sub Procedure
-	rc_ setMaterialShininess(  SETMATERIALSHININESS_MATERIAL_ID,   SETMATERIALSHININESS_SHININESS );
+	rc_setMaterialShininess(  SETMATERIALSHININESS_MATERIAL_ID,   SETMATERIALSHININESS_SHININESS );
 	break;
 case FN_getMaterialShininess: //Number Function
-	 rc_push_num(rc_ getMaterialShininess(  GETMATERIALSHININESS_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialShininess(  GETMATERIALSHININESS_MATERIAL_ID ));
 	break;
 case FN_setMaterialSpecularColor: //Sub Procedure
-	rc_ setMaterialSpecularColor(  SETMATERIALSPECULARCOLOR_MATERIAL_ID,   SETMATERIALSPECULARCOLOR_COLOR );
+	rc_setMaterialSpecularColor(  SETMATERIALSPECULARCOLOR_MATERIAL_ID,   SETMATERIALSPECULARCOLOR_COLOR );
 	break;
 case FN_getMaterialSpecularColor: //Number Function
-	 rc_push_num(rc_ getMaterialSpecularColor(  GETMATERIALSPECULARCOLOR_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialSpecularColor(  GETMATERIALSPECULARCOLOR_MATERIAL_ID ));
 	break;
 case FN_setMaterialThickness: //Sub Procedure
-	rc_ setMaterialThickness(  SETMATERIALTHICKNESS_MATERIAL_ID,   SETMATERIALTHICKNESS_THICKNESS );
+	rc_setMaterialThickness(  SETMATERIALTHICKNESS_MATERIAL_ID,   SETMATERIALTHICKNESS_THICKNESS );
 	break;
 case FN_getMaterialThickness: //Number Function
-	 rc_push_num(rc_ getMaterialThickness(  GETMATERIALTHICKNESS_MATERIAL_ID ));
+	 rc_push_num(rc_getMaterialThickness(  GETMATERIALTHICKNESS_MATERIAL_ID ));
 	break;
 case FN_setMaterialWireframe: //Sub Procedure
-	rc_ setMaterialWireframe(  SETMATERIALWIREFRAME_MATERIAL_ID,   SETMATERIALWIREFRAME_FLAG );
+	rc_setMaterialWireframe(  SETMATERIALWIREFRAME_MATERIAL_ID,   SETMATERIALWIREFRAME_FLAG );
 	break;
 case FN_materialIsWireframe: //Number Function
-	 rc_push_num(rc_ materialIsWireframe(  MATERIALISWIREFRAME_MATERIAL_ID ));
+	 rc_push_num(rc_materialIsWireframe(  MATERIALISWIREFRAME_MATERIAL_ID ));
 	break;
 case FN_setActorTexture: //Sub Procedure
-	rc_ setActorTexture(  SETACTORTEXTURE_ACTOR,   SETACTORTEXTURE_LAYER,   SETACTORTEXTURE_IMAGE_ID );
+	rc_setActorTexture(  SETACTORTEXTURE_ACTOR,   SETACTORTEXTURE_LAYER,   SETACTORTEXTURE_IMAGE_ID );
 	break;
 case FN_getActorMaterialCount: //Number Function
-	 rc_push_num(rc_ getActorMaterialCount(  GETACTORMATERIALCOUNT_ACTOR ));
+	 rc_push_num(rc_getActorMaterialCount(  GETACTORMATERIALCOUNT_ACTOR ));
 	break;
 case FN_setActorMaterialFlag: //Sub Procedure
-	rc_ setActorMaterialFlag(  SETACTORMATERIALFLAG_ACTOR,   SETACTORMATERIALFLAG_FLAG,   SETACTORMATERIALFLAG_FLAG_VALUE );
+	rc_setActorMaterialFlag(  SETACTORMATERIALFLAG_ACTOR,   SETACTORMATERIALFLAG_FLAG,   SETACTORMATERIALFLAG_FLAG_VALUE );
 	break;
 case FN_getActorMaterialFlag: //Number Function
-	 rc_push_num(rc_ getActorMaterialFlag(  GETACTORMATERIALFLAG_ACTOR,   GETACTORMATERIALFLAG_MATERIAL,   GETACTORMATERIALFLAG_FLAG ));
+	 rc_push_num(rc_getActorMaterialFlag(  GETACTORMATERIALFLAG_ACTOR,   GETACTORMATERIALFLAG_MATERIAL,   GETACTORMATERIALFLAG_FLAG ));
 	break;
 case FN_setActorMaterialType: //Sub Procedure
-	rc_ setActorMaterialType(  SETACTORMATERIALTYPE_ACTOR,   SETACTORMATERIALTYPE_MATERIAL_TYPE );
+	rc_setActorMaterialType(  SETACTORMATERIALTYPE_ACTOR,   SETACTORMATERIALTYPE_MATERIAL_TYPE );
 	break;
 case FN_getActorMaterialType: //Number Function
-	 rc_push_num(rc_ getActorMaterialType(  GETACTORMATERIALTYPE_ACTOR,   GETACTORMATERIALTYPE_MATERIAL ));
+	 rc_push_num(rc_getActorMaterialType(  GETACTORMATERIALTYPE_ACTOR,   GETACTORMATERIALTYPE_MATERIAL ));
 	break;
 

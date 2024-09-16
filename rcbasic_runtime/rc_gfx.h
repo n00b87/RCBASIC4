@@ -119,7 +119,7 @@ int mobile_event_filter(void* userdata, SDL_Event* evt)
 }
 
 
-bool rcbasic_init()
+bool rc_gfx_init()
 {
     if(SDL_Init(SDL_INIT_EVENTS | SDL_INIT_TIMER | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC | SDL_INIT_SENSOR | SDL_INIT_NOPARACHUTE) < 0) //Audio causes init to fail on Fedora40 so I am leaving it out for now
     {
@@ -205,6 +205,20 @@ bool rcbasic_init()
         }
     }
     SDL_SetHint("SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS", "1");
+
+    return true;
+
+}
+
+bool rc_gfx_quit()
+{
+	irrtheora::stopVideo();
+	irrtheora::deleteVideo();
+
+	if(device)
+		device->drop();
+
+    SDL_Quit();
 
     return true;
 
@@ -304,6 +318,9 @@ bool rc_windowOpen(std::string title, int w, int h, bool fullscreen, bool vsync)
 
 void rc_closeWindow_hw()
 {
+	irrtheora::stopVideo();
+	irrtheora::deleteVideo();
+
     if(rc_window!=NULL)
         SDL_DestroyWindow(rc_window);
     rc_window = NULL;
@@ -969,7 +986,7 @@ void rc_setActiveCanvas(int canvas_id)
     }
 }
 
-int rc_getActiveCanvas()
+int rc_activeCanvas()
 {
     return rc_active_canvas;
 }
@@ -1075,7 +1092,7 @@ void rc_setCanvasColorMod(int canvas_id, Uint32 color_mod)
     }
 }
 
-Uint32 rc_canvasColorMod(int canvas_id)
+Uint32 rc_getCanvasColorMod(int canvas_id)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size()) //canvas 0 is being excluded because its the back buffer
         return 0;
@@ -1124,7 +1141,7 @@ void rc_setCanvasZ(int canvas_id, int z)
     sortCanvasZ();
 }
 
-int rc_canvasZ(int canvas_id)
+int rc_getCanvasZ(int canvas_id)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size()) //canvas 0 is being excluded because its the back buffer
         return 0;
@@ -1711,7 +1728,7 @@ bool rc_mouseIsVisible()
 }
 
 
-int rc_inkey()
+int rc_inKey()
 {
     return rc_inkey_val;
 }
@@ -1856,7 +1873,7 @@ int rc_joyButton(int joy_num, int jbutton)
     return 0;
 }
 
-std::string rc_joystickName(int joy_num)
+std::string rc_joyName(int joy_num)
 {
     if(joy_num >= 0 && joy_num < MAX_JOYSTICKS)
         return (std::string)SDL_JoystickName(rc_joystick[joy_num]);
@@ -3301,6 +3318,8 @@ bool rc_update()
     SEvent irrevent;
 	SDL_Event SDL_event;
 	bool Close = false;
+
+	rc_inkey_val = 0;
 
 	while ( !Close && SDL_PollEvent( &SDL_event ) )
 	{
