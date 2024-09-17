@@ -640,19 +640,19 @@ void rcbasic_export_dev()
                 case ID_TYPE_NUM:
                     output_line += "ID_TYPE_NUM);";
                     //fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nid_value[0].value[0]";
-                    fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nid_value.value[ num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
+                    fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nref[0].value[ num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
                     break;
                 case ID_TYPE_BYREF_NUM:
                     output_line += "ID_TYPE_BYREF_NUM);";
-                    fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nid_value.value[ num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
+                    fn_line += "num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].nref[0].value[ num_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
                     break;
                 case ID_TYPE_STR:
                     output_line += "ID_TYPE_STR);";
-                    fn_line += "str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].sid_value.value[ str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
+                    fn_line += "str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].sref[0].value[ str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
                     break;
                 case ID_TYPE_BYREF_STR:
                     output_line += "ID_TYPE_BYREF_STR);";
-                    fn_line += "str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].sid_value.value[ str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
+                    fn_line += "str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].sref[0].value[ str_var[" + rc_intToString(id[i].fn_arg_vec[n]) + "].byref_offset ]";
                     break;
                 case ID_TYPE_USER:
                     //fn_arg_utype = "";

@@ -4,6 +4,9 @@ case FN_Fprint: //Sub Procedure
 case FN_Input$: //String Function
 	 rc_push_str(rc_input( INPUT$_PROMPT$ ));
 	break;
+case FN_tst: //Sub Procedure
+	rc_tst( &TST_X );
+	break;
 case FN_ArrayDim: //Number Function
 	//DUMMY CASE
 

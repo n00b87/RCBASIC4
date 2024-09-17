@@ -210,18 +210,18 @@ bool rc_gfx_init()
 
 }
 
-bool rc_gfx_quit()
+void rc_gfx_quit()
 {
-	irrtheora::stopVideo();
-	irrtheora::deleteVideo();
+	if(irrtheora::videoExists())
+	{
+		irrtheora::stopVideo();
+		irrtheora::deleteVideo();
+	}
 
 	if(device)
 		device->drop();
 
     SDL_Quit();
-
-    return true;
-
 }
 
 bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t window_flags, irr::u8 AntiAlias, bool stencil_buffer, bool vsync)
@@ -330,6 +330,7 @@ void rc_closeWindow_hw()
     rc_font.clear();
 
     device->drop();
+    device = NULL;
 }
 
 void rc_cls()

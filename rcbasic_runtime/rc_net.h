@@ -98,8 +98,13 @@ bool rc_net_init()
 	return true;
 }
 
-bool rc_net_quit()
+void rc_net_quit()
 {
+	if(rc_socket_set)
+    {
+        SDLNet_FreeSocketSet(rc_socket_set);
+        rc_socket_set = NULL;
+    }
 	SDLNet_Quit();
 }
 

@@ -55,6 +55,7 @@
 #include "rc_audio.h"
 #include "rc_net.h"
 #include "rc_video.h"
+#include "rc_test.h"
 #include <irrtheora.h>
 
 
@@ -4323,7 +4324,7 @@ void rcbasic_init()
 
 void rcbasic_clean()
 {
-    rc_audio_quit();
+	rc_audio_quit();
     rc_net_quit();
     rc_gfx_quit();
     byref_addr_table.empty();
@@ -4472,7 +4473,9 @@ int main(int argc, char * argv[])
         cout << "++Could not load rcbasic program" << endl;
 
     //rc_cleanSubprocessSystem();
+
     rcbasic_clean();
+
 
     exit(rcbasic_exit_code);
     //cout << "Hello world!" << endl;

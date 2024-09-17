@@ -201,6 +201,7 @@ void setSolidProperties(int actor)
 
 void rc_setActorCollisionShape(int actor_id, int shape_type, double mass)
 {
+	//std::cout << "Start ColShape" << std::endl;
 	if(rc_actor[actor_id].physics.rigid_body)
 	{
 		rc_physics3D.world->removeCollisionObject(rc_actor[actor_id].physics.rigid_body, false);
@@ -212,6 +213,8 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass)
 
 	if(!rc_actor[actor_id].physics.isSolid)
 		mass = 1;
+
+	//std::cout << "NEXT" << std::endl;
 
 	switch(shape_type)
 	{
@@ -253,6 +256,7 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass)
 
 		case RC_NODE_SHAPE_TYPE_CAPSULE:
 			{
+				//std::cout << "CAPSULE" << std::endl;
 				rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_CAPSULE;
 				ICapsuleShape* shape;
 
@@ -6593,12 +6597,14 @@ void rc_setCameraRotation(double x, double y, double z)
 
 void rc_getCameraRotation(double* x, double* y, double* z)
 {
-    if(!(rc_active_canvas > 0 && rc_active_canvas < rc_canvas.size()))
+    if(rc_active_canvas <= 0 || rc_active_canvas >= rc_canvas.size())
         return;
 
     *x = rc_canvas[rc_active_canvas].camera.rx;
     *y = rc_canvas[rc_active_canvas].camera.ry;
     *z = rc_canvas[rc_active_canvas].camera.rz;
+
+    //std::cout << "Get Rotation: " << x[0] << ", " << y[0] << ", " << z[0] << std::endl;
 }
 
 void rc_rotateCamera(double x, double y, double z)

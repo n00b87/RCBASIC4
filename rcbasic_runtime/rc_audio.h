@@ -80,7 +80,7 @@ bool rc_audio_init()
     return true;
 }
 
-bool rc_audio_quit()
+void rc_audio_quit()
 {
     for(int i = 0; i < rc_sound.size(); i++)
     {
@@ -92,8 +92,6 @@ bool rc_audio_quit()
         Mix_FreeMusic(rc_music);
     rc_music = NULL;
     Mix_Quit();
-
-    return true;
 }
 
 int rc_queryAudioSpec(double * freq, double * format, double * channels)
