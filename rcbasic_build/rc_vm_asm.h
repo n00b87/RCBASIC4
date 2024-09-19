@@ -1354,6 +1354,7 @@ namespace rc_cbc_assembler
                 else
                 {
                     int p = rc_find_digit(line_arg[i]);
+                    //cout << "line_arg = " << line_arg[i] << endl;
                     rc_int.i = rc_stringToInt(line_arg[i].substr(p));
                     if(rc_int.i < 0)
                     {

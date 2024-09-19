@@ -2362,6 +2362,27 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                         int ut_info = -1;
                         int ut_index = -1;
                         getRegInfo(args[n], ut_info, ut_index);
+
+                        if(n==1 && StringToLower(id[expr_id].name).compare("typearraycopy")==0)
+						{
+							int uti_1 = -1;
+							int utx_1 = -1;
+							getRegInfo(args[0], uti_1, utx_1);
+
+							if(utx_1 < 0 || (uti_1 != ID_TYPE_USER && uti_1 != ID_TYPE_BYREF_USER) || (ut_info != ID_TYPE_USER && ut_info != ID_TYPE_BYREF_USER) )
+							{
+								rc_setError("Invalid identifier for ByRef argument");
+								return false;
+							}
+
+							//cout << id[expr_id].name << " ARGS = " << ut_index << ", " << utx_1 << endl;
+							if(ut_index != utx_1)
+							{
+								rc_setError("Expected \"" + utype[utx_1].name + "\" identifier for ByRef argument");
+								return false;
+							}
+						}
+
                         if(ut_index != id[expr_id].fn_arg_utype[n] && (!byref_type_generic(utype[id[expr_id].fn_arg_utype[n]].name)))
                         {
                             rc_setError("Expected \"" + utype[id[expr_id].fn_arg_utype[n]].name + "\" identifier for ByRef argument");

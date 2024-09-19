@@ -912,14 +912,14 @@ int main(int argc, char * argv[])
 {
     string line = "";
 
-    rcbasic_dev("embedded_functions.bas"); rcbasic_output_debug_info(); return 0;
+    //rcbasic_dev("embedded_functions.bas"); rcbasic_output_debug_info(); return 0;
 
     string rc_filename = "";// = "tst.bas";
 
     bool clean_after_build = false;
 
     //DEBUG START
-    rc_filename = "/home/n00b/Projects/tst/test_types.bas";
+    rc_filename = "/home/n00b/Projects/RCBASIC4/rcbasic_runtime/bin/Release/unittest.bas";
     //DEBUG END
 
     if(argc > 1)
