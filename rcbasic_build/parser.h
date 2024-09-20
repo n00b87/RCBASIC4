@@ -2369,6 +2369,12 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
 							int utx_1 = -1;
 							getRegInfo(args[0], uti_1, utx_1);
 
+							if(byref_type_exception.size()>=2)
+							{
+								byref_type_exception[0].exception_used = true;
+								byref_type_exception[1].exception_used = true;
+							}
+
 							if(utx_1 < 0 || (uti_1 != ID_TYPE_USER && uti_1 != ID_TYPE_BYREF_USER) || (ut_info != ID_TYPE_USER && ut_info != ID_TYPE_BYREF_USER) )
 							{
 								rc_setError("Invalid identifier for ByRef argument");
@@ -2388,7 +2394,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                             rc_setError("Expected \"" + utype[id[expr_id].fn_arg_utype[n]].name + "\" identifier for ByRef argument");
                             return false;
                         }
-                        //cout << "BYREF USER MATCH ID: " << id[expr_id].fn_arg[n] << endl;
+                        //cout << "BYREF USER MATCH ID: " << id[expr_id].fn_arg[n] << " ==> " << args[n] << endl;
                         vm_asm.push_back("uref_ptr !" + rc_intToString(id[expr_id].fn_arg_vec[n]) + " " + args[n]);
                     }
                     else if(id[expr_id].fn_arg_type[n] == ID_TYPE_NUM)
