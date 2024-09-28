@@ -910,7 +910,7 @@ void rcbasic_output_debug_info()
 
 int main(int argc, char * argv[])
 {
-    string line = "";
+	string line = "";
 
     //rcbasic_dev("embedded_functions.bas"); rcbasic_output_debug_info(); return 0;
 
