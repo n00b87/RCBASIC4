@@ -1,0 +1,4 @@
+#title createImageEx [RCBasic Doc]
+#header sub ImageFromBuffer_Ex(slot, w, h, byref buffer, colkey)
+
+

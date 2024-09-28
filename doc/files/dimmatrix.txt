@@ -1,0 +1,4 @@
+#title DimMatrix [RCBasic Doc]
+#header sub DimMatrix(m, m_rows, m_cols, preserve_flag)
+
+

@@ -1,0 +1,4 @@
+#title applyActorImpulseLocal [RCBasic Doc]
+#header sub applyActorImpulseLocal( actor,   x,   y,   z,   rel_x,   rel_y,   rel_z)
+
+

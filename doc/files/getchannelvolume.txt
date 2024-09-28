@@ -1,0 +1,4 @@
+#title GetChannelVolume [RCBasic Doc]
+#header function ChannelVolume(channel)
+
+

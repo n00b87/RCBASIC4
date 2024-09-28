@@ -1,0 +1,4 @@
+#title WindowClip [RCBasic Doc]
+#header sub WindowClip(slot, x, y, w, h)
+
+

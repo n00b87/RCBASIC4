@@ -1,0 +1,4 @@
+#title AddSceneSkyDomeEx [RCBasic Doc]
+#header sub AddSceneSkyDomeEx( img, horiRes, vertRes, txPercentage, spherePercentage, radius)
+
+

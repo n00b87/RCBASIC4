@@ -1,0 +1,4 @@
+#title getActorTotalForce [RCBasic Doc]
+#header sub getActorTotalForce( actor,  ByRef  x,  ByRef  y,  ByRef  z)
+
+

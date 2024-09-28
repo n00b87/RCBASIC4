@@ -1,0 +1,4 @@
+#title applyActorForceLocal [RCBasic Doc]
+#header sub applyActorForceLocal( actor,   x,   y,   z,   rel_x,   rel_y,   rel_z)
+
+

@@ -1,0 +1,4 @@
+#title GetLightDiffuseColor [RCBasic Doc]
+#header function GetLightDiffuseColor( actor )
+
+

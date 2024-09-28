@@ -1,0 +1,4 @@
+#title applyActorForceWorld [RCBasic Doc]
+#header sub applyActorForceWorld( actor,   x,   y,   z,   rel_x,   rel_y,   rel_z)
+
+

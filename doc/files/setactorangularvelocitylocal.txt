@@ -1,0 +1,4 @@
+#title setActorAngularVelocityLocal [RCBasic Doc]
+#header sub setActorAngularVelocityLocal( actor,   x,   y,   z)
+
+

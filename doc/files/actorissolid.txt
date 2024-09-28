@@ -1,0 +1,4 @@
+#title ActorIsSolid [RCBasic Doc]
+#header function ActorIsSolid(actor)
+
+

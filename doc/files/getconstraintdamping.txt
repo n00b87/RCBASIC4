@@ -1,0 +1,4 @@
+#title getConstraintDamping [RCBasic Doc]
+#header function  getConstraintDamping( constraint_id)
+
+

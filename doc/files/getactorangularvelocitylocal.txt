@@ -1,0 +1,4 @@
+#title getActorAngularVelocityLocal [RCBasic Doc]
+#header sub getActorAngularVelocityLocal( actor,  ByRef  x,  ByRef  y,  ByRef  z)
+
+

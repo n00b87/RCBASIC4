@@ -1,0 +1,4 @@
+#title getMaterialBackfaceCulling [RCBasic Doc]
+#header function  getMaterialBackfaceCulling( material_id)
+
+

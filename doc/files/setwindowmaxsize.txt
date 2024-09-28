@@ -1,0 +1,4 @@
+#title SetWindowMaxSize [RCBasic Doc]
+#header sub SetWindowMaxSize(win, w, h)
+
+

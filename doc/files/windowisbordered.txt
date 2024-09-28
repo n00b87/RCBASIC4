@@ -1,0 +1,4 @@
+#title WindowIsBordered [RCBasic Doc]
+#header function WindowIsBordered(win)
+
+

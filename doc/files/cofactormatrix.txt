@@ -1,0 +1,4 @@
+#title CofactorMatrix [RCBasic Doc]
+#header sub SubMatrix(mA, r, c)
+
+

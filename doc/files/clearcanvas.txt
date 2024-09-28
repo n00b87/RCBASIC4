@@ -1,0 +1,4 @@
+#title ClearCanvas [RCBasic Doc]
+#header sub ClearCanvas()
+
+

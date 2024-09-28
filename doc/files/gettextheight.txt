@@ -1,0 +1,4 @@
+#title GetTextHeight [RCBasic Doc]
+#header function GetTextHeight(txt$)
+
+

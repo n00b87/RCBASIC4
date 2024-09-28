@@ -1,0 +1,4 @@
+#title OpenWindowEx [RCBasic Doc]
+#header function OpenWindowEx(title$, x, y, w, h, mode, aa, stencil_buffer, vsync)
+
+

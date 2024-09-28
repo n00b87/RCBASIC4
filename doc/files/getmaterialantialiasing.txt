@@ -1,0 +1,4 @@
+#title getMaterialAntiAliasing [RCBasic Doc]
+#header function  getMaterialAntiAliasing( material_id)
+
+

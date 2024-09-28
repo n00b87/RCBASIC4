@@ -1,0 +1,4 @@
+#title setMaterialAmbientColor [RCBasic Doc]
+#header sub  setMaterialAmbientColor( material_id,  color)
+
+

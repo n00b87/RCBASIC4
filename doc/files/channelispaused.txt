@@ -1,0 +1,4 @@
+#title ChannelIsPaused [RCBasic Doc]
+#header function ChannelIsPaused(channel)
+
+

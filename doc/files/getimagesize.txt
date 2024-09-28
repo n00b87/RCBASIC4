@@ -1,0 +1,4 @@
+#title GetImageSize [RCBasic Doc]
+#header sub GetImageSize(slot, byref w, byref h)
+
+

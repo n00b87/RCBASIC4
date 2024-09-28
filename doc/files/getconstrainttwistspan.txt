@@ -1,0 +1,4 @@
+#title getConstraintTwistSpan [RCBasic Doc]
+#header function  getConstraintTwistSpan( constraint_id)
+
+

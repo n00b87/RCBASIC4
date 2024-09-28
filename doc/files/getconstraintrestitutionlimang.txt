@@ -1,0 +1,4 @@
+#title getConstraintRestitutionLimAng [RCBasic Doc]
+#header function  getConstraintRestitutionLimAng( constraint_id)
+
+

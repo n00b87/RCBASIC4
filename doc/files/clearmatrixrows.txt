@@ -1,0 +1,4 @@
+#title ClearMatrixRows [RCBasic Doc]
+#header function ClearMatrixRows(mA, r, num_rows)
+
+

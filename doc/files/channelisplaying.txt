@@ -1,0 +1,4 @@
+#title ChannelIsPlaying [RCBasic Doc]
+#header function ChannelIsPlaying(channel)
+
+

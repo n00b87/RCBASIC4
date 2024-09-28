@@ -1,0 +1,4 @@
+#title ClipMatrix [RCBasic Doc]
+#header sub ClipMatrix(mA, r, c, num_rows, num_cols, mB)
+
+

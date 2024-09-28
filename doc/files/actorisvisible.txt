@@ -1,0 +1,4 @@
+#title ActorIsVisible [RCBasic Doc]
+#header function ActorIsVisible( actor )
+
+

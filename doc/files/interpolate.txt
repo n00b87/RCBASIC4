@@ -1,0 +1,4 @@
+#title Interpolate [RCBasic Doc]
+#header Function Interpolate(min_a, max_a, mid_a, min_b, max_b)
+
+

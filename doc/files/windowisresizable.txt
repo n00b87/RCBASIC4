@@ -1,0 +1,4 @@
+#title WindowIsResizable [RCBasic Doc]
+#header function WindowIsResizable(win)
+
+

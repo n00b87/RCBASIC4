@@ -1,0 +1,4 @@
+#title GetCameraPosition [RCBasic Doc]
+#header sub GetCameraPosition(ByRef x, ByRef y, ByRef z)
+
+

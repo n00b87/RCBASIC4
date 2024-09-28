@@ -1,0 +1,4 @@
+#title DeleteMatrixRows [RCBasic Doc]
+#header function DeleteMatrixRows(mA, r, num_rows)
+
+

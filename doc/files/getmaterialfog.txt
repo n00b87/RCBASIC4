@@ -1,0 +1,4 @@
+#title getMaterialFog [RCBasic Doc]
+#header function  getMaterialFog( material_id)
+
+

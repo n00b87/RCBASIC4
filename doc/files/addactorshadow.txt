@@ -1,0 +1,4 @@
+#title AddActorShadow [RCBasic Doc]
+#header sub AddActorShadow( actor )
+
+

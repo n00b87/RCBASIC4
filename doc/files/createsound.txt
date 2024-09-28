@@ -1,0 +1,4 @@
+#title CreateSound [RCBasic Doc]
+#header sub SoundFromBuffer(slot, byref buffer, buffer_size, vol)
+
+

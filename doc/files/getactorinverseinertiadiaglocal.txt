@@ -1,0 +1,4 @@
+#title getActorInverseInertiaDiagLocal [RCBasic Doc]
+#header sub getActorInverseInertiaDiagLocal( actor,  ByRef  x,  ByRef  y,  ByRef  z)
+
+

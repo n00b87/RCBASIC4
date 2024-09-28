@@ -1,0 +1,4 @@
+#title StringArrayCopy [RCBasic Doc]
+#header sub StringArrayCopy(ByRef src$, ByRef dst$)
+
+

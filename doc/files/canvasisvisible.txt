@@ -1,0 +1,4 @@
+#title CanvasIsVisible [RCBasic Doc]
+#header function CanvasIsVisible(c_num)
+
+

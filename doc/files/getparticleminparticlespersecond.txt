@@ -1,0 +1,4 @@
+#title getParticleMinParticlesPerSecond [RCBasic Doc]
+#header function  getParticleMinParticlesPerSecond( actor)
+
+

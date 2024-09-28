@@ -1,0 +1,4 @@
+#title getActorCOMPosition [RCBasic Doc]
+#header sub getActorCOMPosition( actor,  ByRef  x,  ByRef  y,  ByRef  z)
+
+

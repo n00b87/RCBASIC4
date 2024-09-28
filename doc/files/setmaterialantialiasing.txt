@@ -1,0 +1,4 @@
+#title setMaterialAntiAliasing [RCBasic Doc]
+#header sub  setMaterialAntiAliasing( material_id,  aa)
+
+

@@ -1,0 +1,4 @@
+#title getConstraintAngularPos [RCBasic Doc]
+#header function  getConstraintAngularPos( constraint_id)
+
+

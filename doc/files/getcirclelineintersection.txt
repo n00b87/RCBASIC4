@@ -1,0 +1,4 @@
+#title GetCircleLineIntersection [RCBasic Doc]
+#header function GetCircleLineIntersection(circle_x, circle_y, radius, x1, y1, x2, y2, ByRef ix1, ByRef iy1, ByRef ix2, ByRef iy2)
+
+

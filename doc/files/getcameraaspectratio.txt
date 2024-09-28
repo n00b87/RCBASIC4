@@ -1,0 +1,4 @@
+#title GetCameraAspectRatio [RCBasic Doc]
+#header function GetCameraAspectRatio( )
+
+

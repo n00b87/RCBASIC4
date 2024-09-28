@@ -1,0 +1,4 @@
+#title DrawImage_Rotate [RCBasic Doc]
+#header sub DrawImage_Rotate(slot, x, y, angle)
+
+

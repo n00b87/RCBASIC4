@@ -1,0 +1,4 @@
+#title CopyImage [RCBasic Doc]
+#header sub CopyImage(src, dst)
+
+

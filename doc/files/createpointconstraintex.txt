@@ -1,0 +1,4 @@
+#title createPointConstraintEx [RCBasic Doc]
+#header function  createPointConstraintEx( actorA,  actorB,  pxA,  pyA,  pzA,  pxB,  pyB,  pzB)
+
+

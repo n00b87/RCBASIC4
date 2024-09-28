@@ -1,0 +1,4 @@
+#title particleIsUsingNormalDirection [RCBasic Doc]
+#header function  particleIsUsingNormalDirection( actor)
+
+

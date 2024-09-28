@@ -1,0 +1,4 @@
+#title GetBlendMode [RCBasic Doc]
+#header function ImageBlendMode(slot)
+
+

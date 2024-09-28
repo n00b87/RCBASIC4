@@ -1,0 +1,4 @@
+#title GetDesktopDisplayMode [RCBasic Doc]
+#header Sub GetDesktopDisplayMode(index, ByRef w, ByRef h, ByRef freq)
+
+

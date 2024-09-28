@@ -1,0 +1,4 @@
+#title FlashWindow [RCBasic Doc]
+#header function FlashWindow(win)
+
+

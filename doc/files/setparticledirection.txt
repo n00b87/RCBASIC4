@@ -1,0 +1,4 @@
+#title setParticleDirection [RCBasic Doc]
+#header sub  setParticleDirection( actor,  x,  y,  z)
+
+

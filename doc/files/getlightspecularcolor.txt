@@ -1,0 +1,4 @@
+#title GetLightSpecularColor [RCBasic Doc]
+#header function GetLightSpecularColor( actor )
+
+

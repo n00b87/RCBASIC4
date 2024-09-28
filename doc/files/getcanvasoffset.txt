@@ -1,0 +1,4 @@
+#title GetCanvasOffset [RCBasic Doc]
+#header sub GetCanvasOffset(c_num, byref x, byref y)
+
+

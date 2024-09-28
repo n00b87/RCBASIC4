@@ -1,0 +1,4 @@
+#title getConstraintSoftnessLimAng [RCBasic Doc]
+#header function  getConstraintSoftnessLimAng( constraint_id)
+
+

@@ -1,0 +1,4 @@
+#title GetCameraRotation [RCBasic Doc]
+#header sub GetCameraRotation(ByRef x, ByRef y, ByRef z)
+
+

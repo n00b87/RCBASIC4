@@ -1,0 +1,4 @@
+#title applyActorImpulseWorld [RCBasic Doc]
+#header sub applyActorImpulseWorld( actor,   x,   y,   z,   rel_x,   rel_y,   rel_z)
+
+

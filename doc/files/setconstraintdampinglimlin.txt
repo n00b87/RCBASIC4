@@ -1,0 +1,4 @@
+#title setConstraintDampingLimLin [RCBasic Doc]
+#header sub  setConstraintDampingLimLin( constraint_id,  n)
+
+

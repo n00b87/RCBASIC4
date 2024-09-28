@@ -1,0 +1,4 @@
+#title getConstraintSolveAngLimit [RCBasic Doc]
+#header function  getConstraintSolveAngLimit( constraint_id)
+
+

@@ -1,0 +1,4 @@
+#title GetMatrixTranslation [RCBasic Doc]
+#header sub GetMatrixTranslation( mA, ByRef x, ByRef y, ByRef z)
+
+

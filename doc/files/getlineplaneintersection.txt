@@ -1,0 +1,4 @@
+#title GetLinePlaneIntersection [RCBasic Doc]
+#header function GetLinePlaneIntersection(ByRef line_point, ByRef line_direction, ByRef plane_point_1, ByRef plane_point_2, ByRef plane_point_3, ByRef intersection)
+
+

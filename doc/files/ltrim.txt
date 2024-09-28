@@ -1,0 +1,4 @@
+#title Ltrim$ [RCBasic Doc]
+#header function Ltrim$(src$)
+
+

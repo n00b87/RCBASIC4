@@ -1,0 +1,4 @@
+#title Chr$ [RCBasic Doc]
+#header function Chr$(n)
+
+

@@ -1,0 +1,4 @@
+#title CreateCubeActor [RCBasic Doc]
+#header function CreateCubeActor( cube_size )
+
+

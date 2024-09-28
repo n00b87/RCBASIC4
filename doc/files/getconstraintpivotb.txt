@@ -1,0 +1,4 @@
+#title getConstraintPivotB [RCBasic Doc]
+#header sub  getConstraintPivotB( constraint_id, ByRef x, ByRef y, ByRef z)
+
+

@@ -1,0 +1,4 @@
+#title GetCanvasZ [RCBasic Doc]
+#header function CanvasZ(c_num)
+
+

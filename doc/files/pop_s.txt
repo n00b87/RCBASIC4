@@ -1,0 +1,4 @@
+#title Pop_S$ [RCBasic Doc]
+#header function Pop_S$( str_stack )
+
+

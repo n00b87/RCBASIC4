@@ -1,0 +1,4 @@
+#title ColorKey [RCBasic Doc]
+#header sub ColorKey(slot, c)
+
+

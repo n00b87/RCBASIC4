@@ -1,0 +1,4 @@
+#title SetCanvasAlpha [RCBasic Doc]
+#header sub SetCanvasAlpha(c_num, a)
+
+

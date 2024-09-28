@@ -1,0 +1,4 @@
+#title copyMaterial [RCBasic Doc]
+#header function  copyMaterial( smaterial_id)
+
+

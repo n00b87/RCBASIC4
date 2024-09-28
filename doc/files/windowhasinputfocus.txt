@@ -1,0 +1,4 @@
+#title WindowHasInputFocus [RCBasic Doc]
+#header function WindowHasInputFocus(win)
+
+

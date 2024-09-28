@@ -1,0 +1,4 @@
+#title getActorMaterialType [RCBasic Doc]
+#header function  getActorMaterialType( actor,  material)
+
+

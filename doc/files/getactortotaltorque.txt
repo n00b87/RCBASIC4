@@ -1,0 +1,4 @@
+#title getActorTotalTorque [RCBasic Doc]
+#header sub getActorTotalTorque( actor,  ByRef  x,  ByRef  y,  ByRef  z)
+
+

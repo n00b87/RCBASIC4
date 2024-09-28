@@ -1,0 +1,4 @@
+#title GetMusicPosition [RCBasic Doc]
+#header function MusicPosition()
+
+

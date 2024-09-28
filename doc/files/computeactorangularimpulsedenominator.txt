@@ -1,0 +1,4 @@
+#title computeActorAngularImpulseDenominator [RCBasic Doc]
+#header function  computeActorAngularImpulseDenominator( actor,   x,   y,   z)
+
+

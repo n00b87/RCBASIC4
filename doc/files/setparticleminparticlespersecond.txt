@@ -1,0 +1,4 @@
+#title setParticleMinParticlesPerSecond [RCBasic Doc]
+#header sub  setParticleMinParticlesPerSecond( actor,  minParticlesPerSecond)
+
+

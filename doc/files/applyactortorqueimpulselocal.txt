@@ -1,0 +1,4 @@
+#title applyActorTorqueImpulseLocal [RCBasic Doc]
+#header sub applyActorTorqueImpulseLocal( actor,   x,   y,   z)
+
+

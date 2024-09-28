@@ -1,0 +1,4 @@
+#title SetCameraPosition [RCBasic Doc]
+#header sub SetCameraPosition( x, y, z)
+
+

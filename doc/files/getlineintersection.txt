@@ -1,0 +1,4 @@
+#title GetLineIntersection [RCBasic Doc]
+#header Function GetLineIntersection(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y, ByRef i_x, ByRef i_y)
+
+

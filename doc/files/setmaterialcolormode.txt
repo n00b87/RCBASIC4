@@ -1,0 +1,4 @@
+#title setMaterialColorMode [RCBasic Doc]
+#header sub  setMaterialColorMode( material_id,  color_mode)
+
+

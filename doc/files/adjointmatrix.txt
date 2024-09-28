@@ -1,0 +1,4 @@
+#title AdjointMatrix [RCBasic Doc]
+#header function AdjointMatrix(mA, mB)
+
+

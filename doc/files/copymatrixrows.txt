@@ -1,0 +1,4 @@
+#title CopyMatrixRows [RCBasic Doc]
+#header function CopyMatrixRows(mA, mB, r, num_rows)
+
+

@@ -1,0 +1,4 @@
+#title TCP_CloseSocket [RCBasic Doc]
+#header sub TCP_SocketClose(socket)
+
+

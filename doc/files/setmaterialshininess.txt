@@ -1,0 +1,4 @@
+#title setMaterialShininess [RCBasic Doc]
+#header sub  setMaterialShininess( material_id,  shininess)
+
+

@@ -1,0 +1,4 @@
+#title ArraySize [RCBasic Doc]
+#header function ArraySize(Byref id, array_dim)
+
+

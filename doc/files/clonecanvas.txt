@@ -1,0 +1,4 @@
+#title CloneCanvas [RCBasic Doc]
+#header sub CloneCanvas(src, dst)
+
+

@@ -1,0 +1,4 @@
+#title GetMatrixScale [RCBasic Doc]
+#header sub GetMatrixScale( mA, ByRef x, ByRef y, ByRef z)
+
+

@@ -1,0 +1,4 @@
+#title getActorLinearFactor [RCBasic Doc]
+#header sub getActorLinearFactor( actor,  ByRef  x,  ByRef  y,  ByRef  z)
+
+

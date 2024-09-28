@@ -1,0 +1,4 @@
+#title getMaterialBlendFactor [RCBasic Doc]
+#header function  getMaterialBlendFactor( material_id)
+
+

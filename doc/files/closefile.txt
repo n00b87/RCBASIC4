@@ -1,0 +1,4 @@
+#title CloseFile [RCBasic Doc]
+#header sub FileClose(stream)
+
+

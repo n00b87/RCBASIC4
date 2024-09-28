@@ -1,0 +1,4 @@
+#title getHingeAngleEx [RCBasic Doc]
+#header function  getHingeAngleEx( constraint_id,  t_matrixA,  t_matrixB)
+
+

@@ -1,0 +1,4 @@
+#title getMaterialEmissiveColor [RCBasic Doc]
+#header function  getMaterialEmissiveColor( material_id)
+
+

@@ -1,0 +1,4 @@
+#title setConstraintDampingOrthoLin [RCBasic Doc]
+#header sub  setConstraintDampingOrthoLin( constraint_id,  n)
+
+

@@ -1,0 +1,4 @@
+#title getActorAngularFactor [RCBasic Doc]
+#header sub getActorAngularFactor( actor,  ByRef  x,  ByRef  y,  ByRef  z)
+
+

@@ -1,0 +1,4 @@
+#title WriteLine [RCBasic Doc]
+#header sub WriteLine(stream, txt$)
+
+

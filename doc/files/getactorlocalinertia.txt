@@ -1,0 +1,4 @@
+#title getActorLocalInertia [RCBasic Doc]
+#header sub getActorLocalInertia( actor,  ByRef  x,  ByRef  y,  ByRef  z)
+
+

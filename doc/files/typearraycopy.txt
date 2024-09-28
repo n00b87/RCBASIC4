@@ -1,0 +1,4 @@
+#title TypeArrayCopy [RCBasic Doc]
+#header sub TypeArrayCopy(ByRef src as empty, ByRef dst as empty)
+
+

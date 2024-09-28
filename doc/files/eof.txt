@@ -1,0 +1,4 @@
+#title EOF [RCBasic Doc]
+#header function EOF(stream)
+
+

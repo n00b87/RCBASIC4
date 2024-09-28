@@ -1,0 +1,4 @@
+#title Frac [RCBasic Doc]
+#header function Frac(n)
+
+

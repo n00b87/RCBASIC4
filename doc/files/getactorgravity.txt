@@ -1,0 +1,4 @@
+#title GetActorGravity [RCBasic Doc]
+#header sub GetActorGravity( actor, ByRef x, ByRef y, ByRef z )
+
+

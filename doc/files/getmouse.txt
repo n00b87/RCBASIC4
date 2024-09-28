@@ -1,0 +1,4 @@
+#title GetMouse [RCBasic Doc]
+#header sub GetMouse(byref x, byref y, byref mb1, byref mb2, byref mb3)
+
+

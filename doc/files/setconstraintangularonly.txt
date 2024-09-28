@@ -1,0 +1,4 @@
+#title setConstraintAngularOnly [RCBasic Doc]
+#header sub  setConstraintAngularOnly( constraint_id,  flag)
+
+

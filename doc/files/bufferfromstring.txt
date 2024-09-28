@@ -1,0 +1,4 @@
+#title BufferFromString [RCBasic Doc]
+#header function BufferFromString(s$, ByRef buffer)
+
+

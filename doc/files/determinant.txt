@@ -1,0 +1,4 @@
+#title Determinant [RCBasic Doc]
+#header function Determinant(mA)
+
+

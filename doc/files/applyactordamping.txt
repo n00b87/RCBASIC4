@@ -1,0 +1,4 @@
+#title applyActorDamping [RCBasic Doc]
+#header sub applyActorDamping( actor,   timeStep)
+
+

@@ -1,0 +1,4 @@
+#title getConstraintBiasFactor [RCBasic Doc]
+#header function  getConstraintBiasFactor( constraint_id)
+
+

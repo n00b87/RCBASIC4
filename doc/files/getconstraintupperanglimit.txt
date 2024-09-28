@@ -1,0 +1,4 @@
+#title getConstraintUpperAngLimit [RCBasic Doc]
+#header function  getConstraintUpperAngLimit( constraint_id)
+
+

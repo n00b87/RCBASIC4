@@ -1,0 +1,4 @@
+#title setConstraintSoftnessDirLin [RCBasic Doc]
+#header sub  setConstraintSoftnessDirLin( constraint_id,  n)
+
+

@@ -1,0 +1,4 @@
+#title ArrayDim [RCBasic Doc]
+#header function ArrayDim(Byref id)
+
+

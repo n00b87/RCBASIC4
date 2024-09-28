@@ -1,0 +1,4 @@
+#title setParticleMinStartColor [RCBasic Doc]
+#header sub  setParticleMinStartColor( actor,  color)
+
+

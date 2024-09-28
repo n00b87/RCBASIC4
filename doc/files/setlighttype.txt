@@ -1,0 +1,4 @@
+#title setLightType [RCBasic Doc]
+#header sub setLightType( actor, light_type )
+
+
