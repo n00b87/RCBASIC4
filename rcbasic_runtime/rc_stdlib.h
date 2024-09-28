@@ -199,6 +199,8 @@ std::u32string to_utf32(const std::string &s)
 
 inline int rc_intern_asc(std::string c)
 {
+	if(c.length()==0)
+		return 0;
     return (uint32_t)to_utf32(utf8_substr(c, 0, 1))[0];
 }
 
