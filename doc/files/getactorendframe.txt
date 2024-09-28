@@ -1,0 +1,4 @@
+#title GetActorEndFrame [RCBasic Doc]
+#header function GetActorEndFrame( actor )
+
+

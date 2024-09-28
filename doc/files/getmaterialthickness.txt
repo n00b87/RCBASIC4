@@ -1,0 +1,4 @@
+#title getMaterialThickness [RCBasic Doc]
+#header function  getMaterialThickness( material_id)
+
+

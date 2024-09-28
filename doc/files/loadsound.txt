@@ -1,0 +1,4 @@
+#title LoadSound [RCBasic Doc]
+#header sub LoadSound(slot, snd_file$)
+
+

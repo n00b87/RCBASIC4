@@ -1,0 +1,4 @@
+#title CInt32 [RCBasic Doc]
+#header function CInt32(i)
+
+

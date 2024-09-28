@@ -1,0 +1,4 @@
+#title Time$ [RCBasic Doc]
+#header function Time$()
+
+

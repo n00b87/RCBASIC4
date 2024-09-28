@@ -1,0 +1,4 @@
+#title particleIsUsingEveryMeshVertex [RCBasic Doc]
+#header function  particleIsUsingEveryMeshVertex( actor)
+
+

@@ -1,0 +1,4 @@
+#title SetChannelVolume [RCBasic Doc]
+#header sub SetChannelVolume(channel, vol)
+
+

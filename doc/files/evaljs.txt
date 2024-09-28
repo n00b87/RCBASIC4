@@ -1,0 +1,4 @@
+#title EvalJS$ [RCBasic Doc]
+#header Function EvalJS$(js_code$) 'Only useable in Emscripten
+
+

@@ -1,0 +1,4 @@
+#title GetMatrixRotation [RCBasic Doc]
+#header sub GetMatrixRotation( mA, ByRef x, ByRef y, ByRef z)
+
+

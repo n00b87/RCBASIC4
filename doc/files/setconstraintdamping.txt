@@ -1,0 +1,4 @@
+#title setConstraintDamping [RCBasic Doc]
+#header sub  setConstraintDamping( constraint_id,  damping)
+
+

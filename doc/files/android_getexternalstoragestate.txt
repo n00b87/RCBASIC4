@@ -1,0 +1,4 @@
+#title Android_GetExternalStorageState [RCBasic Doc]
+#header function Android_GetExternalStorageState()
+
+

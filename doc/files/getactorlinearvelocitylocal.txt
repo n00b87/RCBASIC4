@@ -1,0 +1,4 @@
+#title getActorLinearVelocityLocal [RCBasic Doc]
+#header sub getActorLinearVelocityLocal( actor,  ByRef  x,  ByRef  y,  ByRef  z)
+
+

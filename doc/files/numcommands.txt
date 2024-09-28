@@ -1,0 +1,4 @@
+#title NumCommands [RCBasic Doc]
+#header function NumCommands()
+
+

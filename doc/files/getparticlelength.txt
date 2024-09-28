@@ -1,0 +1,4 @@
+#title getParticleLength [RCBasic Doc]
+#header function  getParticleLength( actor)
+
+

@@ -1,0 +1,4 @@
+#title DeleteImage [RCBasic Doc]
+#header sub DeleteImage(slot)
+
+

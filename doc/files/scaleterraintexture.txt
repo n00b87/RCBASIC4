@@ -1,0 +1,4 @@
+#title ScaleTerrainTexture [RCBasic Doc]
+#header sub ScaleTerrainTexture( actor, scale, scale2 )
+
+

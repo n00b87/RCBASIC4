@@ -1,0 +1,4 @@
+#title setActorInverseInertiaDiagLocal [RCBasic Doc]
+#header sub setActorInverseInertiaDiagLocal( actor,   x,   y,   z)
+
+

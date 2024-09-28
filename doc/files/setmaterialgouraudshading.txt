@@ -1,0 +1,4 @@
+#title setMaterialGouraudShading [RCBasic Doc]
+#header sub  setMaterialGouraudShading( material_id,  flag)
+
+

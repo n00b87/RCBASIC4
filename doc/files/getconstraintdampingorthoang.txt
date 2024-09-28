@@ -1,0 +1,4 @@
+#title getConstraintDampingOrthoAng [RCBasic Doc]
+#header function  getConstraintDampingOrthoAng( constraint_id)
+
+

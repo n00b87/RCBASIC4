@@ -69,4 +69,19 @@ bool is_file_exist(const char *fileName)
     return infile.good();
 }
 
+std::string rc_replace(std::string src, std::string tgt, std::string rpc)
+{
+    if(tgt.length()==0)
+        return src;
+    size_t found_inc = rpc.length() > 0 ? rpc.length() : 1;
+    size_t found = 0;
+    found = src.find(tgt);
+    while( found != string::npos && found < src.length())
+    {
+        src = src.substr(0,found) + rpc + src.substr(found + tgt.length());
+        found = src.find(tgt,found+found_inc);
+    }
+    return src;
+}
+
 #endif // RC_UTILITY_H_INCLUDED

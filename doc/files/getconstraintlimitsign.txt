@@ -1,0 +1,4 @@
+#title getConstraintLimitSign [RCBasic Doc]
+#header function  getConstraintLimitSign( constraint_id)
+
+

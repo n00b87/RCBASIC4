@@ -1,0 +1,4 @@
+#title SetWindowAutoClose [RCBasic Doc]
+#header sub SetWindowAutoClose( win, exit_on_close )
+
+

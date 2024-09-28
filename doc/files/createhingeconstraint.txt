@@ -1,0 +1,4 @@
+#title createHingeConstraint [RCBasic Doc]
+#header function  createHingeConstraint( actorA,  pxA,  pyA,  pzA,  axA,  ayA,  azA)
+
+

@@ -1,0 +1,8 @@
+function LoadFont(fnt_file$, font_size)
+sub DeleteFont(slot)
+Function FontExists(slot)
+sub SetFont(slot)
+sub DrawText(txt$, x, y)
+sub GetTextSize(txt$, byref w, byref h)
+function GetTextWidth(txt$)
+function GetTextHeight(txt$)

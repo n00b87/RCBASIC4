@@ -1,0 +1,4 @@
+#title WriteByte [RCBasic Doc]
+#header sub WriteByte(stream, byte)
+
+

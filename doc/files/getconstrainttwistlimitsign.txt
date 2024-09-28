@@ -1,0 +1,4 @@
+#title getConstraintTwistLimitSign [RCBasic Doc]
+#header function  getConstraintTwistLimitSign( constraint_id)
+
+

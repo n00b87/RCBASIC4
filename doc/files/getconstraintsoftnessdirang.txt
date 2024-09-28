@@ -1,0 +1,4 @@
+#title getConstraintSoftnessDirAng [RCBasic Doc]
+#header function  getConstraintSoftnessDirAng( constraint_id)
+
+

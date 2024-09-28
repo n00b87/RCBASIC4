@@ -1,0 +1,4 @@
+#title Abs [RCBasic Doc]
+#header function Abs(n)
+
+

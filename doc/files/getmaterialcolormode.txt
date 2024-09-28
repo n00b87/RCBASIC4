@@ -1,0 +1,4 @@
+#title getMaterialColorMode [RCBasic Doc]
+#header function  getMaterialColorMode( material_id)
+
+

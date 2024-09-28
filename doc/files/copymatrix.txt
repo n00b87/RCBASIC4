@@ -1,0 +1,4 @@
+#title CopyMatrix [RCBasic Doc]
+#header sub CopyMatrix(mA, mB)
+
+

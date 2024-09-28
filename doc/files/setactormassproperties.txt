@@ -1,0 +1,4 @@
+#title setActorMassProperties [RCBasic Doc]
+#header sub setActorMassProperties( actor,   mass,   inertia_x,   inertia_y,   inertia_z)
+
+

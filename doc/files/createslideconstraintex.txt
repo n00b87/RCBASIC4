@@ -1,0 +1,4 @@
+#title createSlideConstraintEx [RCBasic Doc]
+#header function  createSlideConstraintEx( actorA,  actorB,  frameInA_matrix,  frameInB_matrix,  useLinearReferenceFrameA)
+
+

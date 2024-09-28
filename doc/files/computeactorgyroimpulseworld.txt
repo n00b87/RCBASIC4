@@ -1,0 +1,4 @@
+#title computeActorGyroImpulseWorld [RCBasic Doc]
+#header sub computeActorGyroImpulseWorld( actor,   dt,  ByRef  x,  ByRef  y,  ByRef  z)
+
+

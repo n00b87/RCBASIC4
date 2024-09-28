@@ -1,0 +1,4 @@
+#title CanvasClip [RCBasic Doc]
+#header sub CanvasClip(slot, x, y, w, h, flag)
+
+

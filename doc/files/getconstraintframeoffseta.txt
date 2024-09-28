@@ -1,0 +1,4 @@
+#title getConstraintFrameOffsetA [RCBasic Doc]
+#header sub  getConstraintFrameOffsetA( constraint_id, ByRef x, ByRef y, ByRef z, ByRef rx, ByRef ry, ByRef rz)
+
+

@@ -1,0 +1,4 @@
+#title lightIsCastingShadow [RCBasic Doc]
+#header function lightIsCastingShadow( actor )
+
+

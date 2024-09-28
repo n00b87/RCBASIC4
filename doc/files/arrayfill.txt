@@ -1,0 +1,4 @@
+#title ArrayFill [RCBasic Doc]
+#header sub ArrayFill(ByRef src, fdata)
+
+

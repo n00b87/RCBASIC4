@@ -1,0 +1,4 @@
+#title FontExists [RCBasic Doc]
+#header function FontIsLoaded(slot)
+
+

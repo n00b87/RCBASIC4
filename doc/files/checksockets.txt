@@ -1,0 +1,4 @@
+#title CheckSockets [RCBasic Doc]
+#header function CheckSockets(timeout_ms)
+
+

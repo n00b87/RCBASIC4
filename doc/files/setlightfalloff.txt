@@ -1,0 +1,4 @@
+#title SetLightFalloff [RCBasic Doc]
+#header sub SetLightFalloff( actor, falloff )
+
+

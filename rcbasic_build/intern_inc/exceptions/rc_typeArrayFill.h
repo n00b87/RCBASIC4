@@ -1,0 +1,1 @@
+rc_type_array_fill( TYPEARRAYFILL_SRC, &TYPEARRAYFILL_FDATA );

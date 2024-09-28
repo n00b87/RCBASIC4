@@ -1,0 +1,4 @@
+#title setActorAngularFactor [RCBasic Doc]
+#header sub setActorAngularFactor( actor,   x,   y,   z)
+
+

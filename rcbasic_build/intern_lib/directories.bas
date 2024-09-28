@@ -1,0 +1,7 @@
+sub ChangeDir(p$)
+function DirExists(p$)
+function DirFirst$()
+function Dir$()
+function DirNext$()
+function MakeDir(p$)
+function RemoveDir(p$)

@@ -1,0 +1,4 @@
+#title GetActorCollisionShape [RCBasic Doc]
+#header function GetActorCollisionShape(actor)
+
+

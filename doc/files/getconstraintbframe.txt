@@ -1,0 +1,4 @@
+#title getConstraintBFrame [RCBasic Doc]
+#header function  getConstraintBFrame( constraint_id,  mA)
+
+

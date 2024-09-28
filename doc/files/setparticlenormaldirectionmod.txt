@@ -1,0 +1,4 @@
+#title setParticleNormalDirectionMod [RCBasic Doc]
+#header sub  setParticleNormalDirectionMod( actor,  nd_mod)
+
+

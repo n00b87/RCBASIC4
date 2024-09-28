@@ -1,0 +1,4 @@
+#title getConstraintSolveSwingLimit [RCBasic Doc]
+#header function  getConstraintSolveSwingLimit( constraint_id)
+
+

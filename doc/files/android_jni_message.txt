@@ -1,0 +1,4 @@
+#title Android_JNI_Message$ [RCBasic Doc]
+#header function Android_JNI_Message$(arg$)
+
+

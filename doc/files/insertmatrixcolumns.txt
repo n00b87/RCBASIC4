@@ -1,0 +1,4 @@
+#title InsertMatrixColumns [RCBasic Doc]
+#header function InsertMatrixColumns(mA, c, num_cols)
+
+

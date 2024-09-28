@@ -1,0 +1,4 @@
+#title getActorLinearDamping [RCBasic Doc]
+#header function getActorLinearDamping( actor)
+
+

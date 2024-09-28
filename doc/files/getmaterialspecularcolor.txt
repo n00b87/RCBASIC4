@@ -1,0 +1,4 @@
+#title getMaterialSpecularColor [RCBasic Doc]
+#header function  getMaterialSpecularColor( material_id)
+
+

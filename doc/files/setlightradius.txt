@@ -1,0 +1,4 @@
+#title setLightRadius [RCBasic Doc]
+#header sub setLightRadius( actor, radius )
+
+

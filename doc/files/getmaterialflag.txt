@@ -1,0 +1,4 @@
+#title getMaterialFlag [RCBasic Doc]
+#header function  getMaterialFlag( material_id,  material_flag)
+
+

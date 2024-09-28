@@ -1,0 +1,4 @@
+#title GetMouseWheel [RCBasic Doc]
+#header sub GetMouseWheel(byref x_axis, byref y_axis)
+
+

@@ -1,0 +1,4 @@
+#title setActorDamping [RCBasic Doc]
+#header sub setActorDamping( actor,   lin_damping,   ang_damping)
+
+

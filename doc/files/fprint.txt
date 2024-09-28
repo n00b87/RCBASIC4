@@ -1,0 +1,4 @@
+#title Fprint [RCBasic Doc]
+#header sub Fprint(txt$)
+
+

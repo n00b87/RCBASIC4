@@ -1,0 +1,4 @@
+#title Android_GetInternalStoragePath$ [RCBasic Doc]
+#header function Android_GetInternalStoragePath$()
+
+

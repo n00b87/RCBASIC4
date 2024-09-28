@@ -1,0 +1,4 @@
+#title actorAnimationIsLooped [RCBasic Doc]
+#header function actorAnimationIsLooped( actor )
+
+

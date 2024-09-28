@@ -1,0 +1,4 @@
+#title BufferFromMatrix [RCBasic Doc]
+#header sub BufferFromMatrix(ByRef buffer, mA)
+
+

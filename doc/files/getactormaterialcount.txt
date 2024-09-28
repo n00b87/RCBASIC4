@@ -1,0 +1,4 @@
+#title getActorMaterialCount [RCBasic Doc]
+#header function  getActorMaterialCount( actor)
+
+

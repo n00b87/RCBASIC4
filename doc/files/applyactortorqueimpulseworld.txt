@@ -1,0 +1,4 @@
+#title applyActorTorqueImpulseWorld [RCBasic Doc]
+#header sub applyActorTorqueImpulseWorld( actor,   x,   y,   z)
+
+

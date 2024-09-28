@@ -1,0 +1,4 @@
+#title CopyMatrixColumns [RCBasic Doc]
+#header function CopyMatrixColumns(mA, mB, c, num_cols)
+
+

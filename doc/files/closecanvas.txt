@@ -1,0 +1,4 @@
+#title CloseCanvas [RCBasic Doc]
+#header sub CanvasClose(c_num)
+
+

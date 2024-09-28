@@ -1,0 +1,4 @@
+#title Rand [RCBasic Doc]
+#header function Rand(n)
+
+

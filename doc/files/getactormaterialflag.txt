@@ -1,0 +1,4 @@
+#title getActorMaterialFlag [RCBasic Doc]
+#header function  getActorMaterialFlag( actor,  material,  flag)
+
+

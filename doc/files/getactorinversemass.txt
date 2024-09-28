@@ -1,0 +1,4 @@
+#title getActorInverseMass [RCBasic Doc]
+#header function  getActorInverseMass( actor)
+
+

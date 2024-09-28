@@ -1,0 +1,4 @@
+#title TypeArraySize [RCBasic Doc]
+#header function TypeArraySize(Byref id as empty, array_dim)
+
+

@@ -1,0 +1,4 @@
+#title GetMusicVolume [RCBasic Doc]
+#header function MusicVolume()
+
+

@@ -1,0 +1,4 @@
+#title getMaterialAmbientColor [RCBasic Doc]
+#header function  getMaterialAmbientColor( material_id)
+
+

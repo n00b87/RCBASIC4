@@ -1,0 +1,4 @@
+#title GetTextSize [RCBasic Doc]
+#header sub GetTextSize(slot, txt$, byref w, byref h)
+
+

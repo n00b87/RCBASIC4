@@ -1,0 +1,4 @@
+#title GetLightInnerCone [RCBasic Doc]
+#header function GetLightInnerCone( actor )
+
+

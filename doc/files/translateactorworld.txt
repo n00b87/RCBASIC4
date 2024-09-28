@@ -1,0 +1,4 @@
+#title TranslateActorWorld [RCBasic Doc]
+#header sub TranslateActorWorld( actor, x, y, z )
+
+

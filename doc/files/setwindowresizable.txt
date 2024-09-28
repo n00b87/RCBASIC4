@@ -1,0 +1,4 @@
+#title SetWindowResizable [RCBasic Doc]
+#header sub SetWindowResizable(win, flag) 'new
+
+

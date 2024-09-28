@@ -1,0 +1,4 @@
+#title StopActorTransition [RCBasic Doc]
+#header sub StopActorTransition( actor )
+
+

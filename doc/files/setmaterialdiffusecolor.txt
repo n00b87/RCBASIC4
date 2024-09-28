@@ -1,0 +1,4 @@
+#title setMaterialDiffuseColor [RCBasic Doc]
+#header sub  setMaterialDiffuseColor( material_id,  color)
+
+

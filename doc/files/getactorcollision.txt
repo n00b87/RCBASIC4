@@ -1,0 +1,4 @@
+#title GetActorCollision [RCBasic Doc]
+#header function GetActorCollision(actor1, actor2)
+
+

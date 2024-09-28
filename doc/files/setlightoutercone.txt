@@ -1,0 +1,4 @@
+#title SetLightOuterCone [RCBasic Doc]
+#header sub SetLightOuterCone( actor, angle)
+
+

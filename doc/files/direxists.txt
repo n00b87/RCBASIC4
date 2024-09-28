@@ -1,0 +1,4 @@
+#title DirExists [RCBasic Doc]
+#header function DirExists(p$)
+
+

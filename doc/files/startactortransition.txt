@@ -1,0 +1,4 @@
+#title StartActorTransition [RCBasic Doc]
+#header sub StartActorTransition( actor, frame, transition_time )
+
+

@@ -1,0 +1,2 @@
+rc_free_type(TYPEARRAYCOPY_DST);
+rc_type_array_copy( TYPEARRAYCOPY_SRC, TYPEARRAYCOPY_DST );

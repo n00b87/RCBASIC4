@@ -1,0 +1,4 @@
+#title setMaterialFlag [RCBasic Doc]
+#header sub  setMaterialFlag( material_id,  material_flag,  f_value)
+
+

@@ -1,0 +1,4 @@
+#title getMaterialType [RCBasic Doc]
+#header function  getMaterialType( material_id)
+
+

@@ -1,0 +1,4 @@
+#title TCP_RemoteHost [RCBasic Doc]
+#header function TCP_RemoteHost(socket)
+
+

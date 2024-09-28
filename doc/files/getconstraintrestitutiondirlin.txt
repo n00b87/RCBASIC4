@@ -1,0 +1,4 @@
+#title getConstraintRestitutionDirLin [RCBasic Doc]
+#header function  getConstraintRestitutionDirLin( constraint_id)
+
+

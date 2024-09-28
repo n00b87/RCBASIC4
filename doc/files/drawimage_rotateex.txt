@@ -1,0 +1,4 @@
+#title DrawImage_RotateEx [RCBasic Doc]
+#header sub DrawImage_RotateEx(slot, x, y, src_x, src_y, src_w, src_h, angle)
+
+

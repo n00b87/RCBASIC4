@@ -1,0 +1,4 @@
+#title setMaterialBlendMode [RCBasic Doc]
+#header sub  setMaterialBlendMode( material_id,  blend_mode)
+
+

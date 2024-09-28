@@ -1,0 +1,4 @@
+#title DeleteMatrix [RCBasic Doc]
+#header Sub DeleteMatrix(mA)
+
+

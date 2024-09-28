@@ -1,0 +1,4 @@
+#title setLightShadowCast [RCBasic Doc]
+#header sub setLightShadowCast( actor, flag )
+
+

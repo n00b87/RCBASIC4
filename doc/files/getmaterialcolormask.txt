@@ -1,0 +1,4 @@
+#title getMaterialColorMask [RCBasic Doc]
+#header function  getMaterialColorMask( material_id)
+
+

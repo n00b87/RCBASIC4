@@ -1,0 +1,4 @@
+#title CloseWindow [RCBasic Doc]
+#header sub WindowClose(win)
+
+

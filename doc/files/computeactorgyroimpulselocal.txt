@@ -1,0 +1,4 @@
+#title computeActorGyroImpulseLocal [RCBasic Doc]
+#header sub computeActorGyroImpulseLocal( actor,   dt,  ByRef  x,  ByRef  y,  ByRef  z)
+
+

@@ -1,0 +1,4 @@
+#title Asin [RCBasic Doc]
+#header function Asin(n)
+
+

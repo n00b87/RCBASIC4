@@ -1,0 +1,4 @@
+#title SetActorFrame [RCBasic Doc]
+#header sub SetActorFrame( actor, frame )
+
+

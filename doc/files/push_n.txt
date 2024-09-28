@@ -1,0 +1,4 @@
+#title Push_N [RCBasic Doc]
+#header sub Push_N( num_stack, n )
+
+

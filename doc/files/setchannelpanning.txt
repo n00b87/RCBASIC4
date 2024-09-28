@@ -1,0 +1,4 @@
+#title SetChannelPanning [RCBasic Doc]
+#header function SetChannelPanning(channel, left_value, right_value)
+
+

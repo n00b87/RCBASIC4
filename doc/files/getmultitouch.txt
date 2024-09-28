@@ -1,0 +1,4 @@
+#title GetMultiTouch [RCBasic Doc]
+#header sub GetMultiTouch(byref status, byref x, byref y, byref fingers, byref dist, byref theta)
+
+

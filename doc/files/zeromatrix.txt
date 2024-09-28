@@ -1,0 +1,4 @@
+#title ZeroMatrix [RCBasic Doc]
+#header sub ZeroMatrix(mA)
+
+

@@ -1,0 +1,4 @@
+#title DeleteActor [RCBasic Doc]
+#header sub DeleteActor( actor )
+
+

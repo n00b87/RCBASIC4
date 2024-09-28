@@ -1,0 +1,5 @@
+function LoadMesh( mesh_file$ )
+sub DeleteMesh( mesh )
+function CreateMesh( )
+sub AddMeshBuffer( mesh, vertex_count, ByRef vertex_data, ByRef normal_data, ByRef uv_data, index_count, ByRef index_data )
+function LoadMeshFromArchive( archive$, mesh_file$ )

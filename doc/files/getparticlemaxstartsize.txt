@@ -1,0 +1,4 @@
+#title getParticleMaxStartSize [RCBasic Doc]
+#header sub  getParticleMaxStartSize( actor, ByRef w, ByRef h)
+
+

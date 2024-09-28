@@ -1,0 +1,4 @@
+#title Cos [RCBasic Doc]
+#header function Cos(n)
+
+

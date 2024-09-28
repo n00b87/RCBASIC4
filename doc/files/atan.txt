@@ -1,0 +1,4 @@
+#title Atan [RCBasic Doc]
+#header function Atan(n)
+
+

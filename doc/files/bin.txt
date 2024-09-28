@@ -1,0 +1,4 @@
+#title Bin$ [RCBasic Doc]
+#header function Bin$(n)
+
+

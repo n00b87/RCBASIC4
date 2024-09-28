@@ -1,0 +1,4 @@
+#title getActorRotationQ [RCBasic Doc]
+#header sub getActorRotationQ( actor,  ByRef  x,  ByRef  y,  ByRef  z,  ByRef  w)
+
+

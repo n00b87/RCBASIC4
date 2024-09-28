@@ -1,0 +1,4 @@
+#title getLightRadius [RCBasic Doc]
+#header function getLightRadius( actor )
+
+

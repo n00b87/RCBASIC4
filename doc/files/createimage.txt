@@ -1,0 +1,4 @@
+#title createImage [RCBasic Doc]
+#header sub ImageFromBuffer(slot, w, h, byref buffer)
+
+

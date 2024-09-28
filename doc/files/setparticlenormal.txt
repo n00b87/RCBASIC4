@@ -1,0 +1,4 @@
+#title setParticleNormal [RCBasic Doc]
+#header sub  setParticleNormal( actor,  x,  y,  z)
+
+

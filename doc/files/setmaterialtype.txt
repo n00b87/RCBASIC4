@@ -1,0 +1,4 @@
+#title setMaterialType [RCBasic Doc]
+#header sub  setMaterialType( material_id,  mat_type)
+
+

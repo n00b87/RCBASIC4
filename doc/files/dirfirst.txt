@@ -1,0 +1,4 @@
+#title DirFirst$ [RCBasic Doc]
+#header function DirFirst$()
+
+

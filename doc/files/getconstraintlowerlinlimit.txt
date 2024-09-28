@@ -1,0 +1,4 @@
+#title getConstraintLowerLinLimit [RCBasic Doc]
+#header function  getConstraintLowerLinLimit( constraint_id)
+
+

@@ -1,0 +1,4 @@
+#title GetCameraFarValue [RCBasic Doc]
+#header function GetCameraFarValue( )
+
+

@@ -1,0 +1,4 @@
+#title Asc [RCBasic Doc]
+#header function Asc(c$)
+
+

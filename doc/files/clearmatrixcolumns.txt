@@ -1,0 +1,4 @@
+#title ClearMatrixColumns [RCBasic Doc]
+#header function ClearMatrixColumns(mA, c, num_cols)
+
+

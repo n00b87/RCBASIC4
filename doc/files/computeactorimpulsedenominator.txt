@@ -1,0 +1,4 @@
+#title computeActorImpulseDenominator [RCBasic Doc]
+#header function  computeActorImpulseDenominator( actor,   pos_x,   pos_y,   pos_z,   normal_x,   normal_y,   normal_z)
+
+

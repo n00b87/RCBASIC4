@@ -1,0 +1,4 @@
+#title CopyFile [RCBasic Doc]
+#header sub CopyFile(src$, dst$)
+
+

@@ -1,0 +1,4 @@
+#title WindowHasMouseFocus [RCBasic Doc]
+#header function WindowHasMouseFocus(win)
+
+
