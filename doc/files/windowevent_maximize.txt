@@ -1,4 +1,4 @@
 #title WindowEvent_Maximize [RCBasic Doc]
 #header function WindowEvent_Maximize()
 
-
+Returns true if the window maximize event is called.

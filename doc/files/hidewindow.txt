@@ -1,4 +1,6 @@
 #title HideWindow [RCBasic Doc]
 #header sub HideWindow( )
 
+Sets the window invisible.
 
+#ref ShowWindow WindowIsVisible

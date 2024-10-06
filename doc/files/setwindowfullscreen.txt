@@ -1,4 +1,4 @@
 #title SetWindowFullscreen [RCBasic Doc]
 #header sub SetWindowFullscreen( flag)
 
-
+You will never guess what this does

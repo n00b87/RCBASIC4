@@ -1,4 +1,6 @@
 #title SetCameraRotation [RCBasic Doc]
 #header sub SetCameraRotation( x, y, z)
 
+Sets the rotation of the camera around each axis
 
+#ref RotateCamera GetCameraRotation

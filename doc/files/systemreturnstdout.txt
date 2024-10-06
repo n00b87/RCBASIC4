@@ -1,4 +1,6 @@
 #title SystemReturnStdOut$ [RCBasic Doc]
 #header function SystemReturnStdOut$(cmd$)
 
+Runs an operating system command and returns the output
 
+#ref System

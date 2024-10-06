@@ -1,4 +1,6 @@
 #title setMaterialTexture [RCBasic Doc]
 #header sub  setMaterialTexture( material_id,  level,  img_id)
 
+Sets the texture on a specified texture level of a material
 
+Note: Generally you want to just set level 0

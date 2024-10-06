@@ -1,4 +1,4 @@
 #title SetMatrixValue [RCBasic Doc]
 #header sub SetMatrixValue(mA, r, c, v)
 
-
+Sets the value of a cell in a matrix

@@ -1,4 +1,4 @@
 #title StringFromBuffer$ [RCBasic Doc]
 #header function StringFromBuffer$(ByRef buffer, buffer_size)
 
-
+Returns a string generated from the character values stored in the buffer

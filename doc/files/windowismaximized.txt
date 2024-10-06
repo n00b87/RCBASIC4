@@ -1,4 +1,4 @@
 #title WindowIsMaximized [RCBasic Doc]
 #header function WindowIsMaximized()
 
-
+Returns true if the window is maximized, otherwise it will return false.

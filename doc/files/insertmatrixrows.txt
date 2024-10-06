@@ -1,4 +1,4 @@
 #title InsertMatrixRows [RCBasic Doc]
 #header function InsertMatrixRows(mA, r, num_rows)
 
-
+Insert a number of empty rows into matrix mA starting at the specified row. 

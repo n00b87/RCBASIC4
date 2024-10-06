@@ -1,4 +1,4 @@
 #title WriteByteBuffer [RCBasic Doc]
 #header function WriteByteBuffer(stream, ByRef buf, buf_size)
 
-
+Writes a number of bytes from a buffer to the file stream.

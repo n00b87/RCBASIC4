@@ -1,4 +1,4 @@
 #title MessageBox [RCBasic Doc]
 #header function MessageBox(title$, msg$)
 
-
+Displays a message box

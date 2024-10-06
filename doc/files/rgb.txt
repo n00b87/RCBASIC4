@@ -1,4 +1,4 @@
 #title RGB [RCBasic Doc]
 #header function RGB(r,g,b)
 
-
+Returns a 32-bit color value.

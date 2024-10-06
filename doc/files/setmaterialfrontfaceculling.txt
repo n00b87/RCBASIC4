@@ -1,4 +1,4 @@
 #title setMaterialFrontfaceCulling [RCBasic Doc]
-#header sub  setMaterialFrontfaceCulling( material_id,  flag)
+#header sub  setMaterialFrontFaceCulling( material_id,  flag)
 
-
+Enables or disables front face culling

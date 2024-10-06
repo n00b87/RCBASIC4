@@ -1,4 +1,6 @@
 #title Val [RCBasic Doc]
 #header function Val(n$)
 
+Converts a string to a number and returns the value.
 
+Returns 0 if the string was not a valid number.

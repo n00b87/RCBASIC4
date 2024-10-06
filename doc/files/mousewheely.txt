@@ -1,4 +1,4 @@
 #title MouseWheelY [RCBasic Doc]
 #header function MouseWheelY()
 
-
+Returns the value of the y axis on the mouse wheel

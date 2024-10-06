@@ -1,4 +1,6 @@
 #title Runtime_Utility_Message$ [RCBasic Doc]
 #header function Runtime_Utility_Message$(arg$)
 
+Passes arg$ to the rc_intern_runtime_utility() function in the rc_media.h file. The function returns a string.
 
+Note: On IOS there a file in the project called rcbasic_ios_native.h which is already setup for you to add your C++ code. 

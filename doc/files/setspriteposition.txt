@@ -1,4 +1,6 @@
 #title SetSpritePosition [RCBasic Doc]
 #header Sub SetSpritePosition( sprite, x, y )
 
+Sets the position of the sprite in the canvas
 
+Note: This is canvas position and not screen position

@@ -1,4 +1,4 @@
 #title WindowIsResizable [RCBasic Doc]
 #header function WindowIsResizable()
 
-
+Returns true if the window is resizable, otherwise it will return false.

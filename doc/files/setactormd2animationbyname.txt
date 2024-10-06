@@ -1,4 +1,7 @@
 #title SetActorMD2AnimationByName [RCBasic Doc]
 #header sub SetActorMD2AnimationByName( actor, anim_name$ )
 
+Sets the current animation for an *.md2 model
+
+#ref SetActorMD2Animation
 

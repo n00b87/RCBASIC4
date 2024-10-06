@@ -1,4 +1,4 @@
 #title UDP_SendData [RCBasic Doc]
 #header sub UDP_SendData(socket, host$, port, sData$)
 
-
+Sends data to a host using UDP

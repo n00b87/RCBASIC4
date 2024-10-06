@@ -1,4 +1,4 @@
 #title SetTerrainLODDistance [RCBasic Doc]
 #header sub SetTerrainLODDistance( actor, LOD, distance )
 
-
+Override the default generation of distance thresholds. 

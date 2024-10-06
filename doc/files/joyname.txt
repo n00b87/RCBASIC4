@@ -1,4 +1,4 @@
 #title JoyName$ [RCBasic Doc]
 #header function JoyName$(joy_num)
 
-
+Returns the joystick name.

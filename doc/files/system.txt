@@ -1,4 +1,4 @@
 #title System [RCBasic Doc]
 #header function System(cmd$)
 
-
+Runs an operating system command

@@ -1,4 +1,6 @@
 #title setMaterialShininess [RCBasic Doc]
 #header sub  setMaterialShininess( material_id,  shininess)
 
+Sets the size of specular highlights
 
+Values range from 0 to 128

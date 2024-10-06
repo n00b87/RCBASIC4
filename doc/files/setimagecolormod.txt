@@ -1,4 +1,4 @@
 #title SetImageColorMod [RCBasic Doc]
-#header sub SetImageColorMod(slot, c)
+#header sub SetImageColorMod(img_id, c)
 
-
+Sets the color modulation vlaue for an image

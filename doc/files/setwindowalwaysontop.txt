@@ -1,4 +1,4 @@
 #title SetWindowAlwaysOnTop [RCBasic Doc]
 #header sub SetWindowAlwaysOnTop( flag )
 
-
+Sets the window as the highest priority on the display.

@@ -1,4 +1,6 @@
 #title MoveFile [RCBasic Doc]
 #header function MoveFile(src$, dst$)
 
+Moves a file on the system.
 
+Returns true if the file was able to be moved and false if it wasn't

@@ -1,4 +1,4 @@
 #title Round [RCBasic Doc]
 #header function Round(n)
 
-
+Rounds n to the nearest whole number.

@@ -1,4 +1,4 @@
 #title materialIsGouraudShaded [RCBasic Doc]
 #header function  materialIsGouraudShaded( material_id)
 
-
+Returns true if material is set to goraud shading

@@ -1,4 +1,7 @@
 #title SetTerrainCameraMovementDelta [RCBasic Doc]
 #header sub SetTerrainCameraMovementDelta( actor, delta )
 
+Sets the movement camera threshold.
+
+It is used to determine when to recalculate indices for the actor. The default value is 10.
 

@@ -1,4 +1,4 @@
 #title LoadSound [RCBasic Doc]
 #header function LoadSound(snd_file$)
 
-
+Returns an id for a loaded audio track

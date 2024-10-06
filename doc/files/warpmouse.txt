@@ -1,4 +1,4 @@
 #title WarpMouse [RCBasic Doc]
 #header sub WarpMouse(x, y)
 
-
+Move the mouse cursor to xy position in the window 

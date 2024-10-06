@@ -1,4 +1,4 @@
 #title Tally [RCBasic Doc]
 #header function Tally(src$, substr$)
 
-
+Returns the number of instances of substr$ in the src$ string

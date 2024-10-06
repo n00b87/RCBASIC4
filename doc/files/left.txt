@@ -1,4 +1,4 @@
 #title Left$ [RCBasic Doc]
 #header function Left$(src$, n)
 
-
+Returns a substring n characters in length from the left side of the given string.

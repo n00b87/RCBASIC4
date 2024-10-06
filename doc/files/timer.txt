@@ -1,4 +1,4 @@
 #title Timer [RCBasic Doc]
 #header function Timer()
 
-
+Returns the number of milliseconds since the start of the program.

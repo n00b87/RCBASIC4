@@ -1,4 +1,4 @@
 #title setMaterialSpecularColor [RCBasic Doc]
 #header sub  setMaterialSpecularColor( material_id,  color)
 
-
+Sets the specular color of a material

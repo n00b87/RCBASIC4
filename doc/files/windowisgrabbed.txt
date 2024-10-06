@@ -1,4 +1,4 @@
 #title WindowIsGrabbed [RCBasic Doc]
 #header function WindowIsGrabbed( )
 
-
+Returns the window that is currently grabbing input. It returns -1 on failure. 

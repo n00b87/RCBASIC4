@@ -1,4 +1,4 @@
 #title Tell [RCBasic Doc]
 #header function Tell(stream)
 
-
+Returns the current position within the file stream

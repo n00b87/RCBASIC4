@@ -1,4 +1,4 @@
 #title LoadVideo [RCBasic Doc]
 #header sub LoadVideo(vid$)
 
-
+Loads a video track

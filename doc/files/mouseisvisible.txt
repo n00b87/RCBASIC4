@@ -1,4 +1,6 @@
 #title MouseIsVisible [RCBasic Doc]
 #header function MouseIsVisible()
 
+Returns true if mouse cursor is shown
 
+#ref ShowMouse HideMouse

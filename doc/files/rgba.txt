@@ -1,4 +1,4 @@
 #title RGBA [RCBasic Doc]
 #header function RGBA(r,g,b,a)
 
-
+Returns a 32-bit color value.

@@ -1,4 +1,7 @@
 #title SetChannelPanning [RCBasic Doc]
 #header function SetChannelPanning(channel, left_value, right_value)
 
+Set Panning effect for channel. left_value and right_value must be a value between 0 and 255. Returns 0 on error.
+
+NOTE: Setting both left and right to 255 will cancel the pan effect
 

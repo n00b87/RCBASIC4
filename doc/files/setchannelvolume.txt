@@ -1,4 +1,4 @@
 #title SetChannelVolume [RCBasic Doc]
 #header sub SetChannelVolume(channel, vol)
 
-
+Sets the volume of the audio on a channel

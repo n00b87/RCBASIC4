@@ -1,4 +1,4 @@
 #title SetWindowMinSize [RCBasic Doc]
 #header sub SetWindowMinSize( w, h)
 
-
+Sets the min size for a resizable window

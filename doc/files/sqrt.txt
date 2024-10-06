@@ -1,4 +1,4 @@
 #title Sqrt [RCBasic Doc]
 #header function Sqrt(n)
 
-
+Returns the square root of n

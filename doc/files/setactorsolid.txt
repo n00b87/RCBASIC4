@@ -1,4 +1,8 @@
 #title SetActorSolid [RCBasic Doc]
 #header sub SetActorSolid(actor, flag)
 
+Sets whether an actor has physics and collision response applied to it
 
+Note: Collision detection will still work for non solid actors
+
+#ref ActorIsSolid

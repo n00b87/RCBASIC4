@@ -1,4 +1,4 @@
 #title SetLightAttenuation [RCBasic Doc]
 #header sub SetLightAttenuation( actor, l_constant, l_linear, l_quadratic )
 
-
+Sets the light strength fading over distance. Overrident by setting radius.

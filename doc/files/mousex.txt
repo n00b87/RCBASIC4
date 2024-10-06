@@ -1,4 +1,4 @@
 #title MouseX [RCBasic Doc]
 #header function MouseX()
 
-
+Returns the mouse x position

@@ -1,4 +1,4 @@
 #title SoundIsEnabled [RCBasic Doc]
 #header function SoundIsEnabled()
 
-
+Returns true if the audio subsystem has been initialized.
