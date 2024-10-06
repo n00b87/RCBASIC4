@@ -1,0 +1,8 @@
+#title getConeSolveSwingLimit [RCBasic Doc]
+#header function  getConeSolveSwingLimit( constraint_id)
+
+Returns whether the swing limit of the constraint is currently being enforced during the simulation.
+
+The swing limit defines the boundary within which the connected actors can swing. When the bodies approach or exceed this limit, the physics engine enforces a constraint to prevent further motion.
+If the swing limit is exceeded during simulation, corrective forces are applied to bring the actors back within the allowed range.
+

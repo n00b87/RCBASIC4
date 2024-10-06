@@ -1,4 +1,9 @@
 #title particleIsUsingOutlineOnly [RCBasic Doc]
 #header function  particleIsUsingOutlineOnly( actor)
 
+Returns true if not using draw points inside the cylinder
+
+Note: Only applies to cylinder emitter
+
+#ref useParticleOutlineOnly
 

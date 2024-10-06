@@ -1,0 +1,4 @@
+#title Str$ [RCBasic Doc]
+#header function Str$(n)
+
+

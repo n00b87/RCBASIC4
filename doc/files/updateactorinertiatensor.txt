@@ -1,4 +1,4 @@
 #title updateActorInertiaTensor [RCBasic Doc]
 #header sub updateActorInertiaTensor( actor)
 
-
+Recalculates the inertia tensor of an actor, which is essential for accurately simulating how the actor reacts to forces and torques during its motion. The inertia tensor defines how the mass of the body is distributed in space and influences how the body rotates in response to applied torques.

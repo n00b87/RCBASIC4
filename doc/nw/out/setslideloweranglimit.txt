@@ -1,0 +1,8 @@
+#title SetSlideLowerAngLimit [RCBasic Doc]
+#header sub  SetSlideLowerAngLimit( constraint_id,  n)
+
+Sets the lower angular limit of the constraint. This value specifies the minimum angle allowed for the rotation of the connected actors around the axis perpendicular to the sliding direction defined by the slider constraint.
+
+The lower angular limit indicates the smallest angle that the actors can rotate about the axis perpendicular to the sliding direction. If the rotation tries to exceed this limit, the physics engine will apply corrective forces to maintain the bodies within the allowed range.
+
+#ref GetSlideLowerAngLimit

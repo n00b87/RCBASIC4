@@ -1,0 +1,4 @@
+#title RemoveActorShadow [RCBasic Doc]
+#header sub RemoveActorShadow( actor )
+
+

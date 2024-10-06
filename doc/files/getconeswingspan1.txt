@@ -1,0 +1,8 @@
+#title getConeSwingSpan1 [RCBasic Doc]
+#header function  getConeSwingSpan1( constraint_id)
+
+Returns the maximum allowed rotation angle (or "span") for the first swing axis. This swing axis is one of the two orthogonal axes around which the constrained actors are allowed to swing, forming a cone-shaped range of motion.
+
+There are two swing spans, swing span 1 and swing span 2, corresponding to the maximum allowable swing angles around each of the two swing axes.
+
+#ref GetConeSwingSpan2

@@ -1,0 +1,7 @@
+#title getSlideDampingLimAng [RCBasic Doc]
+#header function  getSlideDampingLimAng( constraint_id)
+
+Returns the angular limit damping factor for a constraint. This damping applies specifically to the angular motion of an object when it reaches the limit of its allowed rotational range.
+
+
+#ref SetSlideDampingLimAng

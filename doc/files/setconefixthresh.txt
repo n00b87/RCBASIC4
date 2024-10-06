@@ -1,0 +1,9 @@
+#title setConeFixThresh [RCBasic Doc]
+#header sub  setConeFixThresh( constraint_id,  fixThresh)
+
+Sets the fix threshold value associated with that constraint. This threshold is used to control how the constraint behaves when the angle of the rotation between the actors approaches the limits defined by the cone twist constraint.
+
+The fix threshold defines a limit or tolerance for how closely the angle between the two actors can approach the constraint's limits before corrective actions are taken. When the angular motion exceeds this threshold, the constraint applies corrective forces to bring the motion back within the allowed range.
+
+#ref GetConeFixThresh
+

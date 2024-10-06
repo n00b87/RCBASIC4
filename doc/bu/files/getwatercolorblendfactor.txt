@@ -1,0 +1,4 @@
+#title getWaterColorBlendFactor [RCBasic Doc]
+#header function  getWaterColorBlendFactor( actor)
+
+

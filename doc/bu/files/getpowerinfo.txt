@@ -1,0 +1,4 @@
+#title GetPowerInfo [RCBasic Doc]
+#header Sub GetPowerInfo(ByRef status, ByRef secs, ByRef pct)
+
+

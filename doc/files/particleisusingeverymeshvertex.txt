@@ -1,4 +1,7 @@
 #title particleIsUsingEveryMeshVertex [RCBasic Doc]
 #header function  particleIsUsingEveryMeshVertex( actor)
 
+Returns true if emitter emits min<->max particles for every vertex or to pick min<->max vertices. 
+
+#ref useParticleEveryMeshVertex
 

@@ -1,4 +1,4 @@
 #title Rect [RCBasic Doc]
 #header sub Rect(x, y, w, h)
 
-
+Draws a rectangle to the current canvas.

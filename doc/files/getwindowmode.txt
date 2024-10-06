@@ -1,4 +1,4 @@
-#title getWindowMode [RCBasic Doc]
-#header function WindowFlags(win)
+#title GetWindowMode [RCBasic Doc]
+#header function GetWindowMode( )
 
-
+Returns the flags set on the given window as a bitmask. The mode set with OpenWindow() is part of this mask.

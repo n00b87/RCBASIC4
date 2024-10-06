@@ -1,4 +1,8 @@
 #title GetVideoVolume [RCBasic Doc]
 #header function GetVideoVolume( )
 
+Returns the volume of a video
 
+Volume can be in a range of 0 to 128
+
+#ref SetVideoVolume

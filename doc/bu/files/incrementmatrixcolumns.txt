@@ -1,0 +1,4 @@
+#title IncrementMatrixColumns [RCBasic Doc]
+#header sub IncrementMatrixColumns(mA, mB, c, num_cols, value)
+
+

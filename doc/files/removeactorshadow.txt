@@ -1,4 +1,6 @@
 #title RemoveActorShadow [RCBasic Doc]
 #header sub RemoveActorShadow( actor )
 
+Stops shadow casting on an actor
 
+#ref AddActorShadow

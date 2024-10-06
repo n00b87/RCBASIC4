@@ -1,0 +1,4 @@
+#title Randomize [RCBasic Doc]
+#header function Randomize(n)
+
+

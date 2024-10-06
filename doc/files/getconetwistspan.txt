@@ -1,0 +1,4 @@
+#title getConeTwistSpan [RCBasic Doc]
+#header function  getConeTwistSpan( constraint_id)
+
+Returns the maximum allowed twist angle for the constraint, which determines how far the connected bodies can rotate around the twist axis before the constraint enforces limits.

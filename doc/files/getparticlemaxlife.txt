@@ -1,4 +1,8 @@
 #title getParticleMaxLife [RCBasic Doc]
 #header function  getParticleMaxLife( actor)
 
+Returns the max life of the particle emission
 
+Note: Returned time is in milliseconds
+
+#ref SetParticleMaxLife

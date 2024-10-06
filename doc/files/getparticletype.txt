@@ -1,0 +1,16 @@
+#title getParticleType [RCBasic Doc]
+#header function  getParticleType( actor )
+
+Returns the particle type
+
+Possible Particle Types
+#list ul
+#li PARTICLE_TYPE_POINT
+#li PARTICLE_TYPE_BOX
+#li PARTICLE_TYPE_SPHERE
+#li PARTICLE_TYPE_CYLINDER
+#li PARTICLE_TYPE_MESH
+#li PARTICLE_TYPE_RING
+#/list
+
+#ref CreateParticleActor

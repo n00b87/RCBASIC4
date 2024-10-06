@@ -1,4 +1,4 @@
 #title RectFill [RCBasic Doc]
 #header sub RectFill(x, y, w, h)
 
-
+Draws a filled rectangle on the current canvas.

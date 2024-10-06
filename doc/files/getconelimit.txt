@@ -1,0 +1,13 @@
+#title getConeLimit [RCBasic Doc]
+#header function  getConeLimit( constraint_id,  limit_index)
+
+Returns the angular limit associated with a specific degree of freedom in the cone constraint. This limit defines the range of motion allowed around a given axis (twist, swing1, or swing2) for the constrained actors.
+
+limitIndex is an integer that indicates which limit to retrieve. It typically takes values corresponding to the type of limit:
+#list ul
+#li 0: Limit for the twist axis.
+#li 1: Limit for the swing1 axis.
+#li 2: Limit for the swing2 axis.
+#/list
+
+Returns value is the maximum angle or range allowed for the specified degree of freedom (twist, swing1, or swing2)

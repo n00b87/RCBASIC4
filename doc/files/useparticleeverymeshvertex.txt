@@ -1,4 +1,6 @@
 #title useParticleEveryMeshVertex [RCBasic Doc]
 #header sub  useParticleEveryMeshVertex( actor,  flag)
 
+Sets whether to emit min<->max particles for every vertex or to pick min<->max vertices. 
 
+#ref particleIsUsingEveryMeshVertex

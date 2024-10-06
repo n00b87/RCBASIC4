@@ -1,0 +1,4 @@
+#title GlobalMouseX [RCBasic Doc]
+#header function GlobalMouseX()
+
+

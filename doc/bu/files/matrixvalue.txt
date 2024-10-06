@@ -1,0 +1,4 @@
+#title MatrixValue [RCBasic Doc]
+#header function MatrixValue(mA, r, c)
+
+

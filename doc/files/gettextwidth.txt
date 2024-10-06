@@ -1,4 +1,4 @@
 #title GetTextWidth [RCBasic Doc]
 #header function GetTextWidth(txt$)
 
-
+Returns the width of the text if rendered with the current font

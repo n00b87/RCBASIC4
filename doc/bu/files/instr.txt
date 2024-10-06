@@ -1,0 +1,4 @@
+#title InStr [RCBasic Doc]
+#header function InStr(src$, substr$)
+
+

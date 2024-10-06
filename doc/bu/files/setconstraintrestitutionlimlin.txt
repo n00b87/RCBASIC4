@@ -1,0 +1,4 @@
+#title setConstraintRestitutionLimLin [RCBasic Doc]
+#header sub  setConstraintRestitutionLimLin( constraint_id,  n)
+
+

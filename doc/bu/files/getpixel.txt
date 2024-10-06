@@ -1,0 +1,4 @@
+#title GetPixel [RCBasic Doc]
+#header function GetPixel(x,y)
+
+

@@ -1,0 +1,4 @@
+#title Length [RCBasic Doc]
+#header function Length(src$)
+
+

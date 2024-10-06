@@ -1,0 +1,4 @@
+#title OpenWindow [RCBasic Doc]
+#header Function OpenWindow( title$, w, h, fullscreen, vsync )
+
+

@@ -1,0 +1,4 @@
+#title setMaterialTexture [RCBasic Doc]
+#header sub  setMaterialTexture( material_id,  level,  img_id)
+
+

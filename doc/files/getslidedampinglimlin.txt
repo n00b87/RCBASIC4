@@ -1,0 +1,8 @@
+#title getSlideDampingLimLin [RCBasic Doc]
+#header function  getSlideDampingLimLin( constraint_id)
+
+Returns the linear limit damping factor for a constraint. This damping applies specifically to the linear (translational) motion of an object when it reaches the limit of its allowed range of movement along a specific axis.
+
+Note: Only applies to slide constraint
+
+#ref SetSlideDampingLimLin

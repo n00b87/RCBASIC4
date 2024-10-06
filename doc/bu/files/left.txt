@@ -1,0 +1,4 @@
+#title Left$ [RCBasic Doc]
+#header function Left$(src$, n)
+
+

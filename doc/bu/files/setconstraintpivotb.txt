@@ -1,0 +1,4 @@
+#title setConstraintPivotB [RCBasic Doc]
+#header sub  setConstraintPivotB( constraint_id,  x,  y,  z)
+
+

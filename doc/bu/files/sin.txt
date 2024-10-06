@@ -1,0 +1,4 @@
+#title Sin [RCBasic Doc]
+#header function Sin(n)
+
+

@@ -1,0 +1,4 @@
+#title setConstraintRestitutionDirAng [RCBasic Doc]
+#header sub  setConstraintRestitutionDirAng( constraint_id,  n)
+
+

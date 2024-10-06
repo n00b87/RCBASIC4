@@ -1,0 +1,4 @@
+#title Mid$ [RCBasic Doc]
+#header function Mid$(src$, start, n)
+
+

@@ -1,0 +1,4 @@
+#title Seek [RCBasic Doc]
+#header function Seek(stream, pos)
+
+

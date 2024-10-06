@@ -1,0 +1,10 @@
+#title OpenCanvasSpriteLayer [RCBasic Doc]
+#header function OpenCanvasSpriteLayer(w, h, viewport_x, viewport_y, viewport_w, viewport_h)
+
+Returns a sprite layer. These canvases are used for rendering sprites with the integrated physics engine.
+
+Returns -1 if canvas could not be created.
+
+Note: Sprite Layer must be active when creating sprites.
+
+#ref OpenCanvas OpenCanvas3D

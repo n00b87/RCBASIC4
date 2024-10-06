@@ -1,4 +1,4 @@
 #title ResumeMusic [RCBasic Doc]
 #header sub ResumeMusic()
 
-
+Resumes playing music.

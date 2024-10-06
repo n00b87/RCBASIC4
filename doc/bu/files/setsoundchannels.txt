@@ -1,0 +1,4 @@
+#title SetSoundChannels [RCBasic Doc]
+#header sub SetSoundChannels(max_channels)
+
+

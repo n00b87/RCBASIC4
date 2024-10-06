@@ -1,4 +1,9 @@
 #title getConstraintAngularOnly [RCBasic Doc]
 #header function  getConstraintAngularOnly( constraint_id)
 
+Returns true if the hinge constraint is set to limit only angular motion while allowing unrestricted linear (translational) motion.
 
+Note: Applies to Cone and Hinge constraints
+
+#ref SetConstraintAngularOnly
+ 

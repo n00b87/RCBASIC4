@@ -1,0 +1,4 @@
+#title SolveMatrix [RCBasic Doc]
+#header function SolveMatrix(mA, mB, mC)
+
+

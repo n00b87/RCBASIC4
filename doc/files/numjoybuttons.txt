@@ -1,4 +1,4 @@
 #title NumJoyButtons [RCBasic Doc]
 #header function NumJoyButtons(joy_num)
 
-
+Returns the number of buttons on a joystick

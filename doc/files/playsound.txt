@@ -1,4 +1,4 @@
 #title PlaySound [RCBasic Doc]
 #header sub PlaySound(slot, channel, loops)
 
-
+Plays a sound on the given channel for the given number of loops.

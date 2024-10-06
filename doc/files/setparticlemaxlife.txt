@@ -1,4 +1,9 @@
 #title setParticleMaxLife [RCBasic Doc]
 #header sub  setParticleMaxLife( actor,  maxLife)
 
+Sets the max life of the particle emission
+
+Note: maxLife is in milliseconds
+
+#ref GetParticleMaxLife
 

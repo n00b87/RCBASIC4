@@ -1,0 +1,4 @@
+#title ScalarMatrixColumns [RCBasic Doc]
+#header function ScalarMatrixColumns(mA, mB, c, num_cols, s_value)
+
+

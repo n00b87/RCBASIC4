@@ -1,4 +1,15 @@
 #title StartActorTransition [RCBasic Doc]
 #header sub StartActorTransition( actor, frame, transition_time )
 
+Starts an actor transition from its current frame in an animation to a specified frame
 
+#list ul
+#li frame - The frame to transition to
+#li transition_time - The amount of time to transition
+	#list ul
+	#li The shorter the time is, the faster the transition will be
+	#li Time is in seconds
+	#/list
+#/list
+
+#ref StopActorTransition ActorIsInTransition

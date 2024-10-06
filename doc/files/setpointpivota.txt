@@ -1,0 +1,6 @@
+#title setPointPivotA [RCBasic Doc]
+#header sub  setPointPivotA( constraint_id,  x,  y,  z)
+
+Sets the pivot point on the first actor (Body A) of the constraint. This pivot point defines the specific location in the local space of Body A where the point-to-point constraint is anchored.
+
+#ref GetPointPivotA SetPointPivotB

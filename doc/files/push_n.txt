@@ -1,4 +1,8 @@
 #title Push_N [RCBasic Doc]
 #header sub Push_N( num_stack, n )
 
+Pushes a number onto a number stack
+
+#ref Pop_N
+
 

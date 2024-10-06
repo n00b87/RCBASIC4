@@ -1,0 +1,4 @@
+#title SetColor [RCBasic Doc]
+#header sub SetColor(c)
+
+

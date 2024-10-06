@@ -1,4 +1,9 @@
 #title StringArrayCopy [RCBasic Doc]
 #header sub StringArrayCopy(ByRef src$, ByRef dst$)
 
+This function is exists to be internally called by the runtime but should not be called directly.
+
+<b>Use ArrayCopy()</b>
+
+#ref ArrayCopy
 

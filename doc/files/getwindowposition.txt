@@ -1,4 +1,4 @@
 #title GetWindowPosition [RCBasic Doc]
-#header sub GetWindowPosition(win, byref x, byref y)
+#header sub GetWindowPosition( byref x, byref y )
 
-
+Gets the window position.

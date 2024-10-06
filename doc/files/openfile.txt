@@ -1,4 +1,26 @@
 #title OpenFile [RCBasic Doc]
-#header function FileOpen(stream, fileName$, mode)
+#header function OpenFile(fileName$, mode)
 
+Returns an ID for an open file to read or write.
 
+Returns -1 if the file could not be opened.
+
+Possible Text Modes
+#list ul
+#li TEXT_INPUT - Open a file for reading text. The file must already exist.
+#li TEXT_OUTPUT - Open a new file for writing text. If the file already exist it will be overwritten.
+#li TEXT_APPEND - Opens a file for appending text to the end of the file.  A file will be created if it doesn't already exist.
+#li TEXT_INPUT_PLUS - Opens a file for reading and writing text.  The file must already exist.
+#li TEXT_OUTPUT_PLUS - Opens a file for both reading and writing.  If the file already exist it will be overwritten.
+#li TEXT_APPEND_PLUS - Opens a file for reading and appending text to the end of the file.
+#/list
+<br>
+Possible Binary Modes
+#list ul
+#li BINARY_INPUT - Open a file for reading binary data. The file must already exist.
+#li BINARY_OUTPUT - Open a new file for writing binary data. If the file already exist it will be overwritten.
+#li BINARY_APPEND - Opens a file for appending binary data to the end of the file.  A file will be created if it doesn't already exist.
+#li BINARY_INPUT_PLUS - Opens a file for reading and writing binary data.  The file must already exist.
+#li BINARY_OUTPUT_PLUS - Opens a file for both reading and writing.  If the file already exist it will be overwritten.
+#li BINARY_APPEND_PLUS - Opens a file for reading and appending binary data to the end of the file. 
+#/list

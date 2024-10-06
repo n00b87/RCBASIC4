@@ -1,0 +1,4 @@
+#title NumberArraySize [RCBasic Doc]
+#header function NumberArraySize(Byref id, array_dim)
+
+
