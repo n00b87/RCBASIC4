@@ -1196,6 +1196,48 @@ string rc_keywordToken(string sline)
 		return "<num>4";
 	else if(sline.compare("AUTOCULLING_OCC_QUERY")==0)
 		return "<num>8";
+	else if(sline.compare("MD2_ANIMATION_STAND")==0)
+		return "<num>0";
+	else if(sline.compare("MD2_ANIMATION_RUN")==0)
+		return "<num>1";
+	else if(sline.compare("MD2_ANIMATION_ATTACK")==0)
+		return "<num>2";
+	else if(sline.compare("MD2_ANIMATION_PAIN_A")==0)
+		return "<num>3";
+	else if(sline.compare("MD2_ANIMATION_PAIN_B")==0)
+		return "<num>4";
+	else if(sline.compare("MD2_ANIMATION_PAIN_C")==0)
+		return "<num>5";
+	else if(sline.compare("MD2_ANIMATION_JUMP")==0)
+		return "<num>6";
+	else if(sline.compare("MD2_ANIMATION_FLIP")==0)
+		return "<num>7";
+	else if(sline.compare("MD2_ANIMATION_SALUTE")==0)
+		return "<num>8";
+	else if(sline.compare("MD2_ANIMATION_FALLBACK")==0)
+		return "<num>9";
+	else if(sline.compare("MD2_ANIMATION_WAVE")==0)
+		return "<num>10";
+	else if(sline.compare("MD2_ANIMATION_POINT")==0)
+		return "<num>11";
+	else if(sline.compare("MD2_ANIMATION_CROUCH_STAND")==0)
+		return "<num>12";
+	else if(sline.compare("MD2_ANIMATION_CROUCH_WALK")==0)
+		return "<num>13";
+	else if(sline.compare("MD2_ANIMATION_CROUCH_ATTACK")==0)
+		return "<num>14";
+	else if(sline.compare("MD2_ANIMATION_CROUCH_PAIN")==0)
+		return "<num>15";
+	else if(sline.compare("MD2_ANIMATION_CROUCH_DEATH")==0)
+		return "<num>16";
+	else if(sline.compare("MD2_ANIMATION_DEATH_FALLBACK")==0)
+		return "<num>17";
+	else if(sline.compare("MD2_ANIMATION_DEATH_FALLFORWARD")==0)
+		return "<num>18";
+	else if(sline.compare("MD2_ANIMATION_DEATH_FALLBACKSLOW")==0)
+		return "<num>19";
+	else if(sline.compare("MD2_ANIMATION_BOOM")==0)
+		return "<num>20";
 	else if(sline.compare("SPRITE_TYPE_STATIC")==0)
 		return "<num>0";
 	else if(sline.compare("SPRITE_TYPE_KINEMATIC")==0)
