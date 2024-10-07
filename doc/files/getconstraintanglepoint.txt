@@ -1,4 +1,0 @@
-#title getConstraintAnglePoint [RCBasic Doc]
-#header sub  getConstraintAnglePoint( constraint_id,  angle,  c_len, ByRef x, ByRef y, ByRef z)
-
-

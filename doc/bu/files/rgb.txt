@@ -1,0 +1,4 @@
+#title RGB [RCBasic Doc]
+#header function RGB(r,g,b)
+
+

@@ -1,4 +1,9 @@
 #title TypeArrayFill [RCBasic Doc]
 #header sub TypeArrayFill(ByRef src as empty, fdata as empty)
 
+This function is exists to be internally called by the runtime but should not be called directly.
+
+<b>Use ArrayFill()</b>
+
+#ref ArrayFill
 

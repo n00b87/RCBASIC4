@@ -1,4 +1,4 @@
 #title Radians [RCBasic Doc]
 #header function Radians(d)
 
-
+Returns an angle converted from degrees to radians

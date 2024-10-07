@@ -1,0 +1,4 @@
+#title getParticleDirection [RCBasic Doc]
+#header sub  getParticleDirection( actor, ByRef x, ByRef y, ByRef z)
+
+

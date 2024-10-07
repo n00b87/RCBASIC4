@@ -1,4 +1,4 @@
 #title JoystickIsHaptic [RCBasic Doc]
 #header function JoystickIsHaptic(joy_num)
 
-
+Returns true if joystick has the ability to rumble.

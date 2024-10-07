@@ -1,0 +1,4 @@
+#title SetTerrainLODDistance [RCBasic Doc]
+#header sub SetTerrainLODDistance( actor, LOD, distance )
+
+

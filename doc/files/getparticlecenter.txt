@@ -1,4 +1,8 @@
 #title getParticleCenter [RCBasic Doc]
 #header sub  getParticleCenter( actor, ByRef x, ByRef y, ByRef z)
 
+Gets the center of a particle emitter
 
+Note: applies to Sphere, Cylinder, and Ring emitters
+
+#ref SetParticleCenter

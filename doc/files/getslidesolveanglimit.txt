@@ -1,0 +1,4 @@
+#title getSlideSolveAngLimit [RCBasic Doc]
+#header function  getSlideSolveAngLimit( constraint_id)
+
+Checks whether the angular position of the constraint has reached or exceeded its defined angular limits. It returns a value indicating if the constraint is at or beyond its lower or upper angular limit around the slider’s axis of rotation.

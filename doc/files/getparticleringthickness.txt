@@ -1,4 +1,8 @@
 #title getParticleRingThickness [RCBasic Doc]
 #header function  getParticleRingThickness( actor)
 
+Returns the thickness of a ring emitter
 
+Note: Only applies to ring emitter
+
+#ref SetParticleRingThickness

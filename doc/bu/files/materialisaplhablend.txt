@@ -1,0 +1,4 @@
+#title materialIsAplhaBlend [RCBasic Doc]
+#header function  materialIsAplhaBlend( material_id)
+
+

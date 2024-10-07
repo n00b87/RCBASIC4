@@ -1,0 +1,4 @@
+#title TransposeMatrix [RCBasic Doc]
+#header function TransposeMatrix(mA, mB)
+
+

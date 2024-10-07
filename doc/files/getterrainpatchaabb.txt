@@ -1,4 +1,4 @@
 #title GetTerrainPatchAABB [RCBasic Doc]
 #header sub GetTerrainPatchAABB( actor, patchX, patchZ, ByRef minX, ByRef minY, ByRef minZ, ByRef maxX, ByRef maxY, ByRef maxZ )
 
-
+Returns the bounding box of a terrain patch

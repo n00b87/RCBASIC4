@@ -1,4 +1,4 @@
 #title WindowIsVisible [RCBasic Doc]
-#header function WindowIsVisible(win)
+#header function WindowIsVisible()
 
-
+Returns true if the window is visible, otherwise it returns false.

@@ -1,0 +1,4 @@
+#title setParticleCenter [RCBasic Doc]
+#header sub  setParticleCenter( actor,  x,  y,  z)
+
+

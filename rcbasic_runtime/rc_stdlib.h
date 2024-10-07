@@ -318,7 +318,7 @@ inline std::string rc_intern_ltrim(std::string l_string)
     size_t first_index = l_string.find_first_not_of(" ");
     if(first_index != std::string::npos)
         return l_string.substr(first_index);
-    return l_string;
+    return "";
 }
 
 inline std::string rc_intern_mid(std::string m_string, size_t m_start, size_t n)
@@ -409,6 +409,9 @@ inline std::string rc_intern_rtrim(std::string src)
     if(i < 0)
         return "";
 
+	if(src.find_first_not_of(" ") == string::npos)
+		return "";
+
     return utf8_substr(src,0,i+1);
 }
 
@@ -479,7 +482,10 @@ inline unsigned long rc_intern_tally(std::string t_string, std::string t_substri
 
 inline std::string rc_intern_trim(std::string t_string)
 {
-    return rc_intern_ltrim(rc_intern_rtrim(t_string));
+    std::string trim_str = rc_intern_ltrim(rc_intern_rtrim(t_string));
+    if(trim_str.compare(" ")==0)
+		return "";
+	return trim_str;
 }
 
 inline std::string rc_intern_ucase(std::string u_string)

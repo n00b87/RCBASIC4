@@ -1,4 +1,5 @@
 #title getConstraintFixedActor [RCBasic Doc]
 #header function  getConstraintFixedActor( constraint_id)
 
+Returns the actor that is associated with a specific constraint. This is primarily applicable in constraints that involve one actor being constrained to another or to a static point in the simulation.
 

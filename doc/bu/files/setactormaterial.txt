@@ -1,0 +1,4 @@
+#title setActorMaterial [RCBasic Doc]
+#header sub  setActorMaterial( actor,  material_num,  material_id)
+
+

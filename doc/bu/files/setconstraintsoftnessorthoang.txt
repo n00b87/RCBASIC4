@@ -1,0 +1,4 @@
+#title setConstraintSoftnessOrthoAng [RCBasic Doc]
+#header sub  setConstraintSoftnessOrthoAng( constraint_id,  n)
+
+

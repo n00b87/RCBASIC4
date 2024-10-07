@@ -1,4 +1,6 @@
 #title SetWindowBordered [RCBasic Doc]
-#header sub SetWindowBorder(win, flag)
+#header sub SetWindowBordered( flag)
 
+Sets whether the window has a border or not.
 
+#ref WindowIsBordered

@@ -1,0 +1,8 @@
+#title getSlideRestitutionLimAng [RCBasic Doc]
+#header function  getSlideRestitutionLimAng( constraint_id)
+
+Returns the restitution value for angular limit. This value determines how much energy is conserved when the angular motion of the connected actors reaches the angular limits of the slider constraint. Essentially, it controls how "bouncy" the rotation is when it hits the angular limit of the constraint.
+
+A value of 0.0 means no bounce (perfectly inelastic), while a value of 1.0 allows maximum bounce (perfectly elastic).
+
+#ref SetSlideRestitutionLimAng

@@ -1,0 +1,4 @@
+#title SoundExists [RCBasic Doc]
+#header function SoundExists(slot)
+
+

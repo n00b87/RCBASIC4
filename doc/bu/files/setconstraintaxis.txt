@@ -1,0 +1,4 @@
+#title setConstraintAxis [RCBasic Doc]
+#header sub  setConstraintAxis( constraint_id,  x,  y,  z)
+
+

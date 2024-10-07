@@ -1,4 +1,8 @@
 #title SetWorld3DMaxSubSteps [RCBasic Doc]
 #header sub SetWorld3DMaxSubSteps( steps )
 
+Sets the max sub steps to break the simulation up into
 
+maxSubSteps - The maximum number of substeps to perform if the time step is larger than the fixedTimeStep. When simulating in real-time, if a frame takes longer than expected (e.g., a frame is delayed), you can break the simulation into several smaller substeps to ensure the simulation is accurate.
+
+#ref SetWorld3DMaxTimeStep

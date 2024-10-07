@@ -1,0 +1,4 @@
+#title setMaterialPointCloud [RCBasic Doc]
+#header sub  setMaterialPointCloud( material_id,  flag)
+
+

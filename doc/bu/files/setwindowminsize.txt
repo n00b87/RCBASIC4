@@ -1,0 +1,4 @@
+#title SetWindowMinSize [RCBasic Doc]
+#header sub SetWindowMinSize( w, h)
+
+

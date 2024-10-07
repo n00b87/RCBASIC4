@@ -1,4 +1,4 @@
 #title TouchPressure [RCBasic Doc]
 #header function TouchPressure()
 
-
+Returns the touch pressure of a touch event.

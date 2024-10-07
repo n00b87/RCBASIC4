@@ -1,0 +1,6 @@
+#title setSlideDampingOrthoAng [RCBasic Doc]
+#header sub  setSlideDampingOrthoAng( constraint_id,  n)
+
+Sets the orthogonal angular damping factor applied to a constraint. This damping affects angular (rotational) motion that occurs perpendicular to the primary axis of movement defined by the constraint.
+
+#ref GetSlideDampingOrthoAng

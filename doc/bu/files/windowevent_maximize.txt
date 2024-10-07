@@ -1,0 +1,4 @@
+#title WindowEvent_Maximize [RCBasic Doc]
+#header function WindowEvent_Maximize()
+
+

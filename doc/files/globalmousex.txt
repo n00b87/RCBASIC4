@@ -1,4 +1,6 @@
 #title GlobalMouseX [RCBasic Doc]
 #header function GlobalMouseX()
 
+Returns the absolute X position of the mouse on the display
 
+#ref GlobalMouseY GetGlobalMouse

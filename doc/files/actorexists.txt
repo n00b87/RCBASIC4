@@ -1,0 +1,4 @@
+#title ActorExists [RCBasic Doc]
+#header function ActorExists( actor )
+
+

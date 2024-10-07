@@ -1,4 +1,6 @@
 #title getParticleMinStartSize [RCBasic Doc]
 #header sub  getParticleMinStartSize( actor, ByRef w, ByRef h)
 
+Gets the min start size for particle emitter
 
+#ref SetParticleMinStartSize

@@ -1,4 +1,8 @@
 #title NumberArrayFill [RCBasic Doc]
 #header sub NumberArrayFill(ByRef src, fdata)
 
+This function is exists to be internally called by the runtime but should not be called directly.
 
+<b>Use ArrayFill()</b>
+
+#ref ArrayFill

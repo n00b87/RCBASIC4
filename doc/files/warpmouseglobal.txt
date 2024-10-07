@@ -1,4 +1,4 @@
 #title WarpMouseGlobal [RCBasic Doc]
 #header sub WarpMouseGlobal(x, y)
 
-
+Move the mouse cursor to xy position in the display 

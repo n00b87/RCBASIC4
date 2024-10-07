@@ -1,0 +1,6 @@
+#title getSlideSoftnessOrthoLin [RCBasic Doc]
+#header function  getSlideSoftnessOrthoLin( constraint_id)
+
+Returns the softness parameter for the orthogonal linear limits of the constraint. This parameter affects how "soft" or "rigid" the constraint behaves when the connected actors approach their linear movement limits in directions that are orthogonal (perpendicular) to the primary sliding axis.
+
+The softness parameter determines how rigid or compliant the constraint is when the actors approach their movement limits. A higher softness value allows for smoother, more flexible movement near the limit, while a lower value results in a more rigid, immediate response.

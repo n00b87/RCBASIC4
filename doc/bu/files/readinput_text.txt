@@ -1,0 +1,4 @@
+#title ReadInput_Text$ [RCBasic Doc]
+#header function ReadInput_Text$()
+
+

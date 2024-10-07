@@ -1,0 +1,4 @@
+#title Max [RCBasic Doc]
+#header function Max(a, b)
+
+

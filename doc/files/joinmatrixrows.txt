@@ -1,4 +1,4 @@
 #title JoinMatrixRows [RCBasic Doc]
 #header sub JoinMatrixRows(mA, mB, mC)
 
-
+Appends the rows in matrix mB onto the right of matrix mA. 

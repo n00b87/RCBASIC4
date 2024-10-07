@@ -1,4 +1,9 @@
 #title setParticleRingThickness [RCBasic Doc]
 #header sub  setParticleRingThickness( actor,  ringThickness)
 
+Sets the thickness of a ring emitter
+
+Note: Only applies to ring emitter
+
+#ref GetParticleRingThickness
 

@@ -1,0 +1,4 @@
+#title OpenSpriteCanvas [RCBasic Doc]
+#header function OpenSpriteCanvas(w, h, viewport_x, viewport_y, viewport_w, viewport_h)
+
+

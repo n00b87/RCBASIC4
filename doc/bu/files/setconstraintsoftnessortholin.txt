@@ -1,0 +1,4 @@
+#title setConstraintSoftnessOrthoLin [RCBasic Doc]
+#header sub  setConstraintSoftnessOrthoLin( constraint_id,  n)
+
+

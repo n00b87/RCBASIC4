@@ -1,0 +1,4 @@
+#title SetCanvasOffset [RCBasic Doc]
+#header sub SetCanvasOffset(c_num, x, y)
+
+

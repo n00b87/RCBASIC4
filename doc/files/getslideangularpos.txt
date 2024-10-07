@@ -1,0 +1,4 @@
+#title getSlideAngularPos [RCBasic Doc]
+#header function  getSlideAngularPos( constraint_id)
+
+Gets the current angular position of an actor relative to the other actor (or the world) around the slider's axis of motion. Specifically, it measures how much an actor has rotated around the axis that is defined for the slider constraint.

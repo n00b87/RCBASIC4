@@ -1,4 +1,6 @@
 #title getConstraintFrameOffsetA [RCBasic Doc]
 #header sub  getConstraintFrameOffsetA( constraint_id, ByRef x, ByRef y, ByRef z, ByRef rx, ByRef ry, ByRef rz)
 
+Gets the frame offset for actor A associated with a particular constraint. This frame offset defines the position and orientation of actor A relative to the constraint's anchor point.
 
+#ref GetConstraintFrameOffsetB

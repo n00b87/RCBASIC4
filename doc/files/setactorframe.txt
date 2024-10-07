@@ -1,4 +1,4 @@
 #title SetActorFrame [RCBasic Doc]
 #header sub SetActorFrame( actor, frame )
 
-
+Sets the current frame of an actor

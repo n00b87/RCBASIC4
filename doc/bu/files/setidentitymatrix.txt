@@ -1,0 +1,4 @@
+#title SetIdentityMatrix [RCBasic Doc]
+#header sub SetIdentityMatrix(mA, n)
+
+

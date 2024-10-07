@@ -1,0 +1,4 @@
+#title getConeBiasFactor [RCBasic Doc]
+#header function  getConeBiasFactor( constraint_id)
+
+Returns the bias factor used to correct constraint violations (such as small positional or angular errors) during the simulation. The bias factor helps ensure that the constrained actors return to their intended positions or orientations over time by applying corrective forces or impulses.

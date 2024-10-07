@@ -1,0 +1,7 @@
+#title getConeSolveTwistLimit [RCBasic Doc]
+#header function  getConeSolveTwistLimit( constraint_id)
+
+Returns whether the twist limit is currently being enforced during the simulation.
+
+The twist limit controls how much the connected actors can rotate around the central axis of the joint (the "twist" axis).
+When the actors rotate beyond this allowed limit, the physics engine applies corrective forces to keep the rotation within the defined twist range.

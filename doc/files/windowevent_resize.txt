@@ -1,4 +1,4 @@
 #title WindowEvent_Resize [RCBasic Doc]
-#header function WindowEvent_Resize(win)
+#header function WindowEvent_Resize()
 
-
+Returns true if the window resize event is called.

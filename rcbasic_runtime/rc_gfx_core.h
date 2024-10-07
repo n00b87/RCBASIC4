@@ -26,12 +26,12 @@ using namespace video;
 using namespace scene;
 
 
-#define MAX_JOYSTICKS 8
+#define MAX_JOYSTICKS 32
 
 #define MAX_FINGERS 10
 
-#define MAX_ACCELS 20
-#define MAX_GYROS 20
+#define MAX_ACCELS 32
+#define MAX_GYROS 32
 
 SDL_Joystick * rc_joystick[MAX_JOYSTICKS];
 int rc_joy_axis[MAX_JOYSTICKS][100];
@@ -274,17 +274,24 @@ rc_physicsWorld3D_obj rc_physics3D;
 //Canvases
 struct rc_physicsWorld2D_obj
 {
+	bool enabled = false;
 	b2World* world;
 	float timeStep = 1/20.0;      //the length of time passed to simulate (seconds)
 	int velocityIterations = 8;   //how strongly to correct velocity
 	int positionIterations = 3;   //how strongly to correct position
 };
 
+#define RC_CANVAS_TYPE_2D		0
+#define RC_CANVAS_TYPE_3D		1
+#define RC_CANVAS_TYPE_SPRITE	2
+
 struct rc_canvas_obj
 {
     irr::video::ITexture* texture;
 
-    irr::video::ITexture* sprite_layer;
+    //irr::video::ITexture* sprite_layer;
+
+    int type;
 
     irr::core::dimension2d<u32> dimension;
 

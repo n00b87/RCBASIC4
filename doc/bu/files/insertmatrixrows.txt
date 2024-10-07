@@ -1,0 +1,4 @@
+#title InsertMatrixRows [RCBasic Doc]
+#header function InsertMatrixRows(mA, r, num_rows)
+
+

@@ -1,4 +1,9 @@
 #title setParticleNormal [RCBasic Doc]
 #header sub  setParticleNormal( actor,  x,  y,  z)
 
+Sets the normal of a particle emitter
+
+Note: Only applies to cylinder particle emitter
+
+#ref GetParticleNormal
 

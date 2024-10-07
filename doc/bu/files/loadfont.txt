@@ -1,0 +1,4 @@
+#title LoadFont [RCBasic Doc]
+#header function LoadFont(fnt_file$, font_size)
+
+

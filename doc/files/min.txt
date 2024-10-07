@@ -1,4 +1,7 @@
 #title Min [RCBasic Doc]
 #header function Min(a, b)
 
+Returns the lowest of two numbers.
+
+#ref Max
 

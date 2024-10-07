@@ -1,4 +1,4 @@
 #title MaximizeWindow [RCBasic Doc]
-#header sub MaximizeWindow(win)
+#header sub MaximizeWindow()
 
-
+Maximizes the window

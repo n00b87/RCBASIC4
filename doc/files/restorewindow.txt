@@ -1,4 +1,4 @@
 #title RestoreWindow [RCBasic Doc]
-#header sub RestoreWindow(win)
+#header sub RestoreWindow( )
 
-
+Restores the window if minimized

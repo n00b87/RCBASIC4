@@ -1,4 +1,4 @@
 #title QueryAudioSpec [RCBasic Doc]
 #header function QueryAudioSpec(ByRef freq, ByRef format, ByRef channels)
 
-
+Gets the frequency, output format, and number of channels for the audio device being used.

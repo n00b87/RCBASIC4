@@ -1,0 +1,6 @@
+#title GetSlideAnchorA [RCBasic Doc]
+#header sub  GetSlideAnchorA( constraint_id, ByRef x, ByRef y, ByRef z)
+
+Gets the anchor point of the first actor in world space, where the slider constraint is acting on the actor. This point represents the location of the slider's reference frame on body A in the global coordinate system.
+
+#ref GetSlideAnchorB

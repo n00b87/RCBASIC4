@@ -1,0 +1,4 @@
+#title getParticleRingThickness [RCBasic Doc]
+#header function  getParticleRingThickness( actor)
+
+

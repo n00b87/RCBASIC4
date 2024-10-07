@@ -1,4 +1,6 @@
 #title PauseMusic [RCBasic Doc]
 #header sub PauseMusic()
 
+Pauses the currently loaded music track. Unlike StopMusic(), paused music can be resumed from its current position.
 
+#ref ResumeMusic StopMusic

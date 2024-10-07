@@ -1,4 +1,6 @@
 #title integrateActorVelocities [RCBasic Doc]
 #header sub integrateActorVelocities( actor,  v_step)
 
+Updates the linear and angular velocities of an actor based on the forces and torques applied to it over a time step.
 
+Note: This is more manual control than most devs will probably need

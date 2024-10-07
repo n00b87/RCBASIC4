@@ -1,4 +1,4 @@
 #title TransposeMatrix [RCBasic Doc]
 #header function TransposeMatrix(mA, mB)
 
-
+Stores the transpose of matrix mA in matrix mB

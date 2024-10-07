@@ -1,0 +1,4 @@
+#title HideWindow [RCBasic Doc]
+#header sub HideWindow( )
+
+

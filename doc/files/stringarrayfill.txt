@@ -1,4 +1,9 @@
 #title StringArrayFill [RCBasic Doc]
 #header sub StringArrayFill(ByRef src$, fdata$)
 
+This function is exists to be internally called by the runtime but should not be called directly.
+
+<b>Use ArrayFill()</b>
+
+#ref ArrayFill
 

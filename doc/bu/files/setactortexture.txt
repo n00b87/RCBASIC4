@@ -1,0 +1,4 @@
+#title setActorTexture [RCBasic Doc]
+#header sub  setActorTexture( actor,  layer,  image_id)
+
+

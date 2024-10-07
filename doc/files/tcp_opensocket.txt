@@ -1,4 +1,4 @@
 #title TCP_OpenSocket [RCBasic Doc]
-#header function TCP_SocketOpen(socket, host$, port)
+#header function TCP_OpenSocket(host$, port)
 
-
+Opens a socket to talk to host$ on the given port

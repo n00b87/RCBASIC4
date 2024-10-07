@@ -1,4 +1,9 @@
 #title setParticleMinLife [RCBasic Doc]
 #header sub  setParticleMinLife( actor,  minLife)
 
+Set the min life of particles
+
+Note: minLife is in milliseconds
+
+#ref SetParticleMinLife
 

@@ -1,4 +1,10 @@
 #title PlayMusic [RCBasic Doc]
 #header sub PlayMusic(mLoops)
 
+Plays music for set number of loops.
 
+Note: If you only want to play the music once, set this to 0.
+
+Note: Set this to -1 to play infinitely.
+
+#ref StopMusic

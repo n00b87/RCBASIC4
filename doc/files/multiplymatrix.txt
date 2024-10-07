@@ -1,4 +1,4 @@
 #title MultiplyMatrix [RCBasic Doc]
 #header function MultiplyMatrix(mA, mB, mC)
 
-
+Multiply matrix mA and mB and store the result in mC 

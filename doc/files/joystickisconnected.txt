@@ -1,4 +1,4 @@
 #title JoystickIsConnected [RCBasic Doc]
 #header function JoystickIsConnected(joy_num)
 
-
+Returns true if joystick is connected, or false if it isn't.

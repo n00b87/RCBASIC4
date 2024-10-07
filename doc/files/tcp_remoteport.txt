@@ -1,4 +1,4 @@
 #title TCP_RemotePort [RCBasic Doc]
 #header function TCP_RemotePort(socket)
 
-
+Returns the port the socket is connecting on

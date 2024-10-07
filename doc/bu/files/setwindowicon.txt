@@ -1,0 +1,4 @@
+#title SetWindowIcon [RCBasic Doc]
+#header sub SetWindowIcon( slot)
+
+

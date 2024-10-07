@@ -1,4 +1,6 @@
 #title setActorSleepThresholds [RCBasic Doc]
 #header sub setActorSleepThresholds( actor,   linear,   angular)
 
+Sets the linear and angular deactivation thresholds for an actor
 
+#ref GetActorLinearSleepThreshold GetActorAngularSleepThreshold

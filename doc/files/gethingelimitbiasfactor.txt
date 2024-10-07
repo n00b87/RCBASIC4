@@ -1,0 +1,6 @@
+#title getHingeLimitBiasFactor [RCBasic Doc]
+#header function  getHingeLimitBiasFactor( constraint_id)
+
+Returns the bias factor associated with the limits of the hinge constraint. This bias factor affects how the constraint corrects errors when the angular position of the constrained actors approaches or exceeds the defined limits.
+
+The bias factor is a parameter that influences how aggressively the constraint corrects the position when the angular motion reaches the limits. A higher bias factor results in a stronger corrective force, helping to pull the constrained bodies back within their limits more quickly.

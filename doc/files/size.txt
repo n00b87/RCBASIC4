@@ -1,4 +1,8 @@
 #title Size [RCBasic Doc]
 #header function Size(s$)
 
+Returns the size in bytes of a string
 
+The size will not always be the same as the length. For instance, a lot of unicode characters are represented by more than one byte.
+
+#ref Len Length

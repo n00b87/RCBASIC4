@@ -1,0 +1,4 @@
+#title setMaterialWireframe [RCBasic Doc]
+#header sub  setMaterialWireframe( material_id,  flag)
+
+

@@ -1,4 +1,6 @@
 #title setMaterialBlendFactor [RCBasic Doc]
 #header sub  setMaterialBlendFactor( material_id,  bf)
 
+Sets the blend factor for a material
+
 

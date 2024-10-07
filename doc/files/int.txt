@@ -1,4 +1,4 @@
 #title Int [RCBasic Doc]
 #header function Int(n)
 
-
+Returns a number converted to an integer.

@@ -1,4 +1,4 @@
 #title UDP_Length [RCBasic Doc]
 #header function UDP_Length()
 
-
+Returns the number of bytes read from a udp socket

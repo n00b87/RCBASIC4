@@ -1,0 +1,4 @@
+#title SetEnv [RCBasic Doc]
+#header sub SetEnv(var$, value$)
+
+

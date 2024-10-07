@@ -1,4 +1,6 @@
 #title NumJoyAxes [RCBasic Doc]
 #header function NumJoyAxes(joy_num)
 
+Returns the number of axes detected on a joystick
 
+Axes are normally either the analog sticks or trigger buttons but can be anything with multiple values between no activation and max activation

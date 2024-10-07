@@ -1,0 +1,8 @@
+#title setSlideRestitutionLimLin [RCBasic Doc]
+#header sub  setSlideRestitutionLimLin( constraint_id,  n)
+
+Sets the restitution value for the linear limit of the constraint. This value controls how much energy is conserved (or how "bouncy" the interaction is) when the connected actors reach the linear limits of the slider constraint, which restricts the movement along the sliding axis.
+
+Restitution is a measure of how much energy is retained after a collision or interaction. In this context, when the linear movement reaches the limits, restitution controls how much the actors "bounce" back. A restitution value of 0.0 means no bounce (the collision is perfectly inelastic), and 1.0 allows maximum bounce (the collision is perfectly elastic).
+
+#ref GetSlideRestitutionLimLin

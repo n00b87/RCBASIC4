@@ -1,4 +1,4 @@
 #title GetTerrainPatchLOD [RCBasic Doc]
 #header function GetTerrainPatchLOD( actor, patchX, patchZ )
 
-
+Returns the current level of detail for a terrain patch

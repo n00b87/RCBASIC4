@@ -1,0 +1,4 @@
+#title setConstraintSoftnessDirAng [RCBasic Doc]
+#header sub  setConstraintSoftnessDirAng( constraint_id,  n)
+
+

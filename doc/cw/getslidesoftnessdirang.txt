@@ -1,0 +1,7 @@
+#title getSlideSoftnessDirAng [RCBasic Doc]
+#header function  getSlideSoftnessDirAng( constraint_id)
+
+Returns the softness parameter for the angular motion of the constraint. This parameter is used to define how "soft" or "rigid" the limits of angular motion are, particularly when the angular limits are reached.
+
+The softness parameter defines how smoothly the constraint responds to limit violations. A higher softness value allows for more gradual movements when limits are approached, while a lower value creates a more rigid response. Softness is particularly useful in simulations to avoid harsh impacts or stiff movements when limits are reached.
+

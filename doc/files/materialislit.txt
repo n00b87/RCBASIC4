@@ -1,4 +1,6 @@
 #title materialIsLit [RCBasic Doc]
 #header function  materialIsLit( material_id)
 
+Returns true if a material is affected by lights in the scene
 
+#ref SetMaterialLighting

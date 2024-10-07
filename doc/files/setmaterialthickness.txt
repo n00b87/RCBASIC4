@@ -1,4 +1,4 @@
 #title setMaterialThickness [RCBasic Doc]
 #header sub  setMaterialThickness( material_id,  thickness)
 
-
+Sets the thickness of non 3d elements

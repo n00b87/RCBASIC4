@@ -1,0 +1,4 @@
+#title getWindowMode [RCBasic Doc]
+#header function getWindowMode( )
+
+

@@ -1,4 +1,4 @@
 #title materialIsTransparent [RCBasic Doc]
 #header function  materialIsTransparent( material_id)
 
-
+Returns true if material is transparent

@@ -1,0 +1,16 @@
+#title CreateParticleActor [RCBasic Doc]
+#header function CreateParticleActor( particle_type )
+
+Returns a new particle actor
+
+Possible Particle Types
+#list ul
+#li PARTICLE_TYPE_POINT
+#li PARTICLE_TYPE_BOX
+#li PARTICLE_TYPE_SPHERE
+#li PARTICLE_TYPE_CYLINDER
+#li PARTICLE_TYPE_MESH
+#li PARTICLE_TYPE_RING
+#/list
+
+#ref CreateMeshOctreeActor CreateCubeActor CreateSphereActor CreateWaterPlaneActor CreateLightActor CreateBillboardActor CreateTerrainActor

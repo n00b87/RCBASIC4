@@ -125,6 +125,25 @@ int rc_createMesh()
     return mesh_id;
 }
 
+int rc_createPlaneMesh(double w, double h, double tileCount_w, double tileCount_h)
+{
+	irr::scene::IAnimatedMesh* mesh = SceneManager->addHillPlaneMesh( "plane",
+																irr::core::dimension2d<irr::f32>(w/tileCount_w, h/tileCount_h),
+																irr::core::dimension2d<irr::u32>(tileCount_w, tileCount_h));
+
+    if(!mesh)
+        return -1;
+
+    int mesh_id = rc_mesh.size();
+    rc_mesh_obj mesh_obj;
+    mesh_obj.mesh = mesh;
+    mesh_obj.mesh_type = RC_MESH_TYPE_ANIMATED;
+
+    rc_mesh.push_back(mesh_obj);
+
+    return mesh_id;
+}
+
 
 //create mesh from geometry data [TODO]
 bool rc_addMeshBuffer(int mesh_id, int vertex_count, double* vertex_data, double* normal_data, double* uv_data, int index_count, double* index_data)
@@ -358,6 +377,18 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass)
 		rc_actor[actor_id].physics.rigid_body->getIdentification()->setId(actor_id);
 		rc_actor[actor_id].physics.rigid_body->getPointer()->setActivationState(ACTIVE_TAG);
 		rc_actor[actor_id].physics.rigid_body->getPointer()->setActivationState(DISABLE_DEACTIVATION);
+		rc_actor[actor_id].physics.rigid_body->getPointer()->updateInertiaTensor();
+	}
+}
+
+void rc_setActorSleepState(int actor, int state)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+	if(rc_actor[actor].physics.rigid_body)
+	{
+		rc_actor[actor].physics.rigid_body->getPointer()->forceActivationState(state);
 	}
 }
 
@@ -397,6 +428,14 @@ bool rc_actorIsSolid(int actor_id)
         return false;
 
 	return rc_actor[actor_id].physics.isSolid;
+}
+
+bool rc_actorExists(int actor_id)
+{
+	if(actor_id < 0 || actor_id >= rc_actor.size())
+        return false;
+
+    return (rc_actor[actor_id].node_type > 0);
 }
 
 
@@ -714,10 +753,18 @@ int rc_createSphereActor(double radius)
 }
 
 //add mesh actor to scene
-int rc_createWaterPlaneActor(double w, double h)
+int rc_createWaterActor(int mesh_id, double waveHeight, double waveSpeed, double waveLength)
 {
     int actor_id = -1;
-    RealisticWaterSceneNode* node = new RealisticWaterSceneNode(SceneManager, w, h);
+
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+		return -1;
+
+	if(!rc_mesh[mesh_id].mesh)
+		return -1;
+
+    irr::scene::ISceneNode* node = SceneManager->addWaterSurfaceSceneNode(rc_mesh[mesh_id].mesh, waveHeight, waveSpeed, waveLength);
+
     rc_scene_node actor;
     actor.node_type = RC_NODE_TYPE_WATER;
     actor.mesh_node = node;
@@ -865,154 +912,6 @@ void rc_deleteActor(int actor_id)
     rc_actor[actor_id].transition = false;
     rc_actor[actor_id].transition_time = 0;
     rc_actor[actor_id].material_ref_index = -1;
-}
-
-void rc_setWaterWindForce(int actor, double f)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			water->setWindForce(f);
-	}
-}
-
-double rc_getWaterWindForce(int actor)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return 0;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			return water->getWindForce();
-	}
-
-	return 0;
-}
-
-void rc_setWaterWaveHeight(int actor, double h)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			water->setWaveHeight(h);
-	}
-}
-
-double rc_getWaterWaveHeight(int actor)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return 0;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			return water->getWaveHeight();
-	}
-
-	return 0;
-}
-
-void rc_setWaterWindDirection(int actor, double x, double z)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			water->setWindDirection( irr::core::vector2df(x, z));
-	}
-}
-
-void rc_getWaterWindDirection(int actor, double* x, double* z)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return;
-
-	*x = 0;
-	*z = 0;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			irr::core::vector2df v = water->getWindDirection();
-			*x = v.X;
-			*z = v.Y;
-	}
-}
-
-void rc_setWaterColor(int actor, Uint32 c)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			irr::video::SColor color;
-			color.set(c);
-			SColorf cf(color);
-			water->setWaterColor( cf );
-	}
-}
-
-irr::u32 rc_getWaterColor(int actor)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return 0;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			irr::video::SColorf color = water->getWaterColor();
-			return color.toSColor().color;
-	}
-
-	return 0;
-}
-
-
-void rc_setWaterColorBlendFactor(int actor, double cbfactor)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			water->setColorBlendFactor(cbfactor);
-	}
-}
-
-double rc_getWaterColorBlendFactor(int actor)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return 0;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			return water->getColorBlendFactor();
-	}
-
-	return 0;
 }
 
 
@@ -1276,6 +1175,14 @@ int rc_getActorMaterial(int actor, int material_num)
     }
 
     return material_id;
+}
+
+bool rc_materialExists(int material_id)
+{
+	if(material_id < 0 || material_id >= rc_material.size())
+		return false;
+
+	return rc_material[material_id].isUsed;
 }
 
 void rc_setMaterialAmbientColor(int material_id, Uint32 color)
@@ -2028,6 +1935,24 @@ int rc_getActorTexture(int actor, int material, int layer)
 }
 
 
+
+bool rc_getActorTransform(int actor, int t_mat)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return false;
+
+	if(t_mat < 0 || t_mat >= rc_matrix.size())
+		return false;
+
+	if(!rc_matrix[t_mat].active)
+		return false;
+
+	irr::core::matrix4 m = rc_actor[actor].mesh_node->getAbsoluteTransformation();
+	rc_convertFromIrrMatrix(m, t_mat);
+
+	return true;
+}
+
 //set actor position
 void rc_setActorPosition(int actor, double x, double y, double z)
 {
@@ -2053,7 +1978,7 @@ void rc_setActorPosition(int actor, double x, double y, double z)
 }
 
 //translate actor from local orientation
-void rc_translateActor(int actor, double x, double y, double z)
+void rc_translateActorLocal(int actor, double x, double y, double z)
 {
     if(actor < 0 || actor >= rc_actor.size())
         return;
@@ -2665,7 +2590,7 @@ void rc_getActorRotationQ(int actor, double* x, double* y, double* z, double* w)
 	}
 }
 
-void rc_getActorLinearVelocity(int actor, double* x, double* y, double* z)
+void rc_getActorLinearVelocityWorld(int actor, double* x, double* y, double* z)
 {
 	if(actor < 0 || actor >= rc_actor.size())
         return;
@@ -2683,7 +2608,7 @@ void rc_getActorLinearVelocity(int actor, double* x, double* y, double* z)
 	}
 }
 
-void rc_getActorAngularVelocity(int actor, double* x, double* y, double* z)
+void rc_getActorAngularVelocityWorld(int actor, double* x, double* y, double* z)
 {
 	if(actor < 0 || actor >= rc_actor.size())
         return;
@@ -2991,7 +2916,7 @@ int rc_createPointConstraintEx(int actorA, int actorB, double pxA, double pyA, d
 	}
 }
 
-void rc_setConstraintPivotA(int constraint_id, double x, double y, double z)
+void rc_setPointPivotA(int constraint_id, double x, double y, double z)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -3003,7 +2928,7 @@ void rc_setConstraintPivotA(int constraint_id, double x, double y, double z)
 	}
 }
 
-void rc_setConstraintPivotB(int constraint_id, double x, double y, double z)
+void rc_setPointPivotB(int constraint_id, double x, double y, double z)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -3015,7 +2940,7 @@ void rc_setConstraintPivotB(int constraint_id, double x, double y, double z)
 	}
 }
 
-int rc_createHingeConstraint(int actorA, double pxA, double pyA, double pzA, double axA, double ayA, double azA)
+int rc_createHingeConstraint(int actorA, int frameInA_matrix, bool useReferenceFrameA)
 {
 	if(actorA < 0 || actorA >= rc_actor.size())
         return -1;
@@ -3024,9 +2949,12 @@ int rc_createHingeConstraint(int actorA, double pxA, double pyA, double pzA, dou
 	{
 		rc_constraint_obj hinge;
 		hinge.type = RC_CONSTRAINT_TYPE_HINGE;
-		btVector3 pvtA(pxA, pyA, pzA);
-		btVector3 axis(axA, ayA, azA);
-		hinge.constraint = new btHingeConstraint(*rc_actor[actorA].physics.rigid_body->getPointer(), pvtA, axis);
+
+		irr::core::matrix4 irr_matA = rc_convertToIrrMatrix(frameInA_matrix);
+		btTransform frameInA;
+		btTransformFromIrrlichtMatrix(irr_matA, frameInA);
+
+		hinge.constraint = new btHingeConstraint(*rc_actor[actorA].physics.rigid_body->getPointer(), frameInA, useReferenceFrameA);
 		rc_physics3D.world->getPointer()->addConstraint(hinge.constraint);
 		int constraint_id = getConstraintId();
 		rc_physics3D.constraints[constraint_id] = hinge;
@@ -3035,8 +2963,7 @@ int rc_createHingeConstraint(int actorA, double pxA, double pyA, double pzA, dou
 }
 
 
-int rc_createHingeConstraintEx(int actorA,  int actorB, double pxA, double pyA, double pzA, double pxB, double pyB, double pzB,
-													   double axA, double ayA, double azA, double axB, double ayB, double azB)
+int rc_createHingeConstraintEx(int actorA, int actorB, int frameInA_matrix, int frameInB_matrix, bool useReferenceFrameA)
 {
 	if(actorA < 0 || actorA >= rc_actor.size() || actorB < 0 || actorB >= rc_actor.size())
         return -1;
@@ -3046,13 +2973,14 @@ int rc_createHingeConstraintEx(int actorA,  int actorB, double pxA, double pyA, 
 		rc_constraint_obj hinge;
 		hinge.type = RC_CONSTRAINT_TYPE_HINGE;
 
-		btVector3 pvtA(pxA, pyA, pzA);
-		btVector3 axisA(axA, ayA, azA);
+		irr::core::matrix4 irr_matA = rc_convertToIrrMatrix(frameInA_matrix);
+		irr::core::matrix4 irr_matB = rc_convertToIrrMatrix(frameInB_matrix);
 
-		btVector3 pvtB(pxB, pyB, pzB);
-		btVector3 axisB(axB, ayB, azB);
+		btTransform frameInA, frameInB;
+		btTransformFromIrrlichtMatrix(irr_matA, frameInA);
+		btTransformFromIrrlichtMatrix(irr_matB, frameInB);
 
-		hinge.constraint = new btHingeConstraint(*rc_actor[actorA].physics.rigid_body->getPointer(), *rc_actor[actorB].physics.rigid_body->getPointer(), pvtA, pvtB, axisA, axisB);
+		hinge.constraint = new btHingeConstraint(*rc_actor[actorA].physics.rigid_body->getPointer(), *rc_actor[actorB].physics.rigid_body->getPointer(), frameInA, frameInB, useReferenceFrameA);
 		rc_physics3D.world->getPointer()->addConstraint(hinge.constraint);
 		int constraint_id = getConstraintId();
 		rc_physics3D.constraints[constraint_id] = hinge;
@@ -3167,6 +3095,17 @@ void rc_deleteConstraint(int constraint_id)
 		rc_physics3D.constraints[constraint_id].constraint = NULL;
 		rc_physics3D.constraints[constraint_id].type = 0;
 	}
+}
+
+bool rc_constraintExists(int constraint_id)
+{
+	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
+        return false;
+
+    if(rc_physics3D.constraints[constraint_id].constraint)
+		return true;
+
+	return false;
 }
 
 
@@ -3419,7 +3358,7 @@ int rc_getConstraintBFrame(int constraint_id, int mA)
 }
 
 //btHingeConstraint::setAxis()
-void rc_setConstraintAxis(int constraint_id, double x, double y, double z)
+void rc_setHingeAxis(int constraint_id, double x, double y, double z)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -3527,7 +3466,7 @@ void rc_setConeLimit(int constraint_id, double swingSpan1, double swingSpan2, do
 }
 
 //btHingeConstraint::getLimitBiasFactor()
-double rc_getConstraintLimitBiasFactor(int constraint_id)
+double rc_getHingeLimitBiasFactor(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -3542,7 +3481,7 @@ double rc_getConstraintLimitBiasFactor(int constraint_id)
 }
 
 //btHingeConstraint::getLimitRelaxationFactor()
-double rc_getLimitRelaxationFactor(int constraint_id)
+double rc_getHingeLimitRelaxationFactor(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -3557,7 +3496,7 @@ double rc_getLimitRelaxationFactor(int constraint_id)
 }
 
 //btHingeConstraint::getLimitSign()
-double rc_getConstraintLimitSign(int constraint_id)
+double rc_getHingeLimitSign(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -3671,7 +3610,7 @@ int rc_getConstraintFixedActor(int constraint_id)
 }
 
 //btPoint2PointConstraint::getPivotInA()
-void rc_getConstraintPivotA(int constraint_id, double* x, double* y, double* z)
+void rc_getPointPivotA(int constraint_id, double* x, double* y, double* z)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -3691,7 +3630,7 @@ void rc_getConstraintPivotA(int constraint_id, double* x, double* y, double* z)
 }
 
 //btPoint2PointConstraint::getPivotInB()
-void rc_getConstraintPivotB(int constraint_id, double* x, double* y, double* z)
+void rc_getPointPivotB(int constraint_id, double* x, double* y, double* z)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -3816,7 +3755,7 @@ void rc_setConstraintSolverIterations(int constraint_id, int num)
 
 //
 //btConeTwistConstraint::getBiasFactor()
-double rc_getConstraintBiasFactor(int constraint_id)
+double rc_getConeBiasFactor(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -3831,7 +3770,7 @@ double rc_getConstraintBiasFactor(int constraint_id)
 }
 
 //btConeTwistConstraint::getDamping()
-double rc_getConstraintDamping(int constraint_id)
+double rc_getConeDamping(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -3846,7 +3785,7 @@ double rc_getConstraintDamping(int constraint_id)
 }
 
 //btConeTwistConstraint::getFixThresh()
-double rc_getConstraintFixThresh(int constraint_id)
+double rc_getConeFixThresh(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -3861,7 +3800,7 @@ double rc_getConstraintFixThresh(int constraint_id)
 }
 
 //btConeTwistConstraint::getLimit()
-double rc_getConstraintLimit(int constraint_id, int limit_index)
+double rc_getConeLimit(int constraint_id, int limit_index)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -3926,7 +3865,7 @@ double rc_getConstraintSolverIterations(int constraint_id)
 }
 
 //btConeTwistConstraint::GetPointForAngle()
-void rc_getConstraintAnglePoint(int constraint_id, double angle, double len, double* x, double* y, double* z)
+void rc_getConeAnglePoint(int constraint_id, double angle, double len, double* x, double* y, double* z)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -3962,7 +3901,7 @@ bool rc_getConstraintAngularOnly(int constraint_id)
 }
 
 //btConeTwistConstraint::getSolveSwingLimit()
-int rc_getConstraintSolveSwingLimit(int constraint_id)
+int rc_getConeSolveSwingLimit(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -3976,8 +3915,7 @@ int rc_getConstraintSolveSwingLimit(int constraint_id)
 	return 0;
 }
 
-//btConeTwistConstraint::getSolveTwistLimit()
-int rc_getConstraintSolveTwistLimit(int constraint_id)
+int rc_getConeSolveTwistLimit(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -3991,23 +3929,8 @@ int rc_getConstraintSolveTwistLimit(int constraint_id)
 	return 0;
 }
 
-//btHingeConstraint::getSolveLimit()
-int rc_getConstraintSolveLimit(int constraint_id)
-{
-	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
-        return 0;
-
-	if(rc_physics3D.constraints[constraint_id].type == RC_CONSTRAINT_TYPE_HINGE)
-	{
-		btHingeConstraint* hinge = (btHingeConstraint*) rc_physics3D.constraints[constraint_id].constraint;
-		return hinge->getSolveLimit();
-	}
-
-	return 0;
-}
-
 //btConeTwistConstraint::getSwingSpan1()
-double rc_getConstraintSwingSpan1(int constraint_id)
+double rc_getConeSwingSpan1(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4022,7 +3945,7 @@ double rc_getConstraintSwingSpan1(int constraint_id)
 }
 
 //btConeTwistConstraint::getSwingSpan2()
-int rc_getConstraintSwingSpan2(int constraint_id)
+int rc_getConeSwingSpan2(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4037,7 +3960,7 @@ int rc_getConstraintSwingSpan2(int constraint_id)
 }
 
 //btConeTwistConstraint::getTwistAngle()
-double rc_getConstraintTwistAngle(int constraint_id)
+double rc_getConeTwistAngle(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4053,7 +3976,7 @@ double rc_getConstraintTwistAngle(int constraint_id)
 
 
 //btConeTwistConstraint::getTwistLimitSign()
-double rc_getConstraintTwistLimitSign(int constraint_id)
+double rc_getConeTwistLimitSign(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4068,7 +3991,7 @@ double rc_getConstraintTwistLimitSign(int constraint_id)
 }
 
 //btConeTwistConstraint::getTwistSpan()
-int rc_getConstraintTwistSpan(int constraint_id)
+int rc_getConeTwistSpan(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4101,7 +4024,7 @@ void rc_setConstraintAngularOnly(int constraint_id, bool flag)
 }
 
 //btConeTwistConstraint::setDamping()
-void rc_setConstraintDamping(int constraint_id, double damping)
+void rc_setConeDamping(int constraint_id, double damping)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4114,7 +4037,7 @@ void rc_setConstraintDamping(int constraint_id, double damping)
 }
 
 //btConeTwistConstraint::setFixThresh()
-void rc_setConstraintFixThresh(int constraint_id, double fixThresh)
+void rc_setConeFixThresh(int constraint_id, double fixThresh)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4128,7 +4051,7 @@ void rc_setConstraintFixThresh(int constraint_id, double fixThresh)
 
 
 //btSliderConstraint::getAncorInA()
-void rc_getConstraintAnchorA(int constraint_id, double* x, double* y, double* z)
+void rc_getSlideAnchorA(int constraint_id, double* x, double* y, double* z)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4148,7 +4071,7 @@ void rc_getConstraintAnchorA(int constraint_id, double* x, double* y, double* z)
 }
 
 //btSliderConstraint::getAncorInB()
-void rc_getConstraintAnchorB(int constraint_id, double* x, double* y, double* z)
+void rc_getSlideAnchorB(int constraint_id, double* x, double* y, double* z)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4168,7 +4091,7 @@ void rc_getConstraintAnchorB(int constraint_id, double* x, double* y, double* z)
 }
 
 //btSliderConstraint::getAngDepth()
-double rc_getConstraintAngDepth(int constraint_id)
+double rc_getSlideAngDepth(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4183,7 +4106,7 @@ double rc_getConstraintAngDepth(int constraint_id)
 }
 
 //btSliderConstraint::getAngularPos()
-double rc_getConstraintAngularPos(int constraint_id)
+double rc_getSlideAngularPos(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4198,7 +4121,7 @@ double rc_getConstraintAngularPos(int constraint_id)
 }
 
 //btSliderConstraint::getDampingDirAng()
-double rc_getConstraintDampingDirAng(int constraint_id)
+double rc_getSlideDampingDirAng(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4213,7 +4136,7 @@ double rc_getConstraintDampingDirAng(int constraint_id)
 }
 
 //btSliderConstraint::getDampingDirLin()
-double rc_getConstraintDampingDirLin(int constraint_id)
+double rc_getSlideDampingDirLin(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4228,7 +4151,7 @@ double rc_getConstraintDampingDirLin(int constraint_id)
 }
 
 //btSliderConstraint::getDampingLimAng()
-double rc_getConstraintDampingLimAng(int constraint_id)
+double rc_getSlideDampingLimAng(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4243,7 +4166,7 @@ double rc_getConstraintDampingLimAng(int constraint_id)
 }
 
 //btSliderConstraint::getDampingLimLin()
-double rc_getConstraintDampingLimLin(int constraint_id)
+double rc_getSlideDampingLimLin(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4258,7 +4181,7 @@ double rc_getConstraintDampingLimLin(int constraint_id)
 }
 
 //btSliderConstraint::getDampingOrthoAng()
-double rc_getConstraintDampingOrthoAng(int constraint_id)
+double rc_getSlideDampingOrthoAng(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4273,7 +4196,7 @@ double rc_getConstraintDampingOrthoAng(int constraint_id)
 }
 
 //btSliderConstraint::getDampingOrthoLin()
-double rc_getConstraintDampingOrthoLin(int constraint_id)
+double rc_getSlideDampingOrthoLin(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4288,7 +4211,7 @@ double rc_getConstraintDampingOrthoLin(int constraint_id)
 }
 
 //btSliderConstraint::getLinearPos()
-double rc_getConstraintLinearPos(int constraint_id)
+double rc_getSlideLinearPos(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4303,7 +4226,7 @@ double rc_getConstraintLinearPos(int constraint_id)
 }
 
 //btSliderConstraint::getLinDepth()
-double rc_getConstraintLinDepth(int constraint_id)
+double rc_getSlideLinDepth(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4318,7 +4241,7 @@ double rc_getConstraintLinDepth(int constraint_id)
 }
 
 //btSliderConstraint::getLowerAngLimit()
-double rc_getConstraintLowerAngLimit(int constraint_id)
+double rc_getSlideLowerAngLimit(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4333,7 +4256,7 @@ double rc_getConstraintLowerAngLimit(int constraint_id)
 }
 
 //btSliderConstraint::getLowerLinLimit()
-double rc_getConstraintLowerLinLimit(int constraint_id)
+double rc_getSlideLowerLinLimit(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4348,7 +4271,7 @@ double rc_getConstraintLowerLinLimit(int constraint_id)
 }
 
 //btSliderConstraint::getRestitutionDirAng()
-double rc_getConstraintRestitutionDirAng(int constraint_id)
+double rc_getSlideRestitutionDirAng(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4363,7 +4286,7 @@ double rc_getConstraintRestitutionDirAng(int constraint_id)
 }
 
 //btSliderConstraint::getRestitutionDirLin()
-double rc_getConstraintRestitutionDirLin(int constraint_id)
+double rc_getSlideRestitutionDirLin(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4378,7 +4301,7 @@ double rc_getConstraintRestitutionDirLin(int constraint_id)
 }
 
 //btSliderConstraint::getRestitutionLimAng()
-double rc_getConstraintRestitutionLimAng(int constraint_id)
+double rc_getSlideRestitutionLimAng(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4393,7 +4316,7 @@ double rc_getConstraintRestitutionLimAng(int constraint_id)
 }
 
 //btSliderConstraint::getRestitutionLimLin()
-double rc_getConstraintRestitutionLimLin(int constraint_id)
+double rc_getSlideRestitutionLimLin(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4408,7 +4331,7 @@ double rc_getConstraintRestitutionLimLin(int constraint_id)
 }
 
 //btSliderConstraint::getRestitutionOrthoAng()
-double rc_getConstraintRestitutionOrthoAng(int constraint_id)
+double rc_getSlideRestitutionOrthoAng(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4423,7 +4346,7 @@ double rc_getConstraintRestitutionOrthoAng(int constraint_id)
 }
 
 //btSliderConstraint::getRestitutionOrthoLin()
-double rc_getConstraintRestitutionOrthoLin(int constraint_id)
+double rc_getSlideRestitutionOrthoLin(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4438,7 +4361,7 @@ double rc_getConstraintRestitutionOrthoLin(int constraint_id)
 }
 
 //btSliderConstraint::getSoftnessDirAng()
-double rc_getConstraintSoftnessDirAng(int constraint_id)
+double rc_getSlideSoftnessDirAng(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4453,7 +4376,7 @@ double rc_getConstraintSoftnessDirAng(int constraint_id)
 }
 
 //btSliderConstraint::getSoftnessDirLin()
-double rc_getConstraintSoftnessDirLin(int constraint_id)
+double rc_getSlideSoftnessDirLin(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4468,7 +4391,7 @@ double rc_getConstraintSoftnessDirLin(int constraint_id)
 }
 
 //btSliderConstraint::getSoftnessLimAng()
-double rc_getConstraintSoftnessLimAng(int constraint_id)
+double rc_getSlideSoftnessLimAng(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4483,7 +4406,7 @@ double rc_getConstraintSoftnessLimAng(int constraint_id)
 }
 
 //btSliderConstraint::getSoftnessLimLin()
-double rc_getConstraintSoftnessLimLin(int constraint_id)
+double rc_getSlideSoftnessLimLin(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4498,7 +4421,7 @@ double rc_getConstraintSoftnessLimLin(int constraint_id)
 }
 
 //btSliderConstraint::getSoftnessOrthoAng()
-double rc_getConstraintSoftnessOrthoAng(int constraint_id)
+double rc_getSlideSoftnessOrthoAng(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4513,7 +4436,7 @@ double rc_getConstraintSoftnessOrthoAng(int constraint_id)
 }
 
 //btSliderConstraint::getSoftnessOrthoLin()
-double rc_getConstraintSoftnessOrthoLin(int constraint_id)
+double rc_getSlideSoftnessOrthoLin(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4528,7 +4451,7 @@ double rc_getConstraintSoftnessOrthoLin(int constraint_id)
 }
 
 //btSliderConstraint::getSolveAngLimit()
-bool rc_getConstraintSolveAngLimit(int constraint_id)
+bool rc_getSlideSolveAngLimit(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4543,7 +4466,7 @@ bool rc_getConstraintSolveAngLimit(int constraint_id)
 }
 
 //btSliderConstraint::getSolveLinLimit()
-bool rc_getConstraintSolveLinLimit(int constraint_id)
+bool rc_getSlideSolveLinLimit(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4558,7 +4481,7 @@ bool rc_getConstraintSolveLinLimit(int constraint_id)
 }
 
 //btSliderConstraint::getUpperAngLimit()
-double rc_getConstraintUpperAngLimit(int constraint_id)
+double rc_getSlideUpperAngLimit(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4573,7 +4496,7 @@ double rc_getConstraintUpperAngLimit(int constraint_id)
 }
 
 //btSliderConstraint::getUpperLinLimit()
-double rc_getConstraintUpperLinLimit(int constraint_id)
+double rc_getSlideUpperLinLimit(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4588,7 +4511,7 @@ double rc_getConstraintUpperLinLimit(int constraint_id)
 }
 
 //btSliderConstraint::getUseFrameOffset()
-bool rc_getConstraintUseFrameOffset(int constraint_id)
+bool rc_getSlideUseFrameOffset(int constraint_id)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return 0;
@@ -4603,7 +4526,7 @@ bool rc_getConstraintUseFrameOffset(int constraint_id)
 }
 
 //btSliderConstraint::setDampingDirAng()
-void rc_setConstraintDampingDirAng(int constraint_id, double n)
+void rc_setSlideDampingDirAng(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4616,7 +4539,7 @@ void rc_setConstraintDampingDirAng(int constraint_id, double n)
 }
 
 //btSliderConstraint::setDampingDirLin()
-void rc_setConstraintDampingDirLin(int constraint_id, double n)
+void rc_setSlideDampingDirLin(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4629,7 +4552,7 @@ void rc_setConstraintDampingDirLin(int constraint_id, double n)
 }
 
 //btSliderConstraint::setDampingLimAng()
-void rc_setConstraintDampingLimAng(int constraint_id, double n)
+void rc_setSlideDampingLimAng(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4642,7 +4565,7 @@ void rc_setConstraintDampingLimAng(int constraint_id, double n)
 }
 
 //btSliderConstraint::setDampingLimLin()
-void rc_setConstraintDampingLimLin(int constraint_id, double n)
+void rc_setSlideDampingLimLin(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4655,7 +4578,7 @@ void rc_setConstraintDampingLimLin(int constraint_id, double n)
 }
 
 //btSliderConstraint::setDampingOrthoAng()
-void rc_setConstraintDampingOrthoAng(int constraint_id, double n)
+void rc_setSlideDampingOrthoAng(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4668,7 +4591,7 @@ void rc_setConstraintDampingOrthoAng(int constraint_id, double n)
 }
 
 //btSliderConstraint::setDampingOrthoLin()
-void rc_setConstraintDampingOrthoLin(int constraint_id, double n)
+void rc_setSlideDampingOrthoLin(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4681,7 +4604,7 @@ void rc_setConstraintDampingOrthoLin(int constraint_id, double n)
 }
 
 //btSliderConstraint::setLowerAngLimit()
-void rc_setConstraintLowerAngLimit(int constraint_id, double n)
+void rc_setSlideLowerAngLimit(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4694,7 +4617,7 @@ void rc_setConstraintLowerAngLimit(int constraint_id, double n)
 }
 
 //btSliderConstraint::setLowerLinLimit()
-void rc_setConstraintLowerLinLimit(int constraint_id, double n)
+void rc_setSlideLowerLinLimit(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4707,7 +4630,7 @@ void rc_setConstraintLowerLinLimit(int constraint_id, double n)
 }
 
 //btSliderConstraint::setRestitutionDirAng()
-void rc_setConstraintRestitutionDirAng(int constraint_id, double n)
+void rc_setSlideRestitutionDirAng(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4720,7 +4643,7 @@ void rc_setConstraintRestitutionDirAng(int constraint_id, double n)
 }
 
 //btSliderConstraint::setRestitutionDirLin()
-void rc_setConstraintRestitutionDirLin(int constraint_id, double n)
+void rc_setSlideRestitutionDirLin(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4733,7 +4656,7 @@ void rc_setConstraintRestitutionDirLin(int constraint_id, double n)
 }
 
 //btSliderConstraint::setRestitutionLimAng()
-void rc_setConstraintRestitutionLimAng(int constraint_id, double n)
+void rc_setSlideRestitutionLimAng(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4746,7 +4669,7 @@ void rc_setConstraintRestitutionLimAng(int constraint_id, double n)
 }
 
 //btSliderConstraint::setRestitutionLimLin()
-void rc_setConstraintRestitutionLimLin(int constraint_id, double n)
+void rc_setSlideRestitutionLimLin(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4759,7 +4682,7 @@ void rc_setConstraintRestitutionLimLin(int constraint_id, double n)
 }
 
 //btSliderConstraint::setRestitutionOrthoAng()
-void rc_setConstraintRestitutionOrthoAng(int constraint_id, double n)
+void rc_setSlideRestitutionOrthoAng(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4772,7 +4695,7 @@ void rc_setConstraintRestitutionOrthoAng(int constraint_id, double n)
 }
 
 //btSliderConstraint::setRestitutionOrthoLin()
-void rc_setConstraintRestitutionOrthoLin(int constraint_id, double n)
+void rc_setSlideRestitutionOrthoLin(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4785,7 +4708,7 @@ void rc_setConstraintRestitutionOrthoLin(int constraint_id, double n)
 }
 
 //btSliderConstraint::setSoftnessDirAng()
-void rc_setConstraintSoftnessDirAng(int constraint_id, double n)
+void rc_setSlideSoftnessDirAng(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4798,7 +4721,7 @@ void rc_setConstraintSoftnessDirAng(int constraint_id, double n)
 }
 
 //btSliderConstraint::setSoftnessDirLin()
-void rc_setConstraintSoftnessDirLin(int constraint_id, double n)
+void rc_setSlideSoftnessDirLin(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4811,7 +4734,7 @@ void rc_setConstraintSoftnessDirLin(int constraint_id, double n)
 }
 
 //btSliderConstraint::setSoftnessLimAng()
-void rc_setConstraintSoftnessLimAng(int constraint_id, double n)
+void rc_setSlideSoftnessLimAng(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4824,7 +4747,7 @@ void rc_setConstraintSoftnessLimAng(int constraint_id, double n)
 }
 
 //btSliderConstraint::setSoftnessLimLin()
-void rc_setConstraintSoftnessLimLin(int constraint_id, double n)
+void rc_setSlideSoftnessLimLin(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4837,7 +4760,7 @@ void rc_setConstraintSoftnessLimLin(int constraint_id, double n)
 }
 
 //btSliderConstraint::setSoftnessOrthoAng()
-void rc_setConstraintSoftnessOrthoAng(int constraint_id, double n)
+void rc_setSlideSoftnessOrthoAng(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4850,7 +4773,7 @@ void rc_setConstraintSoftnessOrthoAng(int constraint_id, double n)
 }
 
 //btSliderConstraint::setSoftnessOrthoLin()
-void rc_setConstraintSoftnessOrthoLin(int constraint_id, double n)
+void rc_setSlideSoftnessOrthoLin(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4863,7 +4786,7 @@ void rc_setConstraintSoftnessOrthoLin(int constraint_id, double n)
 }
 
 //btSliderConstraint::setUpperAngLimit()
-void rc_setConstraintUpperAngLimit(int constraint_id, double n)
+void rc_setSlideUpperAngLimit(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -4876,7 +4799,7 @@ void rc_setConstraintUpperAngLimit(int constraint_id, double n)
 }
 
 //btSliderConstraint::setUpperLinLimit()
-void rc_setConstraintUpperLinLimit(int constraint_id, double n)
+void rc_setSlideUpperLinLimit(int constraint_id, double n)
 {
 	if(constraint_id < 0 || constraint_id >= rc_physics3D.constraints.size())
         return;
@@ -5026,6 +4949,20 @@ double rc_getActorAnimationSpeed(int actor)
     return 0;
 }
 
+void rc_setActorFrame(int actor, int frame)
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    switch(rc_actor[actor].node_type)
+    {
+    	case RC_NODE_TYPE_MESH:
+            irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
+            node->setCurrentFrame(frame);
+            break;
+    }
+}
+
 //set actor animation speed
 void rc_setActorAutoCulling(int actor, int cull_type)
 {
@@ -5103,7 +5040,7 @@ bool rc_lightIsCastingShadow(int actor)
 int rc_getLightType(int actor)
 {
 	if(actor < 0 || actor >= rc_actor.size())
-        return 0;
+        return -1;
 
     switch(rc_actor[actor].node_type)
     {
@@ -5112,7 +5049,7 @@ int rc_getLightType(int actor)
             return (int)node->getLightType();
     }
 
-    return 0;
+    return -1;
 }
 
 double rc_getLightRadius(int actor)
@@ -5156,19 +5093,6 @@ void rc_setLightRadius(int actor, double radius)
     }
 }
 
-void rc_setActorFrame(int actor, int frame)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return;
-
-    switch(rc_actor[actor].node_type)
-    {
-    	case RC_NODE_TYPE_MESH:
-            irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
-            node->setCurrentFrame(frame);
-            break;
-    }
-}
 
 void rc_setLightShadowCast(int actor, bool flag)
 {
@@ -5681,6 +5605,17 @@ void rc_setTerrainPatchLOD(int actor, int patchX, int patchZ, int lod)
     }
 }
 
+int rc_getParticleType(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+	if(rc_actor[actor].node_type != RC_NODE_TYPE_PARTICLE)
+		return 0;
+
+	return rc_actor[actor].particle_properties.particle_type;
+}
+
 void rc_startParticleEmitter(int actor)
 {
 	if(actor < 0 || actor >= rc_actor.size())
@@ -5962,7 +5897,7 @@ void rc_setParticleMesh(int actor, int mesh)
 	}
 }
 
-void rc_setParticleMinParticlesPerSecond(int actor, Uint32 minParticlesPerSecond)
+void rc_setMinParticlesPerSecond(int actor, Uint32 minParticlesPerSecond)
 {
 	if(actor < 0 || actor >= rc_actor.size())
         return;
@@ -5978,7 +5913,7 @@ void rc_setParticleMinParticlesPerSecond(int actor, Uint32 minParticlesPerSecond
 		node->getEmitter()->setMinParticlesPerSecond(minParticlesPerSecond);
 }
 
-Uint32 rc_getParticleMinParticlesPerSecond(int actor)
+Uint32 rc_getMinParticlesPerSecond(int actor)
 {
 	if(actor < 0 || actor >= rc_actor.size())
         return 0;
@@ -5989,7 +5924,7 @@ Uint32 rc_getParticleMinParticlesPerSecond(int actor)
 	return rc_actor[actor].particle_properties.minParticlesPerSecond;
 }
 
-void rc_setParticleMaxParticlesPerSecond(int actor, Uint32 maxParticlesPerSecond)
+void rc_setMaxParticlesPerSecond(int actor, Uint32 maxParticlesPerSecond)
 {
 	if(actor < 0 || actor >= rc_actor.size())
         return;
@@ -6005,7 +5940,7 @@ void rc_setParticleMaxParticlesPerSecond(int actor, Uint32 maxParticlesPerSecond
 		node->getEmitter()->setMaxParticlesPerSecond(maxParticlesPerSecond);
 }
 
-Uint32 rc_getParticleMaxParticlesPerSecond(int actor)
+Uint32 rc_getMaxParticlesPerSecond(int actor)
 {
 	if(actor < 0 || actor >= rc_actor.size())
         return 0;
@@ -6530,23 +6465,6 @@ bool rc_particleIsUsingOutlineOnly(int actor)
 }
 
 
-
-bool rc_getActorTransform(int actor, int t_mat)
-{
-	if(actor < 0 || actor >= rc_actor.size())
-        return false;
-
-	if(t_mat < 0 || t_mat >= rc_matrix.size())
-		return false;
-
-	if(!rc_matrix[t_mat].active)
-		return false;
-
-	irr::core::matrix4 m = rc_actor[actor].mesh_node->getAbsoluteTransformation();
-	rc_convertFromIrrMatrix(m, t_mat);
-
-	return true;
-}
 
 void rc_setCameraPosition(double x, double y, double z)
 {

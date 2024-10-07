@@ -1,0 +1,4 @@
+#title Tally [RCBasic Doc]
+#header function Tally(src$, substr$)
+
+

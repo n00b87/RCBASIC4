@@ -1,4 +1,4 @@
 #title JoyButton [RCBasic Doc]
 #header function JoyButton(joy_num, joy_button)
 
-
+Returns true if the given button was pressed and false otherwise.

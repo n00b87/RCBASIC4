@@ -1,4 +1,6 @@
 #title SetIdentityMatrix [RCBasic Doc]
 #header sub SetIdentityMatrix(mA, n)
 
+Sets matrix mA to an identity matrix of n rows and n columns.
 
+For most transform operations (ie. translate, rotate, and scale) it is recommended to start from and identity matrix

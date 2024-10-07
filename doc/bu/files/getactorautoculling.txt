@@ -1,0 +1,4 @@
+#title GetActorAutoCulling [RCBasic Doc]
+#header function GetActorAutoCulling( actor )
+
+Returns True if auto culling is set on the actor

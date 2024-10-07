@@ -1,4 +1,6 @@
 #title setLightShadowCast [RCBasic Doc]
 #header sub setLightShadowCast( actor, flag )
 
+Sets whether a light will cast shadows on actors that have shadows enabled
 
+#ref AddActorShadow

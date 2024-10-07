@@ -1,0 +1,4 @@
+#title OpenCanvas [RCBasic Doc]
+#header function OpenCanvas( w, h, viewport_x, viewport_y, viewport_w, viewport_h, mode)
+
+

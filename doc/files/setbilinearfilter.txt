@@ -1,4 +1,4 @@
 #title setBilinearFilter [RCBasic Doc]
 #header sub setBilinearFilter( flag )
 
-
+Enables or disables the bilinear filter for drawing 2D images

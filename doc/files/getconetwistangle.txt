@@ -1,0 +1,10 @@
+#title getConeTwistAngle [RCBasic Doc]
+#header function  getConeTwistAngle( constraint_id)
+
+Returns the current twist angle between the two actors connected by the constraint
+
+#list ul
+#li The twist angle is the current rotational angle between the two actors around the primary twist axis.
+#li It represents how much the actors have rotated relative to each other around the axis, which is the same axis that the twist limit is applied to.
+#li The twist angle can be compared to the twist limit to determine if the constraint is approaching or exceeding the allowed range of rotation.
+#/list

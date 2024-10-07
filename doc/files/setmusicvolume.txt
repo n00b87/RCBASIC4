@@ -1,4 +1,4 @@
 #title SetMusicVolume [RCBasic Doc]
 #header sub SetMusicVolume(vol)
 
-
+Sets the volume of the loaded music track

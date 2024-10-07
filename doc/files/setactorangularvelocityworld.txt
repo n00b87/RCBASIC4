@@ -1,4 +1,7 @@
 #title setActorAngularVelocityWorld [RCBasic Doc]
 #header sub setActorAngularVelocityWorld( actor,   x,   y,   z)
 
+Sets an actor's Angular Velocity
+
+#ref GetActorAngularVelocityWorld GetActorAngularVelocityLocal SetActorAngularVelocityLocal
 

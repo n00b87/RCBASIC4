@@ -1,0 +1,4 @@
+#title XOrBit [RCBasic Doc]
+#header function XOrBit(a, b)
+
+

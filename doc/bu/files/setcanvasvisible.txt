@@ -1,0 +1,4 @@
+#title SetCanvasVisible [RCBasic Doc]
+#header sub SetCanvasVisible(c_num, flag)
+
+

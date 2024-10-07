@@ -1,4 +1,12 @@
 #title ReadByteBuffer [RCBasic Doc]
 #header function ReadByteBuffer(stream, ByRef buf, buf_size)
 
+Reads a number of bytes from a file stream to an array.
 
+#list ul
+#li stream - A open file
+#li buffer - An array of bytes
+#li buffer_size - The number of bytes to write from buffer (This should be less than size of the buffer)
+#/list
+
+#ref ReadByte

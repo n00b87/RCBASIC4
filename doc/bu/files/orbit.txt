@@ -1,0 +1,4 @@
+#title OrBit [RCBasic Doc]
+#header function OrBit(a, b)
+
+

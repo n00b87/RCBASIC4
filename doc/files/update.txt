@@ -1,4 +1,19 @@
 #title Update [RCBasic Doc]
 #header sub Update()
 
+This is the most important function in a graphics window. It must be called every frame.
 
+It performs a few different operations
+#list ol
+#li Renders all graphics
+#li Checks for every event on the window
+	#list ul
+	#li Keyboard and Mouse Events
+	#li Joystick Events
+	#li Window Control Events (minimize, maximize, close, etc.)
+	#/list
+#li Updates the physics simulation for 2D and 3D objects if enabled
+#li Makes breakfast if you are hungry
+#/list
+
+If you have a window open, you should have this function being called in your main render loop every frame.

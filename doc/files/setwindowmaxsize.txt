@@ -1,4 +1,4 @@
 #title SetWindowMaxSize [RCBasic Doc]
-#header sub SetWindowMaxSize(win, w, h)
+#header sub SetWindowMaxSize( w, h)
 
-
+Sets the max size for a resizable window

@@ -1,4 +1,4 @@
 #title ShowWindow [RCBasic Doc]
-#header sub ShowWindow(win)
+#header sub ShowWindow( )
 
-
+Sets the window visible

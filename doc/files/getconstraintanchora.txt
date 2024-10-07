@@ -1,4 +1,0 @@
-#title getConstraintAnchorA [RCBasic Doc]
-#header sub  getConstraintAnchorA( constraint_id, ByRef x, ByRef y, ByRef z)
-
-

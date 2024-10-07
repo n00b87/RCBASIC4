@@ -1,4 +1,4 @@
 #title GetWindowSize [RCBasic Doc]
-#header sub GetWindowSize(win, byref w, byref h)
+#header sub GetWindowSize( byref w, byref h )
 
-
+Gets the size of the window.

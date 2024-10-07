@@ -1,4 +1,8 @@
 #title Sign [RCBasic Doc]
 #header function Sign(n)
 
+Returns the sign of a number
 
+n < 0 returns -1
+n = 0 returns 0
+n > 0 returns 1

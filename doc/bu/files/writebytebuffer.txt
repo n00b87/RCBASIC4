@@ -1,0 +1,4 @@
+#title WriteByteBuffer [RCBasic Doc]
+#header function WriteByteBuffer(stream, ByRef buf, buf_size)
+
+

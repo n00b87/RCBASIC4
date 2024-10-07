@@ -1,4 +1,4 @@
 #title GetWindowMinSize [RCBasic Doc]
-#header sub GetWindowMinSize(win, byref w, byref h)
+#header sub GetWindowMinSize( byref w, byref h)
 
-
+Gets the minimum size of the window.

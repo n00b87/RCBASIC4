@@ -1,0 +1,4 @@
+#title setParticleMaxStartSize [RCBasic Doc]
+#header sub  setParticleMaxStartSize( actor,  w,  h)
+
+

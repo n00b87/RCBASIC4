@@ -1,4 +1,4 @@
 #title GrabInput [RCBasic Doc]
 #header sub GrabInput(flag)
 
-
+Sets whether the currently active window will grab user input 

@@ -1,4 +1,4 @@
 #title WindowHasInputFocus [RCBasic Doc]
-#header function WindowHasInputFocus(win)
+#header function WindowHasInputFocus()
 
-
+Returns true if the window has input focus, otherwise it returns false.

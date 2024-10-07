@@ -1,4 +1,4 @@
 #title UDP_GetData [RCBasic Doc]
 #header function UDP_GetData(socket, byref host$, byref port, byref sData$)
 
-
+Reads data from a udp socket.

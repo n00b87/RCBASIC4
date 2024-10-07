@@ -1,0 +1,4 @@
+#title getParticleMinStartColor [RCBasic Doc]
+#header function  getParticleMinStartColor( actor)
+
+

@@ -1,4 +1,4 @@
 #title WindowEvent_Close [RCBasic Doc]
-#header function WindowEvent_Close(win)
+#header function WindowEvent_Close()
 
-
+Returns true if the window close event is called.

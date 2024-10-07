@@ -1,4 +1,4 @@
 #title SetWindowPosition [RCBasic Doc]
-#header sub SetWindowPosition(win, x, y)
+#header sub SetWindowPosition( x, y )
 
-
+Sets the position of the window on the display

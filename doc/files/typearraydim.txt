@@ -1,4 +1,9 @@
 #title TypeArrayDim [RCBasic Doc]
 #header function TypeArrayDim(Byref id as empty)
 
+This function is exists to be internally called by the runtime but should not be called directly.
+
+<b>Use ArrayDim()</b>
+
+#ref ArrayDim
 
