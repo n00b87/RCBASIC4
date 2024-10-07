@@ -125,6 +125,25 @@ int rc_createMesh()
     return mesh_id;
 }
 
+int rc_createPlaneMesh(double w, double h, double tileCount_w, double tileCount_h)
+{
+	irr::scene::IAnimatedMesh* mesh = SceneManager->addHillPlaneMesh( "plane",
+																irr::core::dimension2d<irr::f32>(w/tileCount_w, h/tileCount_h),
+																irr::core::dimension2d<irr::u32>(tileCount_w, tileCount_h));
+
+    if(!mesh)
+        return -1;
+
+    int mesh_id = rc_mesh.size();
+    rc_mesh_obj mesh_obj;
+    mesh_obj.mesh = mesh;
+    mesh_obj.mesh_type = RC_MESH_TYPE_ANIMATED;
+
+    rc_mesh.push_back(mesh_obj);
+
+    return mesh_id;
+}
+
 
 //create mesh from geometry data [TODO]
 bool rc_addMeshBuffer(int mesh_id, int vertex_count, double* vertex_data, double* normal_data, double* uv_data, int index_count, double* index_data)
@@ -734,10 +753,18 @@ int rc_createSphereActor(double radius)
 }
 
 //add mesh actor to scene
-int rc_createWaterPlaneActor(double w, double h)
+int rc_createWaterActor(int mesh_id, double waveHeight, double waveSpeed, double waveLength)
 {
     int actor_id = -1;
-    RealisticWaterSceneNode* node = new RealisticWaterSceneNode(SceneManager, w, h);
+
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+		return -1;
+
+	if(!rc_mesh[mesh_id].mesh)
+		return -1;
+
+    irr::scene::ISceneNode* node = SceneManager->addWaterSurfaceSceneNode(rc_mesh[mesh_id].mesh, waveHeight, waveSpeed, waveLength);
+
     rc_scene_node actor;
     actor.node_type = RC_NODE_TYPE_WATER;
     actor.mesh_node = node;
@@ -885,154 +912,6 @@ void rc_deleteActor(int actor_id)
     rc_actor[actor_id].transition = false;
     rc_actor[actor_id].transition_time = 0;
     rc_actor[actor_id].material_ref_index = -1;
-}
-
-void rc_setWaterWindForce(int actor, double f)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			water->setWindForce(f);
-	}
-}
-
-double rc_getWaterWindForce(int actor)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return 0;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			return water->getWindForce();
-	}
-
-	return 0;
-}
-
-void rc_setWaterWaveHeight(int actor, double h)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			water->setWaveHeight(h);
-	}
-}
-
-double rc_getWaterWaveHeight(int actor)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return 0;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			return water->getWaveHeight();
-	}
-
-	return 0;
-}
-
-void rc_setWaterWindDirection(int actor, double x, double z)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			water->setWindDirection( irr::core::vector2df(x, z));
-	}
-}
-
-void rc_getWaterWindDirection(int actor, double* x, double* z)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return;
-
-	*x = 0;
-	*z = 0;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			irr::core::vector2df v = water->getWindDirection();
-			*x = v.X;
-			*z = v.Y;
-	}
-}
-
-void rc_setWaterColor(int actor, Uint32 c)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			irr::video::SColor color;
-			color.set(c);
-			SColorf cf(color);
-			water->setWaterColor( cf );
-	}
-}
-
-irr::u32 rc_getWaterColor(int actor)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return 0;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			irr::video::SColorf color = water->getWaterColor();
-			return color.toSColor().color;
-	}
-
-	return 0;
-}
-
-
-void rc_setWaterColorBlendFactor(int actor, double cbfactor)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			water->setColorBlendFactor(cbfactor);
-	}
-}
-
-double rc_getWaterColorBlendFactor(int actor)
-{
-    if(actor < 0 || actor >= rc_actor.size())
-        return 0;
-
-	switch(rc_actor[actor].node_type)
-	{
-		case RC_NODE_TYPE_WATER:
-			RealisticWaterSceneNode* water = (RealisticWaterSceneNode*)rc_actor[actor].mesh_node;
-			return water->getColorBlendFactor();
-	}
-
-	return 0;
 }
 
 

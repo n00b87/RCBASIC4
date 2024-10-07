@@ -541,9 +541,6 @@ case FN_SetWindowAlwaysOnTop: //Sub Procedure
 case FN_SetMouseRelative: //Sub Procedure
 	rc_setMouseRelative( SETMOUSERELATIVE_FLAG );
 	break;
-case FN_SetWindowVSync: //Sub Procedure
-	rc_setWindowVSync( SETWINDOWVSYNC_FLAG );
-	break;
 case FN_FlashWindow: //Number Function
 	 rc_push_num(rc_flashWindow( FLASHWINDOW_FLAG ));
 	break;
@@ -557,7 +554,7 @@ case FN_CloseCanvas: //Sub Procedure
 	rc_canvasClose( CLOSECANVAS_C_NUM );
 	break;
 case FN_OpenCanvas3D: //Number Function
-	 rc_push_num(rc_canvasOpen3D( OPENCANVAS3D_W,  OPENCANVAS3D_H,  OPENCANVAS3D_VIEWPORT_X,  OPENCANVAS3D_VIEWPORT_Y,  OPENCANVAS3D_VIEWPORT_W,  OPENCANVAS3D_VIEWPORT_H,  OPENCANVAS3D_MODE ));
+	 rc_push_num(rc_canvasOpen3D( OPENCANVAS3D_VIEWPORT_X,  OPENCANVAS3D_VIEWPORT_Y,  OPENCANVAS3D_VIEWPORT_W,  OPENCANVAS3D_VIEWPORT_H,  OPENCANVAS3D_MODE ));
 	break;
 case FN_SetCanvasVisible: //Sub Procedure
 	rc_setCanvasVisible( SETCANVASVISIBLE_C_NUM,  SETCANVASVISIBLE_FLAG );
@@ -616,8 +613,8 @@ case FN_ActiveCanvas: //Number Function
 case FN_SetCanvasPhysics2D: //Sub Procedure
 	rc_setCanvasPhysics2D( SETCANVASPHYSICS2D_C_NUM,  SETCANVASPHYSICS2D_STATE );
 	break;
-case FN_OpenSpriteCanvas: //Number Function
-	 rc_push_num(rc_canvasOpenSpriteLayer( OPENSPRITECANVAS_W,  OPENSPRITECANVAS_H,  OPENSPRITECANVAS_VIEWPORT_X,  OPENSPRITECANVAS_VIEWPORT_Y,  OPENSPRITECANVAS_VIEWPORT_W,  OPENSPRITECANVAS_VIEWPORT_H ));
+case FN_OpenCanvasSpriteLayer: //Number Function
+	 rc_push_num(rc_canvasOpenSpriteLayer( OPENCANVASSPRITELAYER_W,  OPENCANVASSPRITELAYER_H,  OPENCANVASSPRITELAYER_VIEWPORT_X,  OPENCANVASSPRITELAYER_VIEWPORT_Y,  OPENCANVASSPRITELAYER_VIEWPORT_W,  OPENCANVASSPRITELAYER_VIEWPORT_H ));
 	break;
 case FN_Circle: //Sub Procedure
 	rc_drawCircle( CIRCLE_X,  CIRCLE_Y,  CIRCLE_RADIUS );
@@ -1397,6 +1394,9 @@ case FN_AddMeshBuffer: //Sub Procedure
 case FN_LoadMeshFromArchive: //Number Function
 	 rc_push_num(rc_loadMeshFromArchive( LOADMESHFROMARCHIVE_ARCHIVE$,  LOADMESHFROMARCHIVE_MESH_FILE$ ));
 	break;
+case FN_CreatePlaneMesh: //Number Function
+	 rc_push_num(rc_createPlaneMesh( CREATEPLANEMESH_W,  CREATEPLANEMESH_H,  CREATEPLANEMESH_TILECOUNT_W,  CREATEPLANEMESH_TILECOUNT_H ));
+	break;
 case FN_CreateMeshActor: //Number Function
 	 rc_push_num(rc_createMeshActor( CREATEMESHACTOR_MESH ));
 	break;
@@ -1409,8 +1409,8 @@ case FN_CreateCubeActor: //Number Function
 case FN_CreateSphereActor: //Number Function
 	 rc_push_num(rc_createSphereActor( CREATESPHEREACTOR_RADIUS ));
 	break;
-case FN_CreateWaterPlaneActor: //Number Function
-	 rc_push_num(rc_createWaterPlaneActor( CREATEWATERPLANEACTOR_W,  CREATEWATERPLANEACTOR_H ));
+case FN_CreateWaterActor: //Number Function
+	 rc_push_num(rc_createWaterActor( CREATEWATERACTOR_MESH,  CREATEWATERACTOR_WAVEHEIGHT,  CREATEWATERACTOR_WAVESPEED,  CREATEWATERACTOR_WAVELENGTH ));
 	break;
 case FN_CreateLightActor: //Number Function
 	 rc_push_num(rc_createLightActor(  ));
@@ -2260,36 +2260,6 @@ case FN_SetTerrainCameraRotationDelta: //Sub Procedure
 	break;
 case FN_SetTerrainPatchLOD: //Sub Procedure
 	rc_setTerrainPatchLOD( SETTERRAINPATCHLOD_ACTOR,  SETTERRAINPATCHLOD_PATCHX,  SETTERRAINPATCHLOD_PATCHZ,  SETTERRAINPATCHLOD_LOD );
-	break;
-case FN_setWaterWindForce: //Sub Procedure
-	rc_setWaterWindForce( SETWATERWINDFORCE_ACTOR,  SETWATERWINDFORCE_F );
-	break;
-case FN_getWaterWindForce: //Number Function
-	 rc_push_num(rc_getWaterWindForce(  GETWATERWINDFORCE_ACTOR ));
-	break;
-case FN_setWaterWaveHeight: //Sub Procedure
-	rc_setWaterWaveHeight( SETWATERWAVEHEIGHT_ACTOR,  SETWATERWAVEHEIGHT_H );
-	break;
-case FN_getWaterWaveHeight: //Number Function
-	 rc_push_num(rc_getWaterWaveHeight(  GETWATERWAVEHEIGHT_ACTOR ));
-	break;
-case FN_setWaterWindDirection: //Sub Procedure
-	rc_setWaterWindDirection( SETWATERWINDDIRECTION_ACTOR,  SETWATERWINDDIRECTION_X,  SETWATERWINDDIRECTION_Z );
-	break;
-case FN_getWaterWindDirection: //Sub Procedure
-	rc_getWaterWindDirection( GETWATERWINDDIRECTION_ACTOR,  &GETWATERWINDDIRECTION_X,  &GETWATERWINDDIRECTION_Z );
-	break;
-case FN_setWaterColor: //Sub Procedure
-	rc_setWaterColor( SETWATERCOLOR_ACTOR,  SETWATERCOLOR_C );
-	break;
-case FN_getWaterColor: //Number Function
-	 rc_push_num(rc_getWaterColor( GETWATERCOLOR_ACTOR ));
-	break;
-case FN_setWaterColorBlendFactor: //Sub Procedure
-	rc_setWaterColorBlendFactor( SETWATERCOLORBLENDFACTOR_ACTOR,  SETWATERCOLORBLENDFACTOR_CBFACTOR );
-	break;
-case FN_getWaterColorBlendFactor: //Number Function
-	 rc_push_num(rc_getWaterColorBlendFactor(  GETWATERCOLORBLENDFACTOR_ACTOR ));
 	break;
 case FN_SetActorAnimation: //Sub Procedure
 	rc_setActorAnimation( SETACTORANIMATION_ACTOR,  SETACTORANIMATION_START_FRAME,  SETACTORANIMATION_END_FRAME );
