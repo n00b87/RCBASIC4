@@ -27,6 +27,7 @@
 
 
 #ifdef RC_ANDROID
+	#include <android_native_app_glue.h>
     #include <jni.h>
     #include <sys/param.h>
     #include <algorithm>
@@ -4353,6 +4354,11 @@ void rcbasic_test()
     SDL_DestroyWindow(win);
 }
 
+#ifdef RC_ANDROID
+void android_main( android_app* application )
+{
+}
+#else
 int main(int argc, char * argv[])
 {
     //rcbasic_test();
@@ -4481,3 +4487,4 @@ int main(int argc, char * argv[])
     //cout << "Hello world!" << endl;
     return 0;
 }
+#endif

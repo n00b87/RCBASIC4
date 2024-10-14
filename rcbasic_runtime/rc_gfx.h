@@ -1,8 +1,19 @@
 #ifndef RC_GFX_INCLUDED
 #define RC_GFX_INCLUDED
 
-#include <SDL2/SDL.h>
-#include <irrlicht.h>
+#ifdef RC_ANDROID
+	#include "SDL.h"
+#else
+	#include <SDL2/SDL.h>
+#endif // RC_ANDROID
+
+#ifdef RC_ANDROID
+	#include <irrlicht.h>
+	#include <btBulletDynamicsCommon.h>
+#else
+	#include <irrlicht.h>
+	#include <bullet/btBulletDynamicsCommon.h>
+#endif // RC_ANDROID
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -15,7 +26,6 @@
 #include "rc_utf8.h"
 #include <box2d/box2d.h>
 #include "rc_sprite2D.h"
-#include <bullet/btBulletDynamicsCommon.h>
 #include <irrtheora.h>
 
 using namespace irr;
@@ -286,7 +296,7 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     rc_font.clear();
 
     rc_canvas_obj back_buffer;
-    back_buffer.texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d((irr::u32)w, (irr::u32)h), "rt", ECF_A8R8G8B8);
+    back_buffer.texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)w, (irr::u32)h), "rt", ECF_A8R8G8B8);
     back_buffer.dimension.Width = w;
     back_buffer.dimension.Height = h;
     back_buffer.viewport.position.set(0,0);
@@ -2197,7 +2207,7 @@ int rc_createImageEx(int w, int h, double * pdata, Uint32 colorkey, bool use_col
     if(w <= 0 || h <=0)
         return -1;
 
-    irr::video::IImage* image = VideoDriver->createImage(irr::video::ECF_A8R8G8B8, irr::core::dimension2d((irr::u32)w,(irr::u32)h));
+    irr::video::IImage* image = VideoDriver->createImage(irr::video::ECF_A8R8G8B8, irr::core::dimension2d<irr::u32>((irr::u32)w,(irr::u32)h));
     if(!image)
         return -1;
 
@@ -2513,7 +2523,7 @@ void rc_drawImage(int img_id, int x, int y)
     if(rc_image[img_id].image)
     {
         irr::core::dimension2d<irr::u32> src_size = rc_image[img_id].image->getSize();
-        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d(0, 0), src_size);
+        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d<irr::s32>(0, 0), src_size);
 
         irr::core::position2d<irr::s32> position(x, y);
 
@@ -2552,7 +2562,7 @@ int rc_copyImage(int src_id)
 
 
     irr::core::dimension2d<irr::u32> src_size = rc_image[src_id].image->getSize();
-    irr::core::rect<irr::s32> sourceRect( irr::core::vector2d(0, 0), src_size);
+    irr::core::rect<irr::s32> sourceRect( irr::core::vector2d<irr::s32>(0, 0), src_size);
     irr::core::position2d<irr::s32> position(0, 0);
     irr::core::position2d<irr::s32> rotationPoint(0, 0); //since we are not rotating it doesn't matter
     irr::f32 rotation = 0;
@@ -2660,7 +2670,7 @@ void rc_drawImage_ZoomEx(int img_id, int x, int y, int src_x, int src_y, int src
     if(rc_image[img_id].image)
     {
         //irr::core::dimension2d<irr::u32> src_size = rc_image[img_id].image->getSize();
-        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d(src_x, src_y), irr::core::dimension2d(src_w, src_h));
+        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d<irr::s32>(src_x, src_y), irr::core::dimension2d<irr::s32>(src_w, src_h));
 
         irr::core::position2d<irr::s32> position(x, y);
 
@@ -2716,7 +2726,7 @@ void rc_drawImage_RotozoomEx(int img_id, int x, int y, int src_x, int src_y, int
     if(rc_image[img_id].image)
     {
         //irr::core::dimension2d<irr::u32> src_size = rc_image[img_id].image->getSize();
-        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d(src_x, src_y), irr::core::dimension2d(src_w, src_h));
+        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d<irr::s32>(src_x, src_y), irr::core::dimension2d<irr::s32>(src_w, src_h));
 
         irr::core::position2d<irr::s32> position(x, y);
 
@@ -2774,7 +2784,7 @@ void rc_drawImage_FlipEx(int img_id, int x, int y, int src_x, int src_y, int src
     if(rc_image[img_id].image)
     {
         //irr::core::dimension2d<irr::u32> src_size = rc_image[img_id].image->getSize();
-        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d(src_x, src_y), irr::core::dimension2d(src_w, src_h));
+        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d<irr::s32>(src_x, src_y), irr::core::dimension2d<irr::s32>(src_w, src_h));
 
         irr::core::position2d<irr::s32> rotationPoint(x + (src_w/2), y + (src_h/2));
 
@@ -2804,7 +2814,7 @@ void rc_drawImage_Blit(int img_id, int x, int y, int src_x, int src_y, int src_w
     if(rc_image[img_id].image)
     {
         //irr::core::dimension2d<irr::u32> src_size = rc_image[img_id].image->getSize();
-        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d(src_x, src_y), irr::core::dimension2d(src_w, src_h));
+        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d<irr::s32>(src_x, src_y), irr::core::dimension2d<irr::s32>(src_w, src_h));
 
         irr::core::position2d<irr::s32> position(x, y);
 
@@ -2818,7 +2828,7 @@ void rc_drawImage_Blit(int img_id, int x, int y, int src_x, int src_y, int src_w
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::rect<irr::s32> dest( irr::core::vector2d(x, y), irr::core::dimension2d(src_w, src_h));
+        irr::core::rect<irr::s32> dest( irr::core::vector2d<irr::s32>(x, y), irr::core::dimension2d<irr::s32>(src_w, src_h));
 
         irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
 
@@ -2835,7 +2845,7 @@ void rc_drawImage_RotateEx(int img_id, int x, int y, int src_x, int src_y, int s
     if(rc_image[img_id].image)
     {
         //irr::core::dimension2d<irr::u32> src_size = rc_image[img_id].image->getSize();
-        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d(src_x, src_y), irr::core::dimension2d(src_w, src_h));
+        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d<irr::s32>(src_x, src_y), irr::core::dimension2d<irr::s32>(src_w, src_h));
 
         //irr::core::position2d<irr::s32> position(x, y);
 
@@ -2851,7 +2861,7 @@ void rc_drawImage_RotateEx(int img_id, int x, int y, int src_x, int src_y, int s
 
         irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
 
-        irr::core::rect<irr::s32> dest( irr::core::vector2d(x, y), irr::core::dimension2d(src_w, src_h));
+        irr::core::rect<irr::s32> dest( irr::core::vector2d<irr::s32>(x, y), irr::core::dimension2d<irr::s32>(src_w, src_h));
 
         draw2DImage2(VideoDriver, rc_image[img_id].image, sourceRect, dest, rotationPoint, rotation, useAlphaChannel, color, screenSize);
     }
@@ -2865,7 +2875,7 @@ void rc_drawImage_BlitEx(int img_id, int x, int y, int w, int h, int src_x, int 
     if(rc_image[img_id].image)
     {
         //irr::core::dimension2d<irr::u32> src_size = rc_image[img_id].image->getSize();
-        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d(src_x, src_y), irr::core::dimension2d(src_w, src_h));
+        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d<irr::s32>(src_x, src_y), irr::core::dimension2d<irr::s32>(src_w, src_h));
 
         //irr::core::position2d<irr::s32> position(x, y);
 
@@ -2879,7 +2889,7 @@ void rc_drawImage_BlitEx(int img_id, int x, int y, int w, int h, int src_x, int 
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::rect<irr::s32> dest( irr::core::vector2d(x, y), irr::core::dimension2d(w, h));
+        irr::core::rect<irr::s32> dest( irr::core::vector2d<irr::s32>(x, y), irr::core::dimension2d<irr::s32>(w, h));
 
         irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
 
@@ -3028,7 +3038,7 @@ void drawCanvasImage(irr::video::ITexture* texture, int x, int y, int src_x, int
 {
     if(texture)
     {
-        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d(src_x, src_y), irr::core::dimension2d(src_w, src_h));
+        irr::core::rect<irr::s32> sourceRect( irr::core::vector2d<irr::s32>(src_x, src_y), irr::core::dimension2d<irr::s32>(src_w, src_h));
 
         irr::core::position2d<irr::s32> position(x, y);
 
@@ -3039,7 +3049,7 @@ void drawCanvasImage(irr::video::ITexture* texture, int x, int y, int src_x, int
         bool useAlphaChannel = true;
         irr::video::SColor color(255,255,255,255);
 
-        irr::core::rect<irr::s32> dest( irr::core::vector2d(x, y), irr::core::dimension2d(src_w, src_h));
+        irr::core::rect<irr::s32> dest( irr::core::vector2d<irr::s32>(x, y), irr::core::dimension2d<irr::s32>(src_w, src_h));
 
         irr::core::vector2df screenSize(tgt_width, tgt_height);
 
@@ -3061,7 +3071,7 @@ int rc_windowClip(int x, int y, int w, int h)
     else
         return -1;
 
-    irr::video::ITexture* texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d((irr::u32)w, (irr::u32)h), "win_clip_image", irr::video::ECF_A8R8G8B8);
+    irr::video::ITexture* texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)w, (irr::u32)h), "win_clip_image", irr::video::ECF_A8R8G8B8);
 
     if(!texture)
         return -1;
@@ -3118,7 +3128,7 @@ int rc_canvasClip(int x, int y, int w, int h)
     else
         return -1;
 
-    irr::video::ITexture* texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d((irr::u32)w, (irr::u32)h), "canvas_clip_image", irr::video::ECF_A8R8G8B8);
+    irr::video::ITexture* texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)w, (irr::u32)h), "canvas_clip_image", irr::video::ECF_A8R8G8B8);
 
     if(!texture)
         return -1;
@@ -3310,7 +3320,7 @@ void drawSprites(int canvas_id)
 			continue;
 
 		src_size = rc_image[img_id].image->getSize();
-		sourceRect = irr::core::rect<irr::s32>( irr::core::vector2d(0, 0), src_size);
+		sourceRect = irr::core::rect<irr::s32>( irr::core::vector2d<irr::s32>(0, 0), src_size);
 
 		physics_pos = sprite->physics.body->GetPosition();
 		x = (int)physics_pos.x;
@@ -3694,11 +3704,11 @@ bool rc_update()
         VideoDriver->setRenderTarget(rc_canvas[0].texture);
         irr::core::vector2d<s32> bb_position(0,0);
         irr::core::dimension2d<u32> bb_dimension(win_w, win_h);
-        VideoDriver->setViewPort( irr::core::rect(bb_position, bb_dimension) );
+        VideoDriver->setViewPort( irr::core::rect<irr::s32>(bb_position, bb_dimension) );
 
-        irr::core::vector2d screenSize( (irr::f32) rc_canvas[0].dimension.Width, (irr::f32) rc_canvas[0].dimension.Height );
+        irr::core::vector2d<irr::f32> screenSize( (irr::f32) rc_canvas[0].dimension.Width, (irr::f32) rc_canvas[0].dimension.Height );
 
-        double frame_current_time = ((double)SDL_GetTicks())/1000.0d;
+        double frame_current_time = ((double)SDL_GetTicks())/1000.0;
 
         for(int i = 0; i < rc_transition_actor.size();)
 		{
@@ -3774,7 +3784,7 @@ bool rc_update()
                 if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_SPRITE)
 					drawSprites(canvas_id);
 
-                draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::vector2d<irr::s32>(0, 0), 0, true, color, screenSize);
+                draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
 
                 //drawSprites(canvas_id);
                 //draw2DImage2(VideoDriver, rc_canvas[canvas_id].sprite_layer, src, dest, irr::core::vector2d<irr::s32>(0, 0), 0, true, color, screenSize);
@@ -3789,7 +3799,7 @@ bool rc_update()
 
 		VideoDriver->setRenderTarget(0);
 		//VideoDriver->beginScene(true, true);
-		VideoDriver->draw2DImage(rc_canvas[0].texture, irr::core::vector2d(0,0));
+		VideoDriver->draw2DImage(rc_canvas[0].texture, irr::core::vector2d<irr::s32>(0,0));
 		//device->getGUIEnvironment()->drawAll();
 		VideoDriver->endScene();
 

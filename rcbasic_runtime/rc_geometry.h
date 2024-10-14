@@ -52,7 +52,7 @@ int GetLinePlaneIntersection(double* line_point, double* line_direction, double*
 
 	//'# check if the intersection point is on the plane
 	double plane_distance = abs((intersection[0] - plane_point_1[0]) * plane_normal[0] + (intersection[1] - plane_point_1[1]) * plane_normal[1] + (intersection[2] - plane_point_1[2]) * plane_normal[2]);
-	if(plane_distance < 10^-6)
+	if(plane_distance < (10^-6))
 		return true;
 	else
 		return false;
