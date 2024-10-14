@@ -10,12 +10,17 @@
 //  libtheora-1.1.1/examples/player_example.c, but this is all my own
 //  code.
 
+#include "rc_os_defines.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include "SDL2/SDL.h"
-
+#ifdef RC_ANDROID_BUILD
+	#include "SDL.h"
+#else
+	#include "SDL2/SDL.h"
+#endif
 #ifdef _WIN32
 #include <windows.h>
 #define THEORAPLAY_THREAD_T    HANDLE

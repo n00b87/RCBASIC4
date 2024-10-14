@@ -1,3 +1,5 @@
+#include "rc_os_defines.h"
+
 #ifndef _GUI_FREETYPE_FONT_H
 #define _GUI_FREETYPE_FONT_H
 
@@ -7,8 +9,13 @@
 
 #if COMPILE_WITH_FREETYPE
 
-#include <freetype2/ft2build.h>
-#include <freetype/freetype.h>
+#ifdef RC_ANDROID
+	#include "ft2build.h"
+	#include "freetype/freetype.h"
+#else
+	#include <freetype2/ft2build.h>
+	#include <freetype/freetype.h>
+#endif // RC_ANDROID
 #include <irrlicht.h>
 
 class CGUITTFace : public irr::IReferenceCounted

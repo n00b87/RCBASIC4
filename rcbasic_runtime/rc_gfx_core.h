@@ -1,7 +1,15 @@
 #ifndef RC_GFX_CORE_H_INCLUDED
 #define RC_GFX_CORE_H_INCLUDED
 
-#include <SDL2/SDL.h>
+#ifdef RC_ANDROID
+	#include "SDL.h"
+	#include "btBulletDynamicsCommon.h"
+	#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
+#else
+	#include <SDL2/SDL.h>
+	#include <bullet/btBulletDynamicsCommon.h>
+	#include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
+#endif // _IRR_ANDROID_PLATFORM_
 #include <irrlicht.h>
 #include <iostream>
 #include <sstream>
@@ -15,9 +23,12 @@
 #include "camera.h"
 #include <box2d/box2d.h>
 #include "rc_sprite2D.h"
-#include <bullet/btBulletDynamicsCommon.h>
-#include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 #include <irrBullet.h>
+#ifdef RC_ANDROID
+	#include "an8parser.h"
+#else
+	#include <an8parser.h>
+#endif
 
 using namespace irr;
 
@@ -395,6 +406,14 @@ struct rc_mesh_obj
     irr::scene::IAnimatedMesh* mesh;
 };
 irr::core::array<rc_mesh_obj> rc_mesh;
+
+struct rc_an8_obj
+{
+	bool active;
+	an8::an8_project project;
+};
+
+irr::core::array<rc_an8_obj> rc_an8;
 
 #define RC_NODE_TYPE_NONE   	0
 #define RC_NODE_TYPE_MESH   	1

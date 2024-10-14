@@ -1,7 +1,15 @@
 #ifndef RC_GFX3D_H_INCLUDED
 #define RC_GFX3D_H_INCLUDED
 
-#include <SDL2/SDL.h>
+#ifdef RC_ANDROID
+	#include "SDL.h"
+	#include <btBulletDynamicsCommon.h>
+	#include <BulletCollision/CollisionDispatch/btGhostObject.h>
+#else
+	#include <SDL2/SDL.h>
+	#include <bullet/btBulletDynamicsCommon.h>
+	#include <bullet/BulletCollision/CollisionDispatch/btGhostObject.h>
+#endif // _IRR_ANDROID_PLATFORM_
 #include <irrlicht.h>
 #include <iostream>
 #include <sstream>
@@ -15,9 +23,6 @@
 #include "rc_gfx_core.h"
 #include "rc_matrix.h"
 #include "RealisticWater.h"
-
-#include <bullet/btBulletDynamicsCommon.h>
-#include <bullet/BulletCollision/CollisionDispatch/btGhostObject.h>
 
 //load a mesh from a file
 int rc_loadMesh(std::string mesh_file)
@@ -91,6 +96,103 @@ int rc_loadMeshFromArchive(std::string archive, std::string mesh_file)
     }
 
     return mesh_id;
+}
+
+int rc_loadAN8(std::string an8_file)
+{
+	int id = -1;
+
+	for(int i = 0; i < rc_an8.size(); i++)
+	{
+		if(!rc_an8[i].active)
+		{
+			id = i;
+			break;
+		}
+	}
+
+	if(id < 0)
+	{
+		id = rc_an8.size();
+		rc_an8_obj obj;
+		rc_an8.push_back(obj);
+	}
+
+	rc_an8[id].project = an8::loadAN8(an8_file);
+	if(rc_an8[id].project.exists)
+	{
+		rc_an8[id].active = true;
+		return id;
+	}
+
+	rc_an8[id].active = false;
+
+	return -1;
+}
+
+//load a mesh from an archive
+int rc_loadMeshFromAN8(int an8_id, std::string scene_name)
+{
+	int mesh_id = -1;
+
+	if(an8_id < 0 || an8_id >= rc_an8.size())
+		return -1;
+
+	if(!rc_an8[an8_id].active)
+		return -1;
+
+	rc_mesh_obj mesh_obj;
+    mesh_obj.mesh_type = RC_MESH_TYPE_ANIMATED;
+    mesh_obj.mesh = an8::loadAN8Scene(device, rc_an8[an8_id].project, scene_name);
+
+	if(!mesh_obj.mesh)
+        return -1;
+
+    for(int i = 0; i < rc_mesh.size(); i++)
+    {
+        if(!rc_mesh[i].mesh)
+        {
+            mesh_id = i;
+            break;
+        }
+    }
+
+    if(mesh_id < 0)
+    {
+        mesh_id = rc_mesh.size();
+        rc_mesh.push_back(mesh_obj);
+    }
+    else
+    {
+        rc_mesh[mesh_id] = mesh_obj;
+    }
+
+    return mesh_id;
+}
+
+int rc_getNumAN8Scenes(int an8_id)
+{
+	if(an8_id < 0 || an8_id >= rc_an8.size())
+		return 0;
+
+	if(!rc_an8[an8_id].active)
+		return 0;
+
+	return rc_an8[an8_id].project.scenes.size();
+}
+
+std::string rc_getAN8SceneName(int an8_id, int scene_num)
+{
+	if(an8_id < 0 || an8_id >= rc_an8.size())
+		return "";
+
+	if(!rc_an8[an8_id].active)
+		return "";
+
+	if(scene_num < 0 || scene_num >= rc_an8[an8_id].project.scenes.size())
+		return "";
+
+	return rc_an8[an8_id].project.scenes[scene_num].name;
 }
 
 //delete mesh
@@ -5402,7 +5504,7 @@ void rc_startActorTransition(int actor, double frame, double transition_time)
             node->setCurrentFrame(frame);
             rc_actor[actor].transition = true;
             rc_actor[actor].transition_time = transition_time;
-            rc_actor[actor].transition_start_time = ((double)SDL_GetTicks())/1000.0d;
+            rc_actor[actor].transition_start_time = ((double)SDL_GetTicks())/1000.0;
             rc_transition_actor.push_back(actor);
     }
 }
@@ -5473,7 +5575,7 @@ void rc_getTerrainPatchAABB(int actor, double patch_x, double patch_z, double* m
     {
     	case RC_NODE_TYPE_TERRAIN:
             irr::scene::ITerrainSceneNode* node = (irr::scene::ITerrainSceneNode*)rc_actor[actor].mesh_node;
-            irr::core::aabbox3d bbox = node->getBoundingBox(patch_x, patch_z);
+            irr::core::aabbox3d<irr::f32> bbox = node->getBoundingBox(patch_x, patch_z);
 
             *min_x = bbox.MinEdge.X;
             *min_y = bbox.MinEdge.Y;
