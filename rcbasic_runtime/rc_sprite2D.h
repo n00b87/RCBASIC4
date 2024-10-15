@@ -7,14 +7,18 @@
 struct rc_sprite2D_physics_obj
 {
 	b2Body* body;
+	b2Fixture* fixture;
+	b2Shape* shape;
+
+	int offset_x;
+	int offset_y;
 };
 
 struct rc_sprite2D_obj
 {
 	bool active = false;
 	int image_id;
-	irr::core::vector2d<irr::f64> position;
-	irr::f64 rotation;
+
 	irr::core::vector2d<irr::f64> scale;
 
 	bool visible = true;
@@ -22,7 +26,7 @@ struct rc_sprite2D_obj
 
 	irr::video::SColor color_mod;
 
-	bool physics_enabled = false;
+	bool isSolid = false;
 	rc_sprite2D_physics_obj physics;
 
 	int parent_canvas = -1;

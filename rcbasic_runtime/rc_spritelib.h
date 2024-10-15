@@ -5,7 +5,7 @@
 #include "rc_gfx_core.h"
 
 //------------------------------SPRITES-------------------------------------------------------
-int rc_createSprite(int img_id)
+int rc_createSprite(int img_id, double w, double h)
 {
 	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
 		return -1;
@@ -40,12 +40,21 @@ int rc_createSprite(int img_id)
 	sprBodyDef.position.Set(0, 0);
 	sprBodyDef.angle = 0;
 	rc_sprite[spr_id].physics.body = rc_canvas[rc_active_canvas].physics2D.world->CreateBody(&sprBodyDef);
-	rc_sprite[spr_id].physics_enabled = false;
+
+	b2FixtureDef sprFixtureDef;
+	rc_sprite[spr_id].physics.shape = new b2PolygonShape();
+	b2PolygonShape* fix_shape = (b2PolygonShape*)rc_sprite[spr_id].physics.shape;
+	fix_shape->SetAsBox(w/2, h/2);
+	sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
+	sprFixtureDef.isSensor = true;
+	rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+
+	rc_sprite[spr_id].physics.offset_x = 0;
+	rc_sprite[spr_id].physics.offset_y = 0;
+	rc_sprite[spr_id].isSolid = false;
 	rc_sprite[spr_id].visible = true;
 	rc_sprite[spr_id].scale.set(1.0, 1.0);
-	rc_sprite[spr_id].position.set(0, 0);
 	rc_sprite[spr_id].alpha = 255;
-	rc_sprite[spr_id].rotation = 0;
 	rc_sprite[spr_id].z = 0;
 	rc_sprite[spr_id].color_mod.set(255,255,255,255);
 	rc_sprite[spr_id].parent_canvas = rc_active_canvas;
@@ -108,6 +117,168 @@ void rc_setSpritePosition(int spr_id, double x, double y)
 	rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(x, y), current_angle);
 }
 
+void rc_translateSprite(int spr_id, double x, double y)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	float current_angle = rc_sprite[spr_id].physics.body->GetAngle();
+	double spr_x = rc_sprite[spr_id].physics.body->GetPosition().x + x;
+	double spr_y = rc_sprite[spr_id].physics.body->GetPosition().y + y;
+	rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(spr_x, spr_y), current_angle);
+}
+
+void rc_getSpritePosition(int spr_id, double* x, double* y)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	*x = (double)rc_sprite[spr_id].physics.body->GetPosition().x;
+	*y = (double)rc_sprite[spr_id].physics.body->GetPosition().y;
+}
+
+double rc_spriteX(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	return (double)rc_sprite[spr_id].physics.body->GetPosition().x;
+}
+
+double rc_spriteY(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	return (double)rc_sprite[spr_id].physics.body->GetPosition().y;
+}
+
+void rc_setSpriteRotation(int spr_id, double angle)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	rc_sprite[spr_id].physics.body->SetTransform(rc_sprite[spr_id].physics.body->GetPosition(), angle);
+}
+
+void rc_rotateSprite(int spr_id, double angle)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	float new_angle = rc_sprite[spr_id].physics.body->GetAngle() + angle;
+	rc_sprite[spr_id].physics.body->SetTransform(rc_sprite[spr_id].physics.body->GetPosition(), new_angle);
+}
+
+double rc_getSpriteRotation(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	return rc_sprite[spr_id].physics.body->GetAngle();
+}
+
+void rc_setSpriteScale(int spr_id, double x, double y)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	rc_sprite[spr_id].scale.set(x, y);
+
+	if(rc_sprite[spr_id].isSolid)
+	{
+		if(rc_sprite[spr_id].physics.fixture)
+		{
+			b2FixtureDef fixdef;
+			fixdef.density = rc_sprite[spr_id].physics.fixture->GetDensity();
+			fixdef.friction = rc_sprite[spr_id].physics.fixture->GetFriction();
+			fixdef.restitution = rc_sprite[spr_id].physics.fixture->GetRestitution();
+			fixdef.restitutionThreshold = rc_sprite[spr_id].physics.fixture->GetRestitutionThreshold();
+			fixdef.shape = rc_sprite[spr_id].physics.shape;
+			fixdef.isSensor = !(rc_sprite[spr_id].isSolid);
+
+			switch(fixdef.shape->GetType())
+			{
+				case b2Shape::e_circle:
+				{
+					b2CircleShape* shape = (b2CircleShape*)fixdef.shape;
+					shape->m_radius = (x+y)/2;
+				}
+				break;
+
+				case b2Shape::e_polygon:
+				{
+					b2PolygonShape* shape = (b2PolygonShape*)fixdef.shape;
+					for(int i = 0; i < shape->m_count; i++)
+					{
+						shape->m_vertices[i].x *= x;
+						shape->m_vertices[i].y *= y;
+					}
+				}
+				break;
+
+				case b2Shape::e_chain:
+				{
+					b2ChainShape* shape = (b2ChainShape*)fixdef.shape;
+					for(int i = 0; i < shape->m_count; i++)
+					{
+						shape->m_vertices[i].x *= x;
+						shape->m_vertices[i].y *= y;
+					}
+				}
+				break;
+
+				case b2Shape::e_edge:
+				{
+					b2EdgeShape* shape = (b2EdgeShape*)fixdef.shape;
+
+					shape->m_vertex0.x *= x;
+					shape->m_vertex0.y *= y;
+
+					shape->m_vertex1.x *= x;
+					shape->m_vertex1.y *= y;
+
+					shape->m_vertex2.x *= x;
+					shape->m_vertex2.y *= y;
+
+					shape->m_vertex3.x *= x;
+					shape->m_vertex3.y *= y;
+				}
+				break;
+			}
+
+			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+			rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&fixdef);
+		}
+	}
+}
+
+
+
 //This function is called on each canvas on update
 void drawSprites(int canvas_id)
 {
@@ -164,7 +335,7 @@ void drawSprites(int canvas_id)
 		position.set(x, y);
 
 
-		rotationPoint.set(x + (src_size.Width/2), y + (src_size.Height/2));
+		rotationPoint.set(x + (src_size.Width/2), y + (src_size.Height/2)); //TODO: need to account for offset once that is implemented
 		rotation = -1 * (sprite->physics.body->GetAngle() * RAD_TO_DEG); //convert Box2D radians to degrees
 
 		scale.set(sprite->scale.X, sprite->scale.Y);
