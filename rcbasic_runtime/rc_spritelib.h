@@ -1,8 +1,196 @@
 #ifndef RC_SPRITELIB_H_INCLUDED
 #define RC_SPRITELIB_H_INCLUDED
 
+#ifdef RC_ANDROID
+	#include "SDL.h"
+#else
+	#include <SDL2/SDL.h>
+#endif // _IRR_ANDROID_PLATFORM_
+
 #include "rc_sprite2D.h"
 #include "rc_gfx_core.h"
+
+#define RC_SPRITE_BASE_ANIMATION 0
+
+int rc_createSpriteAnimation(int spr_id, int anim_length, double fps)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return -1;
+
+	if(!rc_sprite[spr_id].active)
+		return -1;
+
+	if(anim_length <= 0)
+		anim_length = 1;
+
+	rc_sprite2D_animation_obj animation;
+	animation.current_frame = 0;
+	animation.fps = fps;
+	animation.frame_swap_time = 1000/fps;
+	animation.num_frames = anim_length;
+	for(int i = 0; i < anim_length; i++)
+		animation.frames.push_back(0);
+
+	int animation_id = rc_sprite[spr_id].animation.size();
+	rc_sprite[spr_id].animation.push_back(animation);
+
+	return animation_id;
+}
+
+void rc_setSpriteFrame(int spr_id, int frame)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	if(frame < 0 || frame >= rc_sprite[spr_id].sheet_numFrames)
+		return;
+
+	rc_sprite[spr_id].current_animation = RC_SPRITE_BASE_ANIMATION;
+	rc_sprite[spr_id].animation[RC_SPRITE_BASE_ANIMATION].current_frame = 0;
+	rc_sprite[spr_id].animation[RC_SPRITE_BASE_ANIMATION].frames[0] = frame;
+}
+
+int rc_getSpriteFrame(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return -1;
+
+	if(!rc_sprite[spr_id].active)
+		return -1;
+
+	int current_animation = rc_sprite[spr_id].current_animation;
+	int current_frame = rc_sprite[spr_id].animation[current_animation].current_frame;
+	return rc_sprite[spr_id].animation[current_animation].frames[current_frame];
+}
+
+void rc_setSpriteAnimationFrame(int spr_id, int anim_frame, int frame)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	int current_animation = rc_sprite[spr_id].current_animation;
+
+	if(anim_frame < 0 || anim_frame >= rc_sprite[spr_id].animation[current_animation].num_frames)
+		return;
+
+	if(frame < 0 || frame >= rc_sprite[spr_id].sheet_numFrames)
+		return;
+
+	rc_sprite[spr_id].animation[current_animation].frames[anim_frame] = frame;
+}
+
+int rc_getSpriteAnimationFrame(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return -1;
+
+	if(!rc_sprite[spr_id].active)
+		return -1;
+
+	int current_animation = rc_sprite[spr_id].current_animation;
+
+	return rc_sprite[spr_id].animation[current_animation].current_frame;
+}
+
+
+void rc_setSpriteAnimationLength(int spr_id, int animation, int num_frames)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	// I intentionally checked for less than or equal to 0 because 0 is the base animation and should not be changed
+	if(animation <= 0 || animation >= rc_sprite[spr_id].animation.size())
+		return;
+
+	if(num_frames <= 0)
+		num_frames = 1;
+
+	rc_sprite[spr_id].animation[animation].num_frames = num_frames;
+	if(num_frames > rc_sprite[spr_id].animation[animation].frames.size())
+	{
+		while(num_frames > rc_sprite[spr_id].animation[animation].frames.size())
+			rc_sprite[spr_id].animation[animation].frames.push_back(0);
+	}
+}
+
+int rc_getSpriteAnimationLength(int spr_id, int animation)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	if(animation < 0 || animation >= rc_sprite[spr_id].animation.size())
+		return 0;
+
+	return rc_sprite[spr_id].animation[animation].num_frames;
+}
+
+void rc_setSpriteAnimationSpeed(int spr_id, int animation, double fps)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	if(animation < 0 || animation >= rc_sprite[spr_id].animation.size())
+		return;
+
+	rc_sprite[spr_id].animation[animation].fps = fps;
+	rc_sprite[spr_id].animation[animation].frame_swap_time = 1000/fps;
+}
+
+double rc_getSpriteAnimationSpeed(int spr_id, int animation)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	if(animation < 0 || animation >= rc_sprite[spr_id].animation.size())
+		return 0;
+
+	return rc_sprite[spr_id].animation[animation].fps;
+}
+
+void rc_setSpriteAnimation(int spr_id, int animation)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	if(animation < 0 || animation >= rc_sprite[spr_id].animation.size())
+		return;
+
+	rc_sprite[spr_id].current_animation = animation;
+	rc_sprite[spr_id].animation[animation].current_frame = 0;
+	rc_sprite[spr_id].animation[animation].frame_start_time = SDL_GetTicks();
+}
+
+int rc_getSpriteAnimation(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return -1;
+
+	if(!rc_sprite[spr_id].active)
+		return -1;
+
+	return rc_sprite[spr_id].current_animation;
+}
 
 //------------------------------SPRITES-------------------------------------------------------
 int rc_createSprite(int img_id, double w, double h)
@@ -34,6 +222,7 @@ int rc_createSprite(int img_id, double w, double h)
 
 	rc_sprite[spr_id].active = true;
 	rc_sprite[spr_id].image_id = img_id;
+	rc_sprite[spr_id].frame_size.set(w, h);
 
 	b2BodyDef sprBodyDef;
 	sprBodyDef.type = b2_staticBody;
@@ -59,6 +248,10 @@ int rc_createSprite(int img_id, double w, double h)
 	rc_sprite[spr_id].color_mod.set(255,255,255,255);
 	rc_sprite[spr_id].parent_canvas = rc_active_canvas;
 
+	rc_sprite[spr_id].current_animation = RC_SPRITE_BASE_ANIMATION;
+	rc_sprite[spr_id].animation.clear();
+	rc_createSpriteAnimation(spr_id, 1, 0);
+
 	rc_canvas[rc_active_canvas].sprite.push_back(&rc_sprite[spr_id]);
 
 	return spr_id;
@@ -81,6 +274,7 @@ void rc_deleteSprite(int spr_id)
 
 	rc_sprite[spr_id].active = false;
 	rc_sprite[spr_id].parent_canvas = -1;
+	rc_sprite[spr_id].animation.clear();
 
 	for(int i = 0; i < rc_canvas[rc_active_canvas].sprite.size(); i++)
 	{
@@ -277,6 +471,49 @@ void rc_setSpriteScale(int spr_id, double x, double y)
 	}
 }
 
+void rc_scaleSprite(int spr_id, double x, double y)
+{
+	double scale_x = rc_sprite[spr_id].scale.X * x;
+	double scale_y = rc_sprite[spr_id].scale.Y * y;
+	rc_setSpriteScale(spr_id, scale_x, scale_y);
+}
+
+double rc_spriteWidth(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	return rc_sprite[spr_id].frame_size.Width;
+}
+
+double rc_spriteHeight(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	return rc_sprite[spr_id].frame_size.Height;
+}
+
+void rc_getSpriteSize(int spr_id, double* w, double* h)
+{
+	*w = 0;
+	*h = 0;
+
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	*w = rc_sprite[spr_id].frame_size.Width;
+	*h = rc_sprite[spr_id].frame_size.Height;
+}
 
 
 //This function is called on each canvas on update

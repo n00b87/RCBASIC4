@@ -14,12 +14,28 @@ struct rc_sprite2D_physics_obj
 	int offset_y;
 };
 
+struct rc_sprite2D_animation_obj
+{
+	irr::core::array<int> frames;
+
+	int num_frames;
+
+	int current_frame;
+
+	double fps;
+	double frame_start_time;
+	double frame_swap_time;
+};
+
 struct rc_sprite2D_obj
 {
 	bool active = false;
 	int image_id;
+	int sheet_numFrames;
 
 	irr::core::vector2d<irr::f64> scale;
+
+	irr::core::dimension2d<irr::f64> frame_size;
 
 	bool visible = true;
 	Uint8 alpha;
@@ -28,6 +44,9 @@ struct rc_sprite2D_obj
 
 	bool isSolid = false;
 	rc_sprite2D_physics_obj physics;
+
+	int current_animation;
+	irr::core::array<rc_sprite2D_animation_obj> animation;
 
 	int parent_canvas = -1;
 
