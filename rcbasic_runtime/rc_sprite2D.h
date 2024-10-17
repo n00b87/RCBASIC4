@@ -32,6 +32,7 @@ struct rc_sprite2D_obj
 	bool active = false;
 	int image_id;
 	int sheet_numFrames;
+	int frames_per_row;
 
 	irr::core::vector2d<irr::f64> scale;
 
@@ -46,6 +47,9 @@ struct rc_sprite2D_obj
 	rc_sprite2D_physics_obj physics;
 
 	int current_animation;
+	int num_animation_loops;
+	int current_animation_loop;
+	bool isPlaying;
 	irr::core::array<rc_sprite2D_animation_obj> animation;
 
 	int parent_canvas = -1;

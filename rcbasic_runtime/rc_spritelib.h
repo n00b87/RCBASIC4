@@ -83,6 +83,7 @@ void rc_setSpriteAnimationFrame(int spr_id, int anim_frame, int frame)
 		return;
 
 	rc_sprite[spr_id].animation[current_animation].frames[anim_frame] = frame;
+	rc_sprite[spr_id].animation[current_animation].frame_start_time = SDL_GetTicks();
 }
 
 int rc_getSpriteAnimationFrame(int spr_id)
@@ -178,6 +179,7 @@ void rc_setSpriteAnimation(int spr_id, int animation)
 
 	rc_sprite[spr_id].current_animation = animation;
 	rc_sprite[spr_id].animation[animation].current_frame = 0;
+	rc_sprite[spr_id].isPlaying = true;
 	rc_sprite[spr_id].animation[animation].frame_start_time = SDL_GetTicks();
 }
 
@@ -192,7 +194,57 @@ int rc_getSpriteAnimation(int spr_id)
 	return rc_sprite[spr_id].current_animation;
 }
 
+void rc_loopSpriteAnimation(int spr_id, int num_loops)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	rc_sprite[spr_id].num_animation_loops = num_loops;
+}
+
+int rc_numSpriteAnimationLoops(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	return rc_sprite[spr_id].num_animation_loops;
+}
+
 //------------------------------SPRITES-------------------------------------------------------
+//Larger z gets drawn first
+void sortSpriteZ(int canvas_id)
+{
+	if(canvas_id < 0 || canvas_id >= rc_canvas.size())
+		return;
+
+	if(!rc_canvas[canvas_id].texture)
+		return;
+
+	for(int i = 0; i < rc_canvas[canvas_id].sprite.size(); i++)
+	{
+		rc_sprite2D_obj* spriteA = rc_canvas[canvas_id].sprite[i];
+
+		for(int j = i+1; j < rc_canvas[canvas_id].sprite.size(); j++)
+		{
+			rc_sprite2D_obj* spriteB = rc_canvas[canvas_id].sprite[j];
+
+			if(spriteB->z > spriteA->z)
+			{
+				rc_canvas[canvas_id].sprite[j] = NULL;
+				rc_canvas[canvas_id].sprite.erase(j);
+				rc_canvas[canvas_id].sprite.insert(spriteB, i);
+			}
+		}
+	}
+}
+
+
 int rc_createSprite(int img_id, double w, double h)
 {
 	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
@@ -249,10 +301,15 @@ int rc_createSprite(int img_id, double w, double h)
 	rc_sprite[spr_id].parent_canvas = rc_active_canvas;
 
 	rc_sprite[spr_id].current_animation = RC_SPRITE_BASE_ANIMATION;
+	rc_sprite[spr_id].num_animation_loops = 0;
+	rc_sprite[spr_id].current_animation_loop = 0;
+	rc_sprite[spr_id].isPlaying = false;
 	rc_sprite[spr_id].animation.clear();
 	rc_createSpriteAnimation(spr_id, 1, 0);
 
 	rc_canvas[rc_active_canvas].sprite.push_back(&rc_sprite[spr_id]);
+
+	sortSpriteZ(rc_active_canvas);
 
 	return spr_id;
 }
@@ -297,6 +354,29 @@ void rc_setSpriteType(int spr_id, int body_type)
 		return;
 
 	rc_sprite[spr_id].physics.body->SetType((b2BodyType) body_type);
+}
+
+void rc_setSpriteSolid(int spr_id, bool flag)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	rc_sprite[spr_id].isSolid = flag;
+	rc_sprite[spr_id].physics.fixture->SetSensor(!flag);
+}
+
+bool rc_spriteIsSolid(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return false;
+
+	if(!rc_sprite[spr_id].active)
+		return false;
+
+	return rc_sprite[spr_id].isSolid;
 }
 
 void rc_setSpritePosition(int spr_id, double x, double y)
@@ -515,6 +595,28 @@ void rc_getSpriteSize(int spr_id, double* w, double* h)
 	*h = rc_sprite[spr_id].frame_size.Height;
 }
 
+void rc_setSpriteZ(int spr_id, double z)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	rc_sprite[spr_id].z = z;
+	sortSpriteZ(rc_sprite[spr_id].parent_canvas);
+}
+
+double rc_spriteZ(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	return rc_sprite[spr_id].z;
+}
 
 //This function is called on each canvas on update
 void drawSprites(int canvas_id)
@@ -553,6 +655,8 @@ void drawSprites(int canvas_id)
 
 	irr::f32 RAD_TO_DEG = 180.0/3.141592653589793238463;
 
+	double spr_timer = SDL_GetTicks();
+
 	for(int spr_index = 0; spr_index < rc_canvas[canvas_id].sprite.size(); spr_index++)
 	{
 		rc_sprite2D_obj* sprite = rc_canvas[canvas_id].sprite[spr_index];
@@ -563,8 +667,38 @@ void drawSprites(int canvas_id)
 		if(img_id < 0 || img_id >= rc_image.size())
 			continue;
 
-		src_size = rc_image[img_id].image->getSize();
-		sourceRect = irr::core::rect<irr::s32>( irr::core::vector2d<irr::s32>(0, 0), src_size);
+		//src_size = rc_image[img_id].image->getSize();
+		int current_animation = sprite->current_animation;
+		if((spr_timer - sprite->animation[current_animation].frame_start_time) >= sprite->animation[current_animation].frame_swap_time)
+		{
+			sprite->animation[current_animation].current_frame++;
+
+			if(sprite->animation[current_animation].current_frame >= sprite->animation[current_animation].num_frames)
+			{
+				sprite->animation[current_animation].current_frame = 0;
+				sprite->current_animation_loop++;
+
+				if(sprite->current_animation_loop >= sprite->num_animation_loops)
+				{
+					sprite->isPlaying = false;
+					sprite->current_animation_loop = 0;
+				}
+			}
+
+			if(!sprite->isPlaying)
+				sprite->animation[current_animation].current_frame = 0;
+
+			sprite->animation[current_animation].frame_start_time = spr_timer;
+		}
+
+		int current_animation_frame = sprite->animation[current_animation].current_frame;
+
+		int frame_x = (int)(sprite->animation[current_animation].frames[current_animation_frame]%sprite->frames_per_row)*sprite->frame_size.Width;
+		int frame_y = (int)(sprite->animation[current_animation].frames[current_animation_frame]/sprite->frames_per_row)*sprite->frame_size.Height;
+		irr::core::vector2d<irr::s32> frame_pos(frame_x, frame_y);
+		src_size = sprite->frame_size;
+		sourceRect = irr::core::rect<irr::s32>( frame_pos, src_size);
+		//sourceRect = irr::core::rect<irr::s32>( irr::core::vector2d<irr::s32>(0, 0), src_size);
 
 		physics_pos = sprite->physics.body->GetPosition();
 		x = (int)physics_pos.x;
