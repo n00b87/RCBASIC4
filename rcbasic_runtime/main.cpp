@@ -1577,8 +1577,6 @@ bool rc_free_type(rc_usrId* parent)
 
     rc_usrId* p_obj;
 
-    uint64_t field_size = 0;
-
     for(uint64_t i = 0; i < dim_size; i++)
     {
         p_obj = &parent->uid_value[i];
@@ -1968,7 +1966,7 @@ void for_117(uint64_t nid, int n1, int n2, int n3)
 
     //These 3 lines reads the line value passed by the compiler
     //This line value is the address of the end of the loop
-    unsigned rcbasic_cmd = segment[current_segment][current_address];
+    //unsigned rcbasic_cmd = segment[current_segment][current_address];
     current_address++;
     uint64_t for_end_addr = readInt();
 
@@ -2272,8 +2270,6 @@ void rc_type_array_copy(rc_usrId* src, rc_usrId* dst)
 
 
     rc_usrId* p_obj;
-
-    uint64_t field_size = 0;
 
     rc_usrId* s_obj;
     //cout << "starting field: " << endl;
@@ -3137,7 +3133,7 @@ void obj_usr_init1_185(int u1, int n1)
 
 void obj_usr_init2_186(int u1, int n1, int n2)
 {
-    uint64_t d[3];
+    //uint64_t d[3];
     //cout << "obj_usr_init2: u" << u1 << "  --dim=[" << d[0] << ", " << d[1] << ", " << d[2] << "]" << endl;
     usr_object.index = (uint64_t)vm_n[n1].value * vm_u[u1].dim[1] + (uint64_t)vm_n[n2].value;
     usr_object.obj_ref = &vm_u[u1].var_ref->uid_value[usr_object.index];
@@ -3161,7 +3157,6 @@ bool rc_preset_type(rc_usrId* parent)
 
     rc_usrId* p_obj;
 
-    uint64_t field_size = 0;
 
     for(uint64_t i = 0; i < dim_size; i++)
     {

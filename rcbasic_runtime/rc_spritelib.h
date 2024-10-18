@@ -66,7 +66,7 @@ int rc_getSpriteFrame(int spr_id)
 	return rc_sprite[spr_id].animation[current_animation].frames[current_frame];
 }
 
-void rc_setSpriteAnimationFrame(int spr_id, int anim_frame, int frame)
+void rc_setSpriteAnimationFrame(int spr_id, int spr_animation, int anim_frame, int frame)
 {
 	if(spr_id < 0 || spr_id >= rc_sprite.size())
 		return;
@@ -74,19 +74,16 @@ void rc_setSpriteAnimationFrame(int spr_id, int anim_frame, int frame)
 	if(!rc_sprite[spr_id].active)
 		return;
 
-	int current_animation = rc_sprite[spr_id].current_animation;
-
-	if(anim_frame < 0 || anim_frame >= rc_sprite[spr_id].animation[current_animation].num_frames)
+	if(anim_frame < 0 || anim_frame >= rc_sprite[spr_id].animation[spr_animation].num_frames)
 		return;
 
 	if(frame < 0 || frame >= rc_sprite[spr_id].sheet_numFrames)
 		return;
 
-	rc_sprite[spr_id].animation[current_animation].frames[anim_frame] = frame;
-	rc_sprite[spr_id].animation[current_animation].frame_start_time = SDL_GetTicks();
+	rc_sprite[spr_id].animation[spr_animation].frames[anim_frame] = frame;
 }
 
-int rc_getSpriteAnimationFrame(int spr_id)
+int rc_getSpriteAnimationFrame(int spr_id, int spr_animation, int anim_frame)
 {
 	if(spr_id < 0 || spr_id >= rc_sprite.size())
 		return -1;
@@ -94,9 +91,10 @@ int rc_getSpriteAnimationFrame(int spr_id)
 	if(!rc_sprite[spr_id].active)
 		return -1;
 
-	int current_animation = rc_sprite[spr_id].current_animation;
+	if(anim_frame < 0 || anim_frame >= rc_sprite[spr_id].animation[spr_animation].num_frames)
+		return -1;
 
-	return rc_sprite[spr_id].animation[current_animation].current_frame;
+	return rc_sprite[spr_id].animation[spr_animation].frames[anim_frame];
 }
 
 
@@ -115,11 +113,23 @@ void rc_setSpriteAnimationLength(int spr_id, int animation, int num_frames)
 	if(num_frames <= 0)
 		num_frames = 1;
 
+	if(num_frames > rc_sprite[spr_id].animation[animation].num_frames)
+	{
+		for(int i = rc_sprite[spr_id].animation[animation].num_frames; i < rc_sprite[spr_id].animation[animation].frames.size(); i++)
+			rc_sprite[spr_id].animation[animation].frames[i] = 0;
+	}
+
 	rc_sprite[spr_id].animation[animation].num_frames = num_frames;
 	if(num_frames > rc_sprite[spr_id].animation[animation].frames.size())
 	{
 		while(num_frames > rc_sprite[spr_id].animation[animation].frames.size())
 			rc_sprite[spr_id].animation[animation].frames.push_back(0);
+	}
+
+	if(num_frames < rc_sprite[spr_id].animation[animation].frames.size())
+	{
+		if(rc_sprite[spr_id].animation[animation].current_frame >= num_frames)
+			rc_sprite[spr_id].animation[animation].current_frame = num_frames - 1;
 	}
 }
 
@@ -192,6 +202,18 @@ int rc_getSpriteAnimation(int spr_id)
 		return -1;
 
 	return rc_sprite[spr_id].current_animation;
+}
+
+int rc_getSpriteActiveAnimationFrame(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return -1;
+
+	if(!rc_sprite[spr_id].active)
+		return -1;
+
+	int current_animation = rc_sprite[spr_id].current_animation;
+	return rc_sprite[spr_id].animation[current_animation].current_frame;
 }
 
 void rc_loopSpriteAnimation(int spr_id, int num_loops)
@@ -273,13 +295,31 @@ int rc_createSprite(int img_id, double w, double h)
 	}
 
 	rc_sprite[spr_id].active = true;
+	rc_sprite[spr_id].id = spr_id;
 	rc_sprite[spr_id].image_id = img_id;
 	rc_sprite[spr_id].frame_size.set(w, h);
 
+	if(img_id >= 0 && img_id < rc_image.size())
+	{
+		if(rc_image[img_id].image)
+		{
+			int img_w = rc_image[img_id].image->getSize().Width;
+			int img_h = rc_image[img_id].image->getSize().Height;
+
+			rc_sprite[spr_id].frames_per_row = (int)(img_w / w);
+			rc_sprite[spr_id].sheet_numFrames = ((int)(img_h / h)) * rc_sprite[spr_id].frames_per_row;
+		}
+		else
+			rc_sprite[spr_id].image_id = -1;
+	}
+	else
+		rc_sprite[spr_id].image_id = -1;
+
 	b2BodyDef sprBodyDef;
-	sprBodyDef.type = b2_staticBody;
+	sprBodyDef.type = b2_dynamicBody;
 	sprBodyDef.position.Set(0, 0);
 	sprBodyDef.angle = 0;
+	sprBodyDef.userData.pointer = (uintptr_t)&rc_sprite[spr_id];
 	rc_sprite[spr_id].physics.body = rc_canvas[rc_active_canvas].physics2D.world->CreateBody(&sprBodyDef);
 
 	b2FixtureDef sprFixtureDef;
@@ -288,12 +328,18 @@ int rc_createSprite(int img_id, double w, double h)
 	fix_shape->SetAsBox(w/2, h/2);
 	sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
 	sprFixtureDef.isSensor = true;
+	sprFixtureDef.density = 1;
 	rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
 
 	rc_sprite[spr_id].physics.offset_x = 0;
 	rc_sprite[spr_id].physics.offset_y = 0;
 	rc_sprite[spr_id].isSolid = false;
-	rc_sprite[spr_id].visible = true;
+
+	if(rc_sprite[spr_id].image_id < 0)
+		rc_sprite[spr_id].visible =false;
+	else
+		rc_sprite[spr_id].visible = true;
+
 	rc_sprite[spr_id].scale.set(1.0, 1.0);
 	rc_sprite[spr_id].alpha = 255;
 	rc_sprite[spr_id].z = 0;
@@ -618,6 +664,37 @@ double rc_spriteZ(int spr_id)
 	return rc_sprite[spr_id].z;
 }
 
+void rc_setSpriteVisible(int spr_id, bool flag)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	if(rc_sprite[spr_id].image_id)
+		rc_sprite[spr_id].visible = flag;
+	else
+		rc_sprite[spr_id].visible = false;
+}
+
+bool rc_spriteIsVisible(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return false;
+
+	if(!rc_sprite[spr_id].active)
+		return false;
+
+	return rc_sprite[spr_id].visible;
+}
+
+
+
+//-----------------------------------PHYSICS----------------------------------------------------------------------------------
+
+
+
 //This function is called on each canvas on update
 void drawSprites(int canvas_id)
 {
@@ -629,7 +706,7 @@ void drawSprites(int canvas_id)
 		rc_canvas[canvas_id].physics2D.world->Step(step, velocityIterations, positionIterations);
 
 	//Setting the render target to the current canvas.  NOTE: I might change this target to a separate sprite layer later.
-	VideoDriver->setRenderTarget(rc_canvas[canvas_id].texture, false, false);
+	VideoDriver->setRenderTarget(rc_canvas[canvas_id].texture, true, false);
 
 
 	irr::core::dimension2d<irr::u32> src_size;
@@ -680,7 +757,10 @@ void drawSprites(int canvas_id)
 
 				if(sprite->current_animation_loop >= sprite->num_animation_loops)
 				{
-					sprite->isPlaying = false;
+					if(sprite->num_animation_loops < 0)
+						sprite->isPlaying = true;
+					else
+						sprite->isPlaying = false;
 					sprite->current_animation_loop = 0;
 				}
 			}
@@ -716,6 +796,7 @@ void drawSprites(int canvas_id)
 							 sprite->color_mod.getGreen(),
 							 sprite->color_mod.getBlue());
 
+		//I don't want to draw an image that doesn't exists. Thats just crazy.
 		draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
 	}
 	//Must set back to canvas 0 (the backbuffer) before returning

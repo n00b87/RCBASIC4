@@ -914,12 +914,14 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
     canvas.physics2D.world = NULL;
     if(canvas_type == RC_CANVAS_TYPE_SPRITE)
     {
-    	b2Vec2 gravity(0, -9.8);
+    	b2Vec2 gravity(0, 0);
 		canvas.physics2D.world = new b2World(gravity);
-		canvas.physics2D.timeStep = 1/20.0;      //the length of time passed to simulate (seconds)
+		canvas.physics2D.timeStep = 1/60.0;      //the length of time passed to simulate (seconds)
 		canvas.physics2D.velocityIterations = 8;   //how strongly to correct velocity
 		canvas.physics2D.positionIterations = 3;   //how strongly to correct position
 		canvas.physics2D.enabled = true;
+		canvas.physics2D.contact_listener = new rc_contactListener_obj();
+		canvas.physics2D.world->SetContactListener(canvas.physics2D.contact_listener);
     }
 
     switch(mode)
@@ -1365,7 +1367,7 @@ Uint32 rc_getPixel(int x, int y)
 
         irr::video::SColor * texel = (SColor *)(texels + ((y * pitch) + (x * sizeof(SColor))));
 
-        irr::video::SColor c = texel[0];
+        //irr::video::SColor c = texel[0];
 
         texture->unlock();
 

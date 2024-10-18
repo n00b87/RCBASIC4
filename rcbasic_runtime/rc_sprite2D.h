@@ -29,6 +29,7 @@ struct rc_sprite2D_animation_obj
 
 struct rc_sprite2D_obj
 {
+	int id; //This is needed to reference this sprite in the contact listener
 	bool active = false;
 	int image_id;
 	int sheet_numFrames;

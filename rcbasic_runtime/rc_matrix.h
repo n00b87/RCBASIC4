@@ -901,7 +901,6 @@ bool rc_scalarMatrixColumns(uint32_t mA, uint32_t mB, uint32_t c, uint32_t num_c
     rc_copyMatrix(mA, mB);
 
     int row_offset = 0;
-    int b_offset = 0;
     for(int row = 0; row < rc_matrix[mB].r; row++)
     {
         row_offset = row * rc_matrix[mB].c;

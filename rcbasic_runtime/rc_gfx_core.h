@@ -283,10 +283,30 @@ struct rc_physicsWorld3D_obj
 rc_physicsWorld3D_obj rc_physics3D;
 
 //Canvases
+class rc_contactListener_obj : public b2ContactListener
+{
+	void BeginContact(b2Contact* contact)
+	{
+		rc_sprite2D_obj* spriteA = (rc_sprite2D_obj*) contact->GetFixtureA()->GetBody()->GetUserData().pointer;
+
+		rc_sprite2D_obj* spriteB = (rc_sprite2D_obj*) contact->GetFixtureB()->GetBody()->GetUserData().pointer;
+
+	  //std::cout << "sprite[" << spriteA->id << "] collide with sprite[" << spriteB->id << "]" << std::endl;
+
+	}
+
+	void EndContact(b2Contact* contact)
+	{
+
+	}
+};
+
 struct rc_physicsWorld2D_obj
 {
 	bool enabled = false;
 	b2World* world;
+
+	rc_contactListener_obj* contact_listener;
 	float timeStep = 1/20.0;      //the length of time passed to simulate (seconds)
 	int velocityIterations = 8;   //how strongly to correct velocity
 	int positionIterations = 3;   //how strongly to correct position
