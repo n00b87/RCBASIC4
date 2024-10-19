@@ -1,0 +1,4 @@
+#title SetSpriteAnimationSpeed [RCBasic Doc]
+#header Sub SetSpriteAnimationSpeed(sprite, animation, speed)
+
+Sets the speed in frames per second for a sprite animation

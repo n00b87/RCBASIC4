@@ -1,0 +1,6 @@
+#title SpriteY [RCBasic Doc]
+#header Function SpriteY(sprite)
+
+Returns the Y position of a sprite on a canvas
+
+#ref SpriteX SetSpritePosition GetSpritePosition

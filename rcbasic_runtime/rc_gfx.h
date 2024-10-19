@@ -1312,12 +1312,32 @@ int rc_cloneCanvas(int origin_canvas_id, int mode)
     return canvas_id;
 }
 
+void rc_getWorldToViewportPosition(double x, double y, double z, double* vx, double* vy)
+{
+	if(!VideoDriver)
+        return;
+
+	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+		return;
+
+	if(!rc_canvas[rc_active_canvas].texture)
+		return;
+
+	if(!rc_canvas[rc_active_canvas].camera.camera)
+		return;
+
+	irr::scene::ISceneCollisionManager* collman = SceneManager->getSceneCollisionManager();
+
+	irr::core::vector2di vpos = collman->getScreenCoordinatesFrom3DPosition(irr::core::vector3df(x, y, z), rc_canvas[rc_active_canvas].camera.camera);
+	*vx = vpos.X;
+	*vy = vpos.Y;
+}
+
+
 void rc_setClearColor(Uint32 color)
 {
     rc_clear_color.set(color);
 }
-
-
 
 Uint32 rc_rgba(Uint32 r, Uint32 g, Uint32 b, Uint32 a)
 {

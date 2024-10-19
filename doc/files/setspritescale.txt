@@ -1,0 +1,6 @@
+#title SetSpriteScale [RCBasic Doc]
+#header Sub SetSpriteScale(sprite, x, y)
+
+Sets the scale of a sprite
+
+#ref ScaleSprite GetSpriteScale

@@ -1,0 +1,4 @@
+#title GetSpriteAnimationSpeed [RCBasic Doc]
+#header Function GetSpriteAnimationSpeed(sprite, animation)
+
+Returns the frames per second of a sprite animation

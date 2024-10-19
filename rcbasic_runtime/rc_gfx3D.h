@@ -6717,6 +6717,37 @@ double rc_getCameraNearValue()
     return rc_canvas[rc_active_canvas].camera.camera->getNearValue();
 }
 
+void rc_setCameraProjectionMatrix(int proj_matrix, int proj_type)
+{
+	if(!(rc_active_canvas > 0 && rc_active_canvas < rc_canvas.size()))
+        return;
+
+	if(proj_matrix < 0 || proj_matrix >= rc_matrix.size())
+		return;
+
+	if(!rc_matrix[proj_matrix].active)
+		return;
+
+	irr::core::matrix4 irr_mat = rc_convertToIrrMatrix(proj_matrix);
+	bool isOrtho = (proj_type == RC_PROJECTION_TYPE_ORTHOGRAPHIC);
+	rc_canvas[rc_active_canvas].camera.camera->setProjectionMatrix(irr_mat, isOrtho);
+}
+
+void rc_getCameraProjectionMatrix(int proj_matrix)
+{
+	if(!(rc_active_canvas > 0 && rc_active_canvas < rc_canvas.size()))
+        return;
+
+	if(proj_matrix < 0 || proj_matrix >= rc_matrix.size())
+		return;
+
+	if(!rc_matrix[proj_matrix].active)
+		return;
+
+	irr::core::matrix4 pmat = rc_canvas[rc_active_canvas].camera.camera->getProjectionMatrix();
+	rc_convertFromIrrMatrix(pmat, proj_matrix);
+}
+
 
 void rc_addSceneSkyBox(int img_top, int img_bottom, int img_left, int img_right, int img_front, int img_back)
 {

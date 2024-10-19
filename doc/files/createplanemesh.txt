@@ -1,0 +1,10 @@
+#title CreatePlaneMesh [RCBasic Doc]
+#header Function CreatePlaneMesh( w, h, tileCount_w, tileCount_h )
+
+Creates a flat plane
+
+#list
+#li w, h - The width and height of the plane
+#li tileCount_w, TileCount_h - The number of subdivisions across and down the plane
+#/list
+

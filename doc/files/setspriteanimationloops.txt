@@ -1,0 +1,6 @@
+#title SetSpriteAnimationLoops [RCBasic Doc]
+#header Sub SetSpriteAnimationLoops(sprite, num_loops)
+
+Sets the number of animation loops for the sprite
+
+#ref NumSpriteAnimationLoops

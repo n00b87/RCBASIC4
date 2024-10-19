@@ -1,0 +1,4 @@
+#title GetSpriteFrame [RCBasic Doc]
+#header Function GetSpriteFrame(sprite)
+
+Returns the current frame in a sprite's source that it's on in its animation

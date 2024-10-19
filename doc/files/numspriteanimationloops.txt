@@ -1,0 +1,6 @@
+#title NumSpriteAnimationLoops [RCBasic Doc]
+#header Function NumSpriteAnimationLoops(sprite)
+
+Returns the number of animation loops the actor has set
+
+#ref SetSpriteAnimationLoops SetSpriteAnimation

@@ -1,0 +1,9 @@
+#title CreateSpriteAnimation [RCBasic Doc]
+#header Function CreateSpriteAnimation(sprite, anim_length, speed)
+
+Returns a new sprite animation id
+
+#list ul
+#li anim_length - number of frames in the animation
+#li speed - frames per second for the animation
+#/list

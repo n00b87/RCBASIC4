@@ -204,7 +204,7 @@ int rc_getSpriteAnimation(int spr_id)
 	return rc_sprite[spr_id].current_animation;
 }
 
-int rc_getSpriteActiveAnimationFrame(int spr_id)
+int rc_getSpriteCurrentAnimationFrame(int spr_id)
 {
 	if(spr_id < 0 || spr_id >= rc_sprite.size())
 		return -1;
@@ -216,7 +216,7 @@ int rc_getSpriteActiveAnimationFrame(int spr_id)
 	return rc_sprite[spr_id].animation[current_animation].current_frame;
 }
 
-void rc_loopSpriteAnimation(int spr_id, int num_loops)
+void rc_setSpriteAnimationLoops(int spr_id, int num_loops)
 {
 	if(spr_id < 0 || spr_id >= rc_sprite.size())
 		return;
@@ -391,6 +391,41 @@ void rc_deleteSprite(int spr_id)
 	}
 }
 
+void rc_setSpriteSource(int spr_id, int img_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	if(img_id < 0)
+	{
+		rc_sprite[spr_id].image_id = -1;
+		return;
+	}
+
+	if(img_id >= rc_image.size())
+		return;
+
+	if(!rc_image[img_id].image)
+		return;
+
+	rc_sprite[spr_id].image_id = img_id;
+}
+
+int rc_getSpriteSource(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return -1;
+
+	if(!rc_sprite[spr_id].active)
+		return -1;
+
+	return rc_sprite[spr_id].image_id;
+}
+
+
 void rc_setSpriteType(int spr_id, int body_type)
 {
 	if(spr_id < 0 || spr_id >= rc_sprite.size())
@@ -400,6 +435,17 @@ void rc_setSpriteType(int spr_id, int body_type)
 		return;
 
 	rc_sprite[spr_id].physics.body->SetType((b2BodyType) body_type);
+}
+
+int rc_getSpriteType(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return -1;
+
+	if(!rc_sprite[spr_id].active)
+		return -1;
+
+	return (int)rc_sprite[spr_id].physics.body->GetType();
 }
 
 void rc_setSpriteSolid(int spr_id, bool flag)

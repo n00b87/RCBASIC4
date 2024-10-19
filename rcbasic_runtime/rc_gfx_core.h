@@ -316,6 +316,9 @@ struct rc_physicsWorld2D_obj
 #define RC_CANVAS_TYPE_3D		1
 #define RC_CANVAS_TYPE_SPRITE	2
 
+#define RC_PROJECTION_TYPE_ORTHOGRAPHIC		0
+#define RC_PROJECTION_TYPE_PERSPECTIVE		1
+
 struct rc_canvas_obj
 {
     irr::video::ITexture* texture;

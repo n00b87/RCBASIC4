@@ -1,0 +1,8 @@
+#title CanvasZ [RCBasic Doc]
+#header function CanvasZ(c_num)
+
+Returns the Canvas Z Order.
+
+Note: Canvases with a higher Z order are drawn first and those with lower values will be drawn on top
+
+#ref SetCanvasZ

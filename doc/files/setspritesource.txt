@@ -1,0 +1,8 @@
+#title SetSpriteSource [RCBasic Doc]
+#header Sub SetSpriteSource(sprite, img)
+
+Changes the image source for a sprite frame sheet
+
+Note: This needs to be the same size as the current image source or you will have rendering issues
+
+#ref GetSpriteSource

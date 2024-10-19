@@ -1,0 +1,4 @@
+#title GetAN8SceneName$ [RCBasic Doc]
+#header Function GetAN8SceneName$(an8_project, scene_num)
+
+Returns the name of a scene in an an8 project

@@ -1,0 +1,6 @@
+#title SpriteIsSolid [RCBasic Doc]
+#header Function SpriteIsSolid(sprite)
+
+Returns true if a sprite is has physics and collision response enabled
+
+#ref SetSpriteSolid
