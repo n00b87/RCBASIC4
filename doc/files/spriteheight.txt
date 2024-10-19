@@ -1,0 +1,7 @@
+#title SpriteHeight [RCBasic Doc]
+#header Function SpriteHeight(sprite)
+
+Returns the frame height of a sprite
+
+#ref SpriteWidth GetSpriteSize
+

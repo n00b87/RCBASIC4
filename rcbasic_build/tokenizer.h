@@ -1238,6 +1238,10 @@ string rc_keywordToken(string sline)
 		return "<num>19";
 	else if(sline.compare("MD2_ANIMATION_BOOM")==0)
 		return "<num>20";
+	else if(sline.compare("PROJECTION_TYPE_ORTHOGRAPHIC")==0)
+		return "<num>0";
+	else if(sline.compare("PROJECTION_TYPE_PERSPECTIVE")==0)
+		return "<num>1";
 	else if(sline.compare("SPRITE_TYPE_STATIC")==0)
 		return "<num>0";
 	else if(sline.compare("SPRITE_TYPE_KINEMATIC")==0)

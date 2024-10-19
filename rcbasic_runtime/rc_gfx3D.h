@@ -2861,6 +2861,8 @@ double rc_computeActorImpulseDenominator(int actor, double pos_x, double pos_y, 
 	{
 		return rc_actor[actor].physics.rigid_body->computeImpulseDenominator(irr::core::vector3df(pos_x, pos_y, pos_z), irr::core::vector3df(normal_x, normal_y, normal_z));
 	}
+
+	return 0;
 }
 
 double rc_computeActorAngularImpulseDenominator(int actor, double x, double y, double z)
@@ -2872,6 +2874,8 @@ double rc_computeActorAngularImpulseDenominator(int actor, double x, double y, d
 	{
 		return rc_actor[actor].physics.rigid_body->computeAngularImpulseDenominator(irr::core::vector3df(x, y, z));
 	}
+
+	return 0;
 }
 
 void rc_setActorAngularFactor(int actor, double x, double y, double z)
@@ -3016,6 +3020,8 @@ int rc_createPointConstraintEx(int actorA, int actorB, double pxA, double pyA, d
 		rc_physics3D.constraints[constraint_id] = p2p;
 		return constraint_id;
 	}
+
+	return -1;
 }
 
 void rc_setPointPivotA(int constraint_id, double x, double y, double z)
@@ -3062,6 +3068,8 @@ int rc_createHingeConstraint(int actorA, int frameInA_matrix, bool useReferenceF
 		rc_physics3D.constraints[constraint_id] = hinge;
 		return constraint_id;
 	}
+
+	return -1;
 }
 
 
@@ -3088,6 +3096,8 @@ int rc_createHingeConstraintEx(int actorA, int actorB, int frameInA_matrix, int 
 		rc_physics3D.constraints[constraint_id] = hinge;
 		return constraint_id;
 	}
+
+	return -1;
 }
 
 int rc_createSlideConstraint(int actorA, int frameInB_matrix, bool useLinearReferenceFrameA)
@@ -3110,6 +3120,8 @@ int rc_createSlideConstraint(int actorA, int frameInB_matrix, bool useLinearRefe
 		rc_physics3D.constraints[constraint_id] = slide;
 		return constraint_id;
 	}
+
+	return -1;
 }
 
 int rc_createSlideConstraintEx(int actorA, int actorB, int frameInA_matrix, int frameInB_matrix, bool useLinearReferenceFrameA)
@@ -3135,6 +3147,8 @@ int rc_createSlideConstraintEx(int actorA, int actorB, int frameInA_matrix, int 
 		rc_physics3D.constraints[constraint_id] = slide;
 		return constraint_id;
 	}
+
+	return -1;
 }
 
 
@@ -3159,6 +3173,8 @@ int rc_createConeConstraint(int actorA, int rbAFrame_matrix)
 		rc_physics3D.constraints[constraint_id] = cone;
 		return constraint_id;
 	}
+
+	return -1;
 }
 
 int rc_createConeConstraintEx(int actorA, int actorB, int rbAFrame_matrix, int rbBFrame_matrix)
@@ -3184,6 +3200,8 @@ int rc_createConeConstraintEx(int actorA, int actorB, int rbAFrame_matrix, int r
 		rc_physics3D.constraints[constraint_id] = cone;
 		return constraint_id;
 	}
+
+	return -1;
 }
 
 void rc_deleteConstraint(int constraint_id)
@@ -5069,7 +5087,7 @@ void rc_setActorFrame(int actor, int frame)
 void rc_setActorAutoCulling(int actor, int cull_type)
 {
     if(actor < 0 || actor >= rc_actor.size())
-        return;
+		return;
 
 	rc_actor[actor].mesh_node->setAutomaticCulling((irr::scene::E_CULLING_TYPE) cull_type);
 }
@@ -5089,7 +5107,7 @@ int rc_getActorAutoCulling(int actor)
 void rc_addActorShadow(int actor)
 {
     if(actor < 0 || actor >= rc_actor.size())
-        return;
+		return;
 
 	if(rc_actor[actor].shadow)
 		return;
@@ -6697,6 +6715,37 @@ double rc_getCameraNearValue()
         return 0;
 
     return rc_canvas[rc_active_canvas].camera.camera->getNearValue();
+}
+
+void rc_setCameraProjectionMatrix(int proj_matrix, int proj_type)
+{
+	if(!(rc_active_canvas > 0 && rc_active_canvas < rc_canvas.size()))
+        return;
+
+	if(proj_matrix < 0 || proj_matrix >= rc_matrix.size())
+		return;
+
+	if(!rc_matrix[proj_matrix].active)
+		return;
+
+	irr::core::matrix4 irr_mat = rc_convertToIrrMatrix(proj_matrix);
+	bool isOrtho = (proj_type == RC_PROJECTION_TYPE_ORTHOGRAPHIC);
+	rc_canvas[rc_active_canvas].camera.camera->setProjectionMatrix(irr_mat, isOrtho);
+}
+
+void rc_getCameraProjectionMatrix(int proj_matrix)
+{
+	if(!(rc_active_canvas > 0 && rc_active_canvas < rc_canvas.size()))
+        return;
+
+	if(proj_matrix < 0 || proj_matrix >= rc_matrix.size())
+		return;
+
+	if(!rc_matrix[proj_matrix].active)
+		return;
+
+	irr::core::matrix4 pmat = rc_canvas[rc_active_canvas].camera.camera->getProjectionMatrix();
+	rc_convertFromIrrMatrix(pmat, proj_matrix);
 }
 
 

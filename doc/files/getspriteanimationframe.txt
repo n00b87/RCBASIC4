@@ -1,0 +1,4 @@
+#title GetSpriteAnimationFrame [RCBasic Doc]
+#header Function GetSpriteAnimationFrame(sprite, animation, anim_frame)
+
+Returns the frame index in the image source that is set to anim_frame in a sprite's animation

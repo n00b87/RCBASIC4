@@ -283,10 +283,30 @@ struct rc_physicsWorld3D_obj
 rc_physicsWorld3D_obj rc_physics3D;
 
 //Canvases
+class rc_contactListener_obj : public b2ContactListener
+{
+	void BeginContact(b2Contact* contact)
+	{
+		rc_sprite2D_obj* spriteA = (rc_sprite2D_obj*) contact->GetFixtureA()->GetBody()->GetUserData().pointer;
+
+		rc_sprite2D_obj* spriteB = (rc_sprite2D_obj*) contact->GetFixtureB()->GetBody()->GetUserData().pointer;
+
+	  //std::cout << "sprite[" << spriteA->id << "] collide with sprite[" << spriteB->id << "]" << std::endl;
+
+	}
+
+	void EndContact(b2Contact* contact)
+	{
+
+	}
+};
+
 struct rc_physicsWorld2D_obj
 {
 	bool enabled = false;
 	b2World* world;
+
+	rc_contactListener_obj* contact_listener;
 	float timeStep = 1/20.0;      //the length of time passed to simulate (seconds)
 	int velocityIterations = 8;   //how strongly to correct velocity
 	int positionIterations = 3;   //how strongly to correct position
@@ -295,6 +315,9 @@ struct rc_physicsWorld2D_obj
 #define RC_CANVAS_TYPE_2D		0
 #define RC_CANVAS_TYPE_3D		1
 #define RC_CANVAS_TYPE_SPRITE	2
+
+#define RC_PROJECTION_TYPE_ORTHOGRAPHIC		0
+#define RC_PROJECTION_TYPE_PERSPECTIVE		1
 
 struct rc_canvas_obj
 {
@@ -617,5 +640,200 @@ void printIrrMatrix(irr::core::matrix4 m)
 	for(int i = 0; i < 4; i++)
 		std::cout << "[ " << m[i*4] << ", " << m[i*4+1] << ", " << m[i*4+2] << ", " << m[i*4+3] << " ]" << std::endl;
 }
+
+
+struct rc_image_obj
+{
+    irr::video::ITexture* image;
+    Uint8 alpha = 255;
+    irr::video::SColor color_mod = irr::video::SColor(255,255,255,255);
+};
+irr::core::array<rc_image_obj> rc_image;
+
+irr::video::E_BLEND_OPERATION rc_blend_mode = irr::video::EBO_ADD;
+bool rc_bilinear_filter = false;
+
+
+void draw2DImage(irr::video::IVideoDriver *driver, irr::video::ITexture* texture, irr::core::rect<irr::s32> sourceRect, irr::core::position2d<irr::s32> position, irr::core::position2d<irr::s32> rotationPoint, irr::f32 rotation, irr::core::vector2df scale, bool useAlphaChannel, irr::video::SColor color, irr::core::vector2d<irr::f32> screenSize)
+{
+    if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+        return;
+
+    // Store and clear the projection matrix
+    irr::core::matrix4 oldProjMat = driver->getTransform(irr::video::ETS_PROJECTION);
+    driver->setTransform(irr::video::ETS_PROJECTION,irr::core::matrix4());
+
+    // Store and clear the view matrix
+    irr::core::matrix4 oldViewMat = driver->getTransform(irr::video::ETS_VIEW);
+    driver->setTransform(irr::video::ETS_VIEW,irr::core::matrix4());
+
+    // Store and clear the world matrix
+    irr::core::matrix4 oldWorldMat = driver->getTransform(irr::video::ETS_WORLD);
+    driver->setTransform(irr::video::ETS_WORLD,irr::core::matrix4());
+
+    // Find horizontal and vertical axes after rotation
+    irr::f32 c = cos(-rotation*irr::core::DEGTORAD);
+    irr::f32 s = sin(-rotation*irr::core::DEGTORAD);
+    irr::core::vector2df horizontalAxis(c,s);
+    irr::core::vector2df verticalAxis(s,-c);
+
+    // First, we'll find the offset of the center and then where the center would be after rotation
+    irr::core::vector2df centerOffset(position.X+sourceRect.getWidth()/2.0f*scale.X-rotationPoint.X,position.Y+sourceRect.getHeight()/2.0f*scale.Y-rotationPoint.Y);
+    irr::core::vector2df center = centerOffset.X*horizontalAxis - centerOffset.Y*verticalAxis;
+    center.X += rotationPoint.X;
+    center.Y += rotationPoint.Y;
+
+    // Now find the corners based off the center
+    irr::core::vector2df cornerOffset(sourceRect.getWidth()*scale.X/2.0f,sourceRect.getHeight()*scale.Y/2.0f);
+    verticalAxis *= cornerOffset.Y;
+    horizontalAxis *= cornerOffset.X;
+    irr::core::vector2df corner[4];
+    corner[0] = center + verticalAxis - horizontalAxis;
+    corner[1] = center + verticalAxis + horizontalAxis;
+    corner[2] = center - verticalAxis - horizontalAxis;
+    corner[3] = center - verticalAxis + horizontalAxis;
+
+    // Find the uv coordinates of the sourceRect
+    irr::core::vector2df textureSize(texture->getSize().Width, texture->getSize().Height);
+    irr::core::vector2df uvCorner[4];
+    uvCorner[0] = irr::core::vector2df(sourceRect.UpperLeftCorner.X,sourceRect.UpperLeftCorner.Y);
+    uvCorner[1] = irr::core::vector2df(sourceRect.LowerRightCorner.X,sourceRect.UpperLeftCorner.Y);
+    uvCorner[2] = irr::core::vector2df(sourceRect.UpperLeftCorner.X,sourceRect.LowerRightCorner.Y);
+    uvCorner[3] = irr::core::vector2df(sourceRect.LowerRightCorner.X,sourceRect.LowerRightCorner.Y);
+    for (irr::s32 i = 0; i < 4; i++)
+            uvCorner[i] /= textureSize;
+
+    // Vertices for the image
+    irr::video::S3DVertex vertices[4];
+    irr::u16 indices[6] = { 0, 1, 2, 3 ,2 ,1 };
+
+    // Convert pixels to world coordinates
+    //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+
+    for (irr::s32 i = 0; i < 4; i++) {
+            vertices[i].Pos = irr::core::vector3df(((corner[i].X/screenSize.X)-0.5f)*2.0f,((corner[i].Y/screenSize.Y)-0.5f)*-2.0f,1);
+            vertices[i].TCoords = uvCorner[i];
+            vertices[i].Color = color;
+    }
+
+    // Create the material
+    // IMPORTANT: For irrlicht 1.8 and above you MUST ADD THIS LINE:
+    // material.BlendOperation = irr::video::EBO_ADD;
+    irr::video::SMaterial material;
+    material.Lighting = false;
+    material.ZWriteEnable = irr::video::EZW_OFF;
+    material.ZBuffer = false;
+    material.BackfaceCulling = false;
+    material.TextureLayer[0].Texture = texture;
+    material.TextureLayer[0].BilinearFilter = rc_bilinear_filter;
+    material.MaterialTypeParam = irr::video::pack_textureBlendFunc(irr::video::EBF_SRC_ALPHA, irr::video::EBF_ONE_MINUS_SRC_ALPHA, irr::video::EMFN_MODULATE_1X, irr::video::EAS_TEXTURE | irr::video::EAS_VERTEX_COLOR);
+    material.BlendOperation = rc_blend_mode;
+    //material.BlendOperation = irr::video::EBO_ADD;
+
+    if (useAlphaChannel)
+            material.MaterialType = irr::video::EMT_ONETEXTURE_BLEND;
+    else
+            material.MaterialType = irr::video::EMT_SOLID;
+
+    driver->setMaterial(material);
+    driver->drawIndexedTriangleList(&vertices[0],4,&indices[0],2);
+
+    // Restore projection, world, and view matrices
+    driver->setTransform(irr::video::ETS_PROJECTION,oldProjMat);
+    driver->setTransform(irr::video::ETS_VIEW,oldViewMat);
+    driver->setTransform(irr::video::ETS_WORLD,oldWorldMat);
+}
+
+void draw2DImage2(irr::video::IVideoDriver *driver, irr::video::ITexture* texture, irr::core::rect<irr::s32> sourceRect, irr::core::rect<irr::s32> destRect, irr::core::position2d<irr::s32> rotationPoint, irr::f32 rotation, bool useAlphaChannel, irr::video::SColor color, irr::core::vector2d<irr::f32> screenSize )
+{
+    if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+        return;
+
+    // Store and clear the projection matrix
+    irr::core::matrix4 oldProjMat = driver->getTransform(irr::video::ETS_PROJECTION);
+    driver->setTransform(irr::video::ETS_PROJECTION,irr::core::matrix4());
+
+    // Store and clear the view matrix
+    irr::core::matrix4 oldViewMat = driver->getTransform(irr::video::ETS_VIEW);
+    driver->setTransform(irr::video::ETS_VIEW,irr::core::matrix4());
+
+    // Store and clear the world matrix
+    irr::core::matrix4 oldWorldMat = driver->getTransform(irr::video::ETS_WORLD);
+    driver->setTransform(irr::video::ETS_WORLD,irr::core::matrix4());
+
+    // Find horizontal and vertical axes after rotation
+    irr::f32 c = cos(-rotation*irr::core::DEGTORAD);
+    irr::f32 s = sin(-rotation*irr::core::DEGTORAD);
+    irr::core::vector2df horizontalAxis(c,s);
+    irr::core::vector2df verticalAxis(s,-c);
+
+    // First, we'll find the offset of the center and then where the center would be after rotation
+    irr::core::vector2df centerOffset(destRect.UpperLeftCorner.X+destRect.getWidth()/2.0f-rotationPoint.X,destRect.UpperLeftCorner.Y+destRect.getHeight()/2.0f-rotationPoint.Y);
+    irr::core::vector2df center = centerOffset.X*horizontalAxis - centerOffset.Y*verticalAxis;
+    center.X += rotationPoint.X;
+    center.Y += rotationPoint.Y;
+
+    // Now find the corners based off the center
+    irr::core::vector2df cornerOffset(destRect.getWidth()/2.0f,destRect.getHeight()/2.0f);
+    verticalAxis *= cornerOffset.Y;
+    horizontalAxis *= cornerOffset.X;
+    irr::core::vector2df corner[4];
+    corner[0] = center + verticalAxis - horizontalAxis;
+    corner[1] = center + verticalAxis + horizontalAxis;
+    corner[2] = center - verticalAxis - horizontalAxis;
+    corner[3] = center - verticalAxis + horizontalAxis;
+
+    // Find the uv coordinates of the sourceRect
+    irr::core::vector2df textureSize(texture->getSize().Width, texture->getSize().Height);
+    irr::core::vector2df uvCorner[4];
+    uvCorner[0] = irr::core::vector2df(sourceRect.UpperLeftCorner.X,sourceRect.UpperLeftCorner.Y);
+    uvCorner[1] = irr::core::vector2df(sourceRect.LowerRightCorner.X,sourceRect.UpperLeftCorner.Y);
+    uvCorner[2] = irr::core::vector2df(sourceRect.UpperLeftCorner.X,sourceRect.LowerRightCorner.Y);
+    uvCorner[3] = irr::core::vector2df(sourceRect.LowerRightCorner.X,sourceRect.LowerRightCorner.Y);
+    for (irr::s32 i = 0; i < 4; i++)
+            uvCorner[i] /= textureSize;
+
+    // Vertices for the image
+    irr::video::S3DVertex vertices[4];
+    irr::u16 indices[6] = { 0, 1, 2, 3 ,2 ,1 };
+
+    // Convert pixels to world coordinates
+    //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+
+    for (irr::s32 i = 0; i < 4; i++) {
+            vertices[i].Pos = irr::core::vector3df(((corner[i].X/screenSize.X)-0.5f)*2.0f,((corner[i].Y/screenSize.Y)-0.5f)*-2.0f,1);
+            vertices[i].TCoords = uvCorner[i];
+            vertices[i].Color = color;
+    }
+
+    // Create the material
+    // IMPORTANT: For irrlicht 1.8 and above you MUST ADD THIS LINE:
+    // material.BlendOperation = irr::video::EBO_ADD;
+    irr::video::SMaterial material;
+    material.Lighting = false;
+    material.ZWriteEnable = irr::video::EZW_OFF;
+    material.ZBuffer = false;
+    material.BackfaceCulling = false;
+    material.TextureLayer[0].Texture = texture;
+    material.TextureLayer[0].BilinearFilter = rc_bilinear_filter; //TODO: Add option to switch this on/off
+    material.BlendOperation = rc_blend_mode;
+    material.MaterialTypeParam = irr::video::pack_textureBlendFunc(irr::video::EBF_SRC_ALPHA, irr::video::EBF_ONE_MINUS_SRC_ALPHA, irr::video::EMFN_MODULATE_1X, irr::video::EAS_TEXTURE | irr::video::EAS_VERTEX_COLOR);
+    //material.AntiAliasing = irr::video::EAAM_OFF;
+
+    if (useAlphaChannel)
+            material.MaterialType = irr::video::EMT_ONETEXTURE_BLEND;
+    else
+            material.MaterialType = irr::video::EMT_SOLID;
+
+    driver->setMaterial(material);
+    driver->drawIndexedTriangleList(&vertices[0],4,&indices[0],2);
+
+    // Restore projection, world, and view matrices
+    driver->setTransform(irr::video::ETS_PROJECTION,oldProjMat);
+    driver->setTransform(irr::video::ETS_VIEW,oldViewMat);
+    driver->setTransform(irr::video::ETS_WORLD,oldWorldMat);
+}
+
+
 
 #endif // RC_GFX_CORE_H_INCLUDED

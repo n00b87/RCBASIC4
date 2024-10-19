@@ -1,0 +1,6 @@
+#title LoadAN8 [RCBasic Doc]
+#header Function LoadAN8( an8_file$ )
+
+Loads an an8 project and returns an id that can be used in LoadMeshFromAN8()
+
+#ref LoadMeshFromAN8

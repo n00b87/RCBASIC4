@@ -1,0 +1,6 @@
+#title SetSpriteVisible [RCBasic Doc]
+#header Sub SetSpriteVisible(sprite, flag)
+
+Sets whether the sprite is visible
+
+#ref SpriteIsVisible

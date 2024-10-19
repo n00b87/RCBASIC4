@@ -1,0 +1,8 @@
+#title SpriteZ [RCBasic Doc]
+#header Function SpriteZ(sprite)
+
+Returns the drawing priority for sprites.
+
+Note: Sprites with a higher Z order are drawn first and those with lower values will be drawn on top
+
+#ref SetSpriteZ

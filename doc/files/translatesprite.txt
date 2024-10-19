@@ -1,0 +1,8 @@
+#title TranslateSprite [RCBasic Doc]
+#header Sub TranslateSprite(sprite, x, y)
+
+Move a sprite relative to its current position
+
+Note: This function sets the position of a sprite without regards to physics properties so it will not trigger collision detection or collision response.
+
+#ref SetSpritePosition GetSpritePosition

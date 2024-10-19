@@ -1,0 +1,4 @@
+#title GetSpriteAnimationLength [RCBasic Doc]
+#header Function GetSpriteAnimationLength(sprite, animation)
+
+Returns the number of frames in a sprite animation

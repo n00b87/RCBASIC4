@@ -1,0 +1,6 @@
+#title SetSpriteAnimationFrame [RCBasic Doc]
+#header Sub SetSpriteAnimationFrame(sprite, animation, anim_frame, frame)
+
+Sets a frame in a sprite animation
+
+#ref GetSpriteAnimationFrame

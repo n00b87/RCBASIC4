@@ -1,0 +1,6 @@
+#title GetNumAN8Scenes [RCBasic Doc]
+#header Function GetNumAN8Scenes(an8_project)
+
+Returns the number of scenes in an an8 project
+
+#ref LoadAN8

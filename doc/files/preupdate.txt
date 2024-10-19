@@ -1,0 +1,8 @@
+#title PreUpdate [RCBasic Doc]
+#header Sub PreUpdate( )
+
+Processes physics for sprites and actors.
+
+This is useful if you need to know the post solve positions and rotations prior to drawing them.
+
+#ref Update

@@ -1371,7 +1371,7 @@ case FN_ReadInput_ToggleBackspace: //Sub Procedure
 	rc_readInput_ToggleBackspace( READINPUT_TOGGLEBACKSPACE_FLAG );
 	break;
 case FN_CreateSprite: //Number Function
-	 rc_push_num(rc_createSprite( CREATESPRITE_IMG ));
+	 rc_push_num(rc_createSprite( CREATESPRITE_IMG, 0, 0 ));
 	break;
 case FN_DeleteSprite: //Sub Procedure
 	rc_deleteSprite( DELETESPRITE_SPRITE );

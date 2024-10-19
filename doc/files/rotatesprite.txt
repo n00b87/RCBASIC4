@@ -1,0 +1,6 @@
+#title RotateSprite [RCBasic Doc]
+#header Sub RotateSprite(sprite, angle)
+
+Sets the angle the sprite is rotated by relative to its current rotation
+
+#ref SetSpriteRotation GetSpriteRotation

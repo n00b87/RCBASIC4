@@ -1,0 +1,6 @@
+#title GetSpriteSource [RCBasic Doc]
+#header Function GetSpriteSource(sprite)
+
+Returns the source image the sprite renders its frames from
+
+#ref SetSpriteSource CreateSprite

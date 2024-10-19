@@ -1,0 +1,6 @@
+#title SetSpriteAnimationLength [RCBasic Doc]
+#header Sub SetSpriteAnimationLength(sprite, animation, anim_length)
+
+Sets the number of frames in a sprite animation
+
+#ref GetSpriteAnimationLength

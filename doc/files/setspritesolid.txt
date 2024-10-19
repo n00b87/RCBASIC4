@@ -1,0 +1,7 @@
+#title SetSpriteSolid [RCBasic Doc]
+#header Sub SetSpriteSolid(sprite, flag)
+
+Sets whether a sprite has physics and collision response enabled
+
+#ref SpriteIsSolid
+

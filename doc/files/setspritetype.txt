@@ -1,0 +1,12 @@
+#title SetSpriteType [RCBasic Doc]
+#header Sub SetSpriteType(sprite, sprite_type)
+
+Sets the type of collision body a sprite has
+
+#list ul
+#li SPRITE_TYPE_STATIC
+#li SPRITE_TYPE_KINEMATIC
+#li SPRITE_TYPE_DYNAMIC
+#/list
+
+#ref GetSpriteType

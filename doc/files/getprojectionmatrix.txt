@@ -1,0 +1,12 @@
+#title GetProjectionMatrix [RCBasic Doc]
+#header Sub GetProjectionMatrix(matA)
+
+Gets the camera projection matrix for the active canvas
+
+Possible values for projection_type
+#list ul
+#li PROJECTION_TYPE_ORTHOGRAPHIC
+#li PROJECTION_TYPE_PERSPECTIVE
+#/list
+
+#ref SetProjectionMatrix

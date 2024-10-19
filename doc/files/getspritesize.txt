@@ -1,0 +1,6 @@
+#title GetSpriteSize [RCBasic Doc]
+#header Sub GetSpriteSize(sprite, ByRef w, ByRef h)
+
+Gets the size of a sprite's frames
+
+#ref CreateSprite

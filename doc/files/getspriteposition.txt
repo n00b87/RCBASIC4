@@ -1,0 +1,6 @@
+#title GetSpritePosition [RCBasic Doc]
+#header Sub GetSpritePosition(sprite, ByRef x, ByRef y)
+
+Gets the position of a sprite on the canvas
+
+#ref TranslateSprite SetSpritePosition

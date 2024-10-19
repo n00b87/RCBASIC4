@@ -1,0 +1,6 @@
+#title GetSpriteRotation [RCBasic Doc]
+#header Function GetSpriteRotation(sprite)
+
+Returns the angle the sprite is rotated by
+
+#ref SetSpriteRotation RotateSprite
