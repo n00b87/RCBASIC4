@@ -3348,7 +3348,8 @@ bool rc_update()
 
         irr::core::vector2d<irr::f32> screenSize( (irr::f32) rc_canvas[0].dimension.Width, (irr::f32) rc_canvas[0].dimension.Height );
 
-        double frame_current_time = ((double)SDL_GetTicks())/1000.0;
+        Uint32 current_time_ms = SDL_GetTicks();
+        double frame_current_time = ((double)current_time_ms)/1000.0;
 
         for(int i = 0; i < rc_transition_actor.size();)
 		{
@@ -3361,6 +3362,13 @@ bool rc_update()
 				rc_actor[i].transition_time = 0;
 				rc_actor[i].transition_start_time = 0;
 				rc_transition_actor.erase(i);
+
+				rc_actor[i].animation[0].start_frame = (int)rc_actor[i].transition_frame;
+				rc_actor[i].animation[0].end_frame = (int)rc_actor[i].transition_frame;
+				rc_actor[i].animation[0].fps = 0;
+				rc_actor[i].current_animation_loop = 0;
+				rc_actor[i].isPlaying = true;
+				rc_actor[i].current_animation = 0;
 			}
 			else
 			{

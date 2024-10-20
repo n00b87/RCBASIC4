@@ -307,7 +307,7 @@ struct rc_physicsWorld2D_obj
 	b2World* world;
 
 	rc_contactListener_obj* contact_listener;
-	float timeStep = 1/20.0;      //the length of time passed to simulate (seconds)
+	float timeStep = 1/60.0;      //the length of time passed to simulate (seconds)
 	int velocityIterations = 8;   //how strongly to correct velocity
 	int positionIterations = 3;   //how strongly to correct position
 };
@@ -516,6 +516,19 @@ struct rc_particle_properties_obj
 	bool outlineOnly;
 };
 
+#define RC_ANIMATION_MD2 		-2
+#define RC_ANIMATION_TRANSITION	-3
+
+struct rc_actor_animation_obj
+{
+	bool active;
+	int start_frame;
+	int end_frame;
+	double fps;
+	irr::u32 frame_start_time;
+	irr::u32 frame_swap_time;
+};
+
 struct rc_scene_node
 {
     int node_type = 0;
@@ -525,17 +538,53 @@ struct rc_scene_node
     rc_node_physics physics;
 
     bool transition;
+    double transition_frame;
     double transition_time;
     double transition_start_time;
 
     rc_particle_properties_obj particle_properties;
 
     int material_ref_index = -1;
+
+    int current_animation;
+    int num_animation_loops;
+	int current_animation_loop;
+	bool isPlaying;
+    irr::core::array<int> deleted_animation;
+    irr::core::array<rc_actor_animation_obj> animation;
 };
 
 irr::core::array<rc_scene_node> rc_actor;
 
 irr::core::array<int> rc_transition_actor;
+
+
+class rc_animEndCallBack : public IAnimationEndCallBack
+{
+  public:
+  	rc_scene_node* ref_actor;
+
+    void OnAnimationEnd( IAnimatedMeshSceneNode *node)
+    {
+    	if(ref_actor->current_animation_loop < ref_actor->num_animation_loops || ref_actor->num_animation_loops < 0)
+		{
+			irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*) ref_actor->mesh_node;
+			int animation = ref_actor->current_animation;
+			if(animation < 0 || animation >= ref_actor->animation.size())
+				return;
+			int start_frame = ref_actor->animation[animation].start_frame;
+			int end_frame = ref_actor->animation[animation].end_frame;
+			node->setFrameLoop(start_frame, end_frame);
+			ref_actor->current_animation_loop++;
+		}
+		else
+		{
+			ref_actor->isPlaying = false;
+		}
+      //std::cout << "The animation has ended!" << std::endl;
+      // Your callback code goes there.
+    }
+};
 
 
 void myTickCallback2(btSoftRigidDynamicsWorld* dynamicsWorld, btScalar timeStep)

@@ -176,7 +176,7 @@ double rc_getSpriteAnimationSpeed(int spr_id, int animation)
 	return rc_sprite[spr_id].animation[animation].fps;
 }
 
-void rc_setSpriteAnimation(int spr_id, int animation)
+void rc_setSpriteAnimation(int spr_id, int animation, int num_loops)
 {
 	if(spr_id < 0 || spr_id >= rc_sprite.size())
 		return;
@@ -191,6 +191,7 @@ void rc_setSpriteAnimation(int spr_id, int animation)
 	rc_sprite[spr_id].animation[animation].current_frame = 0;
 	rc_sprite[spr_id].isPlaying = true;
 	rc_sprite[spr_id].animation[animation].frame_start_time = SDL_GetTicks();
+	rc_sprite[spr_id].num_animation_loops = num_loops;
 }
 
 int rc_getSpriteAnimation(int spr_id)
@@ -236,6 +237,17 @@ int rc_numSpriteAnimationLoops(int spr_id)
 		return 0;
 
 	return rc_sprite[spr_id].num_animation_loops;
+}
+
+bool rc_spriteAnimationIsPlaying(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return false;
+
+	if(!rc_sprite[spr_id].active)
+		return false;
+
+	return rc_sprite[spr_id].isPlaying;
 }
 
 //------------------------------SPRITES-------------------------------------------------------
