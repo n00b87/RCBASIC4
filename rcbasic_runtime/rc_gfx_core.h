@@ -355,6 +355,7 @@ struct rc_canvas_obj
 irr::core::array<rc_canvas_obj> rc_canvas;
 irr::core::array<u32> rc_canvas_zOrder;
 int rc_active_canvas = -1;
+bool hasPreUpdated = false;
 
 irr::video::SColor rc_active_color(0,0,0,0);
 irr::video::SColor rc_clear_color(0,0,0,0);
@@ -568,6 +569,7 @@ class rc_animEndCallBack : public IAnimationEndCallBack
     {
     	if(ref_actor->current_animation_loop < ref_actor->num_animation_loops || ref_actor->num_animation_loops < 0)
 		{
+			//std::cout << "animating" << std::endl;
 			irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*) ref_actor->mesh_node;
 			int animation = ref_actor->current_animation;
 			if(animation < 0 || animation >= ref_actor->animation.size())

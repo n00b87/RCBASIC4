@@ -1,0 +1,5 @@
+#title NumActorAnimationLoops [RCBasic Doc]
+#header function NumActorAnimationLoops(actor)
+
+Returns the total number of loops the actor is set to repeat the animation for
+

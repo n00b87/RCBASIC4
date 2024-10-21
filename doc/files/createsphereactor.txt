@@ -3,4 +3,4 @@
 
 Returns an actor composed of a sphere mesh
 
-#ref CreateMeshActor CreateMeshOctreeActor CreateCubeActor CreateWaterPlaneActor CreateLightActor CreateBillboardActor CreateTerrainActor
+#ref CreateAnimatedActor CreateOctreeActor CreateBillboardActor CreateWaterActor CreateLightActor CreateCubeActor CreateTerrainActor

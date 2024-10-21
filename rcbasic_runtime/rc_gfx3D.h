@@ -562,7 +562,7 @@ bool rc_getActorCollision(int actor1, int actor2)
 
 
 //add mesh actor to scene
-int rc_createMeshActor(int mesh_id)
+int rc_createAnimatedActor(int mesh_id)
 {
     if(mesh_id < 0 || mesh_id >= rc_mesh.size())
         return -1;
@@ -617,6 +617,7 @@ int rc_createMeshActor(int mesh_id)
     anim_callback->OnAnimationEnd(node);
     node->setAnimationEndCallback(anim_callback);
 	node->setLoopMode(false);
+	node->setFrameLoop(0, 0);
 	anim_callback->drop();
 
 
@@ -632,7 +633,7 @@ int rc_createMeshActor(int mesh_id)
 
 
 //add mesh actor to scene
-int rc_createMeshOctreeActor(int mesh_id)
+int rc_createOctreeActor(int mesh_id)
 {
     if(mesh_id < 0 || mesh_id >= rc_mesh.size())
         return -1;
@@ -5156,7 +5157,7 @@ int rc_getActorAnimationEndFrame(int actor, int animation)
     return 0;
 }
 
-int rc_getActorCurrentFrame(int actor)
+int rc_getActorFrame(int actor)
 {
     if(actor < 0 || actor >= rc_actor.size())
         return 0;
@@ -5261,7 +5262,7 @@ void rc_startActorTransition(int actor, double frame, double transition_time)
     	case RC_NODE_TYPE_MESH:
             irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
             node->setTransitionTime(transition_time);
-            node->setJointMode(irr::scene::EJUOR_CONTROL);
+            //node->setJointMode(irr::scene::EJUOR_CONTROL); //This is actually called in setTransitionTime()
             node->setCurrentFrame(frame);
             rc_actor[actor].transition_frame = frame;
             rc_actor[actor].transition = true;
@@ -6863,7 +6864,7 @@ double rc_getCameraNearValue()
     return rc_canvas[rc_active_canvas].camera.camera->getNearValue();
 }
 
-void rc_setCameraProjectionMatrix(int proj_matrix, int proj_type)
+void rc_setProjectionMatrix(int proj_matrix, int proj_type)
 {
 	if(!(rc_active_canvas > 0 && rc_active_canvas < rc_canvas.size()))
         return;
@@ -6879,7 +6880,7 @@ void rc_setCameraProjectionMatrix(int proj_matrix, int proj_type)
 	rc_canvas[rc_active_canvas].camera.camera->setProjectionMatrix(irr_mat, isOrtho);
 }
 
-void rc_getCameraProjectionMatrix(int proj_matrix)
+void rc_getProjectionMatrix(int proj_matrix)
 {
 	if(!(rc_active_canvas > 0 && rc_active_canvas < rc_canvas.size()))
         return;
