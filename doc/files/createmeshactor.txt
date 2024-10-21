@@ -1,10 +1,10 @@
-#title CreateMeshActor [RCBasic Doc]
-#header function CreateMeshActor( mesh )
+#title CreateAnimatedActor [RCBasic Doc]
+#header function CreateAnimatedActor( mesh )
 
-Returns a new actor composed of a mesh
+Returns a new animated actor composed of a mesh
 
 The mesh can either be created using CreateMesh() or Loaded using LoadMesh()
 
-#ref CreateMesh LoadMesh
+#ref CreateMesh LoadMesh LoadMeshFromAN8
 <br>
-#ref CreateMeshOctreeActor CreateCubeActor CreateSphereActor CreateWaterPlaneActor CreateLightActor CreateBillboardActor CreateTerrainActor
+#ref CreateOctreeActor CreateCubeActor CreateSphereActor CreateWaterPlaneActor CreateLightActor CreateBillboardActor CreateTerrainActor

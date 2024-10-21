@@ -5,4 +5,4 @@ Returns terrain generated from a height map
 
 Note: Height Maps can be any supported image format
 
-#ref CreateMeshActor CreateMeshOctreeActor CreateCubeActor CreateSphereActor CreateWaterPlaneActor CreateLightActor CreateBillboardActor
+#ref CreateAnimatedActor CreateOctreeActor CreateSphereActor CreateWaterActor CreateLightActor CreateCubeActor CreateBillboardActor

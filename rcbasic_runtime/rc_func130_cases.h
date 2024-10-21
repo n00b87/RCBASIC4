@@ -547,6 +547,9 @@ case FN_FlashWindow: //Number Function
 case FN_WindowIsGrabbed: //Number Function
 	 rc_push_num(rc_windowIsGrabbed(  ));
 	break;
+case FN_PreUpdate: //Sub Procedure
+	rc_preUpdate(  );
+	break;
 case FN_OpenCanvas: //Number Function
 	 rc_push_num(rc_canvasOpen( OPENCANVAS_W,  OPENCANVAS_H,  OPENCANVAS_VIEWPORT_X,  OPENCANVAS_VIEWPORT_Y,  OPENCANVAS_VIEWPORT_W,  OPENCANVAS_VIEWPORT_H,  OPENCANVAS_MODE ));
 	break;
@@ -601,8 +604,8 @@ case FN_CloneCanvas: //Number Function
 case FN_SetCanvasZ: //Sub Procedure
 	rc_setCanvasZ( SETCANVASZ_C_NUM,  SETCANVASZ_Z );
 	break;
-case FN_GetCanvasZ: //Number Function
-	 rc_push_num(rc_getCanvasZ( GETCANVASZ_C_NUM ));
+case FN_CanvasZ: //Number Function
+	 rc_push_num(rc_getCanvasZ( CANVASZ_C_NUM ));
 	break;
 case FN_CanvasClip: //Number Function
 	 rc_push_num(rc_canvasClip( CANVASCLIP_X,  CANVASCLIP_Y,  CANVASCLIP_W,  CANVASCLIP_H ));
@@ -976,11 +979,11 @@ case FN_DrawText: //Sub Procedure
 case FN_GetTextSize: //Sub Procedure
 	rc_getTextSize( GETTEXTSIZE_TXT$,  &GETTEXTSIZE_W,  &GETTEXTSIZE_H );
 	break;
-case FN_GetTextWidth: //Number Function
-	 rc_push_num(rc_getTextWidth( GETTEXTWIDTH_TXT$ ));
+case FN_TextWidth: //Number Function
+	 rc_push_num(rc_getTextWidth( TEXTWIDTH_TXT$ ));
 	break;
-case FN_GetTextHeight: //Number Function
-	 rc_push_num(rc_getTextHeight( GETTEXTHEIGHT_TXT$ ));
+case FN_TextHeight: //Number Function
+	 rc_push_num(rc_getTextHeight( TEXTHEIGHT_TXT$ ));
 	break;
 case FN_TouchPressure: //Number Function
 	 rc_push_num(rc_touchPressure(  ));
@@ -1371,13 +1374,127 @@ case FN_ReadInput_ToggleBackspace: //Sub Procedure
 	rc_readInput_ToggleBackspace( READINPUT_TOGGLEBACKSPACE_FLAG );
 	break;
 case FN_CreateSprite: //Number Function
-	 rc_push_num(rc_createSprite( CREATESPRITE_IMG, 0, 0 ));
+	 rc_push_num(rc_createSprite( CREATESPRITE_IMG,  CREATESPRITE_FRAME_W,  CREATESPRITE_FRAME_H ));
 	break;
 case FN_DeleteSprite: //Sub Procedure
 	rc_deleteSprite( DELETESPRITE_SPRITE );
 	break;
 case FN_SetSpritePosition: //Sub Procedure
 	rc_setSpritePosition( SETSPRITEPOSITION_SPRITE,  SETSPRITEPOSITION_X,  SETSPRITEPOSITION_Y );
+	break;
+case FN_TranslateSprite: //Sub Procedure
+	rc_translateSprite( TRANSLATESPRITE_SPRITE,  TRANSLATESPRITE_X,  TRANSLATESPRITE_Y );
+	break;
+case FN_GetSpritePosition: //Sub Procedure
+	rc_getSpritePosition( GETSPRITEPOSITION_SPRITE,  &GETSPRITEPOSITION_X,  &GETSPRITEPOSITION_Y );
+	break;
+case FN_SpriteX: //Number Function
+	 rc_push_num(rc_spriteX( SPRITEX_SPRITE ));
+	break;
+case FN_SpriteY: //Number Function
+	 rc_push_num(rc_spriteY( SPRITEY_SPRITE ));
+	break;
+case FN_SetSpriteRotation: //Sub Procedure
+	rc_setSpriteRotation( SETSPRITEROTATION_SPRITE,  SETSPRITEROTATION_ANGLE );
+	break;
+case FN_RotateSprite: //Sub Procedure
+	rc_rotateSprite( ROTATESPRITE_SPRITE,  ROTATESPRITE_ANGLE );
+	break;
+case FN_GetSpriteRotation: //Number Function
+	 rc_push_num(rc_getSpriteRotation( GETSPRITEROTATION_SPRITE ));
+	break;
+case FN_SetSpriteScale: //Sub Procedure
+	rc_setSpriteScale( SETSPRITESCALE_SPRITE,  SETSPRITESCALE_X,  SETSPRITESCALE_Y );
+	break;
+case FN_ScaleSprite: //Sub Procedure
+	rc_scaleSprite( SCALESPRITE_SPRITE,  SCALESPRITE_X,  SCALESPRITE_Y );
+	break;
+case FN_GetSpriteScale: //Sub Procedure
+	rc_getSpriteScale( GETSPRITESCALE_SPRITE,  &GETSPRITESCALE_X,  &GETSPRITESCALE_Y );
+	break;
+case FN_SetSpriteZ: //Sub Procedure
+	rc_setSpriteZ( SETSPRITEZ_SPRITE,  SETSPRITEZ_Z );
+	break;
+case FN_SpriteZ: //Number Function
+	 rc_push_num(rc_spriteZ( SPRITEZ_SPRITE ));
+	break;
+case FN_GetSpriteSize: //Sub Procedure
+	rc_getSpriteSize( GETSPRITESIZE_SPRITE,  &GETSPRITESIZE_W,  &GETSPRITESIZE_H );
+	break;
+case FN_SpriteWidth: //Number Function
+	 rc_push_num(rc_spriteWidth( SPRITEWIDTH_SPRITE ));
+	break;
+case FN_SpriteHeight: //Number Function
+	 rc_push_num(rc_spriteHeight( SPRITEHEIGHT_SPRITE ));
+	break;
+case FN_SetSpriteVisible: //Sub Procedure
+	rc_setSpriteVisible( SETSPRITEVISIBLE_SPRITE,  SETSPRITEVISIBLE_FLAG );
+	break;
+case FN_SpriteIsVisible: //Number Function
+	 rc_push_num(rc_spriteIsVisible( SPRITEISVISIBLE_SPRITE ));
+	break;
+case FN_SetSpriteSolid: //Sub Procedure
+	rc_setSpriteSolid( SETSPRITESOLID_SPRITE,  SETSPRITESOLID_FLAG );
+	break;
+case FN_SpriteIsSolid: //Number Function
+	 rc_push_num(rc_spriteIsSolid( SPRITEISSOLID_SPRITE ));
+	break;
+case FN_SetSpriteType: //Sub Procedure
+	rc_setSpriteType( SETSPRITETYPE_SPRITE,  SETSPRITETYPE_SPRITE_TYPE );
+	break;
+case FN_GetSpriteType: //Number Function
+	 rc_push_num(rc_getSpriteType( GETSPRITETYPE_SPRITE ));
+	break;
+case FN_SetSpriteSource: //Sub Procedure
+	rc_setSpriteSource( SETSPRITESOURCE_SPRITE,  SETSPRITESOURCE_IMG );
+	break;
+case FN_GetSpriteSource: //Number Function
+	 rc_push_num(rc_getSpriteSource( GETSPRITESOURCE_SPRITE ));
+	break;
+case FN_CreateSpriteAnimation: //Number Function
+	 rc_push_num(rc_createSpriteAnimation( CREATESPRITEANIMATION_SPRITE,  CREATESPRITEANIMATION_ANIM_LENGTH,  CREATESPRITEANIMATION_SPEED ));
+	break;
+case FN_SetSpriteFrame: //Sub Procedure
+	rc_setSpriteFrame( SETSPRITEFRAME_SPRITE,  SETSPRITEFRAME_FRAME );
+	break;
+case FN_GetSpriteFrame: //Number Function
+	 rc_push_num(rc_getSpriteFrame( GETSPRITEFRAME_SPRITE ));
+	break;
+case FN_SetSpriteAnimationFrame: //Sub Procedure
+	rc_setSpriteAnimationFrame( SETSPRITEANIMATIONFRAME_SPRITE,  SETSPRITEANIMATIONFRAME_ANIMATION,  SETSPRITEANIMATIONFRAME_ANIM_FRAME,  SETSPRITEANIMATIONFRAME_FRAME );
+	break;
+case FN_GetSpriteAnimationFrame: //Number Function
+	 rc_push_num(rc_getSpriteAnimationFrame( GETSPRITEANIMATIONFRAME_SPRITE,  GETSPRITEANIMATIONFRAME_ANIMATION,  GETSPRITEANIMATIONFRAME_ANIM_FRAME ));
+	break;
+case FN_SetSpriteAnimationLength: //Sub Procedure
+	rc_setSpriteAnimationLength( SETSPRITEANIMATIONLENGTH_SPRITE,  SETSPRITEANIMATIONLENGTH_ANIMATION,  SETSPRITEANIMATIONLENGTH_ANIM_LENGTH );
+	break;
+case FN_GetSpriteAnimationLength: //Number Function
+	 rc_push_num(rc_getSpriteAnimationLength( GETSPRITEANIMATIONLENGTH_SPRITE,  GETSPRITEANIMATIONLENGTH_ANIMATION ));
+	break;
+case FN_SetSpriteAnimationSpeed: //Sub Procedure
+	rc_setSpriteAnimationSpeed( SETSPRITEANIMATIONSPEED_SPRITE,  SETSPRITEANIMATIONSPEED_ANIMATION,  SETSPRITEANIMATIONSPEED_SPEED );
+	break;
+case FN_GetSpriteAnimationSpeed: //Number Function
+	 rc_push_num(rc_getSpriteAnimationSpeed( GETSPRITEANIMATIONSPEED_SPRITE,  GETSPRITEANIMATIONSPEED_ANIMATION ));
+	break;
+case FN_SetSpriteAnimation: //Sub Procedure
+	rc_setSpriteAnimation( SETSPRITEANIMATION_SPRITE,  SETSPRITEANIMATION_ANIMATION,  SETSPRITEANIMATION_NUM_LOOPS );
+	break;
+case FN_GetSpriteAnimation: //Number Function
+	 rc_push_num(rc_getSpriteAnimation( GETSPRITEANIMATION_SPRITE ));
+	break;
+case FN_GetSpriteCurrentAnimationFrame: //Number Function
+	 rc_push_num(rc_getSpriteCurrentAnimationFrame( GETSPRITECURRENTANIMATIONFRAME_SPRITE ));
+	break;
+case FN_NumSpriteAnimationLoops: //Number Function
+	 rc_push_num(rc_numSpriteAnimationLoops( NUMSPRITEANIMATIONLOOPS_SPRITE ));
+	break;
+case FN_SpriteAnimationIsPlaying: //Number Function
+	 rc_push_num(rc_spriteAnimationIsPlaying( SPRITEANIMATIONISPLAYING_SPRITE ));
+	break;
+case FN_DeleteSpriteAnimation: //Sub Procedure
+	rc_deleteSpriteAnimation( DELETESPRITEANIMATION_SPRITE,  DELETESPRITEANIMATION_ANIMATION );
 	break;
 case FN_LoadMesh: //Number Function
 	 rc_push_num(rc_loadMesh( LOADMESH_MESH_FILE$ ));
@@ -1397,11 +1514,23 @@ case FN_LoadMeshFromArchive: //Number Function
 case FN_CreatePlaneMesh: //Number Function
 	 rc_push_num(rc_createPlaneMesh( CREATEPLANEMESH_W,  CREATEPLANEMESH_H,  CREATEPLANEMESH_TILECOUNT_W,  CREATEPLANEMESH_TILECOUNT_H ));
 	break;
-case FN_CreateMeshActor: //Number Function
-	 rc_push_num(rc_createMeshActor( CREATEMESHACTOR_MESH ));
+case FN_LoadAN8: //Number Function
+	 rc_push_num(rc_loadAN8( LOADAN8_AN8_FILE$ ));
 	break;
-case FN_CreateMeshOctreeActor: //Number Function
-	 rc_push_num(rc_createMeshOctreeActor( CREATEMESHOCTREEACTOR_MESH ));
+case FN_LoadMeshFromAN8: //Number Function
+	 rc_push_num(rc_loadMeshFromAN8( LOADMESHFROMAN8_AN8_PROJECT,  LOADMESHFROMAN8_AN8_SCENE$ ));
+	break;
+case FN_GetNumAN8Scenes: //Number Function
+	 rc_push_num(rc_getNumAN8Scenes( GETNUMAN8SCENES_AN8_PROJECT ));
+	break;
+case FN_GetAN8SceneName$: //String Function
+	 rc_push_str(rc_getAN8SceneName( GETAN8SCENENAME$_AN8_PROJECT,  GETAN8SCENENAME$_SCENE_NUM ));
+	break;
+case FN_CreateAnimatedActor: //Number Function
+	 rc_push_num(rc_createAnimatedActor( CREATEANIMATEDACTOR_MESH ));
+	break;
+case FN_CreateOctreeActor: //Number Function
+	 rc_push_num(rc_createOctreeActor( CREATEOCTREEACTOR_MESH ));
 	break;
 case FN_CreateCubeActor: //Number Function
 	 rc_push_num(rc_createCubeActor( CREATECUBEACTOR_CUBE_SIZE ));
@@ -2024,6 +2153,15 @@ case FN_SetCameraNearValue: //Sub Procedure
 case FN_GetCameraNearValue: //Number Function
 	 rc_push_num(rc_getCameraNearValue(  ));
 	break;
+case FN_SetProjectionMatrix: //Sub Procedure
+	rc_setProjectionMatrix( SETPROJECTIONMATRIX_MATA,  SETPROJECTIONMATRIX_PROJECTION_TYPE );
+	break;
+case FN_GetProjectionMatrix: //Sub Procedure
+	rc_getProjectionMatrix( GETPROJECTIONMATRIX_MATA );
+	break;
+case FN_GetWorldToViewportPosition: //Sub Procedure
+	rc_getWorldToViewportPosition( GETWORLDTOVIEWPORTPOSITION_X,  GETWORLDTOVIEWPORTPOSITION_Y,  GETWORLDTOVIEWPORTPOSITION_Z,  &GETWORLDTOVIEWPORTPOSITION_VX,  &GETWORLDTOVIEWPORTPOSITION_VY );
+	break;
 case FN_AddSceneSkyBox: //Sub Procedure
 	rc_addSceneSkyBox( ADDSCENESKYBOX_IMG_TOP,  ADDSCENESKYBOX_IMG_BOTTOM,  ADDSCENESKYBOX_IMG_LEFT,  ADDSCENESKYBOX_IMG_RIGHT,  ADDSCENESKYBOX_IMG_FRONT,  ADDSCENESKYBOX_IMG_BACK );
 	break;
@@ -2261,50 +2399,50 @@ case FN_SetTerrainCameraRotationDelta: //Sub Procedure
 case FN_SetTerrainPatchLOD: //Sub Procedure
 	rc_setTerrainPatchLOD( SETTERRAINPATCHLOD_ACTOR,  SETTERRAINPATCHLOD_PATCHX,  SETTERRAINPATCHLOD_PATCHZ,  SETTERRAINPATCHLOD_LOD );
 	break;
+case FN_CreateActorAnimation: //Number Function
+	 rc_push_num(rc_createActorAnimation( CREATEACTORANIMATION_ACTOR,  CREATEACTORANIMATION_START_FRAME,  CREATEACTORANIMATION_END_FRAME,  CREATEACTORANIMATION_SPEED ));
+	break;
 case FN_SetActorAnimation: //Sub Procedure
-	rc_setActorAnimation( SETACTORANIMATION_ACTOR,  SETACTORANIMATION_START_FRAME,  SETACTORANIMATION_END_FRAME );
+	rc_setActorAnimation( SETACTORANIMATION_ACTOR,  SETACTORANIMATION_ANIMATION,  SETACTORANIMATION_NUM_LOOPS );
 	break;
 case FN_SetActorAnimationSpeed: //Sub Procedure
-	rc_setActorAnimationSpeed( SETACTORANIMATIONSPEED_ACTOR,  SETACTORANIMATIONSPEED_SPEED );
+	rc_setActorAnimationSpeed( SETACTORANIMATIONSPEED_ACTOR,  SETACTORANIMATIONSPEED_ANIMATION,  SETACTORANIMATIONSPEED_SPEED );
+	break;
+case FN_SetActorAnimationFrames: //Sub Procedure
+	rc_setActorAnimationFrames( SETACTORANIMATIONFRAMES_ACTOR,  SETACTORANIMATIONFRAMES_ANIMATION,  SETACTORANIMATIONFRAMES_START_FRAME,  SETACTORANIMATIONFRAMES_END_FRAME );
+	break;
+case FN_GetActorCurrentAnimation: //Number Function
+	 rc_push_num(rc_getActorCurrentAnimation( GETACTORCURRENTANIMATION_ACTOR ));
+	break;
+case FN_GetActorAnimationSpeed: //Number Function
+	 rc_push_num(rc_getActorAnimationSpeed( GETACTORANIMATIONSPEED_ACTOR,  GETACTORANIMATIONSPEED_ANIMATION ));
+	break;
+case FN_GetActorAnimationStartFrame: //Number Function
+	 rc_push_num(rc_getActorAnimationStartFrame( GETACTORANIMATIONSTARTFRAME_ACTOR,  GETACTORANIMATIONSTARTFRAME_ANIMATION ));
+	break;
+case FN_GetActorAnimationEndFrame: //Number Function
+	 rc_push_num(rc_getActorAnimationEndFrame( GETACTORANIMATIONENDFRAME_ACTOR,  GETACTORANIMATIONENDFRAME_ANIMATION ));
 	break;
 case FN_SetActorFrame: //Sub Procedure
 	rc_setActorFrame( SETACTORFRAME_ACTOR,  SETACTORFRAME_FRAME );
 	break;
+case FN_GetActorFrame: //Number Function
+	 rc_push_num(rc_getActorFrame( GETACTORFRAME_ACTOR ));
+	break;
+case FN_ActorAnimationIsPlaying: //Number Function
+	 rc_push_num(rc_actorAnimationIsPlaying( ACTORANIMATIONISPLAYING_ACTOR ));
+	break;
+case FN_NumActorAnimationLoops: //Number Function
+	 rc_push_num(rc_numActorAnimationLoops( NUMACTORANIMATIONLOOPS_ACTOR ));
+	break;
 case FN_SetActorMD2Animation: //Sub Procedure
-	rc_setActorMD2Animation( SETACTORMD2ANIMATION_ACTOR,  SETACTORMD2ANIMATION_ANIM );
+	rc_setActorMD2Animation( SETACTORMD2ANIMATION_ACTOR,  SETACTORMD2ANIMATION_ANIM,  SETACTORMD2ANIMATION_NUM_LOOPS );
 	break;
 case FN_SetActorMD2AnimationByName: //Sub Procedure
-	rc_setActorMD2AnimationByName( SETACTORMD2ANIMATIONBYNAME_ACTOR,  SETACTORMD2ANIMATIONBYNAME_ANIM_NAME$ );
+	rc_setActorMD2AnimationByName( SETACTORMD2ANIMATIONBYNAME_ACTOR,  SETACTORMD2ANIMATIONBYNAME_ANIM_NAME$,  SETACTORMD2ANIMATIONBYNAME_NUM_LOOPS );
 	break;
-case FN_GetActorAnimationSpeed: //Number Function
-	 rc_push_num(rc_getActorAnimationSpeed( GETACTORANIMATIONSPEED_ACTOR ));
-	break;
-case FN_GetActorEndFrame: //Number Function
-	 rc_push_num(rc_getActorEndFrame( GETACTORENDFRAME_ACTOR ));
-	break;
-case FN_GetActorCurrentFrame: //Number Function
-	 rc_push_num(rc_getActorCurrentFrame( GETACTORCURRENTFRAME_ACTOR ));
-	break;
-case FN_GetActorStartFrame: //Number Function
-	 rc_push_num(rc_getActorStartFrame( GETACTORSTARTFRAME_ACTOR ));
-	break;
-case FN_StartActorTransition: //Sub Procedure
-	rc_startActorTransition( STARTACTORTRANSITION_ACTOR,  STARTACTORTRANSITION_FRAME,  STARTACTORTRANSITION_TRANSITION_TIME );
-	break;
-case FN_StopActorTransition: //Sub Procedure
-	rc_stopActorTransition( STOPACTORTRANSITION_ACTOR );
-	break;
-case FN_ActorIsInTransition: //Number Function
-	 rc_push_num(rc_actorIsInTransition( ACTORISINTRANSITION_ACTOR ));
-	break;
-case FN_GetActorTransitionTime: //Number Function
-	 rc_push_num(rc_getActorTransitionTime( GETACTORTRANSITIONTIME_ACTOR ));
-	break;
-case FN_actorAnimationIsLooped: //Number Function
-	 rc_push_num(rc_actorAnimationIsLooped( ACTORANIMATIONISLOOPED_ACTOR ));
-	break;
-case FN_loopActorAnimation: //Sub Procedure
-	rc_loopActorAnimation( LOOPACTORANIMATION_ACTOR,  LOOPACTORANIMATION_FLAG );
+case FN_DeleteActorAnimation: //Sub Procedure
+	rc_deleteActorAnimation( DELETEACTORANIMATION_ACTOR,  DELETEACTORANIMATION_ANIMATION );
 	break;
 case FN_createMaterial: //Number Function
 	 rc_push_num(rc_createMaterial(  ));

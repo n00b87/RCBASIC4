@@ -1,0 +1,6 @@
+#title SetActorAnimationFrames [RCBasic Doc]
+#header sub SetActorAnimationFrames(actor, animation, start_frame, end_frame)
+
+Changes the frames that plays in an actor's animation
+
+#ref CreateActorAnimation

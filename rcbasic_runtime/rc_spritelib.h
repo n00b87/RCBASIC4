@@ -32,9 +32,27 @@ int rc_createSpriteAnimation(int spr_id, int anim_length, double fps)
 		animation.frames.push_back(0);
 
 	int animation_id = rc_sprite[spr_id].animation.size();
-	rc_sprite[spr_id].animation.push_back(animation);
+	if(rc_sprite[spr_id].deleted_sprites.size() > 0)
+	{
+		animation_id = rc_sprite[spr_id].deleted_sprites[0];
+		rc_sprite[spr_id].deleted_sprites.erase(0);
+		rc_sprite[spr_id].animation[animation_id] = animation;
+	}
+	else
+		rc_sprite[spr_id].animation.push_back(animation);
 
 	return animation_id;
+}
+
+void rc_deleteSpriteAnimation(int spr_id, int animation)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	rc_sprite[spr_id].deleted_sprites.push_back(animation);
 }
 
 void rc_setSpriteFrame(int spr_id, int frame)
@@ -176,7 +194,7 @@ double rc_getSpriteAnimationSpeed(int spr_id, int animation)
 	return rc_sprite[spr_id].animation[animation].fps;
 }
 
-void rc_setSpriteAnimation(int spr_id, int animation)
+void rc_setSpriteAnimation(int spr_id, int animation, int num_loops)
 {
 	if(spr_id < 0 || spr_id >= rc_sprite.size())
 		return;
@@ -191,6 +209,7 @@ void rc_setSpriteAnimation(int spr_id, int animation)
 	rc_sprite[spr_id].animation[animation].current_frame = 0;
 	rc_sprite[spr_id].isPlaying = true;
 	rc_sprite[spr_id].animation[animation].frame_start_time = SDL_GetTicks();
+	rc_sprite[spr_id].num_animation_loops = num_loops;
 }
 
 int rc_getSpriteAnimation(int spr_id)
@@ -236,6 +255,17 @@ int rc_numSpriteAnimationLoops(int spr_id)
 		return 0;
 
 	return rc_sprite[spr_id].num_animation_loops;
+}
+
+bool rc_spriteAnimationIsPlaying(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return false;
+
+	if(!rc_sprite[spr_id].active)
+		return false;
+
+	return rc_sprite[spr_id].isPlaying;
 }
 
 //------------------------------SPRITES-------------------------------------------------------
@@ -575,7 +605,7 @@ void rc_setSpriteScale(int spr_id, double x, double y)
 
 	rc_sprite[spr_id].scale.set(x, y);
 
-	if(rc_sprite[spr_id].isSolid)
+	if(true) //(rc_sprite[spr_id].isSolid) //I probably originally planned on not having a fixture for non-solid sprites but then I discovered sensors
 	{
 		if(rc_sprite[spr_id].physics.fixture)
 		{
@@ -648,6 +678,19 @@ void rc_scaleSprite(int spr_id, double x, double y)
 	double scale_x = rc_sprite[spr_id].scale.X * x;
 	double scale_y = rc_sprite[spr_id].scale.Y * y;
 	rc_setSpriteScale(spr_id, scale_x, scale_y);
+}
+
+
+void rc_getSpriteScale(int spr_id, double* x, double* y)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	*x = rc_sprite[spr_id].scale.X;
+	*y = rc_sprite[spr_id].scale.Y;
 }
 
 double rc_spriteWidth(int spr_id)
@@ -748,7 +791,7 @@ void drawSprites(int canvas_id)
 	int32 velocityIterations = rc_canvas[canvas_id].physics2D.velocityIterations;
 	int32 positionIterations = rc_canvas[canvas_id].physics2D.positionIterations;
 
-	if(rc_canvas[canvas_id].physics2D.enabled)
+	if(rc_canvas[canvas_id].physics2D.enabled && (!hasPreUpdated))
 		rc_canvas[canvas_id].physics2D.world->Step(step, velocityIterations, positionIterations);
 
 	//Setting the render target to the current canvas.  NOTE: I might change this target to a separate sprite layer later.

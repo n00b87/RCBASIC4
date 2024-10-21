@@ -1,0 +1,6 @@
+#title ActorAnimationIsPlaying [RCBasic Doc]
+#header function ActorAnimationIsPlaying(actor)
+
+Returns true if an actor is currently playing an animation
+
+Note: If the number of loops in the animation is set to -1 then this will always be true since it does not return false until it plays the last frame in the last loop
