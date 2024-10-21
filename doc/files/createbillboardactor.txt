@@ -4,3 +4,5 @@
 Returns a billboard actor
 
 Billboard actors are flat textured planes that are always facing the camera.
+
+#ref CreateAnimatedActor CreateOctreeActor CreateSphereActor CreateWaterActor CreateLightActor CreateCubeActor CreateTerrainActor

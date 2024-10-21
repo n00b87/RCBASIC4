@@ -1,0 +1,8 @@
+#title GetActorCurrentAnimation [RCBasic Doc]
+#header Function GetActorCurrentAnimation(actor)
+
+Returns the current animation set on an actor
+
+Note: Current animation will be 0 if the actor's frame was set with SetActorFrame()
+
+#ref SetActorAnimation SetActorFrame

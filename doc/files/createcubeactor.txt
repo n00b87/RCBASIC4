@@ -3,4 +3,4 @@
 
 Returns an actor with a cube mesh of the specified size ( cube_size x cube_size x cube_size )
 
-#ref CreateMeshActor CreateMeshOctreeActor CreateSphereActor CreateWaterPlaneActor CreateLightActor CreateBillboardActor CreateTerrainActor
+#ref CreateAnimatedActor CreateOctreeActor CreateSphereActor CreateWaterActor CreateLightActor CreateBillboardActor CreateTerrainActor

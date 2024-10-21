@@ -7,4 +7,4 @@ The mesh can either be created using CreateMesh() or Loaded using LoadMesh()
 
 #ref CreateMesh LoadMesh LoadMeshFromAN8
 <br>
-#ref CreateOctreeActor CreateCubeActor CreateSphereActor CreateWaterPlaneActor CreateLightActor CreateBillboardActor CreateTerrainActor
+#ref CreateOctreeActor CreateCubeActor CreateSphereActor CreateWaterActor CreateLightActor CreateBillboardActor CreateTerrainActor

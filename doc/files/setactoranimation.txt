@@ -1,8 +1,12 @@
 #title SetActorAnimation [RCBasic Doc]
-#header sub SetActorAnimation( actor, start_frame, end_frame)
+#header sub SetActorAnimation( actor, animation, num_loops)
 
-Sets the start frame and end frame that an actor will loop through
+Sets the current animation for an actor to start playing
 
-Note: Use LoopActorAnimation() to enable or disable animation looping
+Notes on num_loops
+#list ol
+#li <b>num_loops</b> is the number of times to loop the animation after its done playing. To play the animation once, set num_loops to 0.
+#li To loop an animation infinitely, set num_loops to -1
+#/list
 
-#ref LoopActorAnimation SetActorFrame
+#ref CreateActorAnimation
