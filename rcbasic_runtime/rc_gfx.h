@@ -27,6 +27,7 @@
 #include <box2d/box2d.h>
 #include "rc_sprite2D.h"
 #include "rc_spritelib.h"
+#include "rc_tilelib.h"
 #include <irrtheora.h>
 
 using namespace irr;
@@ -1019,9 +1020,10 @@ int rc_canvasOpen3D(int vx, int vy, int vw, int vh, int mode)
 	return rc_canvasOpen(vw, vh, vx, vy, vw, vh, mode, RC_CANVAS_TYPE_3D);
 }
 
-int rc_canvasOpenSpriteLayer(int w, int h, int vx, int vy, int vw, int vh)
+int rc_canvasOpenSpriteLayer(int vx, int vy, int vw, int vh)
 {
-	return rc_canvasOpen(w, h, vx, vy, vw, vh, 1, RC_CANVAS_TYPE_SPRITE);
+	//sprite layers are basically infinite since you are just placing objects in the world
+	return rc_canvasOpen(vw, vh, vx, vy, vw, vh, 1, RC_CANVAS_TYPE_SPRITE);
 }
 
 void rc_setCanvasPhysics2D(int canvas_id, bool flag)
@@ -3458,7 +3460,11 @@ bool rc_update()
                 //std::cout << "draw canvas[" << canvas_id << "]" << std::endl;
 
                 if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_SPRITE)
+				{
+
+					src = irr::core::rect<s32>( irr::core::vector2d<s32>(0, 0), rc_canvas[canvas_id].viewport.dimension); //sprite layers will just offset the sprites in drawSprites()
 					drawSprites(canvas_id);
+				}
 
                 draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
 

@@ -795,7 +795,8 @@ void drawSprites(int canvas_id)
 		rc_canvas[canvas_id].physics2D.world->Step(step, velocityIterations, positionIterations);
 
 	//Setting the render target to the current canvas.  NOTE: I might change this target to a separate sprite layer later.
-	VideoDriver->setRenderTarget(rc_canvas[canvas_id].texture, true, false);
+	VideoDriver->setRenderTarget(rc_canvas[canvas_id].texture, true, true);
+	VideoDriver->clearBuffers(true, true, true, irr::video::SColor(0,0,0,0));
 
 
 	irr::core::dimension2d<irr::u32> src_size;
@@ -823,11 +824,37 @@ void drawSprites(int canvas_id)
 
 	double spr_timer = SDL_GetTicks();
 
+	int offset_x = rc_canvas[canvas_id].offset.X;
+	int offset_y = rc_canvas[canvas_id].offset.Y;
+
 	for(int spr_index = 0; spr_index < rc_canvas[canvas_id].sprite.size(); spr_index++)
 	{
 		rc_sprite2D_obj* sprite = rc_canvas[canvas_id].sprite[spr_index];
 		if(!sprite->visible)
 			continue;
+
+		physics_pos = sprite->physics.body->GetPosition();
+		x = (int)physics_pos.x - offset_x;
+		y = (int)physics_pos.y - offset_y;
+
+		int xf = x + sprite->frame_size.Width;
+		int yf = y + sprite->frame_size.Height;
+
+		//std::cout << "sprite info: " << xf << ", " << x << ", " << rc_canvas[canvas_id].viewport.dimension.Width << std::endl;
+
+		if( (xf < 0) || (x > ((int)rc_canvas[canvas_id].viewport.dimension.Width)) )
+		{
+			//std::cout << "skip draw[X]: " << spr_index << std::endl;
+			continue;
+		}
+
+		if( (yf < 0) || (y > ((int)rc_canvas[canvas_id].viewport.dimension.Height)) )
+		{
+			//std::cout << "skip draw[Y]: " << spr_index << std::endl;
+			continue;
+		}
+
+		position.set(x, y);
 
 		int img_id = sprite->image_id;
 		if(img_id < 0 || img_id >= rc_image.size())
@@ -869,10 +896,10 @@ void drawSprites(int canvas_id)
 		sourceRect = irr::core::rect<irr::s32>( frame_pos, src_size);
 		//sourceRect = irr::core::rect<irr::s32>( irr::core::vector2d<irr::s32>(0, 0), src_size);
 
-		physics_pos = sprite->physics.body->GetPosition();
-		x = (int)physics_pos.x;
-		y = (int)physics_pos.y;
-		position.set(x, y);
+		//physics_pos = sprite->physics.body->GetPosition();
+		//x = (int)physics_pos.x;
+		//y = (int)physics_pos.y;
+		//position.set(x, y);
 
 
 		rotationPoint.set(x + (src_size.Width/2), y + (src_size.Height/2)); //TODO: need to account for offset once that is implemented
