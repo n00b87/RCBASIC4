@@ -370,7 +370,7 @@ inline std::string rc_intern_replace(std::string src, std::string tgt, std::stri
     return src;
 }
 
-inline string rc_intern_reverse(std::string rpc_string)
+inline std::string rc_intern_reverse(std::string rpc_string)
 {
     std::string n_str = "";
     if(rpc_string.length()==0)
@@ -409,7 +409,7 @@ inline std::string rc_intern_rtrim(std::string src)
     if(i < 0)
         return "";
 
-	if(src.find_first_not_of(" ") == string::npos)
+	if(src.find_first_not_of(" ") == std::string::npos)
 		return "";
 
     return utf8_substr(src,0,i+1);
@@ -436,7 +436,7 @@ inline std::string rc_intern_stringFromBuffer(double* buffer, size_t buffer_size
     return (std::string)c_buf;
 }
 
-inline string rc_intern_stringfill(std::string f_string, size_t n)
+inline std::string rc_intern_stringfill(std::string f_string, size_t n)
 {
     std::string f = "";
     for(size_t i = 0; i < n; i++)
@@ -446,21 +446,21 @@ inline string rc_intern_stringfill(std::string f_string, size_t n)
 
 inline std::string rc_intern_str(double n)
 {
-    stringstream ss;
+    std::stringstream ss;
     ss << n;
     return ss.str();
 }
 
 inline std::string rc_intern_str_f(double n)
 {
-    stringstream ss;
+    std::stringstream ss;
     ss << fixed << n;
     return ss.str();
 }
 
 inline std::string rc_intern_str_s(double n)
 {
-    stringstream ss;
+    std::stringstream ss;
     ss << scientific << n;
     return ss.str();
 }
@@ -608,7 +608,7 @@ inline double rc_intern_frac(double n)
 
 inline std::string rc_intern_hex(uint64_t n)
 {
-    stringstream ss;
+    std::stringstream ss;
     ss << hex << n;
     return ss.str();
 }
@@ -616,7 +616,7 @@ inline std::string rc_intern_hex(uint64_t n)
 inline double rc_intern_hexInt(std::string n)
 {
     uint64_t x;
-    stringstream ss;
+    std::stringstream ss;
     ss << hex << n;
     ss >> x;
     return (double)x;

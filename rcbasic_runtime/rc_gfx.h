@@ -27,6 +27,7 @@
 #include <box2d/box2d.h>
 #include "rc_sprite2D.h"
 #include "rc_spritelib.h"
+#include "rc_tilelib.h"
 #include <irrtheora.h>
 
 using namespace irr;
@@ -1019,9 +1020,10 @@ int rc_canvasOpen3D(int vx, int vy, int vw, int vh, int mode)
 	return rc_canvasOpen(vw, vh, vx, vy, vw, vh, mode, RC_CANVAS_TYPE_3D);
 }
 
-int rc_canvasOpenSpriteLayer(int w, int h, int vx, int vy, int vw, int vh)
+int rc_canvasOpenSpriteLayer(int vx, int vy, int vw, int vh)
 {
-	return rc_canvasOpen(w, h, vx, vy, vw, vh, 1, RC_CANVAS_TYPE_SPRITE);
+	//sprite layers are basically infinite since you are just placing objects in the world
+	return rc_canvasOpen(vw, vh, vx, vy, vw, vh, 1, RC_CANVAS_TYPE_SPRITE);
 }
 
 void rc_setCanvasPhysics2D(int canvas_id, bool flag)
@@ -2998,6 +3000,28 @@ int rc_canvasClip(int x, int y, int w, int h)
 
 
 
+void rc_preUpdate()
+{
+	//3D World Update
+	rc_physics3D.DeltaTime = device->getTimer()->getTime() - rc_physics3D.TimeStamp;
+	rc_physics3D.TimeStamp = device->getTimer()->getTime();
+	rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, rc_physics3D.fixedTimeStep);
+
+	for(int i = 0; i < rc_canvas.size(); i++)
+	{
+		if(rc_canvas[i].type != RC_CANVAS_TYPE_SPRITE)
+			continue;
+
+		float step = rc_canvas[i].physics2D.timeStep;
+		int32 velocityIterations = rc_canvas[i].physics2D.velocityIterations;
+		int32 positionIterations = rc_canvas[i].physics2D.positionIterations;
+
+		if(rc_canvas[i].physics2D.enabled)
+			rc_canvas[i].physics2D.world->Step(step, velocityIterations, positionIterations);
+	}
+
+	hasPreUpdated = true;
+}
 
 bool rc_update()
 {
@@ -3348,23 +3372,34 @@ bool rc_update()
 
         irr::core::vector2d<irr::f32> screenSize( (irr::f32) rc_canvas[0].dimension.Width, (irr::f32) rc_canvas[0].dimension.Height );
 
-        double frame_current_time = ((double)SDL_GetTicks())/1000.0;
+        Uint32 current_time_ms = SDL_GetTicks();
+        double frame_current_time = ((double)current_time_ms)/1000.0;
 
         for(int i = 0; i < rc_transition_actor.size();)
 		{
-			if((frame_current_time - rc_actor[i].transition_start_time) >= rc_actor[i].transition_time)
+			int t_actor = rc_transition_actor[i];
+
+			if((frame_current_time - rc_actor[t_actor].transition_start_time) >= rc_actor[t_actor].transition_time)
 			{
-				irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[i].mesh_node;
+				irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[t_actor].mesh_node;
 				node->setTransitionTime(0);
 				node->setJointMode(irr::scene::EJUOR_NONE);
-				rc_actor[i].transition = false;
-				rc_actor[i].transition_time = 0;
-				rc_actor[i].transition_start_time = 0;
-				rc_transition_actor.erase(i);
+				rc_actor[t_actor].transition = false;
+				rc_actor[t_actor].transition_time = 0;
+				rc_actor[t_actor].transition_start_time = 0;
+				rc_transition_actor.erase(t_actor);
+
+				rc_actor[t_actor].animation[0].start_frame = (int)rc_actor[t_actor].transition_frame;
+				rc_actor[t_actor].animation[0].end_frame = (int)rc_actor[t_actor].transition_frame;
+				rc_actor[t_actor].animation[0].fps = 0;
+				rc_actor[t_actor].current_animation_loop = 0;
+				rc_actor[t_actor].isPlaying = true;
+				rc_actor[t_actor].current_animation = 0;
 			}
 			else
 			{
-				irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[i].mesh_node;
+				//std::cout << "Animate dammit" << std::endl;
+				irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[t_actor].mesh_node;
 				node->animateJoints();
 				i++;
 			}
@@ -3373,9 +3408,12 @@ bool rc_update()
 
         VideoDriver->beginScene(true, true);
 
-        rc_physics3D.DeltaTime = device->getTimer()->getTime() - rc_physics3D.TimeStamp;
-		rc_physics3D.TimeStamp = device->getTimer()->getTime();
-        rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, rc_physics3D.fixedTimeStep);
+        if(!hasPreUpdated)
+        {
+        	rc_physics3D.DeltaTime = device->getTimer()->getTime() - rc_physics3D.TimeStamp;
+			rc_physics3D.TimeStamp = device->getTimer()->getTime();
+			rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, rc_physics3D.fixedTimeStep);
+        }
 
         for(int i = 0; i < rc_canvas.size(); i++)
         {
@@ -3422,7 +3460,11 @@ bool rc_update()
                 //std::cout << "draw canvas[" << canvas_id << "]" << std::endl;
 
                 if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_SPRITE)
+				{
+
+					src = irr::core::rect<s32>( irr::core::vector2d<s32>(0, 0), rc_canvas[canvas_id].viewport.dimension); //sprite layers will just offset the sprites in drawSprites()
 					drawSprites(canvas_id);
+				}
 
                 draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
 
@@ -3445,6 +3487,8 @@ bool rc_update()
 
 		rc_setActiveCanvas(rc_active_canvas);
     }
+
+    hasPreUpdated = false; //Will be set to true if PreUpdate() is called
 
     #ifdef RC_WEB
 	   emscripten_sleep(0);

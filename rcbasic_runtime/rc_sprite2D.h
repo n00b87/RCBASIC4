@@ -51,6 +51,7 @@ struct rc_sprite2D_obj
 	int num_animation_loops;
 	int current_animation_loop;
 	bool isPlaying;
+	irr::core::array<int> deleted_sprites;
 	irr::core::array<rc_sprite2D_animation_obj> animation;
 
 	int parent_canvas = -1;
