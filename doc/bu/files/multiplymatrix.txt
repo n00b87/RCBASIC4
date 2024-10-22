@@ -1,4 +1,0 @@
-#title MultiplyMatrix [RCBasic Doc]
-#header function MultiplyMatrix(mA, mB, mC)
-
-

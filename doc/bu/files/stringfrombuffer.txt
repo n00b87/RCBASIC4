@@ -1,4 +1,0 @@
-#title StringFromBuffer$ [RCBasic Doc]
-#header function StringFromBuffer$(ByRef buffer, buffer_size)
-
-

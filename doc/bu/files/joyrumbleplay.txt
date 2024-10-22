@@ -1,4 +1,0 @@
-#title JoyRumblePlay [RCBasic Doc]
-#header sub JoyRumblePlay(joy_num, strength, duration)
-
-

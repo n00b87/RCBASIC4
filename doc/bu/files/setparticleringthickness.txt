@@ -1,4 +1,0 @@
-#title setParticleRingThickness [RCBasic Doc]
-#header sub  setParticleRingThickness( actor,  ringThickness)
-
-

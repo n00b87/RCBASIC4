@@ -1,8 +1,0 @@
-#title setSlideSoftnessLimAng [RCBasic Doc]
-#header sub  setSlideSoftnessLimAng( constraint_id,  n)
-
-Sets the softness parameter for the angular limits of the constraint. This parameter affects how "soft" or "rigid" the constraint behaves when the connected actors reach their angular rotational limits around the slider's axis of rotation.
-
-The softness parameter defines how compliant or stiff the constraint behaves when the motion approaches a limit. A higher softness makes the constraint more flexible, allowing for smoother motion near the limit. A lower softness makes the limit response more rigid and immediate.
-
-#ref GetSlideSoftnessLimAng

@@ -1,4 +1,0 @@
-#title StringArrayDim [RCBasic Doc]
-#header function StringArrayDim(Byref id$)
-
-

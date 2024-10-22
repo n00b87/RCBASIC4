@@ -1,4 +1,0 @@
-#title Sign [RCBasic Doc]
-#header function Sign(n)
-
-

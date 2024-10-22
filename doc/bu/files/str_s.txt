@@ -1,4 +1,0 @@
-#title Str_S$ [RCBasic Doc]
-#header function Str_S$(n)
-
-

@@ -1,4 +1,0 @@
-#title Poly [RCBasic Doc]
-#header sub Poly(n, byref x, byref y)
-
-

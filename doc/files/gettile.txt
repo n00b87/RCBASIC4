@@ -1,0 +1,6 @@
+#title GetTile [RCBasic Doc]
+#header Function GetTile(tilemap, x, y)
+
+Returns the tile at a specified location on a tilemap
+
+Note: (x, y) is a tile position, not an actual coordinate on the map

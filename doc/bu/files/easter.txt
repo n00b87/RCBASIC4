@@ -1,4 +1,0 @@
-#title Easter$ [RCBasic Doc]
-#header function Easter$(year)
-
-Returns easter of the year passed to it.

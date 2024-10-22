@@ -1,4 +1,0 @@
-#title getParticleBox [RCBasic Doc]
-#header sub  getParticleBox( actor, ByRef min_x, ByRef min_y, ByRef min_z, ByRef max_x, ByRef max_y, ByRef max_z)
-
-

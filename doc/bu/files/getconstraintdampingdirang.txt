@@ -1,4 +1,0 @@
-#title getConstraintDampingDirAng [RCBasic Doc]
-#header function  getConstraintDampingDirAng( constraint_id)
-
-

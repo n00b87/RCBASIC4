@@ -1,4 +1,0 @@
-#title GetVideoStats [RCBasic Doc]
-#header sub GetVideoStats(vFile$, byref vLen, byref vfps, byref frame_w, byref frame_h)
-
-

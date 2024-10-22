@@ -1,4 +1,0 @@
-#title SetActorMD2AnimationByName [RCBasic Doc]
-#header sub SetActorMD2AnimationByName( actor, anim_name$ )
-
-

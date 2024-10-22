@@ -1,4 +1,0 @@
-#title WindowIsMaximized [RCBasic Doc]
-#header function WindowIsMaximized()
-
-

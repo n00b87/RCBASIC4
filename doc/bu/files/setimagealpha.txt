@@ -1,4 +1,0 @@
-#title SetImageAlpha [RCBasic Doc]
-#header sub SetImageAlpha(slot, a)
-
-

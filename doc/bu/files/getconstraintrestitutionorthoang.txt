@@ -1,4 +1,0 @@
-#title getConstraintRestitutionOrthoAng [RCBasic Doc]
-#header function  getConstraintRestitutionOrthoAng( constraint_id)
-
-

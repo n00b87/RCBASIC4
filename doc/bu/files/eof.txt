@@ -1,4 +1,0 @@
-#title EOF [RCBasic Doc]
-#header function EOF(stream)
-
-Returns true when end of file is reached

@@ -1,6 +1,0 @@
-#title getSlideSoftnessOrthoAng [RCBasic Doc]
-#header function  getSlideSoftnessOrthoAng( constraint_id)
-
-Returns the softness parameter for the orthogonal angular limits of the constraint. This parameter controls how "soft" or "rigid" the constraint behaves when angular rotation is limited along directions orthogonal (perpendicular) to the primary axis of motion.
-
-The softness parameter defines how compliant (soft) or stiff (rigid) the constraint behaves when the bodies approach their angular or linear limits. A higher softness value makes the limit more flexible, allowing for gradual motion, while a lower value makes the limit more rigid and restrictive.

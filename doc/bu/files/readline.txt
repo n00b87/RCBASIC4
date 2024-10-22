@@ -1,4 +1,0 @@
-#title ReadLine$ [RCBasic Doc]
-#header function ReadLine$(stream)
-
-

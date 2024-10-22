@@ -1,4 +1,0 @@
-#title LoadSound [RCBasic Doc]
-#header function LoadSound(snd_file$)
-
-

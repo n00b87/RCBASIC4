@@ -1,4 +1,0 @@
-#title GetVideoPosition [RCBasic Doc]
-#header function GetVideoPosition()
-
-

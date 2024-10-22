@@ -1,4 +1,0 @@
-#title setConstraintDampingDirAng [RCBasic Doc]
-#header sub  setConstraintDampingDirAng( constraint_id,  n)
-
-

@@ -1,4 +1,0 @@
-#title Dir$ [RCBasic Doc]
-#header function Dir$()
-
-Returns the current working directory

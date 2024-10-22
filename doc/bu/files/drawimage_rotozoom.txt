@@ -1,4 +1,0 @@
-#title DrawImage_Rotozoom [RCBasic Doc]
-#header sub DrawImage_Rotozoom(slot, x, y, angle, zx, zy)
-
- Draws an image to the current canvas rotated and scaled

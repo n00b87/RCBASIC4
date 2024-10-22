@@ -1,4 +1,0 @@
-#title getParticleMinStartSize [RCBasic Doc]
-#header sub  getParticleMinStartSize( actor, ByRef w, ByRef h)
-
-

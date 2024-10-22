@@ -1,4 +1,0 @@
-#title MouseY [RCBasic Doc]
-#header function MouseY()
-
-

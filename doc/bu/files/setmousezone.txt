@@ -1,4 +1,0 @@
-#title SetMouseZone [RCBasic Doc]
-#header sub SetMouseZone(x, y, w, h)
-
-

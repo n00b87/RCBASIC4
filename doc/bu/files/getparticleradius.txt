@@ -1,4 +1,0 @@
-#title getParticleRadius [RCBasic Doc]
-#header function  getParticleRadius( actor)
-
-

@@ -1,6 +1,0 @@
-#title setConstraintFrames [RCBasic Doc]
-#header sub  setConstraintFrames( constraint_id,  frameA_matrix,  frameB_matrix)
-
-Defines the reference frames for the constraint. This function establishes how the constraint is oriented in the local coordinate systems of the connected actors.
-
-The reference frames define the orientation and position of the constraint relative to each of the connected actors. Each actor can have its own local coordinate system, and the frames help establish how the constraint interacts with these systems.

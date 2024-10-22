@@ -1,4 +1,0 @@
-#title WindowIsMinimized [RCBasic Doc]
-#header function WindowIsMinimized()
-
-

@@ -1,4 +1,0 @@
-#title GetLightSpecularColor [RCBasic Doc]
-#header function GetLightSpecularColor( actor )
-
-Returns the specular color of a light

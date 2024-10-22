@@ -1,4 +1,0 @@
-#title materialIsGouraudShaded [RCBasic Doc]
-#header function  materialIsGouraudShaded( material_id)
-
-

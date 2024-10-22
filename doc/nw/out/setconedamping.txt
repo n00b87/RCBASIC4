@@ -1,4 +1,0 @@
-#title setConeDamping [RCBasic Doc]
-#header sub  setConeDamping( constraint_id,  damping)
-
-Returns the damping factor applied to the constraint. Damping is used to reduce the amount of oscillation or unwanted movement (such as excessive rotation or swinging) around the constrained actor's axes.

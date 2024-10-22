@@ -1,4 +1,0 @@
-#title SetActorAnimationSpeed [RCBasic Doc]
-#header sub SetActorAnimationSpeed( actor, speed )
-
-

@@ -1,4 +1,0 @@
-#title GetTerrainCenter [RCBasic Doc]
-#header sub GetTerrainCenter( actor, ByRef x, ByRef y, ByRef z )
-
-

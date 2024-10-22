@@ -1,4 +1,0 @@
-#title ScalarMatrixRows [RCBasic Doc]
-#header function ScalarMatrixRows(mA, mB, r, num_rows, s_value)
-
-

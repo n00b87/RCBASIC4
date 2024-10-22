@@ -1,5 +1,0 @@
-#title CreateStack_S [RCBasic Doc]
-#header function CreateStack_S()
-
-Returns a new string stack
-

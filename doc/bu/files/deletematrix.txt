@@ -1,4 +1,0 @@
-#title DeleteMatrix [RCBasic Doc]
-#header Sub DeleteMatrix(mA)
-
-Frees a matrix from memory

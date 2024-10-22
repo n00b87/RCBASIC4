@@ -1,4 +1,0 @@
-#title MoveFile [RCBasic Doc]
-#header function MoveFile(src$, dst$)
-
-

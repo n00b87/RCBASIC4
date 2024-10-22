@@ -1,4 +1,0 @@
-#title Radians [RCBasic Doc]
-#header function Radians(d)
-
-

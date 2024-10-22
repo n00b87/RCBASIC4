@@ -1,4 +1,0 @@
-#title SetLightInnerCone [RCBasic Doc]
-#header sub SetLightInnerCone( actor, angle )
-
-

@@ -1,4 +1,0 @@
-#title TCP_SocketReady [RCBasic Doc]
-#header function TCP_SocketReady(socket)
-
-

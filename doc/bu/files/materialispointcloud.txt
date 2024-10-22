@@ -1,4 +1,0 @@
-#title materialIsPointCloud [RCBasic Doc]
-#header function  materialIsPointCloud( material_id)
-
-

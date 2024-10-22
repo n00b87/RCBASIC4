@@ -1,8 +1,0 @@
-#title GetActorRotationQ [RCBasic Doc]
-#header sub GetActorRotationQ( actor,  ByRef  x,  ByRef  y,  ByRef  z,  ByRef  w)
-
-Gets the actors rotation as a quaternion.
-
-Note: This is useful for calculations that require quaternion but most developers should just use GetActorRotation()
-
-#ref GetActorRotation SetActorRotation

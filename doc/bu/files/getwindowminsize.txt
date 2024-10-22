@@ -1,4 +1,0 @@
-#title GetWindowMinSize [RCBasic Doc]
-#header sub GetWindowMinSize( byref w, byref h)
-
-

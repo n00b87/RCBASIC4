@@ -1,4 +1,0 @@
-#title RaiseWindow [RCBasic Doc]
-#header sub RaiseWindow( )
-
-

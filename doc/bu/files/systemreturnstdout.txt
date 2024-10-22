@@ -1,4 +1,0 @@
-#title SystemReturnStdOut$ [RCBasic Doc]
-#header function SystemReturnStdOut$(cmd$)
-
-

@@ -1,4 +1,0 @@
-#title setMaterialSpecularColor [RCBasic Doc]
-#header sub  setMaterialSpecularColor( material_id,  color)
-
-

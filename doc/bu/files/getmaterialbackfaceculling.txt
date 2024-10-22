@@ -1,6 +1,0 @@
-#title getMaterialBackfaceCulling [RCBasic Doc]
-#header function  getMaterialBackfaceCulling( material_id)
-
-Returns true if backface culling is enabled for a material
-
-#ref SetMaterialBackfaceCulling

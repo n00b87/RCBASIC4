@@ -1,4 +1,0 @@
-#title WindowIsVisible [RCBasic Doc]
-#header function WindowIsVisible()
-
-

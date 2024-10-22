@@ -1,4 +1,0 @@
-#title setConstraintLowerAngLimit [RCBasic Doc]
-#header sub  setConstraintLowerAngLimit( constraint_id,  n)
-
-

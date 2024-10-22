@@ -1,4 +1,0 @@
-#title setConstraintFixThresh [RCBasic Doc]
-#header sub  setConstraintFixThresh( constraint_id,  fixThresh)
-
-

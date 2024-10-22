@@ -1,4 +1,0 @@
-#title Timer [RCBasic Doc]
-#header function Timer()
-
-

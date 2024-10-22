@@ -1,4 +1,0 @@
-#title getConstraintAppliedImpulse [RCBasic Doc]
-#header function  getConstraintAppliedImpulse( constraint_id)
-
-

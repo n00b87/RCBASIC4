@@ -1,6 +1,0 @@
-#title CopyMatrixColumns [RCBasic Doc]
-#header function CopyMatrixColumns(mA, mB, c, num_cols)
-
-Copies the specified matrix columns from matrix mA to matrix mB.
-
-Note: Matrix mB will be redimensioned to the size of the copied columns.

@@ -1,4 +1,0 @@
-#title Chr$ [RCBasic Doc]
-#header function Chr$(n)
-
-Returns the character with the matching ASCII value n.

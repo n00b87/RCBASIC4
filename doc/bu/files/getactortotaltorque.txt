@@ -1,6 +1,0 @@
-#title GetActorTotalTorque [RCBasic Doc]
-#header sub GetActorTotalTorque( actor,  ByRef  x,  ByRef  y,  ByRef  z)
-
-Gets the total net torque currently acting on an actor. Torque represents the rotational equivalent of force, describing how different forces applied to the actor cause it to rotate. The total torque is the sum of all external torques acting on the actor, which determine how the actor will rotate or change its angular velocity.
-
-#ref GetTotalForces

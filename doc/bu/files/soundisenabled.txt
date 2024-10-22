@@ -1,4 +1,0 @@
-#title SoundIsEnabled [RCBasic Doc]
-#header function SoundIsEnabled()
-
-

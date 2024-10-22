@@ -1,4 +1,0 @@
-#title CInt32 [RCBasic Doc]
-#header function CInt32(i)
-
-Returns a 32-bit signed integer.

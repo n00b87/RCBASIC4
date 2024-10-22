@@ -1,4 +1,0 @@
-#title materialIsLit [RCBasic Doc]
-#header function  materialIsLit( material_id)
-
-

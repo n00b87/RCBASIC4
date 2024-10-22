@@ -1,6 +1,0 @@
-#title ClearStack_S [RCBasic Doc]
-#header sub ClearStack_S( str_stack )
-
-Removes all elements from the stack
-
-#ref ClearStack_N

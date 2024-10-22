@@ -1,4 +1,0 @@
-#title IncrementMatrixRows [RCBasic Doc]
-#header sub IncrementMatrixRows(mA, mB, r, num_rows, value)
-
-

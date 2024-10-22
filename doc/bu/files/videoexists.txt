@@ -1,4 +1,0 @@
-#title VideoExists [RCBasic Doc]
-#header function VideoExists()
-
-

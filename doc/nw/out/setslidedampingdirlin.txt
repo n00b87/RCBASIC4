@@ -1,5 +1,0 @@
-#title setSlideDampingDirLin [RCBasic Doc]
-#header sub  setSlideDampingDirLin( constraint_id,  n)
-
-Sets the linear directional damping value for a constraint. This value applies to the linear (translational) motion of an object along the constraint's axis of movement.
-

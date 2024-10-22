@@ -1,6 +1,0 @@
-#title DrawImage_BlitEx [RCBasic Doc]
-#header sub DrawImage_BlitEx(slot, x, y, w, h, src_x, src_y, src_w, src_h)
-
-Draws a portion of an image to the current canvas scaled to a given width and height.
-
-#ref DrawImage_Blit

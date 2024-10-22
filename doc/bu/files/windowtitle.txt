@@ -1,4 +1,0 @@
-#title WindowTitle$ [RCBasic Doc]
-#header function WindowTitle$( )
-
-

@@ -1,4 +1,0 @@
-#title setParticleMinLife [RCBasic Doc]
-#header sub  setParticleMinLife( actor,  minLife)
-
-

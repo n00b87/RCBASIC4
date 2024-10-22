@@ -1,4 +1,0 @@
-#title LoadImage [RCBasic Doc]
-#header function LoadImage( img$ )
-
-

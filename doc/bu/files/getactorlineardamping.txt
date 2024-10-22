@@ -1,6 +1,0 @@
-#title GetActorLinearDamping [RCBasic Doc]
-#header function GetActorLinearDamping( actor)
-
-Return's an actor's linear damping
-
-#ref SetActorDamping GetActorAngularDamping

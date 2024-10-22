@@ -1,7 +1,0 @@
-#title createPointConstraintEx [RCBasic Doc]
-#header function  createPointConstraintEx( actorA,  actorB,  pxA,  pyA,  pzA,  pxB,  pyB,  pzB)
-
-A type of constraint that allows two actors (or an actor and the world) to move freely relative to each other while ensuring that one point on each body remains coincident. Essentially, it ensures that the two actors stay connected at a single point, but without restricting their relative rotations. This kind of constraint is useful when you need a connection that allows full rotation in all directions, such as a pendulum, ball joint, or even some suspension systems.
-
-#ref CreatePointConstraint
-

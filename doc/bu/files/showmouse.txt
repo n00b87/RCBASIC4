@@ -1,4 +1,0 @@
-#title ShowMouse [RCBasic Doc]
-#header sub ShowMouse()
-
-

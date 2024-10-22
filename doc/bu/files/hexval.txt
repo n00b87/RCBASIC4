@@ -1,4 +1,0 @@
-#title HexVal [RCBasic Doc]
-#header function HexVal(n$)
-
-

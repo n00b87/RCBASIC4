@@ -1,4 +1,0 @@
-#title setWaterWindDirection [RCBasic Doc]
-#header sub setWaterWindDirection( actor,   x,   z)
-
-

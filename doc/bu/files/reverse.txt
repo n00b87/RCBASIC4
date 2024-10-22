@@ -1,4 +1,0 @@
-#title Reverse$ [RCBasic Doc]
-#header function Reverse$(src$)
-
-

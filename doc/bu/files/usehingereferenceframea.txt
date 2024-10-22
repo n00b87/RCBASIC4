@@ -1,4 +1,0 @@
-#title useHingeReferenceFrameA [RCBasic Doc]
-#header sub  useHingeReferenceFrameA( constraint_id,  flag)
-
-

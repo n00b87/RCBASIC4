@@ -1,7 +1,0 @@
-#title CopyMatrixRows [RCBasic Doc]
-#header function CopyMatrixRows(mA, mB, r, num_rows)
-
-Copies the specified matrix rows from matrix mA to matrix mB.
-
-Note: Matrix mB will be redimensioned to the size of the copied rows.
-

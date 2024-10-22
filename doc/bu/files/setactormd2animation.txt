@@ -1,4 +1,0 @@
-#title SetActorMD2Animation [RCBasic Doc]
-#header sub SetActorMD2Animation( actor, anim )
-
-

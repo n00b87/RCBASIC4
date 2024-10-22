@@ -1,6 +1,0 @@
-#title AugmentMatrix [RCBasic Doc]
-#header function AugmentMatrix(mA, mB, mC)
-
-Appends the columns of matrix mB onto matrix mA and stores the result in mC.
-
-NOTE: Must mA and mB must be the same number of rows. 

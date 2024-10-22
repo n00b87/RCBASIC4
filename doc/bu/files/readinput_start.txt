@@ -1,4 +1,0 @@
-#title ReadInput_Start [RCBasic Doc]
-#header sub ReadInput_Start()
-
-

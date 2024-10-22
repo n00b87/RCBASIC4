@@ -1,4 +1,0 @@
-#title getConstraintLinearPos [RCBasic Doc]
-#header function  getConstraintLinearPos( constraint_id)
-
-

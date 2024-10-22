@@ -1,6 +1,0 @@
-#title CloseCanvas [RCBasic Doc]
-#header Sub CloseCanvas(c_num)
-
-Closes a canvas
-
-#ref OpenCanvas

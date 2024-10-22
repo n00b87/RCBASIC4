@@ -1,4 +1,0 @@
-#title setMaterialBlendFactor [RCBasic Doc]
-#header sub  setMaterialBlendFactor( material_id,  bf)
-
-

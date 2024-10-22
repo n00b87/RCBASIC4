@@ -1,4 +1,0 @@
-#title GetVideoDrawRect [RCBasic Doc]
-#header sub GetVideoDrawRect(byref x, byref y, byref w, byref h)
-
-

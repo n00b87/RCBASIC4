@@ -1,4 +1,0 @@
-#title Ucase$ [RCBasic Doc]
-#header function Ucase$(src$)
-
-

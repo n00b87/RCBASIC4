@@ -1,4 +1,0 @@
-#title Ellipse [RCBasic Doc]
-#header sub Ellipse(x,y,rx,ry)
-
-Draws an ellipse on the current canvas.

@@ -1,4 +1,0 @@
-#title PauseVideo [RCBasic Doc]
-#header sub PauseVideo()
-
-

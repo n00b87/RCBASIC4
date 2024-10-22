@@ -1,4 +1,0 @@
-#title useConstraintFrameOffset [RCBasic Doc]
-#header sub  useConstraintFrameOffset( constraint_id,  flag)
-
-

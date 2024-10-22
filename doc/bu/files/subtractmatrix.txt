@@ -1,4 +1,0 @@
-#title SubtractMatrix [RCBasic Doc]
-#header function SubtractMatrix(mA, mB, mC)
-
-

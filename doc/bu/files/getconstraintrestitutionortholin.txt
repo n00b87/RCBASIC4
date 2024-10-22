@@ -1,4 +1,0 @@
-#title getConstraintRestitutionOrthoLin [RCBasic Doc]
-#header function  getConstraintRestitutionOrthoLin( constraint_id)
-
-

@@ -1,4 +1,0 @@
-#title ReadByte [RCBasic Doc]
-#header function ReadByte(stream)
-
-

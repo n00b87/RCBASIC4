@@ -1,0 +1,15 @@
+#title DrawTileMap [RCBasic Doc]
+#header Sub DrawTileMap(tilemap, x, y, w, h, offset_x, offset_y)
+
+Draws a tile map
+
+Note: Can only be drawn on a regular 2D canvas
+
+Parameters:
+#list ul
+#li tilemap - the tilemap to draw
+#li x, y - Where to draw the map on the active canvas
+#li w, h - The size of the tilemap viewport
+#li offset_x, offset_y - The location in the tilemap to start drawing from
+#/list
+

@@ -1,4 +1,0 @@
-#title SetMatrixTranslation [RCBasic Doc]
-#header sub SetMatrixTranslation( mA, x, y, z )
-
-

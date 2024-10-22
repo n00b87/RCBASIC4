@@ -1,6 +1,0 @@
-#title CofactorMatrix [RCBasic Doc]
-#header sub CofactorMatrix(mA, r, c)
-
-Sets matrix mA to a cofactor. This will change the original matrix so it is recommended to copy the matrix if you still need the original matrix.
-
-#ref CopyMatrix

@@ -1,4 +1,0 @@
-#title stopParticleEmitter [RCBasic Doc]
-#header sub  stopParticleEmitter( actor)
-
-

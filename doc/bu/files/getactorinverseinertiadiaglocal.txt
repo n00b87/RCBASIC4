@@ -1,4 +1,0 @@
-#title getActorInverseInertiaDiagLocal [RCBasic Doc]
-#header sub getActorInverseInertiaDiagLocal( actor,  ByRef  x,  ByRef  y,  ByRef  z)
-
-Gets the inverse of the inertia tensor's diagonal components in the local space. This is used to compute how the actor reacts to rotational forces (torques) applied to it.

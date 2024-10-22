@@ -1,4 +1,0 @@
-#title getParticleMaxStartColor [RCBasic Doc]
-#header function  getParticleMaxStartColor( actor)
-
-

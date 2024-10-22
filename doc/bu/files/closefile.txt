@@ -1,6 +1,0 @@
-#title CloseFile [RCBasic Doc]
-#header sub CloseFile( stream )
-
-Closes a file
-
-#ref OpenFile

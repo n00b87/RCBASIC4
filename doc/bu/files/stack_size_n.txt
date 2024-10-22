@@ -1,4 +1,0 @@
-#title Stack_Size_N [RCBasic Doc]
-#header function Stack_Size_N( num_stack )
-
-

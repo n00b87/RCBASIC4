@@ -1,4 +1,0 @@
-#title DirFirst$ [RCBasic Doc]
-#header function DirFirst$()
-
-Resets the directory list poll and returns the first item in the current working directory

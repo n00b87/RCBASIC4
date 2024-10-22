@@ -1,4 +1,0 @@
-#title TCP_AcceptSocket [RCBasic Doc]
-#header function TCP_AcceptSocket(server, client)
-
-

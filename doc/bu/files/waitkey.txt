@@ -1,4 +1,0 @@
-#title WaitKey [RCBasic Doc]
-#header function WaitKey()
-
-

@@ -1,4 +1,0 @@
-#title getParticleMaxLife [RCBasic Doc]
-#header function  getParticleMaxLife( actor)
-
-

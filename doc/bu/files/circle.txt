@@ -1,4 +1,0 @@
-#title Circle [RCBasic Doc]
-#header sub Circle(x,y,radius)
-
-Draws a circle on the current canvas.

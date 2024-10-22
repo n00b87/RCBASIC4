@@ -1,4 +1,0 @@
-#title PointInTri [RCBasic Doc]
-#header function PointInTri(x, y, x1, y1, x2, y2, x3, y3)
-
-

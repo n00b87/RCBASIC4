@@ -1,4 +1,0 @@
-#title SetCameraFarValue [RCBasic Doc]
-#header sub SetCameraFarValue( zf )
-
-

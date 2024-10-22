@@ -1,4 +1,0 @@
-#title GlobalMouseY [RCBasic Doc]
-#header function GlobalMouseY()
-
-

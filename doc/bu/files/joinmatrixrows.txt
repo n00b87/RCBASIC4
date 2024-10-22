@@ -1,4 +1,0 @@
-#title JoinMatrixRows [RCBasic Doc]
-#header sub JoinMatrixRows(mA, mB, mC)
-
-

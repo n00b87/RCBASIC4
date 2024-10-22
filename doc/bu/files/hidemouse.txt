@@ -1,4 +1,0 @@
-#title HideMouse [RCBasic Doc]
-#header sub HideMouse()
-
-

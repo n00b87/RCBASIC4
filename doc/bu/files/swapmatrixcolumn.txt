@@ -1,4 +1,0 @@
-#title SwapMatrixColumn [RCBasic Doc]
-#header function SwapMatrixColumn(mA, C1, C2)
-
-

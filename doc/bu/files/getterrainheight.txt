@@ -1,4 +1,0 @@
-#title GetTerrainHeight [RCBasic Doc]
-#header function GetTerrainHeight( actor, patchX, patchZ )
-
-

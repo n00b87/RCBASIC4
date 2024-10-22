@@ -1,4 +1,0 @@
-#title SetClearColor [RCBasic Doc]
-#header sub SetClearColor(c)
-
-
