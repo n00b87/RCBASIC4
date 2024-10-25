@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+table, th, td { border: 1px solid black; } th, td { padding: 10px; }
+body { background-color: #064066; color: #FFFFFF; }
+a { color: #40bfb8; }
+a::before {
+  content: "---";
+  font-family: monospace, monospace;
+  display: inline-block;
+  margin-right: 6px;
+  color: #064066;
+}
+
+.rc_number { color: #0b9898; }
+.rc_string { color: #dd4040; }
+.rc_keyword { color: #6084a8; font-weight: bold; }
+.rc_comment { color: #6e716e; }
+#rc_code { font-family: Consolas,"courier new"; background-color: #2d3335; padding: 2px; font-size: 105%; }
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "[+]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  color: #40bfb8;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.box {
+	font-weight: bold;
+	color: #40bfb8;
+	text-decoration: underline;
+}
+
+.check-box::before {
+  content: "[-]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  //color: dodgerblue;
+  color: #40bfb8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+		</style>
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>ApplyActorDamping [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h1>sub ApplyActorDamping( actor,   timeStep) </h1></p>
+		<p>
+		 Reduces the velocity of an actor over time, simulating the effect of friction or air resistance. 
+		</p>
+		<p>
+		 This function applies the linear and angular damping values set with the SetActorDamping() function. 
+		</p>
+		<p id="rc_code"><code>
+			init_damping&nbsp;=&nbsp;<span class="rc_keyword">False</span>&nbsp;<br>
+			SetActorDamping<b>(</b>actor,&nbsp;<span class="rc_number">0.1</span>,&nbsp;<span class="rc_number">0.5</span><b>)</b>&nbsp;<br>
+			ApplyActorCentralImpulse<b>(</b>actor,&nbsp;<span class="rc_number">300</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">True</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">If</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;init_damping&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ApplyActorDamping<b>(</b>actor,&nbsp;<span class="rc_number">5.0</span><b>)</b>&nbsp;<span class="rc_comment">'Will apply the damping effect for 5 seconds </span><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;init_damping&nbsp;=&nbsp;<span class="rc_keyword">True</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;Update<b>(</b><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+		</code></p>
+		<br><p>Related: 
+		<a href="setactordamping.html">setActorDamping</a>
+		<a href="getactorlineardamping.html">getActorLinearDamping</a>
+		<a href="getactorangulardamping.html">getActorAngularDamping</a>
+		</p>
+		<p>
+
+	</body>
+</html>

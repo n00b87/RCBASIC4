@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			table, th, td { border: 1px solid black; } th, td { padding: 10px; }
+			body { background-color: #064066; color: #FFFFFF; }
+			a { color: #40bfb8; }
+			a::before {
+			  content: "---";
+			  font-family: monospace, monospace;
+			  display: inline-block;
+			  margin-right: 6px;
+			  color: #064066;
+			}
+			
+			.rc_number { color: #800000; }
+			.rc_string { color: green; }
+			.rc_keyword { color: blue; font-weight: bold; }
+			.rc_comment { color: #0A0A0A; }
+			#rc_code { font-family: Consolas,"courier new"; background-color: #f1f1f1; padding: 2px; font-size: 105%; }
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "[+]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  color: #40bfb8;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.box {
+	font-weight: bold;
+	color: #40bfb8;
+	text-decoration: underline;
+}
+
+.check-box::before {
+  content: "[-]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  //color: dodgerblue;
+  color: #40bfb8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+		</style>
+		
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title> RCBasic </title>
+	</head>
+
+	<body>
+    
+<ul id="myUL">
+  <li><span class="box" >Getting Started</span>
+    <ul class="nested">
+      <li><a  href="intro.html" target="main">Introduction</a></li>
+      <li><a  href="license.html" target="main">License</a></li>
+      <li><a  href="setup.html" target="main">Setting Up</a></li>
+      <li><a  href="hello_world.html" target="main">Your First Program</a></li>
+    </ul>
+  </li>
+</ul>
+
+<a  href="var_data.html" target="main">Variables and Data Types</a><br>
+<a  href="arrays.html" target="main">Arrays</a><br>
+<a  href="udt.html" target="main">User Defined Types</a><br>
+<a  href="constants.html" target="main">Constants</a><br>
+<a  href="io.html" target="main">Input and Output</a><br>
+<a  href="conditions.html" target="main">Conditions</a><br>
+<a  href="loops.html" target="main">Loops</a><br>
+<a  href="func_sub.html" target="main">Functions</a><br>
+<a  href="scope.html" target="main">Scope</a><br>
+<a  href="comments.html" target="main">Comments</a><br>
+<a  href="graphics.html" target="main">Graphics</a><br>
+<a  href="sound.html" target="main">Sound</a><br>
+
+<ul id="myUL">
+  <li><span class="box" >Appendix</span>
+    <ul class="nested">
+      <li><a  href="keywords.html" target="main">Keywords</a></li>
+      <li><a  href="operators.html" target="main">Operators</a></li>
+      <li><a  href="escape_char.html" target="main">Escape Characters</a></li>
+      <li><a  href="key_codes.html" target="main">Key Codes</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+<script>
+var toggler = document.getElementsByClassName("box");
+var i;
+
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("check-box");
+  });
+}
+</script>
+
+    
+	</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+table, th, td { border: 1px solid black; } th, td { padding: 10px; }
+body { background-color: #064066; color: #FFFFFF; }
+a { color: #40bfb8; }
+a::before {
+  content: "---";
+  font-family: monospace, monospace;
+  display: inline-block;
+  margin-right: 6px;
+  color: #064066;
+}
+
+.rc_number { color: #0b9898; }
+.rc_string { color: #dd4040; }
+.rc_keyword { color: #6084a8; font-weight: bold; }
+.rc_comment { color: #6e716e; }
+#rc_code { font-family: Consolas,"courier new"; background-color: #2d3335; padding: 2px; font-size: 105%; }
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "[+]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  color: #40bfb8;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.box {
+	font-weight: bold;
+	color: #40bfb8;
+	text-decoration: underline;
+}
+
+.check-box::before {
+  content: "[-]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  //color: dodgerblue;
+  color: #40bfb8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+		</style>
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>setMaterialAntiAliasing [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h1>sub  setMaterialAntiAliasing( material_id,  aa) </h1></p>
+		<p>
+		 Sets the anti-aliasing mode for the material 
+		</p>
+		<p>
+		 Possible modes returned 
+		</p>
+		<ul>
+		<li>
+		AA_MODE_OFF=0, 
+		</li>
+		<li>
+		AA_MODE_SIMPLE=1, 
+		</li>
+		<li>
+		AA_MODE_QUALITY=3, 
+		</li>
+		<li>
+		AA_MODE_LINE_SMOOTH=4, 
+		</li>
+		<li>
+		AA_MODE_POINT_SMOOTH=8, 
+		</li>
+		<li>
+		AA_MODE_FULL_BASIC=15, 
+		</li>
+		<li>
+		AA_MODE_ALPHA_TO_COVERAGE=16 
+		</li>
+		</ul>
+		<br><p>Related: 
+		<a href="getmaterialantialiasing.html">GetMaterialAntiAliasing</a>
+		</p>
+		<p>
+
+	</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+table, th, td { border: 1px solid black; } th, td { padding: 10px; }
+body { background-color: #064066; color: #FFFFFF; }
+a { color: #40bfb8; }
+a::before {
+  content: "---";
+  font-family: monospace, monospace;
+  display: inline-block;
+  margin-right: 6px;
+  color: #064066;
+}
+
+.rc_number { color: #0b9898; }
+.rc_string { color: #dd4040; }
+.rc_keyword { color: #6084a8; font-weight: bold; }
+.rc_comment { color: #6e716e; }
+#rc_code { font-family: Consolas,"courier new"; background-color: #2d3335; padding: 2px; font-size: 105%; }
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "[+]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  color: #40bfb8;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.box {
+	font-weight: bold;
+	color: #40bfb8;
+	text-decoration: underline;
+}
+
+.check-box::before {
+  content: "[-]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  //color: dodgerblue;
+  color: #40bfb8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+		</style>
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>Poly [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h1>sub Poly(n, byref x, byref y) </h1></p>
+		<p>
+		 Draws a polygon 
+		</p>
+		<ul>
+		<li>
+		n - Number of points in the polygon 
+		</li>
+		<li>
+		x, y - Array where the points are stored 
+		</li>
+		</ul>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Dim</span>&nbsp;x<b>[</b><span class="rc_number">3</span><b>]</b>,&nbsp;y<b>[</b><span class="rc_number">3</span><b>]</b>&nbsp;<br>
+			x<b>[</b><span class="rc_number">0</span><b>]</b>&nbsp;=&nbsp;<span class="rc_number">50</span>&nbsp;:&nbsp;y<b>[</b><span class="rc_number">0</span><b>]</b>&nbsp;=&nbsp;<span class="rc_number">50</span>&nbsp;<br>
+			x<b>[</b><span class="rc_number">1</span><b>]</b>&nbsp;=&nbsp;<span class="rc_number">90</span>&nbsp;:&nbsp;y<b>[</b><span class="rc_number">1</span><b>]</b>&nbsp;=&nbsp;<span class="rc_number">90</span>&nbsp;<br>
+			x<b>[</b><span class="rc_number">2</span><b>]</b>&nbsp;=&nbsp;<span class="rc_number">10</span>&nbsp;:&nbsp;y<b>[</b><span class="rc_number">1</span><b>]</b>&nbsp;=&nbsp;<span class="rc_number">90</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Poly<b>(</b><span class="rc_number">3</span>,&nbsp;x,&nbsp;y<b>)</b>&nbsp;<span class="rc_comment">'Draws a triangle </span><br>
+		</code></p>
+		<p>
+
+	</body>
+</html>

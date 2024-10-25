@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+table, th, td { border: 1px solid black; } th, td { padding: 10px; }
+body { background-color: #064066; color: #FFFFFF; }
+a { color: #40bfb8; }
+a::before {
+  content: "---";
+  font-family: monospace, monospace;
+  display: inline-block;
+  margin-right: 6px;
+  color: #064066;
+}
+
+.rc_number { color: #0b9898; }
+.rc_string { color: #dd4040; }
+.rc_keyword { color: #6084a8; font-weight: bold; }
+.rc_comment { color: #6e716e; }
+#rc_code { font-family: Consolas,"courier new"; background-color: #2d3335; padding: 2px; font-size: 105%; }
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "[+]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  color: #40bfb8;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.box {
+	font-weight: bold;
+	color: #40bfb8;
+	text-decoration: underline;
+}
+
+.check-box::before {
+  content: "[-]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  //color: dodgerblue;
+  color: #40bfb8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+		</style>
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>RCBasic Sound [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h1>SOUND </h1></p>
+		<p>
+		 Loading sound and music is fairly straight forward. The big difference between sounds and music is that your program can only have one music track but you could have several sound tracks at once. 
+		</p>
+		<p>
+		 Lets first go over loading and playing sounds. 
+		</p>
+		<p id="rc_code"><code>
+			snd&nbsp;=&nbsp;LoadSound<b>(</b><span class="rc_string">"MySound.wav"</span><b>)</b>&nbsp;<span class="rc_comment">'Load a sound file </span><br>
+			PlaySound<b>(</b>snd,&nbsp;<span class="rc_number">1</span>,&nbsp;<span class="rc_number">3</span><b>)</b>&nbsp;<span class="rc_comment">'Play the sound loaded in snd on channel 1 for 3 loops </span><br>
+		</code></p>
+		<p>
+		 There is a lot you can do with sounds when playing them including simulating 3D positional audio. I highly encourage you to play around with the audio to find the right mix for your project. 
+		</p>
+		<p>
+		 There is only 1 music track that can be loaded at one time. Loading and playing music is pretty straight forward. 
+		</p>
+		<p id="rc_code"><code>
+			LoadMusic&nbsp;<b>(</b>&nbsp;<span class="rc_string">"MYMUSIC.MP3"</span>&nbsp;<b>)</b>&nbsp;<br>
+			PlayMusic&nbsp;<b>(</b>&nbsp;-<span class="rc_number">1</span>&nbsp;<b>)</b>&nbsp;<span class="rc_comment">'Setting the music loop to -1 will have it loop infinitely </span><br>
+		</code></p>
+		<p>
+		 Music is even simpler than sound. Generally all you will want to do is load a music track and set it to loop infinitely but you have a lot of control over how the music plays as well. 
+		</p>
+		<p>
+
+	</body>
+</html>

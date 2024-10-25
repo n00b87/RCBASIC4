@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+table, th, td { border: 1px solid black; } th, td { padding: 10px; }
+body { background-color: #064066; color: #FFFFFF; }
+a { color: #40bfb8; }
+a::before {
+  content: "---";
+  font-family: monospace, monospace;
+  display: inline-block;
+  margin-right: 6px;
+  color: #064066;
+}
+
+.rc_number { color: #0b9898; }
+.rc_string { color: #dd4040; }
+.rc_keyword { color: #6084a8; font-weight: bold; }
+.rc_comment { color: #6e716e; }
+#rc_code { font-family: Consolas,"courier new"; background-color: #2d3335; padding: 2px; font-size: 105%; }
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "[+]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  color: #40bfb8;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.box {
+	font-weight: bold;
+	color: #40bfb8;
+	text-decoration: underline;
+}
+
+.check-box::before {
+  content: "[-]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  //color: dodgerblue;
+  color: #40bfb8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+		</style>
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>ApplyActorImpulseLocal [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h1>sub ApplyActorImpulseLocal( actor,   x,   y,   z,   rel_x,   rel_y,   rel_z) </h1></p>
+		<p>
+		 Applies an impulse to an actor at a specific point. Unlike ApplyActorCentralImpulse(local/world), which applies impulse only at the center of mass (affecting linear velocity), this can generate both linear motion and rotation (torque), depending on where the force is applied relative to the center of mass. 
+		</p>
+		<ul>
+		<li>
+		x,y,z - direction of the impulse 
+		</li>
+		<li>
+		rel_x, rel_y, rel_z - position to apply the force to relative to the center of mass 
+		</li>
+		</ul>
+		<br><p>Related: 
+		<a href="applyactorimpulseworld.html">ApplyActorImpulseWorld</a>
+		<a href="applyactorforcelocal.html">ApplyActorForceLocal</a>
+		<a href="applyactorforceworld.html">ApplyActorForceWorld</a>
+		</p>
+		<p>
+
+	</body>
+</html>

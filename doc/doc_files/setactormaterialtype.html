@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+table, th, td { border: 1px solid black; } th, td { padding: 10px; }
+body { background-color: #064066; color: #FFFFFF; }
+a { color: #40bfb8; }
+a::before {
+  content: "---";
+  font-family: monospace, monospace;
+  display: inline-block;
+  margin-right: 6px;
+  color: #064066;
+}
+
+.rc_number { color: #0b9898; }
+.rc_string { color: #dd4040; }
+.rc_keyword { color: #6084a8; font-weight: bold; }
+.rc_comment { color: #6e716e; }
+#rc_code { font-family: Consolas,"courier new"; background-color: #2d3335; padding: 2px; font-size: 105%; }
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "[+]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  color: #40bfb8;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.box {
+	font-weight: bold;
+	color: #40bfb8;
+	text-decoration: underline;
+}
+
+.check-box::before {
+  content: "[-]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  //color: dodgerblue;
+  color: #40bfb8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+		</style>
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>setActorMaterialType [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h1>sub  setActorMaterialType( actor,  material_type) </h1></p>
+		<p>
+		 Sets the material type of an actor material 
+		</p>
+		<p>
+		 Note: This will set material 0. If your actor has more than one material you need to get a reference to the actor material with GetActorMaterial() to set them. 
+		</p>
+		<p>
+		 Possible material types 
+		</p>
+		<ul>
+		<li>
+		MATERIAL_TYPE_SOLID  
+		</li>
+		<li>
+		MATERIAL_TYPE_SOLID_2_LAYER  
+		</li>
+		<li>
+		MATERIAL_TYPE_LIGHTMAP  
+		</li>
+		<li>
+		MATERIAL_TYPE_LIGHTMAP_ADD  
+		</li>
+		<li>
+		MATERIAL_TYPE_LIGHTMAP_M2  
+		</li>
+		<li>
+		MATERIAL_TYPE_LIGHTMAP_M4  
+		</li>
+		<li>
+		MATERIAL_TYPE_LIGHTMAP_LIGHTING  
+		</li>
+		<li>
+		MATERIAL_TYPE_LIGHTMAP_LIGHTING_M2  
+		</li>
+		<li>
+		MATERIAL_TYPE_LIGHTMAP_LIGHTING_M4  
+		</li>
+		<li>
+		MATERIAL_TYPE_DETAIL_MAP  
+		</li>
+		<li>
+		MATERIAL_TYPE_SPHERE_MAP  
+		</li>
+		<li>
+		MATERIAL_TYPE_REFLECTION_2_LAYER  
+		</li>
+		<li>
+		MATERIAL_TYPE_TRANSPARENT_ADD_COLOR  
+		</li>
+		<li>
+		MATERIAL_TYPE_TRANSPARENT_ALPHA_CHANNEL  
+		</li>
+		<li>
+		MATERIAL_TYPE_TRANSPARENT_ALPHA_CHANNEL_REF  
+		</li>
+		<li>
+		MATERIAL_TYPE_TRANSPARENT_VERTEX_ALPHA  
+		</li>
+		<li>
+		MATERIAL_TYPE_TRANSPARENT_REFLECTION_2_LAYER  
+		</li>
+		<li>
+		MATERIAL_TYPE_NORMAL_MAP_SOLID  
+		</li>
+		<li>
+		MATERIAL_TYPE_NORMAL_MAP_TRANSPARENT_ADD_COLOR  
+		</li>
+		<li>
+		MATERIAL_TYPE_NORMAL_MAP_TRANSPARENT_VERTEX_ALPHA  
+		</li>
+		<li>
+		MATERIAL_TYPE_PARALLAX_MAP_SOLID  
+		</li>
+		<li>
+		MATERIAL_TYPE_PARALLAX_MAP_TRANSPARENT_ADD_COLOR  
+		</li>
+		<li>
+		MATERIAL_TYPE_PARALLAX_MAP_TRANSPARENT_VERTEX_ALPHA  
+		</li>
+		<li>
+		MATERIAL_TYPE_ONETEXTURE_BLEND  
+		</li>
+		<li>
+		MATERIAL_TYPE_FORCE_32BIT  
+		</li>
+		</ul>
+		<br><p>Related: 
+		<a href="getactormaterialtype.html">GetActorMaterialType</a>
+		<a href="getactormaterial.html">GetActorMaterial</a>
+		</p>
+		<p>
+
+	</body>
+</html>

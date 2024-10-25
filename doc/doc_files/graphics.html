@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+table, th, td { border: 1px solid black; } th, td { padding: 10px; }
+body { background-color: #064066; color: #FFFFFF; }
+a { color: #40bfb8; }
+a::before {
+  content: "---";
+  font-family: monospace, monospace;
+  display: inline-block;
+  margin-right: 6px;
+  color: #064066;
+}
+
+.rc_number { color: #0b9898; }
+.rc_string { color: #dd4040; }
+.rc_keyword { color: #6084a8; font-weight: bold; }
+.rc_comment { color: #6e716e; }
+#rc_code { font-family: Consolas,"courier new"; background-color: #2d3335; padding: 2px; font-size: 105%; }
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "[+]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  color: #40bfb8;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.box {
+	font-weight: bold;
+	color: #40bfb8;
+	text-decoration: underline;
+}
+
+.check-box::before {
+  content: "[-]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  //color: dodgerblue;
+  color: #40bfb8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+		</style>
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>RCBasic Graphics [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h1>GRAPHICS </h1></p>
+		<p>
+		 Finally, the reason we are all here. Lets draw pretty pictures on the screen. The first thing we need is a window. To open the graphics window, we need to use OpenWindow(). 
+		</p>
+		<p id="rc_code"><code>
+			fullscreen&nbsp;=&nbsp;<span class="rc_keyword">false</span>&nbsp;<br>
+			vsync&nbsp;=&nbsp;<span class="rc_keyword">true</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			OpenWindow<b>(</b><span class="rc_string">"My Graphics Window"</span>,&nbsp;<span class="rc_number">640</span>,&nbsp;<span class="rc_number">480</span>,&nbsp;fullscreen,&nbsp;vsync<b>)</b>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above code will open a 640 x 480 window with vsync enabled. You can reference <a href="openwindow.html">OpenWindow()</a> for a little more detail. 
+		</p>
+		<p>
+		 If we tried to run the code we have so far, the window would open and immediately close. So next to keep our window open and ensure its getting updated we need to make our render loop. 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;Key<b>(</b>K_ESCAPE<b>)</b>&nbsp;<br>
+			Update<b>(</b><b>)</b>&nbsp;<span class="rc_comment">'This needs to be called every frame to refresh the window and poll events </span><br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 So now we have our basic render loop but nothing is being drawn. Now is a good time to explain how RCBasic's graphics system works. RCBasic uses virtual render targets called canvases. There are 3 different types of canvases that are used for rendering depending on what you are trying to do. Here is an overview of the different types of canvases: 
+		</p>
+		<ul>
+		<li>
+		2D Paint Canvas - This is a canvas for rendering drawing commands (ie. DrawImage, Rect, FloodFill, etc.) 
+		</li>
+		<li>
+		Sprite Layer - A canvas for rendering sprites. Sprite canvases will only render sprites but they have infinite 2D space to place sprites in. 
+		</li>
+		<li>
+		3D Canvas - This canvas is a 3D viewport. Each 3D canvas has its own camera so having multiple can impact performance since it re-renders the scene for each 3D canvas. 
+		</li>
+		</ul>
+		<p>
+		 For now, lets just use a paint canvas. We use OpenCanvas() to open a paint canvas. Before our render loop, we will open our canvas. 
+		</p>
+		<p id="rc_code"><code>
+			&nbsp;&nbsp;<br>
+			paint_canvas&nbsp;=&nbsp;OpenCanvas<b>(</b><span class="rc_number">640</span>,&nbsp;<span class="rc_number">480</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">640</span>,&nbsp;<span class="rc_number">480</span>,&nbsp;<span class="rc_number">1</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Canvas<b>(</b>paint_canvas<b>)</b>&nbsp;<span class="rc_comment">'Sets out canvas as the active canvas. This is unnecessary since we only have one canvas but its a good habit to get into to set your desired canvas active before doing anything on it. </span><br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;Key<b>(</b>K_ESCAPE<b>)</b>&nbsp;<br>
+			ClearCanvas<b>(</b><b>)</b>&nbsp;<span class="rc_comment">'Clears the canvas every frame. If you have an image that never changes you may not want to do this. </span><br>
+			Update<b>(</b><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 Here we are opening a canvas for drawing and storing the handle for that canvas in a variable called paint_canvas. Anytime we want to reference that canvas we will use the paint_canvas variable. You can reference <a href="opencanvas.html">OpenCanvas()</a> for more details on how it works. After we opened our canvas, we set it as the active canvas using <a href="canvas.html">Canvas()</a>. This was not necessary right now since RCBasic sets the first canvas created as the default canvas but its still a good habit to set a canvas active before doing anything with it to ensure you are targeting the right canvas. 
+		</p>
+		<p>
+		 Ok, we have a window and a canvas but we still haven't drawn anything. So lets do that. Inside our render loop, we are going to set our draw color to red and draw a box. 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;Key<b>(</b>K_ESCAPE<b>)</b>&nbsp;<br>
+			ClearCanvas<b>(</b><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			SetColor<b>(</b>&nbsp;RGB<b>(</b><span class="rc_number">200</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<b>)</b>&nbsp;&nbsp;<span class="rc_comment">'Sets the drawing color to red </span><br>
+			RectFill<b>(</b><span class="rc_number">20</span>,&nbsp;<span class="rc_number">20</span>,&nbsp;<span class="rc_number">50</span>,&nbsp;<span class="rc_number">50</span><b>)</b>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'Draws a filled rectangle with the current draw color </span><br>
+			&nbsp;&nbsp;<br>
+			Update<b>(</b><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 So now our finished program looks like this: 
+		</p>
+		<p id="rc_code"><code>
+			fullscreen&nbsp;=&nbsp;<span class="rc_keyword">false</span>&nbsp;<br>
+			vsync&nbsp;=&nbsp;<span class="rc_keyword">true</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			OpenWindow<b>(</b><span class="rc_string">"My Graphics Window"</span>,&nbsp;<span class="rc_number">640</span>,&nbsp;<span class="rc_number">480</span>,&nbsp;fullscreen,&nbsp;vsync<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			paint_canvas&nbsp;=&nbsp;OpenCanvas<b>(</b><span class="rc_number">640</span>,&nbsp;<span class="rc_number">480</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">640</span>,&nbsp;<span class="rc_number">480</span>,&nbsp;<span class="rc_number">1</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Canvas<b>(</b>paint_canvas<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;Key<b>(</b>K_ESCAPE<b>)</b>&nbsp;<br>
+			ClearCanvas<b>(</b><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			SetColor<b>(</b>&nbsp;RGB<b>(</b><span class="rc_number">200</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<b>)</b>&nbsp;&nbsp;<span class="rc_comment">'Sets the drawing color to red </span><br>
+			RectFill<b>(</b><span class="rc_number">20</span>,&nbsp;<span class="rc_number">20</span>,&nbsp;<span class="rc_number">50</span>,&nbsp;<span class="rc_number">50</span><b>)</b>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'Draws a filled rectangle with the current draw color </span><br>
+			&nbsp;&nbsp;<br>
+			Update<b>(</b><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 RCBasic allows you to create as many canvases as you want and you can have multiple different types of canvases at once. This is just a brief overview of how graphics work but I highly encourage you to check out all the included examples to see more of what is possible. 
+		</p>
+		<p>
+
+	</body>
+</html>

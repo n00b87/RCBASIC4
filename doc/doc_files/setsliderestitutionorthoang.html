@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+table, th, td { border: 1px solid black; } th, td { padding: 10px; }
+body { background-color: #064066; color: #FFFFFF; }
+a { color: #40bfb8; }
+a::before {
+  content: "---";
+  font-family: monospace, monospace;
+  display: inline-block;
+  margin-right: 6px;
+  color: #064066;
+}
+
+.rc_number { color: #0b9898; }
+.rc_string { color: #dd4040; }
+.rc_keyword { color: #6084a8; font-weight: bold; }
+.rc_comment { color: #6e716e; }
+#rc_code { font-family: Consolas,"courier new"; background-color: #2d3335; padding: 2px; font-size: 105%; }
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "[+]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  color: #40bfb8;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.box {
+	font-weight: bold;
+	color: #40bfb8;
+	text-decoration: underline;
+}
+
+.check-box::before {
+  content: "[-]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  //color: dodgerblue;
+  color: #40bfb8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+		</style>
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>setSlideRestitutionOrthoAng [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h1>sub  setSlideRestitutionOrthoAng( constraint_id,  n) </h1></p>
+		<p>
+		 Sets the restitution value for orthogonal angular motion. This value determines how much energy is conserved (or how "bouncy" the interaction is) when rotational movement occurs in a direction orthogonal (perpendicular) to the slider's primary axis of movement. 
+		</p>
+		<p>
+		 Orthogonal Angular Motion: In the context of a slider constraint, orthogonal angular motion refers to rotational movement around axes that are perpendicular to the slider's main movement axis. 
+		</p>
+		<p>
+		 Restitution: Restitution is a measure of how much energy is retained in a collision or interaction. A restitution value of 0.0 means no bounce (inelastic collision), and 1.0 means maximum bounce (elastic collision). For orthogonal angular motion, this describes how much bounce occurs after the rotational motion hits the constraints or limits in a perpendicular direction to the slider axis. 
+		</p>
+		<br><p>Related: 
+		<a href="getsliderestitutionorthoang.html">GetSlideRestitutionOrthoAng</a>
+		</p>
+		<p>
+
+	</body>
+</html>

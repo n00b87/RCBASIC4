@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+table, th, td { border: 1px solid black; } th, td { padding: 10px; }
+body { background-color: #064066; color: #FFFFFF; }
+a { color: #40bfb8; }
+a::before {
+  content: "---";
+  font-family: monospace, monospace;
+  display: inline-block;
+  margin-right: 6px;
+  color: #064066;
+}
+
+.rc_number { color: #0b9898; }
+.rc_string { color: #dd4040; }
+.rc_keyword { color: #6084a8; font-weight: bold; }
+.rc_comment { color: #6e716e; }
+#rc_code { font-family: Consolas,"courier new"; background-color: #2d3335; padding: 2px; font-size: 105%; }
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "[+]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  color: #40bfb8;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.box {
+	font-weight: bold;
+	color: #40bfb8;
+	text-decoration: underline;
+}
+
+.check-box::before {
+  content: "[-]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  //color: dodgerblue;
+  color: #40bfb8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+		</style>
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>setActorMassProperties [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h1>sub setActorMassProperties( actor,   mass,   inertia_x,   inertia_y,   inertia_z) </h1></p>
+		<p>
+		 Set the mass and local inertia of an actor. This is crucial for defining how the actor behaves under the influence of forces and torques, especially when it comes to simulating realistic motion and rotation. 
+		</p>
+		<p>
+		 Mass 
+		</p>
+		<ul>
+		<li>
+		The mass of an actor defines how much it resists changes in its motion when forces are applied. A heavier object will require more force to accelerate or decelerate compared to a lighter object. 
+		</li>
+		</ul>
+		<p>
+		 Inertial 
+		</p>
+		<ul>
+		<li>
+		The local inertia is a vector that represents how the mass is distributed within the actor relative to its center of mass. It affects how the actor resists rotational forces (torques). 
+		</li>
+		<li>
+		An object with a larger inertia value along a specific axis will rotate more slowly when a torque is applied in that direction, and vice versa. 
+		</li>
+		</ul>
+		<br><p>Related: 
+		<a href="getactorlocalinertia.html">GetActorLocalInertia</a>
+		<a href="getactorinversemass.html">GetActorInverseMass</a>
+		</p>
+		<p>
+
+	</body>
+</html>

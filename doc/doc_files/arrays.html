@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+table, th, td { border: 1px solid black; } th, td { padding: 10px; }
+body { background-color: #064066; color: #FFFFFF; }
+a { color: #40bfb8; }
+a::before {
+  content: "---";
+  font-family: monospace, monospace;
+  display: inline-block;
+  margin-right: 6px;
+  color: #064066;
+}
+
+.rc_number { color: #0b9898; }
+.rc_string { color: #dd4040; }
+.rc_keyword { color: #6084a8; font-weight: bold; }
+.rc_comment { color: #6e716e; }
+#rc_code { font-family: Consolas,"courier new"; background-color: #2d3335; padding: 2px; font-size: 105%; }
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "[+]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  color: #40bfb8;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.box {
+	font-weight: bold;
+	color: #40bfb8;
+	text-decoration: underline;
+}
+
+.check-box::before {
+  content: "[-]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  //color: dodgerblue;
+  color: #40bfb8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+		</style>
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>RCBasic Arrays [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h1>ARRAYS </h1></p>
+		<p>
+		 In complex programs there is often a need to be able to store large amounts of data.  It would be unreasonable to have to create a variable for each piece of data we may need to store.  This is where an array can come in handy.  Arrays are simply ways of using one variable to store multiple different values.  You can create arrays of numbers or strings.  Look at the following: 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Dim</span>&nbsp;A<b>[</b><span class="rc_number">5</span><b>]</b>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above example creates an array of numbers called A.  A can store five numbers which are retrieved using A[0] to A[4].  Notice that A[4] is the last element in the array and not A[5].  That is because the first index in the array is 0 and the array only stores 5 numbers.  To set the values in this array you could do the following: 
+		</p>
+		<p id="rc_code"><code>
+			A<b>[</b><span class="rc_number">0</span><b>]</b>&nbsp;=&nbsp;<span class="rc_number">3</span>&nbsp;<br>
+			A<b>[</b><span class="rc_number">1</span><b>]</b>&nbsp;=&nbsp;<span class="rc_number">2</span>&nbsp;<br>
+			A<b>[</b><span class="rc_number">2</span><b>]</b>&nbsp;=&nbsp;<span class="rc_number">7</span>&nbsp;<br>
+			A<b>[</b><span class="rc_number">3</span><b>]</b>&nbsp;=&nbsp;<span class="rc_number">1</span>&nbsp;<br>
+			A<b>[</b><span class="rc_number">4</span><b>]</b>&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 You would access and array just like you would a variable.  Look at the following: 
+		</p>
+		<p id="rc_code"><code>
+			X&nbsp;=&nbsp;A<b>[</b><span class="rc_number">0</span><b>]</b>&nbsp;+&nbsp;A<b>[</b><span class="rc_number">3</span><b>]</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'( Based on the above example the variable X would be set to 4. ) </span><br>
+		</code></p>
+		<p>
+		 To make a string variable you would do the same thing you do to make a number variable except you would use the $ just like you would use to make a normal string variable.  Look at the following: 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Dim</span>&nbsp;B$<b>[</b><span class="rc_number">3</span><b>]</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			B<b>[</b><span class="rc_number">0</span><b>]</b>&nbsp;=&nbsp;<span class="rc_string">"ABC"</span>&nbsp;<br>
+			B<b>[</b><span class="rc_number">1</span><b>]</b>&nbsp;=&nbsp;<span class="rc_string">"DEF"</span>&nbsp;<br>
+			B<b>[</b><span class="rc_number">2</span><b>]</b>&nbsp;=&nbsp;<span class="rc_string">"I KNOW THE ALPHABET"</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 Arrays can have up to 3 dimensions.  Adding more dimensions to an array can make organizing data in the array easier depending on the situation.  Look at the following: 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Dim</span>&nbsp;&nbsp;X<b>[</b><span class="rc_number">2</span>,&nbsp;<span class="rc_number">3</span><b>]</b>&nbsp;<br>
+			<span class="rc_keyword">Dim</span>&nbsp;&nbsp;Y<b>[</b><span class="rc_number">3</span>,&nbsp;<span class="rc_number">4</span>,&nbsp;<span class="rc_number">5</span><b>]</b>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above example creates a 2 dimensional array called X which has 2 indices in its first dimension.  Its second dimension has 3 indices.  This means that each of the 2 indices in the first dimension can store 3 different values.  So X can store a total of 6 different values.  The second line creates a 3 dimensional array called Y.  Y has 3 indices in its first dimension.  Each of those 3 indices has 4 indices in its 2nd dimension.  Each of the 4 indices has 5 values it can store.  This means that Y can store a total of 60 different values.  Look at the following for an example on how to work with these multi-dimensional arrays: 
+		</p>
+		<p id="rc_code"><code>
+			X<b>[</b><span class="rc_number">0</span>,&nbsp;<span class="rc_number">2</span><b>]</b>&nbsp;=&nbsp;<span class="rc_number">5</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'(This line sets the 3rd value in the first index to 5.  Remember that the first index is always 0 so the 3rd index will be 2.) </span><br>
+			&nbsp;&nbsp;<br>
+			Y<b>[</b><span class="rc_number">1</span>,&nbsp;<span class="rc_number">2</span>,&nbsp;<span class="rc_number">3</span><b>]</b>&nbsp;=&nbsp;<span class="rc_number">6</span>&nbsp;&nbsp;&nbsp;<span class="rc_comment">'(This line sets the 4th value of the 3rd index in the 2nd index in the array to 6. That was a mouth full. ) </span><br>
+		</code></p>
+		<p>
+
+	</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+table, th, td { border: 1px solid black; } th, td { padding: 10px; }
+body { background-color: #064066; color: #FFFFFF; }
+a { color: #40bfb8; }
+a::before {
+  content: "---";
+  font-family: monospace, monospace;
+  display: inline-block;
+  margin-right: 6px;
+  color: #064066;
+}
+
+.rc_number { color: #0b9898; }
+.rc_string { color: #dd4040; }
+.rc_keyword { color: #6084a8; font-weight: bold; }
+.rc_comment { color: #6e716e; }
+#rc_code { font-family: Consolas,"courier new"; background-color: #2d3335; padding: 2px; font-size: 105%; }
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "[+]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  color: #40bfb8;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.box {
+	font-weight: bold;
+	color: #40bfb8;
+	text-decoration: underline;
+}
+
+.check-box::before {
+  content: "[-]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  //color: dodgerblue;
+  color: #40bfb8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+		</style>
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>RCBasic I/O [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h1>INPUT/OUTPUT </h1></p>
+		<p>
+		 RC BASIC has two ways of getting output to a text console.  The first way is the <b>PRINT</b> keyword shown here: 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"HELLO WORLD"</span>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 You can also use a <b>";"</b> to output multiple values or to prevent <b>PRINT</b> from going to a new-line in its output. 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"This is line 1. "</span>;&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"This is still line 1. Value="</span>;&nbsp;<span class="rc_number">4</span>+<span class="rc_number">5</span>;&nbsp;<span class="rc_string">"  This is the end of line 1"</span>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"Line 2 start"</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 You can also use the <b>FPrint()</b> sub routine to do the same thing as <b>PRINT</b>. It was added back in RCBasic v1.0 since <b>PRINT</b> was not able to stop new-line after its output back then. This is a legacy hold over and does not really add any new functionality. 
+		</p>
+		<p>
+		 To get input from the user you would use the <b>INPUT$</b> function.  <b>INPUT$</b> will display a prompt to the user and then get input from the console. 
+		</p>
+		<p id="rc_code"><code>
+			USER_NAME$&nbsp;=&nbsp;INPUT$<b>(</b><span class="rc_string">"WHAT IS YOUR NAME? "</span><b>)</b>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above example will ask the user WHAT IS YOUR NAME? and then store whatever the user types in into the variable USER_NAME$.  
+		</p>
+		<p>
+
+	</body>
+</html>
