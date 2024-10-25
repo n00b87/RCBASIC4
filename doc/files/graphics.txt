@@ -1,0 +1,77 @@
+#title RCBasic Graphics [RCBasic Doc]
+#header GRAPHICS
+
+Finally, the reason we are all here. Lets draw pretty pictures on the screen. The first thing we need is a window. To open the graphics window, we need to use OpenWindow().
+#code
+fullscreen = false
+vsync = true
+
+OpenWindow("My Graphics Window", 640, 480, fullscreen, vsync)
+#/code
+
+The above code will open a 640 x 480 window with vsync enabled. You can reference <a href="openwindow.html">OpenWindow()</a> for a little more detail.
+
+If we tried to run the code we have so far, the window would open and immediately close. So next to keep our window open and ensure its getting updated we need to make our render loop.
+#code
+While Not Key(K_ESCAPE)
+   Update() 'This needs to be called every frame to refresh the window and poll events
+Wend
+#/code 
+
+So now we have our basic render loop but nothing is being drawn. Now is a good time to explain how RCBasic's graphics system works. RCBasic uses virtual render targets called canvases. There are 3 different types of canvases that are used for rendering depending on what you are trying to do. Here is an overview of the different types of canvases:
+#list ul
+#li 2D Paint Canvas - This is a canvas for rendering drawing commands (ie. DrawImage, Rect, FloodFill, etc.)
+#li Sprite Layer - A canvas for rendering sprites. Sprite canvases will only render sprites but they have infinite 2D space to place sprites in.
+#li 3D Canvas - This canvas is a 3D viewport. Each 3D canvas has its own camera so having multiple can impact performance since it re-renders the scene for each 3D canvas.
+#/list
+
+For now, lets just use a paint canvas. We use OpenCanvas() to open a paint canvas. Before our render loop, we will open our canvas.
+#code
+
+paint_canvas = OpenCanvas(640, 480, 0, 0, 640, 480, 1)
+
+Canvas(paint_canvas) 'Sets out canvas as the active canvas. This is unnecessary since we only have one canvas but its a good habit to get into to set your desired canvas active before doing anything on it.
+
+While Not Key(K_ESCAPE)
+   ClearCanvas() 'Clears the canvas every frame. If you have an image that never changes you may not want to do this.
+   Update()
+Wend
+#/code
+
+Here we are opening a canvas for drawing and storing the handle for that canvas in a variable called paint_canvas. Anytime we want to reference that canvas we will use the paint_canvas variable. You can reference <a href="opencanvas.html">OpenCanvas()</a> for more details on how it works. After we opened our canvas, we set it as the active canvas using <a href="canvas.html">Canvas()</a>. This was not necessary right now since RCBasic sets the first canvas created as the default canvas but its still a good habit to set a canvas active before doing anything with it to ensure you are targeting the right canvas.
+
+Ok, we have a window and a canvas but we still haven't drawn anything. So lets do that. Inside our render loop, we are going to set our draw color to red and draw a box.
+
+#code
+While Not Key(K_ESCAPE)
+   ClearCanvas()
+   
+   SetColor( RGB(200, 0, 0) )  'Sets the drawing color to red
+   RectFill(20, 20, 50, 50)    'Draws a filled rectangle with the current draw color
+   
+   Update()
+Wend
+#/code
+
+So now our finished program looks like this:
+#code
+fullscreen = false
+vsync = true
+
+OpenWindow("My Graphics Window", 640, 480, fullscreen, vsync)
+
+paint_canvas = OpenCanvas(640, 480, 0, 0, 640, 480, 1)
+
+Canvas(paint_canvas)
+
+While Not Key(K_ESCAPE)
+   ClearCanvas()
+   
+   SetColor( RGB(200, 0, 0) )  'Sets the drawing color to red
+   RectFill(20, 20, 50, 50)    'Draws a filled rectangle with the current draw color
+   
+   Update()
+Wend
+#/code
+
+RCBasic allows you to create as many canvases as you want and you can have multiple different types of canvases at once. This is just a brief overview of how graphics work but I highly encourage you to check out all the included examples to see more of what is possible.

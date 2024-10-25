@@ -1,0 +1,52 @@
+#title RCBasic UDTs [RCBasic Doc]
+#header USER DEFINED TYPES (UDTs)
+
+RCBasic v4 and up introduces the ability to create user defined types. These are basically structures that allow you to store and manage related data. To create a user defined type you need to use the <b>TYPE</b> keyword. Look at the following:
+#code
+Type player
+	Dim x, y
+End Type
+#/code
+
+In the above code, a type called player is created. The <b>DIM</b> keyword must be used to add attributes to our type. Now we can create a variable with the data type player as follows:
+#code
+Dim hero As player
+#/code
+
+Notice that in the above code, we are using the <b>DIM</b> keyword we have used in previous sections to create variables and arrays. We now have a variable called <i>hero</i> whose data type is <i>player</i>.
+
+Since our <i>hero</i> variable is of type <i>player</i>, it has all the attributes of that type. So we can access the attribute's with a "." like so:
+#code
+hero.x = 23
+Print "Hero x is "; hero.x
+#/code
+
+The attributes of a UDT variable are accessed the same way a normal variable is. You can also create an array of UDT's the same way you would create a normal array. Look at the following:
+#code
+Dim enemy[20] As player
+#/code
+
+If you read through the section on arrays then this should make sense. We are using the <b>DIM</b> keyword to make an array called <i>enemy</i> and then we use the <b>AS</b> keyword to set the type of <i>enemy</i> to <i>player</i>.
+
+UDTs can also be used for attributes inside other UDTs. Lets say we wanted each player to have stats like health and power. We could create a UDT for player stats and have an attribute of that stat type inside our player UDT. Here is that example demonstrated:
+#code
+Type Player_Stats
+	Dim health
+	Dim power
+End Type
+
+Type Player
+	Dim x, y
+	Dim stats As Player_Stats
+End Type
+
+Dim hero As Player
+#/code
+
+In the above example, <i>hero</i> now has an attribute called <i>stats</i> that is of type <i>Player_Stats</i>. So now we can access the stats attributes like so:
+#code
+hero.stats.health = 100
+Print "Hero Health = "; hero.stats.health
+#/code
+
+If used effectively, you can drastically increase the readability and maintainability of your code. Especially in large projects.

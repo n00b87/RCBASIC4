@@ -1,0 +1,39 @@
+#title RCBasic Conditions [RCBasic Doc]
+#header CONDITIONS
+
+RC BASIC uses the same conventions of other programming languages to control the flow of the program.  There are two main ways of getting your program to decide on its next course of action.  The most common way is with the <b>IF</b> statement block.
+
+If 5 > 6 Then
+	Print "THIS WILL NOT PRINT"
+ElseIf 5 < 6 Then
+	Print "THIS WILL PRINT"
+Else
+	Print "THIS ALSO WILL NOT PRINT"
+End If
+
+The above example does different comparisons and will output text to a console depending on which condition is true.
+
+The next method of control flow is the <b>SELECT</b> statement block.
+
+Select Case 5
+Case 6
+	Print THIS WILL NOT PRINT"
+Case 5
+	Print "THIS WILL PRINT"
+Default
+	'Note: Default will be true if every other case is false.
+	'      Default is optional and can be excluded if you don't need it
+	Print "THIS WILL NOT PRINT"
+End Select
+
+The above example will compare each case in the block to the <b>SELECT CASE</b>. If the case is equal to the select case then the code in that case will be executed. You can also add multiple values to compare to each <b>CASE</b>.
+Select Case 5
+Case 6
+	Print THIS WILL NOT PRINT"
+Case 4, 5
+	Print "THIS WILL PRINT"
+Default
+	Print "THIS WILL NOT PRINT"
+End Select
+
+The above example is mostly the same as the previous example. The difference is that in our second <b>CASE</b> we are comparing both 4 and 5. If either of them are equal to our <b>SELECT</b> argument then the code inside the <b>CASE</b> block will execute. 

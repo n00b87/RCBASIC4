@@ -1,0 +1,136 @@
+#title RCBasic Functions and Sub Routines [RCBasic Doc]
+#header FUNCTIONS AND SUB ROUTINES
+
+Functions and Sub Routines are blocks of code that can be executed any where in your program.
+
+The biggest difference between Functions and Sub Routines is that Functions can return a value.  Basically Functions and be used as a string or number value in an expression.  RCBASIC has several built-in functions to perform different task such as compute square roots, get the time, etc.  Functions are either numbers or strings just like variables and arrays.  As such, functions can be used anywhere a variable or array can be used.  Look at the following:
+
+#code
+Dim x[2]
+x[0] = Sqrt(25)
+x[1] = Sqrt(36)
+Print "THE SQUARE ROOT OF 25 IS "; x[0]
+Print "THE SQUARE ROOT OF 36 IS "; x[1]
+#/code
+
+The above code creates a number array called X with 2 elements in it.  It stores the square root of 25 in the first index and stores the square root of 36 in the second index.  It then outputs both values to the console.  The output should look like this:
+
+THE SQUARE ROOT OF 25 IS 5
+THE SQUARE ROOT OF 36 IS 6
+
+String functions can be used in a string expression just like number functions can be used in a number expression.  Look at the following code:
+
+#code
+B$ = Mid$("HELLO WORLD", 0, 2)
+Print "THE FIRST TWO CHARACTERS IN HELLO WORLD ARE ";B$
+#/code
+
+The above code creates a string variable called B and stores 2 characters starting from position 0 in the string HELLO WORLD.  It then outputs the value to the console.  The output should look like the following:
+
+THE FIRST  TWO CHARACTERS IN HELLO WORLD ARE HE
+
+Sub Routines can execute code in other parts of your program just like a function.  However Sub Routines cannot return values and cannot be used in expressions.  So why would you want to use a Sub Routine over a function?  Well Sub Routines have less over head since it does not have to internally push a value onto the stack like a function does.  So in cases where you do not need to return a value you should use a Sub Routine.  RC BASIC has several built-in Sub Routines to perform task where a return value is not necessary.  Look at the following:
+
+#code
+FPrint("test")
+#/code
+
+FPrint is a Sub Routine that outputs text to the console. Since FPrint doesn't perform calculations of any kind it did not need to be implemented as a Function.
+
+In addition to the built-in Functions and Sub Routines RCBASIC also allows programmers to build there own Functions and Sub Routines.  You do this using the <b>FUNCTION</b> or <b>SUB</b> keywords.
+
+#code
+Function  MyFunc(a, b)
+	c = a + b
+	Return c
+End Function
+#/code
+
+The above code creates a function called MyFunc which takes in two arguments: a and b.  To use this function you would call it like this:
+
+#code
+MyFunc(3, 4)
+#/code
+
+The code above will pass 3 and 4 to the variables A and B in MYFUNC respectively.  The function creates a variable called C and sets it equal to the sum of 3 + 4.  It then returns C.  So the function equals 7.  Since this is a number function you could store the value in a number variable or use <b>PRINT</b> to output the value to the console.
+
+
+To make a string function you simply add $ to the end of the function name when you create it just like with variables and arrays.
+
+#code
+Function MyString$ ( G$ )
+	Return "YOU ENTERED " + G$
+End Function
+
+Print MyString("SOMETHING")
+#/code
+
+The above code should output the following:
+
+YOU ENTERED SOMETHING
+
+Functions can also return a UDT(User Defined Type) as well. Look at the following:
+
+#code
+Type test_type
+	Dim a$
+	Dim b
+End Type
+
+Function test(a$, b) As test_type
+	Dim ret_val As test_type
+	ret_val.a = a
+	ret_val.b = b
+	Return ret_val
+End Function
+
+Dim myVar as test_type
+
+myVar = test("hello", 42)
+#/code
+
+You can also have a UDT as a parameter in a function:
+#code
+Function test2(n as test_type, j)
+	Return 0
+End Function
+#/code
+
+Sub Routines are created using the <b>SUB</b> keyword.  Look at the following:
+#code
+Sub MySub ( )
+	For i = 1 To 5
+		Print i
+	Next
+End Sub
+
+MySub ( )
+#/code
+
+The code above creates a Sub Routine called MYSUB which uses a <b>FOR</b> loop to output the numbers 1 to 5 to the console.
+
+Functions and Sub Routines pass variables by value by default. Look at the following:
+#code
+Sub  MySub ( a )
+	a = 5
+End Sub
+
+n = 0
+
+MySub ( n )
+Print n
+#/code
+
+In the above code the Sub Routine has a variable called A as an argument. It sets A equal to 5. Then we create a variable called N outside of the Sub Routine and set N equal to 0. N is passed as an argument to MYSUB.  Then N is output to the console.  This will output 0 to the console.  That is because only the value of N is passed to MYSUB so MYSUB is not able to change N itself.  In order to allow MYSUB to change N we must have MYSUB accept an argument by Reference.  To do this we will use the <b>BYREF</b> keyword.
+#code
+Sub MySub ( ByRef a )
+	a = 5
+End Sub
+
+n = 0
+
+MySub ( n )
+Print n
+#/code
+
+The above code is the same as the previous example except that now we use the <b>BYREF</b> keyword to change a to a reference rather than a value.  This means the when we pass the variable N to MYSUB, instead of the value stored in N being used as A, whatever we do to A will be done to N directly.  This example will output 5 to the console. 

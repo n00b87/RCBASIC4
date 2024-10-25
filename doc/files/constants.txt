@@ -1,0 +1,8 @@
+#title RCBasic Constants [RCBasic Doc]
+#header CONTANTS
+
+RCBasic has a special type of variable called a constant which can hold an expression.  This means it can hold an expression and not determine its value until its used.  For example you can have a constant called C that is equal to A + B.  Everytime you change the value of A or B, C's value will also change.   Because constants hold expressions, any valid expression in RCBasic can be stored in a constant.
+#code
+const  A = 5
+const  MY_PRINT = print "hello world"
+#/code
