@@ -1,0 +1,4 @@
+#title getJointRatio [RCBasic Doc]
+#header function  getJointRatio( joint_id)
+
+

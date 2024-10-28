@@ -1,0 +1,4 @@
+#title getSpriteLinearDamping [RCBasic Doc]
+#header function  getSpriteLinearDamping( spr_id)
+
+

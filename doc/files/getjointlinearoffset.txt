@@ -1,0 +1,4 @@
+#title getJointLinearOffset [RCBasic Doc]
+#header sub getJointLinearOffset( joint_id,  ByRef  x,  ByRef  y)
+
+

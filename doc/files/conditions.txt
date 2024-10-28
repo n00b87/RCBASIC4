@@ -32,7 +32,7 @@ The above example will compare each case in the block to the <b>SELECT CASE</b>.
 #code
 Select Case 5
 Case 6
-	Print THIS WILL NOT PRINT"
+	Print "THIS WILL NOT PRINT"
 Case 4, 5
 	Print "THIS WILL PRINT"
 Default

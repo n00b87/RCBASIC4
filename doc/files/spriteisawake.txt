@@ -1,0 +1,4 @@
+#title spriteIsAwake [RCBasic Doc]
+#header function spriteIsAwake( spr_id)
+
+

@@ -3,7 +3,74 @@
 <html>
 	<head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="style.css">
+	<style>
+			table, th, td { border: 1px solid black; } th, td { padding: 10px; }
+			body { background-color: #064066; color: #FFFFFF; }
+			a { color: #40bfb8; }
+			a::before {
+			  content: "---";
+			  font-family: monospace, monospace;
+			  display: inline-block;
+			  margin-right: 6px;
+			  color: #064066;
+			}
+			
+			.rc_number { color: #800000; }
+			.rc_string { color: green; }
+			.rc_keyword { color: blue; font-weight: bold; }
+			.rc_comment { color: #0A0A0A; }
+			#rc_code { font-family: Consolas,"courier new"; background-color: #f1f1f1; padding: 2px; font-size: 105%; }
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "[+]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  color: #40bfb8;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.box {
+	font-weight: bold;
+	color: #40bfb8;
+	text-decoration: underline;
+}
+
+.check-box::before {
+  content: "[-]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  //color: dodgerblue;
+  color: #40bfb8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+		</style>
 		
 		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
 		<title> RCBasic Library Reference </title>
@@ -1192,6 +1259,220 @@
 </ul>
 
 <ul id="myUL">
+<li><span class="box">Sprite Physics</span>
+<ul class="nested">
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getspritecenter.html" target="main">getSpriteCenter</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setspritelinearvelocity.html" target="main">setSpriteLinearVelocity</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getspritelinearvelocity.html" target="main">getSpriteLinearVelocity</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setspriteangularvelocity.html" target="main">setSpriteAngularVelocity</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getspriteangularvelocity.html" target="main">getSpriteAngularVelocity</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/applyspriteforce.html" target="main">applySpriteForce</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/applyspritecentralforce.html" target="main">applySpriteCentralForce</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/applyspritetorque.html" target="main">applySpriteTorque</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/applyspritelinearimpulse.html" target="main">applySpriteLinearImpulse</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/applyspriteangularimpulse.html" target="main">applySpriteAngularImpulse</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getspritemass.html" target="main">getSpriteMass</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getspriteinertia.html" target="main">getSpriteInertia</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getspriteworldpoint.html" target="main">getSpriteWorldPoint</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getspriteworldvector.html" target="main">getSpriteWorldVector</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getspritelocalpoint.html" target="main">getSpriteLocalPoint</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getspritelocalvector.html" target="main">getSpriteLocalVector</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getspritelinearvelocityfromlocalpoint.html" target="main">getSpriteLinearVelocityFromLocalPoint</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getspritelinearvelocityfromworldpoint.html" target="main">getSpriteLinearVelocityFromWorldPoint</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getspritelineardamping.html" target="main">getSpriteLinearDamping</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setspritelineardamping.html" target="main">setSpriteLinearDamping</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getspriteangulardamping.html" target="main">getSpriteAngularDamping</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setspriteangulardamping.html" target="main">setSpriteAngularDamping</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getspritegravityscale.html" target="main">getSpriteGravityScale</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setspritegravityscale.html" target="main">setSpriteGravityScale</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setspritebullet.html" target="main">setSpriteBullet</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/spriteisbullet.html" target="main">spriteIsBullet</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setspritesleepallowed.html" target="main">setSpriteSleepAllowed</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/spritesleepallowed.html" target="main">spriteSleepAllowed</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setspriteawake.html" target="main">setSpriteAwake</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/spriteisawake.html" target="main">spriteIsAwake</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setspritefixedrotation.html" target="main">setSpriteFixedRotation</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/spriteisfixedrotation.html" target="main">spriteIsFixedRotation</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">2D Constraints</span>
+<ul class="nested">
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/createdistancejoint.html" target="main">createDistanceJoint</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/createfrictionjoint.html" target="main">createFrictionJoint</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/creategearjoint.html" target="main">createGearJoint</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/createmotorjoint.html" target="main">createMotorJoint</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/createprismaticjoint.html" target="main">createPrismaticJoint</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/createpulleyjoint.html" target="main">createPulleyJoint</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/createrevolutejoint.html" target="main">createRevoluteJoint</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/createweldjoint.html" target="main">createWeldJoint</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/createwheeljoint.html" target="main">createWheelJoint</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointworldanchora.html" target="main">getJointWorldAnchorA</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointworldanchorb.html" target="main">getJointWorldAnchorB</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointreactionforce.html" target="main">getJointReactionForce</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointreactiontorque.html" target="main">getJointReactionTorque</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointlocalanchora.html" target="main">getJointLocalAnchorA</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointlocalanchorb.html" target="main">getJointLocalAnchorB</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointlength.html" target="main">setJointLength</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointlength.html" target="main">getJointLength</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointminlength.html" target="main">setJointMinLength</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointminlength.html" target="main">getJointMinLength</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointmaxlength.html" target="main">setJointMaxLength</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointmaxlength.html" target="main">getJointMaxLength</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointcurrentlength.html" target="main">getJointCurrentLength</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointstiffness.html" target="main">setJointStiffness</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointstiffness.html" target="main">getJointStiffness</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointdamping.html" target="main">setJointDamping</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointdamping.html" target="main">getJointDamping</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointmaxforce.html" target="main">setJointMaxForce</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointmaxforce.html" target="main">getJointMaxForce</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointmaxtorque.html" target="main">setJointMaxTorque</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointmaxtorque.html" target="main">getJointMaxTorque</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointcorrectionfactor.html" target="main">setJointCorrectionFactor</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointcorrectionfactor.html" target="main">getJointCorrectionFactor</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointratio.html" target="main">setJointRatio</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointratio.html" target="main">getJointRatio</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointlinearoffset.html" target="main">setJointLinearOffset</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointlinearoffset.html" target="main">getJointLinearOffset</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointangularoffset.html" target="main">setJointAngularOffset</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointangularoffset.html" target="main">getJointAngularOffset</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointlocalaxisa.html" target="main">getJointLocalAxisA</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointreferenceangle.html" target="main">getJointReferenceAngle</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointtranslation.html" target="main">getJointTranslation</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointspeed.html" target="main">getJointSpeed</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/jointislimitenabled.html" target="main">jointIsLimitEnabled</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/enablejointlimit.html" target="main">enableJointLimit</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointlowerlimit.html" target="main">getJointLowerLimit</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointupperlimit.html" target="main">getJointUpperLimit</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointlimits.html" target="main">setJointLimits</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/jointmotorisenabled.html" target="main">jointMotorIsEnabled</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/enablejointmotor.html" target="main">enableJointMotor</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointmotorspeed.html" target="main">setJointMotorSpeed</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointmotorspeed.html" target="main">getJointMotorSpeed</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointmaxmotorforce.html" target="main">setJointMaxMotorForce</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointmaxmotorforce.html" target="main">getJointMaxMotorForce</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointmotorforce.html" target="main">getJointMotorForce</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointmaxmotortorque.html" target="main">setJointMaxMotorTorque</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointmaxmotortorque.html" target="main">getJointMaxMotorTorque</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointmotortorque.html" target="main">getJointMotorTorque</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointgroundanchora.html" target="main">getJointGroundAnchorA</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointgroundanchorb.html" target="main">getJointGroundAnchorB</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointlengtha.html" target="main">getJointLengthA</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointlengthb.html" target="main">getJointLengthB</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointcurrentlengtha.html" target="main">getJointCurrentLengthA</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointcurrentlengthb.html" target="main">getJointCurrentLengthB</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setjointorigin.html" target="main">setJointOrigin</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointangle.html" target="main">getJointAngle</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointlinearspeed.html" target="main">getJointLinearSpeed</a></li>
+
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getjointangularspeed.html" target="main">getJointAngularSpeed</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
 <li><span class="box">Tile Maps</span>
 <ul class="nested">
 <li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/createtileset.html" target="main">CreateTileSet</a></li>
@@ -1438,7 +1719,7 @@
 
 <li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/updateactorinertiatensor.html" target="main">updateActorInertiaTensor</a></li>
 
-<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getactorcomposition.html" target="main">getActorCOMPosition</a></li>
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getactorcenter.html" target="main">getActorCenter</a></li>
 
 <li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getactorrotationq.html" target="main">getActorRotationQ</a></li>
 
@@ -1454,7 +1735,7 @@
 
 <li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/setactorangularvelocityworld.html" target="main">setActorAngularVelocityWorld</a></li>
 
-<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getactorlocalpointvelocity.html" target="main">getActorLocalPointVelocity</a></li>
+<li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getactorvelocityinlocalpoint.html" target="main">getActorVelocityInLocalPoint</a></li>
 
 <li><a  href="/home/n00b/Projects/RCBASIC4/rcbasic_build/../doc/doc_files/getactorlinearvelocitylocal.html" target="main">getActorLinearVelocityLocal</a></li>
 

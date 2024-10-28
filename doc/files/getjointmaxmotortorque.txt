@@ -1,0 +1,4 @@
+#title getJointMaxMotorTorque [RCBasic Doc]
+#header function  getJointMaxMotorTorque( joint_id)
+
+

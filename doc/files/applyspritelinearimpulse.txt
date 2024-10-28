@@ -1,0 +1,4 @@
+#title applySpriteLinearImpulse [RCBasic Doc]
+#header sub applySpriteLinearImpulse( spr_id,   iX,   iY,   pX,   pY)
+
+

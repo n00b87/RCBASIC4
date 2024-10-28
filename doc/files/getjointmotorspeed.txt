@@ -1,0 +1,4 @@
+#title getJointMotorSpeed [RCBasic Doc]
+#header function  getJointMotorSpeed( joint_id)
+
+

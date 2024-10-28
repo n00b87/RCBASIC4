@@ -1,0 +1,4 @@
+#title getJointLocalAxisA [RCBasic Doc]
+#header sub getJointLocalAxisA( joint_id,  ByRef  x,  ByRef  y)
+
+

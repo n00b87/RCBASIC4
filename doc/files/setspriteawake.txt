@@ -1,0 +1,4 @@
+#title setSpriteAwake [RCBasic Doc]
+#header sub setSpriteAwake( spr_id,  flag)
+
+

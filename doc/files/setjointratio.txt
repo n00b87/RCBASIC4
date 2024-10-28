@@ -1,0 +1,4 @@
+#title setJointRatio [RCBasic Doc]
+#header sub setJointRatio( joint_id,   j_ratio)
+
+

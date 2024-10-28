@@ -1,0 +1,4 @@
+#title applySpriteAngularImpulse [RCBasic Doc]
+#header sub applySpriteAngularImpulse( spr_id,   impulse)
+
+

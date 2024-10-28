@@ -1,0 +1,4 @@
+#title getJointReferenceAngle [RCBasic Doc]
+#header function  getJointReferenceAngle( joint_id)
+
+

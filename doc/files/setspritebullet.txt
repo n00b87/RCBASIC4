@@ -1,0 +1,4 @@
+#title setSpriteBullet [RCBasic Doc]
+#header sub setSpriteBullet( spr_id,  flag)
+
+

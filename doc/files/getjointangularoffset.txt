@@ -1,0 +1,4 @@
+#title getJointAngularOffset [RCBasic Doc]
+#header function  getJointAngularOffset( joint_id)
+
+

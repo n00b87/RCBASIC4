@@ -1,0 +1,4 @@
+#title setJointMaxForce [RCBasic Doc]
+#header sub setJointMaxForce( joint_id,   force)
+
+

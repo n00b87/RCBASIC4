@@ -1,0 +1,4 @@
+#title getSpriteWorldPoint [RCBasic Doc]
+#header sub getSpriteWorldPoint( spr_id,   lX,   lY,  ByRef  x,  ByRef  y)
+
+

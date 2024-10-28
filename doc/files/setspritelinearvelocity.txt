@@ -1,0 +1,4 @@
+#title setSpriteLinearVelocity [RCBasic Doc]
+#header sub setSpriteLinearVelocity( spr_id,   x,   y)
+
+

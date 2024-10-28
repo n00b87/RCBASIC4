@@ -1,0 +1,4 @@
+#title getSpriteInertia [RCBasic Doc]
+#header function  getSpriteInertia( spr_id)
+
+

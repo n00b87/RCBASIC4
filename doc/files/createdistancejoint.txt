@@ -1,0 +1,4 @@
+#title createDistanceJoint [RCBasic Doc]
+#header function createDistanceJoint( spriteA,  spriteB,   aX,   aY,   bX,   bY)
+
+

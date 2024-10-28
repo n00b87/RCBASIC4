@@ -1,0 +1,4 @@
+#title createFrictionJoint [RCBasic Doc]
+#header function createFrictionJoint( spriteA,  spriteB,   x,   y)
+
+

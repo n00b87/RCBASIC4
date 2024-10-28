@@ -1,0 +1,4 @@
+#title getJointWorldAnchorB [RCBasic Doc]
+#header sub getJointWorldAnchorB( joint_id,  ByRef  x,  ByRef  y)
+
+

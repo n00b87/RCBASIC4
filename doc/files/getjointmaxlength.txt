@@ -1,0 +1,4 @@
+#title getJointMaxLength [RCBasic Doc]
+#header function  getJointMaxLength( joint_id)
+
+

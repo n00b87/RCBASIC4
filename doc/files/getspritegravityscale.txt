@@ -1,0 +1,4 @@
+#title getSpriteGravityScale [RCBasic Doc]
+#header function  getSpriteGravityScale( spr_id)
+
+

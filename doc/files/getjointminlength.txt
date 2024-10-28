@@ -1,0 +1,4 @@
+#title getJointMinLength [RCBasic Doc]
+#header function  getJointMinLength( joint_id)
+
+

@@ -1,0 +1,4 @@
+#title setJointOrigin [RCBasic Doc]
+#header sub setJointOrigin( joint_id,   x,   y)
+
+

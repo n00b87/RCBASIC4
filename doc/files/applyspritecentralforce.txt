@@ -1,0 +1,4 @@
+#title applySpriteCentralForce [RCBasic Doc]
+#header sub applySpriteCentralForce( spr_id,   x,   y)
+
+

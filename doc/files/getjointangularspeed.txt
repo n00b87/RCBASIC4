@@ -1,0 +1,4 @@
+#title getJointAngularSpeed [RCBasic Doc]
+#header function  getJointAngularSpeed( joint_id)
+
+

@@ -1,0 +1,4 @@
+#title getJointSpeed [RCBasic Doc]
+#header function  getJointSpeed( joint_id)
+
+

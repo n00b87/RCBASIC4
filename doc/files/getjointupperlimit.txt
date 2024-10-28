@@ -1,0 +1,4 @@
+#title getJointUpperLimit [RCBasic Doc]
+#header function  getJointUpperLimit( joint_id)
+
+

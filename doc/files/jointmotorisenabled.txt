@@ -1,0 +1,4 @@
+#title jointMotorIsEnabled [RCBasic Doc]
+#header function jointMotorIsEnabled( joint_id)
+
+

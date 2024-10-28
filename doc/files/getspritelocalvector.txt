@@ -1,0 +1,4 @@
+#title getSpriteLocalVector [RCBasic Doc]
+#header sub getSpriteLocalVector( spr_id,   wX,   wY,  ByRef  x,  ByRef  y)
+
+

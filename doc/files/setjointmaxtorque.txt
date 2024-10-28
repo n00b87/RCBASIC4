@@ -1,0 +1,4 @@
+#title setJointMaxTorque [RCBasic Doc]
+#header sub setJointMaxTorque( joint_id,   torque)
+
+

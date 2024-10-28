@@ -1,0 +1,4 @@
+#title getJointDamping [RCBasic Doc]
+#header function  getJointDamping( joint_id)
+
+

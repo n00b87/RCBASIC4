@@ -1,0 +1,4 @@
+#title applySpriteTorque [RCBasic Doc]
+#header sub applySpriteTorque( spr_id,   torque)
+
+

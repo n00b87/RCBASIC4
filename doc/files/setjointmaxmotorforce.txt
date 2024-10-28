@@ -1,0 +1,4 @@
+#title setJointMaxMotorForce [RCBasic Doc]
+#header sub setJointMaxMotorForce( joint_id,   force)
+
+

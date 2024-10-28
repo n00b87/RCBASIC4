@@ -1,0 +1,4 @@
+#title jointIsLimitEnabled [RCBasic Doc]
+#header function jointIsLimitEnabled( joint_id)
+
+

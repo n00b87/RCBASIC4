@@ -1,0 +1,4 @@
+#title setJointAngularOffset [RCBasic Doc]
+#header sub setJointAngularOffset( joint_id,   angleOffset)
+
+

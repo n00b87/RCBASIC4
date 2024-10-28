@@ -1,0 +1,4 @@
+#title getJointGroundAnchorA [RCBasic Doc]
+#header sub getJointGroundAnchorA( joint_id,  ByRef  x,  ByRef  y)
+
+

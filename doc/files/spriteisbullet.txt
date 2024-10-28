@@ -1,0 +1,4 @@
+#title spriteIsBullet [RCBasic Doc]
+#header function spriteIsBullet( spr_id)
+
+

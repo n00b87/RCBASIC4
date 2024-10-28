@@ -1,0 +1,4 @@
+#title setSpriteFixedRotation [RCBasic Doc]
+#header sub setSpriteFixedRotation( spr_id,  flag)
+
+

@@ -1,0 +1,4 @@
+#title getJointLowerLimit [RCBasic Doc]
+#header function  getJointLowerLimit( joint_id)
+
+

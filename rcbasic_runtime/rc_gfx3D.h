@@ -2671,7 +2671,7 @@ void rc_updateActorInertiaTensor(int actor)
 	}
 }
 
-void rc_getActorCOMPosition(int actor, double* x, double* y, double* z)
+void rc_getActorCenter(int actor, double* x, double* y, double* z)
 {
 	if(actor < 0 || actor >= rc_actor.size())
         return;
@@ -2789,7 +2789,7 @@ void rc_setActorAngularVelocityWorld(int actor, double x, double y, double z)
 	}
 }
 
-void rc_getActorLocalPointVelocity(int actor, double rel_x, double rel_y, double rel_z, double* x, double* y, double* z)
+void rc_getActorVelocityInLocalPoint(int actor, double rel_x, double rel_y, double rel_z, double* x, double* y, double* z)
 {
 	if(actor < 0 || actor >= rc_actor.size())
         return;

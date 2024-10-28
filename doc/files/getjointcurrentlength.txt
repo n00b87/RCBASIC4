@@ -1,0 +1,4 @@
+#title getJointCurrentLength [RCBasic Doc]
+#header function  getJointCurrentLength( joint_id)
+
+

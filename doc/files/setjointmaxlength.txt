@@ -1,0 +1,4 @@
+#title setJointMaxLength [RCBasic Doc]
+#header sub setJointMaxLength( joint_id,   jlen)
+
+

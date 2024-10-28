@@ -1,0 +1,4 @@
+#title setSpriteSleepAllowed [RCBasic Doc]
+#header sub setSpriteSleepAllowed( spr_id,  flag)
+
+

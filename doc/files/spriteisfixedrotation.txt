@@ -1,0 +1,4 @@
+#title spriteIsFixedRotation [RCBasic Doc]
+#header function spriteIsFixedRotation( spr_id)
+
+

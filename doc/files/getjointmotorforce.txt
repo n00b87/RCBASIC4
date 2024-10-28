@@ -1,0 +1,4 @@
+#title getJointMotorForce [RCBasic Doc]
+#header function  getJointMotorForce( joint_id,   inv_dt)
+
+

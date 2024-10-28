@@ -1,0 +1,4 @@
+#title applySpriteForce [RCBasic Doc]
+#header sub applySpriteForce( spr_id,   fX,   fY,   pX,   pY)
+
+

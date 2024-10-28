@@ -1,0 +1,4 @@
+#title spriteSleepAllowed [RCBasic Doc]
+#header function spriteSleepAllowed( spr_id)
+
+

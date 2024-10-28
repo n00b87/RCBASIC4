@@ -1,0 +1,4 @@
+#title setJointStiffness [RCBasic Doc]
+#header sub setJointStiffness( joint_id,   stiffness)
+
+

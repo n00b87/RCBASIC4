@@ -1,0 +1,4 @@
+#title getJointMaxForce [RCBasic Doc]
+#header function  getJointMaxForce( joint_id)
+
+

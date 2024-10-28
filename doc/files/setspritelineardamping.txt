@@ -1,0 +1,4 @@
+#title setSpriteLinearDamping [RCBasic Doc]
+#header sub setSpriteLinearDamping( spr_id,   linearDamping)
+
+

@@ -1,0 +1,4 @@
+#title getSpriteCenter [RCBasic Doc]
+#header sub getSpriteCenter( spr_id,  ByRef  x,  ByRef  y)
+
+
