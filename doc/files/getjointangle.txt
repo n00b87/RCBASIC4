@@ -1,4 +1,10 @@
 #title getJointAngle [RCBasic Doc]
 #header function  getJointAngle( joint_id)
 
+Returns the current joint angle 
 
+Used with
+#list ul
+#li Revolute Joint
+#li Wheel Joint
+#/list

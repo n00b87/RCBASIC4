@@ -286,7 +286,7 @@ void rc_setSpriteBullet(int spr_id, bool flag)
 	if(!rc_sprite[spr_id].active)
 		return;
 
-	return rc_sprite[spr_id].physics.body->SetBullet(flag);
+	rc_sprite[spr_id].physics.body->SetBullet(flag);
 }
 
 bool rc_spriteIsBullet(int spr_id)
@@ -297,7 +297,7 @@ bool rc_spriteIsBullet(int spr_id)
 	if(!rc_sprite[spr_id].active)
 		return false;
 
-	rc_sprite[spr_id].physics.body->IsBullet();
+	return rc_sprite[spr_id].physics.body->IsBullet();
 }
 
 void rc_setSpriteSleepAllowed(int spr_id, bool flag)
@@ -308,7 +308,7 @@ void rc_setSpriteSleepAllowed(int spr_id, bool flag)
 	if(!rc_sprite[spr_id].active)
 		return;
 
-	return rc_sprite[spr_id].physics.body->SetSleepingAllowed(flag);
+	rc_sprite[spr_id].physics.body->SetSleepingAllowed(flag);
 }
 
 bool rc_spriteSleepAllowed(int spr_id)
@@ -319,7 +319,7 @@ bool rc_spriteSleepAllowed(int spr_id)
 	if(!rc_sprite[spr_id].active)
 		return false;
 
-	rc_sprite[spr_id].physics.body->IsSleepingAllowed();
+	return rc_sprite[spr_id].physics.body->IsSleepingAllowed();
 }
 
 void rc_setSpriteAwake(int spr_id, bool flag)
@@ -330,7 +330,7 @@ void rc_setSpriteAwake(int spr_id, bool flag)
 	if(!rc_sprite[spr_id].active)
 		return;
 
-	return rc_sprite[spr_id].physics.body->SetAwake(flag);
+	rc_sprite[spr_id].physics.body->SetAwake(flag);
 }
 
 bool rc_spriteIsAwake(int spr_id)
@@ -341,7 +341,7 @@ bool rc_spriteIsAwake(int spr_id)
 	if(!rc_sprite[spr_id].active)
 		return false;
 
-	rc_sprite[spr_id].physics.body->IsAwake();
+	return rc_sprite[spr_id].physics.body->IsAwake();
 }
 
 void rc_setSpriteFixedRotation(int spr_id, bool flag)
@@ -352,7 +352,7 @@ void rc_setSpriteFixedRotation(int spr_id, bool flag)
 	if(!rc_sprite[spr_id].active)
 		return;
 
-	return rc_sprite[spr_id].physics.body->SetFixedRotation(flag);
+	rc_sprite[spr_id].physics.body->SetFixedRotation(flag);
 }
 
 bool rc_spriteIsFixedRotation(int spr_id)
@@ -363,5 +363,5 @@ bool rc_spriteIsFixedRotation(int spr_id)
 	if(!rc_sprite[spr_id].active)
 		return false;
 
-	rc_sprite[spr_id].physics.body->IsFixedRotation();
+	return rc_sprite[spr_id].physics.body->IsFixedRotation();
 }

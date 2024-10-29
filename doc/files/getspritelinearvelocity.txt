@@ -1,4 +1,6 @@
 #title getSpriteLinearVelocity [RCBasic Doc]
 #header sub getSpriteLinearVelocity( spr_id,  ByRef  x,  ByRef  y)
 
+Gets the linear velocity of a sprite
 
+#ref SetSpriteLinearVelocity

@@ -1,4 +1,4 @@
 #title getSpriteInertia [RCBasic Doc]
 #header function  getSpriteInertia( spr_id)
 
-
+Returns the rotational inertia of the body about the local origin. 

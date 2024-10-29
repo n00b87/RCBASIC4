@@ -1,4 +1,11 @@
 #title getJointLocalAxisA [RCBasic Doc]
 #header sub getJointLocalAxisA( joint_id,  ByRef  x,  ByRef  y)
 
+Gets the local joint axis relative to bodyA
+
+Used with
+#list ul
+#li Prismatic Joint
+#li Wheel Joint
+#/list
 

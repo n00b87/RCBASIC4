@@ -1,4 +1,10 @@
 #title getJointReferenceAngle [RCBasic Doc]
 #header function  getJointReferenceAngle( joint_id)
 
+Returns the reference angle. 
 
+Used with
+#list ul
+#li Prismatic Joint
+#li Revolute Joint
+#/list

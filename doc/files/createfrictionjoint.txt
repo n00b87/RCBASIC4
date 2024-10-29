@@ -1,4 +1,14 @@
 #title createFrictionJoint [RCBasic Doc]
-#header function createFrictionJoint( spriteA,  spriteB,   x,   y)
+#header function createFrictionJoint( spriteA,  spriteB,   x,   y, collide_connect)
 
+Creates a Friction Joint
+
+Friction joint. This is used for top-down friction. It provides 2D translational friction and angular friction. 
+
+Parameters
+#list ul
+#li spriteA - first body
+#li spriteB - second body
+#li x, y - Anchor point. A common world-space point where the friction forces will be applied on both bodies. This is usually set to the point where you want the bodies to "grip" or resist slipping relative to each other.
+#/list
 

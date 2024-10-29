@@ -1,4 +1,8 @@
 #title setSpriteBullet [RCBasic Doc]
 #header sub setSpriteBullet( spr_id,  flag)
 
+Sets whether body has continuous collision detection
 
+Note: Useful for fast moving objects
+
+#ref SpriteIsBullet

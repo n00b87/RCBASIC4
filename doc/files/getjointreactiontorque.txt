@@ -1,4 +1,8 @@
 #title getJointReactionTorque [RCBasic Doc]
-#header function  getJointReactionTorque( joint_id,   inv_dt)
+#header function  getJointReactionTorque( joint_id, inv_dt)
 
+Returns the reaction torque on bodyB in N*m
 
+Can be used with all joints
+
+#ref GetJointReactionForce

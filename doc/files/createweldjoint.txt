@@ -1,4 +1,6 @@
 #title createWeldJoint [RCBasic Doc]
-#header function createWeldJoint( spriteA,  spriteB,   x,   y)
+#header function createWeldJoint( spriteA,  spriteB,   x,   y, collide_connect)
 
+Creates a Weld Joint
 
+A weld joint essentially glues two bodies together. A weld joint may distort somewhat because the island constraint solver is approximate. 

@@ -1,4 +1,13 @@
 #title enableJointLimit [RCBasic Doc]
 #header sub enableJointLimit( joint_id,  flag)
 
+Enables or disables joint limits
 
+Used with
+#list ul
+#li Prismatic Joint
+#li Revolute Joint
+#li Wheel Joint
+#/list
+
+#ref JointIsLimitEnabled SetJointLimits

@@ -1,4 +1,4 @@
 #title getSpriteLocalVector [RCBasic Doc]
 #header sub getSpriteLocalVector( spr_id,   wX,   wY,  ByRef  x,  ByRef  y)
 
-
+Gets a local vector given a world vector. 

@@ -1,4 +1,6 @@
 #title setSpriteFixedRotation [RCBasic Doc]
-#header sub setSpriteFixedRotation( spr_id,  flag)
+#header sub setSpriteFixedRotation( spr_id,  flag )
 
+Prevents sprite from being rotated by any forces applied to it
 
+#ref spriteIsFixedRotation

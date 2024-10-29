@@ -1,4 +1,14 @@
 #title createDistanceJoint [RCBasic Doc]
-#header function createDistanceJoint( spriteA,  spriteB,   aX,   aY,   bX,   bY)
+#header function createDistanceJoint( spriteA,  spriteB,   aX,   aY,   bX,   bY, collide_connect)
 
+Creates a distance joint
 
+A distance joint constrains two points on two bodies to remain at a fixed distance from each other. You can view this as a massless, rigid rod.
+
+Parameters
+#list ul
+#li spriteA - first body
+#li spriteB - second body
+#li aX, aY - Anchor point on spriteA
+#li bX, bY - Anchor point on spriteB
+#/list

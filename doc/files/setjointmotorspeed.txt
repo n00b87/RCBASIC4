@@ -1,4 +1,13 @@
 #title setJointMotorSpeed [RCBasic Doc]
 #header sub setJointMotorSpeed( joint_id,   speed)
 
+Used on joints that support motors, such as revolute joints and prismatic joints, to control the speed at which the motor applies force to achieve movement.
 
+Used with
+#list ul
+#li Prismatic Joint
+#li Revolute Joint
+#li Wheel Joint
+#/list
+
+#ref GetJointMotorSpeed

@@ -1,4 +1,8 @@
 #title setJointLinearOffset [RCBasic Doc]
 #header sub setJointLinearOffset( joint_id,   x,   y)
 
+Specify a target position offset for the connected bodies relative to each other. 
 
+Used with Motor Joints
+
+#ref GetJointLinearOffset

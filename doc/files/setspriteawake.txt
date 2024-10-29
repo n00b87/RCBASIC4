@@ -1,4 +1,4 @@
 #title setSpriteAwake [RCBasic Doc]
 #header sub setSpriteAwake( spr_id,  flag)
 
-
+Sets a sprite's sleep state

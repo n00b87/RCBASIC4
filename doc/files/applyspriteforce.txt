@@ -1,4 +1,4 @@
 #title applySpriteForce [RCBasic Doc]
 #header sub applySpriteForce( spr_id,   fX,   fY,   pX,   pY)
 
-
+Apply a force at a world point. If the force is not applied at the center of mass, it will generate a torque and affect the angular velocity. This wakes up the body. 

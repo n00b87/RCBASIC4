@@ -1,4 +1,6 @@
 #title spriteIsAwake [RCBasic Doc]
 #header function spriteIsAwake( spr_id)
 
+Wakes a sleeping sprite
 
+#ref SetSpriteAwake SpriteIsSleepAllowed SetSpriteSleepAllowed

@@ -1,4 +1,10 @@
 #title setJointMaxForce [RCBasic Doc]
 #header sub setJointMaxForce( joint_id,   force)
 
+Sets an upper limit on the amount of force the joint can apply to the connected bodies, helping to control how much resistance or power the joint provides.
 
+Used with
+#list ul
+#li Motor Joint
+#li Friction Joint
+#/list

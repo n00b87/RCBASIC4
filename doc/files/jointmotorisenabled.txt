@@ -1,4 +1,13 @@
 #title jointMotorIsEnabled [RCBasic Doc]
 #header function jointMotorIsEnabled( joint_id)
 
+Returns whether or not the joint motor is enabled
 
+Used with
+#list ul
+#li Prismatic Joint
+#li Revolute Joint
+#li Wheel Joint
+#/list
+
+#ref EnableJointMotor

@@ -1,4 +1,13 @@
 #title jointIsLimitEnabled [RCBasic Doc]
 #header function jointIsLimitEnabled( joint_id)
 
+Returns whether or not the joint limit is enabled
 
+Used with
+#list ul
+#li Prismatic Joint
+#li Revolute Joint
+#li Wheel Joint
+#/list
+
+#ref EnableJointLimit SetJointLimits

@@ -1,4 +1,6 @@
 #title setSpriteGravityScale [RCBasic Doc]
 #header sub setSpriteGravityScale( spr_id,   g_scale)
 
+Sets the affect of gravity on a sprite
 
+#ref GetSpriteGravityScale

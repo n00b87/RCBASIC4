@@ -1,4 +1,8 @@
 #title setJointLength [RCBasic Doc]
 #header sub setJointLength( joint_id,   jlen)
 
+Set the fixed distance between two connected bodies. This distance acts as a "target length" that the joint will try to maintain, applying forces to keep the bodies at that separation.
 
+Used with distance Joints
+
+#ref GetJointLength

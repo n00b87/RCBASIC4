@@ -1,4 +1,15 @@
 #title getJointLocalAnchorA [RCBasic Doc]
 #header sub getJointLocalAnchorA( joint_id,  ByRef  x,  ByRef  y)
 
+Returns the local anchor point relative to bodyA's origin. 
 
+#list ul
+#li Distance Joint
+#li Friction Joint
+#li Prismatic Joint
+#li Revolute Joint
+#li Weld Joint
+#li Wheel Joint
+#/list
+
+#ref GetJointLocalAnchorB

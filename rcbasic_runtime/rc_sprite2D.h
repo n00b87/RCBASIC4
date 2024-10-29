@@ -78,6 +78,8 @@ struct rc_b2Joint_obj
 
 	int type;
 	bool active;
+
+	int canvas;
 };
 
 irr::core::array<rc_b2Joint_obj> rc_joint;

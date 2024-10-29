@@ -1,4 +1,12 @@
 #title getJointMotorTorque [RCBasic Doc]
 #header function  getJointMotorTorque( joint_id,   inv_dt)
 
+Returns the current motor torque given the inverse time step. Unit is N*m. 
 
+Used with
+#list ul
+#li Revolute Joint
+#li Wheel Joint
+#/list
+
+#ref GetJointMaxMotorTorque SetJointMaxMotorTorque

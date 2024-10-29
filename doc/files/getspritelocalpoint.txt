@@ -1,4 +1,4 @@
 #title getSpriteLocalPoint [RCBasic Doc]
 #header sub getSpriteLocalPoint( spr_id,   wX,   wY,  ByRef  x,  ByRef  y)
 
-
+Gets a local point relative to the body's origin given a world point. 

@@ -1,4 +1,5 @@
 #title getActorVelocityInLocalPoint [RCBasic Doc]
 #header sub getActorVelocityInLocalPoint( actor, rel_x, rel_y, rel_z, ByRef x, ByRef y, ByRef z)
 
+Gets the linear velocity of a specific point on an actor, given its position in the actor's local coordinate space. This is useful for determining how fast and in what direction a particular point on the actor is moving, accounting for both the body's linear velocity and its rotational motion (angular velocity).
 

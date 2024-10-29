@@ -1,4 +1,8 @@
 #title getJointCurrentLengthA [RCBasic Doc]
 #header function  getJointCurrentLengthA( joint_id)
 
+Return the current length of the segment attached to bodyA. 
 
+Used with Pulley Joint
+
+#ref GetJointCurrentLengthB

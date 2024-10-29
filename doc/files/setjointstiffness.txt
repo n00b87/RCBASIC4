@@ -1,4 +1,13 @@
 #title setJointStiffness [RCBasic Doc]
 #header sub setJointStiffness( joint_id,   stiffness)
 
+Sets how rigid a joint is
 
+Used with:
+#list ul
+#li Distance Joint
+#li Weld Joint
+#li Wheel Join
+#/list
+
+#ref GetJointStiffness
