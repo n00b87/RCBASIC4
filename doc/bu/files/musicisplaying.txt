@@ -1,4 +1,0 @@
-#title MusicIsPlaying [RCBasic Doc]
-#header function MusicIsPlaying()
-
-

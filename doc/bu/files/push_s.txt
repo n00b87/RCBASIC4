@@ -1,4 +1,0 @@
-#title Push_S [RCBasic Doc]
-#header sub Push_S( str_stack, s$ )
-
-

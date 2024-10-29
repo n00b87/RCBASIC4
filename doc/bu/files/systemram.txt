@@ -1,4 +1,0 @@
-#title SystemRam [RCBasic Doc]
-#header function SystemRam()
-
-

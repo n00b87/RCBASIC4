@@ -1,0 +1,6 @@
+#title GetTileAnimationFrame [RCBasic Doc]
+#header Function GetTileAnimationFrame(tileset, base_tile, anim_frame)
+
+Returns the tile set at a specified frame in a tiles animation
+
+#ref SetTileAnimationFrame

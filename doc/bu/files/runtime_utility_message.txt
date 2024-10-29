@@ -1,4 +1,0 @@
-#title Runtime_Utility_Message$ [RCBasic Doc]
-#header function Runtime_Utility_Message$(arg$)
-
-

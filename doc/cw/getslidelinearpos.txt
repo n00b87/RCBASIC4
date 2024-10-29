@@ -1,6 +1,0 @@
-#title getSlideLinearPos [RCBasic Doc]
-#header function  getSlideLinearPos( constraint_id)
-
-Returns the current linear position of the slider constraint along its defined axis. This position reflects how far the connected actors have moved along the slider's linear axis since the constraint was created or last reset.
-
-This value can be positive or negative, depending on the relative positions of the two bodies connected by the slider.

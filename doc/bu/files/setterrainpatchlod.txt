@@ -1,4 +1,0 @@
-#title SetTerrainPatchLOD [RCBasic Doc]
-#header sub SetTerrainPatchLOD( actor, patchX, patchZ, LOD )
-
-

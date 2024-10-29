@@ -1,8 +1,0 @@
-#title setConstraintDampingDirAng [RCBasic Doc]
-#header sub  setConstraintDampingDirAng( constraint_id,  n)
-
-Returns the angular directional damping value. This damping factor specifically affects angular motion in the direction of movement along the constraint's axes.
-
-Note: Only applies to slider constraint
-
-#ref SetConstraintDampingDirAng

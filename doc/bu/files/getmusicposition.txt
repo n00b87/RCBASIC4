@@ -1,6 +1,0 @@
-#title GetMusicPosition [RCBasic Doc]
-#header function GetMusicPosition()
-
-Returns the position of the music track
-
-#ref SetMusicPosition

@@ -1,4 +1,0 @@
-#title Replace$ [RCBasic Doc]
-#header function Replace$(src$, tgt$, rpc$)
-
-

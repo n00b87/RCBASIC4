@@ -1,4 +1,0 @@
-#title GetCanvasSize [RCBasic Doc]
-#header sub GetCanvasSize(c_num, byref w, byref h)
-
-Gets the size of a canvas

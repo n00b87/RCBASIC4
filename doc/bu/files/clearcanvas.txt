@@ -1,4 +1,0 @@
-#title ClearCanvas [RCBasic Doc]
-#header sub ClearCanvas()
-
-Clears the active drawing canvas

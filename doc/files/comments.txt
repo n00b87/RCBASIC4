@@ -1,0 +1,17 @@
+#title RCBasic Comments [RCBasic Doc]
+#header COMMENTS
+
+Comments are remarks you can add to your code which will be ignored by the compiler.  To make a comment you would use a single quote.  Look at the following:
+#code
+' THIS IS A COMMENT
+Print HELLO WORLD"      ' THIS IS ANOTHER COMMENT
+#/code
+
+MULTI-LINE COMMENTS
+
+Multi-line comments are comments that can span multiple lines.  To start a multi-line comment you would use forward slash followed by a single quote and you would end it with a single quote followed by a forward slash.  Look at the following:
+#code
+/' THIS IS
+A
+MULTI-LINE COMMENT '/
+#/code

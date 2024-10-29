@@ -1,4 +1,0 @@
-#title getSlideUseFrameOffset [RCBasic Doc]
-#header function  getSlideUseFrameOffset( constraint_id)
-
-Returns a boolean value indicating whether the constraint is using frame offsets for its linear and angular limits.

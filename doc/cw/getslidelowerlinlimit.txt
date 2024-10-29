@@ -1,8 +1,0 @@
-#title getSlideLowerLinLimit [RCBasic Doc]
-#header function  getSlideLowerLinLimit( constraint_id)
-
-Returns the lower linear limit for the translational (sliding) motion along the slider's axis. This value specifies the minimum allowable position for the connected actors along the defined axis of the slider constraint.
-
-This defines the minimum translation distance along the slider’s axis that the connected actors are allowed to reach. If the actors' relative position along the axis goes below this limit, the constraint will prevent further movement.
-
-#ref SetSlideLowerLinLimit

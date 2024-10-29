@@ -1,4 +1,0 @@
-#title ScalarMatrix [RCBasic Doc]
-#header sub ScalarMatrix(mA, mB, s_value)
-
-

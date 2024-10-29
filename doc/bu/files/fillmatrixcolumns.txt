@@ -1,4 +1,0 @@
-#title FillMatrixColumns [RCBasic Doc]
-#header function FillMatrixColumns(mA, c, num_cols, v)
-
-Fills matrix columns with the given value starting at the given column 

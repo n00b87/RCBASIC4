@@ -1,0 +1,8 @@
+#title getJointLinearOffset [RCBasic Doc]
+#header sub getJointLinearOffset( joint_id,  ByRef  x,  ByRef  y)
+
+Gets the target position offset for the connected bodies relative to each other. 
+
+Used with Motor Joints
+
+#ref SetJointLinearOffset

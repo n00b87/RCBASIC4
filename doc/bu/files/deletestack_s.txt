@@ -1,4 +1,0 @@
-#title DeleteStack_S [RCBasic Doc]
-#header sub DeleteStack_S( str_stack )
-
-Removes a string stack from memory

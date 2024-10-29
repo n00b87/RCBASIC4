@@ -1,4 +1,0 @@
-#title GetActorEndFrame [RCBasic Doc]
-#header function GetActorEndFrame( actor )
-
-Returns the last frame of an actor's animation

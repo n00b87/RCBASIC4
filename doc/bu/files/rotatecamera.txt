@@ -1,4 +1,0 @@
-#title RotateCamera [RCBasic Doc]
-#header sub RotateCamera( x, y, z)
-
-

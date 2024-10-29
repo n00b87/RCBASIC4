@@ -1,0 +1,8 @@
+#title setJointRatio [RCBasic Doc]
+#header sub setJointRatio( joint_id,   j_ratio)
+
+Determines how much one joint’s movement affects the other, enabling complex, synchronized motion.
+
+Used with Gear Joints
+
+#ref GetJointRatio

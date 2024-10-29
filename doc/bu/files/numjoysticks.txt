@@ -1,4 +1,0 @@
-#title NumJoysticks [RCBasic Doc]
-#header function NumJoysticks()
-
-

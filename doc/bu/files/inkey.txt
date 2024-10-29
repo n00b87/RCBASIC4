@@ -1,4 +1,0 @@
-#title InKey [RCBasic Doc]
-#header function InKey()
-
-

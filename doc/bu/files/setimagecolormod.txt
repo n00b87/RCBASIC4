@@ -1,4 +1,0 @@
-#title SetImageColorMod [RCBasic Doc]
-#header sub SetImageColorMod(slot, c)
-
-

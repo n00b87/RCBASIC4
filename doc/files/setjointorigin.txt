@@ -1,0 +1,6 @@
+#title setJointOrigin [RCBasic Doc]
+#header sub setJointOrigin( joint_id,   x,   y)
+
+Shift the world origin. This is particularly useful in large simulations where objects might move far from the initial origin, potentially causing precision issues in floating-point calculations.
+
+Used with Pulley Joint

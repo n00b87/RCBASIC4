@@ -1,0 +1,5 @@
+#title SetTile [RCBasic Doc]
+#header Sub SetTile(tilemap, tile, x, y)
+
+Places a tile on a tilemap
+

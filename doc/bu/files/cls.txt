@@ -1,4 +1,0 @@
-#title Cls [RCBasic Doc]
-#header sub Cls()
-
-Clears the back buffer on the window

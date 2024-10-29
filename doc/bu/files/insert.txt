@@ -1,4 +1,0 @@
-#title Insert$ [RCBasic Doc]
-#header function Insert$(src$, tgt$, pos)
-
-

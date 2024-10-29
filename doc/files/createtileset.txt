@@ -1,0 +1,13 @@
+#title CreateTileSet [RCBasic Doc]
+#header Function CreateTileSet(img_id, tile_w, tile_h)
+
+Return a new Tileset
+
+Parameters:
+#list ul
+#li img_id - A image to use as a tile sheet
+#li tile_w - The width of each tile
+#li tile_h - The height of each tile
+#/list
+
+#ref CreateTileMap

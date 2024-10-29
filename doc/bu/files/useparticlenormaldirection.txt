@@ -1,4 +1,0 @@
-#title useParticleNormalDirection [RCBasic Doc]
-#header sub  useParticleNormalDirection( actor,  flag)
-
-

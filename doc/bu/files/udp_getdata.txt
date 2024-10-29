@@ -1,4 +1,0 @@
-#title UDP_GetData [RCBasic Doc]
-#header function UDP_GetData(socket, byref host$, byref port, byref sData$)
-
-

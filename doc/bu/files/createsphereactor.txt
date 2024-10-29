@@ -1,6 +1,0 @@
-#title CreateSphereActor [RCBasic Doc]
-#header function CreateSphereActor( radius )
-
-Returns an actor composed of a sphere mesh
-
-#ref CreateMeshActor CreateMeshOctreeActor CreateCubeActor CreateWaterPlaneActor CreateLightActor CreateBillboardActor CreateTerrainActor

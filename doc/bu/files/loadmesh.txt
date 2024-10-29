@@ -1,4 +1,0 @@
-#title LoadMesh [RCBasic Doc]
-#header function LoadMesh( mesh_file$ )
-
-

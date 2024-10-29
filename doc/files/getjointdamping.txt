@@ -1,0 +1,13 @@
+#title getJointDamping [RCBasic Doc]
+#header function  getJointDamping( joint_id)
+
+Returns the damping value for a joint
+
+Used with
+#list ul
+#li Distance Joint
+#li Weld Joint
+#li Wheel Joint
+#/list
+
+#ref SetJointDamping

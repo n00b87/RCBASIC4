@@ -1,4 +1,0 @@
-#title setConstraintRestitutionOrthoLin [RCBasic Doc]
-#header sub  setConstraintRestitutionOrthoLin( constraint_id,  n)
-
-

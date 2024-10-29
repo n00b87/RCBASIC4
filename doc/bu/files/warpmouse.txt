@@ -1,4 +1,0 @@
-#title WarpMouse [RCBasic Doc]
-#header sub WarpMouse(x, y)
-
-

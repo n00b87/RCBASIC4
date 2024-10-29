@@ -1,4 +1,0 @@
-#title Runtime$ [RCBasic Doc]
-#header function Runtime$()
-
-

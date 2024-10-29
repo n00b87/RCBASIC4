@@ -1,4 +1,0 @@
-#title SetActorVisible [RCBasic Doc]
-#header sub SetActorVisible( actor, flag )
-
-

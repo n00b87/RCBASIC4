@@ -1,4 +1,0 @@
-#title MouseWheelY [RCBasic Doc]
-#header function MouseWheelY()
-
-

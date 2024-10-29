@@ -1,0 +1,8 @@
+#title getJointLengthA [RCBasic Doc]
+#header function  getJointLengthA( joint_id)
+
+Returns the current length of the line connecting the anchor point on the first body to its corresponding ground anchor. This length can vary based on the movement of the connected bodies.
+
+Used with Pulley Joints
+
+#ref GetJointLengthB

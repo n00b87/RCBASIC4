@@ -1,4 +1,0 @@
-#title SwapMatrixRow [RCBasic Doc]
-#header function SwapMatrixRow(mA, R1, R2)
-
-

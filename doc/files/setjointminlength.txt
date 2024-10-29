@@ -1,0 +1,8 @@
+#title setJointMinLength [RCBasic Doc]
+#header sub setJointMinLength( joint_id,   jlen)
+
+Set the minimum allowable length between two connected bodies
+
+Used with Distance Joint
+
+#ref SetJointMaxLength

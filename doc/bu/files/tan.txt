@@ -1,4 +1,0 @@
-#title Tan [RCBasic Doc]
-#header function Tan(n)
-
-

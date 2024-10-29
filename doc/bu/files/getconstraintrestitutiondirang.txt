@@ -1,4 +1,0 @@
-#title getConstraintRestitutionDirAng [RCBasic Doc]
-#header function  getConstraintRestitutionDirAng( constraint_id)
-
-

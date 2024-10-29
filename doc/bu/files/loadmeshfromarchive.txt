@@ -1,4 +1,0 @@
-#title LoadMeshFromArchive [RCBasic Doc]
-#header function LoadMeshFromArchive( archive$, mesh_file$ )
-
-

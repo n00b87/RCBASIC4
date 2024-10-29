@@ -1,4 +1,0 @@
-#title setConstraintDampingDirLin [RCBasic Doc]
-#header sub  setConstraintDampingDirLin( constraint_id,  n)
-
-

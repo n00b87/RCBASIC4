@@ -1,7 +1,0 @@
-#title setConstraintBreakingImpulseThreshold [RCBasic Doc]
-#header sub  setConstraintBreakingImpulseThreshold( constraint_id,  threshold)
-
-Sets the breaking impulse threshold for a given constraint. The breaking impulse threshold defines the maximum force (impulse) a constraint can withstand before it "breaks," meaning that the constraint will be deactivated and no longer enforce its rules.
-
-#ref GetConstraintBreakingImpulseThreshold
-

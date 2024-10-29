@@ -1,4 +1,0 @@
-#title VideoIsPlaying [RCBasic Doc]
-#header function VideoIsPlaying()
-
-

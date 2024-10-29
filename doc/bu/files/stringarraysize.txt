@@ -1,4 +1,0 @@
-#title StringArraySize [RCBasic Doc]
-#header function StringArraySize(Byref id$, array_dim)
-
-

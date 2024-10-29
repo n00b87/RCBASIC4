@@ -1,4 +1,0 @@
-#title Hex$ [RCBasic Doc]
-#header function Hex$(n)
-
-

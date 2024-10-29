@@ -1,4 +1,0 @@
-#title getConstraintSolverIterations [RCBasic Doc]
-#header function  getConstraintSolverIterations( constraint_id)
-
-

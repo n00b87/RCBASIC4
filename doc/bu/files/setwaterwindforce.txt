@@ -1,4 +1,0 @@
-#title setWaterWindForce [RCBasic Doc]
-#header sub setWaterWindForce( actor,   f)
-
-

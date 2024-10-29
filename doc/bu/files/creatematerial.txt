@@ -1,4 +1,0 @@
-#title createMaterial [RCBasic Doc]
-#header function  createMaterial()
-
-Returns a new material

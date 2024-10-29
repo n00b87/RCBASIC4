@@ -1,4 +1,0 @@
-#title getWaterColor [RCBasic Doc]
-#header function getWaterColor( actor)
-
-

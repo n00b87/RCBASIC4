@@ -1,4 +1,0 @@
-#title TypeArrayFill [RCBasic Doc]
-#header sub TypeArrayFill(ByRef src as empty, fdata as empty)
-
-

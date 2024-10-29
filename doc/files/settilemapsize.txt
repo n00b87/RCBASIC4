@@ -1,0 +1,6 @@
+#title SetTileMapSize [RCBasic Doc]
+#header Sub SetTileMapSize(tilemap, widthInTiles, heightInTiles)
+
+Resize a tile map
+
+#ref CreateTileMap GetTileMapSize

@@ -1,4 +1,0 @@
-#title ReadInput_SetText [RCBasic Doc]
-#header sub ReadInput_SetText(txt$)
-
-

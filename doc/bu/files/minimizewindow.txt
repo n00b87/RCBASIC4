@@ -1,4 +1,0 @@
-#title MinimizeWindow [RCBasic Doc]
-#header sub MinimizeWindow()
-
-

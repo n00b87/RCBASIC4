@@ -1,4 +1,0 @@
-#title SetMusicVolume [RCBasic Doc]
-#header sub SetMusicVolume(vol)
-
-

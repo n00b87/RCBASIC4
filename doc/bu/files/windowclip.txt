@@ -1,4 +1,0 @@
-#title WindowClip [RCBasic Doc]
-#header function WindowClip(x, y, w, h)
-
-

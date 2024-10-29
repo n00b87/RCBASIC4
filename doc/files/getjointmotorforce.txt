@@ -1,0 +1,8 @@
+#title getJointMotorForce [RCBasic Doc]
+#header function  getJointMotorForce( joint_id,   inv_dt)
+
+Return the current motor force given the inverse time step, usually in N. 
+
+Used with Prismatic Joint
+
+#ref SetJointMotorForce

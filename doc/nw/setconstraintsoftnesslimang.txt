@@ -1,4 +1,0 @@
-#title setConstraintSoftnessLimAng [RCBasic Doc]
-#header sub  setConstraintSoftnessLimAng( constraint_id,  n)
-
-

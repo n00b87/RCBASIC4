@@ -1,4 +1,0 @@
-#title setParticleRadius [RCBasic Doc]
-#header sub  setParticleRadius( actor,  radius)
-
-

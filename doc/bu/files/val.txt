@@ -1,4 +1,0 @@
-#title Val [RCBasic Doc]
-#header function Val(n$)
-
-

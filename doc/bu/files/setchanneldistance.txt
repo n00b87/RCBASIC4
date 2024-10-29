@@ -1,4 +1,0 @@
-#title SetChannelDistance [RCBasic Doc]
-#header function SetChannelDistance(channel, dist_value)
-
-

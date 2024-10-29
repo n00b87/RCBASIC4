@@ -1,4 +1,0 @@
-#title getConstraintSoftnessDirLin [RCBasic Doc]
-#header function  getConstraintSoftnessDirLin( constraint_id)
-
-

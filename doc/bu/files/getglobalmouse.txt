@@ -1,4 +1,0 @@
-#title GetGlobalMouse [RCBasic Doc]
-#header sub GetGlobalMouse(ByRef x, ByRef y, ByRef mb1, ByRef mb2, ByRef mb3)
-
-Gets the global mouse position and button state

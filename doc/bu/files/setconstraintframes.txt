@@ -1,4 +1,0 @@
-#title setConstraintFrames [RCBasic Doc]
-#header sub  setConstraintFrames( constraint_id,  frameA_matrix,  frameB_matrix)
-
-

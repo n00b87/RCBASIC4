@@ -1,4 +1,0 @@
-#title QueryAudioSpec [RCBasic Doc]
-#header function QueryAudioSpec(ByRef freq, ByRef format, ByRef channels)
-
-

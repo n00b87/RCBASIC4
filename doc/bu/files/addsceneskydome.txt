@@ -1,6 +1,0 @@
-#title AddSceneSkyDome [RCBasic Doc]
-#header sub AddSceneSkyDome( img )
-
-Adds a sky dome to the scene
-
-#ref AddSceneSkyDomeEx

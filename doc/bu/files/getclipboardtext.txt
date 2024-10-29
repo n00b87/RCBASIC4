@@ -1,4 +1,0 @@
-#title GetClipboardText$ [RCBasic Doc]
-#header function GetClipboardText$( )
-
-Returns the clipboard text.

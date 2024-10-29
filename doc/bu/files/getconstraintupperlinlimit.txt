@@ -1,4 +1,0 @@
-#title getConstraintUpperLinLimit [RCBasic Doc]
-#header function  getConstraintUpperLinLimit( constraint_id)
-
-

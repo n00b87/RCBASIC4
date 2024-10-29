@@ -1,6 +1,0 @@
-#title GetActorRotation [RCBasic Doc]
-#header sub GetActorRotation( actor, ByRef x, ByRef y, ByRef z )
-
-Gets the actors rotation on each axis
-
-#ref SetActorRotation

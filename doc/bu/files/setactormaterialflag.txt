@@ -1,4 +1,0 @@
-#title setActorMaterialFlag [RCBasic Doc]
-#header sub  setActorMaterialFlag( actor,  flag,  flag_value)
-
-

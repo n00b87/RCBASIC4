@@ -1,4 +1,0 @@
-#title MouseWheelX [RCBasic Doc]
-#header function MouseWheelX()
-
-

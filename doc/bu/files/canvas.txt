@@ -1,6 +1,0 @@
-#title Canvas [RCBasic Doc]
-#header sub Canvas(c_num)
-
-Sets the active canvas for drawing commands to use
-
-#ref ActiveCanvas

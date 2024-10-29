@@ -1,9 +1,0 @@
-#title SetActorLinearFactor [RCBasic Doc]
-#header sub SetActorLinearFactor( actor,   x,   y,   z)
-
-Sets an actor's linear factor.
-
-The linear factor determines how the actor responds to linear velocity or force.
-
-#ref GetActorLinearFactor SetActorAngularFactor GetActorAngularFactor
-

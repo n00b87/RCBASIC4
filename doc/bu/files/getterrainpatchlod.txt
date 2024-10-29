@@ -1,4 +1,0 @@
-#title GetTerrainPatchLOD [RCBasic Doc]
-#header function GetTerrainPatchLOD( actor, patchX, patchZ )
-
-

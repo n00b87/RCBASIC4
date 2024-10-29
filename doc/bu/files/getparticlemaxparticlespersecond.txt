@@ -1,4 +1,0 @@
-#title getParticleMaxParticlesPerSecond [RCBasic Doc]
-#header function  getParticleMaxParticlesPerSecond( actor)
-
-

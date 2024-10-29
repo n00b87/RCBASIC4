@@ -1,6 +1,0 @@
-#title setSlideDampingOrthoLin [RCBasic Doc]
-#header sub  setSlideDampingOrthoLin( constraint_id,  n)
-
-Sets the orthogonal linear damping factor for a constraint. This damping affects the linear (translational) motion of an object that occurs perpendicular to the primary direction of movement defined by the constraint.
-
-#ref GetSlideDampingOrthoLin

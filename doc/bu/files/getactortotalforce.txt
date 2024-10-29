@@ -1,6 +1,0 @@
-#title GetActorTotalForce [RCBasic Doc]
-#header sub GetActorTotalForce( actor,  ByRef  x,  ByRef  y,  ByRef  z)
-
-Gets the total net force currently acting on an actor. This force is the sum of all external forces applied to the actor at a given point in time, including forces like gravity, applied forces, and other interactions such as contact or collision forces.
-
-#ref GetActorTotalTorque

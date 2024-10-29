@@ -1,4 +1,0 @@
-#title Int [RCBasic Doc]
-#header function Int(n)
-
-

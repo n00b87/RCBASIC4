@@ -1,4 +1,0 @@
-#title getConstraintAngularOnly [RCBasic Doc]
-#header function  getConstraintAngularOnly( constraint_id)
-
-

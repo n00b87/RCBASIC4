@@ -1,4 +1,0 @@
-#title GetAccel [RCBasic Doc]
-#header sub GetAccel(accel_num, ByRef x, ByRef y, ByRef z)
-
-Gets the axis values for an accelerometer.

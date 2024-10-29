@@ -1,0 +1,4 @@
+#title applySpriteTorque [RCBasic Doc]
+#header sub applySpriteTorque( spr_id,   torque)
+
+Apply a torque. This affects the angular velocity without affecting the linear velocity of the center of mass. 

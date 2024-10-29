@@ -1,6 +1,0 @@
-#title Android_JNI_Message$ [RCBasic Doc]
-#header function Android_JNI_Message$(arg$)
-
-Passes arg$ to the rcbasic_android_interface() method in the java code for your android app. The java method returns a string.
-
-#ref Runtime_Utility_Message$

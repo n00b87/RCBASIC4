@@ -1,4 +1,0 @@
-#title TCP_OpenSocket [RCBasic Doc]
-#header function TCP_OpenSocket(host$, port)
-
-

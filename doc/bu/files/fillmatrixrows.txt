@@ -1,4 +1,0 @@
-#title FillMatrixRows [RCBasic Doc]
-#header function FillMatrixRows(mA, r, num_rows, v)
-
-Fills matrix rows with the given value starting at the given row 

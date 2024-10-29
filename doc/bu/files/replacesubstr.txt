@@ -1,4 +1,0 @@
-#title ReplaceSubstr$ [RCBasic Doc]
-#header function ReplaceSubstr$(src$, rpc$, pos)
-
-

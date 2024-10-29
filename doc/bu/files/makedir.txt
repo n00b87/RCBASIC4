@@ -1,4 +1,0 @@
-#title MakeDir [RCBasic Doc]
-#header function MakeDir(p$)
-
-

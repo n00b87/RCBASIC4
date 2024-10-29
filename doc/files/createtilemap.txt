@@ -1,0 +1,13 @@
+#title CreateTileMap [RCBasic Doc]
+#header Function CreateTileMap(tileset, widthInTiles, heightInTiles)
+
+Returns a new tile map.
+
+Parameters
+#list ul
+#li tileset - A tileset Id. ( Tilesets are created with CreateTileSet() )
+#li widthInTiles - The number of tiles wide ( Note: Not the pixel width but number of tiles )
+#li widthInTiles - The number of tiles high ( Note: Not the pixel height but number of tiles )
+#/list
+
+#ref CreateTileSet

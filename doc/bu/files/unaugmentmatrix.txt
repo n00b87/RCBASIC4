@@ -1,4 +1,0 @@
-#title UnAugmentMatrix [RCBasic Doc]
-#header function UnAugmentMatrix(mA, mB, mC)
-
-

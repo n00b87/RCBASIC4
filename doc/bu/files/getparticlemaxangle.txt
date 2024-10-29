@@ -1,4 +1,0 @@
-#title getParticleMaxAngle [RCBasic Doc]
-#header function  getParticleMaxAngle( actor)
-
-

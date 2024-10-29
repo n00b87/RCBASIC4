@@ -1,4 +1,0 @@
-#title FillMatrix [RCBasic Doc]
-#header sub FillMatrix(mA, v)
-
-Fills matrix with the given value 

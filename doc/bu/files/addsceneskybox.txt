@@ -1,6 +1,0 @@
-#title AddSceneSkyBox [RCBasic Doc]
-#header sub AddSceneSkyBox( img_top, img_bottom, img_left, img_right, img_front, img_back)
-
-Generates a skybox based on the provided images.
-
-#ref AddSceneSkyDome AddSceneSkyDomeEx

@@ -1,4 +1,0 @@
-#title Right$ [RCBasic Doc]
-#header function Right$(src$, n)
-
-

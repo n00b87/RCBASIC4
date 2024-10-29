@@ -28,6 +28,7 @@
 #include "rc_sprite2D.h"
 #include "rc_spritelib.h"
 #include "rc_tilelib.h"
+#include "rc_joints.h"
 #include <irrtheora.h>
 
 using namespace irr;
@@ -986,6 +987,16 @@ void rc_canvasClose(int canvas_id)
 		delete rc_canvas[canvas_id].physics2D.world;
 
 	rc_canvas[canvas_id].physics2D.world = NULL;
+
+	for(int i = 0; i < rc_joint.size(); i++)
+	{
+		if(rc_joint[i].canvas == canvas_id)
+		{
+			rc_joint[i].canvas = -1;
+			rc_joint[i].joint = NULL;
+			rc_joint[i].active = false;
+		}
+	}
 
 	//sprites are destroyed when the world is deleted so I just to set the active attribute to false and set the body to NULL
 	for(int i = 0; i < rc_canvas[canvas_id].sprite.size(); i++)

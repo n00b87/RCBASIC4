@@ -1,0 +1,6 @@
+#title GetTileAnimationLength [RCBasic Doc]
+#header Function GetTileAnimationLength(tileset, base_tile)
+
+Return the number of frames in a tile's animation
+
+#ref SetTileAnimationLength

@@ -1,4 +1,0 @@
-#title RenameFile [RCBasic Doc]
-#header function RenameFile(src$, dst$)
-
-

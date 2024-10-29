@@ -1,9 +1,0 @@
-#title CloneCanvas [RCBasic Doc]
-#header function CloneCanvas(c_num, mode)
-
-Returns a clone of a canvas. Clone canvases are mirrors of the original canvas so when you draw to one it will also be on the other. This is useful for a splitscreen 2d game.
-
-Mode is a canvas render mode like the one passed to OpenCanvas()
-
-
-#ref OpenCanvas

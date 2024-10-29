@@ -1,4 +1,0 @@
-#title ShowWindow [RCBasic Doc]
-#header sub ShowWindow( )
-
-

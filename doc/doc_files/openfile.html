@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>OpenFile [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>function OpenFile(fileName$, mode) </h2></p>
+		<p>
+		 Returns an ID for an open file to read or write. 
+		</p>
+		<p>
+		 Returns -1 if the file could not be opened. 
+		</p>
+		<p>
+		 Possible Text Modes 
+		</p>
+		<ul>
+		<li>
+		TEXT_INPUT - Open a file for reading text. The file must already exist. 
+		</li>
+		<li>
+		TEXT_OUTPUT - Open a new file for writing text. If the file already exist it will be overwritten. 
+		</li>
+		<li>
+		TEXT_APPEND - Opens a file for appending text to the end of the file.  A file will be created if it doesn't already exist. 
+		</li>
+		<li>
+		TEXT_INPUT_PLUS - Opens a file for reading and writing text.  The file must already exist. 
+		</li>
+		<li>
+		TEXT_OUTPUT_PLUS - Opens a file for both reading and writing.  If the file already exist it will be overwritten. 
+		</li>
+		<li>
+		TEXT_APPEND_PLUS - Opens a file for reading and appending text to the end of the file. 
+		</li>
+		</ul>
+		<p>
+		<br> Possible Binary Modes 
+		</p>
+		<ul>
+		<li>
+		BINARY_INPUT - Open a file for reading binary data. The file must already exist. 
+		</li>
+		<li>
+		BINARY_OUTPUT - Open a new file for writing binary data. If the file already exist it will be overwritten. 
+		</li>
+		<li>
+		BINARY_APPEND - Opens a file for appending binary data to the end of the file.  A file will be created if it doesn't already exist. 
+		</li>
+		<li>
+		BINARY_INPUT_PLUS - Opens a file for reading and writing binary data.  The file must already exist. 
+		</li>
+		<li>
+		BINARY_OUTPUT_PLUS - Opens a file for both reading and writing.  If the file already exist it will be overwritten. 
+		</li>
+		<li>
+		BINARY_APPEND_PLUS - Opens a file for reading and appending binary data to the end of the file.  
+		</li>
+		</ul>
+		<p>
+
+	</body>
+</html>

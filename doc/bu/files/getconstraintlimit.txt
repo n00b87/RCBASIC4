@@ -1,4 +1,0 @@
-#title getConstraintLimit [RCBasic Doc]
-#header function  getConstraintLimit( constraint_id,  limit_index)
-
-

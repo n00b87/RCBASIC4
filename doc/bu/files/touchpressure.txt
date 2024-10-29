@@ -1,4 +1,0 @@
-#title TouchPressure [RCBasic Doc]
-#header function TouchPressure()
-
-

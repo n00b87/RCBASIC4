@@ -1,4 +1,0 @@
-#title UDP_RemoteHost$ [RCBasic Doc]
-#header function UDP_RemoteHost$(socket)
-
-

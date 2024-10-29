@@ -1,0 +1,6 @@
+#title SetTileAnimationLength [RCBasic Doc]
+#header Sub SetTileAnimationLength(tileset, base_tile, num_frames)
+
+Sets the number of frames in a tile's animation
+
+#ref GetTileAnimationLength

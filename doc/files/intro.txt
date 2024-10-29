@@ -1,0 +1,6 @@
+#title Introduction to RCBasic [RCBasic Doc]
+#header INTRODUCTION TO RCBASIC
+
+	First I would like to say thank you for taking an interest in RCBASIC ( I use all caps because I think it looks more retro that way).  RCBASIC is a variant of the BASIC programming language.  It consist of a compiler, interpreter, and a code editor.  This version of BASIC was mostly influenced by sdlBasic and QBasic.  My main reason for writing this software was just to have fun and challenge myself.  This language is not as full featured as C++ or Java but you can still create some awesome stuff with it.  I hope you have as much fun using this software as I had making it.
+
+	Rodney Cunningham (aka. n00b)

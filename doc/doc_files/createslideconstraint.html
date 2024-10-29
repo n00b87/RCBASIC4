@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>createSlideConstraint [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>function  createSlideConstraint( actorA,  frameInB_matrix,  useLinearReferenceFrameA) </h2></p>
+		<p>
+		 A type of constraint that restricts the motion between two actors (or between an actor and the world) in such a way that they can slide along a specific axis and rotate around the same axis, while limiting or allowing movement along other axes. This constraint is similar to a prismatic joint with added rotational freedom, making it useful for simulating objects like pistons, sliding doors, or rail systems. 
+		</p>
+		<p id="rc_code"><code>
+			actorA&nbsp;=&nbsp;CreateCubeActor<b>(</b><span class="rc_number">100</span><b>)</b>&nbsp;<span class="rc_comment">'Creates a cube actor </span><br>
+			frameB&nbsp;=&nbsp;DimMatrix<b>(</b><span class="rc_number">4</span>,&nbsp;<span class="rc_number">4</span><b>)</b>&nbsp;<span class="rc_comment">'A transform matrix must be a 4x4 matrix </span><br>
+			SetIdentityMatrix<b>(</b>frameB,&nbsp;<span class="rc_number">4</span><b>)</b>&nbsp;<span class="rc_comment">'Sets frameB to a 4x4 identity matrix </span><br>
+			SetMatrixTranslation<b>(</b>frameB,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">50</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<span class="rc_comment">'Sets the attach point of the constraint to the top of the cube </span><br>
+			SetMatrixRotation<b>(</b>frameB,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">90</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<span class="rc_comment">'Rotates the constraint axis by 90 degrees around y </span><br>
+			slide&nbsp;=&nbsp;CreateSlideConstraint<b>(</b>actorA,&nbsp;frameB,&nbsp;<span class="rc_keyword">true</span><b>)</b>&nbsp;<br>
+		</code></p>
+		<p>
+		 Note: It is recommended to use CreateSlideConstraintEx() in most cases 
+		</p>
+		<br><p>Related: 
+		<a href="createslideconstraintex.html">CreateSlideConstraintEx</a>
+		<a href="setidentitymatrix.html">SetIdentityMatrix</a>
+		<a href="setmatrixtranslation.html">SetMatrixTranslation</a>
+		<a href="setmatrixrotation.html">SetMatrixRotation</a>
+		</p>
+		<p>
+
+	</body>
+</html>

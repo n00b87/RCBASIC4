@@ -1,4 +1,0 @@
-#title PlaySound [RCBasic Doc]
-#header sub PlaySound(slot, channel, loops)
-
-

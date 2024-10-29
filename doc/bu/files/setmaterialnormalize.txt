@@ -1,4 +1,0 @@
-#title setMaterialNormalize [RCBasic Doc]
-#header sub  setMaterialNormalize( material_id,  flag)
-
-

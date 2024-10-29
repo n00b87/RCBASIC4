@@ -1,4 +1,0 @@
-#title WarpMouseGlobal [RCBasic Doc]
-#header sub WarpMouseGlobal(x, y)
-
-

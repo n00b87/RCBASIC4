@@ -1,4 +1,0 @@
-#title getConstraintTwistAngle [RCBasic Doc]
-#header function  getConstraintTwistAngle( constraint_id)
-
-

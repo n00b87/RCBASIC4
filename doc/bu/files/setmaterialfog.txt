@@ -1,4 +1,0 @@
-#title setMaterialFog [RCBasic Doc]
-#header sub  setMaterialFog( material_id,  flag)
-
-

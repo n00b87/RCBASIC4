@@ -1,4 +1,0 @@
-#title NumJoyHats [RCBasic Doc]
-#header function NumJoyHats(joy_num)
-
-

@@ -10,6 +10,9 @@
 #include "rc_sprite2D.h"
 #include "rc_gfx_core.h"
 
+#include "rc_sprite_physics.h"
+#include "rc_joints.h"
+
 #define RC_SPRITE_BASE_ANIMATION 0
 
 int rc_createSpriteAnimation(int spr_id, int anim_length, double fps)

@@ -1,4 +1,0 @@
-#title RemoveFile [RCBasic Doc]
-#header function RemoveFile(fileName$)
-
-

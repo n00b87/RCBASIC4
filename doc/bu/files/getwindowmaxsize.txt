@@ -1,4 +1,0 @@
-#title GetWindowMaxSize [RCBasic Doc]
-#header sub GetWindowMaxSize( byref w, byref h)
-
-

@@ -1,4 +1,0 @@
-#title UDP_OpenSocket [RCBasic Doc]
-#header function UDP_OpenSocket(port)
-
-

@@ -1,4 +1,0 @@
-#title WindowExists [RCBasic Doc]
-#header function WindowExists()
-
-

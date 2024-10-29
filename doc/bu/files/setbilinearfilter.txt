@@ -1,4 +1,0 @@
-#title setBilinearFilter [RCBasic Doc]
-#header sub setBilinearFilter( flag )
-
-

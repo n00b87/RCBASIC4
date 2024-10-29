@@ -1,4 +1,0 @@
-#title Wait [RCBasic Doc]
-#header sub Wait(m_sec)
-
-

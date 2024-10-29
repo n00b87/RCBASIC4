@@ -1,4 +1,0 @@
-#title Abs [RCBasic Doc]
-#header function Abs(n)
-
-Returns the absolute value of n

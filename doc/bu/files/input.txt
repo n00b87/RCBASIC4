@@ -1,4 +1,0 @@
-#title Input$ [RCBasic Doc]
-#header function Input$(prompt$)
-
-

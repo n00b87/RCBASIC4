@@ -1,4 +1,0 @@
-#title getHingeSolveLimit [RCBasic Doc]
-#header function  getHingeSolveLimit( constraint_id)
-
-

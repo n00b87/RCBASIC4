@@ -1,4 +1,0 @@
-#title OpenFile [RCBasic Doc]
-#header function OpenFile(fileName$, mode)
-
-

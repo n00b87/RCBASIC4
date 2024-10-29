@@ -1,4 +1,0 @@
-#title SetTerrainCameraRotationDelta [RCBasic Doc]
-#header sub SetTerrainCameraRotationDelta( actor, delta )
-
-

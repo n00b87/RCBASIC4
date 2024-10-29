@@ -1,4 +1,0 @@
-#title MusicExists [RCBasic Doc]
-#header function MusicExists()
-
-

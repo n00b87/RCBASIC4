@@ -1,4 +1,0 @@
-#title setParticleMaxLife [RCBasic Doc]
-#header sub  setParticleMaxLife( actor,  maxLife)
-
-

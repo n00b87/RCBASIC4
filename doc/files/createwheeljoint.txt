@@ -1,0 +1,6 @@
+#title createWheelJoint [RCBasic Doc]
+#header function createWheelJoint( spriteA,  spriteB,   aX,   aY,   axisX,   axisY, collide_connect)
+
+Creates a wheel joint.
+
+A wheel joint. This joint provides two degrees of freedom: translation along an axis fixed in bodyA and rotation in the plane. In other words, it is a point to line constraint with a rotational motor and a linear spring/damper. The spring/damper is initialized upon creation. This joint is designed for vehicle suspensions. 

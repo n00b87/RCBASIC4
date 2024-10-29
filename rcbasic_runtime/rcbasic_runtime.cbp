@@ -36,6 +36,7 @@
 			<Add directory="/usr/include/bullet" />
 			<Add directory="/home/n00b/Projects/irrBullet/include" />
 			<Add directory="/home/n00b/Projects/irrTheora" />
+			<Add directory="/home/n00b/Projects/an8-parser" />
 		</Compiler>
 		<Linker>
 			<Add option="-lSDL2main -lSDL2 -lSDL2_image -lSDL2_gfx -lSDL2_ttf -lSDL2_mixer -lSDL2_net -logg -lvorbis -lvorbisfile -ltheora -ltheoradec -lIrrlicht -lfreetype -lbox2d -lBullet3Collision -lBullet3Common -lBullet3Dynamics -lBullet3Geometry -lBulletCollision -lBulletDynamics -lBulletInverseDynamics -lBulletSoftBody -lLinearMath -pthread" />
@@ -84,8 +85,11 @@
 		<Unit filename="rc_net.h" />
 		<Unit filename="rc_os_defines.h" />
 		<Unit filename="rc_sprite2D.h" />
+		<Unit filename="rc_spritelib.h" />
 		<Unit filename="rc_stdlib.h" />
 		<Unit filename="rc_test.h" />
+		<Unit filename="rc_tilelib.h" />
+		<Unit filename="rc_tilemap.h" />
 		<Unit filename="rc_utf8.h" />
 		<Unit filename="rc_video.h" />
 		<Unit filename="theoraplay.c">

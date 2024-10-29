@@ -1,6 +1,0 @@
-#title setSlideUpperAngLimit [RCBasic Doc]
-#header sub  setSlideUpperAngLimit( constraint_id,  n)
-
-Sets the upper limit of the angular movement allowed for the constraint. This function is crucial for determining how much rotational freedom is allowed around the axis of rotation defined by the slider constraint.
-
-The upper angular limit specifies the maximum allowed rotation around the rotational axis for the slider constraint. If the relative rotation between the two actors exceeds this angle, corrective forces are applied to maintain the constraint and prevent further rotation.

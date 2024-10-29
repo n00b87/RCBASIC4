@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>GetPowerInfo [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Sub GetPowerInfo(ByRef status, ByRef secs, ByRef pct) </h2></p>
+		<p>
+		 Gets the charging status of the device the program is running on. 
+		</p>
+		<p>
+		 status - the charging status of the battery. Look below for the different statuses that can be returned. secs - the approximate time in seconds until the battery looses its charge. pct - the percentage of the battery charged. 
+		</p>
+		<p>
+		 Possible Statuses 
+		</p>
+		<ul>
+		<li>
+		POWERSTATE_UNKNOWN 
+		</li>
+		<li>
+		POWERSTATE_ON_BATTERY 
+		</li>
+		<li>
+		POWERSTATE_NO_BATTERY 
+		</li>
+		<li>
+		POWERSTATE_CHARGING 
+		</li>
+		<li>
+		POWERSTATE_CHARGED 
+		</li>
+		</ul>
+		<p>
+
+	</body>
+</html>

@@ -1,4 +1,0 @@
-#title SetMatrixValue [RCBasic Doc]
-#header sub SetMatrixValue(mA, r, c, v)
-
-

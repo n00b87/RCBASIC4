@@ -1,4 +1,0 @@
-#title StringFill$ [RCBasic Doc]
-#header function StringFill$(src$, n)
-
-

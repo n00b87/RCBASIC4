@@ -1,4 +1,0 @@
-#title StringArrayFill [RCBasic Doc]
-#header sub StringArrayFill(ByRef src$, fdata$)
-
-
