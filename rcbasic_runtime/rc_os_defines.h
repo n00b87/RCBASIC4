@@ -20,4 +20,16 @@
 #define RC_MOBILE
 #endif
 
+#define RC_PI 3.14159265359
+
+inline double rc_util_radians(double degrees)
+{
+    return degrees * (RC_PI/180);
+}
+
+inline double rc_util_degrees(double radians)
+{
+    return radians * (180/RC_PI);
+}
+
 #endif // RC_OS_DEFINES_H_INCLUDED

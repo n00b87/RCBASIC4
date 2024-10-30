@@ -3,7 +3,7 @@
 
 #include "rc_os_defines.h"
 
-#define RC_PI 3.14159265359
+//#define RC_PI 3.14159265359  //Moved to rc_os_defines.h
 
 #ifdef RC_MAC
 #define RC_GETCWD
