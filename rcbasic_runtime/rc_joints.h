@@ -51,6 +51,7 @@ int rc_createDistanceJoint(int spriteA, int spriteB, double aX, double aY, doubl
 
 	b2DistanceJointDef joint_def;
 	joint_def.Initialize(rc_sprite[spriteA].physics.body, rc_sprite[spriteB].physics.body, b2Vec2(aX, aY), b2Vec2(bX, bY));
+	joint_def.collideConnected = collide_connected;
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_DISTANCE;
@@ -98,6 +99,7 @@ int rc_createFrictionJoint(int spriteA, int spriteB, double x, double y, bool co
 
 	b2FrictionJointDef joint_def;
 	joint_def.Initialize(rc_sprite[spriteA].physics.body, rc_sprite[spriteB].physics.body, b2Vec2(x, y));
+	joint_def.collideConnected = collide_connected;
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_FRICTION;
@@ -149,6 +151,7 @@ int rc_createGearJoint(int jointA, int jointB, double g_ratio, bool collide_conn
 	b2GearJointDef joint_def;
 	joint_def.joint1 = rc_joint[jointA].joint;
 	joint_def.joint2 = rc_joint[jointB].joint;
+	joint_def.collideConnected = collide_connected;
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_GEAR;
@@ -196,6 +199,7 @@ int rc_createMotorJoint(int spriteA, int spriteB, bool collide_connected)
 
 	b2MotorJointDef joint_def;
 	joint_def.Initialize(rc_sprite[spriteA].physics.body, rc_sprite[spriteB].physics.body);
+	joint_def.collideConnected = collide_connected;
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_MOTOR;
@@ -243,6 +247,7 @@ int rc_createPrismaticJoint(int spriteA, int spriteB, double aX, double aY, doub
 
 	b2PrismaticJointDef joint_def;
 	joint_def.Initialize(rc_sprite[spriteA].physics.body, rc_sprite[spriteB].physics.body, b2Vec2(aX, aY), b2Vec2(axisX, axisY));
+	joint_def.collideConnected = collide_connected;
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_PRISMATIC;
@@ -290,6 +295,7 @@ int rc_createPulleyJoint(int spriteA, int spriteB, double gaX, double gaY, doubl
 
 	b2PulleyJointDef joint_def;
 	joint_def.Initialize(rc_sprite[spriteA].physics.body, rc_sprite[spriteB].physics.body, b2Vec2(gaX, gaY), b2Vec2(gbX, gbY), b2Vec2(aX, aY), b2Vec2(bX, bY), j_ratio);
+	joint_def.collideConnected = collide_connected;
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_PULLEY;
@@ -337,6 +343,7 @@ int rc_createRevoluteJoint(int spriteA, int spriteB, double x, double y, bool co
 
 	b2RevoluteJointDef joint_def;
 	joint_def.Initialize(rc_sprite[spriteA].physics.body, rc_sprite[spriteB].physics.body, b2Vec2(x, y));
+	joint_def.collideConnected = collide_connected;
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_REVOLUTE;
@@ -384,6 +391,7 @@ int rc_createWeldJoint(int spriteA, int spriteB, double x, double y, bool collid
 
 	b2WeldJointDef joint_def;
 	joint_def.Initialize(rc_sprite[spriteA].physics.body, rc_sprite[spriteB].physics.body, b2Vec2(x, y));
+	joint_def.collideConnected = collide_connected;
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_WELD;
@@ -431,6 +439,7 @@ int rc_createWheelJoint(int spriteA, int spriteB, double aX, double aY, double a
 
 	b2WheelJointDef joint_def;
 	joint_def.Initialize(rc_sprite[spriteA].physics.body, rc_sprite[spriteB].physics.body, b2Vec2(aX, aY), b2Vec2(axisX, axisY));
+	joint_def.collideConnected = collide_connected;
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_WHEEL;
@@ -1143,6 +1152,8 @@ void rc_setJointAngularOffset(int joint_id, double angleOffset)
 	if(!rc_joint[joint_id].active)
 		return;
 
+	angleOffset = rc_util_radians(angleOffset);
+
 	switch(rc_joint[joint_id].type)
 	{
 		case RC_JOINT_TYPE_MOTOR:
@@ -1167,7 +1178,7 @@ double rc_getJointAngularOffset(int joint_id)
 		case RC_JOINT_TYPE_MOTOR:
 		{
 			b2MotorJoint* j = (b2MotorJoint*)rc_joint[joint_id].joint;
-			return j->GetAngularOffset();
+			return rc_util_degrees(j->GetAngularOffset());
 		}
 		break;
 	}
@@ -1220,14 +1231,14 @@ double rc_getJointReferenceAngle(int joint_id)
 		case RC_JOINT_TYPE_PRISMATIC:
 		{
 			b2PrismaticJoint* j = (b2PrismaticJoint*)rc_joint[joint_id].joint;
-			return j->GetReferenceAngle();
+			return rc_util_degrees(j->GetReferenceAngle());
 		}
 		break;
 
 		case RC_JOINT_TYPE_REVOLUTE:
 		{
 			b2RevoluteJoint* j = (b2RevoluteJoint*)rc_joint[joint_id].joint;
-			return j->GetReferenceAngle();
+			return rc_util_degrees(j->GetReferenceAngle());
 		}
 		break;
 
@@ -1285,7 +1296,7 @@ double rc_getJointSpeed(int joint_id)
 		case RC_JOINT_TYPE_REVOLUTE:
 		{
 			b2RevoluteJoint* j = (b2RevoluteJoint*)rc_joint[joint_id].joint;
-			return j->GetJointSpeed();
+			return rc_util_degrees(j->GetJointSpeed());
 		}
 		break;
 
@@ -1385,7 +1396,7 @@ double rc_getJointLowerLimit(int joint_id)
 		case RC_JOINT_TYPE_REVOLUTE:
 		{
 			b2RevoluteJoint* j = (b2RevoluteJoint*)rc_joint[joint_id].joint;
-			return j->GetLowerLimit();
+			return rc_util_degrees(j->GetLowerLimit());
 		}
 		break;
 
@@ -1421,7 +1432,7 @@ double rc_getJointUpperLimit(int joint_id)
 		case RC_JOINT_TYPE_REVOLUTE:
 		{
 			b2RevoluteJoint* j = (b2RevoluteJoint*)rc_joint[joint_id].joint;
-			return j->GetUpperLimit();
+			return rc_util_degrees(j->GetUpperLimit());
 		}
 		break;
 
@@ -1457,7 +1468,7 @@ void rc_setJointLimits(int joint_id, double lower_limit, double upper_limit)
 		case RC_JOINT_TYPE_REVOLUTE:
 		{
 			b2RevoluteJoint* j = (b2RevoluteJoint*)rc_joint[joint_id].joint;
-			j->SetLimits(lower_limit, upper_limit);
+			j->SetLimits(rc_util_radians(lower_limit), rc_util_radians(upper_limit));
 		}
 		break;
 
@@ -1561,14 +1572,14 @@ void rc_setJointMotorSpeed(int joint_id, double speed)
 		case RC_JOINT_TYPE_REVOLUTE:
 		{
 			b2RevoluteJoint* j = (b2RevoluteJoint*)rc_joint[joint_id].joint;
-			j->SetMotorSpeed(speed);
+			j->SetMotorSpeed(rc_util_radians(speed));
 		}
 		break;
 
 		case RC_JOINT_TYPE_WHEEL:
 		{
 			b2WheelJoint* j = (b2WheelJoint*)rc_joint[joint_id].joint;
-			j->SetMotorSpeed(speed);
+			j->SetMotorSpeed(rc_util_radians(speed));
 		}
 		break;
 
@@ -1595,14 +1606,14 @@ double rc_getJointMotorSpeed(int joint_id)
 		case RC_JOINT_TYPE_REVOLUTE:
 		{
 			b2RevoluteJoint* j = (b2RevoluteJoint*)rc_joint[joint_id].joint;
-			return j->GetMotorSpeed();
+			return rc_util_degrees(j->GetMotorSpeed());
 		}
 		break;
 
 		case RC_JOINT_TYPE_WHEEL:
 		{
 			b2WheelJoint* j = (b2WheelJoint*)rc_joint[joint_id].joint;
-			return j->GetMotorSpeed();
+			return rc_util_degrees(j->GetMotorSpeed());
 		}
 		break;
 
@@ -1929,14 +1940,14 @@ double rc_getJointAngle(int joint_id)
 		case RC_JOINT_TYPE_REVOLUTE:
 		{
 			b2RevoluteJoint* j = (b2RevoluteJoint*)rc_joint[joint_id].joint;
-			return j->GetJointAngle();
+			return rc_util_degrees(j->GetJointAngle());
 		}
 		break;
 
 		case RC_JOINT_TYPE_WHEEL:
 		{
 			b2WheelJoint* j = (b2WheelJoint*)rc_joint[joint_id].joint;
-			return j->GetJointAngle();
+			return rc_util_degrees(j->GetJointAngle());
 		}
 		break;
 
@@ -1980,7 +1991,7 @@ double rc_getJointAngularSpeed(int joint_id)
 		case RC_JOINT_TYPE_WHEEL:
 		{
 			b2WheelJoint* j = (b2WheelJoint*)rc_joint[joint_id].joint;
-			return j->GetJointAngularSpeed();
+			return rc_util_degrees(j->GetJointAngularSpeed());
 		}
 		break;
 	}
