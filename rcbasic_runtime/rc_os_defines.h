@@ -23,7 +23,7 @@
 #endif
 
 //FOR DEBUG PURPOSES
-#define RC_DRIVER_GLES2
+//#define RC_DRIVER_GLES2
 
 #define RC_PI 3.14159265359
 

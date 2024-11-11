@@ -4349,11 +4349,7 @@ void rcbasic_test()
     SDL_DestroyWindow(win);
 }
 
-#ifdef RC_ANDROID
-void android_main( android_app* application )
-{
-}
-#else
+
 int main(int argc, char * argv[])
 {
     //rcbasic_test();
@@ -4487,4 +4483,3 @@ int main(int argc, char * argv[])
     //cout << "Hello world!" << endl;
     return 0;
 }
-#endif

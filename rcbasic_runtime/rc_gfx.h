@@ -218,6 +218,7 @@ bool rc_gfx_init()
         }
     }
     SDL_SetHint("SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS", "1");
+    SDL_SetHint("SDL_HINT_EMSCRIPTEN_ASYNCIFY", "1");
 
     return true;
 
@@ -1836,6 +1837,7 @@ int rc_inKey()
 
 int rc_key(int check_Key)
 {
+	keyState = SDL_GetKeyboardState(NULL);
     return keyState[SDL_GetScancodeFromKey(check_Key)];
 }
 
@@ -3372,7 +3374,7 @@ bool rc_update()
 			irrevent.UserEvent.UserData1 = reinterpret_cast<uintptr_t>(SDL_event.user.data1);
 			irrevent.UserEvent.UserData2 = reinterpret_cast<uintptr_t>(SDL_event.user.data2);
 
-			device->postEventFromUser(irrevent);
+			//device->postEventFromUser(irrevent);
 			break;
 
 		default:
@@ -3380,6 +3382,7 @@ bool rc_update()
 		} // end switch
 
 	} // end while
+
 
 	if(!Close)
     {
