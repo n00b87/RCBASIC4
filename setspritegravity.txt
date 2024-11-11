@@ -1,6 +1,0 @@
-#title SetSpriteGravity [RCBasic Doc]
-#header sub SetSpriteGravity(x, y)
-
-Use this function for setting the global gravity vector.
-
-#ref GetSpriteGravity
