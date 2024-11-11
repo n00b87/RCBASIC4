@@ -4450,6 +4450,11 @@ int main(int argc, char * argv[])
         rc_filename = "main.cbc";
     #endif
 
+    //ogles2 test
+    rc_intern_dirChange("/home/n00b/projects/rcbasic_alpha3/test_project");
+    rc_filename = "main.cbc";
+    //---------------
+
     if(rcbasic_load(rc_filename))
     {
         #ifdef RCBASIC_DEBUG

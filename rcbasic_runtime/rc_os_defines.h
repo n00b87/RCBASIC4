@@ -10,15 +10,20 @@
 
 #ifdef RC_WEB
 #define RC_LINUX
+#define RC_DRIVER_GLES2
 #endif
 
 #ifdef RC_ANDROID
 #define RC_MOBILE
+#define RC_DRIVER_GLES2
 #endif
 
 #ifdef RC_IOS
 #define RC_MOBILE
 #endif
+
+//FOR DEBUG PURPOSES
+#define RC_DRIVER_GLES2
 
 #define RC_PI 3.14159265359
 

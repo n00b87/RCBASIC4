@@ -269,7 +269,11 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
 
     SIrrlichtCreationParameters irr_creation_params;
     irr_creation_params.DeviceType = EIDT_SDL;
+    #if defined(RC_DRIVER_GLES2)
+    irr_creation_params.DriverType = video::EDT_OGLES2;
+    #else
     irr_creation_params.DriverType = video::EDT_OPENGL;
+    #endif // defined
     irr_creation_params.WindowId = rc_window;
     irr_creation_params.WindowSize = dimension2d<u32>((u32)w, (u32)h);
     irr_creation_params.Bits = 16;
@@ -279,6 +283,7 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     irr_creation_params.EventReceiver = 0;
     irr_creation_params.WindowPosition = position2d<s32>(x, y);
     irr_creation_params.AntiAlias = AntiAlias;
+    irr_creation_params.OGLES2ShaderPath = "media/Shaders/";
 
 	device = createDeviceEx(irr_creation_params);
 
@@ -299,12 +304,16 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     rc_font.clear();
 
     rc_canvas_obj back_buffer;
+    //std::cout << std::endl << "back start" << std::endl;
     back_buffer.texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)w, (irr::u32)h), "rt", ECF_A8R8G8B8);
+    //std::cout << "back_buffer done" << std::endl << std::endl;
     back_buffer.dimension.Width = w;
     back_buffer.dimension.Height = h;
     back_buffer.viewport.position.set(0,0);
     back_buffer.viewport.dimension.set(w,h);
+    //std::cout << std::endl << "tgt start" << std::endl;
     VideoDriver->setRenderTarget(back_buffer.texture, true, true);
+    //std::cout << "tgt done" << std::endl << std::endl;
     rc_canvas.push_back(back_buffer);
 
 	rc_physics3D.world = createIrrBulletWorld(device, true, false);
@@ -3477,7 +3486,13 @@ bool rc_update()
 					drawSprites(canvas_id);
 				}
 
+                #if defined(RC_DRIVER_GLES2)
+                irr::core::vector2d<irr::s32> c_pos( dest.UpperLeftCorner.X, dest.UpperLeftCorner.Y + dest.getHeight() );
+                irr::core::position2d<irr::s32> rot_point(src.getWidth()/2, src.getHeight()/2);
+                draw2DImage(VideoDriver, rc_canvas[canvas_id].texture, src, c_pos, rot_point, 0, irr::core::vector2df(1, -1), true, color, screenSize);
+                #else
                 draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
+                #endif // defined
 
                 //drawSprites(canvas_id);
                 //draw2DImage2(VideoDriver, rc_canvas[canvas_id].sprite_layer, src, dest, irr::core::vector2d<irr::s32>(0, 0), 0, true, color, screenSize);
@@ -3493,6 +3508,12 @@ bool rc_update()
 		VideoDriver->setRenderTarget(0);
 		//VideoDriver->beginScene(true, true);
 		VideoDriver->draw2DImage(rc_canvas[0].texture, irr::core::vector2d<irr::s32>(0,0));
+
+		//debug
+		//VideoDriver->draw2DImage(rc_image[0].image, irr::core::rect<irr::s32>(0,0,100,100), irr::core::rect<irr::s32>(0,0,100,100));
+		//VideoDriver->draw2DRectangle(irr::video::SColor(255,2555,0,0), irr::core::rect<irr::s32>(0,0,100,100));
+		//end debug
+
 		//device->getGUIEnvironment()->drawAll();
 		VideoDriver->endScene();
 
