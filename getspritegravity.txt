@@ -1,6 +1,0 @@
-#title GetSpriteGravity [RCBasic Doc]
-#header sub GetSpriteGravity(ByRef x, ByRef y)
-
-Use this function for retrieving the global gravity vector.
-
-#ref SetSpriteGravity
