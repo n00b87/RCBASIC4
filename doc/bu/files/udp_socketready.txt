@@ -1,4 +1,0 @@
-#title UDP_SocketReady [RCBasic Doc]
-#header function UDP_SocketReady(socket)
-
-

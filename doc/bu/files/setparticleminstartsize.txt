@@ -1,4 +1,0 @@
-#title setParticleMinStartSize [RCBasic Doc]
-#header sub  setParticleMinStartSize( actor,  w,  h)
-
-

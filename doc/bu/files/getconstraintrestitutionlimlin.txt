@@ -1,4 +1,0 @@
-#title getConstraintRestitutionLimLin [RCBasic Doc]
-#header function  getConstraintRestitutionLimLin( constraint_id)
-
-

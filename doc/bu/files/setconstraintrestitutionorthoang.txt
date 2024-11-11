@@ -1,4 +1,0 @@
-#title setConstraintRestitutionOrthoAng [RCBasic Doc]
-#header sub  setConstraintRestitutionOrthoAng( constraint_id,  n)
-
-

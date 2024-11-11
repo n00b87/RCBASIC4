@@ -1,4 +1,0 @@
-#title Size [RCBasic Doc]
-#header function Size(s$)
-
-

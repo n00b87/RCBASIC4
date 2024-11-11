@@ -1,6 +1,0 @@
-#title getMaterialFrontfaceCulling [RCBasic Doc]
-#header function  getMaterialFrontfaceCulling( material_id)
-
-Returns true if front face culling is enabled for a material
-
-#ref SetMaterialFrontfaceCulling

@@ -1,4 +1,0 @@
-#title materialIsTransparent [RCBasic Doc]
-#header function  materialIsTransparent( material_id)
-
-

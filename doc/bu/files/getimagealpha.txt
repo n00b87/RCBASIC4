@@ -1,4 +1,0 @@
-#title GetImageAlpha [RCBasic Doc]
-#header function GetImageAlpha( img_id )
-
-Returns the alpha blend value of an image

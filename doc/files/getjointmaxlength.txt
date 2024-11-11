@@ -1,0 +1,8 @@
+#title getJointMaxLength [RCBasic Doc]
+#header function  getJointMaxLength( joint_id)
+
+Returns the maximum length
+
+Used with Distance Joint
+
+#ref GetJointMinLength

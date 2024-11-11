@@ -1,4 +1,0 @@
-#title setConeLimit [RCBasic Doc]
-#header sub  setConeLimit( constraint_id,  swingSpan1,  swingSpan2,  twistSpan,  softness,  bias_factor,  relaxation_factor)
-
-

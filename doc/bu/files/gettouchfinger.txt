@@ -1,4 +1,0 @@
-#title GetTouchFinger [RCBasic Doc]
-#header sub GetTouchFinger(finger, byref x, byref y, byref pressure)
-
-

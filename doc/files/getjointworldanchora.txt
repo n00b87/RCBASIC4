@@ -1,0 +1,8 @@
+#title getJointWorldAnchorA [RCBasic Doc]
+#header sub getJointWorldAnchorA( joint_id,  ByRef  x,  ByRef  y)
+
+Get the anchor point on bodyA in world coordinates. 
+
+Can be used with all joints
+
+#ref GetJointWorldAnchorB

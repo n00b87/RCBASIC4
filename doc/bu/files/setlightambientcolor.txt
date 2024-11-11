@@ -1,4 +1,0 @@
-#title SetLightAmbientColor [RCBasic Doc]
-#header sub SetLightAmbientColor( actor, color )
-
-

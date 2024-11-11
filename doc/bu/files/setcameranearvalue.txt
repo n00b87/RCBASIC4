@@ -1,4 +1,0 @@
-#title SetCameraNearValue [RCBasic Doc]
-#header sub SetCameraNearValue( zn )
-
-

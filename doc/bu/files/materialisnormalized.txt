@@ -1,4 +1,0 @@
-#title materialIsNormalized [RCBasic Doc]
-#header function  materialIsNormalized( material_id)
-
-

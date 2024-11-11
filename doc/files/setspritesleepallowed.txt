@@ -1,0 +1,6 @@
+#title setSpriteSleepAllowed [RCBasic Doc]
+#header sub setSpriteSleepAllowed( spr_id,  flag)
+
+Sets whether the sprite is allowed to go to sleep when it's at rest
+
+#ref SetSpriteAwake SpriteIsAwake SpriteIsSleepAllowed

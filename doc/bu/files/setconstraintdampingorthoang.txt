@@ -1,4 +1,0 @@
-#title setConstraintDampingOrthoAng [RCBasic Doc]
-#header sub  setConstraintDampingOrthoAng( constraint_id,  n)
-
-

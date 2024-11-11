@@ -1,0 +1,13 @@
+#title enableJointMotor [RCBasic Doc]
+#header sub enableJointMotor( joint_id,  flag)
+
+Enables or disables the joint motor
+
+Used with
+#list ul
+#li Prismatic Joint
+#li Revolute Joint
+#li Wheel Joint
+#/list
+
+#ref JointMotorIsEnabled

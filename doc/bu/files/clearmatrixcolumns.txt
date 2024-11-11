@@ -1,6 +1,0 @@
-#title ClearMatrixColumns [RCBasic Doc]
-#header function ClearMatrixColumns(mA, c, num_cols)
-
-Sets all elements in the matrix columns specified to zero.
-
-#ref ClearMatrix ClearMatrixRows

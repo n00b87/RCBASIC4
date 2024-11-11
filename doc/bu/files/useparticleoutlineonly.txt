@@ -1,4 +1,0 @@
-#title useParticleOutlineOnly [RCBasic Doc]
-#header sub  useParticleOutlineOnly( actor,  flag)
-
-

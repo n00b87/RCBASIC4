@@ -1,4 +1,0 @@
-#title getParticleNormal [RCBasic Doc]
-#header sub  getParticleNormal( actor, ByRef x, ByRef y, ByRef z)
-
-

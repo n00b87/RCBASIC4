@@ -1,4 +1,0 @@
-#title loopActorAnimation [RCBasic Doc]
-#header sub loopActorAnimation( actor, flag )
-
-

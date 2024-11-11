@@ -1,4 +1,0 @@
-#title Sqrt [RCBasic Doc]
-#header function Sqrt(n)
-
-

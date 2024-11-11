@@ -1,4 +1,0 @@
-#title CreateSprite [RCBasic Doc]
-#header function CreateSprite( img )
-
-Returns new sprite

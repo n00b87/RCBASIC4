@@ -1,4 +1,0 @@
-#title WindowIsGrabbed [RCBasic Doc]
-#header function WindowIsGrabbed( )
-
-

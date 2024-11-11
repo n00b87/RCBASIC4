@@ -1,4 +1,0 @@
-#title getConstraintSwingSpan1 [RCBasic Doc]
-#header function  getConstraintSwingSpan1( constraint_id)
-
-

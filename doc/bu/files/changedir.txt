@@ -1,4 +1,0 @@
-#title ChangeDir [RCBasic Doc]
-#header sub ChangeDir(p$)
-
-Sets the working directory that the directory commands use

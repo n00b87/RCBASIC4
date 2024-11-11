@@ -1,4 +1,0 @@
-#title NumberArrayDim [RCBasic Doc]
-#header function NumberArrayDim(Byref id)
-
-

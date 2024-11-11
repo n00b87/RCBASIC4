@@ -1,4 +1,0 @@
-#title ReadByteBuffer [RCBasic Doc]
-#header function ReadByteBuffer(stream, ByRef buf, buf_size)
-
-

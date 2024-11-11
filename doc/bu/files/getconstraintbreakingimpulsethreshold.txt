@@ -1,4 +1,0 @@
-#title getConstraintBreakingImpulseThreshold [RCBasic Doc]
-#header function  getConstraintBreakingImpulseThreshold( constraint_id)
-
-

@@ -1,8 +1,0 @@
-#title DeleteMatrixColumns [RCBasic Doc]
-#header function DeleteMatrixColumns(mA, c, num_cols)
-
-Removes the specified columns from a matrix
-
-Returns false if column are outside matrix
-
-#ref DeleteMatrixRows

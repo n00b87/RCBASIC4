@@ -1,0 +1,6 @@
+#title GetTileAnimationSpeed [RCBasic Doc]
+#header Function GetTileAnimationSpeed(tileset, base_tile)
+
+Returns the fps of a tile's animation
+
+#ref SetTileAnimationSpeed

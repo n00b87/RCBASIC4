@@ -1,4 +1,0 @@
-#title setConstraintRestitutionDirLin [RCBasic Doc]
-#header sub  setConstraintRestitutionDirLin( constraint_id,  n)
-
-

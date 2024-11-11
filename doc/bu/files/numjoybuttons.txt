@@ -1,4 +1,0 @@
-#title NumJoyButtons [RCBasic Doc]
-#header function NumJoyButtons(joy_num)
-
-

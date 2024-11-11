@@ -1,4 +1,0 @@
-#title getConstraintLinDepth [RCBasic Doc]
-#header function  getConstraintLinDepth( constraint_id)
-
-

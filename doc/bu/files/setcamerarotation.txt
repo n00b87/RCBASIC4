@@ -1,4 +1,0 @@
-#title SetCameraRotation [RCBasic Doc]
-#header sub SetCameraRotation( x, y, z)
-
-

@@ -1,4 +1,0 @@
-#title getParticleCenter [RCBasic Doc]
-#header sub  getParticleCenter( actor, ByRef x, ByRef y, ByRef z)
-
-

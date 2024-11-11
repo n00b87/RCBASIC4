@@ -1,4 +1,0 @@
-#title Key [RCBasic Doc]
-#header function Key(key_code)
-
-

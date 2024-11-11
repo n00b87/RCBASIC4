@@ -1,0 +1,9 @@
+#title getJointReactionForce [RCBasic Doc]
+#header sub getJointReactionForce( joint_id,   inv_dt,  ByRef  x,  ByRef  y)
+
+Returns the reaction force on bodyB at the joint anchor in Newtons. 
+
+Can be used with all joints
+
+#ref GetJointReactionTorque
+

@@ -1,6 +1,0 @@
-#title GetActorScale [RCBasic Doc]
-#header sub GetActorScale( actor, ByRef x, ByRef y, ByRef z )
-
-Gets an actor's scale
-
-#ref SetActorScale

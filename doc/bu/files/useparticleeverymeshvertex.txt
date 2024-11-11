@@ -1,4 +1,0 @@
-#title useParticleEveryMeshVertex [RCBasic Doc]
-#header sub  useParticleEveryMeshVertex( actor,  flag)
-
-

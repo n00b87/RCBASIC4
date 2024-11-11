@@ -1,4 +1,0 @@
-#title SetMouseRelative [RCBasic Doc]
-#header sub SetMouseRelative(flag)
-
-

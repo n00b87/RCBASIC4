@@ -1,4 +1,0 @@
-#title setActorLinearVelocityLocal [RCBasic Doc]
-#header sub setActorLinearVelocityLocal( actor,   x,   y,   z)
-
-

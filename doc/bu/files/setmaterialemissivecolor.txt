@@ -1,4 +1,0 @@
-#title setMaterialEmissiveColor [RCBasic Doc]
-#header sub  setMaterialEmissiveColor( material_id,  color)
-
-

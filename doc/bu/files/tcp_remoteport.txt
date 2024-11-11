@@ -1,4 +1,0 @@
-#title TCP_RemotePort [RCBasic Doc]
-#header function TCP_RemotePort(socket)
-
-

@@ -1,4 +1,0 @@
-#title NumCPUs [RCBasic Doc]
-#header function NumCPUs()
-
-

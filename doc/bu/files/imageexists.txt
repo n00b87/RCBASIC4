@@ -1,4 +1,0 @@
-#title ImageExists [RCBasic Doc]
-#header function ImageExists(slot)
-
-

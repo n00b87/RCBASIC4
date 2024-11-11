@@ -1,0 +1,8 @@
+#title setJointMaxMotorForce [RCBasic Doc]
+#header sub setJointMaxMotorForce( joint_id,   force)
+
+Limits the maximum linear force that the motor can apply to achieve the target speed set by SetMotorSpeed. This allows you to control the power or strength of the motor along the joint’s axis.
+
+Used with Prismatic Joints
+
+#ref GetJointMaxMotorForce

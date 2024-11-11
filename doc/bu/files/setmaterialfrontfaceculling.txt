@@ -1,4 +1,0 @@
-#title setMaterialFrontfaceCulling [RCBasic Doc]
-#header sub  setMaterialFrontfaceCulling( material_id,  flag)
-
-

@@ -1,4 +1,0 @@
-#title particleIsUsingOutlineOnly [RCBasic Doc]
-#header function  particleIsUsingOutlineOnly( actor)
-
-

@@ -1,4 +1,0 @@
-#title WindowMode [RCBasic Doc]
-#header function WindowMode(visible, fullscreen, resizable, borderless, highDPI)
-
-

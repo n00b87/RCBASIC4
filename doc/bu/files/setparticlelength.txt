@@ -1,4 +1,0 @@
-#title setParticleLength [RCBasic Doc]
-#header sub  setParticleLength( actor,  p_len)
-
-

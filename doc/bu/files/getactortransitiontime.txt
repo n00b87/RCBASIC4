@@ -1,8 +1,0 @@
-#title GetActorTransitionTime [RCBasic Doc]
-#header function GetActorTransitionTime( actor )
-
-Returns the total transition time of an actor transitioning between animations
-
-Note: Time returned is in seconds
-
-#ref StartActorTransition StopActorTransition ActorIsInTransition

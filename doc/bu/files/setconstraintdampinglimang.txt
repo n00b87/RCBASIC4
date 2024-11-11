@@ -1,4 +1,0 @@
-#title setConstraintDampingLimAng [RCBasic Doc]
-#header sub  setConstraintDampingLimAng( constraint_id,  n)
-
-

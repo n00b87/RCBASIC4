@@ -1,4 +1,0 @@
-#title getConstraintPivotA [RCBasic Doc]
-#header sub  getConstraintPivotA( constraint_id, ByRef x, ByRef y, ByRef z)
-
-

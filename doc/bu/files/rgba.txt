@@ -1,4 +1,0 @@
-#title RGBA [RCBasic Doc]
-#header function RGBA(r,g,b,a)
-
-

@@ -1,4 +1,0 @@
-#title JoystickIsConnected [RCBasic Doc]
-#header function JoystickIsConnected(joy_num)
-
-

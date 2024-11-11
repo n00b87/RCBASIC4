@@ -1,4 +1,0 @@
-#title TranslateCamera [RCBasic Doc]
-#header sub TranslateCamera( x, y, z)
-
-

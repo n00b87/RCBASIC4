@@ -1,4 +1,0 @@
-#title DeleteSprite [RCBasic Doc]
-#header Sub DeleteSprite( sprite )
-
-Removes a sprite from memory

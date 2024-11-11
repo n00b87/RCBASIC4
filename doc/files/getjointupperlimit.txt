@@ -1,0 +1,13 @@
+#title getJointUpperLimit [RCBasic Doc]
+#header function  getJointUpperLimit( joint_id)
+
+Get the upper joint translation limit, usually in meters.
+
+Used with
+#list ul
+#li Prismatic Joint
+#li Revolute Joint
+#li Wheel Joint
+#/list
+
+#ref GetJointLowerLimit

@@ -1,4 +1,0 @@
-#title Asin [RCBasic Doc]
-#header function Asin(n)
-
-Returns the ArcSine of a number.

@@ -1,4 +1,0 @@
-#title Rect [RCBasic Doc]
-#header sub Rect(x, y, w, h)
-
-

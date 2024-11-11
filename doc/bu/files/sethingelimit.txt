@@ -1,4 +1,0 @@
-#title setHingeLimit [RCBasic Doc]
-#header sub  setHingeLimit( constraint_id,  low,  high,  softness,  bias_factor,  relaxation_factor)
-
-

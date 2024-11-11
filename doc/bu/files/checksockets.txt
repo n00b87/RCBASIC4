@@ -1,7 +1,0 @@
-#title CheckSockets [RCBasic Doc]
-#header function CheckSockets(timeout_ms)
-
-Checks all connected sockets for activity. If timeout_ms is greater than 0 than it will wait that many milliseconds. If less than 0
-it will wait for over 49 days (hint: there is no reason what so ever to set this less than 0). 
-
-Returns the number of sockets that have activity (ie. a connection was made or data was sent) 

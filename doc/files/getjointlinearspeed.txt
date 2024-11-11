@@ -1,0 +1,6 @@
+#title getJointLinearSpeed [RCBasic Doc]
+#header function  getJointLinearSpeed( joint_id)
+
+Returns the current joint linear speed, usually in meters per second. 
+
+Used with Wheel Joint

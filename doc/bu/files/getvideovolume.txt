@@ -1,4 +1,0 @@
-#title GetVideoVolume [RCBasic Doc]
-#header function GetVideoVolume( )
-
-

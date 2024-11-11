@@ -1,4 +1,0 @@
-#title ScaleActor [RCBasic Doc]
-#header sub ScaleActor( actor, x, y, z )
-
-

@@ -1,4 +1,0 @@
-#title SetCanvasColorMod [RCBasic Doc]
-#header sub SetCanvasColorMod(c_num, c)
-
-

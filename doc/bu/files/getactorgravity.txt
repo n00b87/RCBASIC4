@@ -1,6 +1,0 @@
-#title GetActorGravity [RCBasic Doc]
-#header sub GetActorGravity( actor, ByRef x, ByRef y, ByRef z )
-
-Gets the gravity of an actor along each access.
-
-#ref SetActorGravity

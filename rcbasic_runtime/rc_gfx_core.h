@@ -420,6 +420,17 @@ bool mobile_active_window_flag = true;
 
 
 //------------ 3D Graphics ----------------//
+struct rc_material_obj
+{
+    irr::video::SMaterial mat;
+    bool isUsed = false;
+    bool isReference = false;
+    int refActor = -1;
+    int refMatNum = 0;
+};
+
+irr::core::array<rc_material_obj> rc_material;
+
 #define RC_MESH_TYPE_NONE       0
 #define RC_MESH_TYPE_ANIMATED   1
 

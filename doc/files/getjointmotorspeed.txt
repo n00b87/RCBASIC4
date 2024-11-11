@@ -1,0 +1,13 @@
+#title getJointMotorSpeed [RCBasic Doc]
+#header function  getJointMotorSpeed( joint_id)
+
+Returns the motor speed
+
+Used with
+#list ul
+#li Prismatic Joint
+#li Revolute Joint
+#li Wheel Joint
+#/list
+
+#ref SetJointMotorSpeed

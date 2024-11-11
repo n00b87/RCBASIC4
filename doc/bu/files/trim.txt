@@ -1,4 +1,0 @@
-#title Trim$ [RCBasic Doc]
-#header function Trim$(src$)
-
-

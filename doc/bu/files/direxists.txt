@@ -1,4 +1,0 @@
-#title DirExists [RCBasic Doc]
-#header function DirExists(p$)
-
-Returns true if a directory exists and false if not

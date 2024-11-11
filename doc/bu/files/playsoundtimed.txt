@@ -1,4 +1,0 @@
-#title PlaySoundTimed [RCBasic Doc]
-#header sub PlaySoundTimed(slot, channel, loops, ms)
-
-

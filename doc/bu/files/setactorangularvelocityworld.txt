@@ -1,4 +1,0 @@
-#title setActorAngularVelocityWorld [RCBasic Doc]
-#header sub setActorAngularVelocityWorld( actor,   x,   y,   z)
-
-

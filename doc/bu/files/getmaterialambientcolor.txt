@@ -1,4 +1,0 @@
-#title GetMaterialAmbientColor [RCBasic Doc]
-#header function  GetMaterialAmbientColor( material_id)
-
-Returns the ambient color of a material

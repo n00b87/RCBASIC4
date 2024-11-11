@@ -62,4 +62,26 @@ struct rc_sprite2D_obj
 irr::core::array<rc_sprite2D_obj> rc_sprite;
 
 
+#define RC_JOINT_TYPE_DISTANCE 1
+#define RC_JOINT_TYPE_FRICTION 2
+#define RC_JOINT_TYPE_GEAR 3
+#define RC_JOINT_TYPE_MOTOR 4
+#define RC_JOINT_TYPE_PRISMATIC 5
+#define RC_JOINT_TYPE_PULLEY 6
+#define RC_JOINT_TYPE_REVOLUTE 7
+#define RC_JOINT_TYPE_WELD 8
+#define RC_JOINT_TYPE_WHEEL 9
+
+struct rc_b2Joint_obj
+{
+	b2Joint* joint;
+
+	int type;
+	bool active;
+
+	int canvas;
+};
+
+irr::core::array<rc_b2Joint_obj> rc_joint;
+
 #endif // RC_SPRITE2D_H_INCLUDED

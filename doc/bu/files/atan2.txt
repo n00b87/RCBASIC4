@@ -1,4 +1,0 @@
-#title ATan2 [RCBasic Doc]
-#header Function ATan2(y, x)
-
-Returns the ArcTangent of x and y

@@ -1,4 +1,0 @@
-#title DeleteActor [RCBasic Doc]
-#header sub DeleteActor( actor )
-
-Removes an actor from the scene and frees its memory

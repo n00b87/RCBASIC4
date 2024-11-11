@@ -1,4 +1,0 @@
-#title Frac [RCBasic Doc]
-#header function Frac(n)
-
-Returns the decimal portion of a number.

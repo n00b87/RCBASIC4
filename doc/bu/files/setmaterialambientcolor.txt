@@ -1,4 +1,0 @@
-#title setMaterialAmbientColor [RCBasic Doc]
-#header sub  setMaterialAmbientColor( material_id,  color)
-
-Sets the ambient color of a material

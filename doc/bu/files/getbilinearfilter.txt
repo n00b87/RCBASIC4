@@ -1,6 +1,0 @@
-#title GetBilinearFilter [RCBasic Doc]
-#header function GetBilinearFilter()
-
-Returns true if bilinear filtering is enabled
-
-#ref SetBilinearFilter

@@ -1,4 +1,0 @@
-#title SetSpritePosition [RCBasic Doc]
-#header Sub SetSpritePosition( sprite, x, y )
-
-

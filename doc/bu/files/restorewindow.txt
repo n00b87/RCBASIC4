@@ -1,4 +1,0 @@
-#title RestoreWindow [RCBasic Doc]
-#header sub RestoreWindow( )
-
-

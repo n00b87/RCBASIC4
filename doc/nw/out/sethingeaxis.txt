@@ -1,7 +1,0 @@
-#title setHingeAxis [RCBasic Doc]
-#header sub  setHingeAxis( constraint_id,  x,  y,  z)
-
-Defines the axis of rotation around which the hinge constraint allows the connected actors to rotate. This function is essential for establishing how the two actors will interact in terms of rotational motion.
-
-The axis of rotation defines the direction in which the hinge can rotate. For example, if you want a door to swing open, you would set the axis to be perpendicular to the plane of the door and aligned with the hinge line.
-

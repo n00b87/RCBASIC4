@@ -1,4 +1,0 @@
-#title GetVideoSize [RCBasic Doc]
-#header sub GetVideoSize(byref w, byref h)
-
-

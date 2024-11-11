@@ -1,4 +1,0 @@
-#title SetCameraFOV [RCBasic Doc]
-#header sub SetCameraFOV( fov )
-
-

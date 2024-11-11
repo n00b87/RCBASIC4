@@ -1,4 +1,0 @@
-#title SetLightAttenuation [RCBasic Doc]
-#header sub SetLightAttenuation( actor, l_constant, l_linear, l_quadratic )
-
-

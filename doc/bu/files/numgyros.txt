@@ -1,4 +1,0 @@
-#title NumGyros [RCBasic Doc]
-#header function NumGyros()
-
-

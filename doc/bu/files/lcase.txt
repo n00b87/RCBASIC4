@@ -1,4 +1,0 @@
-#title Lcase$ [RCBasic Doc]
-#header function Lcase$(src$)
-
-

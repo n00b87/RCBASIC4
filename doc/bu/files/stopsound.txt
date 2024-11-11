@@ -1,4 +1,0 @@
-#title StopSound [RCBasic Doc]
-#header sub StopSound(channel)
-
-

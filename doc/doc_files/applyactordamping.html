@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>ApplyActorDamping [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>sub ApplyActorDamping( actor,   timeStep) </h2></p>
+		<p>
+		 Reduces the velocity of an actor over time, simulating the effect of friction or air resistance. 
+		</p>
+		<p>
+		 This function applies the linear and angular damping values set with the SetActorDamping() function. 
+		</p>
+		<p id="rc_code"><code>
+			init_damping&nbsp;=&nbsp;<span class="rc_keyword">False</span>&nbsp;<br>
+			SetActorDamping<b>(</b>actor,&nbsp;<span class="rc_number">0.1</span>,&nbsp;<span class="rc_number">0.5</span><b>)</b>&nbsp;<br>
+			ApplyActorCentralImpulse<b>(</b>actor,&nbsp;<span class="rc_number">300</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">True</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">If</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;init_damping&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ApplyActorDamping<b>(</b>actor,&nbsp;<span class="rc_number">5.0</span><b>)</b>&nbsp;<span class="rc_comment">'Will apply the damping effect for 5 seconds </span><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;init_damping&nbsp;=&nbsp;<span class="rc_keyword">True</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;Update<b>(</b><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+		</code></p>
+		<br><p>Related: 
+		<a href="setactordamping.html">setActorDamping</a>
+		<a href="getactorlineardamping.html">getActorLinearDamping</a>
+		<a href="getactorangulardamping.html">getActorAngularDamping</a>
+		</p>
+		<p>
+
+	</body>
+</html>

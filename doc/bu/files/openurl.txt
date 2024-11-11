@@ -1,4 +1,0 @@
-#title OpenURL [RCBasic Doc]
-#header function OpenURL(url$)
-
-

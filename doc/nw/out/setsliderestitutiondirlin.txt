@@ -1,8 +1,0 @@
-#title setSlideRestitutionDirLin [RCBasic Doc]
-#header sub  setSlideRestitutionDirLin( constraint_id,  n)
-
-Sets the restitution value for linear motion. This value determines how much energy is conserved in a collision or interaction involving linear movements of the connected actors.
-
-When the actors collide or interact, the restitution value dictates how much of their energy is retained after the interaction.
-
-#ref SetSlideRestitutionDirLin

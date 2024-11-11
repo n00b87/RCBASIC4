@@ -1,4 +1,0 @@
-#title CircleFill [RCBasic Doc]
-#header sub CircleFill(x,y,radius)
-
-Draws a filled circle on the current canvas.

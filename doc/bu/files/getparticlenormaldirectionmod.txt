@@ -1,4 +1,0 @@
-#title getParticleNormalDirectionMod [RCBasic Doc]
-#header function  getParticleNormalDirectionMod( actor)
-
-

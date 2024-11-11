@@ -1,4 +1,0 @@
-#title SetActorAutoCulling [RCBasic Doc]
-#header sub SetActorAutoCulling( actor, cull_type )
-
-

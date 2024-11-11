@@ -1,4 +1,0 @@
-#title SetWorld3DTimeStep [RCBasic Doc]
-#header sub SetWorld3DTimeStep( ts )
-
-

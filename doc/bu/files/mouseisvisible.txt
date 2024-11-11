@@ -1,4 +1,0 @@
-#title MouseIsVisible [RCBasic Doc]
-#header function MouseIsVisible()
-
-

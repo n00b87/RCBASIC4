@@ -1,4 +1,0 @@
-#title deleteMaterial [RCBasic Doc]
-#header sub  deleteMaterial( material_id)
-
-Removes a material from memory

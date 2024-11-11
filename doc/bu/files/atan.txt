@@ -1,4 +1,0 @@
-#title Atan [RCBasic Doc]
-#header function Atan(n)
-
-Returns the ArcTangent of a number.

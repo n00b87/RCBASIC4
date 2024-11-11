@@ -1,4 +1,0 @@
-#title Min [RCBasic Doc]
-#header function Min(a, b)
-
-

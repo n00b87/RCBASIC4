@@ -1,0 +1,10 @@
+#title getJointMaxForce [RCBasic Doc]
+#header function  getJointMaxForce( joint_id)
+
+Return the maximum friction force in N. 
+
+Used with
+#list ul
+#li Friction Joint
+#li Motor Joint
+#/list

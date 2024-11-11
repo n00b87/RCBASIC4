@@ -1,4 +1,0 @@
-#title NumberArrayCopy [RCBasic Doc]
-#header sub NumberArrayCopy(ByRef src, ByRef dst)
-
-

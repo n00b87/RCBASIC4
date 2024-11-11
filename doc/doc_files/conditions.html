@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>RCBasic Conditions [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>CONDITIONS </h2></p>
+		<p>
+		 RC BASIC uses the same conventions of other programming languages to control the flow of the program.  There are two main ways of getting your program to decide on its next course of action.  The most common way is with the <b>IF</b> statement block. 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">If</span>&nbsp;<span class="rc_number">5</span>&nbsp;&gt;&nbsp;<span class="rc_number">6</span>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"THIS WILL NOT PRINT"</span>&nbsp;<br>
+			<span class="rc_keyword">ElseIf</span>&nbsp;<span class="rc_number">5</span>&nbsp;&lt;&nbsp;<span class="rc_number">6</span>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"THIS WILL PRINT"</span>&nbsp;<br>
+			<span class="rc_keyword">Else</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"THIS ALSO WILL NOT PRINT"</span>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above example does different comparisons and will output text to a console depending on which condition is true. 
+		</p>
+		<p>
+		 The next method of control flow is the <b>SELECT</b> statement block. 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Select</span>&nbsp;<span class="rc_keyword">Case</span>&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+			<span class="rc_keyword">Case</span>&nbsp;<span class="rc_number">6</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;THIS&nbsp;WILL&nbsp;<span class="rc_keyword">NOT</span>&nbsp;<span class="rc_string">"<span class="rc_keyword">PRINT</span> <br>
+			<span class="rc_keyword">Case</span>&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"THIS WILL PRINT"</span>&nbsp;<br>
+			Default&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_comment">'Note: Default will be true if every other case is false. </span><br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_comment">'      Default is optional and can be excluded if you don't need it </span><br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"THIS WILL NOT PRINT"</span>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Select</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above example will compare each case in the block to the <b>SELECT CASE</b>. If the case is equal to the select case then the code in that case will be executed. You can also add multiple values to compare to each <b>CASE</b>. 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Select</span>&nbsp;<span class="rc_keyword">Case</span>&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+			<span class="rc_keyword">Case</span>&nbsp;<span class="rc_number">6</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;THIS&nbsp;WILL&nbsp;<span class="rc_keyword">NOT</span>&nbsp;<span class="rc_string">"<span class="rc_keyword">PRINT</span> <br>
+			<span class="rc_keyword">Case</span>&nbsp;<span class="rc_number">4</span>,&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"THIS WILL PRINT"</span>&nbsp;<br>
+			Default&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"THIS WILL NOT PRINT"</span>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Select</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above example is mostly the same as the previous example. The difference is that in our second <b>CASE</b> we are comparing both 4 and 5. If either of them are equal to our <b>SELECT</b> argument then the code inside the <b>CASE</b> block will execute.  
+		</p>
+		<p>
+
+	</body>
+</html>

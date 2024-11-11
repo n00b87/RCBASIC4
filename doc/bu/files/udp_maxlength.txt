@@ -1,4 +1,0 @@
-#title UDP_MaxLength [RCBasic Doc]
-#header function UDP_MaxLength()
-
-

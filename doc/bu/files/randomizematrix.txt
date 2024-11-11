@@ -1,4 +1,0 @@
-#title RandomizeMatrix [RCBasic Doc]
-#header sub RandomizeMatrix(mA, vmin, vmax)
-
-

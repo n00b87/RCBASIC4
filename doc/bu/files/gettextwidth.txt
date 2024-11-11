@@ -1,4 +1,0 @@
-#title GetTextWidth [RCBasic Doc]
-#header function GetTextWidth(txt$)
-
-

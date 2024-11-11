@@ -1,4 +1,0 @@
-#title getConstraintDampingDirLin [RCBasic Doc]
-#header function  getConstraintDampingDirLin( constraint_id)
-
-

@@ -1,4 +1,0 @@
-#title WindowIsFullscreen [RCBasic Doc]
-#header function WindowIsFullscreen()
-
-

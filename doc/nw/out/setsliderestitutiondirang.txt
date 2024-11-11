@@ -1,8 +1,0 @@
-#title setSlideRestitutionDirAng [RCBasic Doc]
-#header sub  setSlideRestitutionDirAng( constraint_id,  n)
-
-Sets the restitution value for angular motion. The restitution coefficient is a measure of how much energy is conserved in a collision or constraint interaction, specifically for angular movements.
-
-When actors collide or interact, their angular momentum and position can change, and the restitution value governs how much of that energy is retained after the interaction.
-
-#ref GetSlideRestitutionDirAng

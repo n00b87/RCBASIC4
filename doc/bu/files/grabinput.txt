@@ -1,4 +1,0 @@
-#title GrabInput [RCBasic Doc]
-#header sub GrabInput(flag)
-
-

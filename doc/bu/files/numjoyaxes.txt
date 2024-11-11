@@ -1,4 +1,0 @@
-#title NumJoyAxes [RCBasic Doc]
-#header function NumJoyAxes(joy_num)
-
-

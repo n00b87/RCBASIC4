@@ -1,6 +1,0 @@
-#title BufferFromString [RCBasic Doc]
-#header function BufferFromString(s$, ByRef buffer)
-
-Stores the byte value of a string into a number buffer 
-
-#ref StringFromBuffer$

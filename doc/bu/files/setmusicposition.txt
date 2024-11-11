@@ -1,4 +1,0 @@
-#title SetMusicPosition [RCBasic Doc]
-#header sub SetMusicPosition(pos)
-
-

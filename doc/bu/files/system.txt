@@ -1,4 +1,0 @@
-#title System [RCBasic Doc]
-#header function System(cmd$)
-
-

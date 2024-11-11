@@ -1,6 +1,0 @@
-#title GetGravity3D [RCBasic Doc]
-#header sub GetGravity3D(ByRef x, ByRef y, ByRef z)
-
-Gets the world gravity
-
-#ref SetGravity3D

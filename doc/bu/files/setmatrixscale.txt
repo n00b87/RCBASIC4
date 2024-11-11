@@ -1,4 +1,0 @@
-#title SetMatrixScale [RCBasic Doc]
-#header sub SetMatrixScale( mA, x, y, z )
-
-

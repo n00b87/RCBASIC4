@@ -1,6 +1,0 @@
-#title getConstraintAnglePoint [RCBasic Doc]
-#header sub  getConstraintAnglePoint( constraint_id,  angle,  c_len, ByRef x, ByRef y, ByRef z)
-
-Computes or retrieves a point based on a given angle relative to the constraint’s twist axis. 
-
-Note: Only applies to cone constraint

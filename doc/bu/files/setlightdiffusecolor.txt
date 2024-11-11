@@ -1,4 +1,0 @@
-#title SetLightDiffuseColor [RCBasic Doc]
-#header sub SetLightDiffuseColor( actor, color )
-
-

@@ -1,0 +1,14 @@
+#title createPrismaticJoint [RCBasic Doc]
+#header function createPrismaticJoint( spriteA,  spriteB,   aX,   aY,   axisX,   axisY, collide_connect)
+
+Creates a Prismatic Joint
+
+A prismatic joint. This joint provides one degree of freedom: translation along an axis fixed in bodyA. Relative rotation is prevented. You can use a joint limit to restrict the range of motion and a joint motor to drive the motion or to model joint friction. 
+
+Parameters
+#list ul
+#li spriteA - first body
+#li spriteB - second body
+#li aX, aY - anchor point
+#li axisX, axisY - Used to define a linear direction from anchor point
+#/list

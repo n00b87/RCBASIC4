@@ -1,4 +1,0 @@
-#title SetActorAnimation [RCBasic Doc]
-#header sub SetActorAnimation( actor, start_frame, end_frame)
-
-

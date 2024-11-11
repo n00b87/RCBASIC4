@@ -1,4 +1,0 @@
-#title Tell [RCBasic Doc]
-#header function Tell(stream)
-
-

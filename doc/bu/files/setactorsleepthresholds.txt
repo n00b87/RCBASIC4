@@ -1,4 +1,0 @@
-#title setActorSleepThresholds [RCBasic Doc]
-#header sub setActorSleepThresholds( actor,   linear,   angular)
-
-

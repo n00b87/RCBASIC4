@@ -1,9 +1,0 @@
-#title setConstraintDampingLimAng [RCBasic Doc]
-#header sub  setConstraintDampingLimAng( constraint_id,  n)
-
-Sets the angular limit damping factor for a constraint. This damping applies specifically to the angular motion of an object when it reaches the limit of its allowed rotational range.
-
-Note: Only applies to slide constraint
-
-#ref GetConstraintDampingLimAng
-

@@ -1,4 +1,0 @@
-#title SetActorScale [RCBasic Doc]
-#header sub SetActorScale( actor, x, y, z )
-
-

@@ -1,6 +1,0 @@
-#title getSlideLinDepth [RCBasic Doc]
-#header function  getSlideLinDepth( constraint_id)
-
-Returns the linear depth of the slider constraint. This value indicates how much the actors connected by the slider constraint are overlapping or penetrating each other in the linear (translational) direction.
-
-The linear depth is a measure of how far the actors are penetrating each other along the linear axis defined by the slider constraint. A positive value indicates that the actors are overlapping, while a value of zero means they are in contact but not penetrating. Negative values typically imply that the actors are separated.

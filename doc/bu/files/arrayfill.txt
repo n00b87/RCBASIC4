@@ -1,6 +1,0 @@
-#title ArrayFill [RCBasic Doc]
-#header sub ArrayFill(ByRef src, fdata)
-
-Fills all the elements in an array with the value in fdata
-
-#ref ArrayCopy ArrayDim ArraySize

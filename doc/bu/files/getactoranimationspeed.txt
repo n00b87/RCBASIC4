@@ -1,4 +1,0 @@
-#title GetActorAnimationSpeed [RCBasic Doc]
-#header function GetActorAnimationSpeed( actor )
-
-Returns actors animation speed in frames per second

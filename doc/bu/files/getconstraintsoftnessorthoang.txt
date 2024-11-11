@@ -1,4 +1,0 @@
-#title getConstraintSoftnessOrthoAng [RCBasic Doc]
-#header function  getConstraintSoftnessOrthoAng( constraint_id)
-
-

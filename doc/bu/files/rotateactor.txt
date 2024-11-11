@@ -1,4 +1,0 @@
-#title RotateActor [RCBasic Doc]
-#header sub RotateActor( actor, x, y, z )
-
-

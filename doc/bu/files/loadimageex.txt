@@ -1,4 +1,0 @@
-#title LoadImageEx [RCBasic Doc]
-#header function LoadImageEx(img$, colkey)
-
-

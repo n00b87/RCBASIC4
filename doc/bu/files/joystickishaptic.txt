@@ -1,4 +1,0 @@
-#title JoystickIsHaptic [RCBasic Doc]
-#header function JoystickIsHaptic(joy_num)
-
-

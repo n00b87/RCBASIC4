@@ -1,4 +1,0 @@
-#title materialIsWireframe [RCBasic Doc]
-#header function  materialIsWireframe( material_id)
-
-

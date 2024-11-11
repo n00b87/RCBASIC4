@@ -1,4 +1,0 @@
-#title RemoveDir [RCBasic Doc]
-#header function RemoveDir(p$)
-
-

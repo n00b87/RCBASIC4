@@ -1,4 +1,0 @@
-#title SetActorRotation [RCBasic Doc]
-#header sub SetActorRotation( actor, x, y, z )
-
-

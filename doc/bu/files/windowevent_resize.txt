@@ -1,4 +1,0 @@
-#title WindowEvent_Resize [RCBasic Doc]
-#header function WindowEvent_Resize()
-
-

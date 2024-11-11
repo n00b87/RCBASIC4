@@ -1,4 +1,0 @@
-#title Asc [RCBasic Doc]
-#header function Asc(c$)
-
-Returns the ASCII value of a character.

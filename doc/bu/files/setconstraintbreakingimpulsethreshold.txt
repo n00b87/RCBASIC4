@@ -1,4 +1,0 @@
-#title setConstraintBreakingImpulseThreshold [RCBasic Doc]
-#header sub  setConstraintBreakingImpulseThreshold( constraint_id,  threshold)
-
-

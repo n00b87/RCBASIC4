@@ -1,6 +1,0 @@
-#title getActorMaterial [RCBasic Doc]
-#header function  getActorMaterial( actor,  material_num)
-
-Returns an actor's material id.
-
-Actor's can have multiple materials but generally you want material 0 for most Actor's.

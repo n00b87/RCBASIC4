@@ -1,5 +1,0 @@
-#title Distance3D [RCBasic Doc]
-#header Function Distance3D(x1, y1, z1, x2, y2, z2)
-
-Returns the distance between 2 points in 3d space
-

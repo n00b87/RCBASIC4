@@ -1,0 +1,4 @@
+#title applySpriteCentralForce [RCBasic Doc]
+#header sub applySpriteCentralForce( spr_id,   x,   y)
+
+Apply a continuous force to a body at its center of mass, regardless of the body's current orientation. This method affects the body's linear motion and is useful for simulating forces like gravity, wind, or any other directional force.

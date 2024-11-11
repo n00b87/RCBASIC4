@@ -1,4 +1,0 @@
-#title setWaterColorBlendFactor [RCBasic Doc]
-#header sub setWaterColorBlendFactor( actor,   cbfactor)
-
-

@@ -1,4 +1,0 @@
-#title getConstraintUseFrameOffset [RCBasic Doc]
-#header function  getConstraintUseFrameOffset( constraint_id)
-
-

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>setConeLimit [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>sub  setConeLimit( constraint_id,  swingSpan1,  swingSpan2,  twistSpan,  softness,  bias_factor,  relaxation_factor) </h2></p>
+		<p>
+		 Sets the angular limits for the rotation of the constrained actors. These limits specify how much twisting and swinging is permitted between the two actors connected by the constraint, ensuring the motion stays within a desired range. 
+		</p>
+		<p>
+		 <b>Softness:</b> Determines how soft or hard the constraint limits are. A value of 1.0 means the limits are hard, while lower values make the limit softer, allowing some flexibility. 
+		</p>
+		<p>
+		 <b>Bias Factor:</b> This parameter defines how quickly the constraint should try to correct errors that bring it near or beyond the limit. 
+		</p>
+		<p>
+		 <b>Relaxation Factor:</b> This affects how fast the constraint will "relax" after reaching its limit, allowing it to stabilize after hitting the constraint. 
+		</p>
+		<br><p>Related: 
+		<a href="getconelimit.html">GetConeLimit</a>
+		</p>
+		<p>
+
+	</body>
+</html>

@@ -1,4 +1,0 @@
-#title copyActorMaterial [RCBasic Doc]
-#header function  copyActorMaterial( actor,  material_num)
-
-Returns a material id for a copy of an actor's material

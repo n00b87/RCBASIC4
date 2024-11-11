@@ -1,4 +1,0 @@
-#title SetWindowBordered [RCBasic Doc]
-#header sub SetWindowBordered( flag)
-
-

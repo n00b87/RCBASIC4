@@ -10,6 +10,9 @@
 #include "rc_sprite2D.h"
 #include "rc_gfx_core.h"
 
+#include "rc_sprite_physics.h"
+#include "rc_joints.h"
+
 #define RC_SPRITE_BASE_ANIMATION 0
 
 int rc_createSpriteAnimation(int spr_id, int anim_length, double fps)
@@ -569,6 +572,9 @@ void rc_setSpriteRotation(int spr_id, double angle)
 	if(!rc_sprite[spr_id].active)
 		return;
 
+	//convert angle to radians
+	angle = rc_util_radians(angle);
+
 	rc_sprite[spr_id].physics.body->SetTransform(rc_sprite[spr_id].physics.body->GetPosition(), angle);
 }
 
@@ -579,6 +585,9 @@ void rc_rotateSprite(int spr_id, double angle)
 
 	if(!rc_sprite[spr_id].active)
 		return;
+
+	//convert angle to radians
+	angle = rc_util_radians(angle);
 
 	float new_angle = rc_sprite[spr_id].physics.body->GetAngle() + angle;
 	rc_sprite[spr_id].physics.body->SetTransform(rc_sprite[spr_id].physics.body->GetPosition(), new_angle);
@@ -592,7 +601,7 @@ double rc_getSpriteRotation(int spr_id)
 	if(!rc_sprite[spr_id].active)
 		return 0;
 
-	return rc_sprite[spr_id].physics.body->GetAngle();
+	return rc_util_degrees(rc_sprite[spr_id].physics.body->GetAngle());
 }
 
 void rc_setSpriteScale(int spr_id, double x, double y)
@@ -919,15 +928,6 @@ void drawSprites(int canvas_id)
 
 	VideoDriver->setRenderTarget(rc_canvas[0].texture, false, false);
 }
-
-//NOTE TO TBIRD
-// 1. Each sprite has a Box2D body.  You can look in "rc_sprite2D.h" to see how a sprite is structured.
-// 2. A box2D world is setup for each canvas. So a sprite will be attached to the canvas thats active when its created. When that canvas is destroyed, so is the sprite.
-// 3. By default, I have the sprite.physics_enabled attribute set to false. I feel like it makes sense to have a user intentionally enable physics since a user may not want physics for every sprite.
-// 4. The sprite.visible attribute only determines whether to draw the sprite. The physics simulation will still happen each frame unless physics are disabled.
-// 5. Don't change the value of sprite.active. Its used to check whether a sprite exists or not. I have an array of sprites in rc_sprite2D.h and if the active attribute is set to false, I reuse that slot to create a new sprite. If there is no inactive sprites in the array then I add a new sprite index to the array.
-// 6. The time step, velocity Iterations, and position iterations are part of the canvas.physics2D attribute. You will need to make functions to allow the user to change those.
-// 7. If you want to modify how sprites are rendered then you can just change the drawSprites() function above these notes.
 
 //-----------------------------END OF SPRITE STUFF------------------------------------------------------------------------------
 

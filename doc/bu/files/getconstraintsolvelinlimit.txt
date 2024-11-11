@@ -1,4 +1,0 @@
-#title getConstraintSolveLinLimit [RCBasic Doc]
-#header function  getConstraintSolveLinLimit( constraint_id)
-
-
