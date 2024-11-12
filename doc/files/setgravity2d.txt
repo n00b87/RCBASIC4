@@ -1,0 +1,6 @@
+#title SetGravity2D [RCBasic Doc]
+#header sub SetGravity2D(x, y)
+
+Use this function for setting the global gravity vector. A sprite canvas layer must be active.
+
+#ref GetGravity2D
