@@ -2,7 +2,7 @@
 #define RC_OS_DEFINES_H_INCLUDED
 
 #define RC_LINUX
-//#define RC_WEB
+#define RC_WEB
 //#define RC_WINDOWS
 //#define RC_ANDROID
 //#define RC_MAC
@@ -23,7 +23,7 @@
 #endif
 
 //FOR DEBUG PURPOSES
-//#define RC_DRIVER_GLES2
+#define RC_DRIVER_GLES2
 
 #define RC_PI 3.14159265359
 
