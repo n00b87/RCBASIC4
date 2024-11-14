@@ -350,7 +350,7 @@ int rc_createSprite(int img_id, double w, double h)
 
 	b2BodyDef sprBodyDef;
 	sprBodyDef.type = b2_dynamicBody;
-	sprBodyDef.position.Set(0, 0);
+	sprBodyDef.position.Set(w/2, h/2);
 	sprBodyDef.angle = 0;
 	sprBodyDef.userData.pointer = (uintptr_t)&rc_sprite[spr_id];
 	rc_sprite[spr_id].physics.body = rc_canvas[rc_active_canvas].physics2D.world->CreateBody(&sprBodyDef);
@@ -364,8 +364,8 @@ int rc_createSprite(int img_id, double w, double h)
 	sprFixtureDef.density = 1;
 	rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
 
-	rc_sprite[spr_id].physics.offset_x = 0;
-	rc_sprite[spr_id].physics.offset_y = 0;
+	rc_sprite[spr_id].physics.offset_x = w/2;
+	rc_sprite[spr_id].physics.offset_y = h/2;
 	rc_sprite[spr_id].isSolid = false;
 
 	if(rc_sprite[spr_id].image_id < 0)
@@ -513,7 +513,9 @@ void rc_setSpritePosition(int spr_id, double x, double y)
 		return;
 
 	float current_angle = rc_sprite[spr_id].physics.body->GetAngle();
-	rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(x, y), current_angle);
+	double off_x = rc_sprite[spr_id].physics.offset_x;
+	double off_y = rc_sprite[spr_id].physics.offset_y;
+	rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(x+off_x, y+off_y), current_angle);
 }
 
 void rc_translateSprite(int spr_id, double x, double y)
@@ -843,13 +845,13 @@ void drawSprites(int canvas_id)
 			continue;
 
 		physics_pos = sprite->physics.body->GetPosition();
-		x = (int)physics_pos.x - offset_x;
-		y = (int)physics_pos.y - offset_y;
+		x = (int)(physics_pos.x - sprite->physics.offset_x) - offset_x;
+		y = (int)(physics_pos.y - sprite->physics.offset_y) - offset_y;
 
 		int xf = x + sprite->frame_size.Width;
 		int yf = y + sprite->frame_size.Height;
 
-		//std::cout << "sprite info: " << xf << ", " << x << ", " << rc_canvas[canvas_id].viewport.dimension.Width << std::endl;
+		//std::cout << "sprite info[" << spr_index << "]: (" << x << ", " << y << ") (" << xf << ", " << yf << ")" << std::endl;
 
 		if( (xf < 0) || (x > ((int)rc_canvas[canvas_id].viewport.dimension.Width)) )
 		{

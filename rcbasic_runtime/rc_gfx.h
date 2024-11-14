@@ -3499,13 +3499,6 @@ bool rc_update()
 
                 //std::cout << "draw canvas[" << canvas_id << "] (" << rc_canvas[canvas_id].offset.X << ", " <<  rc_canvas[canvas_id].offset.Y << ") (" << rc_canvas[canvas_id].viewport.dimension.Width << ", " << rc_canvas[canvas_id].dimension.Height << ")" << std::endl;
 
-                if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_SPRITE)
-				{
-
-					src = irr::core::rect<s32>( irr::core::vector2d<s32>(0, 0), rc_canvas[canvas_id].viewport.dimension); //sprite layers will just offset the sprites in drawSprites()
-					drawSprites(canvas_id);
-				}
-
                 #if defined(RC_DRIVER_GLES2)
                 if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_3D)
                 {
@@ -3520,9 +3513,23 @@ bool rc_update()
 					src = irr::core::rect<s32>( cv_offset, cv_dim );
 					dest = irr::core::rect<s32>( irr::core::vector2d<s32>(cv_pos.X, cv_pos.Y + cv_dim.Height), irr::core::dimension2d<s32>(cv_dim.Width, -1*cv_dim.Height) );
 				}
+				else if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_SPRITE)
+				{
+
+					src = irr::core::rect<s32>( irr::core::vector2d<s32>(0, 0), rc_canvas[canvas_id].texture->getSize() );
+                	dest = irr::core::rect<s32>( irr::core::vector2d<s32>(dest.UpperLeftCorner.X, dest.UpperLeftCorner.Y + dest.getHeight()), irr::core::dimension2d<s32>(dest.getWidth(), -1*dest.getHeight()) );
+					drawSprites(canvas_id);
+				}
                 //dest = irr::core::rect<s32>( irr::core::vector2d<s32>(dest.UpperLeftCorner.X, dest.UpperLeftCorner.Y + dest.getHeight()), irr::core::dimension2d<s32>(dest.getWidth(), -1*dest.getHeight()) );
                 draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
                 #else
+                if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_SPRITE)
+				{
+
+					src = irr::core::rect<s32>( irr::core::vector2d<s32>(0, 0), rc_canvas[canvas_id].viewport.dimension); //sprite layers will just offset the sprites in drawSprites()
+					drawSprites(canvas_id);
+				}
+
                 draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
                 #endif // defined
 
