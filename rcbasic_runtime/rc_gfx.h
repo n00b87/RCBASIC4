@@ -218,6 +218,7 @@ bool rc_gfx_init()
         }
     }
     SDL_SetHint("SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS", "1");
+    SDL_SetHint("SDL_HINT_EMSCRIPTEN_ASYNCIFY", "1");
 
     return true;
 
@@ -269,7 +270,11 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
 
     SIrrlichtCreationParameters irr_creation_params;
     irr_creation_params.DeviceType = EIDT_SDL;
+    #if defined(RC_DRIVER_GLES2)
+    irr_creation_params.DriverType = video::EDT_OGLES2;
+    #else
     irr_creation_params.DriverType = video::EDT_OPENGL;
+    #endif // defined
     irr_creation_params.WindowId = rc_window;
     irr_creation_params.WindowSize = dimension2d<u32>((u32)w, (u32)h);
     irr_creation_params.Bits = 16;
@@ -279,6 +284,7 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     irr_creation_params.EventReceiver = 0;
     irr_creation_params.WindowPosition = position2d<s32>(x, y);
     irr_creation_params.AntiAlias = AntiAlias;
+    irr_creation_params.OGLES2ShaderPath = "media/Shaders/";
 
 	device = createDeviceEx(irr_creation_params);
 
@@ -299,12 +305,23 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     rc_font.clear();
 
     rc_canvas_obj back_buffer;
+    //std::cout << std::endl << "back start" << std::endl;
+    #ifdef RC_WEB
+    Uint32 size_n = 2;
+    Uint32 dim_max = (w > h ? w : h);
+    while(size_n < dim_max) size_n *= 2;
+    back_buffer.texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)size_n, (irr::u32)size_n), "rt", ECF_A8R8G8B8);
+    #else
     back_buffer.texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)w, (irr::u32)h), "rt", ECF_A8R8G8B8);
+    #endif // RC_WEB
+    //std::cout << "back_buffer done" << std::endl << std::endl;
     back_buffer.dimension.Width = w;
     back_buffer.dimension.Height = h;
     back_buffer.viewport.position.set(0,0);
     back_buffer.viewport.dimension.set(w,h);
+    //std::cout << std::endl << "tgt start" << std::endl;
     VideoDriver->setRenderTarget(back_buffer.texture, true, true);
+    //std::cout << "tgt done" << std::endl << std::endl;
     rc_canvas.push_back(back_buffer);
 
 	rc_physics3D.world = createIrrBulletWorld(device, true, false);
@@ -876,7 +893,14 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
     canvas.show3D = false;
     canvas.physics2D.enabled = false;
 
+    #ifdef RC_WEB
+    Uint32 size_n = 2;
+    Uint32 dim_max = (w > h ? w : h);
+    while(size_n < dim_max) size_n *= 2;
+    canvas.texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<u32>(size_n,size_n), "rt", ECF_A8R8G8B8);
+    #else
     canvas.texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<u32>(w,h), "rt", ECF_A8R8G8B8);
+    #endif // RC_WEB
     //canvas.sprite_layer = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<u32>(w,h), "rt", ECF_A8R8G8B8);
 
     if(!canvas.texture)
@@ -1827,6 +1851,7 @@ int rc_inKey()
 
 int rc_key(int check_Key)
 {
+	keyState = SDL_GetKeyboardState(NULL);
     return keyState[SDL_GetScancodeFromKey(check_Key)];
 }
 
@@ -3363,7 +3388,7 @@ bool rc_update()
 			irrevent.UserEvent.UserData1 = reinterpret_cast<uintptr_t>(SDL_event.user.data1);
 			irrevent.UserEvent.UserData2 = reinterpret_cast<uintptr_t>(SDL_event.user.data2);
 
-			device->postEventFromUser(irrevent);
+			//device->postEventFromUser(irrevent);
 			break;
 
 		default:
@@ -3372,16 +3397,19 @@ bool rc_update()
 
 	} // end while
 
+
 	if(!Close)
     {
     	irrtheora::updateVideo();
 
         VideoDriver->setRenderTarget(rc_canvas[0].texture);
         irr::core::vector2d<s32> bb_position(0,0);
-        irr::core::dimension2d<u32> bb_dimension(win_w, win_h);
+        irr::core::dimension2d<u32> bb_dimension = rc_canvas[0].texture->getSize();
+        irr::core::dimension2d<u32> win_dimension(win_w, win_h);
         VideoDriver->setViewPort( irr::core::rect<irr::s32>(bb_position, bb_dimension) );
 
         irr::core::vector2d<irr::f32> screenSize( (irr::f32) rc_canvas[0].dimension.Width, (irr::f32) rc_canvas[0].dimension.Height );
+        //irr::core::vector2d<irr::f32> screenSize( (irr::f32) win_h, (irr::f32) win_w );
 
         Uint32 current_time_ms = SDL_GetTicks();
         double frame_current_time = ((double)current_time_ms)/1000.0;
@@ -3437,12 +3465,13 @@ bool rc_update()
 
                 rc_canvas[i].camera.update();
 
-                VideoDriver->setViewPort(irr::core::rect<irr::s32>(0,0,rc_canvas[i].viewport.dimension.Width,rc_canvas[i].viewport.dimension.Height));
+                VideoDriver->setViewPort(irr::core::rect<irr::s32>(0,0,rc_canvas[i].texture->getSize().Width,rc_canvas[i].texture->getSize().Height));
 
                 //irr::core::rect viewport(irr::core::position, rc_canvas[i].viewport.dimension);
                 //VideoDriver->setViewPort(viewport);
 
                 SceneManager->drawAll();
+                //VideoDriver->draw2DRectangle(irr::video::SColor(255,0,255,0), irr::core::rect<irr::s32>(10,40,100,500));
 
                 vector3df p0(0, 0, 0);
 				vector3df p1(10, 30, 0);
@@ -3468,8 +3497,32 @@ bool rc_update()
                 irr::video::SColor color(rc_canvas[canvas_id].color_mod);
                 //color.set(255,255,255,255);
 
-                //std::cout << "draw canvas[" << canvas_id << "]" << std::endl;
+                //std::cout << "draw canvas[" << canvas_id << "] (" << rc_canvas[canvas_id].offset.X << ", " <<  rc_canvas[canvas_id].offset.Y << ") (" << rc_canvas[canvas_id].viewport.dimension.Width << ", " << rc_canvas[canvas_id].dimension.Height << ")" << std::endl;
 
+                #if defined(RC_DRIVER_GLES2)
+                if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_3D)
+                {
+                	src = irr::core::rect<s32>( irr::core::vector2d<s32>(0, 0), rc_canvas[canvas_id].texture->getSize() );
+                	dest = irr::core::rect<s32>( irr::core::vector2d<s32>(dest.UpperLeftCorner.X, dest.UpperLeftCorner.Y + dest.getHeight()), irr::core::dimension2d<s32>(dest.getWidth(), -1*dest.getHeight()) );
+                }
+                else if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_2D)
+				{
+					irr::core::dimension2d<irr::u32> cv_dim = rc_canvas[canvas_id].viewport.dimension;
+					irr::core::position2d<irr::s32> cv_pos = rc_canvas[canvas_id].viewport.position;
+					irr::core::vector2d<irr::s32> cv_offset(rc_canvas[canvas_id].offset.X, rc_canvas[canvas_id].texture->getSize().Height - rc_canvas[canvas_id].offset.Y - cv_dim.Height);
+					src = irr::core::rect<s32>( cv_offset, cv_dim );
+					dest = irr::core::rect<s32>( irr::core::vector2d<s32>(cv_pos.X, cv_pos.Y + cv_dim.Height), irr::core::dimension2d<s32>(cv_dim.Width, -1*cv_dim.Height) );
+				}
+				else if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_SPRITE)
+				{
+
+					src = irr::core::rect<s32>( irr::core::vector2d<s32>(0, 0), rc_canvas[canvas_id].texture->getSize() );
+                	dest = irr::core::rect<s32>( irr::core::vector2d<s32>(dest.UpperLeftCorner.X, dest.UpperLeftCorner.Y + dest.getHeight()), irr::core::dimension2d<s32>(dest.getWidth(), -1*dest.getHeight()) );
+					drawSprites(canvas_id);
+				}
+                //dest = irr::core::rect<s32>( irr::core::vector2d<s32>(dest.UpperLeftCorner.X, dest.UpperLeftCorner.Y + dest.getHeight()), irr::core::dimension2d<s32>(dest.getWidth(), -1*dest.getHeight()) );
+                draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
+                #else
                 if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_SPRITE)
 				{
 
@@ -3478,6 +3531,7 @@ bool rc_update()
 				}
 
                 draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
+                #endif // defined
 
                 //drawSprites(canvas_id);
                 //draw2DImage2(VideoDriver, rc_canvas[canvas_id].sprite_layer, src, dest, irr::core::vector2d<irr::s32>(0, 0), 0, true, color, screenSize);
@@ -3489,10 +3543,26 @@ bool rc_update()
         }
 
 		//env->drawAll();
+		//VideoDriver->draw2DRectangle(irr::video::SColor(255,255,0,0), irr::core::rect<irr::s32>(0,0,100,500));
 
 		VideoDriver->setRenderTarget(0);
 		//VideoDriver->beginScene(true, true);
-		VideoDriver->draw2DImage(rc_canvas[0].texture, irr::core::vector2d<irr::s32>(0,0));
+		//VideoDriver->draw2DImage(rc_canvas[0].texture, irr::core::vector2d<irr::s32>(0,0));
+
+		//debug
+		irr::core::rect<s32> src( irr::core::vector2d<s32>(0,0), rc_canvas[0].texture->getSize() );
+		irr::core::rect<s32> dest( irr::core::vector2d<s32>(0,0), irr::core::dimension2d<s32>(win_w, win_h) );
+		irr::video::SColor color(0);
+		VideoDriver->draw2DImage(rc_canvas[0].texture, dest, src);
+		//draw2DImage2(VideoDriver, rc_canvas[0].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, false, color, screenSize);
+		//irr::core::rect<irr::s32> src( irr::core::vector2d<irr::s32>(0, 0), rc_canvas[0].texture->getSize() );
+		//irr::core::rect<irr::s32> dest( irr::core::vector2d<irr::s32>(0, 0), irr::core::dimension2d<irr::s32>( );
+		//draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
+
+		//VideoDriver->draw2DImage(rc_image[0].image, irr::core::rect<irr::s32>(0,0,100,100), irr::core::rect<irr::s32>(0,0,100,100));
+		//VideoDriver->draw2DRectangle(irr::video::SColor(255,2555,0,0), irr::core::rect<irr::s32>(0,0,100,100));
+		//end debug
+
 		//device->getGUIEnvironment()->drawAll();
 		VideoDriver->endScene();
 
