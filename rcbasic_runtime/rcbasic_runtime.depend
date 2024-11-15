@@ -32,7 +32,7 @@
 	<irrtheora.h>
 	"rc_func130_cases.h"
 
-1731547485 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
+1731678428 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
 
 1730315467 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
 
@@ -2486,7 +2486,7 @@
 	<irrlicht.h>
 	<cmath>
 
-1731554928 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_spritelib.h
+1731679477 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_spritelib.h
 	"SDL.h"
 	<SDL2/SDL.h>
 	"rc_sprite2D.h"

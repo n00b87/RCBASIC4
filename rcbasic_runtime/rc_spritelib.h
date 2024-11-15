@@ -540,8 +540,11 @@ void rc_getSpritePosition(int spr_id, double* x, double* y)
 	if(!rc_sprite[spr_id].active)
 		return;
 
-	*x = (double)rc_sprite[spr_id].physics.body->GetPosition().x;
-	*y = (double)rc_sprite[spr_id].physics.body->GetPosition().y;
+	double off_x = rc_sprite[spr_id].physics.offset_x;
+	double off_y = rc_sprite[spr_id].physics.offset_y;
+
+	*x = (double)rc_sprite[spr_id].physics.body->GetPosition().x - off_x;
+	*y = (double)rc_sprite[spr_id].physics.body->GetPosition().y - off_y;
 }
 
 double rc_spriteX(int spr_id)
@@ -552,7 +555,9 @@ double rc_spriteX(int spr_id)
 	if(!rc_sprite[spr_id].active)
 		return 0;
 
-	return (double)rc_sprite[spr_id].physics.body->GetPosition().x;
+	double off_x = rc_sprite[spr_id].physics.offset_x;
+
+	return (double)rc_sprite[spr_id].physics.body->GetPosition().x - off_x;
 }
 
 double rc_spriteY(int spr_id)
@@ -563,7 +568,9 @@ double rc_spriteY(int spr_id)
 	if(!rc_sprite[spr_id].active)
 		return 0;
 
-	return (double)rc_sprite[spr_id].physics.body->GetPosition().y;
+	double off_y = rc_sprite[spr_id].physics.offset_y;
+
+	return (double)rc_sprite[spr_id].physics.body->GetPosition().y - off_y;
 }
 
 void rc_setSpriteRotation(int spr_id, double angle)
