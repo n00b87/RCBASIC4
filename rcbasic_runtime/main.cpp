@@ -662,22 +662,16 @@ bool rcbasic_load(std::string filename)
 
 uint64_t readInt()
 {
-    for(int i = 0; i < sizeof(uint64_t); i++)
-    {
-        readint_val.data[i] = segment[current_segment][current_address];
-        current_address++;
-    }
-    return readint_val.i;
+	readint_val.i = ((uint64_t*)&segment[current_segment][current_address] )[0];
+	current_address += sizeof(uint64_t);
+	return readint_val.i;
 }
 
 double readDouble()
 {
-    for(int i = 0; i < sizeof(double); i++)
-    {
-        readdouble_val.data[i] = segment[current_segment][current_address];
-        current_address++;
-    }
-    return readdouble_val.f;
+	readdouble_val.f = ((double*)&segment[current_segment][current_address] )[0];
+	current_address += sizeof(double);
+	return readdouble_val.f;
 }
 
 void dbg_1(uint32_t dbg_fn, uint64_t arg1, uint64_t arg2)
