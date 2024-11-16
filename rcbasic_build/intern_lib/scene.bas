@@ -4,3 +4,5 @@ sub AddSceneSkyDomeEx( img, horiRes, vertRes, txPercentage, spherePercentage, ra
 sub RemoveSceneSky( )
 sub SetWorld3DMaxSubSteps( steps )
 sub SetWorld3DTimeStep( ts )
+function GetWorld3DMaxSubSteps()
+function GetWorld3DTimeStep()
