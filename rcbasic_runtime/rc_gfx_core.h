@@ -583,12 +583,34 @@ class rc_animEndCallBack : public IAnimationEndCallBack
 			//std::cout << "animating" << std::endl;
 			irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*) ref_actor->mesh_node;
 			int animation = ref_actor->current_animation;
-			if(animation < 0 || animation >= ref_actor->animation.size())
+			if(animation == RC_ANIMATION_MD2)
+			{
+				int start_frame = node->getStartFrame();
+				int end_frame = node->getEndFrame();
+				node->setFrameLoop(start_frame, end_frame);
+				ref_actor->current_animation_loop++;
+			}
+			else if(animation == RC_ANIMATION_TRANSITION)
+			{
+				//TODO: Transitions are currently broken
+			}
+			else if(animation < 0 || animation >= ref_actor->animation.size())
+			{
 				return;
-			int start_frame = ref_actor->animation[animation].start_frame;
-			int end_frame = ref_actor->animation[animation].end_frame;
-			node->setFrameLoop(start_frame, end_frame);
-			ref_actor->current_animation_loop++;
+			}
+			else
+			{
+				if(!ref_actor->animation[animation].active)
+				{
+					ref_actor->isPlaying = false;
+					ref_actor->current_animation_loop = 0;
+					return;
+				}
+				int start_frame = ref_actor->animation[animation].start_frame;
+				int end_frame = ref_actor->animation[animation].end_frame;
+				node->setFrameLoop(start_frame, end_frame);
+				ref_actor->current_animation_loop++;
+			}
 		}
 		else
 		{

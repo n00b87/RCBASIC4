@@ -307,6 +307,9 @@ int rc_createAnimatedActor(int mesh_id)
     animation.frame_start_time = SDL_GetTicks();
     animation.frame_swap_time = 1000/60;
     rc_actor[actor_id].animation.push_back(animation);
+    rc_actor[actor_id].current_animation = 0;
+    rc_actor[actor_id].current_animation_loop = 0;
+    rc_actor[actor_id].num_animation_loops = 0;
     rc_animEndCallBack* anim_callback = new rc_animEndCallBack();
     anim_callback->ref_actor = &rc_actor[actor_id];
     anim_callback->OnAnimationEnd(node);
