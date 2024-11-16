@@ -32,4 +32,14 @@ void rc_setWorld3DTimeStep(double ts)
 	rc_physics3D.fixedTimeStep = ts;
 }
 
+double rc_getWorld3DMaxSubSteps()
+{
+	return rc_physics3D.maxSubSteps;
+}
+
+double rc_getWorld3DTimeStep()
+{
+	return rc_physics3D.fixedTimeStep;
+}
+
 #endif // RC_PHYSICS3D_BASE_H_INCLUDED

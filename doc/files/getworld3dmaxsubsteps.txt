@@ -1,0 +1,5 @@
+#title GetWorld3DMaxSubSteps [RCBasic Doc]
+#header function GetWorld3DMaxSubSteps()
+
+Returns the maximum substeps in the 3d physics time step
+

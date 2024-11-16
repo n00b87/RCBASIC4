@@ -796,34 +796,6 @@ bool rc_spriteIsVisible(int spr_id)
 	return rc_sprite[spr_id].visible;
 }
 
-void rc_setGravity2d(double x, double y)
-{
-    if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
-        return;
-
-    if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
-        return;
-
-    b2Vec2 gravity(x, y);
-    rc_canvas[rc_active_canvas].physics2D.world->SetGravity(gravity);
-
-}
-
-void rc_getGravity2d(double* x, double* y)
-{
-    if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
-        return;
-
-    if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
-        return;
-
-    *x = 0;
-    *y = 0;
-
-    *x = rc_canvas[rc_active_canvas].physics2D.world->GetGravity().x;
-    *y = rc_canvas[rc_active_canvas].physics2D.world->GetGravity().y;
-}
-
 
 //-----------------------------------PHYSICS----------------------------------------------------------------------------------
 

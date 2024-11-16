@@ -43,6 +43,8 @@ void rc_setSpriteAngularVelocity(int spr_id, double av)
 	if(!rc_sprite[spr_id].active)
 		return;
 
+	av = rc_util_radians(av);
+
     rc_sprite[spr_id].physics.body->SetAngularVelocity(av);
 }
 
@@ -54,7 +56,7 @@ double rc_getSpriteAngularVelocity(int spr_id)
 	if(!rc_sprite[spr_id].active)
 		return 0;
 
-    return (double)rc_sprite[spr_id].physics.body->GetAngularVelocity();
+    return (double)rc_util_degrees(rc_sprite[spr_id].physics.body->GetAngularVelocity());
 }
 
 void rc_applySpriteForce(int spr_id, double fX, double fY, double pX, double pY)
@@ -364,4 +366,212 @@ bool rc_spriteIsFixedRotation(int spr_id)
 		return false;
 
 	return rc_sprite[spr_id].physics.body->IsFixedRotation();
+}
+
+
+
+void rc_setSpriteDensity( int spr_id, double density )
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	rc_sprite[spr_id].physics.fixture->SetDensity(density);
+}
+
+double rc_getSpriteDensity( int spr_id )
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	return rc_sprite[spr_id].physics.fixture->GetDensity();
+}
+
+void rc_setSpriteFriction( int spr_id, double friction )
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	rc_sprite[spr_id].physics.fixture->SetFriction(friction);
+}
+
+double rc_getSpriteFriction( int spr_id )
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	return rc_sprite[spr_id].physics.fixture->GetFriction();
+}
+
+void rc_setSpriteRestitution( int spr_id, double restitution )
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	rc_sprite[spr_id].physics.fixture->SetRestitution(restitution);
+}
+
+double rc_getSpriteRestitution( int spr_id )
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	return rc_sprite[spr_id].physics.fixture->GetRestitution();
+}
+
+void rc_setSpriteRestitutionThreshold( int spr_id, double threshold )
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	rc_sprite[spr_id].physics.fixture->SetRestitutionThreshold(threshold);
+}
+
+void rc_getSpriteAABB( int spr_id, double* x1, double* y1, double* x2, double* y2 )
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	b2AABB bound_box = rc_sprite[spr_id].physics.fixture->GetAABB(0);
+	*x1 = bound_box.upperBound.x;
+	*y1 = bound_box.upperBound.y;
+	*x2 = bound_box.lowerBound.x;
+	*y2 = bound_box.lowerBound.y;
+}
+
+void rc_setWorld2DTimeStep( double ts )
+{
+	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+        return;
+
+    if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
+        return;
+
+	rc_canvas[rc_active_canvas].physics2D.timeStep = ts;
+}
+
+void rc_setWorld2DVelocityIterations( double v )
+{
+	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+        return;
+
+    if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
+        return;
+
+	rc_canvas[rc_active_canvas].physics2D.velocityIterations = (int)v;
+}
+
+void rc_setWorld2DPositionIterations( double p )
+{
+	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+        return;
+
+    if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
+        return;
+
+	rc_canvas[rc_active_canvas].physics2D.positionIterations = (int)p;
+}
+
+double rc_getWorld2DTimeStep()
+{
+	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+        return 0;
+
+    if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
+        return 0;
+
+	return rc_canvas[rc_active_canvas].physics2D.timeStep;
+}
+
+double rc_getWorld2DVelocityIterations()
+{
+	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+        return 0;
+
+    if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
+        return 0;
+
+	return rc_canvas[rc_active_canvas].physics2D.velocityIterations;
+}
+
+double rc_getWorld2DPositionIterations()
+{
+	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+        return 0;
+
+    if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
+        return 0;
+
+	return rc_canvas[rc_active_canvas].physics2D.positionIterations;
+}
+
+void rc_setWorld2DAutoClearForces( bool flag )
+{
+	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+        return;
+
+    if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
+        return;
+
+	rc_canvas[rc_active_canvas].physics2D.world->SetAutoClearForces(flag);
+}
+
+bool rc_getWorld2DAutoClearForces()
+{
+	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+        return false;
+
+    if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
+        return false;
+
+	return rc_canvas[rc_active_canvas].physics2D.world->GetAutoClearForces();
+}
+
+
+void rc_setGravity2D(double x, double y)
+{
+    if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+        return;
+
+    if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
+        return;
+
+    b2Vec2 gravity(x, y);
+    rc_canvas[rc_active_canvas].physics2D.world->SetGravity(gravity);
+
+}
+
+void rc_getGravity2D(double* x, double* y)
+{
+    if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+        return;
+
+    if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
+        return;
+
+    *x = rc_canvas[rc_active_canvas].physics2D.world->GetGravity().x;
+    *y = rc_canvas[rc_active_canvas].physics2D.world->GetGravity().y;
 }
