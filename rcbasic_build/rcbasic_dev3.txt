@@ -1592,6 +1592,60 @@ case FN_setSpriteFixedRotation: //Sub Procedure
 case FN_spriteIsFixedRotation: //Number Function
 	 rc_push_num(rc_spriteIsFixedRotation( SPRITEISFIXEDROTATION_SPR_ID ));
 	break;
+case FN_SetSpriteDensity: //Sub Procedure
+	rc_setSpriteDensity( SETSPRITEDENSITY_SPR_ID,  SETSPRITEDENSITY_DENSITY );
+	break;
+case FN_GetSpriteDensity: //Number Function
+	 rc_push_num(rc_getSpriteDensity( GETSPRITEDENSITY_SPR_ID ));
+	break;
+case FN_SetSpriteFriction: //Sub Procedure
+	rc_setSpriteFriction( SETSPRITEFRICTION_SPR_ID,  SETSPRITEFRICTION_FRICTION );
+	break;
+case FN_GetSpriteFriction: //Number Function
+	 rc_push_num(rc_getSpriteFriction( GETSPRITEFRICTION_SPR_ID ));
+	break;
+case FN_SetSpriteRestitution: //Sub Procedure
+	rc_setSpriteRestitution( SETSPRITERESTITUTION_SPR_ID,  SETSPRITERESTITUTION_RESTITUTION );
+	break;
+case FN_GetSpriteRestitution: //Number Function
+	 rc_push_num(rc_getSpriteRestitution( GETSPRITERESTITUTION_SPR_ID ));
+	break;
+case FN_SetSpriteRestitutionThreshold: //Sub Procedure
+	rc_setSpriteRestitutionThreshold( SETSPRITERESTITUTIONTHRESHOLD_SPR_ID,  SETSPRITERESTITUTIONTHRESHOLD_THRESHOLD );
+	break;
+case FN_GetSpriteAABB: //Sub Procedure
+	rc_getSpriteAABB( GETSPRITEAABB_SPR_ID,  &GETSPRITEAABB_X1,  &GETSPRITEAABB_Y1,  &GETSPRITEAABB_X2,  &GETSPRITEAABB_Y2 );
+	break;
+case FN_SetGravity2D: //Sub Procedure
+	rc_setGravity2D( SETGRAVITY2D_X,  SETGRAVITY2D_Y );
+	break;
+case FN_GetGravity2D: //Sub Procedure
+	rc_getGravity2D( &GETGRAVITY2D_X,  &GETGRAVITY2D_Y );
+	break;
+case FN_SetWorld2DTimeStep: //Sub Procedure
+	rc_setWorld2DTimeStep( SETWORLD2DTIMESTEP_TS );
+	break;
+case FN_SetWorld2DVelocityIterations: //Sub Procedure
+	rc_setWorld2DVelocityIterations( SETWORLD2DVELOCITYITERATIONS_V );
+	break;
+case FN_SetWorld2DPositionIterations: //Sub Procedure
+	rc_setWorld2DPositionIterations( SETWORLD2DPOSITIONITERATIONS_P );
+	break;
+case FN_GetWorld2DTimeStep: //Number Function
+	 rc_push_num(rc_getWorld2DTimeStep(  ));
+	break;
+case FN_GetWorld2DVelocityIterations: //Number Function
+	 rc_push_num(rc_getWorld2DVelocityIterations(  ));
+	break;
+case FN_GetWorld2DPositionIterations: //Number Function
+	 rc_push_num(rc_getWorld2DPositionIterations(  ));
+	break;
+case FN_SetWorld2DAutoClearForces: //Sub Procedure
+	rc_setWorld2DAutoClearForces( SETWORLD2DAUTOCLEARFORCES_FLAG );
+	break;
+case FN_GetWorld2DAutoClearForces: //Number Function
+	 rc_push_num(rc_getWorld2DAutoClearForces(  ));
+	break;
 case FN_createDistanceJoint: //Number Function
 	 rc_push_num(rc_createDistanceJoint( CREATEDISTANCEJOINT_SPRITEA,  CREATEDISTANCEJOINT_SPRITEB,  CREATEDISTANCEJOINT_AX,  CREATEDISTANCEJOINT_AY,  CREATEDISTANCEJOINT_BX,  CREATEDISTANCEJOINT_BY,  CREATEDISTANCEJOINT_COLLIDE_CONNECT ));
 	break;
@@ -2566,6 +2620,12 @@ case FN_SetWorld3DMaxSubSteps: //Sub Procedure
 	break;
 case FN_SetWorld3DTimeStep: //Sub Procedure
 	rc_setWorld3DTimeStep( SETWORLD3DTIMESTEP_TS );
+	break;
+case FN_GetWorld3DMaxSubSteps: //Number Function
+	 rc_push_num(rc_getWorld3DMaxSubSteps(  ));
+	break;
+case FN_GetWorld3DTimeStep: //Number Function
+	 rc_push_num(rc_getWorld3DTimeStep(  ));
 	break;
 case FN_startParticleEmitter: //Sub Procedure
 	rc_startParticleEmitter(  STARTPARTICLEEMITTER_ACTOR );

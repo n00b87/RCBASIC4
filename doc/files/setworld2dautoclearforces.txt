@@ -1,0 +1,6 @@
+#title SetWorld2DAutoClearForces [RCBasic Doc]
+#header sub SetWorld2DAutoClearForces( flag )
+
+Sets the auto clear forces flag for the active canvas
+
+#ref GetWorld2DAutoClearForces

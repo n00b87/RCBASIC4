@@ -767,38 +767,23 @@ bool rc_restoreWindow()
     return false;
 }
 
-void rc_setWindowIcon(int slot)
+void rc_setWindowIcon(int img_id)
 {
-    SDL_Rect img_rect;
-    img_rect.x = 0;
-    img_rect.y = 0;
-    //img_rect.w = rc_image_width[slot];
-    //img_rect.h = rc_image_height[slot];
-    /*
-    if(rc_himage[slot][win_num] != NULL)
-    {
-        //SDL_RendererFlip rf = (SDL_RendererFlip)(SDL_FLIP_VERTICAL);
+	if(img_id < 0 || img_id >= rc_image.size())
+		return;
 
-        SDL_Surface * tmp_surf = SDL_CreateRGBSurface(0, rc_image_width[slot], rc_image_height[slot], 32, 0, 0, 0, 0);
-        SDL_Texture * tmp_tex = SDL_CreateTexture(rc_win_renderer[rc_active_window], rc_pformat->format, SDL_TEXTUREACCESS_TARGET, rc_image_width[slot], rc_image_height[slot]);
-        SDL_SetRenderTarget(rc_win_renderer[rc_active_window],NULL);
-        SDL_RenderCopy(rc_win_renderer[rc_active_window],rc_himage[slot][rc_active_window],NULL,&img_rect);
-        //SDL_RenderCopyEx(rc_win_renderer[rc_active_window],rc_himage[slot][rc_active_window],NULL,NULL,0,NULL,rf);
+	if(!rc_image[img_id].image)
+		return;
 
-        SDL_RenderReadPixels(rc_win_renderer[rc_active_window], &img_rect, rc_pformat->format,tmp_surf->pixels,tmp_surf->pitch);
+    SDL_Surface* img_surface = convertTextureToSurface(rc_image[img_id].image);
 
-        SDL_SetColorKey(tmp_surf,SDL_TRUE,rc_image_colorKey[slot]);
+    if(!img_surface)
+		return;
 
-        SDL_SetWindowIcon(rc_win[rc_active_window], tmp_surf);
+    SDL_SetColorKey(img_surface,SDL_TRUE,0);
+	SDL_SetWindowIcon(rc_window, img_surface);
 
-
-        if(rc_active_screen >= 0)
-            SDL_SetRenderTarget(rc_win_renderer[rc_active_window], rc_hscreen[rc_active_window][rc_active_screen]);
-
-        SDL_DestroyTexture(tmp_tex);
-        SDL_FreeSurface(tmp_surf);
-    }
-    */
+    SDL_FreeSurface(img_surface);
 }
 
 

@@ -1,0 +1,6 @@
+#title GetSpriteDensity [RCBasic Doc]
+#header function GetSpriteDensity( spr_id )
+
+Returns the density of a sprite. Higher density means a heavier sprite.
+
+#ref SetSpriteDensity

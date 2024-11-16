@@ -897,5 +897,34 @@ void draw2DImage2(irr::video::IVideoDriver *driver, irr::video::ITexture* textur
 }
 
 
+SDL_Surface* convertTextureToSurface(irr::video::ITexture* itexture)
+{
+	Uint32 t_width, t_height;
+	t_width = itexture->getSize().Width;
+	t_height = itexture->getSize().Height;
+
+	SDL_Surface* surface = SDL_CreateRGBSurface(0, t_width, t_height, 32, 0, 0, 0, 0);
+
+	if(surface)
+	{
+		Uint32* surface_pixels = (Uint32*)surface->pixels;
+
+		Uint32* texture_pixels = (Uint32*)rc_canvas[rc_active_canvas].texture->lock();
+
+		int i = 0;
+		for(int y = 0; y < t_height; y++)
+		{
+			for(int x = 0; x < t_width; x++)
+			{
+				surface_pixels[i] = texture_pixels[i];
+			}
+		}
+
+		rc_canvas[rc_active_canvas].texture->unlock();
+	}
+
+	return surface;
+}
+
 
 #endif // RC_GFX_CORE_H_INCLUDED

@@ -4447,7 +4447,9 @@ int main(int argc, char * argv[])
     #endif
 
     //ogles2 test
+    #ifdef RC_TESTING
     rc_intern_dirChange("/home/n00b/projects/rcbasic_alpha3/test_project");
+    #endif
     rc_filename = "main.cbc";
     //---------------
 
