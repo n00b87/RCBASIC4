@@ -919,7 +919,7 @@ int main(int argc, char * argv[])
     bool clean_after_build = false;
 
     //DEBUG START
-    rc_filename = "/home/n00b/Projects/RCBASIC4/rcbasic_runtime/bin/Release/unittest.bas";
+    //rc_filename = "/home/n00b/Projects/RCBASIC4/rcbasic_runtime/bin/Release/unittest.bas";
     //DEBUG END
 
     if(argc > 1)

@@ -1613,6 +1613,9 @@ case FN_GetSpriteRestitution: //Number Function
 case FN_SetSpriteRestitutionThreshold: //Sub Procedure
 	rc_setSpriteRestitutionThreshold( SETSPRITERESTITUTIONTHRESHOLD_SPR_ID,  SETSPRITERESTITUTIONTHRESHOLD_THRESHOLD );
 	break;
+case FN_GetSpriteRestitutionThreshold: //Number Function
+	 rc_push_num(rc_getSpriteRestitutionThreshold( GETSPRITERESTITUTIONTHRESHOLD_SPR_ID ));
+	break;
 case FN_GetSpriteAABB: //Sub Procedure
 	rc_getSpriteAABB( GETSPRITEAABB_SPR_ID,  &GETSPRITEAABB_X1,  &GETSPRITEAABB_Y1,  &GETSPRITEAABB_X2,  &GETSPRITEAABB_Y2 );
 	break;

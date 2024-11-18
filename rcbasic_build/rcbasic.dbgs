@@ -1015,6 +1015,7 @@ N main.SetSpriteRestitution restitution 1
 N main.GetSpriteRestitution spr_id 0
 N main.SetSpriteRestitutionThreshold spr_id 0
 N main.SetSpriteRestitutionThreshold threshold 1
+N main.GetSpriteRestitutionThreshold spr_id 0
 N main.GetSpriteAABB spr_id 0
 BN main.GetSpriteAABB x1 1
 BN main.GetSpriteAABB y1 2

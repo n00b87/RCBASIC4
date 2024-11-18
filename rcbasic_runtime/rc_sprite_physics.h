@@ -447,6 +447,17 @@ void rc_setSpriteRestitutionThreshold( int spr_id, double threshold )
 	rc_sprite[spr_id].physics.fixture->SetRestitutionThreshold(threshold);
 }
 
+double rc_getSpriteRestitutionThreshold( int spr_id )
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	return rc_sprite[spr_id].physics.fixture->GetRestitutionThreshold();
+}
+
 void rc_getSpriteAABB( int spr_id, double* x1, double* y1, double* x2, double* y2 )
 {
 	if(spr_id < 0 || spr_id >= rc_sprite.size())

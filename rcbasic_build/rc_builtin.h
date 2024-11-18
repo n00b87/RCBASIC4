@@ -1534,6 +1534,8 @@ void init_embedded_functions()
 	embed_function("SetSpriteRestitutionThreshold", ID_TYPE_SUB);
 	add_embedded_arg("spr_id", ID_TYPE_NUM);
 	add_embedded_arg("threshold", ID_TYPE_NUM);
+	embed_function("GetSpriteRestitutionThreshold", ID_TYPE_FN_NUM);
+	add_embedded_arg("spr_id", ID_TYPE_NUM);
 	embed_function("GetSpriteAABB", ID_TYPE_SUB);
 	add_embedded_arg("spr_id", ID_TYPE_NUM);
 	add_embedded_arg("x1", ID_TYPE_BYREF_NUM);
