@@ -4444,8 +4444,10 @@ int main(int argc, char * argv[])
     #ifdef RC_TESTING
     rc_intern_dirChange("/home/n00b/projects/rcbasic_alpha3/test_project");
     #endif
-    rc_filename = "main.cbc";
     //---------------
+
+    if( (!rc_intern_fileExist(rc_filename)) || rc_filename.compare("")==0 )
+		rc_filename = "main.cbc";
 
     if(rcbasic_load(rc_filename))
     {
