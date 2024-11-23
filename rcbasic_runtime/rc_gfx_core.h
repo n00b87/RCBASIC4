@@ -738,6 +738,28 @@ irr::video::E_BLEND_OPERATION rc_blend_mode = irr::video::EBO_ADD;
 bool rc_bilinear_filter = false;
 
 
+void rc_setDriverMaterial()
+{
+	if(!VideoDriver)
+		return;
+
+	irr::video::SMaterial material;
+    material.Lighting = false;
+    material.ZWriteEnable = irr::video::EZW_OFF;
+    material.ZBuffer = false;
+    material.BackfaceCulling = false;
+    material.TextureLayer[0].Texture = 0;
+    material.TextureLayer[0].BilinearFilter = rc_bilinear_filter;
+    material.MaterialTypeParam = irr::video::pack_textureBlendFunc(irr::video::EBF_SRC_ALPHA, irr::video::EBF_ONE_MINUS_SRC_ALPHA, irr::video::EMFN_MODULATE_1X, irr::video::EAS_TEXTURE | irr::video::EAS_VERTEX_COLOR);
+    material.BlendOperation = rc_blend_mode;
+    material.BlendOperation = irr::video::EBO_ADD;
+
+    material.MaterialType = irr::video::EMT_ONETEXTURE_BLEND;
+
+    VideoDriver->setMaterial(material);
+}
+
+
 void draw2DImage(irr::video::IVideoDriver *driver, irr::video::ITexture* texture, irr::core::rect<irr::s32> sourceRect, irr::core::position2d<irr::s32> position, irr::core::position2d<irr::s32> rotationPoint, irr::f32 rotation, irr::core::vector2df scale, bool useAlphaChannel, irr::video::SColor color, irr::core::vector2d<irr::f32> screenSize)
 {
     if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
@@ -826,6 +848,8 @@ void draw2DImage(irr::video::IVideoDriver *driver, irr::video::ITexture* texture
     driver->setTransform(irr::video::ETS_PROJECTION,oldProjMat);
     driver->setTransform(irr::video::ETS_VIEW,oldViewMat);
     driver->setTransform(irr::video::ETS_WORLD,oldWorldMat);
+
+    rc_setDriverMaterial();
 }
 
 void draw2DImage2(irr::video::IVideoDriver *driver, irr::video::ITexture* texture, irr::core::rect<irr::s32> sourceRect, irr::core::rect<irr::s32> destRect, irr::core::position2d<irr::s32> rotationPoint, irr::f32 rotation, bool useAlphaChannel, irr::video::SColor color, irr::core::vector2d<irr::f32> screenSize )
@@ -916,6 +940,8 @@ void draw2DImage2(irr::video::IVideoDriver *driver, irr::video::ITexture* textur
     driver->setTransform(irr::video::ETS_PROJECTION,oldProjMat);
     driver->setTransform(irr::video::ETS_VIEW,oldViewMat);
     driver->setTransform(irr::video::ETS_WORLD,oldWorldMat);
+
+    rc_setDriverMaterial();
 }
 
 

@@ -868,6 +868,24 @@ void sortCanvasZ()
     //std::cout << std::endl;
 }
 
+void rc_setActiveCanvas(int canvas_id)
+{
+    rc_active_canvas = canvas_id;
+
+    if(rc_active_canvas >= 0 && rc_active_canvas < rc_canvas.size())
+    {
+        if(rc_canvas[rc_active_canvas].texture)
+            VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
+
+		rc_setDriverMaterial();
+    }
+}
+
+int rc_activeCanvas()
+{
+    return rc_active_canvas;
+}
+
 int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int canvas_type=RC_CANVAS_TYPE_2D)
 {
     if(!VideoDriver)
@@ -962,7 +980,10 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
     }
 
     if(rc_active_canvas < 0)
-        rc_active_canvas = canvas_id;
+	{
+		rc_active_canvas = canvas_id;
+		rc_setActiveCanvas(rc_active_canvas);
+	}
 
     for(int i = 0; i < rc_canvas_zOrder.size(); i++)
     {
@@ -1052,28 +1073,22 @@ void rc_setCanvasPhysics2D(int canvas_id, bool flag)
 		rc_canvas[canvas_id].physics2D.enabled = flag;
 }
 
-void rc_setActiveCanvas(int canvas_id)
-{
-    rc_active_canvas = canvas_id;
-
-    if(rc_active_canvas >= 0 && rc_active_canvas < rc_canvas.size())
-    {
-        if(rc_canvas[rc_active_canvas].texture)
-            VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
-    }
-}
-
-int rc_activeCanvas()
-{
-    return rc_active_canvas;
-}
 
 void rc_clearCanvas()
 {
     if(rc_active_canvas >= 0 && rc_active_canvas < rc_canvas.size())
     {
         if(rc_canvas[rc_active_canvas].texture)
-            VideoDriver->clearBuffers(true, true, true, rc_clear_color);
+		switch(rc_canvas[rc_active_canvas].type)
+		{
+			case RC_CANVAS_TYPE_2D:
+				VideoDriver->clearBuffers(true, true, true, rc_clear_color);
+				break;
+			default:
+				VideoDriver->clearBuffers(true, true, true, rc_clear_color);
+				break;
+		}
+
     }
 }
 
@@ -1438,13 +1453,6 @@ void rc_drawRectFill(int x, int y, int w, int h)
     VideoDriver->draw2DRectangle(rc_active_color, r);
 }
 
-void rc_drawCircle(int x, int y, double r)
-{
-    irr::core::vector2d<s32> r_pos(x,y);
-
-    VideoDriver->draw2DPolygon(r_pos, r, rc_active_color, 30);
-}
-
 
 
 //Filled Circle Code from CuteAlien on Irrlicht forum
@@ -1476,23 +1484,6 @@ void makeCircle(irr::core::array<irr::video::S3DVertex>& vertices, irr::core::ar
     }
 }
 
-void rc_drawCircleFill(int x, int y, double r)
-{
-    irr::core::vector2d<s32> r_pos(x,y);
-
-    // create the circle
-    irr::core::array<irr::video::S3DVertex> verticesCircle;
-    irr::core::array<irr::u16> indicesCircle;
-    CircleSettings circle;
-    circle.center = r_pos;
-    circle.radius = r;
-    circle.color = rc_active_color;
-    makeCircle(verticesCircle, indicesCircle, circle);
-
-    VideoDriver->draw2DVertexPrimitiveList(verticesCircle.pointer(), verticesCircle.size(),
-        indicesCircle.pointer(), indicesCircle.size()-2, video::EVT_STANDARD, scene::EPT_TRIANGLE_FAN,
-        video::EIT_16BIT);
-}
 
 void rc_drawLine(int x1, int y1, int x2, int y2)
 {
@@ -1542,8 +1533,8 @@ void makeEllipse(irr::core::array<irr::video::S3DVertex>& vertices, irr::core::a
     int ry = settings.radius;
     for ( u32 i=1; i < settings.numVertices; i++ )
     {
-        irr::f32 x = rx * std::cos( radians(i*stepSize) ) + centerf.Y ;
-        irr::f32 y = ry * std::sin( radians(i*stepSize) ) + centerf.X ;
+        irr::f32 x = rx * std::cos( radians(i*stepSize) ) + centerf.X ;
+        irr::f32 y = ry * std::sin( radians(i*stepSize) ) + centerf.Y ;
 
         vertices[i] = video::S3DVertex(x, y, 0.f, 0.f, 1.f, 0.f, settings.color, 0.5f, 0.5f);
     }
@@ -1566,12 +1557,14 @@ void rc_drawEllipse(int x, int y, int rx, int ry)
 
     for(int i = 2; i < verticesCircle.size(); i++)
     {
+    	//std::cout << "V[" << i << "] = (" << verticesCircle[i-1].Pos.X << ", " << verticesCircle[i-1].Pos.Y << ") (" << verticesCircle[i].Pos.X << ", " << verticesCircle[i].Pos.Y << ")" << std::endl;
         rc_drawLine(verticesCircle[i-1].Pos.X, verticesCircle[i-1].Pos.Y, verticesCircle[i].Pos.X, verticesCircle[i].Pos.Y);
     }
 
     int n = verticesCircle.size()-1;
     rc_drawLine(verticesCircle[n].Pos.X, verticesCircle[n].Pos.Y, verticesCircle[1].Pos.X, verticesCircle[1].Pos.Y);
 }
+
 
 void rc_drawEllipseFill(int x, int y, int rx, int ry)
 {
@@ -1593,6 +1586,31 @@ void rc_drawEllipseFill(int x, int y, int rx, int ry)
         video::EIT_16BIT);
 }
 
+void rc_drawCircle(int x, int y, double r)
+{
+    rc_drawEllipse(x, y, r, r);
+}
+
+void rc_drawCircleFill(int x, int y, double r)
+{
+	rc_drawEllipseFill(x, y, r, r);
+	return;
+
+    irr::core::vector2d<s32> r_pos(x,y);
+
+    // create the circle
+    irr::core::array<irr::video::S3DVertex> verticesCircle;
+    irr::core::array<irr::u16> indicesCircle;
+    CircleSettings circle;
+    circle.center = r_pos;
+    circle.radius = r;
+    circle.color = rc_active_color;
+    makeCircle(verticesCircle, indicesCircle, circle);
+
+    VideoDriver->draw2DVertexPrimitiveList(verticesCircle.pointer(), verticesCircle.size(),
+        indicesCircle.pointer(), indicesCircle.size()-2, video::EVT_STANDARD, scene::EPT_TRIANGLE_FAN,
+        video::EIT_16BIT);
+}
 
 
 int rc_loadFont(std::string fnt_file, int font_size)
@@ -2314,6 +2332,7 @@ void rc_getImageBuffer(int img_id, double * pdata)
 void rc_setBilinearFilter(bool flag)
 {
     rc_bilinear_filter = flag;
+    rc_setDriverMaterial();
 }
 
 bool rc_getBilinearFilter()
@@ -2361,6 +2380,8 @@ void rc_setBlendMode(int blend_mode)
         case 8: rc_blend_mode = EBO_MIN_ALPHA; break;
         case 9: rc_blend_mode = EBO_MAX_ALPHA; break;
     }
+
+    rc_setDriverMaterial();
 }
 
 int rc_getBlendMode()

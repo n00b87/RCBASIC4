@@ -4442,7 +4442,12 @@ int main(int argc, char * argv[])
 
     //ogles2 test
     #ifdef RC_TESTING
-    rc_intern_dirChange("/home/n00b/projects/rcbasic_alpha3/test_project");
+    std::string debug_opt = "a";
+    std::cin >> debug_opt;
+    if(debug_opt.compare("a")==0)
+		rc_intern_dirChange("/home/n00b/Downloads/Shuffleboard/");
+    else
+		rc_intern_dirChange("/home/n00b/projects/rcbasic_alpha3/test_project");
     #endif
     //---------------
 
