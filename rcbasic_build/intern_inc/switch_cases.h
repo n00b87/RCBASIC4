@@ -1,6 +1,5 @@
 rc_fprint( FPRINT_TXT$ )
 rc_input( INPUT$_PROMPT$ )
-rc_tst(  )
 #/home/n00b/Projects/RCBASIC4/rcbasic_build/intern_inc/exceptions/rc_arrayDim.h
 #/home/n00b/Projects/RCBASIC4/rcbasic_build/intern_inc/exceptions/rc_stringArrayDim.h
 #/home/n00b/Projects/RCBASIC4/rcbasic_build/intern_inc/exceptions/rc_numberArrayDim.h
@@ -444,7 +443,7 @@ rc_setClipboardText( SETCLIPBOARDTEXT_TXT$ )
 rc_hasClipboardText(  )
 rc_readInput_Start(  )
 rc_readInput_Stop(  )
-rc_readInput_Text(  )
+rc_readInput_GetText(  )
 rc_readInput_SetText( READINPUT_SETTEXT_TXT$ )
 rc_readInput_ToggleBackspace( READINPUT_TOGGLEBACKSPACE_FLAG )
 rc_createSprite( CREATESPRITE_IMG,  CREATESPRITE_FRAME_W,  CREATESPRITE_FRAME_H )
