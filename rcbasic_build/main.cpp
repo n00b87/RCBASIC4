@@ -922,6 +922,8 @@ int main(int argc, char * argv[])
     //rc_filename = "/home/n00b/Projects/RCBASIC4/rcbasic_runtime/bin/Release/unittest.bas";
     //DEBUG END
 
+    //enable_presets = true;
+
     if(argc > 1)
         rc_filename = argv[1];
 
@@ -935,12 +937,12 @@ int main(int argc, char * argv[])
 
         if(cmd_arg.compare("--debug")==0)
         {
-            cout << "DEBUG MODE" << endl;
+            //cout << "DEBUG MODE" << endl;
             rcbasic_build_debug = true;
         }
         else if(cmd_arg.compare("--no-presets")==0)
         {
-            cout << "DISABLE PRESETS" << endl;
+            //cout << "DISABLE PRESETS" << endl;
             enable_presets = false;
         }
         else if(cmd_arg.compare("--no-clean")==0)

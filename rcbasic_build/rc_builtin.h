@@ -8,7 +8,6 @@ void init_embedded_functions()
 	add_embedded_arg("txt$", ID_TYPE_STR);
 	embed_function("Input$", ID_TYPE_FN_STR);
 	add_embedded_arg("prompt$", ID_TYPE_STR);
-	embed_function("tst", ID_TYPE_SUB);
 	embed_function("ArrayDim", ID_TYPE_FN_NUM);
 	add_embedded_arg("id", ID_TYPE_BYREF_NUM);
 	embed_function("StringArrayDim", ID_TYPE_FN_NUM);
@@ -1275,7 +1274,7 @@ void init_embedded_functions()
 	embed_function("HasClipboardText", ID_TYPE_FN_NUM);
 	embed_function("ReadInput_Start", ID_TYPE_SUB);
 	embed_function("ReadInput_Stop", ID_TYPE_SUB);
-	embed_function("ReadInput_Text$", ID_TYPE_FN_STR);
+	embed_function("ReadInput_GetText$", ID_TYPE_FN_STR);
 	embed_function("ReadInput_SetText", ID_TYPE_SUB);
 	add_embedded_arg("txt$", ID_TYPE_STR);
 	embed_function("ReadInput_ToggleBackspace", ID_TYPE_SUB);

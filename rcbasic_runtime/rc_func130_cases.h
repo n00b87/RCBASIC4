@@ -4,9 +4,6 @@ case FN_Fprint: //Sub Procedure
 case FN_Input$: //String Function
 	 rc_push_str(rc_input( INPUT$_PROMPT$ ));
 	break;
-case FN_tst: //Sub Procedure
-	rc_tst(  );
-	break;
 case FN_ArrayDim: //Number Function
 	//DUMMY CASE
 
@@ -1364,8 +1361,8 @@ case FN_ReadInput_Start: //Sub Procedure
 case FN_ReadInput_Stop: //Sub Procedure
 	rc_readInput_Stop(  );
 	break;
-case FN_ReadInput_Text$: //String Function
-	 rc_push_str(rc_readInput_Text(  ));
+case FN_ReadInput_GetText$: //String Function
+	 rc_push_str(rc_readInput_GetText(  ));
 	break;
 case FN_ReadInput_SetText: //Sub Procedure
 	rc_readInput_SetText( READINPUT_SETTEXT_TXT$ );

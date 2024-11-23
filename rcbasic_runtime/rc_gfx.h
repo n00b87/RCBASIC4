@@ -2185,7 +2185,7 @@ void rc_readInput_Stop()
     SDL_StopTextInput();
 }
 
-std::string rc_readInput_Text()
+std::string rc_readInput_GetText()
 {
     return rc_textinput_string;
 }
