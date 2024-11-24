@@ -1396,7 +1396,10 @@ void rc_setColor(Uint32 color)
 
 Uint32 rc_getPixel(int x, int y)
 {
-    if(!rc_canvas[0].texture)
+	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+		return 0;
+
+    if(!rc_canvas[rc_active_canvas].texture)
     {
         return 0;
     }
@@ -1408,7 +1411,7 @@ Uint32 rc_getPixel(int x, int y)
         y = 0;
 
 
-    irr::video::ITexture* texture = rc_canvas[0].texture;
+    irr::video::ITexture* texture = rc_canvas[rc_active_canvas].texture;
 
     video::ECOLOR_FORMAT format = texture->getColorFormat(); //std::cout << "format = " << (int) format << std::endl;
 
@@ -1424,9 +1427,11 @@ Uint32 rc_getPixel(int x, int y)
 
         irr::video::SColor * texel = (SColor *)(texels + ((y * pitch) + (x * sizeof(SColor))));
 
-        //irr::video::SColor c = texel[0];
+        irr::video::SColor c = texel[0];
 
         texture->unlock();
+
+        color = c.color;
 
         //std::cout << "color(" << x << ", " << y << ") = " << c.getRed() << ", " << c.getGreen() << ", " << c.getBlue() << std::endl;
     }

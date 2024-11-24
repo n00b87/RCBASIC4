@@ -4445,13 +4445,18 @@ int main(int argc, char * argv[])
     std::string debug_opt = "a";
     std::cin >> debug_opt;
     if(debug_opt.compare("a")==0)
-		rc_intern_dirChange("/home/n00b/Downloads/Shuffleboard/");
+	{
+		rc_intern_dirChange("/home/n00b/projects/bu/rcbasic_v400a5_linux/test_project_v4a5");
+		rc_filename = "test.cbc";
+	}
     else
+	{
 		rc_intern_dirChange("/home/n00b/projects/rcbasic_alpha3/test_project");
+	}
     #endif
     //---------------
 
-    if( (!rc_intern_fileExist(rc_filename)) || rc_filename.compare("")==0 )
+    if( rc_filename.compare("")==0 )
 		rc_filename = "main.cbc";
 
     if(rcbasic_load(rc_filename))
