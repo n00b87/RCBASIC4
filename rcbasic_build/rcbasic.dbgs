@@ -29,3 +29,8 @@ N main sphere_gy 39
 N main sphere_gz 40
 N main ground_sphere_constraint 41
 N main t 42
+N main.#WHILE:1 sx 43
+N main.#WHILE:1 sy 44
+N main.#WHILE:1 sz 45
+N main.#WHILE:1 vx 46
+N main.#WHILE:1 vy 47

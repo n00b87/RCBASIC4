@@ -319,6 +319,11 @@ mov !6 n6
 func !174 
 pop n7 
 mov !31 n7 
+mov n0 !31 
+mov n1 0 
+mov !0 n0 
+mov !1 n1 
+func !191 
 mov n0 10 
 mov !0 n0 
 func !634 
@@ -591,6 +596,59 @@ mov !12 n0
 push n0 
 gosub @cam_control 
 pop n0 
+mov n0 !30 
+mov !0 n0 
+func !181 
+func !173 
+mov n0 !36 
+mov n1 !43 
+mov n2 !44 
+mov n3 !45 
+mov !0 n0 
+ptr !1 n1 
+ptr !2 n2 
+ptr !3 n3 
+func !646 
+pop_ptr !3 
+mov n0 !43 
+mov n1 !44 
+mov n2 !45 
+mov n3 !46 
+mov n4 !47 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+ptr !3 n3 
+ptr !4 n4 
+func !858 
+pop_ptr !2 
+mov n0 !31 
+mov !0 n0 
+func !181 
+func !185 
+mov n0 0 
+mov n1 0 
+mov n2 200 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+func !208 
+pop n3 
+mov !0 n3 
+func !203 
+mov n0 !46 
+mov n1 10 
+mov n2 !47 
+mov n3 10 
+mov n4 20 
+mov n5 20 
+sub n0 n1 
+sub n2 n3 
+mov !0 n0 
+mov !1 n2 
+mov !2 n4 
+mov !3 n5 
+func !206 
 func !128 
 jmp @main.#WHILE:1 
 label main.#WEND:1 

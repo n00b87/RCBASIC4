@@ -1295,13 +1295,6 @@ int rc_cloneCanvas(int origin_canvas_id, int mode)
 
     canvas.color_mod = irr::video::SColor(255,255,255,255).color;
 
-    //2D Physics World
-    b2Vec2 gravity(0, -9.8);
-    canvas.physics2D.world = new b2World(gravity);
-    canvas.physics2D.timeStep = 1/20.0;      //the length of time passed to simulate (seconds)
-	canvas.physics2D.velocityIterations = 8;   //how strongly to correct velocity
-	canvas.physics2D.positionIterations = 3;   //how strongly to correct position
-
 
     switch(mode)
     {
