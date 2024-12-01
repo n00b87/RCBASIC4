@@ -804,7 +804,9 @@ bool rc_spriteIsVisible(int spr_id)
 //This function is called on each canvas on update
 void drawSprites(int canvas_id)
 {
-	float step = rc_canvas[canvas_id].physics2D.timeStep;
+	Uint32 delta_time = SDL_GetTicks() - rc_canvas[canvas_id].physics2D.time_stamp;
+	rc_canvas[canvas_id].physics2D.time_stamp = SDL_GetTicks();
+	float step = rc_canvas[canvas_id].physics2D.timeStep < 0 ? (delta_time*0.001f) : rc_canvas[canvas_id].physics2D.timeStep;
 	int32 velocityIterations = rc_canvas[canvas_id].physics2D.velocityIterations;
 	int32 positionIterations = rc_canvas[canvas_id].physics2D.positionIterations;
 

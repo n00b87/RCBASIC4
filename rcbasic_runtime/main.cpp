@@ -4446,8 +4446,8 @@ int main(int argc, char * argv[])
     std::cin >> debug_opt;
     if(debug_opt.compare("a")==0)
 	{
-		rc_intern_dirChange("/home/n00b/projects/bu/rcbasic_v400a5_linux/test_project_v4a5");
-		rc_filename = "test.cbc";
+		rc_intern_dirChange("/home/n00b/projects/rcbasic_alpha3/test_project");
+		rc_filename = "main.cbc";
 	}
     else
 	{

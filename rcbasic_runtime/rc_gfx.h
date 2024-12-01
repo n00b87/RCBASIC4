@@ -946,7 +946,8 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
     {
     	b2Vec2 gravity(0, 0);
 		canvas.physics2D.world = new b2World(gravity);
-		canvas.physics2D.timeStep = 1/60.0;      //the length of time passed to simulate (seconds)
+		canvas.physics2D.timeStep = -1;      //the length of time passed to simulate (seconds)
+		canvas.physics2D.time_stamp = SDL_GetTicks();
 		canvas.physics2D.velocityIterations = 8;   //how strongly to correct velocity
 		canvas.physics2D.positionIterations = 3;   //how strongly to correct position
 		canvas.physics2D.enabled = true;
@@ -3056,7 +3057,9 @@ void rc_preUpdate()
 		if(rc_canvas[i].type != RC_CANVAS_TYPE_SPRITE)
 			continue;
 
-		float step = rc_canvas[i].physics2D.timeStep;
+		Uint32 delta_time = SDL_GetTicks() - rc_canvas[i].physics2D.time_stamp;
+		rc_canvas[i].physics2D.time_stamp = SDL_GetTicks();
+		float step = rc_canvas[i].physics2D.timeStep < 0 ? (delta_time*0.001f) : rc_canvas[i].physics2D.timeStep;
 		int32 velocityIterations = rc_canvas[i].physics2D.velocityIterations;
 		int32 positionIterations = rc_canvas[i].physics2D.positionIterations;
 

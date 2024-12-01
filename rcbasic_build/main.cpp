@@ -919,7 +919,8 @@ int main(int argc, char * argv[])
     bool clean_after_build = false;
 
     //DEBUG START
-    rc_filename = "/home/n00b/projects/bu/constraint_demo/main.bas";
+    //rc_filename = "/home/n00b/projects/bu/constraint_demo/main.bas";
+	rc_filename = "/home/n00b/projects/rcbasic_alpha3/test_project/main.bas";
     //DEBUG END
 
     //enable_presets = true;
