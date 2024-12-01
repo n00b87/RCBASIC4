@@ -11,55 +11,587 @@ preset !6
 preset !7 
 preset$ !2 
 preset !11 
-preset !12 
-preset !13 
 .code 
-dim_tfield  !1 !0 !0 !0 n0 n0 n0 
-mov n0 8 
-dim_tfield  !2 !2 !0 !1 n0 n0 n0 
-dim_tfield  !2 !0 !1 !0 n0 n0 n0 
-mov n0 6 
-dim_type1 !2 !2 n0 
-mov n0 4 
-dim_type1 !3 !2 n0 
-mov n0 4 
-dim_type1 !4 !2 n0 
-mov n0 3 
-mov n1 6 
-obj_usr_init1 !2 n0 
-obj_usr1 !0 n1 
-obj_usr_n !0 
-obj_usr_get n2 
-mov n3 13 
-mov_r n2 n3 
+.data 
+label cam_control 
+preset !13 
+func !194 
+pop n0 
+mov !13 n0 
+mov n0 119 
+mov !0 n0 
+func !241 
+pop n1 
+cmp n1 0 
+je @ELSE:0->CONDITION:0 
+mov n0 !12 
+mov !0 n0 
+func !181 
+mov n0 0 
+mov n1 0 
+mov n2 10 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+func !844 
+jmp @ENDIF:0 
+label ELSE:0->CONDITION:0 
+mov n0 115 
+mov !0 n0 
+func !241 
+pop n1 
+cmp n1 0 
+je @ELSE:0->CONDITION:1 
+mov n0 !12 
+mov !0 n0 
+func !181 
+mov n0 0 
+mov n1 0 
+mov n2 -10 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+func !844 
+label ELSE:0->CONDITION:1 
+label ENDIF:0 
+mov n0 97 
+mov !0 n0 
+func !241 
+pop n1 
+cmp n1 0 
+je @ELSE:1->CONDITION:0 
+mov n0 !12 
+mov !0 n0 
+func !181 
+mov n0 -10 
+mov n1 0 
+mov n2 0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+func !844 
+jmp @ENDIF:1 
+label ELSE:1->CONDITION:0 
+mov n0 100 
+mov !0 n0 
+func !241 
+pop n1 
+cmp n1 0 
+je @ELSE:1->CONDITION:1 
+mov n0 !12 
+mov !0 n0 
+func !181 
+mov n0 10 
+mov n1 0 
+mov n2 0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+func !844 
+label ELSE:1->CONDITION:1 
+label ENDIF:1 
+mov n0 114 
+mov !0 n0 
+func !241 
+pop n1 
+cmp n1 0 
+je @ELSE:2->CONDITION:0 
+mov n0 !12 
+mov !0 n0 
+func !181 
+preset !14 
+preset !15 
+preset !16 
+mov n0 !14 
+mov n1 !15 
+mov n2 !16 
+ptr !0 n0 
+ptr !1 n1 
+ptr !2 n2 
+func !843 
+pop_ptr !3 
+mov n0 !14 
+mov n1 !15 
+mov n2 10 
+mov n3 !16 
+add n1 n2 
+mov !0 n0 
+mov !1 n1 
+mov !2 n3 
+func !842 
+jmp @ENDIF:2 
+label ELSE:2->CONDITION:0 
+mov n0 102 
+mov !0 n0 
+func !241 
+pop n1 
+cmp n1 0 
+je @ELSE:2->CONDITION:1 
+mov n0 !12 
+mov !0 n0 
+func !181 
+preset !17 
+preset !18 
+preset !19 
+mov n0 !17 
+mov n1 !18 
+mov n2 !19 
+ptr !0 n0 
+ptr !1 n1 
+ptr !2 n2 
+func !843 
+pop_ptr !3 
+mov n0 !17 
+mov n1 !18 
+mov n2 10 
+mov n3 !19 
+sub n1 n2 
+mov !0 n0 
+mov !1 n1 
+mov !2 n3 
+func !842 
+label ELSE:2->CONDITION:1 
+label ENDIF:2 
+mov n0 1073741906 
+mov !0 n0 
+func !241 
+pop n1 
+cmp n1 0 
+je @ELSE:3->CONDITION:0 
+mov n0 !12 
+mov !0 n0 
+func !181 
+mov n0 1 
+mov n1 0 
+mov n2 0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+func !847 
+jmp @ENDIF:3 
+label ELSE:3->CONDITION:0 
+mov n0 1073741905 
+mov !0 n0 
+func !241 
+pop n1 
+cmp n1 0 
+je @ELSE:3->CONDITION:1 
+mov n0 !12 
+mov !0 n0 
+func !181 
+mov n0 -1 
+mov n1 0 
+mov n2 0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+func !847 
+label ELSE:3->CONDITION:1 
+label ENDIF:3 
+mov n0 1073741904 
+mov !0 n0 
+func !241 
+pop n1 
+cmp n1 0 
+je @ELSE:4->CONDITION:0 
+mov n0 !12 
+mov !0 n0 
+func !181 
+preset !20 
+preset !21 
+preset !22 
+mov n0 !20 
+mov n1 !21 
+mov n2 !22 
+ptr !0 n0 
+ptr !1 n1 
+ptr !2 n2 
+func !846 
+pop_ptr !3 
+mov n0 -1 
+mov n1 !20 
+mov n2 0 
+mov n3 0 
+mul n0 n1 
+mov !0 n0 
+mov !1 n2 
+mov !2 n3 
+func !847 
+mov n0 0 
+mov n1 -1 
+mov n2 0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+func !847 
+mov n0 !20 
+mov n1 0 
+mov n2 0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+func !847 
+jmp @ENDIF:4 
+label ELSE:4->CONDITION:0 
+mov n0 1073741903 
+mov !0 n0 
+func !241 
+pop n1 
+cmp n1 0 
+je @ELSE:4->CONDITION:1 
+mov n0 !12 
+mov !0 n0 
+func !181 
+preset !23 
+preset !24 
+preset !25 
+mov n0 !23 
+mov n1 !24 
+mov n2 !25 
+ptr !0 n0 
+ptr !1 n1 
+ptr !2 n2 
+func !846 
+pop_ptr !3 
+mov n0 !23 
+mov n1 !24 
+mov n2 1 
+mov n3 !25 
+add n1 n2 
+mov !0 n0 
+mov !1 n1 
+mov !2 n3 
+func !845 
+label ELSE:4->CONDITION:1 
+label ENDIF:4 
+mov n0 !13 
+mov !0 n0 
+func !181 
+return 
+.code 
+mov n0 640 
+mov !26 n0 
+mov n0 480 
+mov !27 n0 
+mov n0 0 
+mov !28 n0 
+mov n0 1 
+mov !29 n0 
 mov$ s0 @0 
-print$ s0 
-mov n0 3 
-mov n1 6 
-obj_usr_init1 !3 n0 
-obj_usr1 !0 n1 
-obj_usr_n !0 
-obj_usr_get n2 
-print n2 
-println 
+mov n0 !26 
+mov n1 !27 
+mov n2 !28 
+mov n3 !29 
+mov$ !0 s0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+mov !3 n3 
+func !124 
+pop n4 
 mov n0 0 
-obj_usr_init1 !2 n0   
-obj_usr_get u0 
+mov n1 0 
+mov n2 !26 
+mov n3 !27 
+mov n4 0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+mov !3 n3 
+mov !4 n4 
+func !176 
+pop n5 
+mov !30 n5 
+mov n0 !26 
+mov n1 !27 
+mov n2 0 
+mov n3 0 
+mov n4 !26 
+mov n5 !27 
+mov n6 0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+mov !3 n3 
+mov !4 n4 
+mov !5 n5 
+mov !6 n6 
+func !174 
+pop n7 
+mov !31 n7 
+mov n0 10 
+mov !0 n0 
+func !634 
+pop n1 
+mov !32 n1 
+mov n0 !32 
+mov n1 0 
+mov !0 n0 
+mov !1 n1 
+func !945 
+pop n2 
+mov !33 n2 
+mov n0 !33 
+mov n1 1 
+mov !0 n0 
+mov !1 n1 
+func !975 
+mov n0 !33 
+mov n1 0 
+mov n2 200 
+mov n3 0 
+mov !0 n1 
+mov !1 n2 
+mov !2 n3 
+func !208 
+pop n4 
+mov !0 n0 
+mov !1 n4 
+func !965 
+mov n0 !32 
+mov n1 50 
+mov n2 1 
+mov n3 50 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+mov !3 n3 
+func !648 
+mov n0 !32 
+mov n1 1 
+mov !0 n0 
+mov !1 n1 
+func !679 
+mov n0 !32 
+mov n1 1 
+mov n2 0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+func !677 
+mov n0 !32 
+mov n1 0 
+mov n2 0 
+mov n3 45 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+mov !3 n3 
+func !651 
+mov n0 10 
+mov !0 n0 
+func !634 
+pop n1 
+mov !34 n1 
+mov n0 !34 
+mov n1 0 
+mov !0 n0 
+mov !1 n1 
+func !945 
+pop n2 
+mov !35 n2 
+mov n0 !35 
+mov n1 1 
+mov !0 n0 
+mov !1 n1 
+func !975 
+mov n0 !35 
+mov n1 0 
+mov n2 120 
+mov n3 0 
+mov !0 n1 
+mov !1 n2 
+mov !2 n3 
+func !208 
+pop n4 
+mov !0 n0 
+mov !1 n4 
+func !965 
+mov n0 !34 
+mov n1 100 
+mov n2 1 
+mov n3 100 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+mov !3 n3 
+func !648 
+mov n0 !34 
+mov n1 1 
+mov !0 n0 
+mov !1 n1 
+func !679 
+mov n0 !34 
+mov n1 1 
+mov n2 0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+func !677 
+mov n0 !32 
+mov n1 0 
+mov n2 300 
+mov n3 0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+mov !3 n3 
+func !645 
+mov n0 30 
+mov !0 n0 
+func !635 
+pop n1 
+mov !36 n1 
+mov n0 !36 
+mov n1 0 
+mov !0 n0 
+mov !1 n1 
+func !945 
+pop n2 
+mov !37 n2 
+mov n0 !37 
+mov n1 1 
+mov !0 n0 
+mov !1 n1 
+func !975 
+mov n0 !37 
+mov n1 200 
+mov n2 0 
+mov n3 0 
+mov !0 n1 
+mov !1 n2 
+mov !2 n3 
+func !208 
+pop n4 
+mov !0 n0 
+mov !1 n4 
+func !965 
+mov n0 !36 
+mov n1 0 
+mov n2 300 
+mov n3 0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+mov !3 n3 
+func !645 
+mov n0 !36 
+mov n1 1 
+mov !0 n0 
+mov !1 n1 
+func !679 
+mov n0 !36 
+mov n1 2 
+mov n2 10 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+func !677 
+mov n0 !36 
+mov n1 !38 
+mov n2 !39 
+mov n3 !40 
+mov !0 n0 
+ptr !1 n1 
+ptr !2 n2 
+ptr !3 n3 
+func !683 
+pop_ptr !3 
+mov n0 !36 
+mov n1 !38 
+mov n2 !39 
+mov n3 30 
+mov n4 !40 
+mul n2 n3 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+mov !3 n4 
+func !682 
+mov n0 !36 
+mov n1 0 
+mov n2 0 
+mov n3 20 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+mov !3 n3 
+func !706 
+mov n0 !36 
+mov n1 !32 
+mov n2 0 
+mov n3 120 
+mov n4 0 
+mov n5 0 
+mov n6 0 
+mov n7 0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+mov !3 n3 
+mov !4 n4 
+mov !5 n5 
+mov !6 n6 
+mov !7 n7 
+func !735 
+pop n8 
+mov !41 n8 
+mov n0 !30 
+mov !0 n0 
+func !181 
+mov n0 -560 
+mov n1 150 
+mov n2 -608 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+func !842 
 mov n0 0 
-obj_usr_init1 !3 n0   
-obj_usr_get u1 
-uref_ptr !0 u0 
-uref_ptr !1 u1 
-func !17 
-pop_ptr !2 
-mov$ s0 @10 
-print$ s0 
-mov n0 3 
-mov n1 6 
-obj_usr_init1 !3 n0 
-obj_usr1 !0 n1 
-obj_usr_n !0 
-obj_usr_get n2 
-print n2 
-println 
+mov n1 40 
+mov n2 0 
+mov !0 n0 
+mov !1 n1 
+mov !2 n2 
+func !845 
+func !122 
+pop n0 
+mov !42 n0 
+label main.#WHILE:0 
+mov n0 !42 
+mov n1 1000 
+func !122 
+pop n2 
+sub n2 n0 
+cmp n2 n1 
+mov n3 %LESS_FLAG 
+while n3 @main.#WEND:0 
+func !173 
+jmp @main.#WHILE:0 
+label main.#WEND:0 
+label main.#WHILE:1 
+mov n0 27 
+mov !0 n0 
+func !241 
+pop n1 
+not n1 
+while n1 @main.#WEND:1 
+mov n0 49 
+mov !0 n0 
+func !241 
+pop n1 
+cmp n1 0 
+je @ELSE:5->CONDITION:0 
+mov n0 !41 
+mov !0 n0 
+func !744 
+label ELSE:5->CONDITION:0 
+label ENDIF:5 
+mov n0 !30 
+mov !12 n0 
+push n0 
+gosub @cam_control 
+pop n0 
+func !128 
+jmp @main.#WHILE:1 
+label main.#WEND:1 
 end 

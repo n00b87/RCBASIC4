@@ -2627,6 +2627,12 @@ case FN_GetWorld3DMaxSubSteps: //Number Function
 case FN_GetWorld3DTimeStep: //Number Function
 	 rc_push_num(rc_getWorld3DTimeStep(  ));
 	break;
+case FN_SetSceneFog: //Sub Procedure
+	rc_setSceneFog( SETSCENEFOG_COLOR,  SETSCENEFOG_FOG_TYPE,  SETSCENEFOG_START_VAL,  SETSCENEFOG_END_VAL,  SETSCENEFOG_DENSITY,  SETSCENEFOG_PIXELFOG,  SETSCENEFOG_RANGEFOG );
+	break;
+case FN_GetSceneFog: //Sub Procedure
+	rc_getSceneFog( &GETSCENEFOG_COLOR,  &GETSCENEFOG_FOG_TYPE,  &GETSCENEFOG_START_VAL,  &GETSCENEFOG_END_VAL,  &GETSCENEFOG_DENSITY,  &GETSCENEFOG_PIXELFOG,  &GETSCENEFOG_RANGEFOG );
+	break;
 case FN_startParticleEmitter: //Sub Procedure
 	rc_startParticleEmitter(  STARTPARTICLEEMITTER_ACTOR );
 	break;

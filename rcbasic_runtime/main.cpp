@@ -4451,7 +4451,7 @@ int main(int argc, char * argv[])
 	}
     else
 	{
-		rc_intern_dirChange("/home/n00b/projects/rcbasic_alpha3/test_project");
+		rc_intern_dirChange("/home/n00b/projects/bu/constraint_demo");
 	}
     #endif
     //---------------

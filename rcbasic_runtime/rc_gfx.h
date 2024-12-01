@@ -325,7 +325,7 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     rc_canvas.push_back(back_buffer);
 
 	rc_physics3D.world = createIrrBulletWorld(device, true, false);
-	rc_physics3D.TimeStamp = device->getTimer()->getTime();
+	rc_physics3D.TimeStamp = SDL_GetTicks(); //device->getTimer()->getTime();
 
 	rc_physics3D.maxSubSteps = 1;
 	rc_physics3D.fixedTimeStep = irr::f32(1.) / irr::f64(60.);
@@ -3050,8 +3050,10 @@ int rc_canvasClip(int x, int y, int w, int h)
 void rc_preUpdate()
 {
 	//3D World Update
-	rc_physics3D.DeltaTime = device->getTimer()->getTime() - rc_physics3D.TimeStamp;
-	rc_physics3D.TimeStamp = device->getTimer()->getTime();
+	//rc_physics3D.DeltaTime = device->getTimer()->getTime() - rc_physics3D.TimeStamp;
+	//rc_physics3D.TimeStamp = device->getTimer()->getTime();
+	rc_physics3D.DeltaTime = SDL_GetTicks() - rc_physics3D.TimeStamp;
+	rc_physics3D.TimeStamp = SDL_GetTicks();
 	rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, rc_physics3D.fixedTimeStep);
 
 	for(int i = 0; i < rc_canvas.size(); i++)
@@ -3460,8 +3462,10 @@ bool rc_update()
 
         if(!hasPreUpdated)
         {
-        	rc_physics3D.DeltaTime = device->getTimer()->getTime() - rc_physics3D.TimeStamp;
-			rc_physics3D.TimeStamp = device->getTimer()->getTime();
+        	//rc_physics3D.DeltaTime = device->getTimer()->getTime() - rc_physics3D.TimeStamp;
+			//rc_physics3D.TimeStamp = device->getTimer()->getTime();
+			rc_physics3D.DeltaTime = SDL_GetTicks() - rc_physics3D.TimeStamp;
+			rc_physics3D.TimeStamp = SDL_GetTicks();
 			rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, rc_physics3D.fixedTimeStep);
         }
 
