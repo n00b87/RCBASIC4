@@ -328,7 +328,8 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
 	rc_physics3D.TimeStamp = SDL_GetTicks(); //device->getTimer()->getTime();
 
 	rc_physics3D.maxSubSteps = 1;
-	rc_physics3D.fixedTimeStep = irr::f32(1.) / irr::f64(60.);
+	//rc_physics3D.fixedTimeStep = irr::f32(1.) / irr::f64(60.);
+	rc_physics3D.fixedTimeStep = -1;
 
 	rc_physics3D.world->setInternalTickCallback((btInternalTickCallback)myTickCallback2);
 
@@ -3047,7 +3048,8 @@ void rc_preUpdate()
 	//rc_physics3D.TimeStamp = device->getTimer()->getTime();
 	rc_physics3D.DeltaTime = SDL_GetTicks() - rc_physics3D.TimeStamp;
 	rc_physics3D.TimeStamp = SDL_GetTicks();
-	rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, rc_physics3D.fixedTimeStep);
+	float fixed_timestep = rc_physics3D.fixedTimeStep < 0 ? rc_physics3D.DeltaTime*0.001f : rc_physics3D.fixedTimeStep;
+	rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, fixed_timestep);
 
 	for(int i = 0; i < rc_canvas.size(); i++)
 	{
@@ -3459,7 +3461,8 @@ bool rc_update()
 			//rc_physics3D.TimeStamp = device->getTimer()->getTime();
 			rc_physics3D.DeltaTime = SDL_GetTicks() - rc_physics3D.TimeStamp;
 			rc_physics3D.TimeStamp = SDL_GetTicks();
-			rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, rc_physics3D.fixedTimeStep);
+			float fixed_timestep = rc_physics3D.fixedTimeStep < 0 ? rc_physics3D.DeltaTime*0.001f : rc_physics3D.fixedTimeStep;
+			rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, fixed_timestep);
         }
 
         for(int i = 0; i < rc_canvas.size(); i++)

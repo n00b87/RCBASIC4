@@ -307,6 +307,7 @@ struct rc_physicsWorld2D_obj
 	b2World* world;
 
 	rc_contactListener_obj* contact_listener;
+	float time_stamp;
 	float timeStep = 1/60.0;      //the length of time passed to simulate (seconds)
 	int velocityIterations = 8;   //how strongly to correct velocity
 	int positionIterations = 3;   //how strongly to correct position
