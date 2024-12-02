@@ -10,7 +10,7 @@
 	#define RC_ANDROID
 #elif defined(__linux__)
 	#define RC_LINUX
-#elif __EMSCRIPTEN__
+#elif defined(__EMSCRIPTEN__)
 	#define RC_WEB
 #elif defined(_WIN32) || defined(_WIN64)
 	#define RC_WINDOWS
