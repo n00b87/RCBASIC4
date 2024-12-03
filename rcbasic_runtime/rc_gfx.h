@@ -134,7 +134,11 @@ int mobile_event_filter(void* userdata, SDL_Event* evt)
 
 bool rc_gfx_init()
 {
+    #ifdef RC_WEB
+    if(SDL_Init(SDL_INIT_EVENTS | SDL_INIT_TIMER | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_SENSOR | SDL_INIT_NOPARACHUTE) < 0) //Audio causes init to fail on Fedora40 so I am leaving it out for now
+    #else
     if(SDL_Init(SDL_INIT_EVENTS | SDL_INIT_TIMER | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC | SDL_INIT_SENSOR | SDL_INIT_NOPARACHUTE) < 0) //Audio causes init to fail on Fedora40 so I am leaving it out for now
+    #endif
     {
         bool rc_init_events = true;
         bool rc_init_timer = true;
