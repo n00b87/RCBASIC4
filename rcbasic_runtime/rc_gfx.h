@@ -1409,6 +1409,10 @@ Uint32 rc_getPixel(int x, int y)
     if(y < 0 || y >= rc_window_size.Height)
         y = 0;
 
+	#ifdef RC_DRIVER_GLES2
+	y = rc_canvas[rc_active_canvas].texture->getSize().Height - (y+1);
+	#endif // RC_DRIVER_GLES2
+
 
     irr::video::ITexture* texture = rc_canvas[rc_active_canvas].texture;
 
