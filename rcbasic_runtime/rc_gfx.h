@@ -2879,6 +2879,10 @@ void rc_floodFill(int x, int y)
 	if(y < 0 || y >= rc_canvas[rc_active_canvas].dimension.Height)
 		return;
 
+	#ifdef RC_DRIVER_GLES2
+	y = rc_canvas[rc_active_canvas].texture->getSize().Height - (y+1);
+	#endif // RC_DRIVER_GLES2
+
     Uint32* img_pixels = (Uint32*)rc_canvas[rc_active_canvas].texture->lock();
 
     Uint32 flood_size = rc_canvas[rc_active_canvas].texture->getSize().Width*rc_canvas[rc_active_canvas].texture->getSize().Height;
@@ -2958,29 +2962,49 @@ int rc_windowClip(int x, int y, int w, int h)
     if(w <= 0 || h <=0)
         return -1;
 
-    if(rc_canvas.size()>0)
-    {
-        if(!rc_canvas[0].texture)
-            return -1;
-    }
-    else
-        return -1;
+	if(rc_canvas.size() == 0)
+		return -1;
 
-    irr::video::ITexture* texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)w, (irr::u32)h), "win_clip_image", irr::video::ECF_A8R8G8B8);
+    if(!rc_canvas[0].texture)
+            return -1;
+
+    #ifdef RC_DRIVER_GLES2
+    Uint32 size_n = 2;
+    Uint32 dim_max = (w > h ? w : h);
+    while(size_n < dim_max) size_n *= 2;
+    irr::video::ITexture* texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)size_n, (irr::u32)size_n), "canvas_clip_image", ECF_A8R8G8B8);
+    #else
+    irr::video::ITexture* texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)w, (irr::u32)h), "canvas_clip_image", irr::video::ECF_A8R8G8B8);
+    #endif // RC_WEB
 
     if(!texture)
         return -1;
 
     VideoDriver->setRenderTarget(texture);
 
-    drawCanvasImage(rc_canvas[0].texture, 0, 0, x, y, w, h, w, h);
+    int tgt_w = texture->getSize().Width;
+    int tgt_h = texture->getSize().Height;
 
-    VideoDriver->setRenderTarget(rc_canvas[0].texture);
+    #ifdef RC_DRIVER_GLES2
+    int canvas_id = 0;
 
-    if(rc_active_canvas >= 0 && rc_active_canvas < rc_canvas.size())
-        if(rc_canvas[rc_active_canvas].texture)
-            VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
+    irr::core::vector2d<irr::f32> screenSize( (irr::f32) tgt_w, (irr::f32) tgt_h );
+    irr::video::SColor color(rc_canvas[canvas_id].color_mod);
+    irr::core::dimension2d<irr::u32> cv_dim(tgt_w, tgt_h);
+	irr::core::position2d<irr::s32> cv_pos(0, 0);
+	irr::core::vector2d<irr::s32> cv_offset(x, rc_canvas[canvas_id].texture->getSize().Height - y - cv_dim.Height);
+	irr::core::rect<s32> src( cv_offset, cv_dim );
+	irr::core::rect<s32> dest( irr::core::vector2d<s32>(cv_pos.X, cv_pos.Y), irr::core::dimension2d<s32>(cv_dim.Width, cv_dim.Height) );
+	draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
 
+	//rc_setDriverMaterial();
+    //VideoDriver->draw2DImage(rc_canvas[rc_active_canvas].texture, dest, src, 0, 0, false);
+    #else
+    drawCanvasImage(rc_canvas[0].texture, 0, 0, x, y, w, h, tgt_w, tgt_h);
+    #endif // RC_DRIVER_GLES2
+
+    rc_setActiveCanvas(rc_active_canvas);
+    //VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
 
     int img_id = -1;
     rc_image_obj img;
