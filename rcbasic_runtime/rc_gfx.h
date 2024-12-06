@@ -1441,6 +1441,11 @@ Uint32 rc_getPixel(int x, int y)
 
 void rc_drawRect(int x, int y, int w, int h)
 {
+	// x and y seems to be offset by -1 in the GLES driver for this function. I will remove this once I fix it in the GLES driver but this works for now.
+	#ifdef RC_DRIVER_GLES2
+	x++;
+	y++;
+	#endif // RC_DRIVER_GLES2
     irr::core::vector2d<s32> r_pos(x,y);
     irr::core::dimension2d<s32> r_dim(w,h);
     irr::core::rect<s32> r(r_pos, r_dim);
@@ -2417,7 +2422,8 @@ void rc_drawImage(int img_id, int x, int y)
 
         //irr::core::rect<irr::s32> dest( irr::core::vector2d(x, y), irr::core::dimension2d(src_w, src_h));;
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2506,7 +2512,8 @@ void rc_drawImage_Rotate(int img_id, int x, int y, double angle)
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2534,7 +2541,8 @@ void rc_drawImage_Zoom(int img_id, int x, int y, double zx, double zy)
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2562,7 +2570,8 @@ void rc_drawImage_ZoomEx(int img_id, int x, int y, int src_x, int src_y, int src
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2590,7 +2599,8 @@ void rc_drawImage_Rotozoom(int img_id, int x, int y, double angle, double zx, do
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2618,7 +2628,8 @@ void rc_drawImage_RotozoomEx(int img_id, int x, int y, int src_x, int src_y, int
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2648,7 +2659,8 @@ void rc_drawImage_Flip(int img_id, int x, int y, bool h, bool v)
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2677,7 +2689,8 @@ void rc_drawImage_FlipEx(int img_id, int x, int y, int src_x, int src_y, int src
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2708,7 +2721,8 @@ void rc_drawImage_Blit(int img_id, int x, int y, int src_x, int src_y, int src_w
 
         irr::core::rect<irr::s32> dest( irr::core::vector2d<irr::s32>(x, y), irr::core::dimension2d<irr::s32>(src_w, src_h));
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2737,7 +2751,8 @@ void rc_drawImage_RotateEx(int img_id, int x, int y, int src_x, int src_y, int s
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         irr::core::rect<irr::s32> dest( irr::core::vector2d<irr::s32>(x, y), irr::core::dimension2d<irr::s32>(src_w, src_h));
 
@@ -2769,7 +2784,8 @@ void rc_drawImage_BlitEx(int img_id, int x, int y, int w, int h, int src_x, int 
 
         irr::core::rect<irr::s32> dest( irr::core::vector2d<irr::s32>(x, y), irr::core::dimension2d<irr::s32>(w, h));
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage2(VideoDriver, rc_image[img_id].image, sourceRect, dest, rotationPoint, rotation, useAlphaChannel, color, screenSize );
     }
@@ -2901,7 +2917,8 @@ void rc_floodFill(int x, int y)
 	bool useAlphaChannel = true;
 	irr::video::SColor color(rc_canvas[rc_active_canvas].color_mod);
 
-	irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+	//irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+	irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
 	rc_setActiveCanvas(rc_active_canvas);
 	draw2DImage(VideoDriver, old_canvas, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
@@ -3006,16 +3023,43 @@ int rc_canvasClip(int x, int y, int w, int h)
     else
         return -1;
 
+    #ifdef RC_DRIVER_GLES2
+    Uint32 size_n = 2;
+    Uint32 dim_max = (w > h ? w : h);
+    while(size_n < dim_max) size_n *= 2;
+    irr::video::ITexture* texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)size_n, (irr::u32)size_n), "canvas_clip_image", ECF_A8R8G8B8);
+    #else
     irr::video::ITexture* texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)w, (irr::u32)h), "canvas_clip_image", irr::video::ECF_A8R8G8B8);
+    #endif // RC_WEB
 
     if(!texture)
         return -1;
 
     VideoDriver->setRenderTarget(texture);
 
-    drawCanvasImage(rc_canvas[rc_active_canvas].texture, 0, 0, x, y, w, h, w, h);
+    int tgt_w = texture->getSize().Width;
+    int tgt_h = texture->getSize().Height;
 
-    VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
+    #ifdef RC_DRIVER_GLES2
+    int canvas_id = rc_active_canvas;
+
+    irr::core::vector2d<irr::f32> screenSize( (irr::f32) tgt_w, (irr::f32) tgt_h );
+    irr::video::SColor color(rc_canvas[canvas_id].color_mod);
+    irr::core::dimension2d<irr::u32> cv_dim(tgt_w, tgt_h);
+	irr::core::position2d<irr::s32> cv_pos(0, 0);
+	irr::core::vector2d<irr::s32> cv_offset(x, rc_canvas[canvas_id].texture->getSize().Height - y - cv_dim.Height);
+	irr::core::rect<s32> src( cv_offset, cv_dim );
+	irr::core::rect<s32> dest( irr::core::vector2d<s32>(cv_pos.X, cv_pos.Y), irr::core::dimension2d<s32>(cv_dim.Width, cv_dim.Height) );
+	draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
+
+	//rc_setDriverMaterial();
+    //VideoDriver->draw2DImage(rc_canvas[rc_active_canvas].texture, dest, src, 0, 0, false);
+    #else
+    drawCanvasImage(rc_canvas[rc_active_canvas].texture, 0, 0, x, y, w, h, tgt_w, tgt_h);
+    #endif // RC_DRIVER_GLES2
+
+    rc_setActiveCanvas(rc_active_canvas);
+    //VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
 
     int img_id = -1;
     rc_image_obj img;
