@@ -1,7 +1,7 @@
 #ifndef RC_GFX3D_H_INCLUDED
 #define RC_GFX3D_H_INCLUDED
 
-#ifdef RC_ANDROID
+#if defined(RC_ANDROID) || defined(RC_WINDOWS)
 	#include "SDL.h"
 	#include <btBulletDynamicsCommon.h>
 	#include <BulletCollision/CollisionDispatch/btGhostObject.h>
