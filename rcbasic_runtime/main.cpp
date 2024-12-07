@@ -4388,7 +4388,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Runtime v4.0a" << endl;
+        cout << "RCBASIC Runtime v4.0" << endl;
         return 0;
     }
 
@@ -4442,11 +4442,22 @@ int main(int argc, char * argv[])
 
     //ogles2 test
     #ifdef RC_TESTING
-    rc_intern_dirChange("/home/n00b/projects/rcbasic_alpha3/test_project");
+    std::string debug_opt = "a";
+    std::cin >> debug_opt;
+    if(debug_opt.compare("a")==0)
+	{
+		//rc_intern_dirChange("/home/n00b/projects/bu/rcbasic_v400A6_linux/rcbasic_v400_linux/examples/tile_demo/");
+		rc_intern_dirChange("/home/n00b/projects/rcbasic_alpha3/test_project");
+		rc_filename = "main.cbc";
+	}
+    else
+	{
+		rc_intern_dirChange("/home/n00b/projects/bu/constraint_demo");
+	}
     #endif
     //---------------
 
-    if( (!rc_intern_fileExist(rc_filename)) || rc_filename.compare("")==0 )
+    if( rc_filename.compare("")==0 )
 		rc_filename = "main.cbc";
 
     if(rcbasic_load(rc_filename))

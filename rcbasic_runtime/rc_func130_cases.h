@@ -4,9 +4,6 @@ case FN_Fprint: //Sub Procedure
 case FN_Input$: //String Function
 	 rc_push_str(rc_input( INPUT$_PROMPT$ ));
 	break;
-case FN_tst: //Sub Procedure
-	rc_tst(  );
-	break;
 case FN_ArrayDim: //Number Function
 	//DUMMY CASE
 
@@ -1364,8 +1361,8 @@ case FN_ReadInput_Start: //Sub Procedure
 case FN_ReadInput_Stop: //Sub Procedure
 	rc_readInput_Stop(  );
 	break;
-case FN_ReadInput_Text$: //String Function
-	 rc_push_str(rc_readInput_Text(  ));
+case FN_ReadInput_GetText$: //String Function
+	 rc_push_str(rc_readInput_GetText(  ));
 	break;
 case FN_ReadInput_SetText: //Sub Procedure
 	rc_readInput_SetText( READINPUT_SETTEXT_TXT$ );
@@ -2629,6 +2626,12 @@ case FN_GetWorld3DMaxSubSteps: //Number Function
 	break;
 case FN_GetWorld3DTimeStep: //Number Function
 	 rc_push_num(rc_getWorld3DTimeStep(  ));
+	break;
+case FN_SetSceneFog: //Sub Procedure
+	rc_setSceneFog( SETSCENEFOG_COLOR,  SETSCENEFOG_FOG_TYPE,  SETSCENEFOG_START_VAL,  SETSCENEFOG_END_VAL,  SETSCENEFOG_DENSITY,  SETSCENEFOG_PIXELFOG,  SETSCENEFOG_RANGEFOG );
+	break;
+case FN_GetSceneFog: //Sub Procedure
+	rc_getSceneFog( &GETSCENEFOG_COLOR,  &GETSCENEFOG_FOG_TYPE,  &GETSCENEFOG_START_VAL,  &GETSCENEFOG_END_VAL,  &GETSCENEFOG_DENSITY,  &GETSCENEFOG_PIXELFOG,  &GETSCENEFOG_RANGEFOG );
 	break;
 case FN_startParticleEmitter: //Sub Procedure
 	rc_startParticleEmitter(  STARTPARTICLEEMITTER_ACTOR );

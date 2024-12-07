@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
-	<ActiveTarget name="Release" />
-	<File name="rc_net.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<ActiveTarget name="Debug" />
+	<File name="rc_actor_animation.h" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1339" topLine="12" />
+			<Cursor1 position="3250" topLine="93" />
 		</Cursor>
 	</File>
-	<File name="../../irrBullet/src/irrBulletWorld.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_actor_material.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2750" topLine="75" />
+			<Cursor1 position="14332" topLine="540" />
 		</Cursor>
 	</File>
-	<File name="rc_gfx3D.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="RealisticWater.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="583" topLine="21" />
+			<Cursor1 position="7671" topLine="204" />
 		</Cursor>
 	</File>
-	<File name="rc_spritelib.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_sprite_physics.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8770" topLine="54" />
+			<Cursor1 position="10319" topLine="472" />
 		</Cursor>
 	</File>
 	<File name="rc_media.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -27,24 +27,9 @@
 			<Cursor1 position="17752" topLine="630" />
 		</Cursor>
 	</File>
-	<File name="../../irrBullet/src/irrBulletcommon.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_actor_physics.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="924" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="rc_gfx_core.h" open="1" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="22725" topLine="825" />
-		</Cursor>
-	</File>
-	<File name="rc_defines.h" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="113947" topLine="2998" />
-		</Cursor>
-	</File>
-	<File name="rc_test.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="115" topLine="0" />
+			<Cursor1 position="0" topLine="668" />
 		</Cursor>
 	</File>
 	<File name="rc_audio.h" open="0" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -52,19 +37,29 @@
 			<Cursor1 position="6531" topLine="311" />
 		</Cursor>
 	</File>
-	<File name="rc_matrix.h" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_os_defines.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="116" topLine="3" />
+			<Cursor1 position="914" topLine="31" />
 		</Cursor>
 	</File>
-	<File name="rc_stdlib.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_physics3D_base.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="24553" topLine="1081" />
+			<Cursor1 position="565" topLine="19" />
 		</Cursor>
 	</File>
-	<File name="gui_freetype_font.h" open="0" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_gfx_core.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="183" topLine="0" />
+			<Cursor1 position="26959" topLine="736" />
+		</Cursor>
+	</File>
+	<File name="rc_net.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1339" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="rc_constraint.h" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="303" topLine="258" />
 		</Cursor>
 	</File>
 	<File name="../../irrBullet/src/irrBullet.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -72,24 +67,9 @@
 			<Cursor1 position="0" topLine="7" />
 		</Cursor>
 	</File>
-	<File name="rc_gfx.h" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../irrBullet/src/irrBulletWorld.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="99487" topLine="3515" />
-		</Cursor>
-	</File>
-	<File name="rc_func130_cases.h" open="1" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="12494" topLine="362" />
-		</Cursor>
-	</File>
-	<File name="rc_actor_animation.h" open="1" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3353" topLine="183" />
-		</Cursor>
-	</File>
-	<File name="rc_os_defines.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="107" topLine="0" />
+			<Cursor1 position="2750" topLine="75" />
 		</Cursor>
 	</File>
 	<File name="rc_geometry.h" open="0" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -97,24 +77,19 @@
 			<Cursor1 position="20919" topLine="652" />
 		</Cursor>
 	</File>
-	<File name="gui_freetype_font.cpp" open="0" top="0" tabpos="24" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4946" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="74" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="camera.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="261" topLine="0" />
-		</Cursor>
-	</File>
 	<File name="rc_sprite2D.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1444" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="rc_base_actor.h" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="13697" topLine="505" />
+		</Cursor>
+	</File>
+	<File name="rc_test.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="115" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="rc_video.h" open="0" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -122,9 +97,69 @@
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="rc_matrix.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="116" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/src/irrBulletcommon.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="924" topLine="6" />
+		</Cursor>
+	</File>
 	<File name="rc_tilemap.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="243" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="rc_gfx3D.h" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="583" topLine="11" />
+		</Cursor>
+	</File>
+	<File name="rc_func130_cases.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="116893" topLine="2608" />
+		</Cursor>
+	</File>
+	<File name="gui_freetype_font.cpp" open="0" top="0" tabpos="24" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="792" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="rc_stdlib.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="24553" topLine="1081" />
+		</Cursor>
+	</File>
+	<File name="rc_gfx.h" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="21506" topLine="932" />
+		</Cursor>
+	</File>
+	<File name="rc_defines.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="190390" topLine="2843" />
+		</Cursor>
+	</File>
+	<File name="camera.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="261" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="rc_spritelib.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="20025" topLine="806" />
+		</Cursor>
+	</File>
+	<File name="gui_freetype_font.h" open="0" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="183" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="133333" topLine="4437" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

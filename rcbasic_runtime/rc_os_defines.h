@@ -2,7 +2,7 @@
 #define RC_OS_DEFINES_H_INCLUDED
 
 //USED FOR TESTING ONLY
-#define RC_TESTING
+//#define RC_TESTING
 
 //I am checking Android first since I think it also defines __linux__
 
@@ -10,7 +10,7 @@
 	#define RC_ANDROID
 #elif defined(__linux__)
 	#define RC_LINUX
-#elif __EMSCRIPTEN__
+#elif defined(__EMSCRIPTEN__)
 	#define RC_WEB
 #elif defined(_WIN32) || defined(_WIN64)
 	#define RC_WINDOWS
@@ -40,7 +40,7 @@
 
 //FOR TESTING PURPOSES
 #ifdef RC_TESTING
-//#define RC_DRIVER_GLES2
+#define RC_DRIVER_GLES2
 #endif // RC_TESTING
 
 #define RC_PI 3.14159265359

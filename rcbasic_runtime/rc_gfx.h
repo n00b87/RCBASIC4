@@ -134,7 +134,11 @@ int mobile_event_filter(void* userdata, SDL_Event* evt)
 
 bool rc_gfx_init()
 {
+    #ifdef RC_WEB
+    if(SDL_Init(SDL_INIT_EVENTS | SDL_INIT_TIMER | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_SENSOR | SDL_INIT_NOPARACHUTE) < 0) //Audio causes init to fail on Fedora40 so I am leaving it out for now
+    #else
     if(SDL_Init(SDL_INIT_EVENTS | SDL_INIT_TIMER | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC | SDL_INIT_SENSOR | SDL_INIT_NOPARACHUTE) < 0) //Audio causes init to fail on Fedora40 so I am leaving it out for now
+    #endif
     {
         bool rc_init_events = true;
         bool rc_init_timer = true;
@@ -325,10 +329,11 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     rc_canvas.push_back(back_buffer);
 
 	rc_physics3D.world = createIrrBulletWorld(device, true, false);
-	rc_physics3D.TimeStamp = device->getTimer()->getTime();
+	rc_physics3D.TimeStamp = SDL_GetTicks(); //device->getTimer()->getTime();
 
 	rc_physics3D.maxSubSteps = 1;
-	rc_physics3D.fixedTimeStep = irr::f32(1.) / irr::f64(60.);
+	//rc_physics3D.fixedTimeStep = irr::f32(1.) / irr::f64(60.);
+	rc_physics3D.fixedTimeStep = -1;
 
 	rc_physics3D.world->setInternalTickCallback((btInternalTickCallback)myTickCallback2);
 
@@ -868,6 +873,24 @@ void sortCanvasZ()
     //std::cout << std::endl;
 }
 
+void rc_setActiveCanvas(int canvas_id)
+{
+    rc_active_canvas = canvas_id;
+
+    if(rc_active_canvas >= 0 && rc_active_canvas < rc_canvas.size())
+    {
+        if(rc_canvas[rc_active_canvas].texture)
+            VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
+
+		rc_setDriverMaterial();
+    }
+}
+
+int rc_activeCanvas()
+{
+    return rc_active_canvas;
+}
+
 int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int canvas_type=RC_CANVAS_TYPE_2D)
 {
     if(!VideoDriver)
@@ -927,7 +950,8 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
     {
     	b2Vec2 gravity(0, 0);
 		canvas.physics2D.world = new b2World(gravity);
-		canvas.physics2D.timeStep = 1/60.0;      //the length of time passed to simulate (seconds)
+		canvas.physics2D.timeStep = -1;      //the length of time passed to simulate (seconds)
+		canvas.physics2D.time_stamp = SDL_GetTicks();
 		canvas.physics2D.velocityIterations = 8;   //how strongly to correct velocity
 		canvas.physics2D.positionIterations = 3;   //how strongly to correct position
 		canvas.physics2D.enabled = true;
@@ -962,7 +986,10 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
     }
 
     if(rc_active_canvas < 0)
-        rc_active_canvas = canvas_id;
+	{
+		rc_active_canvas = canvas_id;
+		rc_setActiveCanvas(rc_active_canvas);
+	}
 
     for(int i = 0; i < rc_canvas_zOrder.size(); i++)
     {
@@ -1052,28 +1079,22 @@ void rc_setCanvasPhysics2D(int canvas_id, bool flag)
 		rc_canvas[canvas_id].physics2D.enabled = flag;
 }
 
-void rc_setActiveCanvas(int canvas_id)
-{
-    rc_active_canvas = canvas_id;
-
-    if(rc_active_canvas >= 0 && rc_active_canvas < rc_canvas.size())
-    {
-        if(rc_canvas[rc_active_canvas].texture)
-            VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
-    }
-}
-
-int rc_activeCanvas()
-{
-    return rc_active_canvas;
-}
 
 void rc_clearCanvas()
 {
     if(rc_active_canvas >= 0 && rc_active_canvas < rc_canvas.size())
     {
         if(rc_canvas[rc_active_canvas].texture)
-            VideoDriver->clearBuffers(true, true, true, rc_clear_color);
+		switch(rc_canvas[rc_active_canvas].type)
+		{
+			case RC_CANVAS_TYPE_2D:
+				VideoDriver->clearBuffers(true, true, true, rc_clear_color);
+				break;
+			default:
+				VideoDriver->clearBuffers(true, true, true, rc_clear_color);
+				break;
+		}
+
     }
 }
 
@@ -1280,13 +1301,6 @@ int rc_cloneCanvas(int origin_canvas_id, int mode)
 
     canvas.color_mod = irr::video::SColor(255,255,255,255).color;
 
-    //2D Physics World
-    b2Vec2 gravity(0, -9.8);
-    canvas.physics2D.world = new b2World(gravity);
-    canvas.physics2D.timeStep = 1/20.0;      //the length of time passed to simulate (seconds)
-	canvas.physics2D.velocityIterations = 8;   //how strongly to correct velocity
-	canvas.physics2D.positionIterations = 3;   //how strongly to correct position
-
 
     switch(mode)
     {
@@ -1381,7 +1395,10 @@ void rc_setColor(Uint32 color)
 
 Uint32 rc_getPixel(int x, int y)
 {
-    if(!rc_canvas[0].texture)
+	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+		return 0;
+
+    if(!rc_canvas[rc_active_canvas].texture)
     {
         return 0;
     }
@@ -1392,8 +1409,12 @@ Uint32 rc_getPixel(int x, int y)
     if(y < 0 || y >= rc_window_size.Height)
         y = 0;
 
+	#ifdef RC_DRIVER_GLES2
+	y = rc_canvas[rc_active_canvas].texture->getSize().Height - (y+1);
+	#endif // RC_DRIVER_GLES2
 
-    irr::video::ITexture* texture = rc_canvas[0].texture;
+
+    irr::video::ITexture* texture = rc_canvas[rc_active_canvas].texture;
 
     video::ECOLOR_FORMAT format = texture->getColorFormat(); //std::cout << "format = " << (int) format << std::endl;
 
@@ -1409,9 +1430,11 @@ Uint32 rc_getPixel(int x, int y)
 
         irr::video::SColor * texel = (SColor *)(texels + ((y * pitch) + (x * sizeof(SColor))));
 
-        //irr::video::SColor c = texel[0];
+        irr::video::SColor c = texel[0];
 
         texture->unlock();
+
+        color = c.color;
 
         //std::cout << "color(" << x << ", " << y << ") = " << c.getRed() << ", " << c.getGreen() << ", " << c.getBlue() << std::endl;
     }
@@ -1422,6 +1445,11 @@ Uint32 rc_getPixel(int x, int y)
 
 void rc_drawRect(int x, int y, int w, int h)
 {
+	// x and y seems to be offset by -1 in the GLES driver for this function. I will remove this once I fix it in the GLES driver but this works for now.
+	#ifdef RC_DRIVER_GLES2
+	x++;
+	y++;
+	#endif // RC_DRIVER_GLES2
     irr::core::vector2d<s32> r_pos(x,y);
     irr::core::dimension2d<s32> r_dim(w,h);
     irr::core::rect<s32> r(r_pos, r_dim);
@@ -1436,13 +1464,6 @@ void rc_drawRectFill(int x, int y, int w, int h)
     irr::core::rect<s32> r(r_pos, r_dim);
     //std::cout << "drawRect: color=" << rc_active_color.color << " ( " << x << ", " << y << ", " << w << ", " << h << " ) " << std::endl;
     VideoDriver->draw2DRectangle(rc_active_color, r);
-}
-
-void rc_drawCircle(int x, int y, double r)
-{
-    irr::core::vector2d<s32> r_pos(x,y);
-
-    VideoDriver->draw2DPolygon(r_pos, r, rc_active_color, 30);
 }
 
 
@@ -1476,23 +1497,6 @@ void makeCircle(irr::core::array<irr::video::S3DVertex>& vertices, irr::core::ar
     }
 }
 
-void rc_drawCircleFill(int x, int y, double r)
-{
-    irr::core::vector2d<s32> r_pos(x,y);
-
-    // create the circle
-    irr::core::array<irr::video::S3DVertex> verticesCircle;
-    irr::core::array<irr::u16> indicesCircle;
-    CircleSettings circle;
-    circle.center = r_pos;
-    circle.radius = r;
-    circle.color = rc_active_color;
-    makeCircle(verticesCircle, indicesCircle, circle);
-
-    VideoDriver->draw2DVertexPrimitiveList(verticesCircle.pointer(), verticesCircle.size(),
-        indicesCircle.pointer(), indicesCircle.size()-2, video::EVT_STANDARD, scene::EPT_TRIANGLE_FAN,
-        video::EIT_16BIT);
-}
 
 void rc_drawLine(int x1, int y1, int x2, int y2)
 {
@@ -1542,8 +1546,8 @@ void makeEllipse(irr::core::array<irr::video::S3DVertex>& vertices, irr::core::a
     int ry = settings.radius;
     for ( u32 i=1; i < settings.numVertices; i++ )
     {
-        irr::f32 x = rx * std::cos( radians(i*stepSize) ) + centerf.Y ;
-        irr::f32 y = ry * std::sin( radians(i*stepSize) ) + centerf.X ;
+        irr::f32 x = rx * std::cos( radians(i*stepSize) ) + centerf.X ;
+        irr::f32 y = ry * std::sin( radians(i*stepSize) ) + centerf.Y ;
 
         vertices[i] = video::S3DVertex(x, y, 0.f, 0.f, 1.f, 0.f, settings.color, 0.5f, 0.5f);
     }
@@ -1566,12 +1570,14 @@ void rc_drawEllipse(int x, int y, int rx, int ry)
 
     for(int i = 2; i < verticesCircle.size(); i++)
     {
+    	//std::cout << "V[" << i << "] = (" << verticesCircle[i-1].Pos.X << ", " << verticesCircle[i-1].Pos.Y << ") (" << verticesCircle[i].Pos.X << ", " << verticesCircle[i].Pos.Y << ")" << std::endl;
         rc_drawLine(verticesCircle[i-1].Pos.X, verticesCircle[i-1].Pos.Y, verticesCircle[i].Pos.X, verticesCircle[i].Pos.Y);
     }
 
     int n = verticesCircle.size()-1;
     rc_drawLine(verticesCircle[n].Pos.X, verticesCircle[n].Pos.Y, verticesCircle[1].Pos.X, verticesCircle[1].Pos.Y);
 }
+
 
 void rc_drawEllipseFill(int x, int y, int rx, int ry)
 {
@@ -1593,6 +1599,31 @@ void rc_drawEllipseFill(int x, int y, int rx, int ry)
         video::EIT_16BIT);
 }
 
+void rc_drawCircle(int x, int y, double r)
+{
+    rc_drawEllipse(x, y, r, r);
+}
+
+void rc_drawCircleFill(int x, int y, double r)
+{
+	rc_drawEllipseFill(x, y, r, r);
+	return;
+
+    irr::core::vector2d<s32> r_pos(x,y);
+
+    // create the circle
+    irr::core::array<irr::video::S3DVertex> verticesCircle;
+    irr::core::array<irr::u16> indicesCircle;
+    CircleSettings circle;
+    circle.center = r_pos;
+    circle.radius = r;
+    circle.color = rc_active_color;
+    makeCircle(verticesCircle, indicesCircle, circle);
+
+    VideoDriver->draw2DVertexPrimitiveList(verticesCircle.pointer(), verticesCircle.size(),
+        indicesCircle.pointer(), indicesCircle.size()-2, video::EVT_STANDARD, scene::EPT_TRIANGLE_FAN,
+        video::EIT_16BIT);
+}
 
 
 int rc_loadFont(std::string fnt_file, int font_size)
@@ -2167,7 +2198,7 @@ void rc_readInput_Stop()
     SDL_StopTextInput();
 }
 
-std::string rc_readInput_Text()
+std::string rc_readInput_GetText()
 {
     return rc_textinput_string;
 }
@@ -2314,6 +2345,7 @@ void rc_getImageBuffer(int img_id, double * pdata)
 void rc_setBilinearFilter(bool flag)
 {
     rc_bilinear_filter = flag;
+    rc_setDriverMaterial();
 }
 
 bool rc_getBilinearFilter()
@@ -2361,6 +2393,8 @@ void rc_setBlendMode(int blend_mode)
         case 8: rc_blend_mode = EBO_MIN_ALPHA; break;
         case 9: rc_blend_mode = EBO_MAX_ALPHA; break;
     }
+
+    rc_setDriverMaterial();
 }
 
 int rc_getBlendMode()
@@ -2392,7 +2426,8 @@ void rc_drawImage(int img_id, int x, int y)
 
         //irr::core::rect<irr::s32> dest( irr::core::vector2d(x, y), irr::core::dimension2d(src_w, src_h));;
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2481,7 +2516,8 @@ void rc_drawImage_Rotate(int img_id, int x, int y, double angle)
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2509,7 +2545,8 @@ void rc_drawImage_Zoom(int img_id, int x, int y, double zx, double zy)
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2537,7 +2574,8 @@ void rc_drawImage_ZoomEx(int img_id, int x, int y, int src_x, int src_y, int src
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2565,7 +2603,8 @@ void rc_drawImage_Rotozoom(int img_id, int x, int y, double angle, double zx, do
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2593,7 +2632,8 @@ void rc_drawImage_RotozoomEx(int img_id, int x, int y, int src_x, int src_y, int
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2623,7 +2663,8 @@ void rc_drawImage_Flip(int img_id, int x, int y, bool h, bool v)
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2652,7 +2693,8 @@ void rc_drawImage_FlipEx(int img_id, int x, int y, int src_x, int src_y, int src
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2683,7 +2725,8 @@ void rc_drawImage_Blit(int img_id, int x, int y, int src_x, int src_y, int src_w
 
         irr::core::rect<irr::s32> dest( irr::core::vector2d<irr::s32>(x, y), irr::core::dimension2d<irr::s32>(src_w, src_h));
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
     }
@@ -2712,7 +2755,8 @@ void rc_drawImage_RotateEx(int img_id, int x, int y, int src_x, int src_y, int s
                                  rc_image[img_id].color_mod.getGreen(),
                                  rc_image[img_id].color_mod.getBlue());
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         irr::core::rect<irr::s32> dest( irr::core::vector2d<irr::s32>(x, y), irr::core::dimension2d<irr::s32>(src_w, src_h));
 
@@ -2744,7 +2788,8 @@ void rc_drawImage_BlitEx(int img_id, int x, int y, int w, int h, int src_x, int 
 
         irr::core::rect<irr::s32> dest( irr::core::vector2d<irr::s32>(x, y), irr::core::dimension2d<irr::s32>(w, h));
 
-        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
         draw2DImage2(VideoDriver, rc_image[img_id].image, sourceRect, dest, rotationPoint, rotation, useAlphaChannel, color, screenSize );
     }
@@ -2838,6 +2883,10 @@ void rc_floodFill(int x, int y)
 	if(y < 0 || y >= rc_canvas[rc_active_canvas].dimension.Height)
 		return;
 
+	#ifdef RC_DRIVER_GLES2
+	y = rc_canvas[rc_active_canvas].texture->getSize().Height - (y+1);
+	#endif // RC_DRIVER_GLES2
+
     Uint32* img_pixels = (Uint32*)rc_canvas[rc_active_canvas].texture->lock();
 
     Uint32 flood_size = rc_canvas[rc_active_canvas].texture->getSize().Width*rc_canvas[rc_active_canvas].texture->getSize().Height;
@@ -2876,7 +2925,8 @@ void rc_floodFill(int x, int y)
 	bool useAlphaChannel = true;
 	irr::video::SColor color(rc_canvas[rc_active_canvas].color_mod);
 
-	irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+	//irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+	irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].texture->getSize().Width, rc_canvas[rc_active_canvas].texture->getSize().Height);
 
 	rc_setActiveCanvas(rc_active_canvas);
 	draw2DImage(VideoDriver, old_canvas, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
@@ -2916,29 +2966,49 @@ int rc_windowClip(int x, int y, int w, int h)
     if(w <= 0 || h <=0)
         return -1;
 
-    if(rc_canvas.size()>0)
-    {
-        if(!rc_canvas[0].texture)
-            return -1;
-    }
-    else
-        return -1;
+	if(rc_canvas.size() == 0)
+		return -1;
 
-    irr::video::ITexture* texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)w, (irr::u32)h), "win_clip_image", irr::video::ECF_A8R8G8B8);
+    if(!rc_canvas[0].texture)
+            return -1;
+
+    #ifdef RC_DRIVER_GLES2
+    Uint32 size_n = 2;
+    Uint32 dim_max = (w > h ? w : h);
+    while(size_n < dim_max) size_n *= 2;
+    irr::video::ITexture* texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)size_n, (irr::u32)size_n), "canvas_clip_image", ECF_A8R8G8B8);
+    #else
+    irr::video::ITexture* texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)w, (irr::u32)h), "canvas_clip_image", irr::video::ECF_A8R8G8B8);
+    #endif // RC_WEB
 
     if(!texture)
         return -1;
 
     VideoDriver->setRenderTarget(texture);
 
-    drawCanvasImage(rc_canvas[0].texture, 0, 0, x, y, w, h, w, h);
+    int tgt_w = texture->getSize().Width;
+    int tgt_h = texture->getSize().Height;
 
-    VideoDriver->setRenderTarget(rc_canvas[0].texture);
+    #ifdef RC_DRIVER_GLES2
+    int canvas_id = 0;
 
-    if(rc_active_canvas >= 0 && rc_active_canvas < rc_canvas.size())
-        if(rc_canvas[rc_active_canvas].texture)
-            VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
+    irr::core::vector2d<irr::f32> screenSize( (irr::f32) tgt_w, (irr::f32) tgt_h );
+    irr::video::SColor color(rc_canvas[canvas_id].color_mod);
+    irr::core::dimension2d<irr::u32> cv_dim(tgt_w, tgt_h);
+	irr::core::position2d<irr::s32> cv_pos(0, 0);
+	irr::core::vector2d<irr::s32> cv_offset(x, rc_canvas[canvas_id].texture->getSize().Height - y - cv_dim.Height);
+	irr::core::rect<s32> src( cv_offset, cv_dim );
+	irr::core::rect<s32> dest( irr::core::vector2d<s32>(cv_pos.X, cv_pos.Y), irr::core::dimension2d<s32>(cv_dim.Width, cv_dim.Height) );
+	draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
 
+	//rc_setDriverMaterial();
+    //VideoDriver->draw2DImage(rc_canvas[rc_active_canvas].texture, dest, src, 0, 0, false);
+    #else
+    drawCanvasImage(rc_canvas[0].texture, 0, 0, x, y, w, h, tgt_w, tgt_h);
+    #endif // RC_DRIVER_GLES2
+
+    rc_setActiveCanvas(rc_active_canvas);
+    //VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
 
     int img_id = -1;
     rc_image_obj img;
@@ -2981,16 +3051,43 @@ int rc_canvasClip(int x, int y, int w, int h)
     else
         return -1;
 
+    #ifdef RC_DRIVER_GLES2
+    Uint32 size_n = 2;
+    Uint32 dim_max = (w > h ? w : h);
+    while(size_n < dim_max) size_n *= 2;
+    irr::video::ITexture* texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)size_n, (irr::u32)size_n), "canvas_clip_image", ECF_A8R8G8B8);
+    #else
     irr::video::ITexture* texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)w, (irr::u32)h), "canvas_clip_image", irr::video::ECF_A8R8G8B8);
+    #endif // RC_WEB
 
     if(!texture)
         return -1;
 
     VideoDriver->setRenderTarget(texture);
 
-    drawCanvasImage(rc_canvas[rc_active_canvas].texture, 0, 0, x, y, w, h, w, h);
+    int tgt_w = texture->getSize().Width;
+    int tgt_h = texture->getSize().Height;
 
-    VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
+    #ifdef RC_DRIVER_GLES2
+    int canvas_id = rc_active_canvas;
+
+    irr::core::vector2d<irr::f32> screenSize( (irr::f32) tgt_w, (irr::f32) tgt_h );
+    irr::video::SColor color(rc_canvas[canvas_id].color_mod);
+    irr::core::dimension2d<irr::u32> cv_dim(tgt_w, tgt_h);
+	irr::core::position2d<irr::s32> cv_pos(0, 0);
+	irr::core::vector2d<irr::s32> cv_offset(x, rc_canvas[canvas_id].texture->getSize().Height - y - cv_dim.Height);
+	irr::core::rect<s32> src( cv_offset, cv_dim );
+	irr::core::rect<s32> dest( irr::core::vector2d<s32>(cv_pos.X, cv_pos.Y), irr::core::dimension2d<s32>(cv_dim.Width, cv_dim.Height) );
+	draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
+
+	//rc_setDriverMaterial();
+    //VideoDriver->draw2DImage(rc_canvas[rc_active_canvas].texture, dest, src, 0, 0, false);
+    #else
+    drawCanvasImage(rc_canvas[rc_active_canvas].texture, 0, 0, x, y, w, h, tgt_w, tgt_h);
+    #endif // RC_DRIVER_GLES2
+
+    rc_setActiveCanvas(rc_active_canvas);
+    //VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
 
     int img_id = -1;
     rc_image_obj img;
@@ -3024,16 +3121,21 @@ int rc_canvasClip(int x, int y, int w, int h)
 void rc_preUpdate()
 {
 	//3D World Update
-	rc_physics3D.DeltaTime = device->getTimer()->getTime() - rc_physics3D.TimeStamp;
-	rc_physics3D.TimeStamp = device->getTimer()->getTime();
-	rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, rc_physics3D.fixedTimeStep);
+	//rc_physics3D.DeltaTime = device->getTimer()->getTime() - rc_physics3D.TimeStamp;
+	//rc_physics3D.TimeStamp = device->getTimer()->getTime();
+	rc_physics3D.DeltaTime = SDL_GetTicks() - rc_physics3D.TimeStamp;
+	rc_physics3D.TimeStamp = SDL_GetTicks();
+	float fixed_timestep = rc_physics3D.fixedTimeStep < 0 ? rc_physics3D.DeltaTime*0.001f : rc_physics3D.fixedTimeStep;
+	rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, fixed_timestep);
 
 	for(int i = 0; i < rc_canvas.size(); i++)
 	{
 		if(rc_canvas[i].type != RC_CANVAS_TYPE_SPRITE)
 			continue;
 
-		float step = rc_canvas[i].physics2D.timeStep;
+		Uint32 delta_time = SDL_GetTicks() - rc_canvas[i].physics2D.time_stamp;
+		rc_canvas[i].physics2D.time_stamp = SDL_GetTicks();
+		float step = rc_canvas[i].physics2D.timeStep < 0 ? (delta_time*0.001f) : rc_canvas[i].physics2D.timeStep;
 		int32 velocityIterations = rc_canvas[i].physics2D.velocityIterations;
 		int32 positionIterations = rc_canvas[i].physics2D.positionIterations;
 
@@ -3434,9 +3536,12 @@ bool rc_update()
 
         if(!hasPreUpdated)
         {
-        	rc_physics3D.DeltaTime = device->getTimer()->getTime() - rc_physics3D.TimeStamp;
-			rc_physics3D.TimeStamp = device->getTimer()->getTime();
-			rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, rc_physics3D.fixedTimeStep);
+        	//rc_physics3D.DeltaTime = device->getTimer()->getTime() - rc_physics3D.TimeStamp;
+			//rc_physics3D.TimeStamp = device->getTimer()->getTime();
+			rc_physics3D.DeltaTime = SDL_GetTicks() - rc_physics3D.TimeStamp;
+			rc_physics3D.TimeStamp = SDL_GetTicks();
+			float fixed_timestep = rc_physics3D.fixedTimeStep < 0 ? rc_physics3D.DeltaTime*0.001f : rc_physics3D.fixedTimeStep;
+			rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, fixed_timestep);
         }
 
         for(int i = 0; i < rc_canvas.size(); i++)

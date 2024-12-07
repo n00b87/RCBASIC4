@@ -916,11 +916,15 @@ int main(int argc, char * argv[])
 
     string rc_filename = "";// = "tst.bas";
 
-    bool clean_after_build = false;
+    bool clean_after_build = true;
 
     //DEBUG START
-    //rc_filename = "/home/n00b/Projects/RCBASIC4/rcbasic_runtime/bin/Release/unittest.bas";
+    //rc_filename = "/home/n00b/projects/bu/constraint_demo/main.bas";
+	//rc_filename = "/home/n00b/projects/bu/rcbasic_v400A6_linux/rcbasic_v400_linux/examples/tile_demo/main.bas";
+	//rc_filename = "/home/n00b/projects/rcbasic_alpha3/test_project/main.bas";
     //DEBUG END
+
+    //enable_presets = true;
 
     if(argc > 1)
         rc_filename = argv[1];
@@ -935,12 +939,12 @@ int main(int argc, char * argv[])
 
         if(cmd_arg.compare("--debug")==0)
         {
-            cout << "DEBUG MODE" << endl;
+            //cout << "DEBUG MODE" << endl;
             rcbasic_build_debug = true;
         }
         else if(cmd_arg.compare("--no-presets")==0)
         {
-            cout << "DISABLE PRESETS" << endl;
+            //cout << "DISABLE PRESETS" << endl;
             enable_presets = false;
         }
         else if(cmd_arg.compare("--no-clean")==0)
@@ -951,7 +955,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Compiler v4.0a" << endl;
+        cout << "RCBASIC Compiler v4.0" << endl;
         return 0;
     }
 
