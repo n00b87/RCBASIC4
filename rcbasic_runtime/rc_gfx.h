@@ -7,7 +7,7 @@
 	#include <SDL2/SDL.h>
 #endif // RC_ANDROID
 
-#ifdef RC_ANDROID
+#if defined(RC_ANDROID) || defined(RC_WINDOWS)
 	#include <irrlicht.h>
 	#include <btBulletDynamicsCommon.h>
 #else
