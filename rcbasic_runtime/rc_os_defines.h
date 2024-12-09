@@ -40,7 +40,7 @@
 
 //FOR TESTING PURPOSES
 #ifdef RC_TESTING
-#define RC_DRIVER_GLES2
+//#define RC_DRIVER_GLES2
 #endif // RC_TESTING
 
 #define RC_PI 3.14159265359

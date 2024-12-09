@@ -242,6 +242,30 @@ void rc_gfx_quit()
     SDL_Quit();
 }
 
+void setMouseScaling()
+{
+	int win_w = 0, win_h = 0;
+    double w_scale = 1, h_scale = 1;
+
+    if(rc_window)
+    {
+        SDL_GetWindowSize(rc_window, &win_w, &win_h);
+        //std::cout << "size = " << win_w << ", " << win_h << std::endl;
+        //std::cout << "virtual = " << rc_window_size.Width << ", " << rc_window_size.Height << std::endl;
+
+		w_scale = ( (double)win_w / (double)rc_window_size.Width );
+		h_scale = ( (double)win_h / (double)rc_window_size.Height );
+
+		rc_window_mouse_scale_x = ( (double)rc_window_size.Width / (double)win_w );
+		rc_window_mouse_scale_y = ( (double)rc_window_size.Height / (double)win_h );
+
+		rc_window_zone_scale_x = w_scale;
+		rc_window_zone_scale_y = h_scale;
+
+		//std::cout << "Scale = " << rc_window_mouse_scale_x << ", " << rc_window_mouse_scale_y << std::endl;
+    }
+}
+
 bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t window_flags, irr::u8 AntiAlias, bool stencil_buffer, bool vsync)
 {
     if(rc_window)
@@ -337,6 +361,8 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
 
 	rc_physics3D.world->setInternalTickCallback((btInternalTickCallback)myTickCallback2);
 
+	setMouseScaling();
+
     return true;
 }
 
@@ -380,6 +406,8 @@ void rc_cls()
             if(rc_active_canvas >= 0 && rc_active_canvas < rc_canvas.size())
                 if(rc_canvas[rc_active_canvas].texture)
                     VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
+
+			setMouseScaling();
         }
     }
 }
@@ -410,6 +438,7 @@ void rc_raiseWindow()
         return;
     }
     SDL_RaiseWindow(rc_window);
+    setMouseScaling();
 }
 
 void rc_showWindow()
@@ -419,6 +448,7 @@ void rc_showWindow()
         return;
     }
     SDL_ShowWindow(rc_window);
+    setMouseScaling();
 }
 
 void rc_hideWindow()
@@ -459,7 +489,10 @@ std::string rc_getWindowTitle()
 void rc_setWindowPosition(int x, int y)
 {
     if(rc_window)
-        SDL_SetWindowPosition(rc_window, x, y);
+	{
+		SDL_SetWindowPosition(rc_window, x, y);
+		setMouseScaling();
+	}
 }
 
 void rc_getWindowPosition(double * x, double * y)
@@ -488,6 +521,8 @@ void rc_setWindowSize(int w, int h)
         rc_window_size.Width = w;
         rc_window_size.Height = h;
 
+        setMouseScaling();
+
     }
 }
 
@@ -503,7 +538,10 @@ void rc_getWindowSize(double * w, double * h)
 void rc_setWindowMinSize(int w, int h)
 {
     if(rc_window)
-        SDL_SetWindowMinimumSize(rc_window, w, h);
+	{
+		SDL_SetWindowMinimumSize(rc_window, w, h);
+		setMouseScaling();
+	}
 }
 
 void rc_getWindowMinSize(double * w, double * h)
@@ -518,7 +556,10 @@ void rc_getWindowMinSize(double * w, double * h)
 void rc_setWindowMaxSize(int w, int h)
 {
     if(rc_window)
-        SDL_SetWindowMaximumSize(rc_window, w, h);
+	{
+		SDL_SetWindowMaximumSize(rc_window, w, h);
+		setMouseScaling();
+	}
 }
 
 void rc_getWindowMaxSize(double * w, double * h)
@@ -678,10 +719,18 @@ bool rc_setWindowFullscreen(int flag)
         irr::core::dimension2d<u32> win_size(w, h);
         device->setWindowSize(win_size);
 
-        if(!(w==rc_window_size.Width && h==rc_window_size.Height))
-        {
-            //TODO: change mouse scale adjust
-        }
+        setMouseScaling();
+
+        if(rc_mouse_zone_active)
+		{
+			SDL_Rect r;
+			r.x = (int)( (double)rc_mouse_zone.x * rc_window_zone_scale_x );
+			r.y = (int)( (double)rc_mouse_zone.y * rc_window_zone_scale_y );
+			r.w = (int)( (double)rc_mouse_zone.w * rc_window_zone_scale_x );
+			r.h = (int)( (double)rc_mouse_zone.h * rc_window_zone_scale_y );
+			SDL_SetWindowMouseRect(rc_window, NULL);
+			SDL_SetWindowMouseRect(rc_window, &r);
+		}
 
         SDL_PumpEvents();
         SDL_FlushEvents(SDL_FIRSTEVENT, SDL_LASTEVENT);
@@ -704,6 +753,8 @@ bool rc_maximizeWindow()
         irr::core::dimension2d<u32> win_size(mode.w, mode.h);
         device->setWindowSize(win_size);
 
+        setMouseScaling();
+
         return true;
     }
 
@@ -722,6 +773,8 @@ bool rc_minimizeWindow()
         irr::core::dimension2d<u32> win_size(mode.w, mode.h);
         device->setWindowSize(win_size);
 
+        setMouseScaling();
+
         return true;
     }
 
@@ -734,7 +787,10 @@ void rc_setWindowBordered(bool b)
     if(b)
         bswitch = SDL_TRUE;
     if(rc_window)
-        SDL_SetWindowBordered(rc_window, bswitch);
+	{
+		SDL_SetWindowBordered(rc_window, bswitch);
+		setMouseScaling();
+	}
 }
 
 void rc_setWindowResizable(bool b)
@@ -746,6 +802,7 @@ void rc_setWindowResizable(bool b)
     {
         SDL_SetWindowResizable(rc_window, bswitch);
         device->setResizable(true);
+        setMouseScaling();
     }
 }
 
@@ -765,6 +822,8 @@ bool rc_restoreWindow()
 
         irr::core::dimension2d<u32> win_size(mode.w, mode.h);
         device->setWindowSize(win_size);
+
+        setMouseScaling();
 
         return true;
     }
@@ -1784,14 +1843,14 @@ int rc_mouseX()
 {
     int x, y;
     SDL_GetMouseState(&x, &y);
-    return x;
+    return (int)( (double)x * rc_window_mouse_scale_x );
 }
 
 int rc_mouseY()
 {
     int x, y;
     SDL_GetMouseState(&x, &y);
-    return y;
+    return (int)( (double)y * rc_window_mouse_scale_y );
 }
 
 void rc_getMouse(double* x, double* y, double* mb1, double* mb2, double* mb3)
@@ -1803,8 +1862,8 @@ void rc_getMouse(double* x, double* y, double* mb1, double* mb2, double* mb3)
     *mb2 = (current_button_state & SDL_BUTTON(SDL_BUTTON_MIDDLE))!=0;
     *mb3 = (current_button_state & SDL_BUTTON(SDL_BUTTON_RIGHT))!=0;
 
-    *x = ix;
-    *y = iy;
+    *x = (double)ix * rc_window_mouse_scale_x;
+    *y = (double)iy * rc_window_mouse_scale_x;
 }
 
 int rc_mouseWheelX()
@@ -1913,7 +1972,7 @@ int rc_windowIsGrabbed()
 
 void rc_warpMouse(int x, int y)
 {
-    SDL_WarpMouseInWindow(rc_window, x, y);
+    SDL_WarpMouseInWindow(rc_window, (int)( (double)x*rc_window_zone_scale_x ), (int)( (double)y*rc_window_zone_scale_y ));
 }
 
 void rc_warpMouseGlobal(int x, int y)
@@ -1924,16 +1983,22 @@ void rc_warpMouseGlobal(int x, int y)
 void rc_setMouseZone(int x, int y, int w, int h)
 {
     SDL_Rect r;
-    r.x = x;
-    r.y = y;
-    r.w = w;
-    r.h = h;
+    rc_mouse_zone.x = x;
+    rc_mouse_zone.y = y;
+    rc_mouse_zone.w = w;
+    rc_mouse_zone.h = h;
+    r.x = (int)( (double)x * rc_window_zone_scale_x );
+    r.y = (int)( (double)y * rc_window_zone_scale_y );
+    r.w = (int)( (double)w * rc_window_zone_scale_x );
+    r.h = (int)( (double)h * rc_window_zone_scale_y );
     SDL_SetWindowMouseRect(rc_window, &r);
+    rc_mouse_zone_active = true;
 }
 
 void rc_clearMouseZone()
 {
     SDL_SetWindowMouseRect(rc_window, NULL);
+    rc_mouse_zone_active = false;
 }
 
 void rc_setWindowAlwaysOnTop(bool flag)
@@ -3160,13 +3225,22 @@ bool rc_update()
         return false;
 
     int win_w = 0, win_h = 0;
-    int w_scale = 1, h_scale = 1;
+    double w_scale = 1, h_scale = 1;
 
     if(rc_window)
     {
         SDL_GetWindowSize(rc_window, &win_w, &win_h);
         //std::cout << "size = " << win_w << ", " << win_h << std::endl;
     }
+
+    w_scale = ( (double)win_w / (double)rc_window_size.Width );
+    h_scale = ( (double)win_h / (double)rc_window_size.Height );
+
+    rc_window_mouse_scale_x = ( (double)rc_window_size.Width / (double)win_w );
+    rc_window_mouse_scale_y = ( (double)rc_window_size.Height / (double)win_h );
+
+    rc_window_zone_scale_x = w_scale;
+    rc_window_zone_scale_y = h_scale;
 
     SEvent irrevent;
 	SDL_Event SDL_event;
@@ -3649,7 +3723,7 @@ bool rc_update()
 
 		//debug
 		irr::core::rect<s32> src( irr::core::vector2d<s32>(0,0), rc_canvas[0].texture->getSize() );
-		irr::core::rect<s32> dest( irr::core::vector2d<s32>(0,0), irr::core::dimension2d<s32>(win_w, win_h) );
+		irr::core::rect<s32> dest( irr::core::vector2d<s32>(0,0), irr::core::dimension2d<s32>(win_w*w_scale, win_h*h_scale) );
 		irr::video::SColor color(0);
 		VideoDriver->draw2DImage(rc_canvas[0].texture, dest, src);
 		//draw2DImage2(VideoDriver, rc_canvas[0].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, false, color, screenSize);
