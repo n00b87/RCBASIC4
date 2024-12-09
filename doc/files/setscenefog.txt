@@ -1,0 +1,4 @@
+#title SetSceneFog [RCBasic Doc]
+#header Sub SetSceneFog (color, fog_type, start_val, end_val, density, pixelFog, rangeFog)
+
+
