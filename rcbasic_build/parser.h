@@ -5419,8 +5419,10 @@ bool check_rule()
 
             if(if_then < 0)
             {
-                rc_setError("Expected THEN in IF statement");
-                return false;
+                //rc_setError("Expected THEN in IF statement");
+                //return false;
+                token.push_back("<then>"); //This will make THEN optional
+                if_then = token.size()-1;
             }
 
             if(token.size() > (if_then+1))
@@ -5485,8 +5487,11 @@ bool check_rule()
 
             if(if_then < 0)
             {
-                rc_setError("Expected THEN in IF statement");
-                return false;
+                //rc_setError("Expected THEN in IF statement");
+                //return false;
+
+                token.push_back("<then>"); //This will make THEN optional
+                if_then = token.size()-1;
             }
 
             if(token.size() > (if_then+1))

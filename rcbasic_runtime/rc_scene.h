@@ -1,6 +1,8 @@
 #ifndef RC_SCENE_H_INCLUDED
 #define RC_SCENE_H_INCLUDED
 
+#include "rc_gfx_core.h"
+
 void rc_addSceneSkyBox(int img_top, int img_bottom, int img_left, int img_right, int img_front, int img_back)
 {
 	if(!SceneManager)
@@ -48,6 +50,31 @@ void rc_removeSceneSky()
 		rc_scene_properties.sky->remove();
 
 	rc_scene_properties.sky = NULL;
+}
+
+void rc_clearScene()
+{
+	if(SceneManager)
+	{
+		for(int i = 0; i < rc_actor.size(); i++)
+		{
+			if(rc_actor[i].mesh_node)
+			{
+				rc_physics3D.world->removeCollisionObject(rc_actor[i].physics.rigid_body, false);
+				rc_actor[i].physics.collisions.clear();
+
+				rc_actor[i].mesh_node->remove();
+				rc_actor[i].mesh_node = NULL;
+				rc_actor[i].shadow = NULL;
+				rc_actor[i].node_type = 0;
+				rc_actor[i].transition = false;
+				rc_actor[i].transition_time = 0;
+				rc_actor[i].material_ref_index = -1;
+			}
+		}
+
+		rc_removeSceneSky();
+	}
 }
 
 #endif // RC_SCENE_H_INCLUDED

@@ -2633,6 +2633,9 @@ case FN_SetSceneFog: //Sub Procedure
 case FN_GetSceneFog: //Sub Procedure
 	rc_getSceneFog( &GETSCENEFOG_COLOR,  &GETSCENEFOG_FOG_TYPE,  &GETSCENEFOG_START_VAL,  &GETSCENEFOG_END_VAL,  &GETSCENEFOG_DENSITY,  &GETSCENEFOG_PIXELFOG,  &GETSCENEFOG_RANGEFOG );
 	break;
+case FN_ClearScene: //Sub Procedure
+	rc_clearScene(  );
+	break;
 case FN_startParticleEmitter: //Sub Procedure
 	rc_startParticleEmitter(  STARTPARTICLEEMITTER_ACTOR );
 	break;

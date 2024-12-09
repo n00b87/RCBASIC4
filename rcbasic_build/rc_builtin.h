@@ -2708,6 +2708,7 @@ void init_embedded_functions()
 	add_embedded_arg("density", ID_TYPE_BYREF_NUM);
 	add_embedded_arg("pixelFog", ID_TYPE_BYREF_NUM);
 	add_embedded_arg("rangeFog", ID_TYPE_BYREF_NUM);
+	embed_function("ClearScene", ID_TYPE_SUB);
 	embed_function("startParticleEmitter", ID_TYPE_SUB);
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	embed_function("stopParticleEmitter", ID_TYPE_SUB);
