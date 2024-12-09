@@ -310,7 +310,7 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
 
     rc_canvas_obj back_buffer;
     //std::cout << std::endl << "back start" << std::endl;
-    #ifdef RC_WEB
+    #ifdef RC_DRIVER_GLES2
     Uint32 size_n = 2;
     Uint32 dim_max = (w > h ? w : h);
     while(size_n < dim_max) size_n *= 2;
@@ -901,7 +901,7 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
     canvas.show3D = false;
     canvas.physics2D.enabled = false;
 
-    #ifdef RC_WEB
+    #ifdef RC_DRIVER_GLES2
     Uint32 size_n = 2;
     Uint32 dim_max = (w > h ? w : h);
     while(size_n < dim_max) size_n *= 2;
@@ -931,6 +931,14 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
 
     canvas.dimension.Width = w;
     canvas.dimension.Height = h;
+
+    #ifdef RC_DRIVER_GLES2
+    if(canvas_type==RC_CANVAS_TYPE_2D)
+    {
+    	canvas.dimension.Width = size_n;
+		canvas.dimension.Height = size_n;
+    }
+    #endif // RC_DRIVER_GLES2
 
     canvas.viewport.position.X = vx;
     canvas.viewport.position.Y = vy;
@@ -3563,10 +3571,10 @@ bool rc_update()
                 SceneManager->drawAll();
                 //VideoDriver->draw2DRectangle(irr::video::SColor(255,0,255,0), irr::core::rect<irr::s32>(10,40,100,500));
 
-                vector3df p0(0, 0, 0);
-				vector3df p1(10, 30, 0);
-				vector3df p2(20, -30, 0);
-				vector3df p3(30, 0, 0);
+                //vector3df p0(0, 0, 0);
+				//vector3df p1(10, 30, 0);
+				//vector3df p2(20, -30, 0);
+				//vector3df p3(30, 0, 0);
 				//drawBezierCurve(VideoDriver, p0, p1, p2, p3, irr::video::SColor(255, 0, 255, 0), 100);
 
                 VideoDriver->setRenderTarget(rc_canvas[0].texture);
