@@ -288,7 +288,7 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     irr_creation_params.EventReceiver = 0;
     irr_creation_params.WindowPosition = position2d<s32>(x, y);
     irr_creation_params.AntiAlias = AntiAlias;
-    irr_creation_params.OGLES2ShaderPath = "media/Shaders/";
+    irr_creation_params.OGLES2ShaderPath = ".shaders/";
 
 	device = createDeviceEx(irr_creation_params);
 
