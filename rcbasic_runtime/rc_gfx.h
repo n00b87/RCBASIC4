@@ -1784,14 +1784,14 @@ int rc_mouseX()
 {
     int x, y;
     SDL_GetMouseState(&x, &y);
-    return x;
+    return (int)( (double)x * rc_window_mouse_scale_x );
 }
 
 int rc_mouseY()
 {
     int x, y;
     SDL_GetMouseState(&x, &y);
-    return y;
+    return (int)( (double)y * rc_window_mouse_scale_y );
 }
 
 void rc_getMouse(double* x, double* y, double* mb1, double* mb2, double* mb3)
@@ -1803,8 +1803,8 @@ void rc_getMouse(double* x, double* y, double* mb1, double* mb2, double* mb3)
     *mb2 = (current_button_state & SDL_BUTTON(SDL_BUTTON_MIDDLE))!=0;
     *mb3 = (current_button_state & SDL_BUTTON(SDL_BUTTON_RIGHT))!=0;
 
-    *x = ix;
-    *y = iy;
+    *x = (double)ix * rc_window_mouse_scale_x;
+    *y = (double)iy * rc_window_mouse_scale_x;
 }
 
 int rc_mouseWheelX()
@@ -1913,21 +1913,21 @@ int rc_windowIsGrabbed()
 
 void rc_warpMouse(int x, int y)
 {
-    SDL_WarpMouseInWindow(rc_window, x, y);
+    SDL_WarpMouseInWindow(rc_window, (int)( (double)x*rc_window_mouse_scale_x ), (int)( (double)y*rc_window_mouse_scale_y ));
 }
 
 void rc_warpMouseGlobal(int x, int y)
 {
-    SDL_WarpMouseGlobal(x, y);
+    SDL_WarpMouseGlobal((int)( (double)x*rc_window_mouse_scale_x ), (int)( (double)y*rc_window_mouse_scale_y ) );
 }
 
 void rc_setMouseZone(int x, int y, int w, int h)
 {
     SDL_Rect r;
-    r.x = x;
-    r.y = y;
-    r.w = w;
-    r.h = h;
+    r.x = (int)( (double)x * rc_window_mouse_scale_x );
+    r.y = (int)( (double)y * rc_window_mouse_scale_y );
+    r.w = (int)( (double)w * rc_window_mouse_scale_x );
+    r.h = (int)( (double)h * rc_window_mouse_scale_y );
     SDL_SetWindowMouseRect(rc_window, &r);
 }
 
@@ -3160,13 +3160,19 @@ bool rc_update()
         return false;
 
     int win_w = 0, win_h = 0;
-    int w_scale = 1, h_scale = 1;
+    double w_scale = 1, h_scale = 1;
 
     if(rc_window)
     {
         SDL_GetWindowSize(rc_window, &win_w, &win_h);
         //std::cout << "size = " << win_w << ", " << win_h << std::endl;
     }
+
+    w_scale = ( (double)win_w / (double)rc_window_size.Width );
+    h_scale = ( (double)win_h / (double)rc_window_size.Height );
+
+    rc_window_mouse_scale_x = ( (double)rc_window_size.Width / (double)win_w );
+    rc_window_mouse_scale_y = ( (double)rc_window_size.Height / (double)win_h );
 
     SEvent irrevent;
 	SDL_Event SDL_event;
@@ -3649,7 +3655,7 @@ bool rc_update()
 
 		//debug
 		irr::core::rect<s32> src( irr::core::vector2d<s32>(0,0), rc_canvas[0].texture->getSize() );
-		irr::core::rect<s32> dest( irr::core::vector2d<s32>(0,0), irr::core::dimension2d<s32>(win_w, win_h) );
+		irr::core::rect<s32> dest( irr::core::vector2d<s32>(0,0), irr::core::dimension2d<s32>(win_w*w_scale, win_h*h_scale) );
 		irr::video::SColor color(0);
 		VideoDriver->draw2DImage(rc_canvas[0].texture, dest, src);
 		//draw2DImage2(VideoDriver, rc_canvas[0].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, false, color, screenSize);
