@@ -511,12 +511,32 @@ void rc_setWindowSize(int w, int h)
         SDL_SetWindowSize(rc_window, w, h);
 
         irr::core::dimension2d<u32> win_size;
-        int w, h;
-        SDL_GetWindowSize(rc_window, &w, &h);
+        int win_w, win_h;
+        SDL_GetWindowSize(rc_window, &win_w, &win_h);
         win_size.Width = w;
         win_size.Height = h;
 
-        device->setWindowSize(win_size);
+        if(rc_canvas[0].texture)
+			VideoDriver->removeTexture(rc_canvas[0].texture);
+
+		rc_canvas[0].texture = NULL;
+
+        #ifdef RC_DRIVER_GLES2
+		Uint32 size_n = 2;
+		Uint32 dim_max = (w > h ? w : h);
+		while(size_n < dim_max) size_n *= 2;
+		rc_canvas[0].texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)size_n, (irr::u32)size_n), "rt", ECF_A8R8G8B8);
+		#else
+		rc_canvas[0].texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)win_w, (irr::u32)win_h), "rt", ECF_A8R8G8B8);
+		#endif // RC_WEB
+		//std::cout << "back_buffer done" << std::endl << std::endl;*/
+
+		rc_canvas[0].dimension.Width = win_w;
+		rc_canvas[0].dimension.Height = win_h;
+		rc_canvas[0].viewport.position.set(0,0);
+		rc_canvas[0].viewport.dimension.set(win_w,win_h);
+		//std::cout << std::endl << "tgt start" << std::endl;
+		VideoDriver->setRenderTarget(rc_canvas[0].texture, true, true);
 
         rc_window_size.Width = w;
         rc_window_size.Height = h;
@@ -714,10 +734,26 @@ bool rc_setWindowFullscreen(int flag)
 
 
         int w, h;
-        SDL_GetWindowSize(rc_window, &w, &h);
+        //SDL_GetWindowSize(rc_window, &w, &h);
 
-        irr::core::dimension2d<u32> win_size(w, h);
-        device->setWindowSize(win_size);
+        //irr::core::dimension2d<u32> win_size(w, h);
+        //device->setWindowSize(win_size);
+
+        /*
+        if(rc_canvas[0].texture != NULL)
+			VideoDriver->removeTexture(rc_canvas[0].texture);
+
+        rc_canvas_obj back_buffer;
+		#ifdef RC_DRIVER_GLES2
+		Uint32 size_n = 2;
+		Uint32 dim_max = (w > h ? w : h);
+		while(size_n < dim_max) size_n *= 2;
+		rc_canvas[0].texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)size_n, (irr::u32)size_n), "rt", ECF_A8R8G8B8);
+		#else
+		rc_canvas[0].texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)w, (irr::u32)h), "rt", ECF_A8R8G8B8);
+		#endif // RC_WEB
+
+		*/
 
         setMouseScaling();
 
@@ -964,6 +1000,8 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
     Uint32 size_n = 2;
     Uint32 dim_max = (w > h ? w : h);
     while(size_n < dim_max) size_n *= 2;
+    //w = size_n;
+    //h = size_n;
     canvas.texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<u32>(size_n,size_n), "rt", ECF_A8R8G8B8);
     #else
     canvas.texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<u32>(w,h), "rt", ECF_A8R8G8B8);
@@ -3669,7 +3707,7 @@ bool rc_update()
                 irr::video::SColor color(rc_canvas[canvas_id].color_mod);
                 //color.set(255,255,255,255);
 
-                //std::cout << "draw canvas[" << canvas_id << "] (" << rc_canvas[canvas_id].offset.X << ", " <<  rc_canvas[canvas_id].offset.Y << ") (" << rc_canvas[canvas_id].viewport.dimension.Width << ", " << rc_canvas[canvas_id].dimension.Height << ")" << std::endl;
+                //std::cout << "draw canvas[" << canvas_id << "] (" << rc_canvas[canvas_id].offset.X << ", " <<  rc_canvas[canvas_id].offset.Y << ") (" << rc_canvas[canvas_id].viewport.dimension.Width << ", " << rc_canvas[canvas_id].viewport.dimension.Height << ")" << std::endl;
 
                 #if defined(RC_DRIVER_GLES2)
                 if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_3D)
@@ -3722,9 +3760,22 @@ bool rc_update()
 		//VideoDriver->draw2DImage(rc_canvas[0].texture, irr::core::vector2d<irr::s32>(0,0));
 
 		//debug
-		irr::core::rect<s32> src( irr::core::vector2d<s32>(0,0), rc_canvas[0].texture->getSize() );
+		//std::cout << "scale:: " << rc_window_size.Width << ", " << win_w << ", " << rc_canvas[0].texture->getSize().Width << std::endl;
+		//irr::core::rect<s32> src( irr::core::vector2d<s32>(0,0), rc_canvas[0].texture->getSize() );
+		#ifdef RC_DRIVER_GLES2
+		irr::core::rect<s32> src( irr::core::vector2d<s32>(0,0), rc_canvas[0].texture->getSize()  );
 		irr::core::rect<s32> dest( irr::core::vector2d<s32>(0,0), irr::core::dimension2d<s32>(win_w*w_scale, win_h*h_scale) );
-		irr::video::SColor color(0);
+		#else
+		irr::core::rect<s32> src( irr::core::vector2d<s32>(0,0), rc_window_size  );
+		irr::core::rect<s32> dest;
+
+		if(rc_windowIsFullscreen())
+			dest = irr::core::rect<s32>( irr::core::vector2d<s32>(0,0), irr::core::dimension2d<s32>(win_w, win_h) );
+		else
+			dest = irr::core::rect<s32>( irr::core::vector2d<s32>(0,rc_canvas[0].texture->getSize().Height - rc_window_size.Height), irr::core::dimension2d<s32>(win_w, win_h) );
+		#endif // RC_DRIVER_GLES2
+
+		//irr::video::SColor color(0);
 		VideoDriver->draw2DImage(rc_canvas[0].texture, dest, src);
 		//draw2DImage2(VideoDriver, rc_canvas[0].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, false, color, screenSize);
 		//irr::core::rect<irr::s32> src( irr::core::vector2d<irr::s32>(0, 0), rc_canvas[0].texture->getSize() );
@@ -3732,7 +3783,7 @@ bool rc_update()
 		//draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
 
 		//VideoDriver->draw2DImage(rc_image[0].image, irr::core::rect<irr::s32>(0,0,100,100), irr::core::rect<irr::s32>(0,0,100,100));
-		//VideoDriver->draw2DRectangle(irr::video::SColor(255,2555,0,0), irr::core::rect<irr::s32>(0,0,100,100));
+		//VideoDriver->draw2DRectangle(irr::video::SColor(255,255,0,0), irr::core::rect<irr::s32>(0,0,100,100));
 		//end debug
 
 		//device->getGUIEnvironment()->drawAll();

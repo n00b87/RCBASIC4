@@ -779,7 +779,7 @@ void rc_setSpriteVisible(int spr_id, bool flag)
 	if(!rc_sprite[spr_id].active)
 		return;
 
-	if(rc_sprite[spr_id].image_id)
+	if(rc_sprite[spr_id].image_id >= 0)
 		rc_sprite[spr_id].visible = flag;
 	else
 		rc_sprite[spr_id].visible = false;
