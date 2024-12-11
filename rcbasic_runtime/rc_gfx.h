@@ -735,7 +735,11 @@ bool rc_setWindowFullscreen(int flag)
 
         int w, h;
         SDL_GetWindowSize(rc_window, &w, &h);
-        SDL_SetWindowSize(rc_window, w, h);
+
+        if(flag)
+			SDL_SetWindowSize(rc_window, w, h);
+		else
+			SDL_SetWindowSize(rc_window, rc_window_size.Width, rc_window_size.Height);
 
         //irr::core::dimension2d<u32> win_size(w, h);
         //device->setWindowSize(win_size);
