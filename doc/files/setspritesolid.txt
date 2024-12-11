@@ -3,5 +3,47 @@
 
 Sets whether a sprite has physics and collision response enabled
 
+#code
+isFullScreen = false
+vSync = true
+winWidth = 640
+winHeight = 480
+canViewPortX = 0
+canViewPortY = 0
+
+OpenWindow("SetSpriteSolid", winWidth, winHeight, isFullScreen, vSync)
+sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+Canvas(sCanvas)
+
+DIM eye
+DIM eyeW
+DIM eyeH
+eyeSpriteX = 100
+eyeSpriteY = 100
+eyeSprite2X = 400
+eyeSprite2Y = 125
+
+eye = LoadImage("theEye.png")
+GetImageSize(eye, eyeW, eyeH)
+
+eyeSprite = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite, eyeSpriteX, eyeSpriteY)
+SetSpriteSolid(eyeSprite, 1)												'Setting the sprites as solid means they can collide with one another.
+
+eyeSprite2 = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite2, eyeSprite2X, eyeSprite2Y)
+SetSpriteSolid(eyeSprite2, 1)
+
+While Not Key(K_ESCAPE)
+
+	SetSpriteLinearVelocity(eyeSprite, 30, 0)
+	eyeSpriteX = eyeSpriteX + 0.5
+
+	Update()
+Wend
+#/code
+
+#image "images/theEye.png"
+
 #ref SpriteIsSolid
 

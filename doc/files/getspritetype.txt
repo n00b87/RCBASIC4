@@ -7,9 +7,71 @@ By default, sprites are dynamic when they are created.
 
 Possible types returned
 #list ul
-#li SPRITE_TYPE_STATIC
-#li SPRITE_TYPE_KINEMATIC
-#li SPRITE_TYPE_DYNAMIC
+#li SPRITE_TYPE_STATIC (0)
+#li SPRITE_TYPE_KINEMATIC (1)
+#li SPRITE_TYPE_DYNAMIC (2)
 #/list
+
+#code
+isFullScreen = false
+vSync = true
+winWidth = 640
+winHeight = 480
+canViewPortX = 0
+canViewPortY = 0
+
+OpenWindow("GetSpriteType", winWidth, winHeight, isFullScreen, vSync)
+pCanvas = OpenCanvas(200, 80, 0, 0, 200, 80, 1)                                     'Need to open a canvas for drawing the text
+sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+Canvas(sCanvas)
+
+DIM eye
+DIM eyeW
+DIM eyeH
+eyeSpriteX = 100
+eyeSpriteY = 100
+eyeSprite2X = 400
+eyeSprite2Y = 125
+
+DIM font1
+
+Font1 = LoadFont("DripOctober.ttf", 16)
+SetFont(Font1)
+SetColor(RGB(100, 200, 200))
+
+eye = LoadImage("theEye.png")
+GetImageSize(eye, eyeW, eyeH)
+
+eyeSprite = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite, eyeSpriteX, eyeSpriteY)
+SetSpriteSolid(eyeSprite, 1)
+SetSpriteType(eyeSprite, SPRITE_TYPE_KINEMATIC)
+
+'The flags for each type are	SPRITE_TYPE_STATIC = 0
+'												SPRITE_TYPE_KINEMATIC = 1
+' 												SPRITE_TYPE_DYNAMIC = 2
+
+eyeSprite2 = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite2, eyeSprite2X, eyeSprite2Y)
+SetSpriteSolid(eyeSprite2, 1)
+SetSpriteType(eyeSprite2, SPRITE_TYPE_DYNAMIC)
+
+While Not Key(K_ESCAPE)
+	ClearCanvas()
+	Canvas(sCanvas)
+
+	Canvas(pCanvas)                                            'change to the standard drawing canvas for drawing text
+
+	DrawText("Sprite on left type: " + STR$(GetSpriteType(eyeSprite)), 10, 30)
+
+	Update()
+Wend
+#/code
+
+#image "images/theEye.png"
+
+<br>
+<a href="../doc_files/images/DripOctober.ttf">Link to Font (It's locally on your computer, your not downloading anything from the internet)</a>
+<br>
 
 #ref SetSpriteType

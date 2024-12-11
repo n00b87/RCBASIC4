@@ -3,5 +3,41 @@
 
 Sets the angle the sprite is rotated by
 
+#code
+isFullScreen = false
+vSync = true
+winWidth = 640
+winHeight = 480
+canViewPortX = 0
+canViewPortY = 0
+
+OpenWindow("SetSpriteRotation", winWidth, winHeight, isFullScreen, vSync)
+sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+Canvas(sCanvas)
+
+DIM eye
+DIM eyeW
+DIM eyeH
+DIM eyeAngle				'Variable to hold the sprites angle value
+
+eye = LoadImage("theEye.png")
+GetImageSize(eye, eyeW, eyeH)
+
+eyeSprite = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite, 100, 100)
+
+While Not Key(K_ESCAPE)
+'ClearCanvas() For a sprite layer canvas, you don't need to call ClearCanvas. It's automatically called.
+
+SetSpriteRotation(eyeSprite, eyeAngle)
+
+eyeAngle = eyeAngle + 0.3
+
+Update()      'Update automatically deals with drawing the sprites on the sprite canvas.
+Wend
+#/code
+
+#image "images/theEye.png"
+
 #ref GetSpriteRotation RotateSprite
 

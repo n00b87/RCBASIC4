@@ -3,5 +3,68 @@
 
 Returns the X position of a sprite on a canvas
 
+#code
+isFullScreen = false
+vSync = true
+winWidth = 640
+winHeight = 480
+canViewPortX = 0
+canViewPortY = 0
+
+OpenWindow("SpriteX", winWidth, winHeight, isFullScreen, vSync)
+pCanvas = OpenCanvas(200, 80, 0, 0, 200, 80, 1)                                     'Need to open a canvas for drawing the text
+sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+Canvas(sCanvas)
+
+DIM font1
+
+Font1 = LoadFont("DripOctober.ttf", 16)
+SetFont(Font1)
+SetColor(RGB(100, 200, 200))
+
+DIM eye
+DIM eyeW
+DIM eyeH
+DIM eyeX            'Variables to pass into the function for holding the x value
+eyeSpriteX = 100
+eyeSpriteY = 100
+destX = 0
+
+eye = LoadImage("theEye.png")
+GetImageSize(eye, eyeW, eyeH)
+
+eyeSprite = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite, eyeSpriteX, eyeSpriteY)
+
+While Not Key(K_ESCAPE)
+clearcanvas()
+Canvas(sCanvas)                                           'change to the sprite canvas for drawing sprites
+If SpriteX(eyeSprite) < 450 And destX = 0 Then
+   SetSpritePosition(eyeSprite, eyeSpriteX, eyeSpriteY)
+   eyeSpriteX = eyeSpriteX + 0.5
+ElseIf SpriteX(eyeSprite) >= 440 And destX = 0 Then
+   destX = 1
+   'eyeSpriteX = SpriteX(eyeSprite)
+End If
+
+If destX = 1 Then
+   SetSpritePosition(eyeSprite, eyeSpriteX, eyeSpriteY)
+   eyeSpriteX = eyeSpriteX - 0.5
+End If
+
+Canvas(pCanvas)
+eyeX = SpriteX(eyeSprite)                                   'change to the standard drawing canvas for drawing text
+DrawText("Sprite X: " + STR$(eyeX), 10, 30)
+
+Update()
+Wend
+#/code
+
+#image "images/theEye.png"
+
+<br>
+<a href="../doc_files/images/DripOctober.ttf">Link to Font (It's locally on your computer, your not downloading anything from the internet)</a>
+<br>
+
 #ref SpriteY SetSpritePosition GetSpritePosition
 

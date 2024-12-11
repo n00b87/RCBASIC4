@@ -3,4 +3,64 @@
 
 Returns the angle the sprite is rotated by
 
+#code
+isFullScreen = false
+vSync = true
+winWidth = 640
+winHeight = 480
+canViewPortX = 0
+canViewPortY = 0
+
+OpenWindow("GetSpriteRotation", winWidth, winHeight, isFullScreen, vSync)
+pCanvas = OpenCanvas(200, 80, 0, 0, 200, 80, 1)                                     'Need to open a canvas for drawing the text
+sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+Canvas(sCanvas)
+
+DIM font1
+
+Font1 = LoadFont("DripOctober.ttf", 16)
+SetFont(Font1)
+SetColor(RGB(100, 200, 200))
+
+DIM eye
+DIM eyeW
+DIM eyeH
+DIM eyeAngle				'Variable to hold the sprites angle value
+DIM displayAngle
+ReleaseKey = 0
+
+eye = LoadImage("theEye.png")
+GetImageSize(eye, eyeW, eyeH)
+
+eyeSprite = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite, 100, 100)
+
+'RotateSprite(eyeSprite, eyeAngle)
+
+While Not Key(K_ESCAPE)
+ClearCanvas()
+Canvas(sCanvas)
+
+If Key(K_SPACE) And ReleaseKey = 0 Then
+	eyeAngle = 30
+	RotateSprite(eyeSprite, eyeAngle)
+	ReleaseKey = 1
+ElseIf Not Key(K_SPACE) And ReleaseKey = 1 then
+	ReleaseKey = 0
+End If
+
+displayAngle = GetSpriteRotation(eyeSprite)
+Canvas(pCanvas)                                            'change to the standard drawing canvas for drawing text
+DrawText("Sprite Angle: " + STR$(displayAngle), 10, 30)
+
+Update()
+Wend
+#/code
+
+#image "images/theEye.png"
+
+<br>
+<a href="../doc_files/images/DripOctober.ttf">Link to Font (It's locally on your computer, your not downloading anything from the internet)</a>
+<br>
+
 #ref SetSpriteRotation RotateSprite
