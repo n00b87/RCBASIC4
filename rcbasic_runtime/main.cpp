@@ -56,6 +56,7 @@
 #include "rc_audio.h"
 #include "rc_net.h"
 #include "rc_video.h"
+#include "rc_windowclose.h"
 #include "rc_test.h"
 #include <irrtheora.h>
 

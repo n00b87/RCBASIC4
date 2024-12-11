@@ -1892,6 +1892,12 @@ case FN_FillTile: //Sub Procedure
 case FN_DrawTileMap: //Sub Procedure
 	rc_drawTileMap( DRAWTILEMAP_TILEMAP,  DRAWTILEMAP_X,  DRAWTILEMAP_Y,  DRAWTILEMAP_W,  DRAWTILEMAP_H,  DRAWTILEMAP_OFFSET_X,  DRAWTILEMAP_OFFSET_Y );
 	break;
+case FN_DeleteTileSet: //Sub Procedure
+	rc_deleteTileSet( DELETETILESET_TILESET );
+	break;
+case FN_DeleteTileMap: //Sub Procedure
+	rc_deleteTileMap( DELETETILEMAP_TILEMAP );
+	break;
 case FN_LoadMesh: //Number Function
 	 rc_push_num(rc_loadMesh( LOADMESH_MESH_FILE$ ));
 	break;
