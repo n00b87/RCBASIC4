@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1733892371 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
+1733959687 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
 	"rc_os_defines.h"
 	<emscripten.h>
 	<sys/param.h>
@@ -28,14 +28,15 @@
 	"rc_audio.h"
 	"rc_net.h"
 	"rc_video.h"
+	"rc_windowclose.h"
 	"rc_test.h"
 	<irrtheora.h>
 	"rc_func130_cases.h"
 
-1733950891 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
+1733960003 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
 	<TargetConditionals.h>
 
-1733777902 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
+1733959765 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
 
 1730291453 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_stdlib.h
 	"rc_os_defines.h"
@@ -1247,7 +1248,7 @@
 1727545973 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/RealisticWater.h
 	<irrlicht.h>
 
-1733950856 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx.h
+1733959687 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx.h
 	"SDL.h"
 	<SDL2/SDL.h>
 	<irrlicht.h>
@@ -2272,7 +2273,7 @@
 	"rc_gfx_core.h"
 	<irrtheora.h>
 
-1733777902 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
+1733959765 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
 
 1724469097 source:/home/n00b/Projects/irrBullet/src/irrBullet.cpp
 	"irrBullet.h"
@@ -2495,7 +2496,7 @@
 	"rc_sprite_physics.h"
 	"rc_joints.h"
 
-1729551233 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_tilelib.h
+1733959298 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_tilelib.h
 	"SDL.h"
 	<SDL2/SDL.h>
 	"rc_tilemap.h"
@@ -2535,4 +2536,6 @@
 	"rc_gfx_core.h"
 
 1731249956 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_camera.h
+
+1733959687 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_windowclose.h
 

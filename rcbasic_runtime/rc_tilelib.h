@@ -52,6 +52,21 @@ int rc_createTileSet(int img_id, int tile_w, int tile_h)
 	return tset_id;
 }
 
+void rc_deleteTileSet(int tileset)
+{
+	if(tileset < 0 || tileset >= rc_tileset.size())
+		return;
+
+	if(!rc_tileset[tileset].active)
+		return;
+
+	rc_tileset[tileset].tiles.clear();
+	rc_tileset[tileset].img_id = -1;
+	rc_tileset[tileset].active = false;
+
+	rc_deleted_tileset.push_back(tileset);
+}
+
 void rc_setTileAnimationLength(int tileset, int base_tile, int num_frames)
 {
 	if(tileset < 0 || tileset >= rc_tileset.size())
@@ -176,6 +191,24 @@ int rc_createTileMap(int tileset, int widthInTiles, int heightInTiles)
 		rc_tilemap.push_back(tilemap);
 
 	return tm_id;
+}
+
+void rc_deleteTileMap(int tilemap)
+{
+	if(tilemap < 0 || tilemap >= rc_tilemap.size())
+		return;
+
+	if(!rc_tilemap[tilemap].active)
+		return;
+
+	rc_tilemap[tilemap].rows.clear();
+	rc_tilemap[tilemap].num_tiles_across = 0;
+	rc_tilemap[tilemap].num_tiles_down = 0;
+	rc_tilemap[tilemap].texture = NULL;
+	rc_tilemap[tilemap].tileset = -1;
+	rc_tilemap[tilemap].active = false;
+
+	rc_deleted_tilemap.push_back(tilemap);
 }
 
 void rc_setTileMapSize(int tilemap, int widthInTiles, int heightInTiles)
