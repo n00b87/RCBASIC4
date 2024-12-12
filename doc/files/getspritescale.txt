@@ -3,4 +3,74 @@
 
 Gets the scale of a sprite
 
+#code
+isFullScreen = false
+vSync = true
+winWidth = 640
+winHeight = 480
+canViewPortX = 0
+canViewPortY = 0
+
+OpenWindow("GetSpriteScale", winWidth, winHeight, isFullScreen, vSync)
+pCanvas = OpenCanvas(200, 80, 0, 0, 200, 80, 1)                                     'Need to open a canvas for drawing the text
+sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+Canvas(sCanvas)
+
+DIM font1
+
+Font1 = LoadFont("DripOctober.ttf", 16)
+SetFont(Font1)
+SetColor(RGB(100, 200, 200))
+
+DIM eye
+DIM eyeW
+DIM eyeH
+DIM eyeScale				'Variable to hold the sprites scale
+ReleaseKey = 0
+eyeScale = 2
+
+DIM eyeScaleX
+DIM eyeScaleY
+
+eye = LoadImage("theEye.png")
+GetImageSize(eye, eyeW, eyeH)
+
+eyeSprite = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite, 100, 100)
+
+eyeSprite2 = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite2, 200, 100)
+
+SetSpriteScale(eyeSprite2, eyeScale, eyeScale)
+
+While Not Key(K_ESCAPE)
+ClearCanvas()
+Canvas(sCanvas)
+
+If Key(K_UP) And ReleaseKey = 0 Then
+	eyeScale = 1.1
+	ScaleSprite(eyeSprite2, eyeScale, eyeScale)
+	ReleaseKey = 1
+ElseIf Key(K_DOWN) And ReleaseKey = 0 Then
+	eyeScale = 0.9
+	ScaleSprite(eyeSprite2, eyeScale, eyeScale)
+	ReleaseKey = 1
+ElseIf Not Key(K_UP) And Not Key(K_DOWN) And ReleaseKey = 1 then
+	ReleaseKey = 0
+End If
+
+GetSpriteScale(eyeSprite2, eyeScaleX, eyeScaleY)
+Canvas(pCanvas)                                            'change to the standard drawing canvas for drawing text
+DrawText("Sprite Scale X: " + STR$(eyeScaleX), 10, 30)
+
+Update()
+Wend
+#/code
+
+#image "images/theEye.png"
+
+<br>
+<a href="../doc_files/images/DripOctober.ttf">Link to Font (It's locally on your computer, your not downloading anything from the internet)</a>
+<br>
+
 #ref ScaleSprite SetSpriteScale
