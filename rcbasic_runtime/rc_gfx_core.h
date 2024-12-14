@@ -5,10 +5,12 @@
 	#include "SDL.h"
 	#include "btBulletDynamicsCommon.h"
 	#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
+	#include "BulletCollision/NarrowPhaseCollision/btRaycastCallback.h"
 #else
 	#include <SDL2/SDL.h>
 	#include <bullet/btBulletDynamicsCommon.h>
 	#include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
+	#include <bullet/BulletCollision/NarrowPhaseCollision/btRaycastCallback.h>
 #endif // _IRR_ANDROID_PLATFORM_
 #include <irrlicht.h>
 #include <iostream>

@@ -1,2 +1,2 @@
-sub Fprint(txt$)
+sub FPrint(txt$)
 function Input$(prompt$)

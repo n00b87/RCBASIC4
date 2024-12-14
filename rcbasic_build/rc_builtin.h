@@ -4,7 +4,7 @@
 
 void init_embedded_functions()
 {
-	embed_function("Fprint", ID_TYPE_SUB);
+	embed_function("FPrint", ID_TYPE_SUB);
 	add_embedded_arg("txt$", ID_TYPE_STR);
 	embed_function("Input$", ID_TYPE_FN_STR);
 	add_embedded_arg("prompt$", ID_TYPE_STR);
@@ -1559,6 +1559,23 @@ void init_embedded_functions()
 	embed_function("SetWorld2DAutoClearForces", ID_TYPE_SUB);
 	add_embedded_arg("flag", ID_TYPE_NUM);
 	embed_function("GetWorld2DAutoClearForces", ID_TYPE_FN_NUM);
+	embed_function("CastRay2D", ID_TYPE_FN_NUM);
+	add_embedded_arg("from_x", ID_TYPE_NUM);
+	add_embedded_arg("from_y", ID_TYPE_NUM);
+	add_embedded_arg("to_x", ID_TYPE_NUM);
+	add_embedded_arg("to_y", ID_TYPE_NUM);
+	embed_function("CastRay2D_All", ID_TYPE_FN_NUM);
+	add_embedded_arg("from_x", ID_TYPE_NUM);
+	add_embedded_arg("from_y", ID_TYPE_NUM);
+	add_embedded_arg("to_x", ID_TYPE_NUM);
+	add_embedded_arg("to_y", ID_TYPE_NUM);
+	embed_function("GetRayHit2D", ID_TYPE_SUB);
+	add_embedded_arg("index", ID_TYPE_NUM);
+	add_embedded_arg("spr_id", ID_TYPE_BYREF_NUM);
+	add_embedded_arg("x", ID_TYPE_BYREF_NUM);
+	add_embedded_arg("y", ID_TYPE_BYREF_NUM);
+	add_embedded_arg("normal_x", ID_TYPE_BYREF_NUM);
+	add_embedded_arg("normal_y", ID_TYPE_BYREF_NUM);
 	embed_function("createDistanceJoint", ID_TYPE_FN_NUM);
 	add_embedded_arg("spriteA", ID_TYPE_NUM);
 	add_embedded_arg("spriteB", ID_TYPE_NUM);
@@ -2299,6 +2316,29 @@ void init_embedded_functions()
 	embed_function("SetActorSleepState", ID_TYPE_SUB);
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	add_embedded_arg("state", ID_TYPE_NUM);
+	embed_function("CastRay3D", ID_TYPE_FN_NUM);
+	add_embedded_arg("from_x", ID_TYPE_NUM);
+	add_embedded_arg("from_y", ID_TYPE_NUM);
+	add_embedded_arg("from_z", ID_TYPE_NUM);
+	add_embedded_arg("to_x", ID_TYPE_NUM);
+	add_embedded_arg("to_y", ID_TYPE_NUM);
+	add_embedded_arg("to_z", ID_TYPE_NUM);
+	embed_function("CastRay3D_All", ID_TYPE_FN_NUM);
+	add_embedded_arg("from_x", ID_TYPE_NUM);
+	add_embedded_arg("from_y", ID_TYPE_NUM);
+	add_embedded_arg("from_z", ID_TYPE_NUM);
+	add_embedded_arg("to_x", ID_TYPE_NUM);
+	add_embedded_arg("to_y", ID_TYPE_NUM);
+	add_embedded_arg("to_z", ID_TYPE_NUM);
+	embed_function("GetRayHit3D", ID_TYPE_SUB);
+	add_embedded_arg("index", ID_TYPE_NUM);
+	add_embedded_arg("actor_id", ID_TYPE_BYREF_NUM);
+	add_embedded_arg("x", ID_TYPE_BYREF_NUM);
+	add_embedded_arg("y", ID_TYPE_BYREF_NUM);
+	add_embedded_arg("z", ID_TYPE_BYREF_NUM);
+	add_embedded_arg("normal_x", ID_TYPE_BYREF_NUM);
+	add_embedded_arg("normal_y", ID_TYPE_BYREF_NUM);
+	add_embedded_arg("normal_z", ID_TYPE_BYREF_NUM);
 	embed_function("createPointConstraint", ID_TYPE_FN_NUM);
 	add_embedded_arg("actorA", ID_TYPE_NUM);
 	add_embedded_arg("pxA", ID_TYPE_NUM);

@@ -586,3 +586,115 @@ void rc_getGravity2D(double* x, double* y)
     *x = rc_canvas[rc_active_canvas].physics2D.world->GetGravity().x;
     *y = rc_canvas[rc_active_canvas].physics2D.world->GetGravity().y;
 }
+
+
+
+
+// Custom callback to collect all ray cast hits
+class RayCastCallback : public b2RayCastCallback {
+public:
+    struct Hit {
+        b2Fixture* fixture;
+        b2Vec2 point;
+        b2Vec2 normal;
+        float fraction;
+    };
+
+    std::vector<Hit> hits;
+
+    // This function is called for every fixture hit by the ray
+    float ReportFixture(b2Fixture* fixture, const b2Vec2& point, const b2Vec2& normal, float fraction) override {
+        hits.push_back({fixture, point, normal, fraction});
+        return 1.0f; // Continue the ray cast to find all hits
+    }
+};
+
+struct rc_rayHit2D_obj
+{
+	int sprite_id;
+	b2Vec2 hit_point;
+	b2Vec2 hit_normal;
+};
+
+std::vector<rc_rayHit2D_obj> rc_rayHit2D;
+
+// Function to perform a ray cast and collect all hits
+int rc_castRay2D_All(double from_x, double from_y, double to_x, double to_y)
+{
+	rc_rayHit2D.clear();
+    RayCastCallback callback;
+    const b2Vec2 point1(from_x, from_y);
+    const b2Vec2 point2(to_x, to_y);
+
+    rc_canvas[rc_active_canvas].physics2D.world->RayCast(&callback, point1, point2);
+
+    std::vector<RayCastCallback::Hit> cb_hits = callback.hits;
+
+    for(int i = 0; i < cb_hits.size(); i++)
+	{
+		rc_rayHit2D_obj hit;
+		rc_sprite2D_obj* h_sprite = (rc_sprite2D_obj*)cb_hits[i].fixture->GetBody()->GetUserData().pointer;
+		hit.sprite_id = h_sprite->id;
+		hit.hit_point = cb_hits[i].point;
+		hit.hit_normal = cb_hits[i].normal;
+		rc_rayHit2D.push_back(hit);
+	}
+
+	return cb_hits.size();
+}
+
+// Function to perform a ray cast and collect the closest hit
+int rc_castRay2D(double from_x, double from_y, double to_x, double to_y)
+{
+	rc_rayHit2D.clear();
+    RayCastCallback callback;
+    const b2Vec2 point1(from_x, from_y);
+    const b2Vec2 point2(to_x, to_y);
+
+    rc_canvas[rc_active_canvas].physics2D.world->RayCast(&callback, point1, point2);
+
+    std::vector<RayCastCallback::Hit> cb_hits = callback.hits;
+
+    float min_fraction = 0;
+    int index = 0;
+
+    for(int i = 0; i < cb_hits.size(); i++)
+	{
+		rc_rayHit2D_obj hit;
+		rc_sprite2D_obj* h_sprite = (rc_sprite2D_obj*)cb_hits[i].fixture->GetBody()->GetUserData().pointer;
+		hit.sprite_id = h_sprite->id;
+		hit.hit_point = cb_hits[i].point;
+		hit.hit_normal = cb_hits[i].normal;
+
+		if(i == 0 || cb_hits[i].fraction < min_fraction)
+		{
+			min_fraction = cb_hits[i].fraction;
+			index = rc_rayHit2D.size();
+			rc_rayHit2D.push_back(hit);
+		}
+	}
+
+	if(cb_hits.size() == 0)
+		return 0;
+
+	rc_rayHit2D_obj min_hit = rc_rayHit2D[index];
+	rc_rayHit2D.clear();
+	rc_rayHit2D.push_back(min_hit);
+
+	return 1;
+}
+
+void rc_getRayHit2D(int index, double* spr_id, double* x, double* y, double* normal_x, double* normal_y)
+{
+	if(index < 0 || index >= rc_rayHit2D.size())
+	{
+		*spr_id = -1;
+		return;
+	}
+
+	*spr_id = rc_rayHit2D[index].sprite_id;
+	*x = rc_rayHit2D[index].hit_point.x;
+	*y = rc_rayHit2D[index].hit_point.y;
+	*normal_x = rc_rayHit2D[index].hit_normal.x;
+	*normal_y = rc_rayHit2D[index].hit_normal.y;
+}

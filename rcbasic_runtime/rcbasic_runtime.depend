@@ -36,7 +36,7 @@
 1734119283 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
 	<TargetConditionals.h>
 
-1733959765 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
+1734207007 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
 
 1730291453 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_stdlib.h
 	"rc_os_defines.h"
@@ -1272,13 +1272,15 @@
 	"rc_joints.h"
 	<irrtheora.h>
 
-1733777902 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx_core.h
+1734192650 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx_core.h
 	"SDL.h"
 	"btBulletDynamicsCommon.h"
 	"BulletSoftBody/btSoftRigidDynamicsWorld.h"
+	"BulletCollision/NarrowPhaseCollision/btRaycastCallback.h"
 	<SDL2/SDL.h>
 	<bullet/btBulletDynamicsCommon.h>
 	<BulletSoftBody/btSoftRigidDynamicsWorld.h>
+	<bullet/BulletCollision/NarrowPhaseCollision/btRaycastCallback.h>
 	<irrlicht.h>
 	<iostream>
 	<sstream>
@@ -2273,7 +2275,7 @@
 	"rc_gfx_core.h"
 	<irrtheora.h>
 
-1733959765 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
+1734207007 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
 
 1724469097 source:/home/n00b/Projects/irrBullet/src/irrBullet.cpp
 	"irrBullet.h"
@@ -2506,7 +2508,7 @@
 	<irrlicht.h>
 	<vector>
 
-1731903210 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_sprite_physics.h
+1734205862 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_sprite_physics.h
 	"rc_sprite2D.h"
 
 1730291453 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_joints.h
@@ -2515,10 +2517,10 @@
 	"rc_sprite2D.h"
 	"rc_gfx_core.h"
 
-1733590876 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_physics3D_base.h
+1734206925 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_physics3D_base.h
 	"rc_gfx_core.h"
 
-1734125778 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_base_actor.h
+1734138955 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_base_actor.h
 
 1731710840 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_actor_material.h
 
@@ -2538,4 +2540,8 @@
 1731249956 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_camera.h
 
 1733959687 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_windowclose.h
+
+1608686973 /usr/include/bullet/BulletCollision/NarrowPhaseCollision/btRaycastCallback.h
+	"BulletCollision/CollisionShapes/btTriangleCallback.h"
+	"LinearMath/btTransform.h"
 

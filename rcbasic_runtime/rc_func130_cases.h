@@ -1,4 +1,4 @@
-case FN_Fprint: //Sub Procedure
+case FN_FPrint: //Sub Procedure
 	rc_fprint( FPRINT_TXT$ );
 	break;
 case FN_Input$: //String Function
@@ -1646,6 +1646,15 @@ case FN_SetWorld2DAutoClearForces: //Sub Procedure
 case FN_GetWorld2DAutoClearForces: //Number Function
 	 rc_push_num(rc_getWorld2DAutoClearForces(  ));
 	break;
+case FN_CastRay2D: //Number Function
+	 rc_push_num(rc_castRay2D( CASTRAY2D_FROM_X,  CASTRAY2D_FROM_Y,  CASTRAY2D_TO_X,  CASTRAY2D_TO_Y ));
+	break;
+case FN_CastRay2D_All: //Number Function
+	 rc_push_num(rc_castRay2D_All( CASTRAY2D_ALL_FROM_X,  CASTRAY2D_ALL_FROM_Y,  CASTRAY2D_ALL_TO_X,  CASTRAY2D_ALL_TO_Y ));
+	break;
+case FN_GetRayHit2D: //Sub Procedure
+	rc_getRayHit2D( GETRAYHIT2D_INDEX,  &GETRAYHIT2D_SPR_ID,  &GETRAYHIT2D_X,  &GETRAYHIT2D_Y,  &GETRAYHIT2D_NORMAL_X,  &GETRAYHIT2D_NORMAL_Y );
+	break;
 case FN_createDistanceJoint: //Number Function
 	 rc_push_num(rc_createDistanceJoint( CREATEDISTANCEJOINT_SPRITEA,  CREATEDISTANCEJOINT_SPRITEB,  CREATEDISTANCEJOINT_AX,  CREATEDISTANCEJOINT_AY,  CREATEDISTANCEJOINT_BX,  CREATEDISTANCEJOINT_BY,  CREATEDISTANCEJOINT_COLLIDE_CONNECT ));
 	break;
@@ -2233,6 +2242,15 @@ case FN_getActorLocalInertia: //Sub Procedure
 	break;
 case FN_SetActorSleepState: //Sub Procedure
 	rc_setActorSleepState( SETACTORSLEEPSTATE_ACTOR,  SETACTORSLEEPSTATE_STATE );
+	break;
+case FN_CastRay3D: //Number Function
+	 rc_push_num(rc_castRay3D( CASTRAY3D_FROM_X,  CASTRAY3D_FROM_Y,  CASTRAY3D_FROM_Z,  CASTRAY3D_TO_X,  CASTRAY3D_TO_Y,  CASTRAY3D_TO_Z ));
+	break;
+case FN_CastRay3D_All: //Number Function
+	 rc_push_num(rc_castRay3D_All( CASTRAY3D_ALL_FROM_X,  CASTRAY3D_ALL_FROM_Y,  CASTRAY3D_ALL_FROM_Z,  CASTRAY3D_ALL_TO_X,  CASTRAY3D_ALL_TO_Y,  CASTRAY3D_ALL_TO_Z ));
+	break;
+case FN_GetRayHit3D: //Sub Procedure
+	rc_getRayHit3D( GETRAYHIT3D_INDEX,  &GETRAYHIT3D_ACTOR_ID,  &GETRAYHIT3D_X,  &GETRAYHIT3D_Y,  &GETRAYHIT3D_Z,  &GETRAYHIT3D_NORMAL_X,  &GETRAYHIT3D_NORMAL_Y,  &GETRAYHIT3D_NORMAL_Z );
 	break;
 case FN_createPointConstraint: //Number Function
 	 rc_push_num(rc_createPointConstraint(  CREATEPOINTCONSTRAINT_ACTORA,   CREATEPOINTCONSTRAINT_PXA,   CREATEPOINTCONSTRAINT_PYA,   CREATEPOINTCONSTRAINT_PZA ));

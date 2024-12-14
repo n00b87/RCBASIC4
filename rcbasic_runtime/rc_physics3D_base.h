@@ -3,6 +3,93 @@
 
 #include "rc_gfx_core.h"
 
+struct rc_rayHit3D_obj
+{
+	int actor_id;
+	btVector3 hit_point;
+	btVector3 hit_normal;
+};
+
+irr::core::array<rc_rayHit3D_obj> rc_rayHit3D;
+
+///all hits
+int rc_castRay3D_All(double from_x, double from_y, double from_z, double to_x, double to_y, double to_z)
+{
+	rc_rayHit3D.clear();
+	btVector3 from(from_x, from_y, from_z);
+	btVector3 to(to_x, to_y, to_z);
+	//m_dynamicsWorld->getDebugDrawer()->drawLine(from, to, btVector4(0, 0, 0, 1));
+	btCollisionWorld::AllHitsRayResultCallback allResults(from, to);
+	allResults.m_flags |= btTriangleRaycastCallback::kF_KeepUnflippedNormal;
+	//kF_UseGjkConvexRaytest flag is now enabled by default, use the faster but more approximate algorithm
+	//allResults.m_flags |= btTriangleRaycastCallback::kF_UseSubSimplexConvexCastRaytest;
+	allResults.m_flags |= btTriangleRaycastCallback::kF_UseSubSimplexConvexCastRaytest;
+
+	rc_physics3D.world->getPointer()->rayTest(from, to, allResults);
+
+	for (int i = 0; i < allResults.m_hitFractions.size(); i++)
+	{
+		rc_rayHit3D_obj hit;
+		hit.hit_point = from.lerp(to, allResults.m_hitFractions[i]);
+		hit.hit_normal = allResults.m_hitNormalWorld[i];
+		btRigidBody* body = (btRigidBody*)allResults.m_collisionObjects[i];
+		SCollisionObjectIdentification* colID = (SCollisionObjectIdentification*)body->getUserPointer();
+		hit.actor_id = colID->getId();
+		rc_rayHit3D.push_back(hit);
+		//m_dynamicsWorld->getDebugDrawer()->drawSphere(p, 0.1, red);
+		//m_dynamicsWorld->getDebugDrawer()->drawLine(p, p + allResults.m_hitNormalWorld[i], red);
+	}
+
+	return allResults.m_hitFractions.size();
+}
+
+///first hit
+bool rc_castRay3D(double from_x, double from_y, double from_z, double to_x, double to_y, double to_z)
+{
+	rc_rayHit3D.clear();
+	btVector3 from(from_x, from_y, from_z);
+	btVector3 to(to_x, to_y, to_z);
+	//m_dynamicsWorld->getDebugDrawer()->drawLine(from, to, btVector4(0, 0, 1, 1));
+
+	btCollisionWorld::ClosestRayResultCallback closestResults(from, to);
+	closestResults.m_flags |= btTriangleRaycastCallback::kF_FilterBackfaces;
+
+	rc_physics3D.world->getPointer()->rayTest(from, to, closestResults);
+
+	if (closestResults.hasHit())
+	{
+		rc_rayHit3D_obj hit;
+		hit.hit_point = from.lerp(to, closestResults.m_closestHitFraction);
+		hit.hit_normal = closestResults.m_hitNormalWorld;
+		btRigidBody* body = (btRigidBody*)closestResults.m_collisionObject;
+		SCollisionObjectIdentification* colID = (SCollisionObjectIdentification*)body->getUserPointer();
+		hit.actor_id = colID->getId();
+		rc_rayHit3D.push_back(hit);
+
+		//m_dynamicsWorld->getDebugDrawer()->drawSphere(p, 0.1, blue);
+		//m_dynamicsWorld->getDebugDrawer()->drawLine(p, p + closestResults.m_hitNormalWorld, blue);
+	}
+
+	return closestResults.hasHit();
+}
+
+void rc_getRayHit3D( int index, double* actor_id, double* x, double* y, double* z, double* normal_x, double* normal_y, double* normal_z )
+{
+	if(index < 0 || index >= rc_rayHit3D.size())
+	{
+		*actor_id = -1;
+		return;
+	}
+
+	*actor_id = rc_rayHit3D[index].actor_id;
+	*x = rc_rayHit3D[index].hit_point.getX();
+	*y = rc_rayHit3D[index].hit_point.getY();
+	*z = rc_rayHit3D[index].hit_point.getZ();
+	*normal_x = rc_rayHit3D[index].hit_normal.getX();
+	*normal_y = rc_rayHit3D[index].hit_normal.getY();
+	*normal_z = rc_rayHit3D[index].hit_normal.getZ();
+}
+
 //Set Gravity
 void rc_setGravity3D(double x, double y, double z)
 {
