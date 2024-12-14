@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>RCBasic Loops [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>LOOPS </h2></p>
+		<p>
+		 RC BASIC has 3 types of loops: <b>FOR</b>, <b>WHILE</b>, and <b>DO</b>. 
+		</p>
+		<p>
+		 The <b>FOR</b> loop repeats a block of code and increments a counter each time it finishes the block between <b>FOR</b> and <b>NEXT</b>.  When the counter reaches a certain value the <b>FOR</b> loop stops. 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">For</span>&nbsp;I&nbsp;=&nbsp;<span class="rc_number">1</span>&nbsp;<span class="rc_keyword">To</span>&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;I&nbsp;<br>
+			<span class="rc_keyword">Next</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above code will output the numbers 1 to 5 to the console. Optionally you could use the <b>STEP</b> keyword to set the number that the counter will increase by. Look at the following: 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">For</span>&nbsp;I&nbsp;=&nbsp;<span class="rc_number">1</span>&nbsp;<span class="rc_keyword">To</span>&nbsp;<span class="rc_number">5</span>&nbsp;Step&nbsp;<span class="rc_number">2</span>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;I&nbsp;<br>
+			<span class="rc_keyword">Next</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above code will output the numbers 1, 3, and 5 to the console.  The <b>STEP</b> keyword increases I by 2 each time through the <b>FOR</b> loop. 
+		</p>
+		<p>
+		 <b>WHILE</b> loops will execute a block of code while a certain condition is true. 
+		</p>
+		<p id="rc_code"><code>
+			I&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			<span class="rc_keyword">While</span>&nbsp;I&nbsp;&lt;&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;I&nbsp;<br>
+			I&nbsp;=&nbsp;I&nbsp;+&nbsp;<span class="rc_number">1</span>&nbsp;<br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above code will output the numbers 0 to 4.  It will not output the number 5 because if ( I < 5 ) is false the loop will not repeat. 
+		</p>
+		<p>
+		 The <b>DO</b> loop is similar to the <b>WHILE</b> loop with an exception.  The <b>WHILE</b> loop checks for the loop condition at the start of the loop but the <b>DO</b> loop checks for the loop condition at the end of the loop.  What this means is that a <b>WHILE</b> loop will never execute if the condition is false at the start but the <b>DO</b> loop is guaranteed to execute at least once before it checks if the condition was true or not. 
+		</p>
+		<p>
+		 The <b>DO</b> loop is also unique in that it has 3 different forms.  Here is the simplest form of the <b>DO</b> loop. 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Do</span>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"HELLO WORLD"</span>&nbsp;<br>
+			<span class="rc_keyword">Loop</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 The code above will continue to output HELLO WORLD to the console infinitely. 
+		</p>
+		<p id="rc_code"><code>
+			I&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			<span class="rc_keyword">Do</span>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;I&nbsp;<br>
+			I&nbsp;=&nbsp;I&nbsp;+&nbsp;<span class="rc_number">1</span>&nbsp;<br>
+			<span class="rc_keyword">Loop</span>&nbsp;<span class="rc_keyword">While</span>&nbsp;I&nbsp;&lt;&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above code will output the numbers 0 to 4 to the console.  This form of the <b>DO</b> loop will continue to loop while the loop condition is true. 
+		</p>
+		<p id="rc_code"><code>
+			I&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			<span class="rc_keyword">Do</span>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;I&nbsp;<br>
+			I&nbsp;=&nbsp;I&nbsp;+&nbsp;<span class="rc_number">1</span>&nbsp;<br>
+			<span class="rc_keyword">Loop</span>&nbsp;<span class="rc_keyword">Until</span>&nbsp;I&nbsp;=&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above code will output the numbers 0 to 4 to the console.  This form of the <b>DO</b> loop will continue to loop until the loop condition is true. 
+		</p>
+		<p>
+
+	</body>
+</html>

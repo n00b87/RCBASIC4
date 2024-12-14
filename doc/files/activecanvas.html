@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>ActiveCanvas [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>function ActiveCanvas() </h2></p>
+		<p>
+		 Returns the canvas that drawing commands are currently applied to 
+		</p>
+		<p id="rc_code"><code>
+			c1&nbsp;=&nbsp;OpenCanvas<b>(</b><span class="rc_number">640</span>,&nbsp;<span class="rc_number">480</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">640</span>,&nbsp;<span class="rc_number">480</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<br>
+			c2&nbsp;=&nbsp;OpenCanvas<b>(</b><span class="rc_number">640</span>,&nbsp;<span class="rc_number">480</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">640</span>,&nbsp;<span class="rc_number">480</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Canvas<b>(</b>c1<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">If</span>&nbsp;ActiveCanvas<b>(</b><b>)</b>&nbsp;=&nbsp;c1&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"Active canvas is c1"</span>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Canvas<b>(</b>c2<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">If</span>&nbsp;ActiveCanvas<b>(</b><b>)</b>&nbsp;=&nbsp;c2&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"Active canvas is now c2"</span>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
+		</code></p>
+		<p>
+
+	</body>
+</html>

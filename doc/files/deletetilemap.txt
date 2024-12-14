@@ -1,0 +1,4 @@
+#title DeleteTileMap [RCBasic Doc]
+#header Sub DeleteTileMap(tilemap)
+
+

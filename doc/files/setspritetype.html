@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>SetSpriteType [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Sub SetSpriteType(sprite, sprite_type) </h2></p>
+		<p>
+		 Sets the type of collision body a sprite has 
+		</p>
+		<ul>
+		<li>
+		SPRITE_TYPE_STATIC 
+		</li>
+		<li>
+		SPRITE_TYPE_KINEMATIC 
+		</li>
+		<li>
+		SPRITE_TYPE_DYNAMIC 
+		</li>
+		</ul>
+		<p>
+		 Here is an example of SPRITE_TYPE_DYNAMIC: 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_comment">'This is showing SPRITE_TYPE_DYNAMIC </span><br>
+			&nbsp;&nbsp;<br>
+			isFullScreen&nbsp;=&nbsp;<span class="rc_keyword">false</span>&nbsp;<br>
+			vSync&nbsp;=&nbsp;<span class="rc_keyword">true</span>&nbsp;<br>
+			winWidth&nbsp;=&nbsp;<span class="rc_number">640</span>&nbsp;<br>
+			winHeight&nbsp;=&nbsp;<span class="rc_number">480</span>&nbsp;<br>
+			canViewPortX&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			canViewPortY&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			OpenWindow<b>(</b><span class="rc_string">"SetSpriteType_Dynamic"</span>,&nbsp;winWidth,&nbsp;winHeight,&nbsp;isFullScreen,&nbsp;vSync<b>)</b>&nbsp;<br>
+			sCanvas&nbsp;=&nbsp;OpenCanvasSpriteLayer<b>(</b>canViewPortX,&nbsp;canViewPortY,&nbsp;winWidth,&nbsp;winHeight<b>)</b>&nbsp;<br>
+			Canvas<b>(</b>sCanvas<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eye&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeW&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeH&nbsp;<br>
+			eyeSpriteX&nbsp;=&nbsp;<span class="rc_number">100</span>&nbsp;<br>
+			eyeSpriteY&nbsp;=&nbsp;<span class="rc_number">100</span>&nbsp;<br>
+			eyeSprite2X&nbsp;=&nbsp;<span class="rc_number">400</span>&nbsp;<br>
+			eyeSprite2Y&nbsp;=&nbsp;<span class="rc_number">125</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eye&nbsp;=&nbsp;LoadImage<b>(</b><span class="rc_string">"theEye.png"</span><b>)</b>&nbsp;<br>
+			GetImageSize<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eyeSprite&nbsp;=&nbsp;CreateSprite<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			SetSpritePosition<b>(</b>eyeSprite,&nbsp;eyeSpriteX,&nbsp;eyeSpriteY<b>)</b>&nbsp;<br>
+			SetSpriteSolid<b>(</b>eyeSprite,&nbsp;<span class="rc_number">1</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_comment">'When Sprites are created and physics activated there "type" is Dyanmic by default </span><br>
+			<span class="rc_comment">'The sprites have collision and physics activated, so they can move and react to other bodies. </span><br>
+			&nbsp;&nbsp;<br>
+			eyeSprite2&nbsp;=&nbsp;CreateSprite<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			SetSpritePosition<b>(</b>eyeSprite2,&nbsp;eyeSprite2X,&nbsp;eyeSprite2Y<b>)</b>&nbsp;<br>
+			SetSpriteSolid<b>(</b>eyeSprite2,&nbsp;<span class="rc_number">1</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;Key<b>(</b>K_ESCAPE<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			SetSpriteLinearVelocity<b>(</b>eyeSprite,&nbsp;<span class="rc_number">80</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Update<b>(</b><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 Here is an example of SPRITE_TYPE_STATIC: 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_comment">'This is showing SPRITE_TYPE_STATIC </span><br>
+			&nbsp;&nbsp;<br>
+			isFullScreen&nbsp;=&nbsp;<span class="rc_keyword">false</span>&nbsp;<br>
+			vSync&nbsp;=&nbsp;<span class="rc_keyword">true</span>&nbsp;<br>
+			winWidth&nbsp;=&nbsp;<span class="rc_number">640</span>&nbsp;<br>
+			winHeight&nbsp;=&nbsp;<span class="rc_number">480</span>&nbsp;<br>
+			canViewPortX&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			canViewPortY&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			OpenWindow<b>(</b><span class="rc_string">"SetSpriteType_Static"</span>,&nbsp;winWidth,&nbsp;winHeight,&nbsp;isFullScreen,&nbsp;vSync<b>)</b>&nbsp;<br>
+			sCanvas&nbsp;=&nbsp;OpenCanvasSpriteLayer<b>(</b>canViewPortX,&nbsp;canViewPortY,&nbsp;winWidth,&nbsp;winHeight<b>)</b>&nbsp;<br>
+			Canvas<b>(</b>sCanvas<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eye&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeW&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeH&nbsp;<br>
+			eyeSpriteX&nbsp;=&nbsp;<span class="rc_number">100</span>&nbsp;<br>
+			eyeSpriteY&nbsp;=&nbsp;<span class="rc_number">100</span>&nbsp;<br>
+			eyeSprite2X&nbsp;=&nbsp;<span class="rc_number">400</span>&nbsp;<br>
+			eyeSprite2Y&nbsp;=&nbsp;<span class="rc_number">125</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eye&nbsp;=&nbsp;LoadImage<b>(</b><span class="rc_string">"theEye.png"</span><b>)</b>&nbsp;<br>
+			GetImageSize<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eyeSprite&nbsp;=&nbsp;CreateSprite<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			SetSpritePosition<b>(</b>eyeSprite,&nbsp;eyeSpriteX,&nbsp;eyeSpriteY<b>)</b>&nbsp;<br>
+			SetSpriteSolid<b>(</b>eyeSprite,&nbsp;<span class="rc_number">1</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_comment">'When Sprites are created and physics activated there "type" is Dyanmic by default </span><br>
+			<span class="rc_comment">'The sprites have collision and physics activated, so they can move and react to other bodies. </span><br>
+			&nbsp;&nbsp;<br>
+			eyeSprite2&nbsp;=&nbsp;CreateSprite<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			SetSpritePosition<b>(</b>eyeSprite2,&nbsp;eyeSprite2X,&nbsp;eyeSprite2Y<b>)</b>&nbsp;<br>
+			SetSpriteSolid<b>(</b>eyeSprite2,&nbsp;<span class="rc_number">1</span><b>)</b>&nbsp;<br>
+			SetSpriteType<b>(</b>eyeSprite2,&nbsp;SPRITE_TYPE_STATIC<b>)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'When a sprite is made solid nothing can move it </span><br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;Key<b>(</b>K_ESCAPE<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			SetSpriteLinearVelocity<b>(</b>eyeSprite,&nbsp;<span class="rc_number">80</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Update<b>(</b><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 Finally here is an example of SPRITE_TYPE_KINEMATIC: 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_comment">'This is showing SPRITE_TYPE_KINEMATIC </span><br>
+			&nbsp;&nbsp;<br>
+			isFullScreen&nbsp;=&nbsp;<span class="rc_keyword">false</span>&nbsp;<br>
+			vSync&nbsp;=&nbsp;<span class="rc_keyword">true</span>&nbsp;<br>
+			winWidth&nbsp;=&nbsp;<span class="rc_number">640</span>&nbsp;<br>
+			winHeight&nbsp;=&nbsp;<span class="rc_number">480</span>&nbsp;<br>
+			canViewPortX&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			canViewPortY&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			OpenWindow<b>(</b><span class="rc_string">"SetSpriteType_Kinematic"</span>,&nbsp;winWidth,&nbsp;winHeight,&nbsp;isFullScreen,&nbsp;vSync<b>)</b>&nbsp;<br>
+			sCanvas&nbsp;=&nbsp;OpenCanvasSpriteLayer<b>(</b>canViewPortX,&nbsp;canViewPortY,&nbsp;winWidth,&nbsp;winHeight<b>)</b>&nbsp;<br>
+			Canvas<b>(</b>sCanvas<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eye&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeW&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeH&nbsp;<br>
+			eyeSpriteX&nbsp;=&nbsp;<span class="rc_number">100</span>&nbsp;<br>
+			eyeSpriteY&nbsp;=&nbsp;<span class="rc_number">100</span>&nbsp;<br>
+			eyeSprite2X&nbsp;=&nbsp;<span class="rc_number">400</span>&nbsp;<br>
+			eyeSprite2Y&nbsp;=&nbsp;<span class="rc_number">125</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eye&nbsp;=&nbsp;LoadImage<b>(</b><span class="rc_string">"theEye.png"</span><b>)</b>&nbsp;<br>
+			GetImageSize<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eyeSprite&nbsp;=&nbsp;CreateSprite<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			SetSpritePosition<b>(</b>eyeSprite,&nbsp;eyeSpriteX,&nbsp;eyeSpriteY<b>)</b>&nbsp;<br>
+			SetSpriteSolid<b>(</b>eyeSprite,&nbsp;<span class="rc_number">1</span><b>)</b>&nbsp;<br>
+			SetSpriteType<b>(</b>eyeSprite,&nbsp;SPRITE_TYPE_KINEMATIC<b>)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'KINEMATIC type makes the sprite able to be moved, but it does not react to dynamic bodies. </span><br>
+			&nbsp;&nbsp;<br>
+			eyeSprite2&nbsp;=&nbsp;CreateSprite<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			SetSpritePosition<b>(</b>eyeSprite2,&nbsp;eyeSprite2X,&nbsp;eyeSprite2Y<b>)</b>&nbsp;<br>
+			SetSpriteSolid<b>(</b>eyeSprite2,&nbsp;<span class="rc_number">1</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;Key<b>(</b>K_ESCAPE<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			SetSpriteLinearVelocity<b>(</b>eyeSprite,&nbsp;<span class="rc_number">80</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Update<b>(</b><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+		</code></p>
+		<p><img src="images/theEye.png" ></p>
+		<br><p>Related: 
+		<a href="getspritetype.html">GetSpriteType</a>
+		</p>
+		<p>
+
+	</body>
+</html>

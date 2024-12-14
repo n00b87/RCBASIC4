@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>SetSpriteRotation [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Sub SetSpriteRotation(sprite, angle) </h2></p>
+		<p>
+		 Sets the angle the sprite is rotated by 
+		</p>
+		<p id="rc_code"><code>
+			isFullScreen&nbsp;=&nbsp;<span class="rc_keyword">false</span>&nbsp;<br>
+			vSync&nbsp;=&nbsp;<span class="rc_keyword">true</span>&nbsp;<br>
+			winWidth&nbsp;=&nbsp;<span class="rc_number">640</span>&nbsp;<br>
+			winHeight&nbsp;=&nbsp;<span class="rc_number">480</span>&nbsp;<br>
+			canViewPortX&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			canViewPortY&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			OpenWindow<b>(</b><span class="rc_string">"SetSpriteRotation"</span>,&nbsp;winWidth,&nbsp;winHeight,&nbsp;isFullScreen,&nbsp;vSync<b>)</b>&nbsp;<br>
+			sCanvas&nbsp;=&nbsp;OpenCanvasSpriteLayer<b>(</b>canViewPortX,&nbsp;canViewPortY,&nbsp;winWidth,&nbsp;winHeight<b>)</b>&nbsp;<br>
+			Canvas<b>(</b>sCanvas<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eye&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeW&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeH&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeAngle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'Variable to hold the sprites angle value </span><br>
+			&nbsp;&nbsp;<br>
+			eye&nbsp;=&nbsp;LoadImage<b>(</b><span class="rc_string">"theEye.png"</span><b>)</b>&nbsp;<br>
+			GetImageSize<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eyeSprite&nbsp;=&nbsp;CreateSprite<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			SetSpritePosition<b>(</b>eyeSprite,&nbsp;<span class="rc_number">100</span>,&nbsp;<span class="rc_number">100</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;Key<b>(</b>K_ESCAPE<b>)</b>&nbsp;<br>
+			<span class="rc_comment">'ClearCanvas() For a sprite layer canvas, you don't need to call ClearCanvas. It's automatically called. </span><br>
+			&nbsp;&nbsp;<br>
+			SetSpriteRotation<b>(</b>eyeSprite,&nbsp;eyeAngle<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eyeAngle&nbsp;=&nbsp;eyeAngle&nbsp;+&nbsp;<span class="rc_number">0.3</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Update<b>(</b><b>)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'Update automatically deals with drawing the sprites on the sprite canvas. </span><br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+		</code></p>
+		<p><img src="images/theEye.png" ></p>
+		<br><p>Related: 
+		<a href="getspriterotation.html">GetSpriteRotation</a>
+		<a href="rotatesprite.html">RotateSprite</a>
+		</p>
+		<p>
+
+	</body>
+</html>

@@ -1,0 +1,4 @@
+#title GetRayHit3D [RCBasic Doc]
+#header sub GetRayHit3D( index, ByRef actor_id, ByRef x, ByRef y, ByRef z, ByRef normal_x, ByRef normal_y, ByRef normal_z )
+
+

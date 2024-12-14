@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>CreateTileSet [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Function CreateTileSet(img_id, tile_w, tile_h) </h2></p>
+		<p>
+		 Return a new Tileset 
+		</p>
+		<p>
+		 Parameters: 
+		</p>
+		<ul>
+		<li>
+		img_id - A image to use as a tile sheet 
+		</li>
+		<li>
+		tile_w - The width of each tile 
+		</li>
+		<li>
+		tile_h - The height of each tile 
+		</li>
+		</ul>
+		<p id="rc_code"><code>
+			isFullScreen&nbsp;=&nbsp;<span class="rc_keyword">false</span>&nbsp;<br>
+			vSync&nbsp;=&nbsp;<span class="rc_keyword">true</span>&nbsp;<br>
+			winWidth&nbsp;=&nbsp;<span class="rc_number">640</span>&nbsp;<br>
+			winHeight&nbsp;=&nbsp;<span class="rc_number">480</span>&nbsp;<br>
+			canViewPortX&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			canViewPortY&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			OpenWindow<b>(</b><span class="rc_string">"TestTileset"</span>,&nbsp;winWidth,&nbsp;winHeight,&nbsp;isFullScreen,&nbsp;vSync<b>)</b>&nbsp;<br>
+			mCanvas&nbsp;=&nbsp;OpenCanvas<b>(</b>winWidth,&nbsp;winHeight,&nbsp;canViewPortX,&nbsp;canViewPortY,&nbsp;winWidth,&nbsp;winHeight,&nbsp;<span class="rc_number">1</span><b>)</b>&nbsp;<br>
+			Canvas<b>(</b>mCanvas<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			mAtlas&nbsp;=&nbsp;LoadImage<b>(</b><span class="rc_string">"testTileSet.png"</span><b>)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'Load in our atlas or tile set image </span><br>
+			&nbsp;&nbsp;<br>
+			mTileSet&nbsp;=&nbsp;CreateTileSet<b>(</b>mAtlas,&nbsp;<span class="rc_number">24</span>,&nbsp;<span class="rc_number">24</span><b>)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'Create a tile set and assign it a holder to access </span><br>
+			&nbsp;&nbsp;<br>
+			mTileMap&nbsp;=&nbsp;CreateTileMap<b>(</b>mTileSet,&nbsp;<span class="rc_number">20</span>,&nbsp;<span class="rc_number">20</span><b>)</b>&nbsp;&nbsp;&nbsp;<span class="rc_comment">'Create a tile map with our tile set holder "mTileSet" </span><br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_comment">'Now we have a blacnk tilemap to fill with tiles, we now use the mAtlas image to fill in the map </span><br>
+			<span class="rc_comment">'First we will assign a grass tile across our entire tile map. lets grab a grass tile to fill in. </span><br>
+			&nbsp;&nbsp;<br>
+			FillTile<b>(</b>mTileMap,&nbsp;<span class="rc_number">166</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">20</span>,&nbsp;<span class="rc_number">20</span><b>)</b>&nbsp;&nbsp;&nbsp;<span class="rc_comment">'The tile number goes by starting at the top left corner to the right edge of the image, </span><br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_comment">'then wraps around and comntinues the count, the image is 13 wide (0-12) so 166 would be </span><br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_comment">'2 in from the end of the last row of images on the tileset. </span><br>
+			&nbsp;&nbsp;<br>
+			SetTile<b>(</b>mTileMap,&nbsp;<span class="rc_number">15</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'With the map filled with grass tiles we can change a single tile, to a little guy in the </span><br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_comment">'top left corner. </span><br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_comment">'Before we begin our main loop, we need to make some variables for holding some important info </span><br>
+			mOffsetX&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			mOffsetY&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'Offset values for where the tile is to be drawn from, used for scrolling. </span><br>
+			mViewportX&nbsp;=&nbsp;<span class="rc_number">640</span>&nbsp;<br>
+			mViewportY&nbsp;=&nbsp;<span class="rc_number">480</span>&nbsp;&nbsp;&nbsp;<span class="rc_comment">'How much of the tile map is to be drawn on the canvas </span><br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;Key<b>(</b>K_ESCAPE<b>)</b>&nbsp;<br>
+			ClearCanvas<b>(</b><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			DrawTileMap<b>(</b>mTileMap,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;mViewportX,&nbsp;mViewportY,&nbsp;mOffsetX,&nbsp;mOffsetY<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">If</span>&nbsp;Key<b>(</b>K_UP<b>)</b>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;mOffsetY&nbsp;=&nbsp;mOffsetY&nbsp;-&nbsp;<span class="rc_number">0.5</span>&nbsp;<br>
+			<span class="rc_keyword">ElseIf</span>&nbsp;Key<b>(</b>K_DOWN<b>)</b>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;mOffsetY&nbsp;=&nbsp;mOffsetY&nbsp;+&nbsp;<span class="rc_number">0.5</span>&nbsp;<br>
+			<span class="rc_keyword">ElseIf</span>&nbsp;Key<b>(</b>K_LEFT<b>)</b>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;mOffsetX&nbsp;=&nbsp;mOffsetX&nbsp;-&nbsp;<span class="rc_number">0.5</span>&nbsp;<br>
+			<span class="rc_keyword">ElseIf</span>&nbsp;Key<b>(</b>K_RIGHT<b>)</b>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;mOffsetX&nbsp;=&nbsp;mOffsetX&nbsp;+&nbsp;<span class="rc_number">0.5</span>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Update<b>(</b><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_comment">'As you can see this replaces the grass tile with a character tile, if we wanted to place the character or any other object or image ontop of the tile </span><br>
+			<span class="rc_comment">'we would DrawImage() an image not using the tilemap. </span><br>
+		</code></p>
+		<p><img src="images/testTileSet.png" ></p>
+		<br><p>Related: 
+		<a href="createtilemap.html">CreateTileMap</a>
+		<a href="settile.html">SetTile</a>
+		<a href="filltile.html">FillTile</a>
+		<a href="drawtilemap.html">DrawTileMap</a>
+		</p>
+		<p>
+
+	</body>
+</html>

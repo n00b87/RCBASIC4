@@ -1,0 +1,4 @@
+#title GetRayHit2D [RCBasic Doc]
+#header sub GetRayHit2D( index, ByRef spr_id, ByRef x, ByRef y, ByRef normal_x, ByRef normal_y )
+
+
