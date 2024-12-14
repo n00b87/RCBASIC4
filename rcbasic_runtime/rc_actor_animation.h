@@ -135,7 +135,7 @@ void rc_setActorMD2AnimationByName(int actor, std::string animation_name, int nu
             rc_actor[actor].isPlaying = true;
             //node->setCurrentFrame(start_frame);
             //node->setFrameLoop((irr::s32)start_frame, (irr::s32)end_frame );  //setMD2Animation() does this for me
-            node->setAnimationSpeed(node->getMesh()->getAnimationSpeed());
+            //node->setAnimationSpeed(node->getMesh()->getAnimationSpeed());
             break;
     }
 }

@@ -766,16 +766,17 @@ void rc_setActorPosition(int actor, double x, double y, double z)
 	{
 		//std::cout << "Set POS" << std::endl;
 		irr::core::matrix4 actor_transform = rc_actor[actor].physics.rigid_body->getWorldTransform();
-		rc_physics3D.world->removeCollisionObject(rc_actor[actor].physics.rigid_body, false);
+		//rc_physics3D.world->removeCollisionObject(rc_actor[actor].physics.rigid_body, false);
 		actor_transform.setTranslation( irr::core::vector3df(x, y, z) );
 		rc_actor[actor].physics.rigid_body->clearForces();
 		//rc_actor[actor].physics.rigid_body->
 		rc_actor[actor].physics.rigid_body->setWorldTransform(actor_transform);
 
-		rc_actor[actor].physics.rigid_body->setMassProps(rc_actor[actor].physics.mass, irr::core::vector3df(0,0,0));
-		rc_physics3D.world->addRigidBody(rc_actor[actor].physics.rigid_body);
+		//rc_actor[actor].physics.rigid_body->setMassProps(rc_actor[actor].physics.mass, irr::core::vector3df(0,0,0));
+		//rc_physics3D.world->addRigidBody(rc_actor[actor].physics.rigid_body);
 
 		rc_actor[actor].mesh_node->setPosition(actor_transform.getTranslation());
+		rc_actor[actor].mesh_node->updateAbsolutePosition();
 
 	}
 }

@@ -4448,7 +4448,7 @@ int main(int argc, char * argv[])
     if(debug_opt.compare("a")==0)
 	{
 		//rc_intern_dirChange("/home/n00b/Music/rcbasic_v400_linux64/examples/tile_demo");
-		rc_intern_dirChange("/home/n00b/projects/rcbasic_alpha3/test_project");
+		rc_intern_dirChange("/home/n00b/Music/Simple 3D Platformer/");
 		rc_filename = "main.cbc";
 	}
     else

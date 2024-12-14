@@ -920,7 +920,7 @@ int main(int argc, char * argv[])
 
     //DEBUG START
     //rc_filename = "/home/n00b/projects/bu/constraint_demo/main.bas";
-	//rc_filename = "/home/n00b/projects/bu/rcbasic_v400A6_linux/rcbasic_v400_linux/examples/tile_demo/main.bas";
+	//rc_filename = "/home/n00b/Music/Simple 3D Platformer/main.bas";
 	//rc_filename = "/home/n00b/projects/rcbasic_alpha3/test_project/main.bas";
     //DEBUG END
 
