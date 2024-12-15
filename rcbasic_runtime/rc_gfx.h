@@ -2316,6 +2316,13 @@ int rc_loadImageEx(std::string img_file, Uint32 color_key = 0, bool use_color_ke
     if(img.image == NULL)
         return -1;
 
+	if(color_key == -1)
+	{
+		Uint32* img_pixels = (Uint32*)img.image->lock();
+		color_key = img_pixels[0];
+		img.image->unlock();
+	}
+
     if(use_color_key)
         VideoDriver->makeColorKeyTexture(img.image, irr::video::SColor(color_key), false);
 
@@ -2371,6 +2378,13 @@ int rc_createImageEx(int w, int h, double * pdata, Uint32 colorkey, bool use_col
         return -1;
 
     Uint32 * img_pixels = (Uint32*)image->getData();
+
+    if( ((w*h) >= 1) && colorkey == -1)
+    {
+    	colorkey = img_pixels[0];
+    }
+
+
     for(int i = 0; i < (w*h); i++)
     {
         img_pixels[i] = (Uint32)pdata[i];
@@ -2941,6 +2955,12 @@ void rc_setColorKey(int img_id, Uint32 colorkey)
     if(!rc_imageExists(img_id))
         return;
 
+    if(colorkey == -1)
+	{
+		Uint32* img_pixels = (Uint32*)rc_image[img_id].image->lock();
+		colorkey = img_pixels[0];
+		rc_image[img_id].image->unlock();
+	}
     VideoDriver->makeColorKeyTexture(rc_image[img_id].image, irr::video::SColor(colorkey));
 }
 

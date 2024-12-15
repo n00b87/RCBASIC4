@@ -1,4 +1,10 @@
 #title CastRay2D [RCBasic Doc]
 #header function CastRay2D( from_x, from_y, to_x, to_y )
 
+Cast a ray and get the closest hit on the ray
 
+Returns 1 if there is a hit and 0 if not
+
+NOTE: GetRayHit2D is used to read each hit
+
+#ref GetRayHit3D CastRay3D CastRay3D_All CastRay2D_All GetRayHit2D
