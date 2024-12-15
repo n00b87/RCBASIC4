@@ -106,6 +106,9 @@ bool rc_update()
 
 	rc_inkey_val = 0;
 
+	rc_mwheelx = 0;
+	rc_mwheely = 0;
+
 	while ( !Close && SDL_PollEvent( &SDL_event ) )
 	{
 		// os::Printer::log("event: ", core::stringc((int)SDL_event.type).c_str(),   ELL_INFORMATION);	// just for debugging
