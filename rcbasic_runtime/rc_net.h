@@ -203,7 +203,7 @@ int rc_net_tcp_socketReady(int _socket)
 	if(rc_tcp_socket[_socket].socket == NULL)
 		return 0;
 
-    return SDLNet_SocketReady(rc_tcp_socket[_socket].socket);
+    return !(SDLNet_SocketReady(rc_tcp_socket[_socket].socket));
 }
 
 int rc_net_tcp_getData(int socket, int numBytes, void * dst)
