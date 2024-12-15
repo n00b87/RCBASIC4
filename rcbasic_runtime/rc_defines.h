@@ -946,7 +946,6 @@
 #define TCP_SENDDATA_SDATA$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define FN_TCP_AcceptSocket 339
 #define TCP_ACCEPTSOCKET_SERVER num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define TCP_ACCEPTSOCKET_CLIENT num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define FN_UDP_OpenSocket 340
 #define UDP_OPENSOCKET_PORT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define FN_UDP_CloseSocket 341

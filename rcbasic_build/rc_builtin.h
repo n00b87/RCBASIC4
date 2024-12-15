@@ -949,7 +949,6 @@ void init_embedded_functions()
 	add_embedded_arg("sData$", ID_TYPE_STR);
 	embed_function("TCP_AcceptSocket", ID_TYPE_FN_NUM);
 	add_embedded_arg("server", ID_TYPE_NUM);
-	add_embedded_arg("client", ID_TYPE_NUM);
 	embed_function("UDP_OpenSocket", ID_TYPE_FN_NUM);
 	add_embedded_arg("port", ID_TYPE_NUM);
 	embed_function("UDP_CloseSocket", ID_TYPE_SUB);

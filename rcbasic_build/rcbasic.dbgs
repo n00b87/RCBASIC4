@@ -619,7 +619,6 @@ BS main.TCP_GetData sData$ 0
 N main.TCP_SendData socket 0
 S main.TCP_SendData sData$ 0
 N main.TCP_AcceptSocket server 0
-N main.TCP_AcceptSocket client 1
 N main.UDP_OpenSocket port 0
 N main.UDP_CloseSocket socket 0
 N main.UDP_GetData socket 0

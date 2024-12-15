@@ -1043,7 +1043,7 @@ case FN_TCP_SendData: //Sub Procedure
 	rc_net_tcp_sendData( TCP_SENDDATA_SOCKET,  TCP_SENDDATA_SDATA$ );
 	break;
 case FN_TCP_AcceptSocket: //Number Function
-	 rc_push_num(rc_net_tcp_acceptSocket( TCP_ACCEPTSOCKET_SERVER,  TCP_ACCEPTSOCKET_CLIENT ));
+	 rc_push_num(rc_net_tcp_acceptSocket( TCP_ACCEPTSOCKET_SERVER ));
 	break;
 case FN_UDP_OpenSocket: //Number Function
 	 rc_push_num(rc_net_udp_openSocket( UDP_OPENSOCKET_PORT ));

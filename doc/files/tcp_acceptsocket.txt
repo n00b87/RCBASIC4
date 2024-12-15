@@ -1,4 +1,4 @@
 #title TCP_AcceptSocket [RCBasic Doc]
-#header function TCP_AcceptSocket(server, client)
+#header function TCP_AcceptSocket(server)
 
-Attempts to accept a connection from a server socket.  If successful it will open a client socket to communicate with the server and return true.  If it fails it will return false.
+Attempts to accept a connection from a server socket.  If successful it will return a client socket id.  If it fails it will return -1.

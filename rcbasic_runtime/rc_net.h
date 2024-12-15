@@ -124,6 +124,7 @@ int rc_net_tcp_openSocket(std::string host, Uint16 port)
 	if(id < 0)
 	{
 		rc_tcp_socket_obj obj;
+		id = rc_tcp_socket.size();
 		rc_tcp_socket.push_back(obj);
 	}
 
@@ -142,6 +143,8 @@ int rc_net_tcp_openSocket(std::string host, Uint16 port)
     if(!rc_tcp_socket[id].socket)
 		return -1;
 
+	rc_tcp_socket[id].active = true;
+
 	//cout << "Add socket to socket_set" << endl;
 	SDLNet_TCP_AddSocket(rc_socket_set, rc_tcp_socket[id].socket);
 	return id;
@@ -149,6 +152,9 @@ int rc_net_tcp_openSocket(std::string host, Uint16 port)
 
 void rc_net_tcp_closeSocket(int _socket)
 {
+	if(_socket < 0 || _socket >= rc_tcp_socket.size())
+		return;
+
 	if(rc_tcp_socket[_socket].socket == NULL)
 	{
 		rc_tcp_socket[_socket].active = false;
@@ -160,16 +166,28 @@ void rc_net_tcp_closeSocket(int _socket)
     rc_tcp_socket[_socket].active = false;
 }
 
-Uint32 rc_net_tcp_remoteHost(int _socket)
+double rc_net_tcp_remoteHost(int _socket)
 {
+	if(_socket < 0 || _socket >= rc_tcp_socket.size())
+		return -1;
+
+	if(rc_tcp_socket[_socket].socket == NULL)
+		return -1;
+
     IPaddress * ip =  SDLNet_TCP_GetPeerAddress(rc_tcp_socket[_socket].socket);
-    return ip->host;
+    return (double)ip->host;
 }
 
-Uint32 rc_net_tcp_remotePort(int _socket)
+double rc_net_tcp_remotePort(int _socket)
 {
+	if(_socket < 0 || _socket >= rc_tcp_socket.size())
+		return -1;
+
+	if(rc_tcp_socket[_socket].socket == NULL)
+		return -1;
+
     IPaddress * ip = SDLNet_TCP_GetPeerAddress(rc_tcp_socket[_socket].socket);
-    return ip->port;
+    return (double)ip->port;
 }
 
 int rc_net_checkSockets(Uint32 m)
@@ -179,6 +197,12 @@ int rc_net_checkSockets(Uint32 m)
 
 int rc_net_tcp_socketReady(int _socket)
 {
+	if(_socket < 0 || _socket >= rc_tcp_socket.size())
+		return 0;
+
+	if(rc_tcp_socket[_socket].socket == NULL)
+		return 0;
+
     return SDLNet_SocketReady(rc_tcp_socket[_socket].socket);
 }
 
@@ -214,19 +238,43 @@ void rc_net_tcp_sendData(int socket, std::string data)
     SDLNet_TCP_Send(rc_tcp_socket[socket].socket, data.c_str(), data.length());
 }
 
-bool rc_net_tcp_acceptSocket(int socket_server, int socket_client)
+int rc_net_tcp_acceptSocket(int socket_server)
 {
+	int socket_client = -1;
+
+    for(int i = 0; i < rc_tcp_socket.size(); i++)
+	{
+		if(!rc_tcp_socket[i].active)
+		{
+			socket_client = i;
+			break;
+		}
+	}
+
+	if(socket_client < 0)
+	{
+		rc_tcp_socket_obj obj;
+		socket_client = rc_tcp_socket.size();
+		rc_tcp_socket.push_back(obj);
+	}
+
     //cout << "\n\nthis is a test\n\n";
     if(rc_tcp_socket[socket_server].socket == NULL)
     {
         //cout << "no server" << endl;
-        return false;
+        return -1;
     }
     bool val = (rc_tcp_socket[socket_client].socket = SDLNet_TCP_Accept(rc_tcp_socket[socket_server].socket));
     if(val)
         SDLNet_TCP_AddSocket(rc_socket_set, rc_tcp_socket[socket_client].socket);
+	else
+	{
+		rc_tcp_socket[socket_client].socket = NULL;
+		rc_tcp_socket[socket_client].active = false;
+		return -1;
+	}
     //cout << "cp1\n";
-    return val;
+    return socket_client;
 }
 
 bool rc_net_udp_openSocket(Uint16 port)
@@ -342,19 +390,40 @@ Uint32 rc_net_udp_maxlen()
 
 std::string rc_net_udp_getRemoteHost(int socket)
 {
+	if(socket < 0 || socket >= rc_udp_socket.size())
+		return "";
+
+	if(!rc_udp_socket[socket].active)
+		return "";
+
     IPaddress * ip = SDLNet_UDP_GetPeerAddress(rc_udp_socket[socket].socket,0);
     //
     return SDLNet_ResolveIP(ip);
 }
 
-Uint32 rc_net_udp_getRemotePort(int socket)
+double rc_net_udp_getRemotePort(int socket)
 {
+	if(socket < 0 || socket >= rc_udp_socket.size())
+		return -1;
+
+	if(!rc_udp_socket[socket].active)
+		return -1;
+
     IPaddress * ip = SDLNet_UDP_GetPeerAddress(rc_udp_socket[socket].socket,0);
-    return ip->port;
+    return (double)ip->port;
 }
 
 void rc_net_udp_closeSocket(int socket)
 {
+	if(socket < 0 || socket >= rc_udp_socket.size())
+		return;
+
+	if(!rc_udp_socket[socket].active)
+	{
+		rc_udp_socket[socket].socket = NULL;
+		return;
+	}
+
     SDLNet_UDP_DelSocket(rc_socket_set, rc_udp_socket[socket].socket);
     SDLNet_UDP_Close(rc_udp_socket[socket].socket);
     rc_udp_socket[socket].socket = NULL;
