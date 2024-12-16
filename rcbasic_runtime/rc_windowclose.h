@@ -502,6 +502,35 @@ bool rc_update()
 
                 //irr::core::rect viewport(irr::core::position, rc_canvas[i].viewport.dimension);
                 //VideoDriver->setViewPort(viewport);
+                irr::video::SColor current_color = rc_active_color;
+                irr::video::SMaterial m;
+				m.Lighting=false;
+				VideoDriver->setMaterial(m);
+				VideoDriver->setTransform(video::ETS_WORLD, core::matrix4());
+                for(int i = 0; i < rc_prim3d_operation.size(); i++)
+				{
+					switch(rc_prim3d_operation[i].prim_type)
+					{
+						case PRIM3D_LINE:
+							rc_active_color = rc_prim3d_operation[i].color;
+							prim3d_drawLine3D(rc_prim3d_operation[i].x[0], rc_prim3d_operation[i].y[0], rc_prim3d_operation[i].z[0],
+											  rc_prim3d_operation[i].x[1], rc_prim3d_operation[i].y[1], rc_prim3d_operation[i].z[1]);
+							break;
+						case PRIM3D_BOX:
+							rc_active_color = rc_prim3d_operation[i].color;
+							prim3d_drawBox3D(rc_prim3d_operation[i].x[0], rc_prim3d_operation[i].y[0], rc_prim3d_operation[i].z[0],
+											 rc_prim3d_operation[i].x[1], rc_prim3d_operation[i].y[1], rc_prim3d_operation[i].z[1]);
+							break;
+						case PRIM3D_TRIANGLE:
+							rc_active_color = rc_prim3d_operation[i].color;
+							prim3d_drawTriangle3D(rc_prim3d_operation[i].x[0], rc_prim3d_operation[i].y[0], rc_prim3d_operation[i].z[0],
+												  rc_prim3d_operation[i].x[1], rc_prim3d_operation[i].y[1], rc_prim3d_operation[i].z[1],
+												  rc_prim3d_operation[i].x[2], rc_prim3d_operation[i].y[2], rc_prim3d_operation[i].z[2]);
+							break;
+					}
+				}
+				rc_active_color = current_color;
+				rc_setDriverMaterial();
 
                 SceneManager->drawAll();
                 //VideoDriver->draw2DRectangle(irr::video::SColor(255,0,255,0), irr::core::rect<irr::s32>(10,40,100,500));
@@ -516,7 +545,7 @@ bool rc_update()
             }
         }
 
-
+        rc_prim3d_operation.clear();
 
 		for(int cz = 0; cz < rc_canvas_zOrder.size(); cz++)
         {

@@ -746,6 +746,19 @@ irr::core::array<rc_image_obj> rc_image;
 irr::video::E_BLEND_OPERATION rc_blend_mode = irr::video::EBO_ADD;
 bool rc_bilinear_filter = false;
 
+#define PRIM3D_LINE 1
+#define PRIM3D_TRIANGLE 2
+#define PRIM3D_BOX 3
+
+struct rc_prim3d_op_obj
+{
+	int prim_type;
+
+	double x[4], y[4], z[4];
+	irr::video::SColor color;
+};
+
+irr::core::array<rc_prim3d_op_obj> rc_prim3d_operation;
 
 void rc_setDriverMaterial()
 {

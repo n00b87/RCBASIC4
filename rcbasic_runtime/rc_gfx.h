@@ -1594,7 +1594,7 @@ void rc_drawLine(int x1, int y1, int x2, int y2)
     VideoDriver->draw2DLine(r_pos_start, r_pos_end, rc_active_color);
 }
 
-void rc_drawLine3D(double x1, double y1, double z1, double x2, double y2, double z2)
+void prim3d_drawLine3D(double x1, double y1, double z1, double x2, double y2, double z2)
 {
     irr::core::vector3d<f32> r_pos_start(x1,y1,z1);
     irr::core::vector3d<f32> r_pos_end(x2,y2,z2);
@@ -1602,13 +1602,13 @@ void rc_drawLine3D(double x1, double y1, double z1, double x2, double y2, double
     VideoDriver->draw3DLine(r_pos_start, r_pos_end, rc_active_color);
 }
 
-void rc_drawBox3D(double x1, double y1, double z1, double x2, double y2, double z2)
+void prim3d_drawBox3D(double x1, double y1, double z1, double x2, double y2, double z2)
 {
     irr::core::aabbox3d<f32> bbox(x1, y1, z1, x2, y2, z2);
     VideoDriver->draw3DBox(bbox, rc_active_color);
 }
 
-void rc_drawTriangle3D(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3)
+void prim3d_drawTriangle3D(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3)
 {
     irr::core::vector3d<f32> v1(x1,y1,z1);
     irr::core::vector3d<f32> v2(x2,y2,z2);
@@ -1617,6 +1617,51 @@ void rc_drawTriangle3D(double x1, double y1, double z1, double x2, double y2, do
     irr::core::triangle3d<f32> tri(v1, v2, v3);
 
     VideoDriver->draw3DTriangle(tri, rc_active_color);
+}
+
+void rc_drawLine3D(double x1, double y1, double z1, double x2, double y2, double z2)
+{
+    rc_prim3d_op_obj op;
+    op.prim_type = PRIM3D_LINE;
+    op.color = rc_active_color;
+    op.x[0] = x1;
+    op.y[0] = y1;
+    op.z[0] = z1;
+    op.x[1] = x2;
+    op.y[1] = y2;
+    op.z[1] = z2;
+    rc_prim3d_operation.push_back(op);
+}
+
+void rc_drawBox3D(double x1, double y1, double z1, double x2, double y2, double z2)
+{
+    rc_prim3d_op_obj op;
+    op.prim_type = PRIM3D_BOX;
+    op.color = rc_active_color;
+    op.x[0] = x1;
+    op.y[0] = y1;
+    op.z[0] = z1;
+    op.x[1] = x2;
+    op.y[1] = y2;
+    op.z[1] = z2;
+    rc_prim3d_operation.push_back(op);
+}
+
+void rc_drawTriangle3D(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3)
+{
+    rc_prim3d_op_obj op;
+    op.prim_type = PRIM3D_TRIANGLE;
+    op.color = rc_active_color;
+    op.x[0] = x1;
+    op.y[0] = y1;
+    op.z[0] = z1;
+    op.x[1] = x2;
+    op.y[1] = y2;
+    op.z[1] = z2;
+    op.x[2] = x3;
+    op.y[2] = y3;
+    op.z[2] = z3;
+    rc_prim3d_operation.push_back(op);
 }
 
 void rc_drawTriangle(double x1, double y1, double x2, double y2, double x3, double y3)
