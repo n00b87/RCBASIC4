@@ -1,5 +1,5 @@
-#title createHingeConstraint [RCBasic Doc]
-#header function  createHingeConstraint( actorA, frameA, useReferenceFrameA )
+#title CreateHingeConstraint [RCBasic Doc]
+#header function  CreateHingeConstraint( actorA, frameA, useReferenceFrameA )
 
 Simulates a hinge joint, which allows two actors (or an actor and the world) to rotate around a single axis while restricting movement along the other axes. This is similar to the way a door swings on its hinges or how an elbow joint functions in the human body.
 

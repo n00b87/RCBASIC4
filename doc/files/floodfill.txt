@@ -2,3 +2,5 @@
 #header sub FloodFill(x,y)
 
 Fills a closed shape in with the current draw color
+
+NOTE: It is not recommended to floodfill the full screen since its prone to stack overload

@@ -1,4 +1,4 @@
 #title MaterialExists [RCBasic Doc]
 #header function MaterialExists( material )
 
-
+Returns true if the material id is an existing material

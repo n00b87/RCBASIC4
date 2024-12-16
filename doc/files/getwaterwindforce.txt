@@ -1,4 +1,0 @@
-#title getWaterWindForce [RCBasic Doc]
-#header function  getWaterWindForce( actor)
-
-

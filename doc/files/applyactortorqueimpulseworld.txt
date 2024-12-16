@@ -1,5 +1,5 @@
-#title applyActorTorqueImpulseWorld [RCBasic Doc]
-#header sub applyActorTorqueImpulseWorld( actor,   x,   y,   z)
+#title ApplyActorTorqueImpulseWorld [RCBasic Doc]
+#header Sub ApplyActorTorqueImpulseWorld( actor,   x,   y,   z)
 
 Applies an impulse that directly affects the angular velocity of an actor, causing it to rotate. This is similar to applying an impulse, but instead of changing the linear velocity (which applyActorCentralImpulse does), it alters the body's rotational motion (angular velocity) instantaneously.
 

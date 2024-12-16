@@ -1,4 +1,4 @@
 #title ActorExists [RCBasic Doc]
 #header function ActorExists( actor )
 
-
+Returns true if the id passed is a valid actor

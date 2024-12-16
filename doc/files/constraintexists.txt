@@ -1,4 +1,4 @@
 #title ConstraintExists [RCBasic Doc]
 #header function ConstraintExists( constraint_id )
 
-
+Returns true if the id passed is a valid constraint

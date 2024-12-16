@@ -1,4 +1,4 @@
-#title copyMaterial [RCBasic Doc]
-#header function  copyMaterial( smaterial_id)
+#title CopyMaterial [RCBasic Doc]
+#header function CopyMaterial( smaterial_id)
 
 Returns a copy of a material

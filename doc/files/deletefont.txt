@@ -1,4 +1,4 @@
 #title DeleteFont [RCBasic Doc]
-#header sub DeleteFont(font_id)
+#header Sub DeleteFont(font_id)
 
 Frees a font from memory

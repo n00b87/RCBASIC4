@@ -3,6 +3,6 @@
 
 Gets the actors rotation as a quaternion.
 
-Note: This is useful for calculations that require quaternion but most developers should just use GetActorRotation()
+Note: This is useful for calculations that require quaternion but most developers should just use GetActorTransform()
 
 #ref GetActorRotation SetActorRotation

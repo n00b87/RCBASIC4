@@ -1,4 +1,4 @@
-#title deleteConstraint [RCBasic Doc]
-#header sub  deleteConstraint( constraint_id)
+#title DeleteConstraint [RCBasic Doc]
+#header Sub DeleteConstraint( constraint_id)
 
 Removes a constraint

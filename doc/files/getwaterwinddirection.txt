@@ -1,4 +1,0 @@
-#title getWaterWindDirection [RCBasic Doc]
-#header sub getWaterWindDirection( actor,  ByRef  x,  ByRef  z)
-
-

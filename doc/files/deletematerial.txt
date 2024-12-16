@@ -1,4 +1,6 @@
-#title deleteMaterial [RCBasic Doc]
-#header sub  deleteMaterial( material_id)
+#title DeleteMaterial [RCBasic Doc]
+#header Sub DeleteMaterial( material_id)
 
 Removes a material from memory
+
+NOTE: In the case of actor materials, this will simple drop the reference to it but it will not remove the material from the actor.

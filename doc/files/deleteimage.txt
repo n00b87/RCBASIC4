@@ -1,4 +1,4 @@
 #title DeleteImage [RCBasic Doc]
-#header sub DeleteImage(img)
+#header Sub DeleteImage(img)
 
 Removes an image from memory

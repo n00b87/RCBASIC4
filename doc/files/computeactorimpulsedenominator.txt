@@ -1,5 +1,5 @@
 #title ComputeActorImpulseDenominator [RCBasic Doc]
-#header function  ComputeActorImpulseDenominator( actor,   pos_x,   pos_y,   pos_z,   normal_x,   normal_y,   normal_z)
+#header function  ComputeActorImpulseDenominator( actor, pos_x, pos_y, pos_z, normal_x, normal_y, normal_z)
 
 Computes a scalar value related to how a rigid body will respond to an applied impulse at a given point. It’s primarily used internally in the physics engine to calculate how an object’s mass, inertia, and shape will affect the outcome of impulses, particularly in collisions or constraints like contact points between objects.
 

@@ -2,3 +2,5 @@
 #header sub Fprint(txt$)
 
 Outputs text to the console
+
+NOTE: It does the exact same thing as Print. This is here for legacy reasons (ie. I am too lazy to remove it.)

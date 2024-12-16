@@ -1,8 +1,8 @@
-#title actorAnimationIsLooped [RCBasic Doc]
-#header function actorAnimationIsLooped( actor )
+#title ActorAnimationIsLooped [RCBasic Doc]
+#header function ActorAnimationIsLooped( actor )
 
 Returns true if an actors animation is set to looped.
 
-Note: Actor animation is set to looped with the loopActorAnimation() function.
+Note: Actor animation is set to looped with the LoopActorAnimation() function.
 
-#ref loopActorAnimation
+#ref LoopActorAnimation

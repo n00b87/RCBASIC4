@@ -1,4 +1,6 @@
-#title Ltrim$ [RCBasic Doc]
-#header function Ltrim$(src$)
+#title LTrim$ [RCBasic Doc]
+#header function LTrim$(src$)
 
 Returns src$ with all the spaces before the first non-space character removed.
+
+#ref RTrim Trim

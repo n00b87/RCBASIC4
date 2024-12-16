@@ -1,4 +1,4 @@
-#title loopActorAnimation [RCBasic Doc]
-#header sub loopActorAnimation( actor, flag )
+#title LoopActorAnimation [RCBasic Doc]
+#header sub LoopActorAnimation( actor, flag )
 
 Enables or disables actor animation loop
