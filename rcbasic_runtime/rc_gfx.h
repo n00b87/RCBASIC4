@@ -1594,6 +1594,46 @@ void rc_drawLine(int x1, int y1, int x2, int y2)
     VideoDriver->draw2DLine(r_pos_start, r_pos_end, rc_active_color);
 }
 
+void rc_drawLine3D(double x1, double y1, double z1, double x2, double y2, double z2)
+{
+    irr::core::vector3d<f32> r_pos_start(x1,y1,z1);
+    irr::core::vector3d<f32> r_pos_end(x2,y2,z2);
+
+    VideoDriver->draw3DLine(r_pos_start, r_pos_end, rc_active_color);
+}
+
+void rc_drawBox3D(double x1, double y1, double z1, double x2, double y2, double z2)
+{
+    irr::core::aabbox3d<f32> bbox(x1, y1, z1, x2, y2, z2);
+    VideoDriver->draw3DBox(bbox, rc_active_color);
+}
+
+void rc_drawTriangle3D(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3)
+{
+    irr::core::vector3d<f32> v1(x1,y1,z1);
+    irr::core::vector3d<f32> v2(x2,y2,z2);
+    irr::core::vector3d<f32> v3(x3,y3,z3);
+
+    irr::core::triangle3d<f32> tri(v1, v2, v3);
+
+    VideoDriver->draw3DTriangle(tri, rc_active_color);
+}
+
+void rc_drawTriangle(double x1, double y1, double x2, double y2, double x3, double y3)
+{
+    irr::core::array<irr::video::S3DVertex> v;
+    v.push_back(video::S3DVertex(x1, y1, 0.f, 0.f, 1.f, 0.f, rc_active_color, 0.5f, 0.5f));
+    v.push_back(video::S3DVertex(x2, y2, 0.f, 0.f, 1.f, 0.f, rc_active_color, 0.5f, 0.5f));
+    v.push_back(video::S3DVertex(x3, y3, 0.f, 0.f, 1.f, 0.f, rc_active_color, 0.5f, 0.5f));
+
+    irr::core::array<irr::u16> i;
+    i.push_back(0);
+    i.push_back(1);
+    i.push_back(2);
+
+    VideoDriver->draw2DVertexPrimitiveList(v.pointer(), 3, i.pointer(), 1);
+}
+
 void rc_poly(Uint32 n, double* vx_d, double* vy_d)
 {
     if(n <= 0)

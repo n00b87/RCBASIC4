@@ -658,6 +658,18 @@ case FN_RGBA: //Number Function
 case FN_Pset: //Sub Procedure
 	rc_drawPixel( PSET_X,  PSET_Y );
 	break;
+case FN_Triangle: //Sub Procedure
+	rc_drawTriangle( TRIANGLE_X1,  TRIANGLE_Y1,  TRIANGLE_X2,  TRIANGLE_Y2,  TRIANGLE_X3,  TRIANGLE_Y3 );
+	break;
+case FN_Line3D: //Sub Procedure
+	rc_drawLine3D( LINE3D_X1,  LINE3D_Y1,  LINE3D_Z1,  LINE3D_X2,  LINE3D_Y2,  LINE3D_Z2 );
+	break;
+case FN_Box3D: //Sub Procedure
+	rc_drawBox3D( BOX3D_MIN_X,  BOX3D_MIN_Y,  BOX3D_MIN_Z,  BOX3D_MAX_X,  BOX3D_MAX_Y,  BOX3D_MAX_Z );
+	break;
+case FN_Triangle3D: //Sub Procedure
+	rc_drawTriangle3D( TRIANGLE3D_X1,  TRIANGLE3D_Y1,  TRIANGLE3D_Z1,  TRIANGLE3D_X2,  TRIANGLE3D_Y2,  TRIANGLE3D_Z2,  TRIANGLE3D_X3,  TRIANGLE3D_Y3,  TRIANGLE3D_Z3 );
+	break;
 case FN_LoadImage: //Number Function
 	 rc_push_num(rc_loadImage( LOADIMAGE_IMG$ ));
 	break;
