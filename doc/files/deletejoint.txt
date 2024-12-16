@@ -1,0 +1,6 @@
+#title DeleteJoint [RCBasic Doc]
+#header Sub DeleteJoint( joint_id )
+
+Clears a joint from memory
+
+#ref CreateDistanceJoint CreateFrictionJoint CreateGearJoint CreateMotorJoint CreatePrismaticJoint CreatePulleyJoint CreateRevoluteJoint CreateWeldJoint CreateWheelJoint

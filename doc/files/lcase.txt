@@ -1,0 +1,4 @@
+#title LCase$ [RCBasic Doc]
+#header function LCase$(src$)
+
+Returns src$ converted to a completely lower-case string

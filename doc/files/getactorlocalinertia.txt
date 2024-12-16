@@ -1,0 +1,5 @@
+#title GetActorLocalInertia [RCBasic Doc]
+#header sub GetActorLocalInertia( actor,  ByRef  x,  ByRef  y,  ByRef  z)
+
+Gets the local inertia tensor of an actor. The inertia tensor describes how an actor resists rotational motion depending on its mass distribution relative to its center of mass.
+

@@ -1,0 +1,6 @@
+#title setMaterialColorMask [RCBasic Doc]
+#header sub  setMaterialColorMask( material_id,  color_mask)
+
+Sets a color mask for a material
+
+#ref GetMaterialColorMask

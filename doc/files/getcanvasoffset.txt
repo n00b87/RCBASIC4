@@ -1,0 +1,6 @@
+#title GetCanvasOffset [RCBasic Doc]
+#header sub GetCanvasOffset(c_num, byref x, byref y)
+
+Returns view offset of a canvas
+
+#ref SetCanvasOffset

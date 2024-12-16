@@ -1,0 +1,4 @@
+#title SetMouseRelative [RCBasic Doc]
+#header sub SetMouseRelative(flag)
+
+Constrains the mouse to the window

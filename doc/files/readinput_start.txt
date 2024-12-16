@@ -1,0 +1,4 @@
+#title ReadInput_Start [RCBasic Doc]
+#header sub ReadInput_Start()
+
+Start reading input from the keyboard.

@@ -1,0 +1,4 @@
+#title GetWorld3DTimeStep [RCBasic Doc]
+#header function GetWorld3DTimeStep()
+
+Returns the timestep of the 3d physics simulation

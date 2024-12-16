@@ -1,0 +1,4 @@
+#title ClearScene [RCBasic Doc]
+#header Sub ClearScene()
+
+

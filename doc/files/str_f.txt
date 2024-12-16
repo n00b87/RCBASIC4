@@ -1,0 +1,8 @@
+#title Str_F$ [RCBasic Doc]
+#header function Str_F$(n)
+
+Returns a number converted to a string in fixed notation 
+
+The number will be returned with 6 decimal places of precision.
+
+#ref Str$ Str_S$

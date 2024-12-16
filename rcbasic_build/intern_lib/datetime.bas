@@ -1,0 +1,6 @@
+function Date$()
+function Easter$(year)
+function Ticks()
+function Time$()
+function Timer()
+sub Wait(m_sec)

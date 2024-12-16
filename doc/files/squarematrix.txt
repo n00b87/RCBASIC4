@@ -1,0 +1,4 @@
+#title SquareMatrix [RCBasic Doc]
+#header function SquareMatrix(mA, mB)
+
+Stores the square of matrix mA in the matrix mB

@@ -1,0 +1,4 @@
+#title getHingeAngleEx [RCBasic Doc]
+#header function  getHingeAngleEx( constraint_id,  t_matrixA,  t_matrixB)
+
+Returns the transforms of the 2 actors in a hinge constraint

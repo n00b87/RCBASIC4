@@ -1,0 +1,4 @@
+#title UDP_RemoteHost$ [RCBasic Doc]
+#header function UDP_RemoteHost$(socket)
+
+Returns the connected host in a udp connection

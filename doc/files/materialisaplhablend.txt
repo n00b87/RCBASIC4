@@ -1,0 +1,4 @@
+#title MaterialIsAplhaBlend [RCBasic Doc]
+#header function  MaterialIsAplhaBlend( material_id)
+
+Returns true if alpha blending is enabled for a material

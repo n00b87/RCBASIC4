@@ -1,0 +1,17 @@
+#title GetPowerInfo [RCBasic Doc]
+#header Sub GetPowerInfo(ByRef status, ByRef secs, ByRef pct)
+
+Gets the charging status of the device the program is running on.
+
+status - the charging status of the battery. Look below for the different statuses that can be returned.
+secs - the approximate time in seconds until the battery looses its charge.
+pct - the percentage of the battery charged.
+
+Possible Statuses
+#list ul
+#li POWERSTATE_UNKNOWN
+#li POWERSTATE_ON_BATTERY
+#li POWERSTATE_NO_BATTERY
+#li POWERSTATE_CHARGING
+#li POWERSTATE_CHARGED
+#/list

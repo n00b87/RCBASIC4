@@ -1,0 +1,6 @@
+#title setMaterialBackfaceCulling [RCBasic Doc]
+#header sub  setMaterialBackfaceCulling( material_id,  flag)
+
+Enables or disables material backface culling
+
+#ref GetMaterialBackfaceCulling

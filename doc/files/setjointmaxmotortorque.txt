@@ -1,0 +1,12 @@
+#title setJointMaxMotorTorque [RCBasic Doc]
+#header sub setJointMaxMotorTorque( joint_id,   torque)
+
+Limits the maximum torque (rotational force) that the motor can apply to achieve the target motor speed set by SetMotorSpeed. This allows you to control how much power the motorized joint has.
+
+Used with
+#list ul
+#li Revolute Joint
+#li Wheel Joint
+#/list
+
+#ref GetJointMaxMotorTorque

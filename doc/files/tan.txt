@@ -1,0 +1,4 @@
+#title Tan [RCBasic Doc]
+#header function Tan(n)
+
+Returns the tangent of n

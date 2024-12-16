@@ -1,0 +1,43 @@
+#title GetSpriteSource [RCBasic Doc]
+#header Function GetSpriteSource(sprite)
+
+Returns the source image the sprite renders its frames from
+
+#code
+isFullScreen = false
+vSync = true
+winWidth = 640
+winHeight = 480
+canViewPortX = 0
+canViewPortY = 0
+
+OpenWindow("GetSpriteSource", winWidth, winHeight, isFullScreen, vSync)
+sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+Canvas(sCanvas)
+
+DIM frown
+DIM frownW
+DIM frownH
+DIM spSource$
+
+frowny1 = LoadImage("frowny1.png")
+frowny2 = LoadImage("frowny2.png")
+GetImageSize(frown, frownW, frownH)
+
+frownSprite = CreateSprite(frown, frownW, frownH)
+SetSpritePosition(frownSprite, 100, 100)
+
+While Not Key(K_ESCAPE)
+	If KEY(K_SPACE) Then
+		SetSpriteSource(frownSprite, frowny2)
+	End If
+	Update()
+	spSource$ = STR$(GetSpriteSource(frown))
+	Print spSource$
+Wend
+#/code
+
+#image "images/frowny1.png"
+#image "images/frowny2.png"
+
+#ref SetSpriteSource CreateSprite

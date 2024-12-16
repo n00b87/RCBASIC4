@@ -1,0 +1,4 @@
+#title CubeMatrix [RCBasic Doc]
+#header function CubeMatrix(mA, mB)
+
+Returns matrix mA raised to the 3rd power

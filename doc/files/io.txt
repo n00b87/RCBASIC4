@@ -1,0 +1,25 @@
+#title RCBasic I/O [RCBasic Doc]
+#header INPUT/OUTPUT
+
+RC BASIC has two ways of getting output to a text console.  The first way is the <b>PRINT</b> keyword shown here:
+#code
+Print "HELLO WORLD"
+Print 5
+#/code
+
+You can also use a <b>";"</b> to output multiple values or to prevent <b>PRINT</b> from going to a new-line in its output.
+#code
+Print "This is line 1. ";
+Print "This is still line 1. Value="; 4+5; "  This is the end of line 1"
+Print "Line 2 start"
+#/code
+
+You can also use the <b>FPrint()</b> sub routine to do the same thing as <b>PRINT</b>. It was added back in RCBasic v1.0 since <b>PRINT</b> was not able to stop new-line after its output back then. This is a legacy hold over and does not really add any new functionality.
+
+
+To get input from the user you would use the <b>INPUT$</b> function.  <b>INPUT$</b> will display a prompt to the user and then get input from the console.
+#code
+USER_NAME$ = INPUT$("WHAT IS YOUR NAME? ")
+#/code
+
+The above example will ask the user WHAT IS YOUR NAME? and then store whatever the user types in into the variable USER_NAME$. 

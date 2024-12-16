@@ -1,0 +1,6 @@
+#title GetCircleLineIntersection [RCBasic Doc]
+#header function GetCircleLineIntersection(circle_x, circle_y, radius, x1, y1, x2, y2, ByRef ix1, ByRef iy1, ByRef ix2, ByRef iy2)
+
+Calculates the points where a circle and line intersect and stores the intersection points in (ix1, iy1) and (ix2, iy2)
+
+NOTE: This function returns 0 if there is no intersection and 1 or 2 if there is 1 or 2 intersection points. If it only returns 1 then only (ix1, iy1) will be set. 

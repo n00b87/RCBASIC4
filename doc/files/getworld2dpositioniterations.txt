@@ -1,0 +1,7 @@
+#title GetWorld2DPositionIterations [RCBasic Doc]
+#header function GetWorld2DPositionIterations()
+
+Returns the number of position iterations for the position constraint solver
+
+#ref SetWorld2DPositionIterations
+

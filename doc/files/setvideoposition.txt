@@ -1,0 +1,6 @@
+#title SetVideoPosition [RCBasic Doc]
+#header sub SetVideoPosition(pos)
+
+Sets the position within the current video in milliseconds
+
+#ref GetVideoPosition

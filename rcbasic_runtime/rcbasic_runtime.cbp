@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="rcbasic_runtime" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/rcbasic_runtime" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/rcbasic_runtime" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="/usr/include/freetype2" />
+			<Add directory="/home/n00b/Projects/RCIrrlicht/include" />
+			<Add directory="/usr/include/bullet" />
+			<Add directory="/home/n00b/Projects/irrBullet/include" />
+			<Add directory="/home/n00b/Projects/irrTheora" />
+			<Add directory="/home/n00b/Projects/an8-parser" />
+		</Compiler>
+		<Linker>
+			<Add option="-lSDL2main -lSDL2 -lSDL2_image -lSDL2_gfx -lSDL2_ttf -lSDL2_mixer -lSDL2_net -logg -lvorbis -lvorbisfile -ltheora -ltheoradec -lIrrlicht -lfreetype -lbox2d -lBullet3Collision -lBullet3Common -lBullet3Dynamics -lBullet3Geometry -lBulletCollision -lBulletDynamics -lBulletInverseDynamics -lBulletSoftBody -lLinearMath -pthread" />
+			<Add directory="/home/n00b/Projects/RCIrrlicht/lib/Linux" />
+		</Linker>
+		<Unit filename="../../irrBullet/src/irrBullet.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletBoxShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletBvhTriangleMeshShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCapsuleShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCollisionCallBackInformation.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCollisionObject.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCollisionObjectAffector.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCollisionObjectAffectorAttract.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCollisionObjectAffectorDelete.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCollisionShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletConeShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletConvexHullShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCylinderShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletGImpactMeshShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletGhostObject.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletLiquidBody.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletMotionState.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletPhysicsDebug.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletRayCastVehicle.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletRigidBody.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletSoftBody.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletSphereShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletTriangleMeshShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletWorld.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletcommon.cpp" />
+		<Unit filename="RealisticWater.cpp" />
+		<Unit filename="RealisticWater.h" />
+		<Unit filename="camera.h" />
+		<Unit filename="gui_freetype_font.cpp" />
+		<Unit filename="gui_freetype_font.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="rc_actor_animation.h" />
+		<Unit filename="rc_actor_material.h" />
+		<Unit filename="rc_actor_physics.h" />
+		<Unit filename="rc_audio.h" />
+		<Unit filename="rc_base_actor.h" />
+		<Unit filename="rc_camera.h" />
+		<Unit filename="rc_constraint.h" />
+		<Unit filename="rc_defines.h" />
+		<Unit filename="rc_font.h" />
+		<Unit filename="rc_func130_cases.h" />
+		<Unit filename="rc_geometry.h" />
+		<Unit filename="rc_gfx.h" />
+		<Unit filename="rc_gfx3D.h" />
+		<Unit filename="rc_gfx_core.h" />
+		<Unit filename="rc_joints.h" />
+		<Unit filename="rc_matrix.h" />
+		<Unit filename="rc_media.h" />
+		<Unit filename="rc_mesh.h" />
+		<Unit filename="rc_net.h" />
+		<Unit filename="rc_os_defines.h" />
+		<Unit filename="rc_particles.h" />
+		<Unit filename="rc_physics3D_base.h" />
+		<Unit filename="rc_scene.h" />
+		<Unit filename="rc_sprite2D.h" />
+		<Unit filename="rc_sprite_physics.h" />
+		<Unit filename="rc_spritelib.h" />
+		<Unit filename="rc_stdlib.h" />
+		<Unit filename="rc_test.h" />
+		<Unit filename="rc_tilelib.h" />
+		<Unit filename="rc_tilemap.h" />
+		<Unit filename="rc_utf8.h" />
+		<Unit filename="rc_video.h" />
+		<Unit filename="theoraplay.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="theoraplay.h" />
+		<Unit filename="theoraplay_cvtrgb.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

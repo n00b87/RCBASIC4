@@ -1,0 +1,16 @@
+#title Android_GetExternalStorageState [RCBasic Doc]
+#header function Android_GetExternalStorageState()
+
+Returns a bitmask of these values:
+#list
+#li ANDROID_EXTERNAL_STORAGE_READ
+#li ANDROID_EXTERNAL_STORAGE_WRITE
+#/list
+
+#code
+If AndBit( Android_GetExternalStorageState(), ANDROID_EXTERNAL_STORAGE_READ ) Then
+	Print "Can read from external storage"
+End If
+#/code
+
+#ref Android_GetExternalStoragePath$ Android_GetInternalStoragePath$

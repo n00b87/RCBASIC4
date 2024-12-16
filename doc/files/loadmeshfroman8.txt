@@ -1,0 +1,8 @@
+#title LoadMeshFromAN8 [RCBasic Doc]
+#header Function LoadMeshFromAN8(an8_project, an8_scene$)
+
+Loads the figures in an anim8or scene as a mesh
+
+Note: This only loads figures from a scene and it loads meshes not anim8or objects
+
+#ref LoadAN8 LoadMesh LoadMeshFromArchive

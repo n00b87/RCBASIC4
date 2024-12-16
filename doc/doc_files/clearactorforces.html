@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>clearActorForces [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>sub clearActorForces( actor) </h2></p>
+		<p>
+		 Resets or clears all the forces and torques that have been applied to a rigid body in the current simulation step. This ensures that any forces, including linear forces and torques, do not accumulate from one simulation step to the next. 
+		</p>
+		<p>
+		 <b>Notes:</b> 
+		</p>
+		<ul>
+		<li>
+		<b>Resets Forces:</b> It removes all linear forces (like those applied by applyActorForce or applyActorCentralForce) and torques (like those applied by applyActorTorque). 
+		</li>
+		<li>
+		<b>Does Not Affect Velocity:</b> It clears only the applied forces and torques, but the current velocity (linear and angular) of the actor remains unchanged. 
+		</li>
+		<li>
+		<b>Typically Used in Each Simulation Step:</b> Used to reset forces after each step, so that only new forces applied in the next step will affect the body. 
+		</li>
+		</ul>
+		<p>
+
+	</body>
+</html>

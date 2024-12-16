@@ -1,0 +1,7 @@
+#title setMinParticlesPerSecond [RCBasic Doc]
+#header sub  setMinParticlesPerSecond( actor,  minParticlesPerSecond)
+
+Sets the max number of particles emitted per second
+
+#ref SetMaxParticlesPerSecond GetMinParticlesPerSecond SetMaxParticlesPerSecond
+

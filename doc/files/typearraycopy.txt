@@ -1,0 +1,8 @@
+#title TypeArrayCopy [RCBasic Doc]
+#header sub TypeArrayCopy(ByRef src as empty, ByRef dst as empty)
+
+This function is exists to be internally called by the runtime but should not be called directly.
+
+<b>Use ArrayCopy()</b>
+
+#ref ArrayCopy

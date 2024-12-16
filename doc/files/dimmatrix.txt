@@ -1,0 +1,4 @@
+#title DimMatrix [RCBasic Doc]
+#header function DimMatrix(m_rows, m_cols)
+
+Returns a new matrix

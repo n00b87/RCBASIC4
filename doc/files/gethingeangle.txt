@@ -1,0 +1,4 @@
+#title getHingeAngle [RCBasic Doc]
+#header function  getHingeAngle( constraint_id)
+
+Returns the angle of a hinge constraint

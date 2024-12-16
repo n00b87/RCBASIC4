@@ -1,0 +1,4 @@
+#title ScalarMatrix [RCBasic Doc]
+#header sub ScalarMatrix(mA, mB, s_value)
+
+Multiplies values in matrix mA by scalar value and stores the results in mB 

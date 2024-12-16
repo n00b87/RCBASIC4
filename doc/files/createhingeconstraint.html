@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>CreateHingeConstraint [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>function  CreateHingeConstraint( actorA, frameA, useReferenceFrameA ) </h2></p>
+		<p>
+		 Simulates a hinge joint, which allows two actors (or an actor and the world) to rotate around a single axis while restricting movement along the other axes. This is similar to the way a door swings on its hinges or how an elbow joint functions in the human body. 
+		</p>
+		<p id="rc_code"><code>
+			actorA&nbsp;=&nbsp;CreateCubeActor<b>(</b><span class="rc_number">100</span><b>)</b>&nbsp;<span class="rc_comment">'Creates a cube actor </span><br>
+			frameA&nbsp;=&nbsp;DimMatrix<b>(</b><span class="rc_number">4</span>,&nbsp;<span class="rc_number">4</span><b>)</b>&nbsp;<span class="rc_comment">'A transform matrix must be a 4x4 matrix </span><br>
+			SetIdentityMatrix<b>(</b>frameA,&nbsp;<span class="rc_number">4</span><b>)</b>&nbsp;<span class="rc_comment">'Sets frameB to a 4x4 identity matrix </span><br>
+			SetMatrixTranslation<b>(</b>frameA,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">1</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<span class="rc_comment">'Sets the attach point of the constraint to the top of the cube </span><br>
+			hinge&nbsp;=&nbsp;CreateHingeConstraint<b>(</b>actorA,&nbsp;frameA,&nbsp;<span class="rc_keyword">true</span><b>)</b>&nbsp;<br>
+		</code></p>
+		<p>
+		 Note: It is recommended to use CreateSlideConstraintEx() in most cases 
+		</p>
+		<br><p>Related: 
+		<a href="createhingeconstraintex.html">CreateHingeConstraintEx</a>
+		<a href="setidentitymatrix.html">SetIdentityMatrix</a>
+		<a href="setmatrixtranslation.html">SetMatrixTranslation</a>
+		<a href="setmatrixrotation.html">SetMatrixRotation</a>
+		</p>
+		<p>
+
+	</body>
+</html>

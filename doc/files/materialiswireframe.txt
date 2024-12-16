@@ -1,0 +1,4 @@
+#title MaterialIsWireframe [RCBasic Doc]
+#header function  MaterialIsWireframe( material_id )
+
+Returns true if the material is rendered with non-filled triangles

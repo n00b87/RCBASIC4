@@ -1,0 +1,4 @@
+#title ScalarMatrixRows [RCBasic Doc]
+#header function ScalarMatrixRows(mA, mB, r, num_rows, s_value)
+
+Multiplies values in the specified rows of matrix mA by scalar value and stores the results in mB

@@ -1,0 +1,4 @@
+#title Runtime$ [RCBasic Doc]
+#header function Runtime$()
+
+Returns the path to the RCBasic runtime that launched the current program 

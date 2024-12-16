@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>RCBasic I/O [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>INPUT/OUTPUT </h2></p>
+		<p>
+		 RC BASIC has two ways of getting output to a text console.  The first way is the <b>PRINT</b> keyword shown here: 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"HELLO WORLD"</span>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 You can also use a <b>";"</b> to output multiple values or to prevent <b>PRINT</b> from going to a new-line in its output. 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"This is line 1. "</span>;&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"This is still line 1. Value="</span>;&nbsp;<span class="rc_number">4</span>+<span class="rc_number">5</span>;&nbsp;<span class="rc_string">"  This is the end of line 1"</span>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"Line 2 start"</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 You can also use the <b>FPrint()</b> sub routine to do the same thing as <b>PRINT</b>. It was added back in RCBasic v1.0 since <b>PRINT</b> was not able to stop new-line after its output back then. This is a legacy hold over and does not really add any new functionality. 
+		</p>
+		<p>
+		 To get input from the user you would use the <b>INPUT$</b> function.  <b>INPUT$</b> will display a prompt to the user and then get input from the console. 
+		</p>
+		<p id="rc_code"><code>
+			USER_NAME$&nbsp;=&nbsp;INPUT$<b>(</b><span class="rc_string">"WHAT IS YOUR NAME? "</span><b>)</b>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above example will ask the user WHAT IS YOUR NAME? and then store whatever the user types in into the variable USER_NAME$. 
+		</p>
+		<p>
+
+	</body>
+</html>

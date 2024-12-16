@@ -1,0 +1,6 @@
+#title TextWidth [RCBasic Doc]
+#header function TextWidth(txt$)
+
+The width of text rendered with the active font
+
+#ref TextHeight GetTextSize

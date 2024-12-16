@@ -1,0 +1,6 @@
+#title GetCameraAspectRatio [RCBasic Doc]
+#header function GetCameraAspectRatio( )
+
+Returns the camera aspect ratio for the active canvas
+
+#ref SetCameraAspectRatio

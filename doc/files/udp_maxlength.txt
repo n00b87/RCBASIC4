@@ -1,0 +1,4 @@
+#title UDP_MaxLength [RCBasic Doc]
+#header function UDP_MaxLength()
+
+Returns the maximum number of bytes from a udp socket

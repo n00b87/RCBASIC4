@@ -1,0 +1,6 @@
+#title DirNext$ [RCBasic Doc]
+#header function DirNext$()
+
+Returns the next item in the directory poll
+
+#ref DirFirst$

@@ -1,0 +1,4 @@
+#title MouseWheelX [RCBasic Doc]
+#header function MouseWheelX()
+
+Returns the value of the x axis on the mouse wheel

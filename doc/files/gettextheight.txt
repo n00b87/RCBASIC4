@@ -1,0 +1,4 @@
+#title GetTextHeight [RCBasic Doc]
+#header function GetTextHeight(txt$)
+
+Returns the height of the text if rendered with the current font

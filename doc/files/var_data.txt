@@ -1,0 +1,39 @@
+#title RCBasic Variables [RCBasic Doc]
+#header VARIABLES AND DATA TYPES
+
+RC Basic supports  two basic types of data: Numbers and Strings.  These data types can be used to represent any type of data used in a program.
+
+Numbers can be either integers or floating point.  To designate an integer value you simply write out the number where you need to use it.  Floating point numbers are similiar except that you would write a decimal point to denote the start of the floating point value.  Look at the following:
+
+#code
+5     'Integer Number
+
+5.5   'Floating Point Number
+#/code
+
+
+Strings are used to store and manipulate data other than numbers.  They can be used to refer to single characters, words, sentences, paragraphs, etc.  Look at the Following:
+
+#code
+"HELLO WORLD"   'String
+#/code
+
+Notice that the string "HELLO WORLD" is surrounded by quotation marks.  When setting a strings value manually you must use quotation marks.
+
+In order to be able to use string or number data to do anything useful we have to be able to store and retrieve the data.  This is what variables are used for.  Look at the following:
+#code
+A = 5
+
+B$ = "HELLO WORLD"
+#/code
+The above example creates two variables.  The variable A stores the number 5 and the variable B$ stores the string HELLO WORLD.  Note that the variable B ends with a $.  The $ has to be used when creating a string variable to let RC BASIC know its a string and to not treat it as a number.  You only have to use the $ when you first create the variable.
+
+If you don't want to set the value of a variable when you create it you can create the variable with the <b>DIM</b> keyword like this:
+#code
+Dim A
+
+Dim B$
+#/code
+You can also declare multiple variables with <b>DIM</b>.
+
+Dim A, B$, C

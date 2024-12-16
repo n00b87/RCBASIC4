@@ -1,0 +1,43 @@
+#title SetSpriteScale [RCBasic Doc]
+#header Sub SetSpriteScale(sprite, x, y)
+
+Sets the scale of a sprite
+
+#code
+isFullScreen = false
+vSync = true
+winWidth = 640
+winHeight = 480
+canViewPortX = 0
+canViewPortY = 0
+
+OpenWindow("SetSpriteScale", winWidth, winHeight, isFullScreen, vSync)
+sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+Canvas(sCanvas)
+
+DIM eye
+DIM eyeW
+DIM eyeH
+DIM eyeScale				'Variable to hold the sprites scale
+eyeScale = 2
+
+eye = LoadImage("theEye.png")
+GetImageSize(eye, eyeW, eyeH)
+
+eyeSprite = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite, 100, 100)
+
+eyeSprite2 = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite2, 200, 100)
+
+SetSpriteScale(eyeSprite2, eyeScale, eyeScale)
+
+While Not Key(K_ESCAPE)
+
+Update()
+Wend
+#/code
+
+#image "images/theEye.png"
+
+#ref ScaleSprite GetSpriteScale

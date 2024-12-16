@@ -1,0 +1,7 @@
+#title GetSpriteFriction [RCBasic Doc]
+#header function GetSpriteFriction( spr_id )
+
+Returns a sprite's friction
+
+#ref GetSpriteFriction
+

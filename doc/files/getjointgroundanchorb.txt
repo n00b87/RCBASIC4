@@ -1,0 +1,8 @@
+#title getJointGroundAnchorB [RCBasic Doc]
+#header sub getJointGroundAnchorB( joint_id,  ByRef  x,  ByRef  y)
+
+Gets the second ground anchor
+
+Used with Pulley Joint
+
+#ref GetJointGroundAnchorA

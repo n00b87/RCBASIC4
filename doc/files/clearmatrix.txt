@@ -1,0 +1,4 @@
+#title ClearMatrix [RCBasic Doc]
+#header sub ClearMatrix(mA)
+
+Sets all elements in a matrix to zero

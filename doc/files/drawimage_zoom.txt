@@ -1,0 +1,6 @@
+#title DrawImage_Zoom [RCBasic Doc]
+#header sub DrawImage_Zoom(slot, x, y, zx, zy)
+
+ Draws an image to the current canvas scaled by a given factor
+
+#ref DrawImage_ZoomEx

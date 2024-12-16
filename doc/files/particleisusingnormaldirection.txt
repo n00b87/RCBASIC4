@@ -1,0 +1,6 @@
+#title particleIsUsingNormalDirection [RCBasic Doc]
+#header function  particleIsUsingNormalDirection( actor)
+
+Returns true if particle emitter is using vertex normal for direction, or direction specified. 
+
+#ref useParticleNormalDirection

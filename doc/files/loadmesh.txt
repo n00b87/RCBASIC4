@@ -1,0 +1,36 @@
+#title LoadMesh [RCBasic Doc]
+#header function LoadMesh( mesh_file$ )
+
+Returns a mesh id for the loaded mesh
+
+Supported formats
+#list ul
+#li Animated objects:
+	#list ul
+    #li B3D files (.b3d, r, skeleton)
+    #li Microsoft DirectX (.x, r) (binary & text, skeleton)
+    #li Milkshape (.ms3d, r, skeleton)
+    #li Quake 3 models (.md3, r, morph)
+    #li Quake 2 models (.md2, r, morph)
+    #/list
+#li Static objects:
+	#list ul
+    #li Irrlicht scenes (.irr, r/w)
+    #li Irrlicht static meshes (.irrmesh, r/w)
+    #li 3D Studio meshes (.3ds, r)
+    #li Alias Wavefront Maya (.obj, r/w)
+    #li Lightwave Objects (.lwo, r)
+    #li COLLADA 1.4 (.xml, .dae, r/w)
+    #li OGRE meshes (.mesh, r)
+    #li My3DTools 3 (.my3D, r)
+    #li Pulsar LMTools (.lmts, r)
+    #li Quake 3 levels (.bsp, r)
+    #li DeleD (.dmf, r)
+    #li FSRad oct (.oct, r)
+    #li Cartography shop 4 (.csm, r)
+    #li STL 3D files (.stl, r/w)
+    #li PLY 3D files (.ply, r/w)
+    #/list
+#/list
+
+#ref LoadMeshFromArchive

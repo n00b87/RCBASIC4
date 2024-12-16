@@ -1,0 +1,4 @@
+#title setConstraintSolverIterations [RCBasic Doc]
+#header sub  setConstraintSolverIterations( constraint_id,  num)
+
+Sets the value for the number of solver iterations that have been overridden for a specific constraint or actor. Solver iterations refer to the number of times the physics engine solves for constraint forces during each simulation step.

@@ -1,0 +1,9 @@
+#title getConeTwistLimitSign [RCBasic Doc]
+#header function  getConeTwistLimitSign( constraint_id)
+
+Returns the sign of the twist limit, which indicates the direction of the twist limit enforcement around the twist axis.
+
+#list ul
+#li The twist limit sign determines the direction in which the twist limit is applied.
+#li A positive sign typically indicates a counterclockwise rotation is allowed, while a negative sign indicates a clockwise rotation is allowed.
+#/list

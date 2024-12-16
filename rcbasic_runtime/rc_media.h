@@ -67,6 +67,8 @@
 #include <unistd.h>
 #include <assert.h>
 
+#include <irrlicht.h>
+
 #include "theoraplay.h"
 
 #endif //RC_IOS

@@ -1,0 +1,6 @@
+#title GetActorAnimationStartFrame [RCBasic Doc]
+#header Function GetActorAnimationStartFrame(actor, animation)
+
+Returns the first frame in an actor's animation
+
+#ref SetActorAnimationFrames

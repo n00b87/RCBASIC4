@@ -1,0 +1,6 @@
+#title SetActorInverseInertiaDiagLocal [RCBasic Doc]
+#header sub SetActorInverseInertiaDiagLocal( actor,   x,   y,   z)
+
+Sets the inverse of the inertia tensor's diagonal components in an actor's local space. This is used to compute how the actor reacts to rotational forces (torques) applied to it.
+
+#ref GetActorInverseInertiaDiagLocal

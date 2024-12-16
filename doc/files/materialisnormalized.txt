@@ -1,0 +1,4 @@
+#title MaterialIsNormalized [RCBasic Doc]
+#header function  MaterialIsNormalized( material_id )
+
+Returns true if material has normalized normals

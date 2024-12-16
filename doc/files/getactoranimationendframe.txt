@@ -1,0 +1,6 @@
+#title GetActorAnimationEndFrame [RCBasic Doc]
+#header Function GetActorAnimationEndFrame(actor, animation)
+
+Returns the last frame in an actor's animation
+
+#ref SetActorAnimationFrames

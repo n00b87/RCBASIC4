@@ -1,0 +1,4 @@
+#title FontExists [RCBasic Doc]
+#header Function FontExists(fnt_id)
+
+Returns True if the specified font id is associated with a loaded font

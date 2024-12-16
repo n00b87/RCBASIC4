@@ -1,0 +1,6 @@
+#title GetCameraRotation [RCBasic Doc]
+#header sub GetCameraRotation(ByRef x, ByRef y, ByRef z)
+
+Gets the rotation of the camera on each axis
+
+#ref SetCameraRotation RotateCamera

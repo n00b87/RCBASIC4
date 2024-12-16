@@ -1,0 +1,6 @@
+#title ResumeVideo [RCBasic Doc]
+#header sub ResumeVideo()
+
+Resumes the video
+
+#ref PauseVideo

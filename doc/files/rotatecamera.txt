@@ -1,0 +1,6 @@
+#title RotateCamera [RCBasic Doc]
+#header sub RotateCamera( x, y, z)
+
+Rotates the camera a given number of degrees from its current orientation
+
+#ref SetCameraRotation GetCameraRotation

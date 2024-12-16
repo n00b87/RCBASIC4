@@ -1,0 +1,4 @@
+#title MatrixValue [RCBasic Doc]
+#header function MatrixValue(mA, r, c)
+
+Returns the value stored at the given row and column in the matrix 

@@ -1,0 +1,6 @@
+#title SetTileAnimationSpeed [RCBasic Doc]
+#header Sub SetTileAnimationSpeed(tileset, base_tile, speed)
+
+Sets the speed of a tile's animation
+
+#ref GetTileAnimationSpeed

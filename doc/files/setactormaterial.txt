@@ -1,0 +1,8 @@
+#title setActorMaterial [RCBasic Doc]
+#header sub  setActorMaterial( actor,  material_num,  material_id)
+
+Sets a material on an actor
+
+Note: Generally you just want to set material zero but actors can have multiple materials depending on the model format
+
+#ref GetActorMaterial

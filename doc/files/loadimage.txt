@@ -1,0 +1,4 @@
+#title LoadImage [RCBasic Doc]
+#header function LoadImage( img$ )
+
+Returns an image id for an image loaded into memory

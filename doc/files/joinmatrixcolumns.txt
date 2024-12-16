@@ -1,0 +1,4 @@
+#title JoinMatrixColumns [RCBasic Doc]
+#header sub JoinMatrixColumns(mA, mB, mC)
+
+Appends the columns in matrix mB below matrix mA. 

@@ -1,0 +1,8 @@
+#title CreateTerrainActor [RCBasic Doc]
+#header function CreateTerrainActor( hmap_file$ )
+
+Returns terrain generated from a height map
+
+Note: Height Maps can be any supported image format
+
+#ref CreateAnimatedActor CreateOctreeActor CreateSphereActor CreateWaterActor CreateLightActor CreateCubeActor CreateBillboardActor

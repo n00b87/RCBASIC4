@@ -1,0 +1,4 @@
+#title NumJoysticks [RCBasic Doc]
+#header function NumJoysticks()
+
+Returns the number of joysticks detected

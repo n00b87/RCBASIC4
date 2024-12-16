@@ -1,0 +1,6 @@
+#title GetActorCollision [RCBasic Doc]
+#header function GetActorCollision(actor1, actor2)
+
+Returns true if 2 actors collide
+
+Note: This function will work with solid and non solid actors

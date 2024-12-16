@@ -1,0 +1,12 @@
+#title SetTileAnimationFrame [RCBasic Doc]
+#header Sub SetTileAnimationFrame(tileset, base_tile, anim_frame, tile)
+
+Sets a frame of animation for a tile
+
+Parameters:
+#list ul
+#li tileset - The tileset that the base_tile is in
+#li base_tile - The tile with the frame of animation being set
+#li anim_frame - The specific index in the animation
+#li tile - The tile to set this frame to
+#/list

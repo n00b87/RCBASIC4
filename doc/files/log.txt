@@ -1,0 +1,4 @@
+#title Log [RCBasic Doc]
+#header function Log(n)
+
+Returns the logarithm of a number.

@@ -1,0 +1,4 @@
+#title GetActorCurrentFrame [RCBasic Doc]
+#header function GetActorCurrentFrame( actor )
+
+Returns an actor's current frame of animation

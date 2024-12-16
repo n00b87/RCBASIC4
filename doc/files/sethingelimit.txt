@@ -1,0 +1,16 @@
+#title setHingeLimit [RCBasic Doc]
+#header sub  setHingeLimit( constraint_id,  low,  high,  softness,  bias_factor,  relaxation_factor)
+
+Defines the angular limits of the hinge's rotation. A hinge constraint allows two actors (or one actor and the world) to rotate around a single axis, similar to a door hinge. This function restricts how far this rotation can go by setting minimum and maximum angles.
+
+By default, if no limits are applied, the hinge can rotate freely around the axis.
+
+#list ul
+#li low: This is the minimum angular limit. It defines the smallest angle that the hinge can rotate to in the negative direction.
+#li high: This is the maximum angular limit. It defines the largest angle that the hinge can rotate to in the positive direction.
+#li softness: Controls how "soft" the limit is. A value closer to 0 results in a hard limit (instant stop when the limit is reached), while a value closer to 1 allows some "give" before the limit fully takes effect, making the motion smoother as the limit is approached.
+#li bias_factor: Helps to correct drift or penetration by applying a correction bias when the hinge reaches the limit. A higher value will apply a stronger bias to correct errors in the position.
+#li relaxation_factor: Controls how the hinge behaves once the limit is reached. A value closer to 1 results in faster relaxation after hitting the limit, while a lower value makes the motion more rigid.
+#/list
+
+#ref GetHingeLimitBiasFactor GetHingeLimitRelaxationFactor GetHingeLimitSign GetHingeSolveLimit

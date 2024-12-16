@@ -1,0 +1,6 @@
+#title SetEnv [RCBasic Doc]
+#header sub SetEnv(var$, value$)
+
+Sets the value of an environment variable
+
+#ref Env$

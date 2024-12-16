@@ -1,0 +1,6 @@
+#title GetCameraNearValue [RCBasic Doc]
+#header function GetCameraNearValue( )
+
+Returns the near plane of the camera on the active canvas
+
+#ref GetCameraFarValue

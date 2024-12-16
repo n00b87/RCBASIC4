@@ -1,0 +1,4 @@
+#title WaitKey [RCBasic Doc]
+#header function WaitKey()
+
+Halts execution of a program until a key is pressed.

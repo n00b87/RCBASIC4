@@ -1,0 +1,6 @@
+#title ArrayDim [RCBasic Doc]
+#header function ArrayDim(Byref id)
+
+Returns the number of dimensions in an array
+
+#ref ArrayCopy ArrayFill ArraySize

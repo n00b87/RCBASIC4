@@ -1,0 +1,6 @@
+#title CreateCubeActor [RCBasic Doc]
+#header function CreateCubeActor( cube_size )
+
+Returns an actor with a cube mesh of the specified size ( cube_size x cube_size x cube_size )
+
+#ref CreateAnimatedActor CreateOctreeActor CreateSphereActor CreateWaterActor CreateLightActor CreateBillboardActor CreateTerrainActor

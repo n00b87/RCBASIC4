@@ -1,0 +1,8 @@
+#title SetChannelSpacePosition [RCBasic Doc]
+#header function SetChannelSpacePosition(channel, angle, distance)
+
+Simulates audio in 3D space
+
+Angle 0 is in front of the listener and increases clockwise
+
+#ref SetChannelDistance SetChannelPanning

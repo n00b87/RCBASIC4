@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>SetSpriteZ [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Sub SetSpriteZ(sprite, z) </h2></p>
+		<p>
+		 Sets the drawing priority for sprites. 
+		</p>
+		<p>
+		 Note: Sprites with a higher Z order are drawn first and those with lower values will be drawn on top 
+		</p>
+		<p id="rc_code"><code>
+			isFullScreen&nbsp;=&nbsp;<span class="rc_keyword">false</span>&nbsp;<br>
+			vSync&nbsp;=&nbsp;<span class="rc_keyword">true</span>&nbsp;<br>
+			winWidth&nbsp;=&nbsp;<span class="rc_number">640</span>&nbsp;<br>
+			winHeight&nbsp;=&nbsp;<span class="rc_number">480</span>&nbsp;<br>
+			canViewPortX&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			canViewPortY&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			OpenWindow<b>(</b><span class="rc_string">"ScaleSprite"</span>,&nbsp;winWidth,&nbsp;winHeight,&nbsp;isFullScreen,&nbsp;vSync<b>)</b>&nbsp;<br>
+			sCanvas&nbsp;=&nbsp;OpenCanvasSpriteLayer<b>(</b>canViewPortX,&nbsp;canViewPortY,&nbsp;winWidth,&nbsp;winHeight<b>)</b>&nbsp;<br>
+			Canvas<b>(</b>sCanvas<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eye&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeW&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeH&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;sword&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;swordW&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;swordH&nbsp;<br>
+			ReleaseKey&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eye&nbsp;=&nbsp;LoadImage<b>(</b><span class="rc_string">"theEye.png"</span><b>)</b>&nbsp;<br>
+			GetImageSize<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			sword&nbsp;=&nbsp;LoadImage<b>(</b><span class="rc_string">"sword.png"</span><b>)</b>&nbsp;<br>
+			GetImageSize<b>(</b>sword,&nbsp;swordW,&nbsp;swordH<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eyeSprite&nbsp;=&nbsp;CreateSprite<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			SetSpritePosition<b>(</b>eyeSprite,&nbsp;<span class="rc_number">100</span>,&nbsp;<span class="rc_number">100</span><b>)</b>&nbsp;<br>
+			SetSpriteZ<b>(</b>eyeSprite,&nbsp;<span class="rc_number">1</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			swordSprite&nbsp;=&nbsp;CreateSprite<b>(</b>sword,&nbsp;swordW,&nbsp;swordH<b>)</b>&nbsp;<br>
+			SetSpritePosition<b>(</b>swordSprite,&nbsp;<span class="rc_number">89</span>,&nbsp;<span class="rc_number">75</span><b>)</b>&nbsp;<br>
+			SetSpriteZ<b>(</b>swordSprite,&nbsp;<span class="rc_number">5</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;Key<b>(</b>K_ESCAPE<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">If</span>&nbsp;Key<b>(</b>K_SPACE<b>)</b>&nbsp;<span class="rc_keyword">And</span>&nbsp;ReleaseKey&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			SetSpriteZ<b>(</b>eyeSprite,&nbsp;<span class="rc_number">10</span><b>)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'This will cause the eye to be drawn behind the sword </span><br>
+			ReleaseKey&nbsp;=&nbsp;<span class="rc_number">1</span>&nbsp;<br>
+			<span class="rc_keyword">ElseIf</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;Key<b>(</b>K_UP<b>)</b>&nbsp;<span class="rc_keyword">And</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;Key<b>(</b>K_DOWN<b>)</b>&nbsp;<span class="rc_keyword">And</span>&nbsp;ReleaseKey&nbsp;=&nbsp;<span class="rc_number">1</span>&nbsp;<span class="rc_keyword">then</span>&nbsp;<br>
+			ReleaseKey&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Update<b>(</b><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+		</code></p>
+		<p><img src="images/theEye.png" ></p>
+		<p><img src="images/sword.png" ></p>
+		<br><p>Related: 
+		<a href="spritez.html">SpriteZ</a>
+		</p>
+		<p>
+
+	</body>
+</html>

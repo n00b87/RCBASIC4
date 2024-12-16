@@ -1,0 +1,4 @@
+#title ClearMouseZone [RCBasic Doc]
+#header sub ClearMouseZone()
+
+Removes the previously set mouse zone from the window

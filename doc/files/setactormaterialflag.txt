@@ -1,0 +1,32 @@
+#title setActorMaterialFlag [RCBasic Doc]
+#header sub  setActorMaterialFlag( actor,  flag,  flag_value)
+
+Sets the value of an actor's material flag. 
+
+Note: The material on this would be material 0. To set other material flag's you need to get a reference to the actor's material with GetActorMaterial().
+
+Possible values for flag:
+#list
+#li MATERIAL_FLAG_WIREFRAME 
+#li MATERIAL_FLAG_POINTCLOUD 
+#li MATERIAL_FLAG_GOURAUD_SHADING 
+#li MATERIAL_FLAG_LIGHTING 
+#li MATERIAL_FLAG_ZBUFFER 
+#li MATERIAL_FLAG_ZWRITE_ENABLE 
+#li MATERIAL_FLAG_BACK_FACE_CULLING 
+#li MATERIAL_FLAG_FRONT_FACE_CULLING 
+#li MATERIAL_FLAG_BILINEAR_FILTER 
+#li MATERIAL_FLAG_TRILINEAR_FILTER 
+#li MATERIAL_FLAG_ANISOTROPIC_FILTER 
+#li MATERIAL_FLAG_FOG_ENABLE 
+#li MATERIAL_FLAG_NORMALIZE_NORMALS 
+#li MATERIAL_FLAG_TEXTURE_WRAP 
+#li MATERIAL_FLAG_ANTI_ALIASING 
+#li MATERIAL_FLAG_COLOR_MASK 
+#li MATERIAL_FLAG_COLOR_MATERIAL 
+#li MATERIAL_FLAG_USE_MIP_MAPS 
+#li MATERIAL_FLAG_BLEND_OPERATION 
+#li MATERIAL_FLAG_POLYGON_OFFSET 
+#/list
+
+#ref GetActorMaterialFlag GetActorMaterial

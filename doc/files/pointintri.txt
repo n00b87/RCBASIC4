@@ -1,0 +1,4 @@
+#title PointInTri [RCBasic Doc]
+#header function PointInTri(px, py, x1, y1, x2, y2, x3, y3)
+
+Returns true if the point (px, py) is in the quad (x1, y1) to (x3, y3)

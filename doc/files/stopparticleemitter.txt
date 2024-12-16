@@ -1,0 +1,6 @@
+#title stopParticleEmitter [RCBasic Doc]
+#header sub  stopParticleEmitter( actor)
+
+Stops particle emission for a particle actor
+
+#ref StartParticleEmitter

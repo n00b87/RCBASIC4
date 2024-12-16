@@ -1,0 +1,4 @@
+#title DeleteMesh [RCBasic Doc]
+#header sub DeleteMesh( mesh )
+
+Removes a mesh from memory

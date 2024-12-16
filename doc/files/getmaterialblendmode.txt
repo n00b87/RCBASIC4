@@ -1,0 +1,20 @@
+#title getMaterialBlendMode [RCBasic Doc]
+#header function  getMaterialBlendMode( material_id)
+
+Returns a materials blend mode
+
+Possible Blend Modes
+#list ul
+#li BLEND_MODE_NONE
+#li BLEND_MODE_ADD    
+#li BLEND_MODE_SUBTRACT 
+#li BLEND_MODE_REVSUBTRACT
+#li BLEND_MODE_MIN        
+#li BLEND_MODE_MAX  
+#li BLEND_MODE_MIN_FACTOR 
+#li BLEND_MODE_MAX_FACTOR 
+#li BLEND_MODE_MIN_ALPHA  
+#li BLEND_MODE_MAX_ALPHA   
+#/list
+
+#ref SetMaterialBlendMode

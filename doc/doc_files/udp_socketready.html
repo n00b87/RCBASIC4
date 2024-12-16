@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>UDP_SocketReady [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>function UDP_SocketReady(socket) </h2></p>
+		<p>
+		 Returns 0 for no activity and non zero for activity. You need to call CheckSockets() at some point before this otherwise it will always return 0. 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">If</span>&nbsp;UDP_SocketReady&nbsp;<b>(</b>&nbsp;<span class="rc_number">0</span>&nbsp;<b>)</b>&nbsp;&gt;&nbsp;<span class="rc_number">0</span>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			<span class="rc_comment">'Socket has activity so we can do something here </span><br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
+		</code></p>
+		<br><p>Related: 
+		<a href="checksockets.html">CheckSockets</a>
+		</p>
+		<p>
+
+	</body>
+</html>

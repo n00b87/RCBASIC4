@@ -1,0 +1,4 @@
+#title HasClipboardText [RCBasic Doc]
+#header function HasClipboardText()
+
+Returns whether or not there is text in the clipboard.

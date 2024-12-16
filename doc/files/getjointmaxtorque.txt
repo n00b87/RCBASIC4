@@ -1,0 +1,12 @@
+#title getJointMaxTorque [RCBasic Doc]
+#header function  getJointMaxTorque( joint_id)
+
+Returns the upper limit on the amount of torque (rotational force) the joint can apply, controlling how much rotational resistance or power the joint provides.
+
+Used with
+#list ul
+#li Friction Joint
+#li Motor Joint
+#/list
+
+#ref SetJointMaxTorque

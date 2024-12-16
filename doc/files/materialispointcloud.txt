@@ -1,0 +1,4 @@
+#title MaterialIsPointCloud [RCBasic Doc]
+#header function  MaterialIsPointCloud( material_id )
+
+Returns true if material is set to render with point cloud

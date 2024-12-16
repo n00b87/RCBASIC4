@@ -1,0 +1,4 @@
+#title Rand [RCBasic Doc]
+#header function Rand(n)
+
+Returns a random number between 0 and n.

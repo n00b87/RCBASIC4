@@ -1,0 +1,11 @@
+#title getConstraintLimitSoftness [RCBasic Doc]
+#header function  getConstraintLimitSoftness( constraint_id)
+
+Returns the softness parameter associated with the limits of the constraint. This softness affects how the constraint behaves when the angular motion of the connected actors approaches their defined limits.
+
+#list ul
+#li Hard Limits: If the softness value is set to 1.0, it means the limits are treated as hard constraints. The physics engine will enforce these limits strictly, applying strong corrective forces to keep the motion within the limits.
+#li Soft Limits: A softness value less than 1.0 allows for some flexibility in the motion. The actors can "push" against the limits without an immediate strong corrective force, leading to a more gradual response when approaching the limits.
+#/list
+
+#ref SetConstraintSoftnessDirAng SetConstraintSoftnessDirLin SetConstraintSoftnessLimAng SetConstraintSoftnessLimLin SetConstraintSoftnessOrthoAng

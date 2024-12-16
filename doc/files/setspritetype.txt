@@ -1,0 +1,151 @@
+#title SetSpriteType [RCBasic Doc]
+#header Sub SetSpriteType(sprite, sprite_type)
+
+Sets the type of collision body a sprite has
+
+#list ul
+#li SPRITE_TYPE_STATIC
+#li SPRITE_TYPE_KINEMATIC
+#li SPRITE_TYPE_DYNAMIC
+#/list
+
+Here is an example of SPRITE_TYPE_DYNAMIC:
+
+#code
+'This is showing SPRITE_TYPE_DYNAMIC
+
+isFullScreen = false
+vSync = true
+winWidth = 640
+winHeight = 480
+canViewPortX = 0
+canViewPortY = 0
+
+OpenWindow("SetSpriteType_Dynamic", winWidth, winHeight, isFullScreen, vSync)
+sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+Canvas(sCanvas)
+
+DIM eye
+DIM eyeW
+DIM eyeH
+eyeSpriteX = 100
+eyeSpriteY = 100
+eyeSprite2X = 400
+eyeSprite2Y = 125
+
+eye = LoadImage("theEye.png")
+GetImageSize(eye, eyeW, eyeH)
+
+eyeSprite = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite, eyeSpriteX, eyeSpriteY)
+SetSpriteSolid(eyeSprite, 1)
+
+'When Sprites are created and physics activated there "type" is Dyanmic by default
+'The sprites have collision and physics activated, so they can move and react to other bodies.
+
+eyeSprite2 = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite2, eyeSprite2X, eyeSprite2Y)
+SetSpriteSolid(eyeSprite2, 1)
+
+While Not Key(K_ESCAPE)
+
+	SetSpriteLinearVelocity(eyeSprite, 80, 0)
+
+	Update()
+Wend
+#/code
+
+Here is an example of SPRITE_TYPE_STATIC:
+
+#code
+'This is showing SPRITE_TYPE_STATIC
+
+isFullScreen = false
+vSync = true
+winWidth = 640
+winHeight = 480
+canViewPortX = 0
+canViewPortY = 0
+
+OpenWindow("SetSpriteType_Static", winWidth, winHeight, isFullScreen, vSync)
+sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+Canvas(sCanvas)
+
+DIM eye
+DIM eyeW
+DIM eyeH
+eyeSpriteX = 100
+eyeSpriteY = 100
+eyeSprite2X = 400
+eyeSprite2Y = 125
+
+eye = LoadImage("theEye.png")
+GetImageSize(eye, eyeW, eyeH)
+
+eyeSprite = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite, eyeSpriteX, eyeSpriteY)
+SetSpriteSolid(eyeSprite, 1)
+
+'When Sprites are created and physics activated there "type" is Dyanmic by default
+'The sprites have collision and physics activated, so they can move and react to other bodies.
+
+eyeSprite2 = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite2, eyeSprite2X, eyeSprite2Y)
+SetSpriteSolid(eyeSprite2, 1)
+SetSpriteType(eyeSprite2, SPRITE_TYPE_STATIC)					'When a sprite is made solid nothing can move it
+
+While Not Key(K_ESCAPE)
+
+	SetSpriteLinearVelocity(eyeSprite, 80, 0)
+
+	Update()
+Wend
+#/code
+
+Finally here is an example of SPRITE_TYPE_KINEMATIC:
+
+#code
+'This is showing SPRITE_TYPE_KINEMATIC
+
+isFullScreen = false
+vSync = true
+winWidth = 640
+winHeight = 480
+canViewPortX = 0
+canViewPortY = 0
+
+OpenWindow("SetSpriteType_Kinematic", winWidth, winHeight, isFullScreen, vSync)
+sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+Canvas(sCanvas)
+
+DIM eye
+DIM eyeW
+DIM eyeH
+eyeSpriteX = 100
+eyeSpriteY = 100
+eyeSprite2X = 400
+eyeSprite2Y = 125
+
+eye = LoadImage("theEye.png")
+GetImageSize(eye, eyeW, eyeH)
+
+eyeSprite = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite, eyeSpriteX, eyeSpriteY)
+SetSpriteSolid(eyeSprite, 1)
+SetSpriteType(eyeSprite, SPRITE_TYPE_KINEMATIC)			'KINEMATIC type makes the sprite able to be moved, but it does not react to dynamic bodies.
+
+eyeSprite2 = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite2, eyeSprite2X, eyeSprite2Y)
+SetSpriteSolid(eyeSprite2, 1)
+
+While Not Key(K_ESCAPE)
+
+	SetSpriteLinearVelocity(eyeSprite, 80, 0)
+
+	Update()
+Wend
+#/code
+
+#image "images/theEye.png"
+
+#ref GetSpriteType

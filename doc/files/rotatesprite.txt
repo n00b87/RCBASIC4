@@ -1,0 +1,50 @@
+#title RotateSprite [RCBasic Doc]
+#header Sub RotateSprite(sprite, angle)
+
+Sets the angle the sprite is rotated by relative to its current rotation
+
+#code
+isFullScreen = false
+vSync = true
+winWidth = 640
+winHeight = 480
+canViewPortX = 0
+canViewPortY = 0
+
+OpenWindow("RotateSprite", winWidth, winHeight, isFullScreen, vSync)
+sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+Canvas(sCanvas)
+
+DIM eye
+DIM eyeW
+DIM eyeH
+DIM eyeAngle				'Variable to hold the sprites angle value
+eyeAngle = 250
+ReleaseKey = 0
+
+eye = LoadImage("theEye.png")
+GetImageSize(eye, eyeW, eyeH)
+
+eyeSprite = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite, 100, 100)
+
+'RotateSprite(eyeSprite, eyeAngle)
+
+While Not Key(K_ESCAPE)
+'ClearCanvas() For a sprite layer canvas, you don't need to call ClearCanvas. It's automatically called.
+
+If Key(K_SPACE) And ReleaseKey = 0 Then
+	eyeAngle = 30
+	RotateSprite(eyeSprite, eyeAngle)
+	ReleaseKey = 1
+ElseIf Not Key(K_SPACE) And ReleaseKey = 1 then
+	ReleaseKey = 0
+End If
+
+Update()      'Update automatically deals with drawing the sprites on the sprite canvas.
+Wend
+#/code
+
+#image "images/theEye.png"
+
+#ref SetSpriteRotation GetSpriteRotation

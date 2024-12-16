@@ -1,0 +1,8 @@
+#title OpenWindow [RCBasic Doc]
+#header Function OpenWindow( title$, w, h, fullscreen, vsync )
+
+Opens a graphics window
+
+Returns true if window was opened and false if a window could not be opened
+
+#ref OpenWindowEx

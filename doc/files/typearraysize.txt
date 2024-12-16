@@ -1,0 +1,9 @@
+#title TypeArraySize [RCBasic Doc]
+#header function TypeArraySize(Byref id as empty, array_dim)
+
+This function is exists to be internally called by the runtime but should not be called directly.
+
+<b>Use ArraySize()</b>
+
+#ref ArraySize
+

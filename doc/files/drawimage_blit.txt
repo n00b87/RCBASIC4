@@ -1,0 +1,4 @@
+#title DrawImage_Blit [RCBasic Doc]
+#header sub DrawImage_Blit(img, x, y, src_x, src_y, src_w, src_h)
+
+Draws a portion of an image to the current canvas.

@@ -1,0 +1,15 @@
+#title AddSceneSkyDomeEx [RCBasic Doc]
+#header sub AddSceneSkyDomeEx( img, horiRes, vertRes, txPercentage, spherePercentage, radius)
+
+Adds a sky dome to the scene
+
+#list
+#li img - The texture for the sky dome
+#li horiRes - Number of vertices of a horizontal layer of the sphere.
+#li vertRes - Number of vertices of a vertical layer of the sphere.
+#li txPercentage - How much of the height of the texture is used. Should be between 0 and 1.
+#li spherePercentage - How much of the sphere is drawn. Value should be between 0 and 2, where 1 is an exact half-sphere and 2 is a full sphere.
+#li radius - The Radius of the sphere
+#/list
+
+#ref AddSceneSkyBox AddSceneSkyDome

@@ -1,0 +1,8 @@
+#title getParticleMinLife [RCBasic Doc]
+#header function  getParticleMinLife( actor)
+
+Get the min life of particles
+
+Note: Returned time is in milliseconds
+
+#ref SetParticleMinLife

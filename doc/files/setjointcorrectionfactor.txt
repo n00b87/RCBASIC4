@@ -1,0 +1,8 @@
+#title setJointCorrectionFactor [RCBasic Doc]
+#header sub setJointCorrectionFactor( joint_id,   factor)
+
+Sets how quickly the joint corrects deviations from its target position and rotation. This correction factor determines the responsiveness of the motor joint in achieving the desired linear and angular offsets between two connected bodies.
+
+Used with Motor Joints
+
+#ref GetJointCorrectionFactor

@@ -1,0 +1,8 @@
+#title EvalJS$ [RCBasic Doc]
+#header Function EvalJS$(js_code$) 'Only useable in Emscripten
+
+Runs javascript code
+
+Returns the return value of the javascript code
+
+NOTE: ONLY WORKS IN WEB PORT

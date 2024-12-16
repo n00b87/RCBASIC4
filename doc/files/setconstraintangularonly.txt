@@ -1,0 +1,6 @@
+#title setConstraintAngularOnly [RCBasic Doc]
+#header sub  setConstraintAngularOnly( constraint_id,  flag)
+
+Sets the hinge constraint to limit only angular motion while allowing unrestricted linear (translational) motion.
+
+#ref GetConstraintAngularOnly

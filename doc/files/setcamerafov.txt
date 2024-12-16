@@ -1,0 +1,6 @@
+#title SetCameraFOV [RCBasic Doc]
+#header sub SetCameraFOV( fov )
+
+Sets the camera's field of view
+
+#ref GetCameraFOV

@@ -1010,7 +1010,245 @@ string rc_keywordToken(string sline)
         return "<num>0";
     else if(sline.compare("ON_ERROR_STOP")==0)
         return "<num>1";
-    else
+	else if(sline.compare("FLASH_CANCEL")==0)
+		return "<num>" + rc_intToString((int)SDL_FLASH_CANCEL);
+	else if(sline.compare("FLASH_BRIEFLY")==0)
+		return "<num>" + rc_intToString((int)SDL_FLASH_BRIEFLY);
+    else if(sline.compare("FLASH_UNTIL_FOCUSED")==0)
+		return "<num>" + rc_intToString((int)SDL_FLASH_UNTIL_FOCUSED);
+	else if(sline.compare("SHAPE_TYPE_NONE")==0)
+		return "<num>0";
+	else if(sline.compare("SHAPE_TYPE_BOX")==0)
+		return "<num>1";
+	else if(sline.compare("SHAPE_TYPE_SPHERE")==0)
+		return "<num>2";
+	else if(sline.compare("SHAPE_TYPE_CYLINDER")==0)
+		return "<num>3";
+	else if(sline.compare("SHAPE_TYPE_CAPSULE")==0)
+		return "<num>4";
+	else if(sline.compare("SHAPE_TYPE_CONE")==0)
+		return "<num>5";
+	else if(sline.compare("SHAPE_TYPE_CONVEXHULL")==0)
+		return "<num>6";
+	else if(sline.compare("SHAPE_TYPE_TRIMESH")==0)
+		return "<num>7";
+	else if(sline.compare("MATERIAL_FLAG_WIREFRAME")==0)
+		return "<num>" + rc_intToString( 0x1);
+	else if(sline.compare("MATERIAL_FLAG_POINTCLOUD")==0)
+		return "<num>" + rc_intToString( 0x2);
+	else if(sline.compare("MATERIAL_FLAG_GOURAUD_SHADING")==0)
+		return "<num>" + rc_intToString( 0x4);
+	else if(sline.compare("MATERIAL_FLAG_LIGHTING")==0)
+		return "<num>" + rc_intToString( 0x8);
+	else if(sline.compare("MATERIAL_FLAG_ZBUFFER")==0)
+		return "<num>" + rc_intToString( 0x10);
+	else if(sline.compare("MATERIAL_FLAG_ZWRITE_ENABLE")==0)
+		return "<num>" + rc_intToString( 0x20);
+	else if(sline.compare("MATERIAL_FLAG_BACK_FACE_CULLING")==0)
+		return "<num>" + rc_intToString( 0x40);
+	else if(sline.compare("MATERIAL_FLAG_FRONT_FACE_CULLING")==0)
+		return "<num>" + rc_intToString( 0x80);
+	else if(sline.compare("MATERIAL_FLAG_BILINEAR_FILTER")==0)
+		return "<num>" + rc_intToString( 0x100);
+	else if(sline.compare("MATERIAL_FLAG_TRILINEAR_FILTER")==0)
+		return "<num>" + rc_intToString( 0x200);
+	else if(sline.compare("MATERIAL_FLAG_ANISOTROPIC_FILTER")==0)
+		return "<num>" + rc_intToString( 0x400);
+	else if(sline.compare("MATERIAL_FLAG_FOG_ENABLE")==0)
+		return "<num>" + rc_intToString( 0x800);
+	else if(sline.compare("MATERIAL_FLAG_NORMALIZE_NORMALS")==0)
+		return "<num>" + rc_intToString( 0x1000);
+	else if(sline.compare("MATERIAL_FLAG_TEXTURE_WRAP")==0)
+		return "<num>" + rc_intToString( 0x2000);
+	else if(sline.compare("MATERIAL_FLAG_ANTI_ALIASING")==0)
+		return "<num>" + rc_intToString( 0x4000);
+	else if(sline.compare("MATERIAL_FLAG_COLOR_MASK")==0)
+		return "<num>" + rc_intToString( 0x8000);
+	else if(sline.compare("MATERIAL_FLAG_COLOR_MATERIAL")==0)
+		return "<num>" + rc_intToString( 0x10000);
+	else if(sline.compare("MATERIAL_FLAG_USE_MIP_MAPS")==0)
+		return "<num>" + rc_intToString( 0x20000);
+	else if(sline.compare("MATERIAL_FLAG_BLEND_OPERATION")==0)
+		return "<num>" + rc_intToString( 0x40000);
+	else if(sline.compare("MATERIAL_FLAG_POLYGON_OFFSET")==0)
+		return "<num>" + rc_intToString( 0x80000);
+	else if(sline.compare("MATERIAL_TYPE_SOLID")==0)
+		return "<num>0";
+	else if(sline.compare("MATERIAL_TYPE_SOLID_2_LAYER")==0)
+		return "<num>1";
+	else if(sline.compare("MATERIAL_TYPE_LIGHTMAP")==0)
+		return "<num>2";
+	else if(sline.compare("MATERIAL_TYPE_LIGHTMAP_ADD")==0)
+		return "<num>3";
+	else if(sline.compare("MATERIAL_TYPE_LIGHTMAP_M2")==0)
+		return "<num>4";
+	else if(sline.compare("MATERIAL_TYPE_LIGHTMAP_M4")==0)
+		return "<num>5";
+	else if(sline.compare("MATERIAL_TYPE_LIGHTMAP_LIGHTING")==0)
+		return "<num>6";
+	else if(sline.compare("MATERIAL_TYPE_LIGHTMAP_LIGHTING_M2")==0)
+		return "<num>7";
+	else if(sline.compare("MATERIAL_TYPE_LIGHTMAP_LIGHTING_M4")==0)
+		return "<num>8";
+	else if(sline.compare("MATERIAL_TYPE_DETAIL_MAP")==0)
+		return "<num>9";
+	else if(sline.compare("MATERIAL_TYPE_SPHERE_MAP")==0)
+		return "<num>10";
+	else if(sline.compare("MATERIAL_TYPE_REFLECTION_2_LAYER")==0)
+		return "<num>11";
+	else if(sline.compare("MATERIAL_TYPE_TRANSPARENT_ADD_COLOR")==0)
+		return "<num>12";
+	else if(sline.compare("MATERIAL_TYPE_TRANSPARENT_ALPHA_CHANNEL")==0)
+		return "<num>13";
+	else if(sline.compare("MATERIAL_TYPE_TRANSPARENT_ALPHA_CHANNEL_REF")==0)
+		return "<num>14";
+	else if(sline.compare("MATERIAL_TYPE_TRANSPARENT_VERTEX_ALPHA")==0)
+		return "<num>15";
+	else if(sline.compare("MATERIAL_TYPE_TRANSPARENT_REFLECTION_2_LAYER")==0)
+		return "<num>16";
+	else if(sline.compare("MATERIAL_TYPE_NORMAL_MAP_SOLID")==0)
+		return "<num>17";
+	else if(sline.compare("MATERIAL_TYPE_NORMAL_MAP_TRANSPARENT_ADD_COLOR")==0)
+		return "<num>18";
+	else if(sline.compare("MATERIAL_TYPE_NORMAL_MAP_TRANSPARENT_VERTEX_ALPHA")==0)
+		return "<num>19";
+	else if(sline.compare("MATERIAL_TYPE_PARALLAX_MAP_SOLID")==0)
+		return "<num>20";
+	else if(sline.compare("MATERIAL_TYPE_PARALLAX_MAP_TRANSPARENT_ADD_COLOR")==0)
+		return "<num>21";
+	else if(sline.compare("MATERIAL_TYPE_PARALLAX_MAP_TRANSPARENT_VERTEX_ALPHA")==0)
+		return "<num>22";
+	else if(sline.compare("MATERIAL_TYPE_ONETEXTURE_BLEND")==0)
+		return "<num>23";
+	else if(sline.compare("MATERIAL_TYPE_FORCE_32BIT")==0)
+		return "<num>24";
+	else if(sline.compare("BLEND_MODE_NONE")==0)
+		return "<num>0";
+	else if(sline.compare("BLEND_MODE_ADD")==0)
+		return "<num>1";
+	else if(sline.compare("BLEND_MODE_SUBTRACT")==0)
+		return "<num>2";
+	else if(sline.compare("BLEND_MODE_REVSUBTRACT")==0)
+		return "<num>3";
+	else if(sline.compare("BLEND_MODE_MIN")==0)
+		return "<num>4";
+	else if(sline.compare("BLEND_MODE_MAX")==0)
+		return "<num>5";
+	else if(sline.compare("BLEND_MODE_MIN_FACTOR")==0)
+		return "<num>6";
+	else if(sline.compare("BLEND_MODE_MAX_FACTOR")==0)
+		return "<num>7";
+	else if(sline.compare("BLEND_MODE_MIN_ALPHA")==0)
+		return "<num>8";
+	else if(sline.compare("BLEND_MODE_MAX_ALPHA")==0)
+		return "<num>9";
+	else if(sline.compare("LIGHT_TYPE_POINT")==0)
+		return "<num>0";
+	else if(sline.compare("LIGHT_TYPE_SPOT")==0)
+		return "<num>1";
+	else if(sline.compare("LIGHT_TYPE_DIRECTIONAL")==0)
+		return "<num>2";
+	else if(sline.compare("AA_MODE_OFF")==0)
+		return "<num>0";
+	else if(sline.compare("AA_MODE_SIMPLE")==0)
+		return "<num>1";
+	else if(sline.compare("AA_MODE_QUALITY")==0)
+		return "<num>3";
+	else if(sline.compare("AA_MODE_LINE_SMOOTH")==0)
+		return "<num>4";
+	else if(sline.compare("AA_MODE_POINT_SMOOTH")==0)
+		return "<num>8";
+	else if(sline.compare("AA_MODE_FULL_BASIC")==0)
+		return "<num>15";
+	else if(sline.compare("AA_MODE_ALPHA_TO_COVERAGE")==0)
+		return "<num>16";
+	else if(sline.compare("COLOR_MODE_NONE")==0)
+		return "<num>0";
+	else if(sline.compare("COLOR_MODE_DIFFUSE")==0)
+		return "<num>1";
+	else if(sline.compare("COLOR_MODE_AMBIENT")==0)
+		return "<num>2";
+	else if(sline.compare("COLOR_MODE_EMISSIVE")==0)
+		return "<num>3";
+	else if(sline.compare("COLOR_MODE_SPECULAR")==0)
+		return "<num>4";
+	else if(sline.compare("COLOR_MODE_DIFFUSE_AND_AMBIENT")==0)
+		return "<num>5";
+	else if(sline.compare("PARTICLE_TYPE_POINT")==0)
+		return "<num>1";
+	else if(sline.compare("PARTICLE_TYPE_BOX")==0)
+		return "<num>2";
+	else if(sline.compare("PARTICLE_TYPE_SPHERE")==0)
+		return "<num>3";
+	else if(sline.compare("PARTICLE_TYPE_CYLINDER")==0)
+		return "<num>4";
+	else if(sline.compare("PARTICLE_TYPE_MESH")==0)
+		return "<num>5";
+	else if(sline.compare("PARTICLE_TYPE_RING")==0)
+		return "<num>6";
+	else if(sline.compare("AUTOCULLING_OFF")==0)
+		return "<num>0";
+	else if(sline.compare("AUTOCULLING_BOX")==0)
+		return "<num>1";
+	else if(sline.compare("AUTOCULLING_FRUSTUM_BOX")==0)
+		return "<num>2";
+	else if(sline.compare("AUTOCULLING_FRUSTUM_SPHERE")==0)
+		return "<num>4";
+	else if(sline.compare("AUTOCULLING_OCC_QUERY")==0)
+		return "<num>8";
+	else if(sline.compare("MD2_ANIMATION_STAND")==0)
+		return "<num>0";
+	else if(sline.compare("MD2_ANIMATION_RUN")==0)
+		return "<num>1";
+	else if(sline.compare("MD2_ANIMATION_ATTACK")==0)
+		return "<num>2";
+	else if(sline.compare("MD2_ANIMATION_PAIN_A")==0)
+		return "<num>3";
+	else if(sline.compare("MD2_ANIMATION_PAIN_B")==0)
+		return "<num>4";
+	else if(sline.compare("MD2_ANIMATION_PAIN_C")==0)
+		return "<num>5";
+	else if(sline.compare("MD2_ANIMATION_JUMP")==0)
+		return "<num>6";
+	else if(sline.compare("MD2_ANIMATION_FLIP")==0)
+		return "<num>7";
+	else if(sline.compare("MD2_ANIMATION_SALUTE")==0)
+		return "<num>8";
+	else if(sline.compare("MD2_ANIMATION_FALLBACK")==0)
+		return "<num>9";
+	else if(sline.compare("MD2_ANIMATION_WAVE")==0)
+		return "<num>10";
+	else if(sline.compare("MD2_ANIMATION_POINT")==0)
+		return "<num>11";
+	else if(sline.compare("MD2_ANIMATION_CROUCH_STAND")==0)
+		return "<num>12";
+	else if(sline.compare("MD2_ANIMATION_CROUCH_WALK")==0)
+		return "<num>13";
+	else if(sline.compare("MD2_ANIMATION_CROUCH_ATTACK")==0)
+		return "<num>14";
+	else if(sline.compare("MD2_ANIMATION_CROUCH_PAIN")==0)
+		return "<num>15";
+	else if(sline.compare("MD2_ANIMATION_CROUCH_DEATH")==0)
+		return "<num>16";
+	else if(sline.compare("MD2_ANIMATION_DEATH_FALLBACK")==0)
+		return "<num>17";
+	else if(sline.compare("MD2_ANIMATION_DEATH_FALLFORWARD")==0)
+		return "<num>18";
+	else if(sline.compare("MD2_ANIMATION_DEATH_FALLBACKSLOW")==0)
+		return "<num>19";
+	else if(sline.compare("MD2_ANIMATION_BOOM")==0)
+		return "<num>20";
+	else if(sline.compare("PROJECTION_TYPE_ORTHOGRAPHIC")==0)
+		return "<num>0";
+	else if(sline.compare("PROJECTION_TYPE_PERSPECTIVE")==0)
+		return "<num>1";
+	else if(sline.compare("SPRITE_TYPE_STATIC")==0)
+		return "<num>0";
+	else if(sline.compare("SPRITE_TYPE_KINEMATIC")==0)
+		return "<num>1";
+	else if(sline.compare("SPRITE_TYPE_DYNAMIC")==0)
+		return "<num>2";
+	else
     {
         for(int i = 0; i < rc_constants.size(); i++)
         {
@@ -1029,7 +1267,7 @@ string rc_keywordToken(string sline)
 
 void output_tokens()
 {
-    //return;
+    return;
     for(int i = 0; i < tmp_token.size(); i++)
     {
         try

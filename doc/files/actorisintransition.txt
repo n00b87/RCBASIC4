@@ -1,0 +1,6 @@
+#title ActorIsInTransition [RCBasic Doc]
+#header function ActorIsInTransition( actor )
+
+Returns true if actor is in a transition from its current frame to the frame set in the StartActorTransition() function
+
+#ref StartActorTransition StopActorTransition GetActorTransitionTime

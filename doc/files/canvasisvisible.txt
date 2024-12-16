@@ -1,0 +1,6 @@
+#title CanvasIsVisible [RCBasic Doc]
+#header function CanvasIsVisible(c_num)
+
+Returns true if a canvas is shown in the Window
+
+#ref SetCanvasVisible

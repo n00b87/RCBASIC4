@@ -1,0 +1,4 @@
+#title Input$ [RCBasic Doc]
+#header function Input$(prompt$)
+
+Returns user input from the console

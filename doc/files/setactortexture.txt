@@ -1,0 +1,6 @@
+#title setActorTexture [RCBasic Doc]
+#header sub  setActorTexture( actor,  layer,  image_id)
+
+Sets the texture for an actor's default material
+
+Note: Generally you want to use texture layer 0

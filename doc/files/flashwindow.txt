@@ -1,0 +1,13 @@
+#title FlashWindow [RCBasic Doc]
+#header function FlashWindow( flag )
+
+Flashes a window to specify an alert
+
+Returns 0 on success and a negative number on failure
+
+Possible flag values:
+#list ul
+#li FLASH_CANCEL
+#li FLASH_BRIEFLY
+#li FLASH_UNTIL_FOCUSED
+#/list

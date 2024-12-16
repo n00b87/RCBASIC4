@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>RCBasic Functions and Sub Routines [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>FUNCTIONS AND SUB ROUTINES </h2></p>
+		<p>
+		 Functions and Sub Routines are blocks of code that can be executed any where in your program. 
+		</p>
+		<p>
+		 The biggest difference between Functions and Sub Routines is that Functions can return a value.  Basically Functions and be used as a string or number value in an expression.  RCBASIC has several built-in functions to perform different task such as compute square roots, get the time, etc.  Functions are either numbers or strings just like variables and arrays.  As such, functions can be used anywhere a variable or array can be used.  Look at the following: 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Dim</span>&nbsp;x<b>[</b><span class="rc_number">2</span><b>]</b>&nbsp;<br>
+			x<b>[</b><span class="rc_number">0</span><b>]</b>&nbsp;=&nbsp;Sqrt<b>(</b><span class="rc_number">25</span><b>)</b>&nbsp;<br>
+			x<b>[</b><span class="rc_number">1</span><b>]</b>&nbsp;=&nbsp;Sqrt<b>(</b><span class="rc_number">36</span><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"THE SQUARE ROOT OF 25 IS "</span>;&nbsp;x<b>[</b><span class="rc_number">0</span><b>]</b>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"THE SQUARE ROOT OF 36 IS "</span>;&nbsp;x<b>[</b><span class="rc_number">1</span><b>]</b>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above code creates a number array called X with 2 elements in it.  It stores the square root of 25 in the first index and stores the square root of 36 in the second index.  It then outputs both values to the console.  The output should look like this: 
+		</p>
+		<p>
+		 THE SQUARE ROOT OF 25 IS 5 THE SQUARE ROOT OF 36 IS 6 
+		</p>
+		<p>
+		 String functions can be used in a string expression just like number functions can be used in a number expression.  Look at the following code: 
+		</p>
+		<p id="rc_code"><code>
+			B$&nbsp;=&nbsp;Mid$<b>(</b><span class="rc_string">"HELLO WORLD"</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">2</span><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"THE FIRST TWO CHARACTERS IN HELLO WORLD ARE "</span>;B$&nbsp;<br>
+		</code></p>
+		<p>
+		 The above code creates a string variable called B and stores 2 characters starting from position 0 in the string HELLO WORLD.  It then outputs the value to the console.  The output should look like the following: 
+		</p>
+		<p>
+		 THE FIRST  TWO CHARACTERS IN HELLO WORLD ARE HE 
+		</p>
+		<p>
+		 Sub Routines can execute code in other parts of your program just like a function.  However Sub Routines cannot return values and cannot be used in expressions.  So why would you want to use a Sub Routine over a function?  Well Sub Routines have less over head since it does not have to internally push a value onto the stack like a function does.  So in cases where you do not need to return a value you should use a Sub Routine.  RC BASIC has several built-in Sub Routines to perform task where a return value is not necessary.  Look at the following: 
+		</p>
+		<p id="rc_code"><code>
+			FPrint<b>(</b><span class="rc_string">"test"</span><b>)</b>&nbsp;<br>
+		</code></p>
+		<p>
+		 FPrint is a Sub Routine that outputs text to the console. Since FPrint doesn't perform calculations of any kind it did not need to be implemented as a Function. 
+		</p>
+		<p>
+		 In addition to the built-in Functions and Sub Routines RCBASIC also allows programmers to build there own Functions and Sub Routines.  You do this using the <b>FUNCTION</b> or <b>SUB</b> keywords. 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Function</span>&nbsp;&nbsp;MyFunc<b>(</b>a,&nbsp;b<b>)</b>&nbsp;<br>
+			c&nbsp;=&nbsp;a&nbsp;+&nbsp;b&nbsp;<br>
+			<span class="rc_keyword">Return</span>&nbsp;c&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Function</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above code creates a function called MyFunc which takes in two arguments: a and b.  To use this function you would call it like this: 
+		</p>
+		<p id="rc_code"><code>
+			MyFunc<b>(</b><span class="rc_number">3</span>,&nbsp;<span class="rc_number">4</span><b>)</b>&nbsp;<br>
+		</code></p>
+		<p>
+		 The code above will pass 3 and 4 to the variables A and B in MYFUNC respectively.  The function creates a variable called C and sets it equal to the sum of 3 + 4.  It then returns C.  So the function equals 7.  Since this is a number function you could store the value in a number variable or use <b>PRINT</b> to output the value to the console. 
+		</p>
+		<p>
+		 To make a string function you simply add $ to the end of the function name when you create it just like with variables and arrays. 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Function</span>&nbsp;MyString$&nbsp;<b>(</b>&nbsp;G$&nbsp;<b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Return</span>&nbsp;<span class="rc_string">"YOU ENTERED "</span>&nbsp;+&nbsp;G$&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Function</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;MyString<b>(</b><span class="rc_string">"SOMETHING"</span><b>)</b>&nbsp;<br>
+		</code></p>
+		<p>
+		 The above code should output the following: 
+		</p>
+		<p>
+		 YOU ENTERED SOMETHING 
+		</p>
+		<p>
+		 Functions can also return a UDT(User Defined Type) as well. Look at the following: 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Type</span>&nbsp;test_type&nbsp;<br>
+			<span class="rc_keyword">Dim</span>&nbsp;a$&nbsp;<br>
+			<span class="rc_keyword">Dim</span>&nbsp;b&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Type</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">Function</span>&nbsp;test<b>(</b>a$,&nbsp;b<b>)</b>&nbsp;<span class="rc_keyword">As</span>&nbsp;test_type&nbsp;<br>
+			<span class="rc_keyword">Dim</span>&nbsp;ret_val&nbsp;<span class="rc_keyword">As</span>&nbsp;test_type&nbsp;<br>
+			ret_val.a&nbsp;=&nbsp;a&nbsp;<br>
+			ret_val.b&nbsp;=&nbsp;b&nbsp;<br>
+			<span class="rc_keyword">Return</span>&nbsp;ret_val&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Function</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">Dim</span>&nbsp;myVar&nbsp;<span class="rc_keyword">as</span>&nbsp;test_type&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			myVar&nbsp;=&nbsp;test<b>(</b><span class="rc_string">"hello"</span>,&nbsp;<span class="rc_number">42</span><b>)</b>&nbsp;<br>
+		</code></p>
+		<p>
+		 You can also have a UDT as a parameter in a function: 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Function</span>&nbsp;test2<b>(</b>n&nbsp;<span class="rc_keyword">as</span>&nbsp;test_type,&nbsp;j<b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Return</span>&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Function</span>&nbsp;<br>
+		</code></p>
+		<p>
+		 Sub Routines are created using the <b>SUB</b> keyword.  Look at the following: 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Sub</span>&nbsp;MySub&nbsp;<b>(</b>&nbsp;<b>)</b>&nbsp;<br>
+			<span class="rc_keyword">For</span>&nbsp;i&nbsp;=&nbsp;<span class="rc_number">1</span>&nbsp;<span class="rc_keyword">To</span>&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;i&nbsp;<br>
+			<span class="rc_keyword">Next</span>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Sub</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			MySub&nbsp;<b>(</b>&nbsp;<b>)</b>&nbsp;<br>
+		</code></p>
+		<p>
+		 The code above creates a Sub Routine called MYSUB which uses a <b>FOR</b> loop to output the numbers 1 to 5 to the console. 
+		</p>
+		<p>
+		 Functions and Sub Routines pass variables by value by default. Look at the following: 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Sub</span>&nbsp;&nbsp;MySub&nbsp;<b>(</b>&nbsp;a&nbsp;<b>)</b>&nbsp;<br>
+			a&nbsp;=&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Sub</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			n&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			MySub&nbsp;<b>(</b>&nbsp;n&nbsp;<b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;n&nbsp;<br>
+		</code></p>
+		<p>
+		 In the above code the Sub Routine has a variable called A as an argument. It sets A equal to 5. Then we create a variable called N outside of the Sub Routine and set N equal to 0. N is passed as an argument to MYSUB.  Then N is output to the console.  This will output 0 to the console.  That is because only the value of N is passed to MYSUB so MYSUB is not able to change N itself.  In order to allow MYSUB to change N we must have MYSUB accept an argument by Reference.  To do this we will use the <b>BYREF</b> keyword. 
+		</p>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">Sub</span>&nbsp;MySub&nbsp;<b>(</b>&nbsp;<span class="rc_keyword">ByRef</span>&nbsp;a&nbsp;<b>)</b>&nbsp;<br>
+			a&nbsp;=&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Sub</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			n&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			MySub&nbsp;<b>(</b>&nbsp;n&nbsp;<b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;n&nbsp;<br>
+		</code></p>
+		<p>
+		 The above code is the same as the previous example except that now we use the <b>BYREF</b> keyword to change a to a reference rather than a value.  This means the when we pass the variable N to MYSUB, instead of the value stored in N being used as A, whatever we do to A will be done to N directly.  This example will output 5 to the console. 
+		</p>
+		<p>
+
+	</body>
+</html>

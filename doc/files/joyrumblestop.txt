@@ -1,0 +1,4 @@
+#title JoyRumbleStop [RCBasic Doc]
+#header sub JoyRumbleStop(joy_num)
+
+Stops the rumble on a joystick

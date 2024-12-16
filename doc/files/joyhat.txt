@@ -1,0 +1,17 @@
+#title JoyHat [RCBasic Doc]
+#header function JoyHat(joy_num, joy_hat)
+
+Returns the position of the Hat.
+
+Possible Hat Positions
+#list ul
+#li HAT_CENTERED
+#li HAT_LEFT
+#li HAT_RIGHT
+#li HAT_UP
+#li HAT_DOWN
+#li HAT_RIGHTUP
+#li HAT_RIGHTDOWN
+#li HAT_LEFTUP
+#li HAT_LEFTDOWN
+#/list

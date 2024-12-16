@@ -1,0 +1,12 @@
+#title OpenCanvas3D [RCBasic Doc]
+#header function OpenCanvas3D( viewport_x, viewport_y, viewport_w, viewport_h, mode)
+
+Returns a 3D Canvas for viewing the scene.
+
+Returns -1 if canvas could not be created.
+
+Note: Each 3D canvas has its own camera so you need to make sure you have the canvas active before doing anything with the camera
+
+Note: 2D drawing commands do not work on 3D canvases. You need to open a 2D canvas for drawing images.
+
+#ref OpenCanvas OpenCanvasSpriteLayer

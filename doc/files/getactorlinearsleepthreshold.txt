@@ -1,0 +1,6 @@
+#title GetActorLinearSleepThreshold [RCBasic Doc]
+#header function  GetActorLinearSleepThreshold( actor)
+
+Returns the linear deactivation threshold for the actor
+
+#ref SetActorSleepThresholds GetActorAngularSleepThreshold

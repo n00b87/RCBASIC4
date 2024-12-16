@@ -1,0 +1,54 @@
+#title GetSpriteSize [RCBasic Doc]
+#header Sub GetSpriteSize(sprite, ByRef w, ByRef h)
+
+Gets the size of a sprite's frames
+
+#code
+isFullScreen = false
+vSync = true
+winWidth = 640
+winHeight = 480
+canViewPortX = 0
+canViewPortY = 0
+
+OpenWindow("ScaleSprite", winWidth, winHeight, isFullScreen, vSync)
+pCanvas = OpenCanvas(200, 80, 0, 0, 200, 80, 1)                                     'Need to open a canvas for drawing the text
+sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+Canvas(sCanvas)
+
+DIM eye
+DIM eyeW
+DIM eyeH
+DIM eSpriteWidth
+DIM eSpriteHeight
+
+DIM font1
+
+Font1 = LoadFont("DripOctober.ttf", 16)
+SetFont(Font1)
+SetColor(RGB(100, 200, 200))
+
+eye = LoadImage("theEye.png")
+GetImageSize(eye, eyeW, eyeH)
+
+eyeSprite = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite, 100, 100)
+
+GetSpriteSize(eyeSprite, eSpriteWidth, eSpriteHeight)
+
+While Not Key(K_ESCAPE)
+	Canvas(pCanvas)                                            'change to the standard drawing canvas for drawing text
+	DrawText("EyeSprite Width " + STR$(eSpriteWidth), 10, 30)
+	DrawText("EyeSprite Height " + STR$(eSpriteHeight), 10, 50)
+
+	Update()
+Wend
+#/code
+
+#image "images/theEye.png"
+
+<br>
+<a href="../doc_files/images/DripOctober.ttf">Link to Font (It's locally on your computer, your not downloading anything from the internet)</a>
+<br>
+
+#ref CreateSprite

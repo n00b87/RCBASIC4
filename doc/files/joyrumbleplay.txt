@@ -1,0 +1,9 @@
+#title JoyRumblePlay [RCBasic Doc]
+#header sub JoyRumblePlay(joy_num, strength, duration)
+
+Rumbles a joystick at a specified strength for the specifed duration.
+
+#list ul
+#li Strength - A value between 0 and 1
+#li Duration - Value is in milliseconds
+#/list

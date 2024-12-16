@@ -1,0 +1,6 @@
+#title RotateActor [RCBasic Doc]
+#header sub RotateActor( actor, x, y, z )
+
+Rotates and actor a given number of degrees from its current orientation
+
+#ref SetActorRotation GetActorRotation

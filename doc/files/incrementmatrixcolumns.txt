@@ -1,0 +1,4 @@
+#title IncrementMatrixColumns [RCBasic Doc]
+#header sub IncrementMatrixColumns(mA, mB, c, num_cols, value)
+
+Increments all the values in a specified number of columns in matrix mA, starting from column c. The result is stored in matrix mB 

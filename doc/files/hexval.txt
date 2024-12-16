@@ -1,0 +1,4 @@
+#title HexVal [RCBasic Doc]
+#header function HexVal(n$)
+
+Returns the integer value of a hexadecimal string.

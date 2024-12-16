@@ -1,0 +1,4 @@
+#title Exp [RCBasic Doc]
+#header function Exp(n)
+
+Returns the exponential function of a number.

@@ -1,0 +1,6 @@
+#title GetMouse [RCBasic Doc]
+#header sub GetMouse(byref x, byref y, byref mb1, byref mb2, byref mb3)
+
+Gets the mouse position and button state local to the graphics window
+
+#ref GetGlobalMouse MouseX MouseY MouseButton

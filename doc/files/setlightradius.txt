@@ -1,0 +1,6 @@
+#title SetLightRadius [RCBasic Doc]
+#header sub SetLightRadius( actor, radius )
+
+Sets the radius of a light
+
+#ref GetLightRadius

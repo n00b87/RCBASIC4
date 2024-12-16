@@ -1,0 +1,4 @@
+#title SetSpriteFrame [RCBasic Doc]
+#header Sub SetSpriteFrame(sprite, frame)
+
+Sets a sprite to a frame in its frame sheet

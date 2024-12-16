@@ -1,0 +1,4 @@
+#title FadeMusicIn [RCBasic Doc]
+#header sub FadeMusicIn(fade_time, loops)
+
+Fades music in

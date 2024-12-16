@@ -1,0 +1,17 @@
+#title CreateSlideConstraint [RCBasic Doc]
+#header function CreateSlideConstraint( actorA, frameInB_matrix, useLinearReferenceFrameA)
+
+A type of constraint that restricts the motion between two actors (or between an actor and the world) in such a way that they can slide along a specific axis and rotate around the same axis, while limiting or allowing movement along other axes. This constraint is similar to a prismatic joint with added rotational freedom, making it useful for simulating objects like pistons, sliding doors, or rail systems.
+
+#code
+actorA = CreateCubeActor(100) 'Creates a cube actor
+frameB = DimMatrix(4, 4) 'A transform matrix must be a 4x4 matrix
+SetIdentityMatrix(frameB, 4) 'Sets frameB to a 4x4 identity matrix
+SetMatrixTranslation(frameB, 0, 50, 0) 'Sets the attach point of the constraint to the top of the cube
+SetMatrixRotation(frameB, 0, 90, 0) 'Rotates the constraint axis by 90 degrees around y
+slide = CreateSlideConstraint(actorA, frameB, true)
+#/code
+
+Note: It is recommended to use CreateSlideConstraintEx() in most cases
+
+#ref CreateSlideConstraintEx SetIdentityMatrix SetMatrixTranslation SetMatrixRotation

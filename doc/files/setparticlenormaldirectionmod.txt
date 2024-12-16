@@ -1,0 +1,9 @@
+#title setParticleNormalDirectionMod [RCBasic Doc]
+#header sub  setParticleNormalDirectionMod( actor,  nd_mod)
+
+Sets the normal direction modifier for a particle emitter
+
+Note: Only applies to mesh particle emitter
+
+#ref GetParticleNormalDirectionMod
+

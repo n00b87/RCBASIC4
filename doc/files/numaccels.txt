@@ -1,0 +1,4 @@
+#title NumAccels [RCBasic Doc]
+#header function NumAccels()
+
+Returns the number of accelerometer sensors detected

@@ -1,0 +1,8 @@
+#title BufferFromMatrix [RCBasic Doc]
+#header sub BufferFromMatrix(ByRef buffer, mA)
+
+Saves the matrix mA in an array
+
+NOTE: buffer must have the same number of dimensions as the desired matrix for the structure to remain intact. 
+
+#ref MatrixFromBuffer

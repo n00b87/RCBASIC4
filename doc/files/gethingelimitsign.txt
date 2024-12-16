@@ -1,0 +1,8 @@
+#title getHingeLimitSign [RCBasic Doc]
+#header function  getHingeLimitSign( constraint_id)
+
+Returns the limit sign for the hinge constraint. This value indicates the direction in which the hinge limit is applied, which can be crucial for understanding the behavior of the hinge in relation to its limits.
+
+The limit sign determines whether the hinge's limits are applied in a positive or negative direction. It essentially indicates the side of the limit that is considered "active" during the simulation.
+
+#ref SetHingeLimit

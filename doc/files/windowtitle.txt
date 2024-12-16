@@ -1,0 +1,6 @@
+#title WindowTitle$ [RCBasic Doc]
+#header function WindowTitle$( )
+
+Returns the window title
+
+#ref SetWindowTitle

@@ -1,0 +1,4 @@
+#title SetMusicPosition [RCBasic Doc]
+#header sub SetMusicPosition(pos)
+
+Sets the position of the loaded music track

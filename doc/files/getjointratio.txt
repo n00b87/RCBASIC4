@@ -1,0 +1,12 @@
+#title getJointRatio [RCBasic Doc]
+#header function  getJointRatio( joint_id)
+
+Returns the gear/pulley ratio
+
+Used with
+#list ul
+#li Gear Joint
+#li Pulley Joint
+#/list
+
+#ref SetJointRatio

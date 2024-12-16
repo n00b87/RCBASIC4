@@ -1,0 +1,6 @@
+#title setSlideUpperLinLimit [RCBasic Doc]
+#header sub  setSlideUpperLinLimit( constraint_id,  n)
+
+Sets the upper limit for linear movement along the constraint's axis. This is a crucial function for controlling how far the connected actors can slide along that axis before the constraint enforces limits.
+
+The upper linear limit specifies the maximum distance that the connected actors can move away from each other along the slider's axis. If the relative movement exceeds this limit, the constraint will apply corrective forces to stop further movement.

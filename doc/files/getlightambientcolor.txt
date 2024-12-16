@@ -1,0 +1,4 @@
+#title GetLightAmbientColor [RCBasic Doc]
+#header function GetLightAmbientColor( actor )
+
+Returns the ambient color of a light

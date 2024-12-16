@@ -1,0 +1,4 @@
+#title Box3D [RCBasic Doc]
+#header sub Box3D(min_x, min_y, min_z, max_x, max_y, max_z)
+
+Draws a box in 3D space

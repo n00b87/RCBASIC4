@@ -1,0 +1,10 @@
+#title PlayVideo [RCBasic Doc]
+#header sub PlayVideo(vLoops)
+
+Plays the currently loaded video for a set number of loops.
+
+Note: Set this to 0 to play the video once.
+
+Note: Set this to -1 to the video infinitely.
+
+#ref StopVideo

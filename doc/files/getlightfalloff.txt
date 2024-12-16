@@ -1,0 +1,4 @@
+#title GetLightFalloff [RCBasic Doc]
+#header function GetLightFalloff( actor )
+
+Returns the strength decrease between the inner and outer cone of a light

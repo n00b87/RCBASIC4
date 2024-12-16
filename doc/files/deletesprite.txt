@@ -1,0 +1,48 @@
+#title DeleteSprite [RCBasic Doc]
+#header Sub DeleteSprite( sprite )
+
+Removes a sprite from memory
+
+Here is an example:
+
+#code
+	isFullScreen = false
+	vSync = true
+	winWidth = 640
+	winHeight = 480
+	canViewPortX = 0
+	canViewPortY = 0
+
+	OpenWindow("CreateSprite", winWidth, winHeight, isFullScreen, vSync)
+	sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+	Canvas(sCanvas)
+
+	DIM eye
+	DIM eyeW
+	DIM eyeH
+
+	eye = LoadImage("theEye.png")
+	GetImageSize(eye, eyeW, eyeH)
+
+	eyeSprite = CreateSprite(eye, eyeW, eyeH)
+	SetSpritePosition(eyeSprite, 100, 100)
+
+	eyeSprite2 = CreateSprite(eye, eyeW, eyeH)
+	SetSpritePosition(eyeSprite2, 150, 100)
+
+	timePassed = Timer()
+	timePassedDiff = 2000
+
+	While Not Key(K_ESCAPE)
+
+	If Timer() - timePassed > timePassedDiff Then 'After 2 seconds eyeSprite2 will be deleted
+		DeleteSprite(eyeSprite2)
+	End If
+
+	Update()
+	Wend
+#/code
+
+#image "images/theEye.png"
+
+#ref OpenCanvasSpriteLayer SetSpritePosition CreateSprite

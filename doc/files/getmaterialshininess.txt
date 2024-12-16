@@ -1,0 +1,6 @@
+#title getMaterialShininess [RCBasic Doc]
+#header function  getMaterialShininess( material_id)
+
+Returns the shininess value for a material
+
+#ref SetMaterialShininess

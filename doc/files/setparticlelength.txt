@@ -1,0 +1,9 @@
+#title setParticleLength [RCBasic Doc]
+#header sub  setParticleLength( actor,  p_len)
+
+Sets the length of a cylinder particle emitter
+
+Note: Only applies to cylinder particles
+
+#ref GetParticleLength
+

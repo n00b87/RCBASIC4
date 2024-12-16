@@ -1,0 +1,9 @@
+#title createImageEx [RCBasic Doc]
+#header function createImageEx(w, h, byref buffer, color)
+
+Returns an image created from the buffer provided
+
+The color parameter is a color key value to apply
+
+#ref CreateImage LoadImage
+

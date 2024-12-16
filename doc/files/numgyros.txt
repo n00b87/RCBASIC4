@@ -1,0 +1,4 @@
+#title NumGyros [RCBasic Doc]
+#header function NumGyros()
+
+Returns the number Gyros detected in the current touch event

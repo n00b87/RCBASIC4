@@ -1,0 +1,8 @@
+#title GetConstraintBFrame [RCBasic Doc]
+#header function  GetConstraintBFrame( constraint_id,  mA)
+
+Stores the transform of the second actor in a constraint in mA
+
+Note: Only applies to cone and hinge constraints
+
+#ref GetConstraintAFrame

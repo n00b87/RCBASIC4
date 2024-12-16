@@ -1,0 +1,16 @@
+#title setMaterialColorMode [RCBasic Doc]
+#header sub  setMaterialColorMode( material_id,  color_mode)
+
+Sets the color mode of a material
+
+Possible modes
+#list ul
+#li COLOR_MODE_NONE
+#li COLOR_MODE_DIFFUSE
+#li COLOR_MODE_AMBIENT
+#li COLOR_MODE_EMISSIVE
+#li COLOR_MODE_SPECULAR
+#li COLOR_MODE_DIFFUSE_AND_AMBIENT
+#/list
+
+#ref GetMaterialColorMode

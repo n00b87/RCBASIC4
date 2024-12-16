@@ -1,0 +1,4 @@
+#title GetLightAttenuation [RCBasic Doc]
+#header sub GetLightAttenuation( actor, ByRef constant, ByRef linear, ByRef quadratic)
+
+Gets the strength of the light

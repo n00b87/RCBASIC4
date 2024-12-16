@@ -1,0 +1,6 @@
+#title getHingeSolveLimit [RCBasic Doc]
+#header function  getHingeSolveLimit( constraint_id)
+
+Checks whether the hinge has reached or exceeded its angular limit during the simulation. It returns a boolean or an integer value that indicates whether the current angular position is within the constraint's angular limits or if corrective forces need to be applied.
+
+The "solve limit" refers to whether the current angular position is close to or outside the defined angular limits. If the constraint detects that the hinge is at the limit, it enters a solving state, where it applies corrective forces to keep the rotation within the allowed range.

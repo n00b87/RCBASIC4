@@ -1,0 +1,4 @@
+#title WindowExists [RCBasic Doc]
+#header function WindowExists()
+
+Returns true if the window is open

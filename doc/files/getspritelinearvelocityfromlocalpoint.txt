@@ -1,0 +1,4 @@
+#title getSpriteLinearVelocityFromLocalPoint [RCBasic Doc]
+#header sub getSpriteLinearVelocityFromLocalPoint( spr_id,   pX,   pY,  ByRef  x,  ByRef  y)
+
+Get the world velocity of a local point. 

@@ -1,0 +1,4 @@
+#title SetLightDiffuseColor [RCBasic Doc]
+#header sub SetLightDiffuseColor( actor, color )
+
+Sets a light's diffuse color

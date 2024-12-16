@@ -1,0 +1,6 @@
+#title setParticleMesh [RCBasic Doc]
+#header sub  setParticleMesh( actor,  mesh)
+
+Sets the mesh for a mesh particle emitter
+
+Note: Only applies to mesh emitter

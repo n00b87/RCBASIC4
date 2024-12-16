@@ -1,0 +1,6 @@
+#title DeleteSpriteAnimation [RCBasic Doc]
+#header Sub DeleteSpriteAnimation(sprite, animation)
+
+Delete's a sprite's animation
+
+#ref CreateSpriteAnimation

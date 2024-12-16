@@ -1,0 +1,6 @@
+#title CanvasClip [RCBasic Doc]
+#header function CanvasClip(x, y, w, h)
+
+Returns an image id with a selected portion of the active drawing canvas saved
+
+#ref WindowClip

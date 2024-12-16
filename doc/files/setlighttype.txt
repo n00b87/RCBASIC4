@@ -1,0 +1,14 @@
+#title setLightType [RCBasic Doc]
+#header sub setLightType( actor, light_type )
+
+Sets the type of light
+
+Possible Light Types
+#list ul
+#li LIGHT_TYPE_POINT
+#li LIGHT_TYPE_DIRECTIONAL
+#li LIGHT_TYPE_SPOT
+#/light
+
+#ref SetLightType
+

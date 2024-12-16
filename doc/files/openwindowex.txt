@@ -1,0 +1,24 @@
+#title OpenWindowEx [RCBasic Doc]
+#header function OpenWindowEx(title$, x, y, w, h, mode, aa, stencil_buffer, vsync)
+
+Opens a graphics window
+
+Returns true if window was opened and false if a window could not be opened
+
+#list ul
+# x, y - The position on the display where the window will be drawn
+	#list ul
+	#li WINDOWPOS_CENTERED can be used to center the window
+	#/list
+#li w, h - The size of the window
+#li mode - Refer to WindowMode() for values that can be set
+#li aa - The level of AntiAliasing
+	#list ul
+	#li A value of 0 means no AntiAliasing which can improve performance
+	#li If the value selected is not supported then a lower value will be selected internally
+	#/list
+#li stencil_buffer (true / false) - determines whether stencil buffer will be used for shadows
+#li vsync - determines if vsync will be enabled for the window
+#/list
+
+#ref OpenWindow WindowMode

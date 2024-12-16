@@ -1,0 +1,4 @@
+#title Insert$ [RCBasic Doc]
+#header function Insert$(src$, tgt$, pos)
+
+Returns a string containing str_to_insert$ inserted into src$ at a given position

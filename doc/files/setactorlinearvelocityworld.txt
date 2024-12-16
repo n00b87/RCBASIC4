@@ -1,0 +1,7 @@
+#title setActorLinearVelocityWorld [RCBasic Doc]
+#header sub setActorLinearVelocityWorld( actor,   x,   y,   z)
+
+Sets actor's linear velocity
+
+#ref SetActorLinearVelocityLocal GetActorLinearVelocityWorld
+

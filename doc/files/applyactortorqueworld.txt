@@ -1,0 +1,11 @@
+#title ApplyActorTorqueWorld [RCBasic Doc]
+#header Sub ApplyActorTorqueWorld( actor,   x,   y,   z)
+
+Applies a continuous torque to an actor, causing it to accelerate its rotational motion over time. Unlike applyActorTorqueImpulse, which causes an immediate change in angular velocity, this applies a torque force gradually, leading to a continuous rotational effect, similar to applying a force to linear motion.
+
+#list
+#li x, y, z - direction of rotation
+#/list
+
+#ref ApplyActorTorqueLocal ApplyActorTorqueImpulseLocal ApplyActorTorqueImpulseWorld
+

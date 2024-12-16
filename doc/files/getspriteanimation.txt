@@ -1,0 +1,6 @@
+#title GetSpriteAnimation [RCBasic Doc]
+#header Function GetSpriteAnimation(sprite)
+
+Returns the current animation set on a sprite
+
+#ref SetSpriteAnimation

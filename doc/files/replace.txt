@@ -1,0 +1,4 @@
+#title Replace$ [RCBasic Doc]
+#header function Replace$(src$, tgt$, rpc$)
+
+Replaces all occurrences of tgt$ with rpc$.

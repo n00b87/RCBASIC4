@@ -1,0 +1,8 @@
+#title getParticleLength [RCBasic Doc]
+#header function  getParticleLength( actor)
+
+Returns the length of a cylinder particle emitter
+
+Note: Only applies to cylinder particles
+
+#ref SetParticleLength

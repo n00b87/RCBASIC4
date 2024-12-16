@@ -1,0 +1,4 @@
+#title setMaterialEmissiveColor [RCBasic Doc]
+#header sub  setMaterialEmissiveColor( material_id,  color)
+
+Set's a material's emissive color

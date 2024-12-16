@@ -1,0 +1,6 @@
+#title FillTile [RCBasic Doc]
+#header Sub FillTile(tilemap, tile, x, y, widthInTiles, heightInTiles)
+
+Fills an area of a tile map with a specified tile
+
+

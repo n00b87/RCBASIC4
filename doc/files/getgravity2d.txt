@@ -1,0 +1,6 @@
+#title GetGravity2D [RCBasic Doc]
+#header sub GetGravity2D(ByRef x, ByRef y)
+
+Use this function for retrieving the global gravity vector. A sprite canvas layer must be open.
+
+#ref SetGravity2D

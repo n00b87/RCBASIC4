@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>getConstraintLimitSoftness [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>function  getConstraintLimitSoftness( constraint_id) </h2></p>
+		<p>
+		 Returns the softness parameter associated with the limits of the constraint. This softness affects how the constraint behaves when the angular motion of the connected actors approaches their defined limits. 
+		</p>
+		<ul>
+		<li>
+		Hard Limits: If the softness value is set to 1.0, it means the limits are treated as hard constraints. The physics engine will enforce these limits strictly, applying strong corrective forces to keep the motion within the limits. 
+		</li>
+		<li>
+		Soft Limits: A softness value less than 1.0 allows for some flexibility in the motion. The actors can "push" against the limits without an immediate strong corrective force, leading to a more gradual response when approaching the limits. 
+		</li>
+		</ul>
+		<br><p>Related: 
+		<a href="setconstraintsoftnessdirang.html">SetConstraintSoftnessDirAng</a>
+		<a href="setconstraintsoftnessdirlin.html">SetConstraintSoftnessDirLin</a>
+		<a href="setconstraintsoftnesslimang.html">SetConstraintSoftnessLimAng</a>
+		<a href="setconstraintsoftnesslimlin.html">SetConstraintSoftnessLimLin</a>
+		<a href="setconstraintsoftnessorthoang.html">SetConstraintSoftnessOrthoAng</a>
+		</p>
+		<p>
+
+	</body>
+</html>

@@ -1,0 +1,8 @@
+#title DrawImage_Flip [RCBasic Doc]
+#header sub DrawImage_Flip(slot, x, y, h, v)
+
+Draws an image flipped horizontally or vertically.
+
+Note: h and v are boolean values
+
+#ref DrawImage_FlipEx

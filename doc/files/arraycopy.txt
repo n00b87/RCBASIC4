@@ -1,0 +1,8 @@
+#title ArrayCopy [RCBasic Doc]
+#header sub ArrayCopy(ByRef src, ByRef dst)
+
+Copies the contents of src array to dst array
+
+Note: This function is a special case in that it can take any type for src or dst
+
+#ref ArrayDim ArraySize ArrayFill

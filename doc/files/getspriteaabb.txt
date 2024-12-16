@@ -1,0 +1,4 @@
+#title GetSpriteAABB [RCBasic Doc]
+#header sub GetSpriteAABB( spr_id, ByRef x1, ByRef y1, ByRef x2, ByRef y2 )
+
+Returns the axis aligned bounding box for a sprite

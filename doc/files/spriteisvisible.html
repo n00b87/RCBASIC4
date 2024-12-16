@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>SpriteIsVisible [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Function SpriteIsVisible(sprite) </h2></p>
+		<p>
+		 Returns whether the sprite is visible 
+		</p>
+		<p id="rc_code"><code>
+			isFullScreen&nbsp;=&nbsp;<span class="rc_keyword">false</span>&nbsp;<br>
+			vSync&nbsp;=&nbsp;<span class="rc_keyword">true</span>&nbsp;<br>
+			winWidth&nbsp;=&nbsp;<span class="rc_number">640</span>&nbsp;<br>
+			winHeight&nbsp;=&nbsp;<span class="rc_number">480</span>&nbsp;<br>
+			canViewPortX&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			canViewPortY&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			OpenWindow<b>(</b><span class="rc_string">"SetSpriteVisible"</span>,&nbsp;winWidth,&nbsp;winHeight,&nbsp;isFullScreen,&nbsp;vSync<b>)</b>&nbsp;<br>
+			sCanvas&nbsp;=&nbsp;OpenCanvasSpriteLayer<b>(</b>canViewPortX,&nbsp;canViewPortY,&nbsp;winWidth,&nbsp;winHeight<b>)</b>&nbsp;<br>
+			Canvas<b>(</b>sCanvas<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eye&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeW&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeH&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;spriteTimer&nbsp;:&nbsp;spriteTimer&nbsp;=&nbsp;Timer<b>(</b><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;spriteTimerDiff&nbsp;:&nbsp;spriteTimerDiff&nbsp;=&nbsp;<span class="rc_number">2000</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eye&nbsp;=&nbsp;LoadImage<b>(</b><span class="rc_string">"theEye.png"</span><b>)</b>&nbsp;<br>
+			GetImageSize<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eyeSprite&nbsp;=&nbsp;CreateSprite<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			SetSpritePosition<b>(</b>eyeSprite,&nbsp;<span class="rc_number">100</span>,&nbsp;<span class="rc_number">100</span><b>)</b>&nbsp;<br>
+			SetSpriteVisible<b>(</b>eyeSprite,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'Set the flag to 0 for not visible </span><br>
+			&nbsp;&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;Key<b>(</b>K_ESCAPE<b>)</b>&nbsp;<br>
+			<span class="rc_keyword">If</span>&nbsp;Timer<b>(</b><b>)</b>&nbsp;-&nbsp;spriteTimer&nbsp;&gt;&nbsp;spriteTimerDiff&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;SetSpriteVisible<b>(</b>eyeSprite,&nbsp;<span class="rc_number">1</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;<b>(</b><span class="rc_string">"Function Called"</span><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">If</span>&nbsp;SpriteIsVisible<b>(</b>eyeSprite<b>)</b>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;<b>(</b><span class="rc_string">"Sprite is Visible"</span><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">else</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;<b>(</b><span class="rc_string">"Sprite is not visible"</span><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
+			Update<b>(</b><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+		</code></p>
+		<p><img src="images/theEye.png" ></p>
+		<br><p>Related: 
+		<a href="setspritevisible.html">SetSpriteVisible</a>
+		</p>
+		<p>
+
+	</body>
+</html>

@@ -1,0 +1,16 @@
+#title GetActorAutoCulling [RCBasic Doc]
+#header function GetActorAutoCulling( actor )
+
+Returns the automatic culling state for an actor
+
+Possible Culling States
+#list
+#li AUTOCULLING_OFF
+#li AUTOCULLING_BOX
+#li AUTOCULLING_FRUSTUM_BOX
+#li AUTOCULLING_FRUSTUM_SPHERE
+#li AUTOCULLING_OCC_QUERY
+#/list
+
+#ref SetActorAutoCulling
+

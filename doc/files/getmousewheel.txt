@@ -1,0 +1,6 @@
+#title GetMouseWheel [RCBasic Doc]
+#header sub GetMouseWheel(byref x_axis, byref y_axis)
+
+Gets the axis positions of the mouse wheel
+
+#ref GetMouse GetGlobalMouse

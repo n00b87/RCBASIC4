@@ -1,0 +1,11 @@
+#title ApplyActorForceLocal [RCBasic Doc]
+#header sub ApplyActorForceLocal( actor,   x,   y,   z,   rel_x,   rel_y,   rel_z)
+
+Applies a force to an actor at a specific point. Unlike ApplyActorCentralForce(local/world), which applies force only at the center of mass (affecting linear velocity), this can generate both linear motion and rotation (torque), depending on where the force is applied relative to the center of mass.
+
+#list
+#li x,y,z - direction of the force
+#li rel_x, rel_y, rel_z - position to apply the force to relative to the center of mass
+#/list
+
+#ref ApplyActorForceWorld ApplyActorCentralForceLocal ApplyActorCentralForceWorld

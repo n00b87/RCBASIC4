@@ -1,0 +1,6 @@
+#title setParticleMaxAngle [RCBasic Doc]
+#header sub  setParticleMaxAngle( actor,  maxAngle)
+
+Sets the max angle of particle emission
+
+#ref GetParticleMaxAngle

@@ -1,0 +1,4 @@
+#title ReadLine$ [RCBasic Doc]
+#header function ReadLine$(stream)
+
+Returns the current line in the file.

@@ -1,0 +1,6 @@
+#title GetLineIntersection [RCBasic Doc]
+#header Function GetLineIntersection(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y, ByRef i_x, ByRef i_y)
+
+Sets (i_x, i_y) to the intersection of lines p0-p1 and p2-p3
+
+Returns true if there is a collision and false if not

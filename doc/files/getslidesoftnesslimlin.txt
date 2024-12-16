@@ -1,0 +1,6 @@
+#title getSlideSoftnessLimLin [RCBasic Doc]
+#header function  getSlideSoftnessLimLin( constraint_id)
+
+Returns the softness parameter for the linear limits of the constraint. This parameter influences how "soft" or "rigid" the constraint behaves when the connected actors reach their linear (sliding) limits along the constraint's axis of motion.
+
+The softness parameter defines how compliant or stiff the constraint behaves when limits are approached. A higher softness value allows for a more gradual and flexible response as the limit is reached, while a lower softness value results in a stiffer and more rigid response.

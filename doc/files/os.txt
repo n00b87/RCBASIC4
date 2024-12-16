@@ -1,0 +1,16 @@
+#title OS$ [RCBasic Doc]
+#header function OS$()
+
+Returns the runtimes native operating system.
+
+Possible Return Values
+#list ul
+#li WINDOWS
+#li LINUX
+#li MAC
+#li ANDROID
+#li IOS
+#li WEB
+#/list
+
+Note: This specifically returns the OS$ the runtime was built for so if you have a windows executable running under wine this function will return "WINDOWS"

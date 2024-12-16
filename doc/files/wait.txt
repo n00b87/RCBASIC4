@@ -1,0 +1,4 @@
+#title Wait [RCBasic Doc]
+#header sub Wait(m_sec)
+
+Halts execution of a program for a given number of milliseconds.

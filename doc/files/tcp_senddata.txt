@@ -1,0 +1,4 @@
+#title TCP_SendData [RCBasic Doc]
+#header sub TCP_SendData(socket, sData$)
+
+Send data through the given socket.

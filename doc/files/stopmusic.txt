@@ -1,0 +1,6 @@
+#title StopMusic [RCBasic Doc]
+#header sub StopMusic()
+
+Stops playing the loaded music track and resets the music position to 0
+
+#ref PlayMusic PauseMusic

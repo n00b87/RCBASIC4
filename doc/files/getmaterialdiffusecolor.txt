@@ -1,0 +1,6 @@
+#title getMaterialDiffuseColor [RCBasic Doc]
+#header function  getMaterialDiffuseColor( material_id)
+
+Returns a material's diffuse color
+
+#ref SetMaterialDiffuseColor

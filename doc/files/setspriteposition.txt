@@ -1,0 +1,45 @@
+#title SetSpritePosition [RCBasic Doc]
+#header Sub SetSpritePosition( sprite, x, y )
+
+Sets the position of the sprite in the canvas
+
+Note: This is canvas position and not screen position
+
+#code
+    isFullScreen = false
+    vSync = true
+    winWidth = 640
+    winHeight = 480
+    canViewPortX = 0
+    canViewPortY = 0
+
+    OpenWindow("SetSpritePosition", winWidth, winHeight, isFullScreen, vSync)
+    sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+    Canvas(sCanvas)
+
+    DIM eye
+    DIM eyeW
+    DIM eyeH
+    eyeSpriteX = 100
+    eyeSpriteY = 100
+
+    eye = LoadImage("theEye.png")
+    GetImageSize(eye, eyeW, eyeH)
+
+    eyeSprite = CreateSprite(eye, eyeW, eyeH)
+    SetSpritePosition(eyeSprite, eyeSpriteX, eyeSpriteY)			'Position on the canvas the sprite will initially be drawn.
+
+    speed = 0.4
+
+    While Not Key(K_ESCAPE)
+
+        SetSpritePosition(eyeSprite, eyeSpriteX, eyeSpriteY)
+        eyeSpriteX = eyeSpriteX + speed											'Speed will be added to sprites X position, sprite will move to the right gradually
+
+    Update()
+    Wend
+#/code
+
+#image "images/theEye.png"
+
+#ref OpenCanvasSpriteLayer CreateSprite

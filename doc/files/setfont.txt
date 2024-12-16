@@ -1,0 +1,6 @@
+#title SetFont [RCBasic Doc]
+#header sub SetFont(fnt_id)
+
+Sets the active font for text rendering
+
+#ref DrawText

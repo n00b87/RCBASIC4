@@ -1,0 +1,4 @@
+#title SetLightSpecularColor [RCBasic Doc]
+#header sub SetLightSpecularColor( actor, color )
+
+Sets the specular color of a light

@@ -1,0 +1,7 @@
+#title SetTerrainCameraRotationDelta [RCBasic Doc]
+#header sub SetTerrainCameraRotationDelta( actor, delta )
+
+Sets the rotation camera threshold.
+
+It is used to determine when to recalculate indices for the scene node. The default value is 1.
+

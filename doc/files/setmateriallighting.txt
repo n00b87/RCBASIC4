@@ -1,0 +1,4 @@
+#title setMaterialLighting [RCBasic Doc]
+#header sub  setMaterialLighting( material_id,  flag)
+
+Sets whether material will be lighted or not

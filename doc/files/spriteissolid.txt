@@ -1,0 +1,53 @@
+#title SpriteIsSolid [RCBasic Doc]
+#header Function SpriteIsSolid(sprite)
+
+Returns true if a sprite is has physics and collision response enabled
+
+#code
+isFullScreen = false
+vSync = true
+winWidth = 640
+winHeight = 480
+canViewPortX = 0
+canViewPortY = 0
+
+OpenWindow("SpriteIsSolid", winWidth, winHeight, isFullScreen, vSync)
+sCanvas = OpenCanvasSpriteLayer(canViewPortX, canViewPortY, winWidth, winHeight)
+Canvas(sCanvas)
+
+DIM eye
+DIM eyeW
+DIM eyeH
+DIM trigger : trigger = 0
+eyeSpriteX = 100
+eyeSpriteY = 100
+eyeSprite2X = 400
+eyeSprite2Y = 125
+
+eye = LoadImage("theEye.png")
+GetImageSize(eye, eyeW, eyeH)
+
+eyeSprite = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite, eyeSpriteX, eyeSpriteY)
+SetSpriteSolid(eyeSprite, 1)												'Setting the sprites as solid means they can collide with one another.
+
+eyeSprite2 = CreateSprite(eye, eyeW, eyeH)
+SetSpritePosition(eyeSprite2, eyeSprite2X, eyeSprite2Y)
+SetSpriteSolid(eyeSprite2, 1)
+
+While Not Key(K_ESCAPE)
+
+	SetSpriteLinearVelocity(eyeSprite, 30, 0)
+	eyeSpriteX = eyeSpriteX + 0.5
+
+	If SpriteIsSolid(eyeSprite2) And trigger = 0 Then
+		Print "Yup I'm solid!"
+		trigger = 1
+	End If
+	Update()
+Wend
+#/code
+
+#image "images/theEye.png"
+
+#ref SetSpriteSolid

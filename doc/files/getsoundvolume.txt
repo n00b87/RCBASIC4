@@ -1,0 +1,4 @@
+#title GetSoundVolume [RCBasic Doc]
+#header function GetSoundVolume(slot)
+
+Returns the given sounds volume.

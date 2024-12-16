@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>SpriteHeight [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Function SpriteHeight(sprite) </h2></p>
+		<p>
+		 Returns the frame height of a sprite 
+		</p>
+		<p id="rc_code"><code>
+			isFullScreen&nbsp;=&nbsp;<span class="rc_keyword">false</span>&nbsp;<br>
+			vSync&nbsp;=&nbsp;<span class="rc_keyword">true</span>&nbsp;<br>
+			winWidth&nbsp;=&nbsp;<span class="rc_number">640</span>&nbsp;<br>
+			winHeight&nbsp;=&nbsp;<span class="rc_number">480</span>&nbsp;<br>
+			canViewPortX&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			canViewPortY&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			OpenWindow<b>(</b><span class="rc_string">"SpriteHeight"</span>,&nbsp;winWidth,&nbsp;winHeight,&nbsp;isFullScreen,&nbsp;vSync<b>)</b>&nbsp;<br>
+			pCanvas&nbsp;=&nbsp;OpenCanvas<b>(</b><span class="rc_number">200</span>,&nbsp;<span class="rc_number">80</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">200</span>,&nbsp;<span class="rc_number">80</span>,&nbsp;<span class="rc_number">1</span><b>)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'Need to open a canvas for drawing the text </span><br>
+			sCanvas&nbsp;=&nbsp;OpenCanvasSpriteLayer<b>(</b>canViewPortX,&nbsp;canViewPortY,&nbsp;winWidth,&nbsp;winHeight<b>)</b>&nbsp;<br>
+			Canvas<b>(</b>sCanvas<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eye&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeW&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eyeH&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;eSpriteHeight&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">DIM</span>&nbsp;font1&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Font1&nbsp;=&nbsp;LoadFont<b>(</b><span class="rc_string">"DripOctober.ttf"</span>,&nbsp;<span class="rc_number">16</span><b>)</b>&nbsp;<br>
+			SetFont<b>(</b>Font1<b>)</b>&nbsp;<br>
+			SetColor<b>(</b>RGB<b>(</b><span class="rc_number">100</span>,&nbsp;<span class="rc_number">200</span>,&nbsp;<span class="rc_number">200</span><b>)</b><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eye&nbsp;=&nbsp;LoadImage<b>(</b><span class="rc_string">"theEye.png"</span><b>)</b>&nbsp;<br>
+			GetImageSize<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eyeSprite&nbsp;=&nbsp;CreateSprite<b>(</b>eye,&nbsp;eyeW,&nbsp;eyeH<b>)</b>&nbsp;<br>
+			SetSpritePosition<b>(</b>eyeSprite,&nbsp;<span class="rc_number">100</span>,&nbsp;<span class="rc_number">100</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			eSpriteHeight&nbsp;=&nbsp;SpriteHeight<b>(</b>eyeSprite<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;Key<b>(</b>K_ESCAPE<b>)</b>&nbsp;<br>
+			Canvas<b>(</b>pCanvas<b>)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_comment">'change to the standard drawing canvas for drawing text </span><br>
+			DrawText<b>(</b><span class="rc_string">"EyeSprite Height "</span>&nbsp;+&nbsp;STR$<b>(</b>eSpriteHeight<b>)</b>,&nbsp;<span class="rc_number">10</span>,&nbsp;<span class="rc_number">50</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Update<b>(</b><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Wend</span>&nbsp;<br>
+		</code></p>
+		<p><img src="images/theEye.png" ></p>
+		<p>
+		 <br> <a href="../doc_files/images/DripOctober.ttf">Link to Font (It's locally on your computer, your not downloading anything from the internet)</a> <br> 
+		</p>
+		<br><p>Related: 
+		<a href="spritewidth.html">SpriteWidth</a>
+		<a href="getspritesize.html">GetSpriteSize</a>
+		</p>
+		<p>
+
+	</body>
+</html>

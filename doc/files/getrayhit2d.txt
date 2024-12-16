@@ -1,0 +1,12 @@
+#title GetRayHit2D [RCBasic Doc]
+#header sub GetRayHit2D( index, ByRef spr_id, ByRef x, ByRef y, ByRef normal_x, ByRef normal_y )
+
+This function will get the collision point and the normal of a ray hit.
+
+NOTES:
+#list ul
+#li CastRay2D or CastRay2D_All must be called prior to calling this function
+#li spr_id will return -1 if there was not a hit at the specified index
+#/list
+
+#ref GetRayHit3D CastRay3D CastRay3D_All CastRay2D CastRay2D_All

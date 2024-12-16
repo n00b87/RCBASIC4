@@ -1,0 +1,4 @@
+#title SetMatrixScale [RCBasic Doc]
+#header sub SetMatrixScale( mA, x, y, z )
+
+Sets the scale vector of a matrix

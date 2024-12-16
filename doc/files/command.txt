@@ -1,0 +1,8 @@
+#title Command$ [RCBasic Doc]
+#header function Command$(arg)
+
+Returns command line arguments passed to a program.
+
+Note: Command$(0) will always be the program being executed ( your_program.cbc )
+
+#ref NumCommands 

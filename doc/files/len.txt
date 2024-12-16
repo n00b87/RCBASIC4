@@ -1,0 +1,8 @@
+#title Len [RCBasic Doc]
+#header function Len(src$)
+
+Returns the number of characters in the given string
+
+Note: This function is the exact same as Length()
+
+#ref Length

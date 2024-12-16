@@ -1,0 +1,4 @@
+#title SetMatrixTranslation [RCBasic Doc]
+#header sub SetMatrixTranslation( mA, x, y, z )
+
+Sets the translation vector of a matrix

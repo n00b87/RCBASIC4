@@ -1,0 +1,6 @@
+#title AddMeshBuffer [RCBasic Doc]
+#header sub AddMeshBuffer( mesh, vertex_count, ByRef vertex_data, ByRef normal_data, ByRef uv_data, index_count, ByRef index_data )
+
+Sets the vertices, normals, and texture coordinates for a mesh
+
+#ref CreateMesh

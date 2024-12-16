@@ -1,0 +1,8 @@
+#title getParticleNormal [RCBasic Doc]
+#header sub  getParticleNormal( actor, ByRef x, ByRef y, ByRef z)
+
+Gets the normal of a particle emitter
+
+Note: Only applies to cylinder particle emitter
+
+#ref SetParticleNormal

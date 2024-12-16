@@ -1,0 +1,6 @@
+#title SetChannelDistance [RCBasic Doc]
+#header function SetChannelDistance(channel, dist_value)
+
+Set a volume adjustment effect due to distance. distance must be a value between 0 and 255. Returns 0 on error.
+
+NOTE: Setting distance to 0 will cancel the effect 

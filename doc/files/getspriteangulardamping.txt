@@ -1,0 +1,6 @@
+#title getSpriteAngularDamping [RCBasic Doc]
+#header function  getSpriteAngularDamping( spr_id)
+
+Returns a sprite's angular damping
+
+#ref ApplySpriteAngularDamping

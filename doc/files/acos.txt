@@ -1,0 +1,4 @@
+#title Acos [RCBasic Doc]
+#header function Acos(n)
+
+Returns the Arcosine of n

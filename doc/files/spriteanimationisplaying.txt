@@ -1,0 +1,4 @@
+#title SpriteAnimationIsPlaying [RCBasic Doc]
+#header Function SpriteAnimationIsPlaying(sprite)
+
+

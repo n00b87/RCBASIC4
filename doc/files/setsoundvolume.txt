@@ -1,0 +1,4 @@
+#title SetSoundVolume [RCBasic Doc]
+#header sub SetSoundVolume(snd, vol)
+
+Sets the volume of a sound

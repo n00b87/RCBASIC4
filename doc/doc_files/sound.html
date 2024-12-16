@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>RCBasic Sound [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>SOUND </h2></p>
+		<p>
+		 Loading sound and music is fairly straight forward. The big difference between sounds and music is that your program can only have one music track but you could have several sound tracks at once. 
+		</p>
+		<p>
+		 Lets first go over loading and playing sounds. 
+		</p>
+		<p id="rc_code"><code>
+			snd&nbsp;=&nbsp;LoadSound<b>(</b><span class="rc_string">"MySound.wav"</span><b>)</b>&nbsp;<span class="rc_comment">'Load a sound file </span><br>
+			PlaySound<b>(</b>snd,&nbsp;<span class="rc_number">1</span>,&nbsp;<span class="rc_number">3</span><b>)</b>&nbsp;<span class="rc_comment">'Play the sound loaded in snd on channel 1 for 3 loops </span><br>
+		</code></p>
+		<p>
+		 There is a lot you can do with sounds when playing them including simulating 3D positional audio. I highly encourage you to play around with the audio to find the right mix for your project. 
+		</p>
+		<p>
+		 There is only 1 music track that can be loaded at one time. Loading and playing music is pretty straight forward. 
+		</p>
+		<p id="rc_code"><code>
+			LoadMusic&nbsp;<b>(</b>&nbsp;<span class="rc_string">"MYMUSIC.MP3"</span>&nbsp;<b>)</b>&nbsp;<br>
+			PlayMusic&nbsp;<b>(</b>&nbsp;-<span class="rc_number">1</span>&nbsp;<b>)</b>&nbsp;<span class="rc_comment">'Setting the music loop to -1 will have it loop infinitely </span><br>
+		</code></p>
+		<p>
+		 Music is even simpler than sound. Generally all you will want to do is load a music track and set it to loop infinitely but you have a lot of control over how the music plays as well. 
+		</p>
+		<p>
+
+	</body>
+</html>

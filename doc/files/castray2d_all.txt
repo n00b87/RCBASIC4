@@ -1,0 +1,10 @@
+#title CastRay2D_All [RCBasic Doc]
+#header function CastRay2D_All( from_x, from_y, to_x, to_y )
+
+Cast a ray and gets all hits on the ray
+
+Returns the number of hits from the ray cast
+
+NOTE: GetRayHit2D is used to read each hit
+
+#ref GetRayHit3D CastRay3D CastRay3D_All CastRay2D GetRayHit2D

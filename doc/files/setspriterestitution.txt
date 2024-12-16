@@ -1,0 +1,7 @@
+#title SetSpriteRestitution [RCBasic Doc]
+#header sub SetSpriteRestitution( spr_id, restitution )
+
+Sets the restitution coefficient for a sprite
+
+#ref GetSpriteRestitution
+

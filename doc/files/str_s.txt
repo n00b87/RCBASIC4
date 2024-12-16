@@ -1,0 +1,7 @@
+#title Str_S$ [RCBasic Doc]
+#header function Str_S$(n)
+
+Returns a number converted to a string in scientific notation 
+
+
+#ref Str$ Str_F$

@@ -302,16 +302,17 @@ void output_vars()
 
 int getUType(string utype_name)
 {
+	string param = utype_name;
     utype_name = StringToLower(utype_name);
     for(int i = 0; i < utype.size(); i++)
     {
         //cout << "TYPE[" << i << "] = " << utype[i].name << endl;
-        if(utype_name.compare(utype[i].name)==0)
+        if(utype_name.compare(StringToLower(utype[i].name))==0)
         {
             return i;
         }
     }
-    rc_setError(utype_name + " does not name a type");
+    rc_setError(param + " does not name a type");
     return -1;
 }
 
@@ -339,9 +340,10 @@ bool create_type(string utype_name)
 
 bool memberExists(string member_name)
 {
+	member_name = StringToLower(member_name);
     for(int i = 0; i < utype[current_type_index].num_members; i++)
     {
-        if(utype[current_type_index].member_name[i].compare(member_name)==0)
+        if(StringToLower(utype[current_type_index].member_name[i]).compare(member_name)==0)
             return true;
     }
     return false;
@@ -531,7 +533,8 @@ int getIDInScope_ByIndex_TypeMatch(string id_name, string check_scope="")
 
     for(int i = 0; i < id.size(); i++)
     {
-        if(id[i].scope.compare(check_scope)==0)
+    	string id_cmp_scope = StringToLower(id[i].scope);
+        if(id_cmp_scope.compare(check_scope)==0)
         {
             if(id[i].name.substr(id[i].name.length()-1,1).compare("$")==0) //id in type is string
             {
@@ -541,7 +544,7 @@ int getIDInScope_ByIndex_TypeMatch(string id_name, string check_scope="")
             }
             else
             {
-                //cout << id_name << " ~ " << id[i].name << endl;
+                //cout << id_name << " ~ " << id[i].name << " scope: " << check_scope << endl;
                 if(id_name.compare(StringToLower(id[i].name))==0)
                     return i;
             }

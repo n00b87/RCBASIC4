@@ -1,0 +1,6 @@
+#title getSlideSoftnessDirLin [RCBasic Doc]
+#header function  getSlideSoftnessDirLin( constraint_id)
+
+Returns the softness parameter for the linear motion of the constraint. This parameter influences how the constraint responds when the linear limits of movement are reached along the sliding axis, determining whether the response is soft and gradual or more rigid.
+
+In the context of constraints, softness defines how "compliant" or "stiff" the constraint behaves when the limits are approached. A higher softness value makes the constraint respond more softly and gradually as the limit is approached, while a lower value makes the response stiffer and more rigid.

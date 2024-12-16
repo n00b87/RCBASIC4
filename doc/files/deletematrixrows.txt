@@ -1,0 +1,8 @@
+#title DeleteMatrixRows [RCBasic Doc]
+#header function DeleteMatrixRows(mA, r, num_rows)
+
+Removes the specified rows from a matrix
+
+Returns false if rows are outside matrix
+
+#ref DeleteMatrixColumns

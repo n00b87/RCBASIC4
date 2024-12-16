@@ -1,0 +1,6 @@
+#title StopVideo [RCBasic Doc]
+#header sub StopVideo()
+
+Stops playing the loaded video track and resets the video position to 0
+
+#ref PlayVideo PauseVideo

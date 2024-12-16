@@ -1,0 +1,6 @@
+#title StopActorTransition [RCBasic Doc]
+#header sub StopActorTransition( actor )
+
+Stops a transition that was started with StartActorTransition
+
+#ref StartActorTransition ActorIsInTransition

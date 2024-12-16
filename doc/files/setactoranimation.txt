@@ -1,0 +1,12 @@
+#title SetActorAnimation [RCBasic Doc]
+#header sub SetActorAnimation( actor, animation, num_loops)
+
+Sets the current animation for an actor to start playing
+
+Notes on num_loops
+#list ol
+#li <b>num_loops</b> is the number of times to loop the animation after its done playing. To play the animation once, set num_loops to 0.
+#li To loop an animation infinitely, set num_loops to -1
+#/list
+
+#ref CreateActorAnimation

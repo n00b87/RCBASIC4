@@ -1,0 +1,8 @@
+#title DrawImage_FlipEx [RCBasic Doc]
+#header sub DrawImage_FlipEx(slot, x, y, src_x, src_y, src_w, src_h, h, v)
+
+Draws a portion of an image flipped horizontally or vertically.
+
+Note: h and v are boolean values
+
+#ref DrawImage_Flip

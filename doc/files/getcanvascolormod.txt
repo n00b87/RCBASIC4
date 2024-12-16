@@ -1,0 +1,6 @@
+#title GetCanvasColorMod [RCBasic Doc]
+#header function GetCanvasColorMod(c_num)
+
+Returns the color modulation of a canvas
+
+#ref SetCanvasColorMod

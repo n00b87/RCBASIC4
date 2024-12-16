@@ -1,0 +1,18 @@
+#title GetActorCollisionShape [RCBasic Doc]
+#header function GetActorCollisionShape(actor)
+
+Returns the actor's collision shape
+
+Possible values:
+#list ul
+#li SHAPE_TYPE_NONE
+#li SHAPE_TYPE_BOX
+#li SHAPE_TYPE_SPHERE
+#li SHAPE_TYPE_CYLINDER
+#li SHAPE_TYPE_CAPSULE
+#li SHAPE_TYPE_CONE
+#li SHAPE_TYPE_CONVEXHULL
+#li SHAPE_TYPE_TRIMESH
+#/list
+
+#ref SetActorCollisionShape

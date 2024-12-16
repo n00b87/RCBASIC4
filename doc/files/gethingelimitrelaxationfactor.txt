@@ -1,0 +1,4 @@
+#title getHingeLimitRelaxationFactor [RCBasic Doc]
+#header function  getHingeLimitRelaxationFactor( constraint_id)
+
+

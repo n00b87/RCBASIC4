@@ -1,0 +1,6 @@
+#title GetActorLinearFactor [RCBasic Doc]
+#header sub GetActorLinearFactor( actor,  ByRef  x,  ByRef  y,  ByRef  z)
+
+Gets an actor's linear factor
+
+#ref SetActorLinearFactor GetActorAngularFactor SetActorAngularFactor

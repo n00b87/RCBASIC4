@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>CreateConeConstraint [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>function  CreateConeConstraint( actorA,  rbAFrame_matrix) </h2></p>
+		<p>
+		 The Cone Constraint is a type of joint constraint used to simulate realistic rotational movement between two actors (or between an actor and the world) with specific angular limits. This constraint is especially useful for simulating ball-and-socket joints with some twisting freedom but restricted cone-like movement, such as human shoulders or robotic arms. 
+		</p>
+		<p id="rc_code"><code>
+			actorA&nbsp;=&nbsp;CreateCubeActor<b>(</b><span class="rc_number">100</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			rbA&nbsp;=&nbsp;DimMatrix<b>(</b><span class="rc_number">4</span>,&nbsp;<span class="rc_number">4</span><b>)</b>&nbsp;<span class="rc_comment">'A transform matrix should be a 4x4 matrix </span><br>
+			SetIdentityMatrix<b>(</b>rbA,&nbsp;<span class="rc_number">4</span><b>)</b>&nbsp;<span class="rc_comment">'This will set rbA to a 4x4 identity matrix </span><br>
+			SetMatrixTranslation<b>(</b>rbA,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">40</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<span class="rc_comment">'Set the point where the constraint connects to actorA to 1 unit above its origin </span><br>
+			SetMatrixRotation<b>(</b>rbA,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<span class="rc_comment">'Sets the angle the constraint is attached at to 0 on all axes </span><br>
+			&nbsp;&nbsp;<br>
+			test_cone&nbsp;=&nbsp;CreateConeConstraint<b>(</b>&nbsp;actorA,&nbsp;rbA&nbsp;<b>)</b>&nbsp;<br>
+		</code></p>
+		<p>
+		 Note: It is recommended to use CreateConeConstraintEx() in most cases 
+		</p>
+		<br><p>Related: 
+		<a href="createconeconstraintex.html">CreateConeConstraintEx</a>
+		<a href="setidentitymatrix.html">SetIdentityMatrix</a>
+		<a href="setmatrixtranslation.html">SetMatrixTranslation</a>
+		<a href="setmatrixrotation.html">SetMatrixRotation</a>
+		</p>
+		<p>
+
+	</body>
+</html>

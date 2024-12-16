@@ -1,0 +1,8 @@
+#title SetWorld3DTimeStep [RCBasic Doc]
+#header sub SetWorld3DTimeStep( ts )
+
+Sets the fixed time step for the physics simulation
+
+fixedTimeStep - The fixed time step size, which is the interval at which the physics simulation runs internally. It is often set to 1/60th of a second (0.0166667 seconds) by default, meaning the physics engine updates 60 times per second.
+
+#ref SetWorld3DMaxSubSteps

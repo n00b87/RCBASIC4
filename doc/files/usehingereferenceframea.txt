@@ -1,0 +1,7 @@
+#title useHingeReferenceFrameA [RCBasic Doc]
+#header sub  useHingeReferenceFrameA( constraint_id,  flag)
+
+Allows you to specify which actor's local reference frame is used to determine the hinge’s angular limits and motor direction.
+
+When flag is true the hinge constraint will use actor A's reference frame as the basis for calculating angular limits and motor directions.
+

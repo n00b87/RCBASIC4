@@ -1,0 +1,13 @@
+#title OpenCanvas [RCBasic Doc]
+#header function OpenCanvas( w, h, viewport_x, viewport_y, viewport_w, viewport_h, mode)
+
+Returns a canvas for 2D drawing and text rendering
+
+#list ul
+#li w, h - The full size of the canvas
+#li viewport_x, viewport_y - Where to show the canvas in the window
+#li viewport_w, viewport_h - The size of the viewport. For example, a 100 x 100 viewport means that no matter how big the canvas is, only an area of 100 x 100 pixels is displayed.
+#li mode - Set this to 0 for a solid canvas and 1 for a color keyed canvas.
+#/list
+
+#ref OpenCanvas3D OpenCanvasSpriteLayer

@@ -1,0 +1,6 @@
+#title CreateWaterPlaneActor [RCBasic Doc]
+#header function CreateWaterPlaneActor( w, h )
+
+Returns a water plane actor
+
+#ref CreateMeshActor CreateMeshOctreeActor CreateCubeActor CreateSphereActor CreateLightActor CreateBillboardActor CreateTerrainActor

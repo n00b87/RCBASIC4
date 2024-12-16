@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>ActorIsSolid [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>function ActorIsSolid(actor) </h2></p>
+		<p>
+		 Returns true or false depending on if physics and collision response applies to an actor. 
+		</p>
+		<p>
+		 Note: Collision is still able to be checked on an actor but the actor will be like a ghost able to go through wall and other objects. 
+		</p>
+		<p id="rc_code"><code>
+			SetActorSolid<b>(</b>actor,&nbsp;<span class="rc_keyword">true</span><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"Actor solid state: "</span>;&nbsp;ActorIsSolid<b>(</b>actor<b>)</b>&nbsp;<span class="rc_comment">'This will output 1 </span><br>
+			SetActorSolid<b>(</b>actor,&nbsp;<span class="rc_keyword">false</span><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"Actor solid state: "</span>;&nbsp;ActorIsSolid<b>(</b>actor<b>)</b>&nbsp;<span class="rc_comment">'This will output 0 </span><br>
+			#/<span class="rc_keyword">end</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			#ref&nbsp;SetActorSolid&nbsp;<br>
+			&nbsp;&nbsp;<br>
+
+	</body>
+</html>

@@ -1,0 +1,6 @@
+#title SetImageAlpha [RCBasic Doc]
+#header sub SetImageAlpha(slot, a)
+
+Sets the alpha blending value for an image. This value only applies in 2D drawing commands.
+
+#ref GetImageAlpha

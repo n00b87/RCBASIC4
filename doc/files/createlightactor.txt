@@ -1,0 +1,6 @@
+#title CreateLightActor [RCBasic Doc]
+#header function CreateLightActor( )
+
+Returns a new light in the scene
+
+#ref CreateMeshActor CreateMeshOctreeActor CreateCubeActor CreateSphereActor CreateWaterPlaneActor CreateBillboardActor CreateTerrainActor

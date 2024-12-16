@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>OpenWindowEx [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>function OpenWindowEx(title$, x, y, w, h, mode, aa, stencil_buffer, vsync) </h2></p>
+		<p>
+		 Opens a graphics window 
+		</p>
+		<p>
+		 Returns true if window was opened and false if a window could not be opened 
+		</p>
+		<ul>
+		<ul>
+		<li>
+		WINDOWPOS_CENTERED can be used to center the window 
+		</li>
+		</ul>
+		<li>
+		w, h - The size of the window 
+		</li>
+		<li>
+		mode - Refer to WindowMode() for values that can be set 
+		</li>
+		<li>
+		aa - The level of AntiAliasing 
+		<ul>
+		<li>
+		A value of 0 means no AntiAliasing which can improve performance 
+		</li>
+		<li>
+		If the value selected is not supported then a lower value will be selected internally 
+		</li>
+		</ul>
+		</li>
+		<li>
+		stencil_buffer (true / false) - determines whether stencil buffer will be used for shadows 
+		</li>
+		<li>
+		vsync - determines if vsync will be enabled for the window 
+		</li>
+		</ul>
+		<br><p>Related: 
+		<a href="openwindow.html">OpenWindow</a>
+		<a href="windowmode.html">WindowMode</a>
+		</p>
+		<p>
+
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>WindowMode [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>function WindowMode(visible, fullscreen, resizable, borderless, highDPI) </h2></p>
+		<p>
+		 Returns a bitmask of the combined window flags that can be used in OpenWindow() to set the mode for the window. 
+		</p>
+		<p>
+		 Each flag is a boolean that determines whether or not to set that flag in the mask. 
+		</p>
+		<p>
+		 Note: For most use cases, one of the following will work 
+		</p>
+		<p>
+		 Window 
+		</p>
+		<p id="rc_code"><code>
+			mode&nbsp;=&nbsp;WindowMode<b>(</b><span class="rc_number">1</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<br>
+		</code></p>
+		<p>
+		<br> Fullscreen 
+		</p>
+		<p id="rc_code"><code>
+			mode&nbsp;=&nbsp;WindowMode<b>(</b><span class="rc_number">1</span>,&nbsp;<span class="rc_number">1</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<br>
+		</code></p>
+		<br><p>Related: 
+		<a href="openwindow.html">OpenWindow</a>
+		<a href="getwindowmode.html">GetWindowMode</a>
+		</p>
+		<p>
+
+	</body>
+</html>

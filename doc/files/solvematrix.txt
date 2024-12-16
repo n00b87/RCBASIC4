@@ -1,0 +1,6 @@
+#title SolveMatrix [RCBasic Doc]
+#header function SolveMatrix(mA, mB, mC)
+
+Solve the system that has mA as coefficient and mB as the hand side of the equation. Stores the result in mC.
+
+Returns true if it was able to be solved and false if not.

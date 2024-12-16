@@ -1,0 +1,9 @@
+#title setParticleRadius [RCBasic Doc]
+#header sub  setParticleRadius( actor,  radius)
+
+Sets the radius of a particle emitter
+
+Note: Only applies to Sphere, Cylinder, and Ring emitters
+
+#ref SetParticleRadius
+

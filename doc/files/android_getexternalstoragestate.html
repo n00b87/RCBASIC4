@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>Android_GetExternalStorageState [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>function Android_GetExternalStorageState() </h2></p>
+		<p>
+		 Returns a bitmask of these values: 
+		</p>
+		<ul>
+		<li>
+		ANDROID_EXTERNAL_STORAGE_READ 
+		</li>
+		<li>
+		ANDROID_EXTERNAL_STORAGE_WRITE 
+		</li>
+		</ul>
+		<p id="rc_code"><code>
+			<span class="rc_keyword">If</span>&nbsp;AndBit<b>(</b>&nbsp;Android_GetExternalStorageState<b>(</b><b>)</b>,&nbsp;ANDROID_EXTERNAL_STORAGE_READ&nbsp;<b>)</b>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"Can read from external storage"</span>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
+		</code></p>
+		<br><p>Related: 
+		<a href="android_getexternalstoragepath.html">Android_GetExternalStoragePath$</a>
+		<a href="android_getinternalstoragepath.html">Android_GetInternalStoragePath$</a>
+		</p>
+		<p>
+
+	</body>
+</html>

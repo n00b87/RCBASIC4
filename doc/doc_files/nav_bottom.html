@@ -1,0 +1,2439 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+			table, th, td { border: 1px solid black; } th, td { padding: 10px; }
+			body { background-color: #064066; color: #FFFFFF; }
+			a { color: #40bfb8; }
+			a::before {
+			  content: "---";
+			  font-family: monospace, monospace;
+			  display: inline-block;
+			  margin-right: 6px;
+			  color: #064066;
+			}
+			
+			.rc_number { color: #800000; }
+			.rc_string { color: green; }
+			.rc_keyword { color: blue; font-weight: bold; }
+			.rc_comment { color: #0A0A0A; }
+			#rc_code { font-family: Consolas,"courier new"; background-color: #f1f1f1; padding: 2px; font-size: 105%; }
+
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "[+]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  color: #40bfb8;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.box {
+	font-weight: bold;
+	color: #40bfb8;
+	text-decoration: underline;
+}
+
+.check-box::before {
+  content: "[-]";
+  font-family: monospace, monospace;
+  font-weight: bold;
+  //color: dodgerblue;
+  color: #40bfb8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+		</style>
+		
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title> RCBasic Library Reference </title>
+	</head>
+
+	<body>
+    
+<ul id="myUL">
+<li><span class="box">Console IO</span>
+<ul class="nested">
+<li><a  href="fprint.html" target="main">FPrint</a></li>
+
+<li><a  href="input.html" target="main">Input$</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Arrays</span>
+<ul class="nested">
+<li><a  href="arraydim.html" target="main">ArrayDim</a></li>
+
+<li><a  href="stringarraydim.html" target="main">StringArrayDim</a></li>
+
+<li><a  href="numberarraydim.html" target="main">NumberArrayDim</a></li>
+
+<li><a  href="arraysize.html" target="main">ArraySize</a></li>
+
+<li><a  href="stringarraysize.html" target="main">StringArraySize</a></li>
+
+<li><a  href="numberarraysize.html" target="main">NumberArraySize</a></li>
+
+<li><a  href="numberarraycopy.html" target="main">NumberArrayCopy</a></li>
+
+<li><a  href="stringarraycopy.html" target="main">StringArrayCopy</a></li>
+
+<li><a  href="arraycopy.html" target="main">ArrayCopy</a></li>
+
+<li><a  href="numberarrayfill.html" target="main">NumberArrayFill</a></li>
+
+<li><a  href="stringarrayfill.html" target="main">StringArrayFill</a></li>
+
+<li><a  href="arrayfill.html" target="main">ArrayFill</a></li>
+
+<li><a  href="typearraydim.html" target="main">TypeArrayDim</a></li>
+
+<li><a  href="typearraysize.html" target="main">TypeArraySize</a></li>
+
+<li><a  href="typearraycopy.html" target="main">TypeArrayCopy</a></li>
+
+<li><a  href="typearrayfill.html" target="main">TypeArrayFill</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Math</span>
+<ul class="nested">
+<li><a  href="abs.html" target="main">Abs</a></li>
+
+<li><a  href="acos.html" target="main">Acos</a></li>
+
+<li><a  href="andbit.html" target="main">AndBit</a></li>
+
+<li><a  href="asin.html" target="main">Asin</a></li>
+
+<li><a  href="atan.html" target="main">Atan</a></li>
+
+<li><a  href="bin.html" target="main">Bin$</a></li>
+
+<li><a  href="cint32.html" target="main">CInt32</a></li>
+
+<li><a  href="cint64.html" target="main">CInt64</a></li>
+
+<li><a  href="cos.html" target="main">Cos</a></li>
+
+<li><a  href="degrees.html" target="main">Degrees</a></li>
+
+<li><a  href="exp.html" target="main">Exp</a></li>
+
+<li><a  href="frac.html" target="main">Frac</a></li>
+
+<li><a  href="hex.html" target="main">Hex$</a></li>
+
+<li><a  href="hexval.html" target="main">HexVal</a></li>
+
+<li><a  href="int.html" target="main">Int</a></li>
+
+<li><a  href="log.html" target="main">Log</a></li>
+
+<li><a  href="max.html" target="main">Max</a></li>
+
+<li><a  href="min.html" target="main">Min</a></li>
+
+<li><a  href="orbit.html" target="main">OrBit</a></li>
+
+<li><a  href="radians.html" target="main">Radians</a></li>
+
+<li><a  href="randomize.html" target="main">Randomize</a></li>
+
+<li><a  href="rand.html" target="main">Rand</a></li>
+
+<li><a  href="round.html" target="main">Round</a></li>
+
+<li><a  href="sign.html" target="main">Sign</a></li>
+
+<li><a  href="sin.html" target="main">Sin</a></li>
+
+<li><a  href="sqrt.html" target="main">Sqrt</a></li>
+
+<li><a  href="tan.html" target="main">Tan</a></li>
+
+<li><a  href="xorbit.html" target="main">XOrBit</a></li>
+
+<li><a  href="getlineintersection.html" target="main">GetLineIntersection</a></li>
+
+<li><a  href="interpolate.html" target="main">Interpolate</a></li>
+
+<li><a  href="atan2.html" target="main">ATan2</a></li>
+
+<li><a  href="pointinquad.html" target="main">PointInQuad</a></li>
+
+<li><a  href="pointintri.html" target="main">PointInTri</a></li>
+
+<li><a  href="distance2d.html" target="main">Distance2D</a></li>
+
+<li><a  href="distance3d.html" target="main">Distance3D</a></li>
+
+<li><a  href="getcirclelineintersection.html" target="main">GetCircleLineIntersection</a></li>
+
+<li><a  href="getlineplaneintersection.html" target="main">GetLinePlaneIntersection</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Strings</span>
+<ul class="nested">
+<li><a  href="asc.html" target="main">Asc</a></li>
+
+<li><a  href="chr.html" target="main">Chr$</a></li>
+
+<li><a  href="insert.html" target="main">Insert$</a></li>
+
+<li><a  href="instr.html" target="main">InStr</a></li>
+
+<li><a  href="lcase.html" target="main">Lcase$</a></li>
+
+<li><a  href="left.html" target="main">Left$</a></li>
+
+<li><a  href="length.html" target="main">Length</a></li>
+
+<li><a  href="len.html" target="main">Len</a></li>
+
+<li><a  href="ltrim.html" target="main">Ltrim$</a></li>
+
+<li><a  href="mid.html" target="main">Mid$</a></li>
+
+<li><a  href="replacesubstr.html" target="main">ReplaceSubstr$</a></li>
+
+<li><a  href="replace.html" target="main">Replace$</a></li>
+
+<li><a  href="reverse.html" target="main">Reverse$</a></li>
+
+<li><a  href="right.html" target="main">Right$</a></li>
+
+<li><a  href="rtrim.html" target="main">Rtrim$</a></li>
+
+<li><a  href="stringfill.html" target="main">StringFill$</a></li>
+
+<li><a  href="str.html" target="main">Str$</a></li>
+
+<li><a  href="str_f.html" target="main">Str_F$</a></li>
+
+<li><a  href="str_s.html" target="main">Str_S$</a></li>
+
+<li><a  href="tally.html" target="main">Tally</a></li>
+
+<li><a  href="trim.html" target="main">Trim$</a></li>
+
+<li><a  href="ucase.html" target="main">Ucase$</a></li>
+
+<li><a  href="val.html" target="main">Val</a></li>
+
+<li><a  href="size.html" target="main">Size</a></li>
+
+<li><a  href="bufferfromstring.html" target="main">BufferFromString</a></li>
+
+<li><a  href="stringfrombuffer.html" target="main">StringFromBuffer$</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Stacks</span>
+<ul class="nested">
+<li><a  href="createstack_n.html" target="main">CreateStack_N</a></li>
+
+<li><a  href="createstack_s.html" target="main">CreateStack_S</a></li>
+
+<li><a  href="clearstack_n.html" target="main">ClearStack_N</a></li>
+
+<li><a  href="clearstack_s.html" target="main">ClearStack_S</a></li>
+
+<li><a  href="deletestack_n.html" target="main">DeleteStack_N</a></li>
+
+<li><a  href="deletestack_s.html" target="main">DeleteStack_S</a></li>
+
+<li><a  href="push_n.html" target="main">Push_N</a></li>
+
+<li><a  href="pop_n.html" target="main">Pop_N</a></li>
+
+<li><a  href="push_s.html" target="main">Push_S</a></li>
+
+<li><a  href="pop_s.html" target="main">Pop_S$</a></li>
+
+<li><a  href="stack_size_n.html" target="main">Stack_Size_N</a></li>
+
+<li><a  href="stack_size_s.html" target="main">Stack_Size_S</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Files</span>
+<ul class="nested">
+<li><a  href="openfile.html" target="main">OpenFile</a></li>
+
+<li><a  href="closefile.html" target="main">CloseFile</a></li>
+
+<li><a  href="readbyte.html" target="main">ReadByte</a></li>
+
+<li><a  href="writebyte.html" target="main">WriteByte</a></li>
+
+<li><a  href="readline.html" target="main">ReadLine$</a></li>
+
+<li><a  href="write.html" target="main">Write</a></li>
+
+<li><a  href="writeline.html" target="main">WriteLine</a></li>
+
+<li><a  href="copyfile.html" target="main">CopyFile</a></li>
+
+<li><a  href="removefile.html" target="main">RemoveFile</a></li>
+
+<li><a  href="fileexists.html" target="main">FileExists</a></li>
+
+<li><a  href="movefile.html" target="main">MoveFile</a></li>
+
+<li><a  href="renamefile.html" target="main">RenameFile</a></li>
+
+<li><a  href="filelength.html" target="main">FileLength</a></li>
+
+<li><a  href="tell.html" target="main">Tell</a></li>
+
+<li><a  href="seek.html" target="main">Seek</a></li>
+
+<li><a  href="eof.html" target="main">EOF</a></li>
+
+<li><a  href="writebytebuffer.html" target="main">WriteByteBuffer</a></li>
+
+<li><a  href="readbytebuffer.html" target="main">ReadByteBuffer</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Directories</span>
+<ul class="nested">
+<li><a  href="changedir.html" target="main">ChangeDir</a></li>
+
+<li><a  href="direxists.html" target="main">DirExists</a></li>
+
+<li><a  href="dirfirst.html" target="main">DirFirst$</a></li>
+
+<li><a  href="dir.html" target="main">Dir$</a></li>
+
+<li><a  href="dirnext.html" target="main">DirNext$</a></li>
+
+<li><a  href="makedir.html" target="main">MakeDir</a></li>
+
+<li><a  href="removedir.html" target="main">RemoveDir</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Date and Time</span>
+<ul class="nested">
+<li><a  href="date.html" target="main">Date$</a></li>
+
+<li><a  href="easter.html" target="main">Easter$</a></li>
+
+<li><a  href="ticks.html" target="main">Ticks</a></li>
+
+<li><a  href="time.html" target="main">Time$</a></li>
+
+<li><a  href="timer.html" target="main">Timer</a></li>
+
+<li><a  href="wait.html" target="main">Wait</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Window Management</span>
+<ul class="nested">
+<li><a  href="openwindow.html" target="main">OpenWindow</a></li>
+
+<li><a  href="openwindowex.html" target="main">OpenWindowEx</a></li>
+
+<li><a  href="closewindow.html" target="main">CloseWindow</a></li>
+
+<li><a  href="raisewindow.html" target="main">RaiseWindow</a></li>
+
+<li><a  href="update.html" target="main">Update</a></li>
+
+<li><a  href="cls.html" target="main">Cls</a></li>
+
+<li><a  href="setclearcolor.html" target="main">SetClearColor</a></li>
+
+<li><a  href="showwindow.html" target="main">ShowWindow</a></li>
+
+<li><a  href="hidewindow.html" target="main">HideWindow</a></li>
+
+<li><a  href="setwindowtitle.html" target="main">SetWindowTitle</a></li>
+
+<li><a  href="windowtitle.html" target="main">WindowTitle$</a></li>
+
+<li><a  href="setwindowposition.html" target="main">SetWindowPosition</a></li>
+
+<li><a  href="getwindowposition.html" target="main">GetWindowPosition</a></li>
+
+<li><a  href="setwindowsize.html" target="main">SetWindowSize</a></li>
+
+<li><a  href="getwindowsize.html" target="main">GetWindowSize</a></li>
+
+<li><a  href="setwindowminsize.html" target="main">SetWindowMinSize</a></li>
+
+<li><a  href="getwindowminsize.html" target="main">GetWindowMinSize</a></li>
+
+<li><a  href="setwindowmaxsize.html" target="main">SetWindowMaxSize</a></li>
+
+<li><a  href="getwindowmaxsize.html" target="main">GetWindowMaxSize</a></li>
+
+<li><a  href="windowisfullscreen.html" target="main">WindowIsFullscreen</a></li>
+
+<li><a  href="windowisvisible.html" target="main">WindowIsVisible</a></li>
+
+<li><a  href="windowisbordered.html" target="main">WindowIsBordered</a></li>
+
+<li><a  href="windowisresizable.html" target="main">WindowIsResizable</a></li>
+
+<li><a  href="windowisminimized.html" target="main">WindowIsMinimized</a></li>
+
+<li><a  href="windowismaximized.html" target="main">WindowIsMaximized</a></li>
+
+<li><a  href="windowhasinputfocus.html" target="main">WindowHasInputFocus</a></li>
+
+<li><a  href="windowhasmousefocus.html" target="main">WindowHasMouseFocus</a></li>
+
+<li><a  href="setwindowfullscreen.html" target="main">SetWindowFullscreen</a></li>
+
+<li><a  href="maximizewindow.html" target="main">MaximizeWindow</a></li>
+
+<li><a  href="minimizewindow.html" target="main">MinimizeWindow</a></li>
+
+<li><a  href="setwindowbordered.html" target="main">SetWindowBordered</a></li>
+
+<li><a  href="windowclip.html" target="main">WindowClip</a></li>
+
+<li><a  href="windowexists.html" target="main">WindowExists</a></li>
+
+<li><a  href="windowevent_close.html" target="main">WindowEvent_Close</a></li>
+
+<li><a  href="windowevent_maximize.html" target="main">WindowEvent_Maximize</a></li>
+
+<li><a  href="windowevent_minimize.html" target="main">WindowEvent_Minimize</a></li>
+
+<li><a  href="fps.html" target="main">FPS</a></li>
+
+<li><a  href="setwindowicon.html" target="main">SetWindowIcon</a></li>
+
+<li><a  href="windowevent_resize.html" target="main">WindowEvent_Resize</a></li>
+
+<li><a  href="setwindowautoclose.html" target="main">SetWindowAutoClose</a></li>
+
+<li><a  href="setwindowresizable.html" target="main">SetWindowResizable</a></li>
+
+<li><a  href="windowmode.html" target="main">WindowMode</a></li>
+
+<li><a  href="getwindowmode.html" target="main">getWindowMode</a></li>
+
+<li><a  href="restorewindow.html" target="main">RestoreWindow</a></li>
+
+<li><a  href="grabinput.html" target="main">GrabInput</a></li>
+
+<li><a  href="setwindowalwaysontop.html" target="main">SetWindowAlwaysOnTop</a></li>
+
+<li><a  href="setmouserelative.html" target="main">SetMouseRelative</a></li>
+
+<li><a  href="flashwindow.html" target="main">FlashWindow</a></li>
+
+<li><a  href="windowisgrabbed.html" target="main">WindowIsGrabbed</a></li>
+
+<li><a  href="preupdate.html" target="main">PreUpdate</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Canvases</span>
+<ul class="nested">
+<li><a  href="opencanvas.html" target="main">OpenCanvas</a></li>
+
+<li><a  href="closecanvas.html" target="main">CloseCanvas</a></li>
+
+<li><a  href="opencanvas3d.html" target="main">OpenCanvas3D</a></li>
+
+<li><a  href="setcanvasvisible.html" target="main">SetCanvasVisible</a></li>
+
+<li><a  href="canvasisvisible.html" target="main">CanvasIsVisible</a></li>
+
+<li><a  href="setcanvasviewport.html" target="main">SetCanvasViewport</a></li>
+
+<li><a  href="getcanvasviewport.html" target="main">GetCanvasViewport</a></li>
+
+<li><a  href="canvas.html" target="main">Canvas</a></li>
+
+<li><a  href="setcanvasoffset.html" target="main">SetCanvasOffset</a></li>
+
+<li><a  href="getcanvasoffset.html" target="main">GetCanvasOffset</a></li>
+
+<li><a  href="getcanvassize.html" target="main">GetCanvasSize</a></li>
+
+<li><a  href="clearcanvas.html" target="main">ClearCanvas</a></li>
+
+<li><a  href="setcanvasalpha.html" target="main">SetCanvasAlpha</a></li>
+
+<li><a  href="getcanvasalpha.html" target="main">GetCanvasAlpha</a></li>
+
+<li><a  href="setcanvascolormod.html" target="main">SetCanvasColorMod</a></li>
+
+<li><a  href="getcanvascolormod.html" target="main">GetCanvasColorMod</a></li>
+
+<li><a  href="clonecanvas.html" target="main">CloneCanvas</a></li>
+
+<li><a  href="setcanvasz.html" target="main">SetCanvasZ</a></li>
+
+<li><a  href="canvasz.html" target="main">CanvasZ</a></li>
+
+<li><a  href="canvasclip.html" target="main">CanvasClip</a></li>
+
+<li><a  href="activecanvas.html" target="main">ActiveCanvas</a></li>
+
+<li><a  href="setcanvasphysics2d.html" target="main">SetCanvasPhysics2D</a></li>
+
+<li><a  href="opencanvasspritelayer.html" target="main">OpenCanvasSpriteLayer</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">GFX Primitives</span>
+<ul class="nested">
+<li><a  href="circle.html" target="main">Circle</a></li>
+
+<li><a  href="circlefill.html" target="main">CircleFill</a></li>
+
+<li><a  href="ellipse.html" target="main">Ellipse</a></li>
+
+<li><a  href="ellipsefill.html" target="main">EllipseFill</a></li>
+
+<li><a  href="floodfill.html" target="main">FloodFill</a></li>
+
+<li><a  href="getpixel.html" target="main">GetPixel</a></li>
+
+<li><a  href="setcolor.html" target="main">SetColor</a></li>
+
+<li><a  href="line.html" target="main">Line</a></li>
+
+<li><a  href="poly.html" target="main">Poly</a></li>
+
+<li><a  href="rect.html" target="main">Rect</a></li>
+
+<li><a  href="rectfill.html" target="main">RectFill</a></li>
+
+<li><a  href="rgb.html" target="main">RGB</a></li>
+
+<li><a  href="rgba.html" target="main">RGBA</a></li>
+
+<li><a  href="pset.html" target="main">Pset</a></li>
+
+<li><a  href="triangle.html" target="main">Triangle</a></li>
+
+<li><a  href="line3d.html" target="main">Line3D</a></li>
+
+<li><a  href="box3d.html" target="main">Box3D</a></li>
+
+<li><a  href="triangle3d.html" target="main">Triangle3D</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Images</span>
+<ul class="nested">
+<li><a  href="loadimage.html" target="main">LoadImage</a></li>
+
+<li><a  href="loadimageex.html" target="main">LoadImageEx</a></li>
+
+<li><a  href="createimage.html" target="main">createImage</a></li>
+
+<li><a  href="createimageex.html" target="main">createImageEx</a></li>
+
+<li><a  href="bufferfromimage.html" target="main">BufferFromImage</a></li>
+
+<li><a  href="imageexists.html" target="main">ImageExists</a></li>
+
+<li><a  href="colorkey.html" target="main">ColorKey</a></li>
+
+<li><a  href="setbilinearfilter.html" target="main">setBilinearFilter</a></li>
+
+<li><a  href="getbilinearfilter.html" target="main">getBilinearFilter</a></li>
+
+<li><a  href="copyimage.html" target="main">CopyImage</a></li>
+
+<li><a  href="deleteimage.html" target="main">DeleteImage</a></li>
+
+<li><a  href="setimagealpha.html" target="main">SetImageAlpha</a></li>
+
+<li><a  href="getimagealpha.html" target="main">GetImageAlpha</a></li>
+
+<li><a  href="getimagesize.html" target="main">GetImageSize</a></li>
+
+<li><a  href="setblendmode.html" target="main">SetBlendMode</a></li>
+
+<li><a  href="getblendmode.html" target="main">GetBlendMode</a></li>
+
+<li><a  href="setimagecolormod.html" target="main">SetImageColorMod</a></li>
+
+<li><a  href="getimagecolormod.html" target="main">GetImageColorMod</a></li>
+
+<li><a  href="drawimage.html" target="main">DrawImage</a></li>
+
+<li><a  href="drawimage_blit.html" target="main">DrawImage_Blit</a></li>
+
+<li><a  href="drawimage_blitex.html" target="main">DrawImage_BlitEx</a></li>
+
+<li><a  href="drawimage_rotate.html" target="main">DrawImage_Rotate</a></li>
+
+<li><a  href="drawimage_rotateex.html" target="main">DrawImage_RotateEx</a></li>
+
+<li><a  href="drawimage_zoom.html" target="main">DrawImage_Zoom</a></li>
+
+<li><a  href="drawimage_zoomex.html" target="main">DrawImage_ZoomEx</a></li>
+
+<li><a  href="drawimage_rotozoom.html" target="main">DrawImage_Rotozoom</a></li>
+
+<li><a  href="drawimage_rotozoomex.html" target="main">DrawImage_RotozoomEx</a></li>
+
+<li><a  href="drawimage_flip.html" target="main">DrawImage_Flip</a></li>
+
+<li><a  href="drawimage_flipex.html" target="main">DrawImage_FlipEx</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Keyboard and Mouse</span>
+<ul class="nested">
+<li><a  href="inkey.html" target="main">InKey</a></li>
+
+<li><a  href="key.html" target="main">Key</a></li>
+
+<li><a  href="waitkey.html" target="main">WaitKey</a></li>
+
+<li><a  href="hidemouse.html" target="main">HideMouse</a></li>
+
+<li><a  href="showmouse.html" target="main">ShowMouse</a></li>
+
+<li><a  href="mouseisvisible.html" target="main">MouseIsVisible</a></li>
+
+<li><a  href="getmouse.html" target="main">GetMouse</a></li>
+
+<li><a  href="mousex.html" target="main">MouseX</a></li>
+
+<li><a  href="mousey.html" target="main">MouseY</a></li>
+
+<li><a  href="mousebutton.html" target="main">MouseButton</a></li>
+
+<li><a  href="getmousewheel.html" target="main">GetMouseWheel</a></li>
+
+<li><a  href="mousewheelx.html" target="main">MouseWheelX</a></li>
+
+<li><a  href="mousewheely.html" target="main">MouseWheelY</a></li>
+
+<li><a  href="getglobalmouse.html" target="main">GetGlobalMouse</a></li>
+
+<li><a  href="globalmousex.html" target="main">GlobalMouseX</a></li>
+
+<li><a  href="globalmousey.html" target="main">GlobalMouseY</a></li>
+
+<li><a  href="warpmouse.html" target="main">WarpMouse</a></li>
+
+<li><a  href="warpmouseglobal.html" target="main">WarpMouseGlobal</a></li>
+
+<li><a  href="setmousezone.html" target="main">SetMouseZone</a></li>
+
+<li><a  href="clearmousezone.html" target="main">ClearMouseZone</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Sound and Music</span>
+<ul class="nested">
+<li><a  href="createsound.html" target="main">CreateSound</a></li>
+
+<li><a  href="loadsound.html" target="main">LoadSound</a></li>
+
+<li><a  href="loadmusic.html" target="main">LoadMusic</a></li>
+
+<li><a  href="playsound.html" target="main">PlaySound</a></li>
+
+<li><a  href="playsoundtimed.html" target="main">PlaySoundTimed</a></li>
+
+<li><a  href="playmusic.html" target="main">PlayMusic</a></li>
+
+<li><a  href="pausesound.html" target="main">PauseSound</a></li>
+
+<li><a  href="resumesound.html" target="main">ResumeSound</a></li>
+
+<li><a  href="pausemusic.html" target="main">PauseMusic</a></li>
+
+<li><a  href="resumemusic.html" target="main">ResumeMusic</a></li>
+
+<li><a  href="deletesound.html" target="main">DeleteSound</a></li>
+
+<li><a  href="deletemusic.html" target="main">DeleteMusic</a></li>
+
+<li><a  href="fademusicin.html" target="main">FadeMusicIn</a></li>
+
+<li><a  href="fademusicout.html" target="main">FadeMusicOut</a></li>
+
+<li><a  href="musicexists.html" target="main">MusicExists</a></li>
+
+<li><a  href="setmusicvolume.html" target="main">SetMusicVolume</a></li>
+
+<li><a  href="getmusicvolume.html" target="main">GetMusicVolume</a></li>
+
+<li><a  href="setmusicposition.html" target="main">SetMusicPosition</a></li>
+
+<li><a  href="getmusicposition.html" target="main">GetMusicPosition</a></li>
+
+<li><a  href="rewindmusic.html" target="main">RewindMusic</a></li>
+
+<li><a  href="setsoundchannels.html" target="main">SetSoundChannels</a></li>
+
+<li><a  href="numsoundchannels.html" target="main">NumSoundChannels</a></li>
+
+<li><a  href="soundisenabled.html" target="main">SoundIsEnabled</a></li>
+
+<li><a  href="soundexists.html" target="main">SoundExists</a></li>
+
+<li><a  href="setchannelvolume.html" target="main">SetChannelVolume</a></li>
+
+<li><a  href="getchannelvolume.html" target="main">GetChannelVolume</a></li>
+
+<li><a  href="setsoundvolume.html" target="main">SetSoundVolume</a></li>
+
+<li><a  href="getsoundvolume.html" target="main">GetSoundVolume</a></li>
+
+<li><a  href="stopmusic.html" target="main">StopMusic</a></li>
+
+<li><a  href="stopsound.html" target="main">StopSound</a></li>
+
+<li><a  href="setchannelpanning.html" target="main">SetChannelPanning</a></li>
+
+<li><a  href="setchanneldistance.html" target="main">SetChannelDistance</a></li>
+
+<li><a  href="channelisplaying.html" target="main">ChannelIsPlaying</a></li>
+
+<li><a  href="channelispaused.html" target="main">ChannelIsPaused</a></li>
+
+<li><a  href="queryaudiospec.html" target="main">QueryAudioSpec</a></li>
+
+<li><a  href="musicisplaying.html" target="main">MusicIsPlaying</a></li>
+
+<li><a  href="setchannelspaceposition.html" target="main">SetChannelSpacePosition</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Joystick</span>
+<ul class="nested">
+<li><a  href="numjoysticks.html" target="main">NumJoysticks</a></li>
+
+<li><a  href="numjoyaxes.html" target="main">NumJoyAxes</a></li>
+
+<li><a  href="numjoybuttons.html" target="main">NumJoyButtons</a></li>
+
+<li><a  href="numjoyhats.html" target="main">NumJoyHats</a></li>
+
+<li><a  href="numjoytrackballs.html" target="main">NumJoyTrackBalls</a></li>
+
+<li><a  href="joyaxis.html" target="main">JoyAxis</a></li>
+
+<li><a  href="joybutton.html" target="main">JoyButton</a></li>
+
+<li><a  href="joyhat.html" target="main">JoyHat</a></li>
+
+<li><a  href="getjoytrackball.html" target="main">GetJoyTrackBall</a></li>
+
+<li><a  href="joyname.html" target="main">JoyName$</a></li>
+
+<li><a  href="joystickisconnected.html" target="main">JoystickIsConnected</a></li>
+
+<li><a  href="joyrumbleplay.html" target="main">JoyRumblePlay</a></li>
+
+<li><a  href="joyrumblestop.html" target="main">JoyRumbleStop</a></li>
+
+<li><a  href="joystickishaptic.html" target="main">JoystickIsHaptic</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Text Drawing</span>
+<ul class="nested">
+<li><a  href="loadfont.html" target="main">LoadFont</a></li>
+
+<li><a  href="deletefont.html" target="main">DeleteFont</a></li>
+
+<li><a  href="fontexists.html" target="main">FontExists</a></li>
+
+<li><a  href="setfont.html" target="main">SetFont</a></li>
+
+<li><a  href="drawtext.html" target="main">DrawText</a></li>
+
+<li><a  href="gettextsize.html" target="main">GetTextSize</a></li>
+
+<li><a  href="textwidth.html" target="main">TextWidth</a></li>
+
+<li><a  href="textheight.html" target="main">TextHeight</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Touch and Sensors</span>
+<ul class="nested">
+<li><a  href="touchpressure.html" target="main">TouchPressure</a></li>
+
+<li><a  href="gettouch.html" target="main">GetTouch</a></li>
+
+<li><a  href="getmultitouch.html" target="main">GetMultiTouch</a></li>
+
+<li><a  href="gettouchfinger.html" target="main">GetTouchFinger</a></li>
+
+<li><a  href="numfingers.html" target="main">NumFingers</a></li>
+
+<li><a  href="getaccel.html" target="main">GetAccel</a></li>
+
+<li><a  href="accelname.html" target="main">AccelName$</a></li>
+
+<li><a  href="numaccels.html" target="main">NumAccels</a></li>
+
+<li><a  href="getgyro.html" target="main">GetGyro</a></li>
+
+<li><a  href="gyroname.html" target="main">GyroName$</a></li>
+
+<li><a  href="numgyros.html" target="main">NumGyros</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Networking</span>
+<ul class="nested">
+<li><a  href="checksockets.html" target="main">CheckSockets</a></li>
+
+<li><a  href="tcp_socketready.html" target="main">TCP_SocketReady</a></li>
+
+<li><a  href="udp_socketready.html" target="main">UDP_SocketReady</a></li>
+
+<li><a  href="tcp_opensocket.html" target="main">TCP_OpenSocket</a></li>
+
+<li><a  href="tcp_closesocket.html" target="main">TCP_CloseSocket</a></li>
+
+<li><a  href="tcp_remotehost.html" target="main">TCP_RemoteHost</a></li>
+
+<li><a  href="tcp_remoteport.html" target="main">TCP_RemotePort</a></li>
+
+<li><a  href="tcp_getdata.html" target="main">TCP_GetData</a></li>
+
+<li><a  href="tcp_senddata.html" target="main">TCP_SendData</a></li>
+
+<li><a  href="tcp_acceptsocket.html" target="main">TCP_AcceptSocket</a></li>
+
+<li><a  href="udp_opensocket.html" target="main">UDP_OpenSocket</a></li>
+
+<li><a  href="udp_closesocket.html" target="main">UDP_CloseSocket</a></li>
+
+<li><a  href="udp_getdata.html" target="main">UDP_GetData</a></li>
+
+<li><a  href="udp_length.html" target="main">UDP_Length</a></li>
+
+<li><a  href="udp_maxlength.html" target="main">UDP_MaxLength</a></li>
+
+<li><a  href="udp_remotehost.html" target="main">UDP_RemoteHost$</a></li>
+
+<li><a  href="udp_remoteport.html" target="main">UDP_RemotePort</a></li>
+
+<li><a  href="udp_senddata.html" target="main">UDP_SendData</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Video Playback</span>
+<ul class="nested">
+<li><a  href="loadvideo.html" target="main">LoadVideo</a></li>
+
+<li><a  href="playvideo.html" target="main">PlayVideo</a></li>
+
+<li><a  href="pausevideo.html" target="main">PauseVideo</a></li>
+
+<li><a  href="stopvideo.html" target="main">StopVideo</a></li>
+
+<li><a  href="setvideoposition.html" target="main">SetVideoPosition</a></li>
+
+<li><a  href="resumevideo.html" target="main">ResumeVideo</a></li>
+
+<li><a  href="getvideoposition.html" target="main">GetVideoPosition</a></li>
+
+<li><a  href="deletevideo.html" target="main">DeleteVideo</a></li>
+
+<li><a  href="videoisplaying.html" target="main">VideoIsPlaying</a></li>
+
+<li><a  href="videoend.html" target="main">VideoEnd</a></li>
+
+<li><a  href="getvideostats.html" target="main">GetVideoStats</a></li>
+
+<li><a  href="setvideodrawrect.html" target="main">SetVideoDrawRect</a></li>
+
+<li><a  href="getvideodrawrect.html" target="main">GetVideoDrawRect</a></li>
+
+<li><a  href="getvideosize.html" target="main">GetVideoSize</a></li>
+
+<li><a  href="videoexists.html" target="main">VideoExists</a></li>
+
+<li><a  href="setvideovolume.html" target="main">SetVideoVolume</a></li>
+
+<li><a  href="getvideovolume.html" target="main">GetVideoVolume</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">System</span>
+<ul class="nested">
+<li><a  href="system.html" target="main">System</a></li>
+
+<li><a  href="os.html" target="main">OS$</a></li>
+
+<li><a  href="command.html" target="main">Command$</a></li>
+
+<li><a  href="numcommands.html" target="main">NumCommands</a></li>
+
+<li><a  href="env.html" target="main">Env$</a></li>
+
+<li><a  href="setenv.html" target="main">SetEnv</a></li>
+
+<li><a  href="prefpath.html" target="main">PrefPath$</a></li>
+
+<li><a  href="android_getexternalstoragepath.html" target="main">Android_GetExternalStoragePath$</a></li>
+
+<li><a  href="android_getexternalstoragestate.html" target="main">Android_GetExternalStorageState</a></li>
+
+<li><a  href="android_getinternalstoragepath.html" target="main">Android_GetInternalStoragePath$</a></li>
+
+<li><a  href="android_jni_message.html" target="main">Android_JNI_Message$</a></li>
+
+<li><a  href="runtime_utility_message.html" target="main">Runtime_Utility_Message$</a></li>
+
+<li><a  href="getdesktopdisplaymode.html" target="main">GetDesktopDisplayMode</a></li>
+
+<li><a  href="getpowerinfo.html" target="main">GetPowerInfo</a></li>
+
+<li><a  href="evaljs.html" target="main">EvalJS$</a></li>
+
+<li><a  href="systemreturnstdout.html" target="main">SystemReturnStdOut$</a></li>
+
+<li><a  href="openurl.html" target="main">OpenURL</a></li>
+
+<li><a  href="messagebox.html" target="main">MessageBox</a></li>
+
+<li><a  href="runtime.html" target="main">Runtime$</a></li>
+
+<li><a  href="numcpus.html" target="main">NumCPUs</a></li>
+
+<li><a  href="systemram.html" target="main">SystemRam</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Matrices</span>
+<ul class="nested">
+<li><a  href="dimmatrix.html" target="main">DimMatrix</a></li>
+
+<li><a  href="deletematrix.html" target="main">DeleteMatrix</a></li>
+
+<li><a  href="addmatrix.html" target="main">AddMatrix</a></li>
+
+<li><a  href="augmentmatrix.html" target="main">AugmentMatrix</a></li>
+
+<li><a  href="copymatrix.html" target="main">CopyMatrix</a></li>
+
+<li><a  href="insertmatrixcolumns.html" target="main">InsertMatrixColumns</a></li>
+
+<li><a  href="insertmatrixrows.html" target="main">InsertMatrixRows</a></li>
+
+<li><a  href="multiplymatrix.html" target="main">MultiplyMatrix</a></li>
+
+<li><a  href="cubematrix.html" target="main">CubeMatrix</a></li>
+
+<li><a  href="deletematrixcolumns.html" target="main">DeleteMatrixColumns</a></li>
+
+<li><a  href="deletematrixrows.html" target="main">DeleteMatrixRows</a></li>
+
+<li><a  href="clearmatrix.html" target="main">ClearMatrix</a></li>
+
+<li><a  href="clearmatrixcolumns.html" target="main">ClearMatrixColumns</a></li>
+
+<li><a  href="clearmatrixrows.html" target="main">ClearMatrixRows</a></li>
+
+<li><a  href="fillmatrix.html" target="main">FillMatrix</a></li>
+
+<li><a  href="fillmatrixcolumns.html" target="main">FillMatrixColumns</a></li>
+
+<li><a  href="fillmatrixrows.html" target="main">FillMatrixRows</a></li>
+
+<li><a  href="copymatrixcolumns.html" target="main">CopyMatrixColumns</a></li>
+
+<li><a  href="copymatrixrows.html" target="main">CopyMatrixRows</a></li>
+
+<li><a  href="setidentitymatrix.html" target="main">SetIdentityMatrix</a></li>
+
+<li><a  href="solvematrix.html" target="main">SolveMatrix</a></li>
+
+<li><a  href="isequalmatrix.html" target="main">IsEqualMatrix</a></li>
+
+<li><a  href="determinant.html" target="main">Determinant</a></li>
+
+<li><a  href="adjointmatrix.html" target="main">AdjointMatrix</a></li>
+
+<li><a  href="invertmatrix.html" target="main">InvertMatrix</a></li>
+
+<li><a  href="matrixfrombuffer.html" target="main">MatrixFromBuffer</a></li>
+
+<li><a  href="bufferfrommatrix.html" target="main">BufferFromMatrix</a></li>
+
+<li><a  href="randomizematrix.html" target="main">RandomizeMatrix</a></li>
+
+<li><a  href="matrixvalue.html" target="main">MatrixValue</a></li>
+
+<li><a  href="setmatrixvalue.html" target="main">SetMatrixValue</a></li>
+
+<li><a  href="scalarmatrix.html" target="main">ScalarMatrix</a></li>
+
+<li><a  href="scalarmatrixcolumns.html" target="main">ScalarMatrixColumns</a></li>
+
+<li><a  href="scalarmatrixrows.html" target="main">ScalarMatrixRows</a></li>
+
+<li><a  href="squarematrix.html" target="main">SquareMatrix</a></li>
+
+<li><a  href="cofactormatrix.html" target="main">CofactorMatrix</a></li>
+
+<li><a  href="subtractmatrix.html" target="main">SubtractMatrix</a></li>
+
+<li><a  href="swapmatrix.html" target="main">SwapMatrix</a></li>
+
+<li><a  href="swapmatrixcolumn.html" target="main">SwapMatrixColumn</a></li>
+
+<li><a  href="swapmatrixrow.html" target="main">SwapMatrixRow</a></li>
+
+<li><a  href="transposematrix.html" target="main">TransposeMatrix</a></li>
+
+<li><a  href="unaugmentmatrix.html" target="main">UnAugmentMatrix</a></li>
+
+<li><a  href="zeromatrix.html" target="main">ZeroMatrix</a></li>
+
+<li><a  href="getmatrixsize.html" target="main">GetMatrixSize</a></li>
+
+<li><a  href="incrementmatrixrows.html" target="main">IncrementMatrixRows</a></li>
+
+<li><a  href="incrementmatrixcolumns.html" target="main">IncrementMatrixColumns</a></li>
+
+<li><a  href="joinmatrixrows.html" target="main">JoinMatrixRows</a></li>
+
+<li><a  href="joinmatrixcolumns.html" target="main">JoinMatrixColumns</a></li>
+
+<li><a  href="clipmatrix.html" target="main">ClipMatrix</a></li>
+
+<li><a  href="setmatrixtranslation.html" target="main">SetMatrixTranslation</a></li>
+
+<li><a  href="setmatrixrotation.html" target="main">SetMatrixRotation</a></li>
+
+<li><a  href="setmatrixscale.html" target="main">SetMatrixScale</a></li>
+
+<li><a  href="getmatrixtranslation.html" target="main">GetMatrixTranslation</a></li>
+
+<li><a  href="getmatrixrotation.html" target="main">GetMatrixRotation</a></li>
+
+<li><a  href="getmatrixscale.html" target="main">GetMatrixScale</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Clipboard</span>
+<ul class="nested">
+<li><a  href="getclipboardtext.html" target="main">GetClipboardText$</a></li>
+
+<li><a  href="setclipboardtext.html" target="main">SetClipboardText</a></li>
+
+<li><a  href="hasclipboardtext.html" target="main">HasClipboardText</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Text Editing</span>
+<ul class="nested">
+<li><a  href="readinput_start.html" target="main">ReadInput_Start</a></li>
+
+<li><a  href="readinput_stop.html" target="main">ReadInput_Stop</a></li>
+
+<li><a  href="readinput_gettext.html" target="main">ReadInput_GetText$</a></li>
+
+<li><a  href="readinput_settext.html" target="main">ReadInput_SetText</a></li>
+
+<li><a  href="readinput_togglebackspace.html" target="main">ReadInput_ToggleBackspace</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Sprites</span>
+<ul class="nested">
+<li><a  href="createsprite.html" target="main">CreateSprite</a></li>
+
+<li><a  href="deletesprite.html" target="main">DeleteSprite</a></li>
+
+<li><a  href="setspriteposition.html" target="main">SetSpritePosition</a></li>
+
+<li><a  href="translatesprite.html" target="main">TranslateSprite</a></li>
+
+<li><a  href="getspriteposition.html" target="main">GetSpritePosition</a></li>
+
+<li><a  href="spritex.html" target="main">SpriteX</a></li>
+
+<li><a  href="spritey.html" target="main">SpriteY</a></li>
+
+<li><a  href="setspriterotation.html" target="main">SetSpriteRotation</a></li>
+
+<li><a  href="rotatesprite.html" target="main">RotateSprite</a></li>
+
+<li><a  href="getspriterotation.html" target="main">GetSpriteRotation</a></li>
+
+<li><a  href="setspritescale.html" target="main">SetSpriteScale</a></li>
+
+<li><a  href="scalesprite.html" target="main">ScaleSprite</a></li>
+
+<li><a  href="getspritescale.html" target="main">GetSpriteScale</a></li>
+
+<li><a  href="setspritez.html" target="main">SetSpriteZ</a></li>
+
+<li><a  href="spritez.html" target="main">SpriteZ</a></li>
+
+<li><a  href="getspritesize.html" target="main">GetSpriteSize</a></li>
+
+<li><a  href="spritewidth.html" target="main">SpriteWidth</a></li>
+
+<li><a  href="spriteheight.html" target="main">SpriteHeight</a></li>
+
+<li><a  href="setspritevisible.html" target="main">SetSpriteVisible</a></li>
+
+<li><a  href="spriteisvisible.html" target="main">SpriteIsVisible</a></li>
+
+<li><a  href="setspritesolid.html" target="main">SetSpriteSolid</a></li>
+
+<li><a  href="spriteissolid.html" target="main">SpriteIsSolid</a></li>
+
+<li><a  href="setspritetype.html" target="main">SetSpriteType</a></li>
+
+<li><a  href="getspritetype.html" target="main">GetSpriteType</a></li>
+
+<li><a  href="setspritesource.html" target="main">SetSpriteSource</a></li>
+
+<li><a  href="getspritesource.html" target="main">GetSpriteSource</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Sprite Animation</span>
+<ul class="nested">
+<li><a  href="createspriteanimation.html" target="main">CreateSpriteAnimation</a></li>
+
+<li><a  href="setspriteframe.html" target="main">SetSpriteFrame</a></li>
+
+<li><a  href="getspriteframe.html" target="main">GetSpriteFrame</a></li>
+
+<li><a  href="setspriteanimationframe.html" target="main">SetSpriteAnimationFrame</a></li>
+
+<li><a  href="getspriteanimationframe.html" target="main">GetSpriteAnimationFrame</a></li>
+
+<li><a  href="setspriteanimationlength.html" target="main">SetSpriteAnimationLength</a></li>
+
+<li><a  href="getspriteanimationlength.html" target="main">GetSpriteAnimationLength</a></li>
+
+<li><a  href="setspriteanimationspeed.html" target="main">SetSpriteAnimationSpeed</a></li>
+
+<li><a  href="getspriteanimationspeed.html" target="main">GetSpriteAnimationSpeed</a></li>
+
+<li><a  href="setspriteanimation.html" target="main">SetSpriteAnimation</a></li>
+
+<li><a  href="getspriteanimation.html" target="main">GetSpriteAnimation</a></li>
+
+<li><a  href="getspritecurrentanimationframe.html" target="main">GetSpriteCurrentAnimationFrame</a></li>
+
+<li><a  href="numspriteanimationloops.html" target="main">NumSpriteAnimationLoops</a></li>
+
+<li><a  href="spriteanimationisplaying.html" target="main">SpriteAnimationIsPlaying</a></li>
+
+<li><a  href="deletespriteanimation.html" target="main">DeleteSpriteAnimation</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Sprite Physics</span>
+<ul class="nested">
+<li><a  href="getspritecenter.html" target="main">getSpriteCenter</a></li>
+
+<li><a  href="setspritelinearvelocity.html" target="main">setSpriteLinearVelocity</a></li>
+
+<li><a  href="getspritelinearvelocity.html" target="main">getSpriteLinearVelocity</a></li>
+
+<li><a  href="setspriteangularvelocity.html" target="main">setSpriteAngularVelocity</a></li>
+
+<li><a  href="getspriteangularvelocity.html" target="main">getSpriteAngularVelocity</a></li>
+
+<li><a  href="applyspriteforce.html" target="main">applySpriteForce</a></li>
+
+<li><a  href="applyspritecentralforce.html" target="main">applySpriteCentralForce</a></li>
+
+<li><a  href="applyspritetorque.html" target="main">applySpriteTorque</a></li>
+
+<li><a  href="applyspritelinearimpulse.html" target="main">applySpriteLinearImpulse</a></li>
+
+<li><a  href="applyspriteangularimpulse.html" target="main">applySpriteAngularImpulse</a></li>
+
+<li><a  href="getspritemass.html" target="main">getSpriteMass</a></li>
+
+<li><a  href="getspriteinertia.html" target="main">getSpriteInertia</a></li>
+
+<li><a  href="getspriteworldpoint.html" target="main">getSpriteWorldPoint</a></li>
+
+<li><a  href="getspriteworldvector.html" target="main">getSpriteWorldVector</a></li>
+
+<li><a  href="getspritelocalpoint.html" target="main">getSpriteLocalPoint</a></li>
+
+<li><a  href="getspritelocalvector.html" target="main">getSpriteLocalVector</a></li>
+
+<li><a  href="getspritelinearvelocityfromlocalpoint.html" target="main">getSpriteLinearVelocityFromLocalPoint</a></li>
+
+<li><a  href="getspritelinearvelocityfromworldpoint.html" target="main">getSpriteLinearVelocityFromWorldPoint</a></li>
+
+<li><a  href="getspritelineardamping.html" target="main">getSpriteLinearDamping</a></li>
+
+<li><a  href="setspritelineardamping.html" target="main">setSpriteLinearDamping</a></li>
+
+<li><a  href="getspriteangulardamping.html" target="main">getSpriteAngularDamping</a></li>
+
+<li><a  href="setspriteangulardamping.html" target="main">setSpriteAngularDamping</a></li>
+
+<li><a  href="getspritegravityscale.html" target="main">getSpriteGravityScale</a></li>
+
+<li><a  href="setspritegravityscale.html" target="main">setSpriteGravityScale</a></li>
+
+<li><a  href="setspritebullet.html" target="main">setSpriteBullet</a></li>
+
+<li><a  href="spriteisbullet.html" target="main">spriteIsBullet</a></li>
+
+<li><a  href="setspritesleepallowed.html" target="main">setSpriteSleepAllowed</a></li>
+
+<li><a  href="spritesleepallowed.html" target="main">spriteSleepAllowed</a></li>
+
+<li><a  href="setspriteawake.html" target="main">setSpriteAwake</a></li>
+
+<li><a  href="spriteisawake.html" target="main">spriteIsAwake</a></li>
+
+<li><a  href="setspritefixedrotation.html" target="main">setSpriteFixedRotation</a></li>
+
+<li><a  href="spriteisfixedrotation.html" target="main">spriteIsFixedRotation</a></li>
+
+<li><a  href="setspritedensity.html" target="main">SetSpriteDensity</a></li>
+
+<li><a  href="getspritedensity.html" target="main">GetSpriteDensity</a></li>
+
+<li><a  href="setspritefriction.html" target="main">SetSpriteFriction</a></li>
+
+<li><a  href="getspritefriction.html" target="main">GetSpriteFriction</a></li>
+
+<li><a  href="setspriterestitution.html" target="main">SetSpriteRestitution</a></li>
+
+<li><a  href="getspriterestitution.html" target="main">GetSpriteRestitution</a></li>
+
+<li><a  href="setspriterestitutionthreshold.html" target="main">SetSpriteRestitutionThreshold</a></li>
+
+<li><a  href="getspriterestitutionthreshold.html" target="main">GetSpriteRestitutionThreshold</a></li>
+
+<li><a  href="getspriteaabb.html" target="main">GetSpriteAABB</a></li>
+
+<li><a  href="setgravity2d.html" target="main">SetGravity2D</a></li>
+
+<li><a  href="getgravity2d.html" target="main">GetGravity2D</a></li>
+
+<li><a  href="setworld2dtimestep.html" target="main">SetWorld2DTimeStep</a></li>
+
+<li><a  href="setworld2dvelocityiterations.html" target="main">SetWorld2DVelocityIterations</a></li>
+
+<li><a  href="setworld2dpositioniterations.html" target="main">SetWorld2DPositionIterations</a></li>
+
+<li><a  href="getworld2dtimestep.html" target="main">GetWorld2DTimeStep</a></li>
+
+<li><a  href="getworld2dvelocityiterations.html" target="main">GetWorld2DVelocityIterations</a></li>
+
+<li><a  href="getworld2dpositioniterations.html" target="main">GetWorld2DPositionIterations</a></li>
+
+<li><a  href="setworld2dautoclearforces.html" target="main">SetWorld2DAutoClearForces</a></li>
+
+<li><a  href="getworld2dautoclearforces.html" target="main">GetWorld2DAutoClearForces</a></li>
+
+<li><a  href="castray2d.html" target="main">CastRay2D</a></li>
+
+<li><a  href="castray2d_all.html" target="main">CastRay2D_All</a></li>
+
+<li><a  href="getrayhit2d.html" target="main">GetRayHit2D</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">2D Constraints</span>
+<ul class="nested">
+<li><a  href="createdistancejoint.html" target="main">createDistanceJoint</a></li>
+
+<li><a  href="createfrictionjoint.html" target="main">createFrictionJoint</a></li>
+
+<li><a  href="creategearjoint.html" target="main">createGearJoint</a></li>
+
+<li><a  href="createmotorjoint.html" target="main">createMotorJoint</a></li>
+
+<li><a  href="createprismaticjoint.html" target="main">createPrismaticJoint</a></li>
+
+<li><a  href="createpulleyjoint.html" target="main">createPulleyJoint</a></li>
+
+<li><a  href="createrevolutejoint.html" target="main">createRevoluteJoint</a></li>
+
+<li><a  href="createweldjoint.html" target="main">createWeldJoint</a></li>
+
+<li><a  href="createwheeljoint.html" target="main">createWheelJoint</a></li>
+
+<li><a  href="getjointworldanchora.html" target="main">getJointWorldAnchorA</a></li>
+
+<li><a  href="getjointworldanchorb.html" target="main">getJointWorldAnchorB</a></li>
+
+<li><a  href="getjointreactionforce.html" target="main">getJointReactionForce</a></li>
+
+<li><a  href="getjointreactiontorque.html" target="main">getJointReactionTorque</a></li>
+
+<li><a  href="getjointlocalanchora.html" target="main">getJointLocalAnchorA</a></li>
+
+<li><a  href="getjointlocalanchorb.html" target="main">getJointLocalAnchorB</a></li>
+
+<li><a  href="setjointlength.html" target="main">setJointLength</a></li>
+
+<li><a  href="getjointlength.html" target="main">getJointLength</a></li>
+
+<li><a  href="setjointminlength.html" target="main">setJointMinLength</a></li>
+
+<li><a  href="getjointminlength.html" target="main">getJointMinLength</a></li>
+
+<li><a  href="setjointmaxlength.html" target="main">setJointMaxLength</a></li>
+
+<li><a  href="getjointmaxlength.html" target="main">getJointMaxLength</a></li>
+
+<li><a  href="getjointcurrentlength.html" target="main">getJointCurrentLength</a></li>
+
+<li><a  href="setjointstiffness.html" target="main">setJointStiffness</a></li>
+
+<li><a  href="getjointstiffness.html" target="main">getJointStiffness</a></li>
+
+<li><a  href="setjointdamping.html" target="main">setJointDamping</a></li>
+
+<li><a  href="getjointdamping.html" target="main">getJointDamping</a></li>
+
+<li><a  href="setjointmaxforce.html" target="main">setJointMaxForce</a></li>
+
+<li><a  href="getjointmaxforce.html" target="main">getJointMaxForce</a></li>
+
+<li><a  href="setjointmaxtorque.html" target="main">setJointMaxTorque</a></li>
+
+<li><a  href="getjointmaxtorque.html" target="main">getJointMaxTorque</a></li>
+
+<li><a  href="setjointcorrectionfactor.html" target="main">setJointCorrectionFactor</a></li>
+
+<li><a  href="getjointcorrectionfactor.html" target="main">getJointCorrectionFactor</a></li>
+
+<li><a  href="setjointratio.html" target="main">setJointRatio</a></li>
+
+<li><a  href="getjointratio.html" target="main">getJointRatio</a></li>
+
+<li><a  href="setjointlinearoffset.html" target="main">setJointLinearOffset</a></li>
+
+<li><a  href="getjointlinearoffset.html" target="main">getJointLinearOffset</a></li>
+
+<li><a  href="setjointangularoffset.html" target="main">setJointAngularOffset</a></li>
+
+<li><a  href="getjointangularoffset.html" target="main">getJointAngularOffset</a></li>
+
+<li><a  href="getjointlocalaxisa.html" target="main">getJointLocalAxisA</a></li>
+
+<li><a  href="getjointreferenceangle.html" target="main">getJointReferenceAngle</a></li>
+
+<li><a  href="getjointtranslation.html" target="main">getJointTranslation</a></li>
+
+<li><a  href="getjointspeed.html" target="main">getJointSpeed</a></li>
+
+<li><a  href="jointislimitenabled.html" target="main">jointIsLimitEnabled</a></li>
+
+<li><a  href="enablejointlimit.html" target="main">enableJointLimit</a></li>
+
+<li><a  href="getjointlowerlimit.html" target="main">getJointLowerLimit</a></li>
+
+<li><a  href="getjointupperlimit.html" target="main">getJointUpperLimit</a></li>
+
+<li><a  href="setjointlimits.html" target="main">setJointLimits</a></li>
+
+<li><a  href="jointmotorisenabled.html" target="main">jointMotorIsEnabled</a></li>
+
+<li><a  href="enablejointmotor.html" target="main">enableJointMotor</a></li>
+
+<li><a  href="setjointmotorspeed.html" target="main">setJointMotorSpeed</a></li>
+
+<li><a  href="getjointmotorspeed.html" target="main">getJointMotorSpeed</a></li>
+
+<li><a  href="setjointmaxmotorforce.html" target="main">setJointMaxMotorForce</a></li>
+
+<li><a  href="getjointmaxmotorforce.html" target="main">getJointMaxMotorForce</a></li>
+
+<li><a  href="getjointmotorforce.html" target="main">getJointMotorForce</a></li>
+
+<li><a  href="setjointmaxmotortorque.html" target="main">setJointMaxMotorTorque</a></li>
+
+<li><a  href="getjointmaxmotortorque.html" target="main">getJointMaxMotorTorque</a></li>
+
+<li><a  href="getjointmotortorque.html" target="main">getJointMotorTorque</a></li>
+
+<li><a  href="getjointgroundanchora.html" target="main">getJointGroundAnchorA</a></li>
+
+<li><a  href="getjointgroundanchorb.html" target="main">getJointGroundAnchorB</a></li>
+
+<li><a  href="getjointlengtha.html" target="main">getJointLengthA</a></li>
+
+<li><a  href="getjointlengthb.html" target="main">getJointLengthB</a></li>
+
+<li><a  href="getjointcurrentlengtha.html" target="main">getJointCurrentLengthA</a></li>
+
+<li><a  href="getjointcurrentlengthb.html" target="main">getJointCurrentLengthB</a></li>
+
+<li><a  href="setjointorigin.html" target="main">setJointOrigin</a></li>
+
+<li><a  href="getjointangle.html" target="main">getJointAngle</a></li>
+
+<li><a  href="getjointlinearspeed.html" target="main">getJointLinearSpeed</a></li>
+
+<li><a  href="getjointangularspeed.html" target="main">getJointAngularSpeed</a></li>
+
+<li><a  href="deletejoint.html" target="main">DeleteJoint</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Tile Maps</span>
+<ul class="nested">
+<li><a  href="createtileset.html" target="main">CreateTileSet</a></li>
+
+<li><a  href="settileanimationlength.html" target="main">SetTileAnimationLength</a></li>
+
+<li><a  href="gettileanimationlength.html" target="main">GetTileAnimationLength</a></li>
+
+<li><a  href="settileanimationframe.html" target="main">SetTileAnimationFrame</a></li>
+
+<li><a  href="gettileanimationframe.html" target="main">GetTileAnimationFrame</a></li>
+
+<li><a  href="settileanimationspeed.html" target="main">SetTileAnimationSpeed</a></li>
+
+<li><a  href="gettileanimationspeed.html" target="main">GetTileAnimationSpeed</a></li>
+
+<li><a  href="createtilemap.html" target="main">CreateTileMap</a></li>
+
+<li><a  href="settilemapsize.html" target="main">SetTileMapSize</a></li>
+
+<li><a  href="gettilemapsize.html" target="main">GetTileMapSize</a></li>
+
+<li><a  href="settile.html" target="main">SetTile</a></li>
+
+<li><a  href="gettile.html" target="main">GetTile</a></li>
+
+<li><a  href="filltile.html" target="main">FillTile</a></li>
+
+<li><a  href="drawtilemap.html" target="main">DrawTileMap</a></li>
+
+<li><a  href="deletetileset.html" target="main">DeleteTileSet</a></li>
+
+<li><a  href="deletetilemap.html" target="main">DeleteTileMap</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Meshes</span>
+<ul class="nested">
+<li><a  href="loadmesh.html" target="main">LoadMesh</a></li>
+
+<li><a  href="deletemesh.html" target="main">DeleteMesh</a></li>
+
+<li><a  href="createmesh.html" target="main">CreateMesh</a></li>
+
+<li><a  href="addmeshbuffer.html" target="main">AddMeshBuffer</a></li>
+
+<li><a  href="loadmeshfromarchive.html" target="main">LoadMeshFromArchive</a></li>
+
+<li><a  href="createplanemesh.html" target="main">CreatePlaneMesh</a></li>
+
+<li><a  href="loadan8.html" target="main">LoadAN8</a></li>
+
+<li><a  href="loadmeshfroman8.html" target="main">LoadMeshFromAN8</a></li>
+
+<li><a  href="getnuman8scenes.html" target="main">GetNumAN8Scenes</a></li>
+
+<li><a  href="getan8scenename.html" target="main">GetAN8SceneName$</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Actors</span>
+<ul class="nested">
+<li><a  href="createanimatedactor.html" target="main">CreateAnimatedActor</a></li>
+
+<li><a  href="createoctreeactor.html" target="main">CreateOctreeActor</a></li>
+
+<li><a  href="createcubeactor.html" target="main">CreateCubeActor</a></li>
+
+<li><a  href="createsphereactor.html" target="main">CreateSphereActor</a></li>
+
+<li><a  href="createwateractor.html" target="main">CreateWaterActor</a></li>
+
+<li><a  href="createlightactor.html" target="main">CreateLightActor</a></li>
+
+<li><a  href="createbillboardactor.html" target="main">CreateBillboardActor</a></li>
+
+<li><a  href="createterrainactor.html" target="main">CreateTerrainActor</a></li>
+
+<li><a  href="createparticleactor.html" target="main">CreateParticleActor</a></li>
+
+<li><a  href="deleteactor.html" target="main">DeleteActor</a></li>
+
+<li><a  href="getactortransform.html" target="main">GetActorTransform</a></li>
+
+<li><a  href="setactorposition.html" target="main">SetActorPosition</a></li>
+
+<li><a  href="translateactorlocal.html" target="main">TranslateActorLocal</a></li>
+
+<li><a  href="translateactorworld.html" target="main">TranslateActorWorld</a></li>
+
+<li><a  href="getactorposition.html" target="main">GetActorPosition</a></li>
+
+<li><a  href="setactorscale.html" target="main">SetActorScale</a></li>
+
+<li><a  href="scaleactor.html" target="main">ScaleActor</a></li>
+
+<li><a  href="getactorscale.html" target="main">GetActorScale</a></li>
+
+<li><a  href="setactorrotation.html" target="main">SetActorRotation</a></li>
+
+<li><a  href="rotateactor.html" target="main">RotateActor</a></li>
+
+<li><a  href="getactorrotation.html" target="main">GetActorRotation</a></li>
+
+<li><a  href="setactorvisible.html" target="main">SetActorVisible</a></li>
+
+<li><a  href="actorisvisible.html" target="main">ActorIsVisible</a></li>
+
+<li><a  href="setactorautoculling.html" target="main">SetActorAutoCulling</a></li>
+
+<li><a  href="getactorautoculling.html" target="main">GetActorAutoCulling</a></li>
+
+<li><a  href="addactorshadow.html" target="main">AddActorShadow</a></li>
+
+<li><a  href="removeactorshadow.html" target="main">RemoveActorShadow</a></li>
+
+<li><a  href="actorexists.html" target="main">ActorExists</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Actor Animation</span>
+<ul class="nested">
+<li><a  href="createactoranimation.html" target="main">CreateActorAnimation</a></li>
+
+<li><a  href="setactoranimation.html" target="main">SetActorAnimation</a></li>
+
+<li><a  href="setactoranimationspeed.html" target="main">SetActorAnimationSpeed</a></li>
+
+<li><a  href="setactoranimationframes.html" target="main">SetActorAnimationFrames</a></li>
+
+<li><a  href="getactorcurrentanimation.html" target="main">GetActorCurrentAnimation</a></li>
+
+<li><a  href="getactoranimationspeed.html" target="main">GetActorAnimationSpeed</a></li>
+
+<li><a  href="getactoranimationstartframe.html" target="main">GetActorAnimationStartFrame</a></li>
+
+<li><a  href="getactoranimationendframe.html" target="main">GetActorAnimationEndFrame</a></li>
+
+<li><a  href="setactorframe.html" target="main">SetActorFrame</a></li>
+
+<li><a  href="getactorframe.html" target="main">GetActorFrame</a></li>
+
+<li><a  href="actoranimationisplaying.html" target="main">ActorAnimationIsPlaying</a></li>
+
+<li><a  href="numactoranimationloops.html" target="main">NumActorAnimationLoops</a></li>
+
+<li><a  href="setactormd2animation.html" target="main">SetActorMD2Animation</a></li>
+
+<li><a  href="setactormd2animationbyname.html" target="main">SetActorMD2AnimationByName</a></li>
+
+<li><a  href="deleteactoranimation.html" target="main">DeleteActorAnimation</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Actor Physics</span>
+<ul class="nested">
+<li><a  href="setgravity3d.html" target="main">SetGravity3D</a></li>
+
+<li><a  href="getgravity3d.html" target="main">GetGravity3D</a></li>
+
+<li><a  href="setactorcollisionshape.html" target="main">SetActorCollisionShape</a></li>
+
+<li><a  href="getactorcollisionshape.html" target="main">GetActorCollisionShape</a></li>
+
+<li><a  href="setactorsolid.html" target="main">SetActorSolid</a></li>
+
+<li><a  href="actorissolid.html" target="main">ActorIsSolid</a></li>
+
+<li><a  href="getactorcollision.html" target="main">GetActorCollision</a></li>
+
+<li><a  href="setactorgravity.html" target="main">SetActorGravity</a></li>
+
+<li><a  href="getactorgravity.html" target="main">GetActorGravity</a></li>
+
+<li><a  href="setactordamping.html" target="main">setActorDamping</a></li>
+
+<li><a  href="getactorlineardamping.html" target="main">getActorLinearDamping</a></li>
+
+<li><a  href="getactorangulardamping.html" target="main">getActorAngularDamping</a></li>
+
+<li><a  href="getactorlinearsleepthreshold.html" target="main">getActorLinearSleepThreshold</a></li>
+
+<li><a  href="getactorangularsleepthreshold.html" target="main">getActorAngularSleepThreshold</a></li>
+
+<li><a  href="applyactordamping.html" target="main">applyActorDamping</a></li>
+
+<li><a  href="setactormassproperties.html" target="main">setActorMassProperties</a></li>
+
+<li><a  href="getactorlinearfactor.html" target="main">getActorLinearFactor</a></li>
+
+<li><a  href="setactorlinearfactor.html" target="main">setActorLinearFactor</a></li>
+
+<li><a  href="getactorinversemass.html" target="main">getActorInverseMass</a></li>
+
+<li><a  href="integrateactorvelocities.html" target="main">integrateActorVelocities</a></li>
+
+<li><a  href="applyactorcentralforcelocal.html" target="main">applyActorCentralForceLocal</a></li>
+
+<li><a  href="applyactorcentralforceworld.html" target="main">applyActorCentralForceWorld</a></li>
+
+<li><a  href="getactortotalforce.html" target="main">getActorTotalForce</a></li>
+
+<li><a  href="getactortotaltorque.html" target="main">getActorTotalTorque</a></li>
+
+<li><a  href="getactorinverseinertiadiaglocal.html" target="main">getActorInverseInertiaDiagLocal</a></li>
+
+<li><a  href="setactorinverseinertiadiaglocal.html" target="main">setActorInverseInertiaDiagLocal</a></li>
+
+<li><a  href="setactorsleepthresholds.html" target="main">setActorSleepThresholds</a></li>
+
+<li><a  href="applyactortorquelocal.html" target="main">applyActorTorqueLocal</a></li>
+
+<li><a  href="applyactortorqueworld.html" target="main">applyActorTorqueWorld</a></li>
+
+<li><a  href="applyactorforcelocal.html" target="main">applyActorForceLocal</a></li>
+
+<li><a  href="applyactorforceworld.html" target="main">applyActorForceWorld</a></li>
+
+<li><a  href="applyactorcentralimpulselocal.html" target="main">applyActorCentralImpulseLocal</a></li>
+
+<li><a  href="applyactorcentralimpulseworld.html" target="main">applyActorCentralImpulseWorld</a></li>
+
+<li><a  href="applyactortorqueimpulselocal.html" target="main">applyActorTorqueImpulseLocal</a></li>
+
+<li><a  href="applyactortorqueimpulseworld.html" target="main">applyActorTorqueImpulseWorld</a></li>
+
+<li><a  href="applyactorimpulselocal.html" target="main">applyActorImpulseLocal</a></li>
+
+<li><a  href="applyactorimpulseworld.html" target="main">applyActorImpulseWorld</a></li>
+
+<li><a  href="clearactorforces.html" target="main">clearActorForces</a></li>
+
+<li><a  href="updateactorinertiatensor.html" target="main">updateActorInertiaTensor</a></li>
+
+<li><a  href="getactorcenter.html" target="main">getActorCenter</a></li>
+
+<li><a  href="getactorrotationq.html" target="main">getActorRotationQ</a></li>
+
+<li><a  href="getactorlinearvelocityworld.html" target="main">getActorLinearVelocityWorld</a></li>
+
+<li><a  href="getactorangularvelocityworld.html" target="main">getActorAngularVelocityWorld</a></li>
+
+<li><a  href="setactorlinearvelocitylocal.html" target="main">setActorLinearVelocityLocal</a></li>
+
+<li><a  href="setactorlinearvelocityworld.html" target="main">setActorLinearVelocityWorld</a></li>
+
+<li><a  href="setactorangularvelocitylocal.html" target="main">setActorAngularVelocityLocal</a></li>
+
+<li><a  href="setactorangularvelocityworld.html" target="main">setActorAngularVelocityWorld</a></li>
+
+<li><a  href="getactorvelocityinlocalpoint.html" target="main">getActorVelocityInLocalPoint</a></li>
+
+<li><a  href="getactorlinearvelocitylocal.html" target="main">getActorLinearVelocityLocal</a></li>
+
+<li><a  href="getactorangularvelocitylocal.html" target="main">getActorAngularVelocityLocal</a></li>
+
+<li><a  href="getactoraabb.html" target="main">getActorAABB</a></li>
+
+<li><a  href="computeactorimpulsedenominator.html" target="main">computeActorImpulseDenominator</a></li>
+
+<li><a  href="computeactorangularimpulsedenominator.html" target="main">computeActorAngularImpulseDenominator</a></li>
+
+<li><a  href="setactorangularfactor.html" target="main">setActorAngularFactor</a></li>
+
+<li><a  href="getactorangularfactor.html" target="main">getActorAngularFactor</a></li>
+
+<li><a  href="computeactorgyroimpulselocal.html" target="main">computeActorGyroImpulseLocal</a></li>
+
+<li><a  href="computeactorgyroimpulseworld.html" target="main">computeActorGyroImpulseWorld</a></li>
+
+<li><a  href="getactorlocalinertia.html" target="main">getActorLocalInertia</a></li>
+
+<li><a  href="setactorsleepstate.html" target="main">SetActorSleepState</a></li>
+
+<li><a  href="castray3d.html" target="main">CastRay3D</a></li>
+
+<li><a  href="castray3d_all.html" target="main">CastRay3D_All</a></li>
+
+<li><a  href="getrayhit3d.html" target="main">GetRayHit3D</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">3D Constraints</span>
+<ul class="nested">
+<li><a  href="createpointconstraint.html" target="main">createPointConstraint</a></li>
+
+<li><a  href="createpointconstraintex.html" target="main">createPointConstraintEx</a></li>
+
+<li><a  href="setpointpivota.html" target="main">setPointPivotA</a></li>
+
+<li><a  href="setpointpivotb.html" target="main">setPointPivotB</a></li>
+
+<li><a  href="createhingeconstraint.html" target="main">createHingeConstraint</a></li>
+
+<li><a  href="createhingeconstraintex.html" target="main">createHingeConstraintEx</a></li>
+
+<li><a  href="createslideconstraint.html" target="main">createSlideConstraint</a></li>
+
+<li><a  href="createslideconstraintex.html" target="main">createSlideConstraintEx</a></li>
+
+<li><a  href="createconeconstraint.html" target="main">createConeConstraint</a></li>
+
+<li><a  href="createconeconstraintex.html" target="main">createConeConstraintEx</a></li>
+
+<li><a  href="deleteconstraint.html" target="main">deleteConstraint</a></li>
+
+<li><a  href="getconstraintframeoffseta.html" target="main">getConstraintFrameOffsetA</a></li>
+
+<li><a  href="getconstraintframeoffsetb.html" target="main">getConstraintFrameOffsetB</a></li>
+
+<li><a  href="useconstraintframeoffset.html" target="main">useConstraintFrameOffset</a></li>
+
+<li><a  href="gethingeangle.html" target="main">getHingeAngle</a></li>
+
+<li><a  href="gethingeangleex.html" target="main">getHingeAngleEx</a></li>
+
+<li><a  href="getconstraintbreakingimpulsethreshold.html" target="main">getConstraintBreakingImpulseThreshold</a></li>
+
+<li><a  href="getconstraintaframe.html" target="main">getConstraintAFrame</a></li>
+
+<li><a  href="getconstraintbframe.html" target="main">getConstraintBFrame</a></li>
+
+<li><a  href="sethingeaxis.html" target="main">setHingeAxis</a></li>
+
+<li><a  href="setconstraintbreakingimpulsethreshold.html" target="main">setConstraintBreakingImpulseThreshold</a></li>
+
+<li><a  href="setconstraintframes.html" target="main">setConstraintFrames</a></li>
+
+<li><a  href="sethingelimit.html" target="main">setHingeLimit</a></li>
+
+<li><a  href="setconelimit.html" target="main">setConeLimit</a></li>
+
+<li><a  href="gethingelimitbiasfactor.html" target="main">getHingeLimitBiasFactor</a></li>
+
+<li><a  href="gethingelimitrelaxationfactor.html" target="main">getHingeLimitRelaxationFactor</a></li>
+
+<li><a  href="gethingelimitsign.html" target="main">getHingeLimitSign</a></li>
+
+<li><a  href="gethingesolvelimit.html" target="main">getHingeSolveLimit</a></li>
+
+<li><a  href="usehingereferenceframea.html" target="main">useHingeReferenceFrameA</a></li>
+
+<li><a  href="getconstraintappliedimpulse.html" target="main">getConstraintAppliedImpulse</a></li>
+
+<li><a  href="getconstraintfixedactor.html" target="main">getConstraintFixedActor</a></li>
+
+<li><a  href="getpointpivota.html" target="main">getPointPivotA</a></li>
+
+<li><a  href="getpointpivotb.html" target="main">getPointPivotB</a></li>
+
+<li><a  href="getconstraintactora.html" target="main">getConstraintActorA</a></li>
+
+<li><a  href="getconstraintactorb.html" target="main">getConstraintActorB</a></li>
+
+<li><a  href="setconstraintsolveriterations.html" target="main">setConstraintSolverIterations</a></li>
+
+<li><a  href="getconebiasfactor.html" target="main">getConeBiasFactor</a></li>
+
+<li><a  href="getconedamping.html" target="main">getConeDamping</a></li>
+
+<li><a  href="getconefixthresh.html" target="main">getConeFixThresh</a></li>
+
+<li><a  href="getconelimit.html" target="main">getConeLimit</a></li>
+
+<li><a  href="getconstraintlimitsoftness.html" target="main">getConstraintLimitSoftness</a></li>
+
+<li><a  href="getconstraintsolveriterations.html" target="main">getConstraintSolverIterations</a></li>
+
+<li><a  href="getconeanglepoint.html" target="main">getConeAnglePoint</a></li>
+
+<li><a  href="getconstraintangularonly.html" target="main">getConstraintAngularOnly</a></li>
+
+<li><a  href="getconesolveswinglimit.html" target="main">getConeSolveSwingLimit</a></li>
+
+<li><a  href="getconesolvetwistlimit.html" target="main">getConeSolveTwistLimit</a></li>
+
+<li><a  href="getconeswingspan1.html" target="main">getConeSwingSpan1</a></li>
+
+<li><a  href="getconeswingspan2.html" target="main">getConeSwingSpan2</a></li>
+
+<li><a  href="getconetwistangle.html" target="main">getConeTwistAngle</a></li>
+
+<li><a  href="getconetwistlimitsign.html" target="main">getConeTwistLimitSign</a></li>
+
+<li><a  href="getconetwistspan.html" target="main">getConeTwistSpan</a></li>
+
+<li><a  href="setconstraintangularonly.html" target="main">setConstraintAngularOnly</a></li>
+
+<li><a  href="setconedamping.html" target="main">setConeDamping</a></li>
+
+<li><a  href="setconefixthresh.html" target="main">setConeFixThresh</a></li>
+
+<li><a  href="getslideanchora.html" target="main">getSlideAnchorA</a></li>
+
+<li><a  href="getslideanchorb.html" target="main">getSlideAnchorB</a></li>
+
+<li><a  href="getslideangdepth.html" target="main">getSlideAngDepth</a></li>
+
+<li><a  href="getslideangularpos.html" target="main">getSlideAngularPos</a></li>
+
+<li><a  href="getslidedampingdirang.html" target="main">getSlideDampingDirAng</a></li>
+
+<li><a  href="getslidedampingdirlin.html" target="main">getSlideDampingDirLin</a></li>
+
+<li><a  href="getslidedampinglimang.html" target="main">getSlideDampingLimAng</a></li>
+
+<li><a  href="getslidedampinglimlin.html" target="main">getSlideDampingLimLin</a></li>
+
+<li><a  href="getslidedampingorthoang.html" target="main">getSlideDampingOrthoAng</a></li>
+
+<li><a  href="getslidedampingortholin.html" target="main">getSlideDampingOrthoLin</a></li>
+
+<li><a  href="getslidelinearpos.html" target="main">getSlideLinearPos</a></li>
+
+<li><a  href="getslidelindepth.html" target="main">getSlideLinDepth</a></li>
+
+<li><a  href="getslideloweranglimit.html" target="main">getSlideLowerAngLimit</a></li>
+
+<li><a  href="getslidelowerlinlimit.html" target="main">getSlideLowerLinLimit</a></li>
+
+<li><a  href="getsliderestitutiondirang.html" target="main">getSlideRestitutionDirAng</a></li>
+
+<li><a  href="getsliderestitutiondirlin.html" target="main">getSlideRestitutionDirLin</a></li>
+
+<li><a  href="getsliderestitutionlimang.html" target="main">getSlideRestitutionLimAng</a></li>
+
+<li><a  href="getsliderestitutionlimlin.html" target="main">getSlideRestitutionLimLin</a></li>
+
+<li><a  href="getsliderestitutionorthoang.html" target="main">getSlideRestitutionOrthoAng</a></li>
+
+<li><a  href="getsliderestitutionortholin.html" target="main">getSlideRestitutionOrthoLin</a></li>
+
+<li><a  href="getslidesoftnessdirang.html" target="main">getSlideSoftnessDirAng</a></li>
+
+<li><a  href="getslidesoftnessdirlin.html" target="main">getSlideSoftnessDirLin</a></li>
+
+<li><a  href="getslidesoftnesslimang.html" target="main">getSlideSoftnessLimAng</a></li>
+
+<li><a  href="getslidesoftnesslimlin.html" target="main">getSlideSoftnessLimLin</a></li>
+
+<li><a  href="getslidesoftnessorthoang.html" target="main">getSlideSoftnessOrthoAng</a></li>
+
+<li><a  href="getslidesoftnessortholin.html" target="main">getSlideSoftnessOrthoLin</a></li>
+
+<li><a  href="getslidesolveanglimit.html" target="main">getSlideSolveAngLimit</a></li>
+
+<li><a  href="getslidesolvelinlimit.html" target="main">getSlideSolveLinLimit</a></li>
+
+<li><a  href="getslideupperanglimit.html" target="main">getSlideUpperAngLimit</a></li>
+
+<li><a  href="getslideupperlinlimit.html" target="main">getSlideUpperLinLimit</a></li>
+
+<li><a  href="getslideuseframeoffset.html" target="main">getSlideUseFrameOffset</a></li>
+
+<li><a  href="setslidedampingdirang.html" target="main">setSlideDampingDirAng</a></li>
+
+<li><a  href="setslidedampingdirlin.html" target="main">setSlideDampingDirLin</a></li>
+
+<li><a  href="setslidedampinglimang.html" target="main">setSlideDampingLimAng</a></li>
+
+<li><a  href="setslidedampinglimlin.html" target="main">setSlideDampingLimLin</a></li>
+
+<li><a  href="setslidedampingorthoang.html" target="main">setSlideDampingOrthoAng</a></li>
+
+<li><a  href="setslidedampingortholin.html" target="main">setSlideDampingOrthoLin</a></li>
+
+<li><a  href="setslideloweranglimit.html" target="main">setSlideLowerAngLimit</a></li>
+
+<li><a  href="setslidelowerlinlimit.html" target="main">setSlideLowerLinLimit</a></li>
+
+<li><a  href="setsliderestitutiondirang.html" target="main">setSlideRestitutionDirAng</a></li>
+
+<li><a  href="setsliderestitutiondirlin.html" target="main">setSlideRestitutionDirLin</a></li>
+
+<li><a  href="setsliderestitutionlimang.html" target="main">setSlideRestitutionLimAng</a></li>
+
+<li><a  href="setsliderestitutionlimlin.html" target="main">setSlideRestitutionLimLin</a></li>
+
+<li><a  href="setsliderestitutionorthoang.html" target="main">setSlideRestitutionOrthoAng</a></li>
+
+<li><a  href="setsliderestitutionortholin.html" target="main">setSlideRestitutionOrthoLin</a></li>
+
+<li><a  href="setslidesoftnessdirang.html" target="main">setSlideSoftnessDirAng</a></li>
+
+<li><a  href="setslidesoftnessdirlin.html" target="main">setSlideSoftnessDirLin</a></li>
+
+<li><a  href="setslidesoftnesslimang.html" target="main">setSlideSoftnessLimAng</a></li>
+
+<li><a  href="setslidesoftnesslimlin.html" target="main">setSlideSoftnessLimLin</a></li>
+
+<li><a  href="setslidesoftnessorthoang.html" target="main">setSlideSoftnessOrthoAng</a></li>
+
+<li><a  href="setslidesoftnessortholin.html" target="main">setSlideSoftnessOrthoLin</a></li>
+
+<li><a  href="setslideupperanglimit.html" target="main">setSlideUpperAngLimit</a></li>
+
+<li><a  href="setslideupperlinlimit.html" target="main">setSlideUpperLinLimit</a></li>
+
+<li><a  href="constraintexists.html" target="main">ConstraintExists</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Camera</span>
+<ul class="nested">
+<li><a  href="setcameraposition.html" target="main">SetCameraPosition</a></li>
+
+<li><a  href="getcameraposition.html" target="main">GetCameraPosition</a></li>
+
+<li><a  href="translatecamera.html" target="main">TranslateCamera</a></li>
+
+<li><a  href="setcamerarotation.html" target="main">SetCameraRotation</a></li>
+
+<li><a  href="getcamerarotation.html" target="main">GetCameraRotation</a></li>
+
+<li><a  href="rotatecamera.html" target="main">RotateCamera</a></li>
+
+<li><a  href="setcamerafov.html" target="main">SetCameraFOV</a></li>
+
+<li><a  href="getcamerafov.html" target="main">GetCameraFOV</a></li>
+
+<li><a  href="setcameraaspectratio.html" target="main">SetCameraAspectRatio</a></li>
+
+<li><a  href="getcameraaspectratio.html" target="main">GetCameraAspectRatio</a></li>
+
+<li><a  href="setcamerafarvalue.html" target="main">SetCameraFarValue</a></li>
+
+<li><a  href="getcamerafarvalue.html" target="main">GetCameraFarValue</a></li>
+
+<li><a  href="setcameranearvalue.html" target="main">SetCameraNearValue</a></li>
+
+<li><a  href="getcameranearvalue.html" target="main">GetCameraNearValue</a></li>
+
+<li><a  href="setprojectionmatrix.html" target="main">SetProjectionMatrix</a></li>
+
+<li><a  href="getprojectionmatrix.html" target="main">GetProjectionMatrix</a></li>
+
+<li><a  href="getworldtoviewportposition.html" target="main">GetWorldToViewportPosition</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Scene</span>
+<ul class="nested">
+<li><a  href="addsceneskybox.html" target="main">AddSceneSkyBox</a></li>
+
+<li><a  href="addsceneskydome.html" target="main">AddSceneSkyDome</a></li>
+
+<li><a  href="addsceneskydomeex.html" target="main">AddSceneSkyDomeEx</a></li>
+
+<li><a  href="removescenesky.html" target="main">RemoveSceneSky</a></li>
+
+<li><a  href="setworld3dmaxsubsteps.html" target="main">SetWorld3DMaxSubSteps</a></li>
+
+<li><a  href="setworld3dtimestep.html" target="main">SetWorld3DTimeStep</a></li>
+
+<li><a  href="getworld3dmaxsubsteps.html" target="main">GetWorld3DMaxSubSteps</a></li>
+
+<li><a  href="getworld3dtimestep.html" target="main">GetWorld3DTimeStep</a></li>
+
+<li><a  href="setscenefog.html" target="main">SetSceneFog</a></li>
+
+<li><a  href="getscenefog.html" target="main">GetSceneFog</a></li>
+
+<li><a  href="clearscene.html" target="main">ClearScene</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Particles</span>
+<ul class="nested">
+<li><a  href="startparticleemitter.html" target="main">startParticleEmitter</a></li>
+
+<li><a  href="stopparticleemitter.html" target="main">stopParticleEmitter</a></li>
+
+<li><a  href="setparticledirection.html" target="main">setParticleDirection</a></li>
+
+<li><a  href="getparticledirection.html" target="main">getParticleDirection</a></li>
+
+<li><a  href="useparticleeverymeshvertex.html" target="main">useParticleEveryMeshVertex</a></li>
+
+<li><a  href="particleisusingeverymeshvertex.html" target="main">particleIsUsingEveryMeshVertex</a></li>
+
+<li><a  href="setparticlenormaldirectionmod.html" target="main">setParticleNormalDirectionMod</a></li>
+
+<li><a  href="getparticlenormaldirectionmod.html" target="main">getParticleNormalDirectionMod</a></li>
+
+<li><a  href="useparticlenormaldirection.html" target="main">useParticleNormalDirection</a></li>
+
+<li><a  href="particleisusingnormaldirection.html" target="main">particleIsUsingNormalDirection</a></li>
+
+<li><a  href="setparticlemesh.html" target="main">setParticleMesh</a></li>
+
+<li><a  href="setminparticlespersecond.html" target="main">setMinParticlesPerSecond</a></li>
+
+<li><a  href="getminparticlespersecond.html" target="main">getMinParticlesPerSecond</a></li>
+
+<li><a  href="setmaxparticlespersecond.html" target="main">setMaxParticlesPerSecond</a></li>
+
+<li><a  href="getmaxparticlespersecond.html" target="main">getMaxParticlesPerSecond</a></li>
+
+<li><a  href="setparticleminstartcolor.html" target="main">setParticleMinStartColor</a></li>
+
+<li><a  href="getparticleminstartcolor.html" target="main">getParticleMinStartColor</a></li>
+
+<li><a  href="setparticlemaxstartcolor.html" target="main">setParticleMaxStartColor</a></li>
+
+<li><a  href="getparticlemaxstartcolor.html" target="main">getParticleMaxStartColor</a></li>
+
+<li><a  href="setparticleminlife.html" target="main">setParticleMinLife</a></li>
+
+<li><a  href="getparticleminlife.html" target="main">getParticleMinLife</a></li>
+
+<li><a  href="setparticlemaxlife.html" target="main">setParticleMaxLife</a></li>
+
+<li><a  href="getparticlemaxlife.html" target="main">getParticleMaxLife</a></li>
+
+<li><a  href="setparticlemaxangle.html" target="main">setParticleMaxAngle</a></li>
+
+<li><a  href="getparticlemaxangle.html" target="main">getParticleMaxAngle</a></li>
+
+<li><a  href="setparticleminstartsize.html" target="main">setParticleMinStartSize</a></li>
+
+<li><a  href="getparticleminstartsize.html" target="main">getParticleMinStartSize</a></li>
+
+<li><a  href="setparticlemaxstartsize.html" target="main">setParticleMaxStartSize</a></li>
+
+<li><a  href="getparticlemaxstartsize.html" target="main">getParticleMaxStartSize</a></li>
+
+<li><a  href="setparticlecenter.html" target="main">setParticleCenter</a></li>
+
+<li><a  href="getparticlecenter.html" target="main">getParticleCenter</a></li>
+
+<li><a  href="setparticleradius.html" target="main">setParticleRadius</a></li>
+
+<li><a  href="getparticleradius.html" target="main">getParticleRadius</a></li>
+
+<li><a  href="setparticleringthickness.html" target="main">setParticleRingThickness</a></li>
+
+<li><a  href="getparticleringthickness.html" target="main">getParticleRingThickness</a></li>
+
+<li><a  href="setparticlebox.html" target="main">setParticleBox</a></li>
+
+<li><a  href="getparticlebox.html" target="main">getParticleBox</a></li>
+
+<li><a  href="setparticlenormal.html" target="main">setParticleNormal</a></li>
+
+<li><a  href="getparticlenormal.html" target="main">getParticleNormal</a></li>
+
+<li><a  href="setparticlelength.html" target="main">setParticleLength</a></li>
+
+<li><a  href="getparticlelength.html" target="main">getParticleLength</a></li>
+
+<li><a  href="useparticleoutlineonly.html" target="main">useParticleOutlineOnly</a></li>
+
+<li><a  href="particleisusingoutlineonly.html" target="main">particleIsUsingOutlineOnly</a></li>
+
+<li><a  href="getparticletype.html" target="main">getParticleType</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Lights</span>
+<ul class="nested">
+<li><a  href="lightiscastingshadow.html" target="main">lightIsCastingShadow</a></li>
+
+<li><a  href="getlighttype.html" target="main">getLightType</a></li>
+
+<li><a  href="getlightradius.html" target="main">getLightRadius</a></li>
+
+<li><a  href="setlighttype.html" target="main">setLightType</a></li>
+
+<li><a  href="setlightradius.html" target="main">setLightRadius</a></li>
+
+<li><a  href="setlightshadowcast.html" target="main">setLightShadowCast</a></li>
+
+<li><a  href="setlightambientcolor.html" target="main">SetLightAmbientColor</a></li>
+
+<li><a  href="getlightambientcolor.html" target="main">GetLightAmbientColor</a></li>
+
+<li><a  href="setlightattenuation.html" target="main">SetLightAttenuation</a></li>
+
+<li><a  href="getlightattenuation.html" target="main">GetLightAttenuation</a></li>
+
+<li><a  href="setlightdiffusecolor.html" target="main">SetLightDiffuseColor</a></li>
+
+<li><a  href="getlightdiffusecolor.html" target="main">GetLightDiffuseColor</a></li>
+
+<li><a  href="setlightfalloff.html" target="main">SetLightFalloff</a></li>
+
+<li><a  href="getlightfalloff.html" target="main">GetLightFalloff</a></li>
+
+<li><a  href="setlightinnercone.html" target="main">SetLightInnerCone</a></li>
+
+<li><a  href="getlightinnercone.html" target="main">GetLightInnerCone</a></li>
+
+<li><a  href="setlightoutercone.html" target="main">SetLightOuterCone</a></li>
+
+<li><a  href="getlightoutercone.html" target="main">GetLightOuterCone</a></li>
+
+<li><a  href="setlightspecularcolor.html" target="main">SetLightSpecularColor</a></li>
+
+<li><a  href="getlightspecularcolor.html" target="main">GetLightSpecularColor</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Terrain</span>
+<ul class="nested">
+<li><a  href="getterrainpatchaabb.html" target="main">GetTerrainPatchAABB</a></li>
+
+<li><a  href="getterrainpatchlod.html" target="main">GetTerrainPatchLOD</a></li>
+
+<li><a  href="getterrainheight.html" target="main">GetTerrainHeight</a></li>
+
+<li><a  href="getterraincenter.html" target="main">GetTerrainCenter</a></li>
+
+<li><a  href="setterrainloddistance.html" target="main">SetTerrainLODDistance</a></li>
+
+<li><a  href="scaleterraintexture.html" target="main">ScaleTerrainTexture</a></li>
+
+<li><a  href="setterraincameramovementdelta.html" target="main">SetTerrainCameraMovementDelta</a></li>
+
+<li><a  href="setterraincamerarotationdelta.html" target="main">SetTerrainCameraRotationDelta</a></li>
+
+<li><a  href="setterrainpatchlod.html" target="main">SetTerrainPatchLOD</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+<ul id="myUL">
+<li><span class="box">Materials</span>
+<ul class="nested">
+<li><a  href="creatematerial.html" target="main">createMaterial</a></li>
+
+<li><a  href="deletematerial.html" target="main">deleteMaterial</a></li>
+
+<li><a  href="setactormaterial.html" target="main">setActorMaterial</a></li>
+
+<li><a  href="getactormaterial.html" target="main">getActorMaterial</a></li>
+
+<li><a  href="copyactormaterial.html" target="main">copyActorMaterial</a></li>
+
+<li><a  href="copymaterial.html" target="main">copyMaterial</a></li>
+
+<li><a  href="setmaterialtexturecanvas.html" target="main">setMaterialTextureCanvas</a></li>
+
+<li><a  href="setmaterialambientcolor.html" target="main">setMaterialAmbientColor</a></li>
+
+<li><a  href="getmaterialambientcolor.html" target="main">getMaterialAmbientColor</a></li>
+
+<li><a  href="setmaterialantialiasing.html" target="main">setMaterialAntiAliasing</a></li>
+
+<li><a  href="getmaterialantialiasing.html" target="main">getMaterialAntiAliasing</a></li>
+
+<li><a  href="setmaterialbackfaceculling.html" target="main">setMaterialBackfaceCulling</a></li>
+
+<li><a  href="getmaterialbackfaceculling.html" target="main">getMaterialBackfaceCulling</a></li>
+
+<li><a  href="setmaterialblendfactor.html" target="main">setMaterialBlendFactor</a></li>
+
+<li><a  href="getmaterialblendfactor.html" target="main">getMaterialBlendFactor</a></li>
+
+<li><a  href="setmaterialblendmode.html" target="main">setMaterialBlendMode</a></li>
+
+<li><a  href="getmaterialblendmode.html" target="main">getMaterialBlendMode</a></li>
+
+<li><a  href="setmaterialcolormask.html" target="main">setMaterialColorMask</a></li>
+
+<li><a  href="getmaterialcolormask.html" target="main">getMaterialColorMask</a></li>
+
+<li><a  href="setmaterialcolormode.html" target="main">setMaterialColorMode</a></li>
+
+<li><a  href="getmaterialcolormode.html" target="main">getMaterialColorMode</a></li>
+
+<li><a  href="setmaterialdiffusecolor.html" target="main">setMaterialDiffuseColor</a></li>
+
+<li><a  href="getmaterialdiffusecolor.html" target="main">getMaterialDiffuseColor</a></li>
+
+<li><a  href="setmaterialemissivecolor.html" target="main">setMaterialEmissiveColor</a></li>
+
+<li><a  href="getmaterialemissivecolor.html" target="main">getMaterialEmissiveColor</a></li>
+
+<li><a  href="setmaterialfog.html" target="main">setMaterialFog</a></li>
+
+<li><a  href="getmaterialfog.html" target="main">getMaterialFog</a></li>
+
+<li><a  href="setmaterialfrontfaceculling.html" target="main">setMaterialFrontfaceCulling</a></li>
+
+<li><a  href="getmaterialfrontfaceculling.html" target="main">getMaterialFrontfaceCulling</a></li>
+
+<li><a  href="setmaterialgouraudshading.html" target="main">setMaterialGouraudShading</a></li>
+
+<li><a  href="materialisgouraudshaded.html" target="main">materialIsGouraudShaded</a></li>
+
+<li><a  href="materialisaplhablend.html" target="main">materialIsAplhaBlend</a></li>
+
+<li><a  href="materialistransparent.html" target="main">materialIsTransparent</a></li>
+
+<li><a  href="setmateriallighting.html" target="main">setMaterialLighting</a></li>
+
+<li><a  href="materialislit.html" target="main">materialIsLit</a></li>
+
+<li><a  href="setmaterialtype.html" target="main">setMaterialType</a></li>
+
+<li><a  href="getmaterialtype.html" target="main">getMaterialType</a></li>
+
+<li><a  href="setmaterialnormalize.html" target="main">setMaterialNormalize</a></li>
+
+<li><a  href="materialisnormalized.html" target="main">materialIsNormalized</a></li>
+
+<li><a  href="setmaterialpointcloud.html" target="main">setMaterialPointCloud</a></li>
+
+<li><a  href="materialispointcloud.html" target="main">materialIsPointCloud</a></li>
+
+<li><a  href="setmaterialflag.html" target="main">setMaterialFlag</a></li>
+
+<li><a  href="getmaterialflag.html" target="main">getMaterialFlag</a></li>
+
+<li><a  href="setmaterialtexture.html" target="main">setMaterialTexture</a></li>
+
+<li><a  href="setmaterialshininess.html" target="main">setMaterialShininess</a></li>
+
+<li><a  href="getmaterialshininess.html" target="main">getMaterialShininess</a></li>
+
+<li><a  href="setmaterialspecularcolor.html" target="main">setMaterialSpecularColor</a></li>
+
+<li><a  href="getmaterialspecularcolor.html" target="main">getMaterialSpecularColor</a></li>
+
+<li><a  href="setmaterialthickness.html" target="main">setMaterialThickness</a></li>
+
+<li><a  href="getmaterialthickness.html" target="main">getMaterialThickness</a></li>
+
+<li><a  href="setmaterialwireframe.html" target="main">setMaterialWireframe</a></li>
+
+<li><a  href="materialiswireframe.html" target="main">materialIsWireframe</a></li>
+
+<li><a  href="setactortexture.html" target="main">setActorTexture</a></li>
+
+<li><a  href="getactormaterialcount.html" target="main">getActorMaterialCount</a></li>
+
+<li><a  href="setactormaterialflag.html" target="main">setActorMaterialFlag</a></li>
+
+<li><a  href="getactormaterialflag.html" target="main">getActorMaterialFlag</a></li>
+
+<li><a  href="setactormaterialtype.html" target="main">setActorMaterialType</a></li>
+
+<li><a  href="getactormaterialtype.html" target="main">getActorMaterialType</a></li>
+
+<li><a  href="materialexists.html" target="main">MaterialExists</a></li>
+
+
+</ul>
+</li>
+</ul>
+
+
+
+
+<script>
+var toggler = document.getElementsByClassName("box");
+var i;
+
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("check-box");
+  });
+}
+</script>
+
+    
+	</body>
+</html>
+

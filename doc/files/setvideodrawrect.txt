@@ -1,0 +1,6 @@
+#title SetVideoDrawRect [RCBasic Doc]
+#header sub SetVideoDrawRect(x, y, w, h)
+
+Sets the area on the current canvas where the video will be displayed.
+
+Note: This is a function that was more useful in older versions of RCBasic. Currently its better to use canvas controls for this.

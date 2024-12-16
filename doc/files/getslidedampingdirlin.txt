@@ -1,0 +1,8 @@
+#title getSlideDampingDirLin [RCBasic Doc]
+#header function  getSlideDampingDirLin( constraint_id)
+
+Returns the linear directional damping value for a constraint. This value applies to the linear (translational) motion of an object along the constraint's axis of movement.
+
+Note: Only applies to slide constraints
+
+#ref SetSlideDampingDirLin

@@ -1,0 +1,4 @@
+#title GetImageColorMod [RCBasic Doc]
+#header function GetImageColorMod(img)
+
+Returns the color modulation of an image

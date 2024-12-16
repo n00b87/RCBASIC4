@@ -1,0 +1,9 @@
+#title ScaleTerrainTexture [RCBasic Doc]
+#header sub ScaleTerrainTexture( actor, scale, scale2 )
+
+Scales the base texture, similar to makePlanarTextureMapping. 
+
+#list ul
+#li scale - The scaling amount. Values above 1.0 increase the number of time the texture is drawn on the terrain. Values below 0 will decrease the number of times the texture is drawn on the terrain. Using negative values will flip the texture, as well as still scaling it.
+#li scale2 - If set to 0 (default value), this will set the second texture coordinate set to the same values as in the first set. If this is another value than zero, it will scale the second texture coordinate set by this value. 
+#/list

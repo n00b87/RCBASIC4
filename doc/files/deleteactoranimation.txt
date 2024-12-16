@@ -1,0 +1,4 @@
+#title DeleteActorAnimation [RCBasic Doc]
+#header sub DeleteActorAnimation(actor, animation)
+
+Deletes an actor's animation

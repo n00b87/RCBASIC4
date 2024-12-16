@@ -1,0 +1,6 @@
+#title GetSpriteRestitutionThreshold [RCBasic Doc]
+#header function GetSpriteRestitutionThreshold( spr_id )
+
+Returns the restitution velocity threshold for a sprite
+
+#ref SetSpriteRestitutionThreshold
