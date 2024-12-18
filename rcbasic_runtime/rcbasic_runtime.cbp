@@ -105,6 +105,7 @@
 		<Unit filename="rc_tilemap.h" />
 		<Unit filename="rc_utf8.h" />
 		<Unit filename="rc_video.h" />
+		<Unit filename="rc_windowclose.h" />
 		<Unit filename="theoraplay.c">
 			<Option compilerVar="CC" />
 		</Unit>
