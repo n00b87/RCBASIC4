@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="rcbasic_runtime" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/rcbasic_runtime" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/rcbasic_runtime" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="mingw32" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="../../an8-parser" />
+					<Add directory="../../box2d/include" />
+					<Add directory="../../bullet3/src" />
+					<Add directory="../../freetype/include" />
+					<Add directory="../../freetype/build/include" />
+					<Add directory="../../irrBullet/include" />
+					<Add directory="../../IrrTheora" />
+					<Add directory="../../ogg/include" />
+					<Add directory="../../RCIrrlicht/include" />
+					<Add directory="../../SDL2-dev/i686-w64-mingw32/include" />
+					<Add directory="../../SDL2-dev/i686-w64-mingw32/include/SDL2" />
+					<Add directory="../../SDL2_image-dev/i686-w64-mingw32/include" />
+					<Add directory="../../SDL2_mixer-dev/i686-w64-mingw32/include" />
+					<Add directory="../../SDL2_net-dev/i686-w64-mingw32/include" />
+					<Add directory="../../theora/include" />
+					<Add directory="../../vorbis/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_net -lSDL2_mixer -lIrrlicht -lvorbisfile -lvorbis -logg -ltheoradec -lfreetype -lbox2d -lBulletSoftBody -lBulletDynamics -lBulletInverseDynamics -lBulletCollision -lLinearMath" />
+					<Add directory="../../box2d/build/bin" />
+					<Add directory="../../bullet3/build/lib" />
+					<Add directory="../../freetype/build" />
+					<Add directory="../../ogg/build" />
+					<Add directory="../../RCIrrlicht/lib/Win32-gcc" />
+					<Add directory="../../SDL2-dev/i686-w64-mingw32/lib" />
+					<Add directory="../../SDL2_net-dev/i686-w64-mingw32/lib" />
+					<Add directory="../../SDL2_mixer-dev/i686-w64-mingw32/lib" />
+					<Add directory="../../SDL2_image-dev/i686-w64-mingw32/lib" />
+					<Add directory="../../theora/win32/xmingw32" />
+					<Add directory="../../vorbis/build/lib" />
+				</Linker>
+			</Target>
+			<Target title="Release64">
+				<Option output="bin/Release/rcbasic_runtime" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="mingw64" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="../../an8-parser" />
+					<Add directory="../../box2d/include" />
+					<Add directory="../../bullet3/src" />
+					<Add directory="../../freetype/include" />
+					<Add directory="../../freetype/build64/include" />
+					<Add directory="../../irrBullet/include" />
+					<Add directory="../../IrrTheora" />
+					<Add directory="../../ogg/include" />
+					<Add directory="../../RCIrrlicht/include" />
+					<Add directory="../../SDL2-dev/x86_64-w64-mingw32/include" />
+					<Add directory="../../SDL2-dev/x86_64-w64-mingw32/include/SDL2" />
+					<Add directory="../../SDL2_image-dev/x86_64-w64-mingw32/include" />
+					<Add directory="../../SDL2_mixer-dev/x86_64-w64-mingw32/include" />
+					<Add directory="../../SDL2_net-dev/x86_64-w64-mingw32/include" />
+					<Add directory="../../theora/include" />
+					<Add directory="../../vorbis/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_net -lSDL2_mixer -lIrrlicht -lvorbisfile -lvorbis -logg -ltheoradec -lfreetype -lbox2d -lBulletSoftBody -lBulletDynamics -lBulletInverseDynamics -lBulletCollision -lLinearMath" />
+					<Add directory="../../box2d/build64/bin" />
+					<Add directory="../../bullet3/build64/lib" />
+					<Add directory="../../freetype/build64" />
+					<Add directory="../../ogg/build64" />
+					<Add directory="../../RCIrrlicht/lib/Win64-gcc" />
+					<Add directory="../../SDL2-dev/x86_64-w64-mingw32/lib" />
+					<Add directory="../../SDL2_net-dev/x86_64-w64-mingw32/lib" />
+					<Add directory="../../SDL2_mixer-dev/x86_64-w64-mingw32/lib" />
+					<Add directory="../../SDL2_image-dev/x86_64-w64-mingw32/lib" />
+					<Add directory="../../theora64/win32/xmingw32" />
+					<Add directory="../../vorbis/build64/lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="../../IrrTheora/irrtheora.h" />
+		<Unit filename="../../irrBullet/src/irrBullet.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletBoxShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletBvhTriangleMeshShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCapsuleShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCollisionCallBackInformation.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCollisionObject.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCollisionObjectAffector.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCollisionObjectAffectorAttract.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCollisionObjectAffectorDelete.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCollisionShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletConeShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletConvexHullShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCylinderShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletGImpactMeshShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletGhostObject.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletLiquidBody.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletMotionState.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletPhysicsDebug.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletRayCastVehicle.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletRigidBody.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletSoftBody.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletSphereShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletTriangleMeshShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletWorld.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletcommon.cpp" />
+		<Unit filename="camera.h" />
+		<Unit filename="gui_freetype_font.cpp" />
+		<Unit filename="gui_freetype_font.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="rc_actor_animation.h" />
+		<Unit filename="rc_actor_material.h" />
+		<Unit filename="rc_actor_physics.h" />
+		<Unit filename="rc_audio.h" />
+		<Unit filename="rc_base_actor.h" />
+		<Unit filename="rc_camera.h" />
+		<Unit filename="rc_constraint.h" />
+		<Unit filename="rc_defines.h" />
+		<Unit filename="rc_font.h" />
+		<Unit filename="rc_func130_cases.h" />
+		<Unit filename="rc_geometry.h" />
+		<Unit filename="rc_gfx.h" />
+		<Unit filename="rc_gfx3D.h" />
+		<Unit filename="rc_gfx_core.h" />
+		<Unit filename="rc_joints.h" />
+		<Unit filename="rc_matrix.h" />
+		<Unit filename="rc_media.h" />
+		<Unit filename="rc_mesh.h" />
+		<Unit filename="rc_net.h" />
+		<Unit filename="rc_os_defines.h" />
+		<Unit filename="rc_particles.h" />
+		<Unit filename="rc_physics3D_base.h" />
+		<Unit filename="rc_process.h" />
+		<Unit filename="rc_scene.h" />
+		<Unit filename="rc_sprite2D.h" />
+		<Unit filename="rc_sprite_physics.h" />
+		<Unit filename="rc_spritelib.h" />
+		<Unit filename="rc_stdlib.h" />
+		<Unit filename="rc_test.h" />
+		<Unit filename="rc_tilelib.h" />
+		<Unit filename="rc_tilemap.h" />
+		<Unit filename="rc_utf8.h" />
+		<Unit filename="rc_video.h" />
+		<Unit filename="rc_windowclose.h" />
+		<Unit filename="resource.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="theoraplay.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="theoraplay.h" />
+		<Unit filename="theoraplay_cvtrgb.h" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
