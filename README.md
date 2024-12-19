@@ -9,4 +9,7 @@ Version 4 of the RCBasic Programming Language Compiler and Runtime
 3. Set CODEBLOCKS_DIR to Codeblocks root
 4. Run RCBasic_Dev_Setup.bat
 
+### On Linux
+1. Run RCBasic_Dev_Setup.sh
 
+NOTE: The linux setup script is still a work in progress.
