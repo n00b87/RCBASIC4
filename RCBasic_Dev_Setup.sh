@@ -2,6 +2,7 @@ sudo apt update
 
 sudo apt install git
 sudo apt install make
+sudo apt install cmake
 sudo apt install g++
 sudo apt install geany
 sudo apt install spice-webdavd spice-client-gtk
