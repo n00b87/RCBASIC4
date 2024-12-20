@@ -308,11 +308,21 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     irr_creation_params.Bits = 16;
     irr_creation_params.Fullscreen = fullscreen;
     irr_creation_params.Stencilbuffer = stencil_buffer;
-    irr_creation_params.Vsync = vsync;
+    irr_creation_params.Vsync = false;
     irr_creation_params.EventReceiver = 0;
     irr_creation_params.WindowPosition = position2d<s32>(x, y);
     irr_creation_params.AntiAlias = AntiAlias;
     irr_creation_params.OGLES2ShaderPath = ".shaders/";
+
+    rc_window_vsync = vsync;
+
+    if(vsync)
+	{
+		SDL_DisplayMode dm;
+		SDL_GetDesktopDisplayMode(0, &dm);
+		rc_vsync_refresh_rate = dm.refresh_rate;
+		rc_vsync_timer = SDL_GetTicks();
+	}
 
 	device = createDeviceEx(irr_creation_params);
 

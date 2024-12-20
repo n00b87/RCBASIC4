@@ -79,6 +79,13 @@ void rc_preUpdate()
 
 bool rc_update()
 {
+	if(rc_window_vsync)
+	{
+		int frame_delay = 1000/rc_vsync_refresh_rate;
+		while( (SDL_GetTicks()-rc_vsync_timer) < frame_delay ){}
+		rc_vsync_timer = SDL_GetTicks();
+	}
+
     if(!device->run())
         return false;
 

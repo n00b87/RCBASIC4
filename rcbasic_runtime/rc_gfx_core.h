@@ -255,6 +255,9 @@ bool rc_mouse_zone_active = false;
 double rc_window_zone_scale_x = 1;
 double rc_window_zone_scale_y = 1;
 SDL_Rect rc_mouse_zone;
+bool rc_window_vsync = false;
+int rc_vsync_refresh_rate = 0;
+Uint32 rc_vsync_timer = 0;
 
 struct rc_scene_properties_obj
 {
