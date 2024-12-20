@@ -4447,8 +4447,8 @@ int main(int argc, char * argv[])
     std::cin >> debug_opt;
     if(debug_opt.compare("a")==0)
 	{
-		//rc_intern_dirChange("/home/n00b/Music/rcbasic_v400_linux64/examples/tile_demo");
-		rc_intern_dirChange("");
+		rc_intern_dirChange("/home/n00b/Downloads/Tile Scrolling");
+		//rc_intern_dirChange("");
 		rc_filename = "main.cbc";
 	}
     else

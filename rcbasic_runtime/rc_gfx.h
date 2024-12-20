@@ -1666,7 +1666,7 @@ void rc_drawTriangle3D(double x1, double y1, double z1, double x2, double y2, do
 
 void rc_drawTriangle(double x1, double y1, double x2, double y2, double x3, double y3)
 {
-    irr::core::array<irr::video::S3DVertex> v;
+	irr::core::array<irr::video::S3DVertex> v;
     v.push_back(video::S3DVertex(x1, y1, 0.f, 0.f, 1.f, 0.f, rc_active_color, 0.5f, 0.5f));
     v.push_back(video::S3DVertex(x2, y2, 0.f, 0.f, 1.f, 0.f, rc_active_color, 0.5f, 0.5f));
     v.push_back(video::S3DVertex(x3, y3, 0.f, 0.f, 1.f, 0.f, rc_active_color, 0.5f, 0.5f));
@@ -1675,6 +1675,8 @@ void rc_drawTriangle(double x1, double y1, double x2, double y2, double x3, doub
     i.push_back(0);
     i.push_back(1);
     i.push_back(2);
+
+    v.sort();
 
     VideoDriver->draw2DVertexPrimitiveList(v.pointer(), 3, i.pointer(), 1);
 }
