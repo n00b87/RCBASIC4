@@ -4453,7 +4453,7 @@ int main(int argc, char * argv[])
 	}
     else
 	{
-		rc_intern_dirChange("/home/n00b/projects/bu/constraint_demo");
+		rc_intern_dirChange("/home/n00b/Programs/RCBasic_v400_Linux64/examples/Constraint/");
 	}
     #endif
     //---------------
