@@ -921,7 +921,7 @@ int main(int argc, char * argv[])
     //DEBUG START
     //rc_filename = "/home/n00b/projects/bu/constraint_demo/main.bas";
 	//rc_filename = "/home/n00b/Music/Simple 3D Platformer/main.bas";
-	//rc_filename = "/home/n00b/projects/rcbasic_alpha3/test_project/main.bas";
+	rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Constraint/main.bas";
     //DEBUG END
 
     //enable_presets = true;

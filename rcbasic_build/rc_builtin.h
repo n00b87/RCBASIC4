@@ -438,10 +438,14 @@ void init_embedded_functions()
 	add_embedded_arg("flag", ID_TYPE_NUM);
 	embed_function("SetMouseRelative", ID_TYPE_SUB);
 	add_embedded_arg("flag", ID_TYPE_NUM);
+	embed_function("SetWindowVSync", ID_TYPE_SUB);
+	add_embedded_arg("flag", ID_TYPE_NUM);
 	embed_function("FlashWindow", ID_TYPE_FN_NUM);
 	add_embedded_arg("flag", ID_TYPE_NUM);
 	embed_function("WindowIsGrabbed", ID_TYPE_FN_NUM);
 	embed_function("PreUpdate", ID_TYPE_SUB);
+	embed_function("SetFPS", ID_TYPE_SUB);
+	add_embedded_arg("fps_val", ID_TYPE_NUM);
 	embed_function("OpenCanvas", ID_TYPE_FN_NUM);
 	add_embedded_arg("w", ID_TYPE_NUM);
 	add_embedded_arg("h", ID_TYPE_NUM);

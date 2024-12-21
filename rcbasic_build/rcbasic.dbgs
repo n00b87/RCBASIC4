@@ -277,7 +277,9 @@ N main.WindowMode highDPI 4
 N main.GrabInput flag 0
 N main.SetWindowAlwaysOnTop flag 0
 N main.SetMouseRelative flag 0
+N main.SetWindowVSync flag 0
 N main.FlashWindow flag 0
+N main.SetFPS fps_val 0
 N main.OpenCanvas w 0
 N main.OpenCanvas h 1
 N main.OpenCanvas viewport_x 2

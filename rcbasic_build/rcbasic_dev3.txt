@@ -538,6 +538,9 @@ case FN_SetWindowAlwaysOnTop: //Sub Procedure
 case FN_SetMouseRelative: //Sub Procedure
 	rc_setMouseRelative( SETMOUSERELATIVE_FLAG );
 	break;
+case FN_SetWindowVSync: //Sub Procedure
+	rc_setWindowVSync( SETWINDOWVSYNC_FLAG );
+	break;
 case FN_FlashWindow: //Number Function
 	 rc_push_num(rc_flashWindow( FLASHWINDOW_FLAG ));
 	break;
@@ -546,6 +549,9 @@ case FN_WindowIsGrabbed: //Number Function
 	break;
 case FN_PreUpdate: //Sub Procedure
 	rc_preUpdate(  );
+	break;
+case FN_SetFPS: //Sub Procedure
+	rc_setFPS( SETFPS_FPS_VAL );
 	break;
 case FN_OpenCanvas: //Number Function
 	 rc_push_num(rc_canvasOpen( OPENCANVAS_W,  OPENCANVAS_H,  OPENCANVAS_VIEWPORT_X,  OPENCANVAS_VIEWPORT_Y,  OPENCANVAS_VIEWPORT_W,  OPENCANVAS_VIEWPORT_H,  OPENCANVAS_MODE ));
