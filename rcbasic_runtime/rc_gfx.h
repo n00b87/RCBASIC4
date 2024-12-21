@@ -308,11 +308,21 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     irr_creation_params.Bits = 16;
     irr_creation_params.Fullscreen = fullscreen;
     irr_creation_params.Stencilbuffer = stencil_buffer;
-    irr_creation_params.Vsync = vsync;
+    irr_creation_params.Vsync = false;
     irr_creation_params.EventReceiver = 0;
     irr_creation_params.WindowPosition = position2d<s32>(x, y);
     irr_creation_params.AntiAlias = AntiAlias;
     irr_creation_params.OGLES2ShaderPath = ".shaders/";
+
+    rc_window_setfps = vsync;
+
+    if(vsync)
+	{
+		SDL_DisplayMode dm;
+		SDL_GetDesktopDisplayMode(0, &dm);
+		rc_setfps_refresh_rate = dm.refresh_rate;
+		rc_setfps_timer = SDL_GetTicks();
+	}
 
 	device = createDeviceEx(irr_creation_params);
 
@@ -2121,7 +2131,25 @@ void rc_setMouseRelative(bool flag)
 
 void rc_setWindowVSync(bool flag)
 {
-    //TODO
+    rc_window_setfps = true;
+    SDL_DisplayMode dm;
+    SDL_GetDesktopDisplayMode(0, &dm);
+    rc_setfps_refresh_rate = dm.refresh_rate;
+    rc_setfps_timer = SDL_GetTicks();
+}
+
+void rc_setFPS(int fps)
+{
+	if(fps < 0)
+	{
+		rc_window_setfps = false;
+	}
+	else
+	{
+		rc_window_setfps = true;
+		rc_setfps_refresh_rate = fps;
+		rc_setfps_timer = SDL_GetTicks();
+	}
 }
 
 int rc_openURL(std::string url)

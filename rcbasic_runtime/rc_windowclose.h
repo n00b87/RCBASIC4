@@ -79,6 +79,13 @@ void rc_preUpdate()
 
 bool rc_update()
 {
+	if(rc_window_setfps)
+	{
+		int frame_delay = 1000/rc_setfps_refresh_rate;
+		while( (SDL_GetTicks()-rc_setfps_timer) < frame_delay ){}
+		rc_setfps_timer = SDL_GetTicks();
+	}
+
     if(!device->run())
         return false;
 
