@@ -1682,7 +1682,7 @@ bool pre_parse(int start_token = 0, int end_token = -1, int pp_flags, bool eval_
                 if(byref_type_flag)
                 {
                     type_error_exception tx;
-                    tx.error_log = "[0.1]Expected " + rc_intToString(id[tmp_id].num_args) + " dimension in " + id[tmp_id].name;
+                    tx.error_log = "[0]Expected " + rc_intToString(id[tmp_id].num_args) + " dimension in " + id[tmp_id].name;
                     tx.tk_reg = token[i];
                     tx.num_args = id[tmp_id].num_args;
                     tx.exception_used = false;
