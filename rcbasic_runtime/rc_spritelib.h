@@ -304,6 +304,13 @@ void sortSpriteZ(int canvas_id)
 	}
 }
 
+bool rc_spriteExists(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return false;
+
+	return rc_sprite[spr_id].active;
+}
 
 int rc_createSprite(int img_id, double w, double h)
 {

@@ -11,6 +11,14 @@
 #include "rc_gfx_core.h"
 
 
+bool rc_jointExists(int joint_id)
+{
+	if(joint_id < 0 || joint_id >= rc_joint.size())
+		return false;
+
+	return rc_joint[joint_id].active;
+}
+
 int rc_createDistanceJoint(int spriteA, int spriteB, double aX, double aY, double bX, double bY, bool collide_connected)
 {
 	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
