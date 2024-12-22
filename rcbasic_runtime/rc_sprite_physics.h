@@ -623,8 +623,8 @@ int rc_castRay2D_All(double from_x, double from_y, double to_x, double to_y)
 {
 	rc_rayHit2D.clear();
     RayCastCallback callback;
-    const b2Vec2 point1(from_x, from_y);
-    const b2Vec2 point2(to_x, to_y);
+    b2Vec2 point1(from_x, from_y);
+    b2Vec2 point2(to_x, to_y);
 
     rc_canvas[rc_active_canvas].physics2D.world->RayCast(&callback, point1, point2);
 
@@ -633,7 +633,7 @@ int rc_castRay2D_All(double from_x, double from_y, double to_x, double to_y)
     for(int i = 0; i < cb_hits.size(); i++)
 	{
 		rc_rayHit2D_obj hit;
-		rc_sprite2D_obj* h_sprite = (rc_sprite2D_obj*)cb_hits[i].fixture->GetBody()->GetUserData().pointer;
+		rc_sprite2D_obj* h_sprite = &rc_sprite[cb_hits[i].fixture->GetBody()->GetUserData().pointer];
 		hit.sprite_id = h_sprite->id;
 		hit.hit_point = cb_hits[i].point;
 		hit.hit_normal = cb_hits[i].normal;
@@ -661,7 +661,7 @@ int rc_castRay2D(double from_x, double from_y, double to_x, double to_y)
     for(int i = 0; i < cb_hits.size(); i++)
 	{
 		rc_rayHit2D_obj hit;
-		rc_sprite2D_obj* h_sprite = (rc_sprite2D_obj*)cb_hits[i].fixture->GetBody()->GetUserData().pointer;
+		rc_sprite2D_obj* h_sprite = &rc_sprite[cb_hits[i].fixture->GetBody()->GetUserData().pointer];
 		hit.sprite_id = h_sprite->id;
 		hit.hit_point = cb_hits[i].point;
 		hit.hit_normal = cb_hits[i].normal;

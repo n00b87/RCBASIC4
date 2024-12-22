@@ -35,10 +35,10 @@ int rc_createSpriteAnimation(int spr_id, int anim_length, double fps)
 		animation.frames.push_back(0);
 
 	int animation_id = rc_sprite[spr_id].animation.size();
-	if(rc_sprite[spr_id].deleted_sprites.size() > 0)
+	if(rc_sprite[spr_id].deleted_animation.size() > 0)
 	{
-		animation_id = rc_sprite[spr_id].deleted_sprites[0];
-		rc_sprite[spr_id].deleted_sprites.erase(0);
+		animation_id = rc_sprite[spr_id].deleted_animation[0];
+		rc_sprite[spr_id].deleted_animation.erase(0);
 		rc_sprite[spr_id].animation[animation_id] = animation;
 	}
 	else
@@ -55,7 +55,13 @@ void rc_deleteSpriteAnimation(int spr_id, int animation)
 	if(!rc_sprite[spr_id].active)
 		return;
 
-	rc_sprite[spr_id].deleted_sprites.push_back(animation);
+	for(int i = 0; i < rc_sprite[spr_id].deleted_animation.size(); i++)
+	{
+		if(rc_sprite[spr_id].deleted_animation[i] == animation)
+			return;
+	}
+
+	rc_sprite[spr_id].deleted_animation.push_back(animation);
 }
 
 void rc_setSpriteFrame(int spr_id, int frame)
@@ -281,19 +287,18 @@ void sortSpriteZ(int canvas_id)
 	if(!rc_canvas[canvas_id].texture)
 		return;
 
-	for(int i = 0; i < rc_canvas[canvas_id].sprite.size(); i++)
+	for(int i = 0; i < rc_canvas[canvas_id].sprite_id.size(); i++)
 	{
-		rc_sprite2D_obj* spriteA = rc_canvas[canvas_id].sprite[i];
+		int spriteA = rc_canvas[canvas_id].sprite_id[i];
 
-		for(int j = i+1; j < rc_canvas[canvas_id].sprite.size(); j++)
+		for(int j = i+1; j < rc_canvas[canvas_id].sprite_id.size(); j++)
 		{
-			rc_sprite2D_obj* spriteB = rc_canvas[canvas_id].sprite[j];
+			int spriteB = rc_canvas[canvas_id].sprite_id[j];
 
-			if(spriteB->z > spriteA->z)
+			if(rc_sprite[spriteB].z > rc_sprite[spriteA].z)
 			{
-				rc_canvas[canvas_id].sprite[j] = NULL;
-				rc_canvas[canvas_id].sprite.erase(j);
-				rc_canvas[canvas_id].sprite.insert(spriteB, i);
+				rc_canvas[canvas_id].sprite_id.erase(j);
+				rc_canvas[canvas_id].sprite_id.insert(spriteB, i);
 			}
 		}
 	}
@@ -352,7 +357,7 @@ int rc_createSprite(int img_id, double w, double h)
 	sprBodyDef.type = b2_dynamicBody;
 	sprBodyDef.position.Set(w/2, h/2);
 	sprBodyDef.angle = 0;
-	sprBodyDef.userData.pointer = (uintptr_t)&rc_sprite[spr_id];
+	sprBodyDef.userData.pointer = spr_id;
 	rc_sprite[spr_id].physics.body = rc_canvas[rc_active_canvas].physics2D.world->CreateBody(&sprBodyDef);
 
 	b2FixtureDef sprFixtureDef;
@@ -386,7 +391,10 @@ int rc_createSprite(int img_id, double w, double h)
 	rc_sprite[spr_id].animation.clear();
 	rc_createSpriteAnimation(spr_id, 1, 0);
 
-	rc_canvas[rc_active_canvas].sprite.push_back(&rc_sprite[spr_id]);
+	int i = rc_canvas[rc_active_canvas].sprite_id.size();
+	rc_canvas[rc_active_canvas].sprite_id.push_back(spr_id);
+
+	//std::cout << "Create Debug: [" << rc_active_canvas << "]   index = " << i << "   spr_id = " << rc_canvas[rc_active_canvas].sprite[i]->id << std::endl;
 
 	sortSpriteZ(rc_active_canvas);
 
@@ -412,13 +420,13 @@ void rc_deleteSprite(int spr_id)
 	rc_sprite[spr_id].parent_canvas = -1;
 	rc_sprite[spr_id].animation.clear();
 
-	for(int i = 0; i < rc_canvas[rc_active_canvas].sprite.size(); i++)
+	for(int i = 0; i < rc_canvas[rc_active_canvas].sprite_id.size(); i++)
 	{
-		rc_sprite2D_obj* canvas_sprite = rc_canvas[rc_active_canvas].sprite[i];
-		rc_sprite2D_obj* global_sprite = &rc_sprite[spr_id];
-		if(canvas_sprite == global_sprite)
+		int canvas_sprite = rc_canvas[rc_active_canvas].sprite_id[i];
+
+		if(canvas_sprite == spr_id)
 		{
-			rc_canvas[rc_active_canvas].sprite.erase(i);
+			rc_canvas[rc_active_canvas].sprite_id.erase(i);
 			break;
 		}
 	}
@@ -846,9 +854,11 @@ void drawSprites(int canvas_id)
 	int offset_x = rc_canvas[canvas_id].offset.X;
 	int offset_y = rc_canvas[canvas_id].offset.Y;
 
-	for(int spr_index = 0; spr_index < rc_canvas[canvas_id].sprite.size(); spr_index++)
+	for(int spr_index = 0; spr_index < rc_canvas[canvas_id].sprite_id.size(); spr_index++)
 	{
-		rc_sprite2D_obj* sprite = rc_canvas[canvas_id].sprite[spr_index];
+		int spr_id = rc_canvas[canvas_id].sprite_id[spr_index];
+		rc_sprite2D_obj* sprite = &rc_sprite[spr_id];
+		//std::cout << "debug info: " << canvas_id << " --> " << spr_index << "   id = " << sprite->id << "   anim_size = " << sprite->animation.size() << std::endl; continue;
 		if(!sprite->visible)
 			continue;
 

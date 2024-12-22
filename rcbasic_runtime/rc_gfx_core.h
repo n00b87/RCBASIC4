@@ -298,9 +298,9 @@ class rc_contactListener_obj : public b2ContactListener
 {
 	void BeginContact(b2Contact* contact)
 	{
-		rc_sprite2D_obj* spriteA = (rc_sprite2D_obj*) contact->GetFixtureA()->GetBody()->GetUserData().pointer;
+		rc_sprite2D_obj* spriteA = &rc_sprite[contact->GetFixtureA()->GetBody()->GetUserData().pointer];
 
-		rc_sprite2D_obj* spriteB = (rc_sprite2D_obj*) contact->GetFixtureB()->GetBody()->GetUserData().pointer;
+		rc_sprite2D_obj* spriteB = &rc_sprite[contact->GetFixtureB()->GetBody()->GetUserData().pointer];
 
 	  //std::cout << "sprite[" << spriteA->id << "] collide with sprite[" << spriteB->id << "]" << std::endl;
 
@@ -361,7 +361,7 @@ struct rc_canvas_obj
     irr::u32 color_mod;
 
     rc_physicsWorld2D_obj physics2D;
-    irr::core::array<rc_sprite2D_obj*> sprite;
+    irr::core::array<irr::s32> sprite_id;
 };
 
 irr::core::array<rc_canvas_obj> rc_canvas;
