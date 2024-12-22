@@ -621,6 +621,9 @@ std::vector<rc_rayHit2D_obj> rc_rayHit2D;
 // Function to perform a ray cast and collect all hits
 int rc_castRay2D_All(double from_x, double from_y, double to_x, double to_y)
 {
+	if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
+		return 0;
+
 	rc_rayHit2D.clear();
     RayCastCallback callback;
     b2Vec2 point1(from_x, from_y);
@@ -646,6 +649,9 @@ int rc_castRay2D_All(double from_x, double from_y, double to_x, double to_y)
 // Function to perform a ray cast and collect the closest hit
 int rc_castRay2D(double from_x, double from_y, double to_x, double to_y)
 {
+	if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
+		return 0;
+
 	rc_rayHit2D.clear();
     RayCastCallback callback;
     const b2Vec2 point1(from_x, from_y);
