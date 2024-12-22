@@ -626,8 +626,8 @@ int rc_castRay2D_All(double from_x, double from_y, double to_x, double to_y)
 
 	rc_rayHit2D.clear();
     RayCastCallback callback;
-    b2Vec2 point1(from_x, from_y);
-    b2Vec2 point2(to_x, to_y);
+    const b2Vec2 point1(from_x, from_y);
+    const b2Vec2 point2(to_x, to_y);
 
     rc_canvas[rc_active_canvas].physics2D.world->RayCast(&callback, point1, point2);
 

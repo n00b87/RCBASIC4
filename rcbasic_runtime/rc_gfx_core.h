@@ -586,10 +586,11 @@ irr::core::array<int> rc_transition_actor;
 class rc_animEndCallBack : public IAnimationEndCallBack
 {
   public:
-  	rc_scene_node* ref_actor;
+  	int ref_id;
 
     void OnAnimationEnd( IAnimatedMeshSceneNode *node)
     {
+    	rc_scene_node* ref_actor = &rc_actor[ref_id];
     	if(ref_actor->current_animation_loop < ref_actor->num_animation_loops || ref_actor->num_animation_loops < 0)
 		{
 			//std::cout << "animating" << std::endl;
