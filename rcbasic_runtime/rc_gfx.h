@@ -1055,6 +1055,7 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
 		canvas.physics2D.enabled = true;
 		canvas.physics2D.contact_listener = new rc_contactListener_obj();
 		canvas.physics2D.world->SetContactListener(canvas.physics2D.contact_listener);
+		canvas.sprite_id.clear();
     }
 
     switch(mode)
@@ -1133,13 +1134,14 @@ void rc_canvasClose(int canvas_id)
 	}
 
 	//sprites are destroyed when the world is deleted so I just to set the active attribute to false and set the body to NULL
-	for(int i = 0; i < rc_canvas[canvas_id].sprite.size(); i++)
+	for(int i = 0; i < rc_canvas[canvas_id].sprite_id.size(); i++)
 	{
-		rc_canvas[canvas_id].sprite[i]->active = false;
-		rc_canvas[canvas_id].sprite[i]->physics.body = NULL;
+		int spr_id = rc_canvas[canvas_id].sprite_id[i];
+		rc_sprite[spr_id].active = false;
+		rc_sprite[spr_id].physics.body = NULL;
 	}
 
-	rc_canvas[canvas_id].sprite.clear();
+	rc_canvas[canvas_id].sprite_id.clear();
 
     if(rc_active_canvas == canvas_id)
         rc_active_canvas = -1;
@@ -1175,25 +1177,6 @@ void rc_setCanvasPhysics2D(int canvas_id, bool flag)
 {
 	if(canvas_id > 0 && canvas_id < rc_canvas.size())
 		rc_canvas[canvas_id].physics2D.enabled = flag;
-}
-
-
-void rc_clearCanvas()
-{
-    if(rc_active_canvas >= 0 && rc_active_canvas < rc_canvas.size())
-    {
-        if(rc_canvas[rc_active_canvas].texture)
-		switch(rc_canvas[rc_active_canvas].type)
-		{
-			case RC_CANVAS_TYPE_2D:
-				VideoDriver->clearBuffers(true, true, true, rc_clear_color);
-				break;
-			default:
-				VideoDriver->clearBuffers(true, true, true, rc_clear_color);
-				break;
-		}
-
-    }
 }
 
 void rc_setCanvasVisible(int canvas_id, bool flag)

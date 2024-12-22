@@ -621,6 +621,9 @@ std::vector<rc_rayHit2D_obj> rc_rayHit2D;
 // Function to perform a ray cast and collect all hits
 int rc_castRay2D_All(double from_x, double from_y, double to_x, double to_y)
 {
+	if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
+		return 0;
+
 	rc_rayHit2D.clear();
     RayCastCallback callback;
     const b2Vec2 point1(from_x, from_y);
@@ -633,7 +636,7 @@ int rc_castRay2D_All(double from_x, double from_y, double to_x, double to_y)
     for(int i = 0; i < cb_hits.size(); i++)
 	{
 		rc_rayHit2D_obj hit;
-		rc_sprite2D_obj* h_sprite = (rc_sprite2D_obj*)cb_hits[i].fixture->GetBody()->GetUserData().pointer;
+		rc_sprite2D_obj* h_sprite = &rc_sprite[cb_hits[i].fixture->GetBody()->GetUserData().pointer];
 		hit.sprite_id = h_sprite->id;
 		hit.hit_point = cb_hits[i].point;
 		hit.hit_normal = cb_hits[i].normal;
@@ -646,6 +649,9 @@ int rc_castRay2D_All(double from_x, double from_y, double to_x, double to_y)
 // Function to perform a ray cast and collect the closest hit
 int rc_castRay2D(double from_x, double from_y, double to_x, double to_y)
 {
+	if(rc_canvas[rc_active_canvas].type != RC_CANVAS_TYPE_SPRITE)
+		return 0;
+
 	rc_rayHit2D.clear();
     RayCastCallback callback;
     const b2Vec2 point1(from_x, from_y);
@@ -661,7 +667,7 @@ int rc_castRay2D(double from_x, double from_y, double to_x, double to_y)
     for(int i = 0; i < cb_hits.size(); i++)
 	{
 		rc_rayHit2D_obj hit;
-		rc_sprite2D_obj* h_sprite = (rc_sprite2D_obj*)cb_hits[i].fixture->GetBody()->GetUserData().pointer;
+		rc_sprite2D_obj* h_sprite = &rc_sprite[cb_hits[i].fixture->GetBody()->GetUserData().pointer];
 		hit.sprite_id = h_sprite->id;
 		hit.hit_point = cb_hits[i].point;
 		hit.hit_normal = cb_hits[i].normal;
