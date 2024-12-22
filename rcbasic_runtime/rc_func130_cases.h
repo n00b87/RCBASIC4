@@ -1466,6 +1466,9 @@ case FN_SetSpriteSource: //Sub Procedure
 case FN_GetSpriteSource: //Number Function
 	 rc_push_num(rc_getSpriteSource( GETSPRITESOURCE_SPRITE ));
 	break;
+case FN_SpriteExists: //Number Function
+	 rc_push_num(rc_spriteExists( SPRITEEXISTS_SPRITE ));
+	break;
 case FN_CreateSpriteAnimation: //Number Function
 	 rc_push_num(rc_createSpriteAnimation( CREATESPRITEANIMATION_SPRITE,  CREATESPRITEANIMATION_ANIM_LENGTH,  CREATESPRITEANIMATION_SPEED ));
 	break;
@@ -1876,6 +1879,9 @@ case FN_getJointAngularSpeed: //Number Function
 	break;
 case FN_DeleteJoint: //Sub Procedure
 	rc_deleteJoint( DELETEJOINT_JOINT_ID );
+	break;
+case FN_JointExists: //Number Function
+	 rc_push_num(rc_jointExists( JOINTEXISTS_JOINT_ID ));
 	break;
 case FN_CreateTileSet: //Number Function
 	 rc_push_num(rc_createTileSet( CREATETILESET_IMG_ID,  CREATETILESET_TILE_W,  CREATETILESET_TILE_H ));

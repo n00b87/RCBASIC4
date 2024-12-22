@@ -1388,6 +1388,8 @@ void init_embedded_functions()
 	add_embedded_arg("img", ID_TYPE_NUM);
 	embed_function("GetSpriteSource", ID_TYPE_FN_NUM);
 	add_embedded_arg("sprite", ID_TYPE_NUM);
+	embed_function("SpriteExists", ID_TYPE_FN_NUM);
+	add_embedded_arg("sprite", ID_TYPE_NUM);
 	embed_function("CreateSpriteAnimation", ID_TYPE_FN_NUM);
 	add_embedded_arg("sprite", ID_TYPE_NUM);
 	add_embedded_arg("anim_length", ID_TYPE_NUM);
@@ -1834,6 +1836,8 @@ void init_embedded_functions()
 	embed_function("getJointAngularSpeed", ID_TYPE_FN_NUM);
 	add_embedded_arg("joint_id", ID_TYPE_NUM);
 	embed_function("DeleteJoint", ID_TYPE_SUB);
+	add_embedded_arg("joint_id", ID_TYPE_NUM);
+	embed_function("JointExists", ID_TYPE_FN_NUM);
 	add_embedded_arg("joint_id", ID_TYPE_NUM);
 	embed_function("CreateTileSet", ID_TYPE_FN_NUM);
 	add_embedded_arg("img_id", ID_TYPE_NUM);
