@@ -749,6 +749,7 @@ irr::core::array<rc_image_obj> rc_image;
 
 irr::video::E_BLEND_OPERATION rc_blend_mode = irr::video::EBO_ADD;
 bool rc_bilinear_filter = false;
+irr::video::E_ANTI_ALIASING_MODE rc_anti_alias = irr::video::EAAM_OFF;
 
 #define PRIM3D_LINE 1
 #define PRIM3D_TRIANGLE 2
@@ -778,7 +779,8 @@ void rc_setDriverMaterial()
     material.TextureLayer[0].BilinearFilter = rc_bilinear_filter;
     material.MaterialTypeParam = irr::video::pack_textureBlendFunc(irr::video::EBF_SRC_ALPHA, irr::video::EBF_ONE_MINUS_SRC_ALPHA, irr::video::EMFN_MODULATE_1X, irr::video::EAS_TEXTURE | irr::video::EAS_VERTEX_COLOR);
     material.BlendOperation = rc_blend_mode;
-    material.BlendOperation = irr::video::EBO_ADD;
+    //material.BlendOperation = irr::video::EBO_ADD;
+    material.AntiAliasing = rc_anti_alias;
 
     material.MaterialType = irr::video::EMT_ONETEXTURE_BLEND;
 
@@ -860,6 +862,7 @@ void draw2DImage(irr::video::IVideoDriver *driver, irr::video::ITexture* texture
     material.TextureLayer[0].BilinearFilter = rc_bilinear_filter;
     material.MaterialTypeParam = irr::video::pack_textureBlendFunc(irr::video::EBF_SRC_ALPHA, irr::video::EBF_ONE_MINUS_SRC_ALPHA, irr::video::EMFN_MODULATE_1X, irr::video::EAS_TEXTURE | irr::video::EAS_VERTEX_COLOR);
     material.BlendOperation = rc_blend_mode;
+    material.AntiAliasing = rc_anti_alias;
     //material.BlendOperation = irr::video::EBO_ADD;
 
     if (useAlphaChannel)
@@ -952,7 +955,7 @@ void draw2DImage2(irr::video::IVideoDriver *driver, irr::video::ITexture* textur
     material.TextureLayer[0].BilinearFilter = rc_bilinear_filter; //TODO: Add option to switch this on/off
     material.BlendOperation = rc_blend_mode;
     material.MaterialTypeParam = irr::video::pack_textureBlendFunc(irr::video::EBF_SRC_ALPHA, irr::video::EBF_ONE_MINUS_SRC_ALPHA, irr::video::EMFN_MODULATE_1X, irr::video::EAS_TEXTURE | irr::video::EAS_VERTEX_COLOR);
-    //material.AntiAliasing = irr::video::EAAM_OFF;
+    material.AntiAliasing = rc_anti_alias;
 
     if (useAlphaChannel)
             material.MaterialType = irr::video::EMT_ONETEXTURE_BLEND;

@@ -763,6 +763,12 @@ case FN_DrawImage_Flip: //Sub Procedure
 case FN_DrawImage_FlipEx: //Sub Procedure
 	rc_drawImage_FlipEx( DRAWIMAGE_FLIPEX_SLOT,  DRAWIMAGE_FLIPEX_X,  DRAWIMAGE_FLIPEX_Y,  DRAWIMAGE_FLIPEX_SRC_X,  DRAWIMAGE_FLIPEX_SRC_Y,  DRAWIMAGE_FLIPEX_SRC_W,  DRAWIMAGE_FLIPEX_SRC_H,  DRAWIMAGE_FLIPEX_H,  DRAWIMAGE_FLIPEX_V );
 	break;
+case FN_SetAntiAliasMode: //Sub Procedure
+	rc_setAntiAliasMode( SETANTIALIASMODE_AA_MODE );
+	break;
+case FN_GetAntiAliasMode: //Number Function
+	 rc_push_num(rc_getAntiAliasMode(  ));
+	break;
 case FN_InKey: //Number Function
 	 rc_push_num(rc_inKey(  ));
 	break;
@@ -1468,6 +1474,18 @@ case FN_GetSpriteSource: //Number Function
 	break;
 case FN_SpriteExists: //Number Function
 	 rc_push_num(rc_spriteExists( SPRITEEXISTS_SPRITE ));
+	break;
+case FN_SetSpriteColorMod: //Sub Procedure
+	rc_setSpriteColorMod( SETSPRITECOLORMOD_SPRITE,  SETSPRITECOLORMOD_COLOR );
+	break;
+case FN_SetSpriteAlpha: //Sub Procedure
+	rc_setSpriteAlpha( SETSPRITEALPHA_SPRITE,  SETSPRITEALPHA_ALPHA );
+	break;
+case FN_GetSpriteColorMod: //Number Function
+	 rc_push_num(rc_getSpriteColorMod( GETSPRITECOLORMOD_SPRITE ));
+	break;
+case FN_GetSpriteAlpha: //Number Function
+	 rc_push_num(rc_getSpriteAlpha( GETSPRITEALPHA_SPRITE ));
 	break;
 case FN_CreateSpriteAnimation: //Number Function
 	 rc_push_num(rc_createSpriteAnimation( CREATESPRITEANIMATION_SPRITE,  CREATESPRITEANIMATION_ANIM_LENGTH,  CREATESPRITEANIMATION_SPEED ));
