@@ -746,6 +746,9 @@ void init_embedded_functions()
 	add_embedded_arg("src_h", ID_TYPE_NUM);
 	add_embedded_arg("h", ID_TYPE_NUM);
 	add_embedded_arg("v", ID_TYPE_NUM);
+	embed_function("SetAntiAliasMode", ID_TYPE_SUB);
+	add_embedded_arg("aa_mode", ID_TYPE_NUM);
+	embed_function("GetAntiAliasMode", ID_TYPE_FN_NUM);
 	embed_function("InKey", ID_TYPE_FN_NUM);
 	embed_function("Key", ID_TYPE_FN_NUM);
 	add_embedded_arg("key_code", ID_TYPE_NUM);
@@ -1389,6 +1392,16 @@ void init_embedded_functions()
 	embed_function("GetSpriteSource", ID_TYPE_FN_NUM);
 	add_embedded_arg("sprite", ID_TYPE_NUM);
 	embed_function("SpriteExists", ID_TYPE_FN_NUM);
+	add_embedded_arg("sprite", ID_TYPE_NUM);
+	embed_function("SetSpriteColorMod", ID_TYPE_SUB);
+	add_embedded_arg("sprite", ID_TYPE_NUM);
+	add_embedded_arg("color", ID_TYPE_NUM);
+	embed_function("SetSpriteAlpha", ID_TYPE_SUB);
+	add_embedded_arg("sprite", ID_TYPE_NUM);
+	add_embedded_arg("alpha", ID_TYPE_NUM);
+	embed_function("GetSpriteColorMod", ID_TYPE_FN_NUM);
+	add_embedded_arg("sprite", ID_TYPE_NUM);
+	embed_function("GetSpriteAlpha", ID_TYPE_FN_NUM);
 	add_embedded_arg("sprite", ID_TYPE_NUM);
 	embed_function("CreateSpriteAnimation", ID_TYPE_FN_NUM);
 	add_embedded_arg("sprite", ID_TYPE_NUM);

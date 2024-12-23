@@ -1,0 +1,4 @@
+#title SetAntiAliasMode [RCBasic Doc]
+#header sub SetAntiAliasMode( aa_mode )
+
+

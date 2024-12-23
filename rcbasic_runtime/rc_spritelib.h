@@ -811,6 +811,51 @@ bool rc_spriteIsVisible(int spr_id)
 	return rc_sprite[spr_id].visible;
 }
 
+void rc_setSpriteColorMod(int spr_id, Uint32 color)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	if(rc_sprite[spr_id].image_id >= 0)
+		rc_sprite[spr_id].color_mod = irr::video::SColor(color);
+}
+
+void rc_setSpriteAlpha(int spr_id, Uint32 alpha)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	if(rc_sprite[spr_id].image_id >= 0)
+		rc_sprite[spr_id].alpha = (Uint8)alpha;
+}
+
+Uint32 rc_getSpriteColorMod(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	return rc_sprite[spr_id].color_mod.color;
+}
+
+Uint32 rc_getSpriteAlpha(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	return (Uint32)rc_sprite[spr_id].alpha;
+}
 
 //-----------------------------------PHYSICS----------------------------------------------------------------------------------
 

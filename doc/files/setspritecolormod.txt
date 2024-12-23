@@ -1,0 +1,4 @@
+#title SetSpriteColorMod [RCBasic Doc]
+#header Sub SetSpriteColorMod(sprite, color)
+
+

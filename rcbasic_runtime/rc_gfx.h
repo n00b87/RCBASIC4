@@ -2559,6 +2559,16 @@ bool rc_getBilinearFilter()
     return rc_bilinear_filter;
 }
 
+void rc_setAntiAliasMode( int aa_mode )
+{
+	rc_anti_alias = (irr::video::E_ANTI_ALIASING_MODE) aa_mode;
+}
+
+int rc_getAntiAliasMode( )
+{
+	return (int)rc_anti_alias;
+}
+
 void rc_setImageColorMod(int img_id, Uint32 color)
 {
     if(img_id < 0 || img_id >= rc_image.size())
