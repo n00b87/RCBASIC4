@@ -1800,7 +1800,7 @@ int rc_loadFont(std::string fnt_file, int font_size)
     int font_id = -1;
     for(int i = 0; i < rc_font.size(); i++)
     {
-        if(rc_font[i]!=NULL)
+        if(!rc_font[i].active)
         {
             font_id = i;
             break;
@@ -1821,11 +1821,12 @@ int rc_loadFont(std::string fnt_file, int font_size)
     {
         font_id = rc_font.size();
 
-        rc_font_obj* f = new rc_font_obj();
+        rc_font_obj f;
 
-        f->face = Face;
-        f->font = dfont;
-        f->font_size = font_size;
+        f.face = Face;
+        f.font = dfont;
+        f.font_size = font_size;
+        f.active = true;
 
         rc_font.push_back(f);
 
@@ -1833,21 +1834,25 @@ int rc_loadFont(std::string fnt_file, int font_size)
     }
     else
     {
-        rc_font[font_id]->face = Face;
-        rc_font[font_id]->font = dfont;
-        rc_font[font_id]->font_size = font_size;
+        rc_font[font_id].face = Face;
+        rc_font[font_id].font = dfont;
+        rc_font[font_id].font_size = font_size;
+        rc_font[font_id].active = true;
     }
+
+    //std::cout << "id: " << font_id << std::endl;
 
     return font_id;
 }
 
 bool rc_fontExists(int font_id)
 {
-    if(font_id >= 0 && font_id < rc_font.size())
-    {
-        if(rc_font[font_id]->font != NULL)
+	if(font_id < 0 || font_id >= rc_font.size())
+		return false;
+
+    if(rc_font[font_id].active)
             return true;
-    }
+
     return false;
 }
 
@@ -1855,11 +1860,12 @@ void rc_deleteFont(int font_id)
 {
     if(rc_fontExists(font_id))
     {
-        delete rc_font[font_id]->font;
-        delete rc_font[font_id]->face;
-        rc_font[font_id]->font = NULL;
-        rc_font[font_id]->face = NULL;
-        rc_font[font_id]->font_size = 0;
+        delete rc_font[font_id].font;
+        delete rc_font[font_id].face;
+        rc_font[font_id].font = NULL;
+        rc_font[font_id].face = NULL;
+        rc_font[font_id].font_size = 0;
+        rc_font[font_id].active = false;
     }
 }
 
@@ -1874,11 +1880,11 @@ void rc_drawText(std::string txt, int x, int y)
     if(rc_fontExists(rc_active_font))
     {
         std::wstring text = utf8_to_wstring(txt);
-        irr::core::dimension2d<irr::u32> text_dim = rc_font[rc_active_font]->font->getDimension(text.c_str());
-        irr::core::rect<s32> tpos(x, y, text_dim.Width, rc_font[rc_active_font]->font_size);
+        irr::core::dimension2d<irr::u32> text_dim = rc_font[rc_active_font].font->getDimension(text.c_str());
+        irr::core::rect<s32> tpos(x, y, text_dim.Width, rc_font[rc_active_font].font_size);
 
         //std::cout << "Start drawing text: " << tpos.getWidth() << ", " << tpos.getHeight() << std::endl;
-        rc_font[rc_active_font]->font->draw(text.c_str(), tpos, rc_active_color);
+        rc_font[rc_active_font].font->draw(text.c_str(), tpos, rc_active_color);
         //std::cout << "------------------" << std::endl;
     }
 }
@@ -1888,7 +1894,7 @@ Uint32 rc_getTextWidth(const std::string txt)
     if(rc_fontExists(rc_active_font))
     {
         std::wstring text = utf8_to_wstring(txt);
-        irr::core::dimension2d<irr::u32> text_dim = rc_font[rc_active_font]->font->getDimension(text.c_str());
+        irr::core::dimension2d<irr::u32> text_dim = rc_font[rc_active_font].font->getDimension(text.c_str());
         return text_dim.Width;
     }
     return 0;
@@ -1901,7 +1907,7 @@ Uint32 rc_getTextHeight(const std::string txt)
         std::wstring text = utf8_to_wstring(txt);
         //std::wstring wide = converter.from_bytes(txt);
         //irr::core::dimension2d<irr::u32> text_dim = rc_font[rc_active_font]->getDimension(wide.c_str());
-        return rc_font[rc_active_font]->font_size;
+        return rc_font[rc_active_font].font_size;
     }
     return 0;
 }
@@ -1911,9 +1917,9 @@ void rc_getTextSize(const std::string txt, double* w, double* h)
     if(rc_fontExists(rc_active_font))
     {
         std::wstring text = utf8_to_wstring(txt);
-        irr::core::dimension2d<irr::u32> text_dim = rc_font[rc_active_font]->font->getDimension(text.c_str());
+        irr::core::dimension2d<irr::u32> text_dim = rc_font[rc_active_font].font->getDimension(text.c_str());
         *w = text_dim.Width;
-        *h = rc_font[rc_active_font]->font_size;
+        *h = rc_font[rc_active_font].font_size;
     }
     else
     {

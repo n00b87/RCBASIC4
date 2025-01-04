@@ -145,7 +145,7 @@ bool rc_preprocessor()
                 }
             }
 
-            //cout << "\nDEBUG INCLUDE ABS_PATH:" << inc_file.filename << endl << endl;
+            cout << "\nDEBUG INCLUDE ABS_PATH:" << inc_file.filename << endl << endl;
             inc_file.line_number = 0;
             inc_file.line_position = 0;
             inc_file.dbg_inc_index = inc_files.size();
@@ -919,7 +919,8 @@ int main(int argc, char * argv[])
     bool clean_after_build = true;
 
     //DEBUG START
-    //rc_filename = "/home/n00b/projects/bu/constraint_demo/main.bas";
+    //chdir("/home/n00b/Programs/RCBasic_v400_Linux64/examples/Spinning Axis");
+    //rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Spinning Axis/main.bas";
 	//rc_filename = "/home/n00b/Downloads/Tile Scrolling/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Constraint/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Simple 3D Platformer/main.bas";
@@ -990,6 +991,7 @@ int main(int argc, char * argv[])
     //if(rcbasic_loadProgram("tst.bas"))
     if(rcbasic_loadProgram(rc_filename))
     {
+    	//std::cout << "LOADED PROG" << std::endl;
         if(!rcbasic_compile())
         {
             cout << "Compile Failed" << endl;

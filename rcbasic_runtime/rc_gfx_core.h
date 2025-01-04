@@ -420,9 +420,10 @@ struct rc_font_obj
     CGUITTFace* face;
     CGUIFreetypeFont* font;
     int font_size;
+    bool active;
 };
 
-irr::core::array<rc_font_obj*> rc_font;
+irr::core::array<rc_font_obj> rc_font;
 
 int rc_active_font = -1;
 
