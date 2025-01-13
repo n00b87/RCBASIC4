@@ -1,0 +1,4 @@
+#title GetAntiAliasMode [RCBasic Doc]
+#header function GetAntiAliasMode( )
+
+

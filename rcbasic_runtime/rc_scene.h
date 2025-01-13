@@ -56,6 +56,16 @@ void rc_clearScene()
 {
 	if(SceneManager)
 	{
+		for(int i = 0; i < rc_physics3D.constraints.size(); i++)
+		{
+			if(rc_physics3D.constraints[i].constraint)
+			{
+				rc_physics3D.world->getPointer()->removeConstraint(rc_physics3D.constraints[i].constraint);
+				rc_physics3D.constraints[i].constraint = NULL;
+				rc_physics3D.constraints[i].type = 0;
+			}
+		}
+
 		for(int i = 0; i < rc_actor.size(); i++)
 		{
 			if(rc_actor[i].mesh_node)

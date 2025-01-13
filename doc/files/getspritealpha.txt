@@ -1,0 +1,4 @@
+#title GetSpriteAlpha [RCBasic Doc]
+#header Function GetSpriteAlpha(sprite)
+
+

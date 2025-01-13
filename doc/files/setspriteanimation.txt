@@ -1,5 +1,5 @@
 #title SetSpriteAnimation [RCBasic Doc]
-#header Sub SetSpriteAnimation(sprite, animation)
+#header Sub SetSpriteAnimation(sprite, animation, num_loops)
 
 Sets the current animation for a sprite
 

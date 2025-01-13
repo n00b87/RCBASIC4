@@ -1,0 +1,4 @@
+#title JointExists [RCBasic Doc]
+#header function JointExists( joint_id )
+
+

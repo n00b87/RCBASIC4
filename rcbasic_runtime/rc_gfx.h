@@ -308,11 +308,21 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     irr_creation_params.Bits = 16;
     irr_creation_params.Fullscreen = fullscreen;
     irr_creation_params.Stencilbuffer = stencil_buffer;
-    irr_creation_params.Vsync = vsync;
+    irr_creation_params.Vsync = false;
     irr_creation_params.EventReceiver = 0;
     irr_creation_params.WindowPosition = position2d<s32>(x, y);
     irr_creation_params.AntiAlias = AntiAlias;
     irr_creation_params.OGLES2ShaderPath = ".shaders/";
+
+    rc_window_setfps = vsync;
+
+    if(vsync)
+	{
+		SDL_DisplayMode dm;
+		SDL_GetDesktopDisplayMode(0, &dm);
+		rc_setfps_refresh_rate = dm.refresh_rate;
+		rc_setfps_timer = SDL_GetTicks();
+	}
 
 	device = createDeviceEx(irr_creation_params);
 
@@ -1045,6 +1055,7 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
 		canvas.physics2D.enabled = true;
 		canvas.physics2D.contact_listener = new rc_contactListener_obj();
 		canvas.physics2D.world->SetContactListener(canvas.physics2D.contact_listener);
+		canvas.sprite_id.clear();
     }
 
     switch(mode)
@@ -1123,13 +1134,14 @@ void rc_canvasClose(int canvas_id)
 	}
 
 	//sprites are destroyed when the world is deleted so I just to set the active attribute to false and set the body to NULL
-	for(int i = 0; i < rc_canvas[canvas_id].sprite.size(); i++)
+	for(int i = 0; i < rc_canvas[canvas_id].sprite_id.size(); i++)
 	{
-		rc_canvas[canvas_id].sprite[i]->active = false;
-		rc_canvas[canvas_id].sprite[i]->physics.body = NULL;
+		int spr_id = rc_canvas[canvas_id].sprite_id[i];
+		rc_sprite[spr_id].active = false;
+		rc_sprite[spr_id].physics.body = NULL;
 	}
 
-	rc_canvas[canvas_id].sprite.clear();
+	rc_canvas[canvas_id].sprite_id.clear();
 
     if(rc_active_canvas == canvas_id)
         rc_active_canvas = -1;
@@ -1165,25 +1177,6 @@ void rc_setCanvasPhysics2D(int canvas_id, bool flag)
 {
 	if(canvas_id > 0 && canvas_id < rc_canvas.size())
 		rc_canvas[canvas_id].physics2D.enabled = flag;
-}
-
-
-void rc_clearCanvas()
-{
-    if(rc_active_canvas >= 0 && rc_active_canvas < rc_canvas.size())
-    {
-        if(rc_canvas[rc_active_canvas].texture)
-		switch(rc_canvas[rc_active_canvas].type)
-		{
-			case RC_CANVAS_TYPE_2D:
-				VideoDriver->clearBuffers(true, true, true, rc_clear_color);
-				break;
-			default:
-				VideoDriver->clearBuffers(true, true, true, rc_clear_color);
-				break;
-		}
-
-    }
 }
 
 void rc_setCanvasVisible(int canvas_id, bool flag)
@@ -1666,7 +1659,7 @@ void rc_drawTriangle3D(double x1, double y1, double z1, double x2, double y2, do
 
 void rc_drawTriangle(double x1, double y1, double x2, double y2, double x3, double y3)
 {
-    irr::core::array<irr::video::S3DVertex> v;
+	irr::core::array<irr::video::S3DVertex> v;
     v.push_back(video::S3DVertex(x1, y1, 0.f, 0.f, 1.f, 0.f, rc_active_color, 0.5f, 0.5f));
     v.push_back(video::S3DVertex(x2, y2, 0.f, 0.f, 1.f, 0.f, rc_active_color, 0.5f, 0.5f));
     v.push_back(video::S3DVertex(x3, y3, 0.f, 0.f, 1.f, 0.f, rc_active_color, 0.5f, 0.5f));
@@ -1675,6 +1668,8 @@ void rc_drawTriangle(double x1, double y1, double x2, double y2, double x3, doub
     i.push_back(0);
     i.push_back(1);
     i.push_back(2);
+
+    v.sort();
 
     VideoDriver->draw2DVertexPrimitiveList(v.pointer(), 3, i.pointer(), 1);
 }
@@ -1805,7 +1800,7 @@ int rc_loadFont(std::string fnt_file, int font_size)
     int font_id = -1;
     for(int i = 0; i < rc_font.size(); i++)
     {
-        if(rc_font[i]!=NULL)
+        if(!rc_font[i].active)
         {
             font_id = i;
             break;
@@ -1826,11 +1821,12 @@ int rc_loadFont(std::string fnt_file, int font_size)
     {
         font_id = rc_font.size();
 
-        rc_font_obj* f = new rc_font_obj();
+        rc_font_obj f;
 
-        f->face = Face;
-        f->font = dfont;
-        f->font_size = font_size;
+        f.face = Face;
+        f.font = dfont;
+        f.font_size = font_size;
+        f.active = true;
 
         rc_font.push_back(f);
 
@@ -1838,21 +1834,25 @@ int rc_loadFont(std::string fnt_file, int font_size)
     }
     else
     {
-        rc_font[font_id]->face = Face;
-        rc_font[font_id]->font = dfont;
-        rc_font[font_id]->font_size = font_size;
+        rc_font[font_id].face = Face;
+        rc_font[font_id].font = dfont;
+        rc_font[font_id].font_size = font_size;
+        rc_font[font_id].active = true;
     }
+
+    //std::cout << "id: " << font_id << std::endl;
 
     return font_id;
 }
 
 bool rc_fontExists(int font_id)
 {
-    if(font_id >= 0 && font_id < rc_font.size())
-    {
-        if(rc_font[font_id]->font != NULL)
+	if(font_id < 0 || font_id >= rc_font.size())
+		return false;
+
+    if(rc_font[font_id].active)
             return true;
-    }
+
     return false;
 }
 
@@ -1860,11 +1860,12 @@ void rc_deleteFont(int font_id)
 {
     if(rc_fontExists(font_id))
     {
-        delete rc_font[font_id]->font;
-        delete rc_font[font_id]->face;
-        rc_font[font_id]->font = NULL;
-        rc_font[font_id]->face = NULL;
-        rc_font[font_id]->font_size = 0;
+        delete rc_font[font_id].font;
+        delete rc_font[font_id].face;
+        rc_font[font_id].font = NULL;
+        rc_font[font_id].face = NULL;
+        rc_font[font_id].font_size = 0;
+        rc_font[font_id].active = false;
     }
 }
 
@@ -1879,11 +1880,11 @@ void rc_drawText(std::string txt, int x, int y)
     if(rc_fontExists(rc_active_font))
     {
         std::wstring text = utf8_to_wstring(txt);
-        irr::core::dimension2d<irr::u32> text_dim = rc_font[rc_active_font]->font->getDimension(text.c_str());
-        irr::core::rect<s32> tpos(x, y, text_dim.Width, rc_font[rc_active_font]->font_size);
+        irr::core::dimension2d<irr::u32> text_dim = rc_font[rc_active_font].font->getDimension(text.c_str());
+        irr::core::rect<s32> tpos(x, y, text_dim.Width, rc_font[rc_active_font].font_size);
 
         //std::cout << "Start drawing text: " << tpos.getWidth() << ", " << tpos.getHeight() << std::endl;
-        rc_font[rc_active_font]->font->draw(text.c_str(), tpos, rc_active_color);
+        rc_font[rc_active_font].font->draw(text.c_str(), tpos, rc_active_color);
         //std::cout << "------------------" << std::endl;
     }
 }
@@ -1893,7 +1894,7 @@ Uint32 rc_getTextWidth(const std::string txt)
     if(rc_fontExists(rc_active_font))
     {
         std::wstring text = utf8_to_wstring(txt);
-        irr::core::dimension2d<irr::u32> text_dim = rc_font[rc_active_font]->font->getDimension(text.c_str());
+        irr::core::dimension2d<irr::u32> text_dim = rc_font[rc_active_font].font->getDimension(text.c_str());
         return text_dim.Width;
     }
     return 0;
@@ -1906,7 +1907,7 @@ Uint32 rc_getTextHeight(const std::string txt)
         std::wstring text = utf8_to_wstring(txt);
         //std::wstring wide = converter.from_bytes(txt);
         //irr::core::dimension2d<irr::u32> text_dim = rc_font[rc_active_font]->getDimension(wide.c_str());
-        return rc_font[rc_active_font]->font_size;
+        return rc_font[rc_active_font].font_size;
     }
     return 0;
 }
@@ -1916,9 +1917,9 @@ void rc_getTextSize(const std::string txt, double* w, double* h)
     if(rc_fontExists(rc_active_font))
     {
         std::wstring text = utf8_to_wstring(txt);
-        irr::core::dimension2d<irr::u32> text_dim = rc_font[rc_active_font]->font->getDimension(text.c_str());
+        irr::core::dimension2d<irr::u32> text_dim = rc_font[rc_active_font].font->getDimension(text.c_str());
         *w = text_dim.Width;
-        *h = rc_font[rc_active_font]->font_size;
+        *h = rc_font[rc_active_font].font_size;
     }
     else
     {
@@ -2119,7 +2120,25 @@ void rc_setMouseRelative(bool flag)
 
 void rc_setWindowVSync(bool flag)
 {
-    //TODO
+    rc_window_setfps = true;
+    SDL_DisplayMode dm;
+    SDL_GetDesktopDisplayMode(0, &dm);
+    rc_setfps_refresh_rate = dm.refresh_rate;
+    rc_setfps_timer = SDL_GetTicks();
+}
+
+void rc_setFPS(int fps)
+{
+	if(fps < 0)
+	{
+		rc_window_setfps = false;
+	}
+	else
+	{
+		rc_window_setfps = true;
+		rc_setfps_refresh_rate = fps;
+		rc_setfps_timer = SDL_GetTicks();
+	}
 }
 
 int rc_openURL(std::string url)
@@ -2544,6 +2563,16 @@ void rc_setBilinearFilter(bool flag)
 bool rc_getBilinearFilter()
 {
     return rc_bilinear_filter;
+}
+
+void rc_setAntiAliasMode( int aa_mode )
+{
+	rc_anti_alias = (irr::video::E_ANTI_ALIASING_MODE) aa_mode;
+}
+
+int rc_getAntiAliasMode( )
+{
+	return (int)rc_anti_alias;
 }
 
 void rc_setImageColorMod(int img_id, Uint32 color)

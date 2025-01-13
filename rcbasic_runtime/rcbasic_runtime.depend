@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1734311733 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
+1736029334 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
 	"rc_os_defines.h"
 	<emscripten.h>
 	<sys/param.h>
@@ -33,12 +33,12 @@
 	<irrtheora.h>
 	"rc_func130_cases.h"
 
-1734311733 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
+1736029846 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
 	<TargetConditionals.h>
 
-1734309571 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
+1734919451 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
 
-1730291453 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_stdlib.h
+1734372966 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_stdlib.h
 	"rc_os_defines.h"
 	<sys/param.h>
 	<iostream>
@@ -109,9 +109,9 @@
 	"theoraplay.h"
 	<set>
 
-1694287822 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/theoraplay.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/theoraplay.h
 
-1729346052 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_matrix.h
+1734372966 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_matrix.h
 	<iostream>
 	<vector>
 	<bits/stdc++.h>
@@ -127,11 +127,11 @@
 	"rc_matrix.h"
 	"rc_defines.h"
 
-1728937556 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_geometry.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_geometry.h
 	"rc_matrix.h"
 	<cmath>
 
-1728937556 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/theoraplay.c
+1734372058 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/theoraplay.c
 	"rc_os_defines.h"
 	<stdio.h>
 	<stdlib.h>
@@ -148,13 +148,13 @@
 	"theoraplay_cvtrgb.h"
 	"theoraplay_cvtrgb.h"
 
-1694287822 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/theoraplay_cvtrgb.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/theoraplay_cvtrgb.h
 
-1727545973 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/gui_freetype_font.cpp
+1734372058 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/gui_freetype_font.cpp
 	"gui_freetype_font.h"
 	<cassert>
 
-1728937556 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/gui_freetype_font.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/gui_freetype_font.h
 	"rc_os_defines.h"
 	"ft2build.h"
 	"freetype/freetype.h"
@@ -1242,13 +1242,13 @@
 	"matrix4.h"
 	"IVideoDriver.h"
 
-1727545973 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/RealisticWater.cpp
+1734372058 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/RealisticWater.cpp
 	"RealisticWater.h"
 
-1727545973 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/RealisticWater.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/RealisticWater.h
 	<irrlicht.h>
 
-1734312754 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx.h
+1736029837 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx.h
 	"SDL.h"
 	<SDL2/SDL.h>
 	<irrlicht.h>
@@ -1272,7 +1272,7 @@
 	"rc_joints.h"
 	<irrtheora.h>
 
-1734313369 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx_core.h
+1736028804 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx_core.h
 	"SDL.h"
 	"btBulletDynamicsCommon.h"
 	"BulletSoftBody/btSoftRigidDynamicsWorld.h"
@@ -1298,15 +1298,15 @@
 	"an8parser.h"
 	<an8parser.h>
 
-1727545973 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_utf8.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_utf8.h
 	<string>
 	<algorithm>
 
-1727545973 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/camera.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/camera.h
 	<irrlicht.h>
 	<iostream>
 
-1730168962 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_sprite2D.h
+1734900354 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_sprite2D.h
 	<irrlicht.h>
 	<box2d/box2d.h>
 
@@ -2193,7 +2193,7 @@
 
 1686539631 /home/n00b/Projects/irrTheora/theoraplay.h
 
-1733594068 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx3D.h
+1734372966 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx3D.h
 	"SDL.h"
 	<btBulletDynamicsCommon.h>
 	<BulletCollision/CollisionDispatch/btGhostObject.h>
@@ -2222,7 +2222,7 @@
 	"rc_scene.h"
 	"rc_camera.h"
 
-1727545973 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_audio.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_audio.h
 	<vector>
 	"rc_os_defines.h"
 	<android/log.h>
@@ -2243,7 +2243,7 @@
 	<SDL2/SDL.h>
 	<SDL2/SDL_mixer.h>
 
-1734293958 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_net.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_net.h
 	"rc_os_defines.h"
 	<android/log.h>
 	"SDL.h"
@@ -2271,11 +2271,11 @@
 	<unistd.h>
 	<assert.h>
 
-1727545973 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_video.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_video.h
 	"rc_gfx_core.h"
 	<irrtheora.h>
 
-1734309571 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
+1734919451 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
 
 1724469097 source:/home/n00b/Projects/irrBullet/src/irrBullet.cpp
 	"irrBullet.h"
@@ -2479,9 +2479,9 @@
 1608686973 /usr/include/bullet/BulletSoftBody/btSoftBodyRigidBodyCollisionConfiguration.h
 	"BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.h"
 
-1728937556 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_test.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_test.h
 
-1728751611 /home/n00b/Projects/an8-parser/an8parser.h
+1735440217 /home/n00b/Projects/an8-parser/an8parser.h
 	<iostream>
 	<fstream>
 	<vector>
@@ -2489,8 +2489,9 @@
 	<string>
 	<irrlicht.h>
 	<cmath>
+	<cstdint>
 
-1733892344 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_spritelib.h
+1734919451 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_spritelib.h
 	"SDL.h"
 	<SDL2/SDL.h>
 	"rc_sprite2D.h"
@@ -2498,50 +2499,58 @@
 	"rc_sprite_physics.h"
 	"rc_joints.h"
 
-1733959298 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_tilelib.h
+1734658467 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_tilelib.h
 	"SDL.h"
 	<SDL2/SDL.h>
 	"rc_tilemap.h"
 	"rc_gfx_core.h"
 
-1729551233 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_tilemap.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_tilemap.h
 	<irrlicht.h>
 	<vector>
 
-1734205862 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_sprite_physics.h
+1734900354 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_sprite_physics.h
 	"rc_sprite2D.h"
 
-1730291453 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_joints.h
+1734910148 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_joints.h
 	"SDL.h"
 	<SDL2/SDL.h>
 	"rc_sprite2D.h"
 	"rc_gfx_core.h"
 
-1734206925 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_physics3D_base.h
+1734372966 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_physics3D_base.h
 	"rc_gfx_core.h"
 
-1734138955 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_base_actor.h
+1734900354 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_base_actor.h
 
-1731710840 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_actor_material.h
+1734372966 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_actor_material.h
 
-1734119354 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_actor_animation.h
+1734372966 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_actor_animation.h
 
-1730291453 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_actor_physics.h
+1734372966 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_actor_physics.h
 
-1731249956 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_constraint.h
+1734372966 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_constraint.h
 
-1730291453 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_mesh.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_mesh.h
 
-1730291453 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_particles.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_particles.h
 
-1733777902 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_scene.h
+1734719003 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_scene.h
 	"rc_gfx_core.h"
 
-1731249956 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_camera.h
+1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_camera.h
 
-1734313936 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_windowclose.h
+1734900354 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_windowclose.h
 
 1608686973 /usr/include/bullet/BulletCollision/NarrowPhaseCollision/btRaycastCallback.h
 	"BulletCollision/CollisionShapes/btTriangleCallback.h"
 	"LinearMath/btTransform.h"
+
+1734710710 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_tri_points.h
+	<iostream>
+	<string>
+	<math.h>
+	<cmath>
+	<vector>
+	<algorithm>
 

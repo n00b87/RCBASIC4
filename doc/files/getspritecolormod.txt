@@ -1,0 +1,4 @@
+#title GetSpriteColorMod [RCBasic Doc]
+#header Function GetSpriteColorMod(sprite)
+
+

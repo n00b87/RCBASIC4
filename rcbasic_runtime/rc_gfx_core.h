@@ -1,7 +1,7 @@
 #ifndef RC_GFX_CORE_H_INCLUDED
 #define RC_GFX_CORE_H_INCLUDED
 
-#if defined(RC_ANDROID) || defined(RC_WINDOWS)
+#if defined(RC_ANDROID)
 	#include "SDL.h"
 	#include "btBulletDynamicsCommon.h"
 	#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
@@ -255,6 +255,9 @@ bool rc_mouse_zone_active = false;
 double rc_window_zone_scale_x = 1;
 double rc_window_zone_scale_y = 1;
 SDL_Rect rc_mouse_zone;
+bool rc_window_setfps = false;
+int rc_setfps_refresh_rate = 0;
+Uint32 rc_setfps_timer = 0;
 
 struct rc_scene_properties_obj
 {
@@ -295,9 +298,9 @@ class rc_contactListener_obj : public b2ContactListener
 {
 	void BeginContact(b2Contact* contact)
 	{
-		rc_sprite2D_obj* spriteA = (rc_sprite2D_obj*) contact->GetFixtureA()->GetBody()->GetUserData().pointer;
+		rc_sprite2D_obj* spriteA = &rc_sprite[contact->GetFixtureA()->GetBody()->GetUserData().pointer];
 
-		rc_sprite2D_obj* spriteB = (rc_sprite2D_obj*) contact->GetFixtureB()->GetBody()->GetUserData().pointer;
+		rc_sprite2D_obj* spriteB = &rc_sprite[contact->GetFixtureB()->GetBody()->GetUserData().pointer];
 
 	  //std::cout << "sprite[" << spriteA->id << "] collide with sprite[" << spriteB->id << "]" << std::endl;
 
@@ -358,7 +361,7 @@ struct rc_canvas_obj
     irr::u32 color_mod;
 
     rc_physicsWorld2D_obj physics2D;
-    irr::core::array<rc_sprite2D_obj*> sprite;
+    irr::core::array<irr::s32> sprite_id;
 };
 
 irr::core::array<rc_canvas_obj> rc_canvas;
@@ -417,9 +420,10 @@ struct rc_font_obj
     CGUITTFace* face;
     CGUIFreetypeFont* font;
     int font_size;
+    bool active;
 };
 
-irr::core::array<rc_font_obj*> rc_font;
+irr::core::array<rc_font_obj> rc_font;
 
 int rc_active_font = -1;
 
@@ -583,10 +587,11 @@ irr::core::array<int> rc_transition_actor;
 class rc_animEndCallBack : public IAnimationEndCallBack
 {
   public:
-  	rc_scene_node* ref_actor;
+  	int ref_id;
 
     void OnAnimationEnd( IAnimatedMeshSceneNode *node)
     {
+    	rc_scene_node* ref_actor = &rc_actor[ref_id];
     	if(ref_actor->current_animation_loop < ref_actor->num_animation_loops || ref_actor->num_animation_loops < 0)
 		{
 			//std::cout << "animating" << std::endl;
@@ -745,6 +750,7 @@ irr::core::array<rc_image_obj> rc_image;
 
 irr::video::E_BLEND_OPERATION rc_blend_mode = irr::video::EBO_ADD;
 bool rc_bilinear_filter = false;
+irr::video::E_ANTI_ALIASING_MODE rc_anti_alias = irr::video::EAAM_OFF;
 
 #define PRIM3D_LINE 1
 #define PRIM3D_TRIANGLE 2
@@ -774,7 +780,8 @@ void rc_setDriverMaterial()
     material.TextureLayer[0].BilinearFilter = rc_bilinear_filter;
     material.MaterialTypeParam = irr::video::pack_textureBlendFunc(irr::video::EBF_SRC_ALPHA, irr::video::EBF_ONE_MINUS_SRC_ALPHA, irr::video::EMFN_MODULATE_1X, irr::video::EAS_TEXTURE | irr::video::EAS_VERTEX_COLOR);
     material.BlendOperation = rc_blend_mode;
-    material.BlendOperation = irr::video::EBO_ADD;
+    //material.BlendOperation = irr::video::EBO_ADD;
+    material.AntiAliasing = rc_anti_alias;
 
     material.MaterialType = irr::video::EMT_ONETEXTURE_BLEND;
 
@@ -856,6 +863,7 @@ void draw2DImage(irr::video::IVideoDriver *driver, irr::video::ITexture* texture
     material.TextureLayer[0].BilinearFilter = rc_bilinear_filter;
     material.MaterialTypeParam = irr::video::pack_textureBlendFunc(irr::video::EBF_SRC_ALPHA, irr::video::EBF_ONE_MINUS_SRC_ALPHA, irr::video::EMFN_MODULATE_1X, irr::video::EAS_TEXTURE | irr::video::EAS_VERTEX_COLOR);
     material.BlendOperation = rc_blend_mode;
+    material.AntiAliasing = rc_anti_alias;
     //material.BlendOperation = irr::video::EBO_ADD;
 
     if (useAlphaChannel)
@@ -948,7 +956,7 @@ void draw2DImage2(irr::video::IVideoDriver *driver, irr::video::ITexture* textur
     material.TextureLayer[0].BilinearFilter = rc_bilinear_filter; //TODO: Add option to switch this on/off
     material.BlendOperation = rc_blend_mode;
     material.MaterialTypeParam = irr::video::pack_textureBlendFunc(irr::video::EBF_SRC_ALPHA, irr::video::EBF_ONE_MINUS_SRC_ALPHA, irr::video::EMFN_MODULATE_1X, irr::video::EAS_TEXTURE | irr::video::EAS_VERTEX_COLOR);
-    //material.AntiAliasing = irr::video::EAAM_OFF;
+    material.AntiAliasing = rc_anti_alias;
 
     if (useAlphaChannel)
             material.MaterialType = irr::video::EMT_ONETEXTURE_BLEND;

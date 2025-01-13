@@ -258,7 +258,7 @@ void rc_setTile(int tilemap, int tile, int x, int y)
 	int num_tset_tiles = rc_tileset[tileset].tiles.size();
 
 	if(tile < 0 || tile >= num_tset_tiles)
-		return;
+		tile = -1;
 
 	if( (x < 0 || x >= rc_tilemap[tilemap].num_tiles_across) || (y < 0 || y >= rc_tilemap[tilemap].num_tiles_down) )
 		return;
@@ -297,7 +297,7 @@ void rc_fillTile(int tilemap, int tile, int x, int y, int widthInTiles, int heig
 	int num_tset_tiles = rc_tileset[tileset].tiles.size();
 
 	if(tile < 0 || tile >= num_tset_tiles)
-		return;
+		tile = -1;
 
 	if( (x < 0 || x >= rc_tilemap[tilemap].num_tiles_across) || (y < 0 || y >= rc_tilemap[tilemap].num_tiles_down) )
 		return;

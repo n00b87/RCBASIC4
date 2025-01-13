@@ -311,7 +311,7 @@ int rc_createAnimatedActor(int mesh_id)
     rc_actor[actor_id].current_animation_loop = 0;
     rc_actor[actor_id].num_animation_loops = 0;
     rc_animEndCallBack* anim_callback = new rc_animEndCallBack();
-    anim_callback->ref_actor = &rc_actor[actor_id];
+    anim_callback->ref_id = actor_id;
     anim_callback->OnAnimationEnd(node);
     node->setAnimationEndCallback(anim_callback);
 	node->setLoopMode(false);

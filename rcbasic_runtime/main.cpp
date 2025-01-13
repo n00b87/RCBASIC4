@@ -4389,7 +4389,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Runtime v4.0" << endl;
+        cout << "RCBASIC Runtime v4.1" << endl;
         return 0;
     }
 
@@ -4447,13 +4447,13 @@ int main(int argc, char * argv[])
     std::cin >> debug_opt;
     if(debug_opt.compare("a")==0)
 	{
-		//rc_intern_dirChange("/home/n00b/Music/rcbasic_v400_linux64/examples/tile_demo");
-		rc_intern_dirChange("");
+		rc_intern_dirChange("/home/n00b/Programs/RCBasic_v400_Linux64/examples/Spinning Axis/");
+		//rc_intern_dirChange("");
 		rc_filename = "main.cbc";
 	}
     else
 	{
-		rc_intern_dirChange("/home/n00b/projects/bu/constraint_demo");
+		rc_intern_dirChange("/home/n00b/Programs/RCBasic_v400_Linux64/examples/Simple 3D Platformer/");
 	}
     #endif
     //---------------

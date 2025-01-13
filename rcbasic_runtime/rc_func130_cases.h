@@ -538,6 +538,9 @@ case FN_SetWindowAlwaysOnTop: //Sub Procedure
 case FN_SetMouseRelative: //Sub Procedure
 	rc_setMouseRelative( SETMOUSERELATIVE_FLAG );
 	break;
+case FN_SetWindowVSync: //Sub Procedure
+	rc_setWindowVSync( SETWINDOWVSYNC_FLAG );
+	break;
 case FN_FlashWindow: //Number Function
 	 rc_push_num(rc_flashWindow( FLASHWINDOW_FLAG ));
 	break;
@@ -546,6 +549,9 @@ case FN_WindowIsGrabbed: //Number Function
 	break;
 case FN_PreUpdate: //Sub Procedure
 	rc_preUpdate(  );
+	break;
+case FN_SetFPS: //Sub Procedure
+	rc_setFPS( SETFPS_FPS_VAL );
 	break;
 case FN_OpenCanvas: //Number Function
 	 rc_push_num(rc_canvasOpen( OPENCANVAS_W,  OPENCANVAS_H,  OPENCANVAS_VIEWPORT_X,  OPENCANVAS_VIEWPORT_Y,  OPENCANVAS_VIEWPORT_W,  OPENCANVAS_VIEWPORT_H,  OPENCANVAS_MODE ));
@@ -756,6 +762,12 @@ case FN_DrawImage_Flip: //Sub Procedure
 	break;
 case FN_DrawImage_FlipEx: //Sub Procedure
 	rc_drawImage_FlipEx( DRAWIMAGE_FLIPEX_SLOT,  DRAWIMAGE_FLIPEX_X,  DRAWIMAGE_FLIPEX_Y,  DRAWIMAGE_FLIPEX_SRC_X,  DRAWIMAGE_FLIPEX_SRC_Y,  DRAWIMAGE_FLIPEX_SRC_W,  DRAWIMAGE_FLIPEX_SRC_H,  DRAWIMAGE_FLIPEX_H,  DRAWIMAGE_FLIPEX_V );
+	break;
+case FN_SetAntiAliasMode: //Sub Procedure
+	rc_setAntiAliasMode( SETANTIALIASMODE_AA_MODE );
+	break;
+case FN_GetAntiAliasMode: //Number Function
+	 rc_push_num(rc_getAntiAliasMode(  ));
 	break;
 case FN_InKey: //Number Function
 	 rc_push_num(rc_inKey(  ));
@@ -1460,6 +1472,21 @@ case FN_SetSpriteSource: //Sub Procedure
 case FN_GetSpriteSource: //Number Function
 	 rc_push_num(rc_getSpriteSource( GETSPRITESOURCE_SPRITE ));
 	break;
+case FN_SpriteExists: //Number Function
+	 rc_push_num(rc_spriteExists( SPRITEEXISTS_SPRITE ));
+	break;
+case FN_SetSpriteColorMod: //Sub Procedure
+	rc_setSpriteColorMod( SETSPRITECOLORMOD_SPRITE,  SETSPRITECOLORMOD_COLOR );
+	break;
+case FN_SetSpriteAlpha: //Sub Procedure
+	rc_setSpriteAlpha( SETSPRITEALPHA_SPRITE,  SETSPRITEALPHA_ALPHA );
+	break;
+case FN_GetSpriteColorMod: //Number Function
+	 rc_push_num(rc_getSpriteColorMod( GETSPRITECOLORMOD_SPRITE ));
+	break;
+case FN_GetSpriteAlpha: //Number Function
+	 rc_push_num(rc_getSpriteAlpha( GETSPRITEALPHA_SPRITE ));
+	break;
 case FN_CreateSpriteAnimation: //Number Function
 	 rc_push_num(rc_createSpriteAnimation( CREATESPRITEANIMATION_SPRITE,  CREATESPRITEANIMATION_ANIM_LENGTH,  CREATESPRITEANIMATION_SPEED ));
 	break;
@@ -1870,6 +1897,9 @@ case FN_getJointAngularSpeed: //Number Function
 	break;
 case FN_DeleteJoint: //Sub Procedure
 	rc_deleteJoint( DELETEJOINT_JOINT_ID );
+	break;
+case FN_JointExists: //Number Function
+	 rc_push_num(rc_jointExists( JOINTEXISTS_JOINT_ID ));
 	break;
 case FN_CreateTileSet: //Number Function
 	 rc_push_num(rc_createTileSet( CREATETILESET_IMG_ID,  CREATETILESET_TILE_W,  CREATETILESET_TILE_H ));

@@ -1,6 +1,44 @@
 #ifndef RC_WINDOWCLOSE_H_INCLUDED
 #define RC_WINDOWCLOSE_H_INCLUDED
 
+void rc_clearCanvas()
+{
+    if(rc_active_canvas >= 0 && rc_active_canvas < rc_canvas.size())
+    {
+        if(rc_canvas[rc_active_canvas].texture)
+		switch(rc_canvas[rc_active_canvas].type)
+		{
+			case RC_CANVAS_TYPE_2D:
+				VideoDriver->clearBuffers(true, true, true, rc_clear_color);
+				break;
+			case RC_CANVAS_TYPE_SPRITE:
+				VideoDriver->clearBuffers(true, true, true, rc_clear_color);
+
+				for(int i = 0; i < rc_joint.size(); i++)
+				{
+					if(rc_joint[i].canvas == rc_active_canvas)
+					{
+						rc_deleteJoint(i);
+					}
+				}
+
+				for(int i = 0; i < rc_sprite.size(); i++)
+				{
+					if(rc_sprite[i].parent_canvas == rc_active_canvas)
+					{
+						rc_deleteSprite(i);
+					}
+				}
+
+				break;
+			default:
+				VideoDriver->clearBuffers(true, true, true, rc_clear_color);
+				break;
+		}
+
+    }
+}
+
 void rc_closeWindow_hw()
 {
 	irrtheora::stopVideo();
@@ -79,6 +117,13 @@ void rc_preUpdate()
 
 bool rc_update()
 {
+	if(rc_window_setfps)
+	{
+		int frame_delay = 1000/rc_setfps_refresh_rate;
+		while( (SDL_GetTicks()-rc_setfps_timer) < frame_delay ){}
+		rc_setfps_timer = SDL_GetTicks();
+	}
+
     if(!device->run())
         return false;
 
