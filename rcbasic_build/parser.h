@@ -3404,9 +3404,10 @@ bool check_rule()
                     {
                         if(current_block_state == BLOCK_STATE_TYPE)
                         {
-                            //cout << "adding type member" << endl;
+                            //cout << "adding type member: " << id_name << ", " << id_type << endl;
                             if(!add_type_member(id_name, id_type, "", 0))
                             {
+                            	//std::cout << "error" << std::endl;
                                 //cout << rc_getError() << endl;
                                 return false;
                             }
