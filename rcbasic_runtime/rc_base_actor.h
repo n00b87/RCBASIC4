@@ -262,15 +262,28 @@ int rc_createAnimatedActor(int mesh_id)
     if(mesh_id < 0 || mesh_id >= rc_mesh.size())
         return -1;
 
-    irr::scene::IAnimatedMesh* mesh = rc_mesh[mesh_id].mesh;
+    irr::scene::IMesh* mesh = rc_mesh[mesh_id].mesh;
 
     if(!mesh)
         return -1;
 
     int actor_id = -1;
-    irr::scene::IAnimatedMeshSceneNode* node = SceneManager->addAnimatedMeshSceneNode(mesh);
+
+    irr::scene::ISceneNode* node;
+
     rc_scene_node actor;
-    actor.node_type = RC_NODE_TYPE_MESH;
+
+    if(rc_mesh[mesh_id].mesh_type == RC_MESH_TYPE_ANIMATED)
+	{
+		actor.node_type = RC_NODE_TYPE_MESH;
+		node = SceneManager->addAnimatedMeshSceneNode((irr::scene::IAnimatedMesh*)mesh);
+	}
+	else
+	{
+		actor.node_type = RC_NODE_TYPE_STMESH; //STATIC MESH NODE
+		node = SceneManager->addMeshSceneNode(mesh);
+	}
+
     actor.mesh_node = node;
     actor.shadow = NULL;
     actor.transition = false;
@@ -307,16 +320,20 @@ int rc_createAnimatedActor(int mesh_id)
     animation.frame_start_time = SDL_GetTicks();
     animation.frame_swap_time = 1000/60;
     rc_actor[actor_id].animation.push_back(animation);
-    rc_actor[actor_id].current_animation = 0;
-    rc_actor[actor_id].current_animation_loop = 0;
-    rc_actor[actor_id].num_animation_loops = 0;
-    rc_animEndCallBack* anim_callback = new rc_animEndCallBack();
-    anim_callback->ref_id = actor_id;
-    anim_callback->OnAnimationEnd(node);
-    node->setAnimationEndCallback(anim_callback);
-	node->setLoopMode(false);
-	node->setFrameLoop(0, 0);
-	anim_callback->drop();
+
+    if(rc_mesh[mesh_id].mesh_type == RC_MESH_TYPE_ANIMATED)
+    {
+    	rc_actor[actor_id].current_animation = 0;
+		rc_actor[actor_id].current_animation_loop = 0;
+		rc_actor[actor_id].num_animation_loops = 0;
+		rc_animEndCallBack* anim_callback = new rc_animEndCallBack();
+		anim_callback->ref_id = actor_id;
+		anim_callback->OnAnimationEnd((irr::scene::IAnimatedMeshSceneNode*)node);
+		((irr::scene::IAnimatedMeshSceneNode*)node)->setAnimationEndCallback(anim_callback);
+		((irr::scene::IAnimatedMeshSceneNode*)node)->setLoopMode(false);
+		((irr::scene::IAnimatedMeshSceneNode*)node)->setFrameLoop(0, 0);
+		anim_callback->drop();
+    }
 
 
     //Actor RigidBody
@@ -336,7 +353,7 @@ int rc_createOctreeActor(int mesh_id)
     if(mesh_id < 0 || mesh_id >= rc_mesh.size())
         return -1;
 
-    irr::scene::IAnimatedMesh* mesh = rc_mesh[mesh_id].mesh;
+    irr::scene::IMesh* mesh = rc_mesh[mesh_id].mesh;
 
     if(!mesh)
         return -1;

@@ -20,11 +20,11 @@
 			ApplyActorCentralImpulse<b>(</b>actor,&nbsp;<span class="rc_number">300</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span><b>)</b>&nbsp;<br>
 			&nbsp;&nbsp;<br>
 			<span class="rc_keyword">While</span>&nbsp;<span class="rc_keyword">True</span>&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">If</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;init_damping&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ApplyActorDamping<b>(</b>actor,&nbsp;<span class="rc_number">5.0</span><b>)</b>&nbsp;<span class="rc_comment">'Will apply the damping effect for 5 seconds </span><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;init_damping&nbsp;=&nbsp;<span class="rc_keyword">True</span>&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;Update<b>(</b><b>)</b>&nbsp;<br>
+			<span class="rc_keyword">If</span>&nbsp;<span class="rc_keyword">Not</span>&nbsp;init_damping&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;ApplyActorDamping<b>(</b>actor,&nbsp;<span class="rc_number">5.0</span><b>)</b>&nbsp;<span class="rc_comment">'Will apply the damping effect for 5 seconds </span><br>
+			&nbsp;&nbsp;&nbsp;init_damping&nbsp;=&nbsp;<span class="rc_keyword">True</span>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
+			Update<b>(</b><b>)</b>&nbsp;<br>
 			<span class="rc_keyword">Wend</span>&nbsp;<br>
 		</code></p>
 		<br><p>Related: 

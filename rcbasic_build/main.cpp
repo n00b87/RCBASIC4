@@ -145,7 +145,7 @@ bool rc_preprocessor()
                 }
             }
 
-            cout << "\nDEBUG INCLUDE ABS_PATH:" << inc_file.filename << endl << endl;
+            //cout << "\nDEBUG INCLUDE ABS_PATH:" << inc_file.filename << endl << endl;
             inc_file.line_number = 0;
             inc_file.line_position = 0;
             inc_file.dbg_inc_index = inc_files.size();

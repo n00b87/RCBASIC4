@@ -335,22 +335,22 @@
 		 Given we have two number stored in variables a and b. 
 		</p>
 		<p>
-		     •.a = b : Test if a is equal to b  
+		 •.a = b : Test if a is equal to b 
 		</p>
 		<p>
-		     •.a < b : Test if a is less than b  
+		 •.a < b : Test if a is less than b 
 		</p>
 		<p>
-		     •.a > b : Test if a is greater than b  
+		 •.a > b : Test if a is greater than b 
 		</p>
 		<p>
-		     •.a <= b : Test if a is less than or equal to b  
+		 •.a <= b : Test if a is less than or equal to b 
 		</p>
 		<p>
-		     •.a >= b : Test if a is greater than or equal to b  
+		 •.a >= b : Test if a is greater than or equal to b 
 		</p>
 		<p>
-		     •.a <> b : Test if a is not equal to b  
+		 •.a <> b : Test if a is not equal to b 
 		</p>
 		<p>
 		 Here is a few examples of doing some of these comparisons with a <b>IF</b> statement. 
@@ -424,7 +424,7 @@
 		 This code will write "This is true" to the console because 1 is equal to 1 and 4 is greater than 2. Yes it is that simple. 
 		</p>
 		<p id="rc_code"><code>
-			<span class="rc_keyword">If</span>&nbsp;<span class="rc_number">1</span><span class="rc_number">1</span>&nbsp;<span class="rc_keyword">AND</span>&nbsp;<span class="rc_number">4</span>&gt;<span class="rc_number">2</span>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			<span class="rc_keyword">If</span>&nbsp;<span class="rc_number">1</span>=1&nbsp;<span class="rc_keyword">AND</span>&nbsp;<span class="rc_number">4</span>&gt;<span class="rc_number">2</span>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
 			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"This is true"</span>&nbsp;<br>
 			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
 		</code></p>
@@ -435,7 +435,7 @@
 		 This code will write "This is true" to the console because although 1 is not equal to 2, 5 is less than or equal to 6. 
 		</p>
 		<p id="rc_code"><code>
-			<span class="rc_keyword">If</span>&nbsp;<span class="rc_number">1</span><span class="rc_number">2</span>&nbsp;<span class="rc_keyword">AND</span>&nbsp;<span class="rc_number">5</span>&lt;<span class="rc_number">6</span>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			<span class="rc_keyword">If</span>&nbsp;<span class="rc_number">1</span>=2&nbsp;<span class="rc_keyword">AND</span>&nbsp;<span class="rc_number">5</span>&lt;<span class="rc_number">6</span>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
 			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"This is true"</span>&nbsp;<br>
 			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
 		</code></p>
@@ -446,7 +446,7 @@
 		 This code will write "This is true" to the console because 1 is equal to 1 and 2 is equal to 2 ( 2 <> 2 is false because 2=2. Remember <> is the NOT EQUAL operator). Basically one condition in the <b>XOR</b> expression has to be true and the other has to be false otherwise the whole expression is false. If this is slightly confusing don't worry. In my 15+ years of programming experience I have never once used this operator. 
 		</p>
 		<p id="rc_code"><code>
-			<span class="rc_keyword">If</span>&nbsp;<span class="rc_number">1</span><span class="rc_number">1</span>&nbsp;<span class="rc_keyword">XOR</span>&nbsp;<span class="rc_number">2</span>&nbsp;&lt;&gt;&nbsp;<span class="rc_number">2</span>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			<span class="rc_keyword">If</span>&nbsp;<span class="rc_number">1</span>=1&nbsp;<span class="rc_keyword">XOR</span>&nbsp;<span class="rc_number">2</span>&nbsp;&lt;&gt;&nbsp;<span class="rc_number">2</span>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
 			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"This is true"</span>&nbsp;<br>
 			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
 		</code></p>
@@ -457,7 +457,7 @@
 		 This code will write "This is true" to the screen because the expression 1=3 is false. The <b>NOT</b> statement reverses the false and makes it true. 
 		</p>
 		<p id="rc_code"><code>
-			<span class="rc_keyword">If</span>&nbsp;<span class="rc_keyword">NOT</span>&nbsp;<b>(</b><span class="rc_number">1</span><span class="rc_number">3</span><b>)</b>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			<span class="rc_keyword">If</span>&nbsp;<span class="rc_keyword">NOT</span>&nbsp;<b>(</b><span class="rc_number">1</span>=3<b>)</b>&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
 			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"This is true"</span>&nbsp;<br>
 			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
 		</code></p>
