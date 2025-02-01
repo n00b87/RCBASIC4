@@ -172,6 +172,14 @@ std::string rc_getAN8SceneName(int an8_id, int scene_num)
 	return rc_an8[an8_id].project.scenes[scene_num].name;
 }
 
+void rc_deleteAN8(int an8_id)
+{
+	if(an8_id < 0 || an8_id >= rc_an8.size())
+		return;
+
+	rc_an8[an8_id].active = false;
+}
+
 //delete mesh
 void rc_deleteMesh(int mesh_id)
 {
@@ -204,11 +212,13 @@ int rc_createMesh()
     return mesh_id;
 }
 
-int rc_createPlaneMesh(double w, double h, double tileCount_w, double tileCount_h)
+int rc_createPlaneMesh(double w, double h, double tileCount_w, double tileCount_h, double txRepeat_x, double txRepeat_y)
 {
-	irr::scene::IAnimatedMesh* mesh = SceneManager->addHillPlaneMesh( "plane",
-																irr::core::dimension2d<irr::f32>(w/tileCount_w, h/tileCount_h),
-																irr::core::dimension2d<irr::u32>(tileCount_w, tileCount_h));
+	const irr::scene::IGeometryCreator* gc = SceneManager->getGeometryCreator();
+
+	irr::scene::IMesh* mesh = gc->createPlaneMesh(irr::core::dimension2d<irr::f32>((irr::f32)w, (irr::f32)h),
+														  irr::core::dimension2d<irr::u32>((irr::u32)tileCount_w, (irr::u32)tileCount_h), 0,
+														  irr::core::dimension2d<irr::f32>((irr::f32)txRepeat_x, (irr::f32)txRepeat_y));
 
     if(!mesh)
         return -1;
@@ -216,7 +226,71 @@ int rc_createPlaneMesh(double w, double h, double tileCount_w, double tileCount_
     int mesh_id = rc_mesh.size();
     rc_mesh_obj mesh_obj;
     mesh_obj.mesh = mesh;
-    mesh_obj.mesh_type = RC_MESH_TYPE_ANIMATED;
+    mesh_obj.mesh_type = RC_MESH_TYPE_NONE;
+
+    rc_mesh.push_back(mesh_obj);
+
+    return mesh_id;
+}
+
+
+int rc_createConeMesh( double radius, double cone_length, double tesselation, double top_color, double bottom_color )
+{
+	const irr::scene::IGeometryCreator* gc = SceneManager->getGeometryCreator();
+
+	irr::scene::IMesh* mesh = gc->createConeMesh( (irr::f32)radius, (irr::f32)cone_length, (irr::u32)tesselation,
+												   irr::video::SColor((irr::u32)top_color), irr::video::SColor((irr::u32)bottom_color) );
+
+    if(!mesh)
+        return -1;
+
+    int mesh_id = rc_mesh.size();
+    rc_mesh_obj mesh_obj;
+    mesh_obj.mesh = mesh;
+    mesh_obj.mesh_type = RC_MESH_TYPE_NONE;
+
+    rc_mesh.push_back(mesh_obj);
+
+    return mesh_id;
+}
+
+
+int rc_createCylinderMesh( double radius, double cylinder_length, double tesselation, double color, double close_top )
+{
+	const irr::scene::IGeometryCreator* gc = SceneManager->getGeometryCreator();
+
+	irr::scene::IMesh* mesh = gc->createCylinderMesh( (irr::f32)radius, (irr::f32)cylinder_length, (irr::u32)tesselation,
+												   irr::video::SColor((irr::u32)color), (close_top == 0 ? false : true) );
+
+    if(!mesh)
+        return -1;
+
+    int mesh_id = rc_mesh.size();
+    rc_mesh_obj mesh_obj;
+    mesh_obj.mesh = mesh;
+    mesh_obj.mesh_type = RC_MESH_TYPE_NONE;
+
+    rc_mesh.push_back(mesh_obj);
+
+    return mesh_id;
+}
+
+
+int rc_createVolumeLightMesh( double u, double v, double foot_color, double tail_color, double lp_distance, double dim_x, double dim_y, double dim_z )
+{
+	const irr::scene::IGeometryCreator* gc = SceneManager->getGeometryCreator();
+
+	irr::scene::IMesh* mesh = gc->createVolumeLightMesh( (irr::u32)u, (irr::u32)v, irr::video::SColor((irr::u32)foot_color),
+												   irr::video::SColor((irr::u32)tail_color), (irr::f32)lp_distance,
+												   irr::core::vector3df((irr::f32)dim_x, (irr::f32)dim_y, (irr::f32)dim_z) );
+
+    if(!mesh)
+        return -1;
+
+    int mesh_id = rc_mesh.size();
+    rc_mesh_obj mesh_obj;
+    mesh_obj.mesh = mesh;
+    mesh_obj.mesh_type = RC_MESH_TYPE_NONE;
 
     rc_mesh.push_back(mesh_obj);
 

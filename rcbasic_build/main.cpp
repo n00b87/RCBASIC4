@@ -145,7 +145,7 @@ bool rc_preprocessor()
                 }
             }
 
-            cout << "\nDEBUG INCLUDE ABS_PATH:" << inc_file.filename << endl << endl;
+            //cout << "\nDEBUG INCLUDE ABS_PATH:" << inc_file.filename << endl << endl;
             inc_file.line_number = 0;
             inc_file.line_position = 0;
             inc_file.dbg_inc_index = inc_files.size();
@@ -920,7 +920,7 @@ int main(int argc, char * argv[])
 
     //DEBUG START
     //chdir("/home/n00b/Programs/RCBasic_v400_Linux64/examples/Spinning Axis");
-    //rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Spinning Axis/main.bas";
+    //rc_filename = "/home/n00b/test/stp/serenity_main.bas";
 	//rc_filename = "/home/n00b/Downloads/Tile Scrolling/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Constraint/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Simple 3D Platformer/main.bas";
@@ -957,7 +957,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Compiler v4.1" << endl;
+        cout << "RCBASIC Compiler v4.2a" << endl;
         return 0;
     }
 

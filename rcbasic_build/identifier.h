@@ -352,6 +352,15 @@ bool memberExists(string member_name)
 bool add_type_member(string member_name, int member_type, string member_utype_name, int member_dim_count, string dim1 = "n0", string dim2 = "n0", string dim3 = "n0")
 {
     int m_utype_index = member_utype_name.compare("")!=0 ? getUType(member_utype_name) : -1;
+
+    //cout << "m_utype_index = " << m_utype_index << " : " << member_utype_name << endl;
+
+    if((member_utype_name.compare("")!=0) && m_utype_index < 0)
+	{
+		rc_setError(member_utype_name + " does not name a valid type");
+		return false;
+	}
+
     if(m_utype_index == current_type_index)
     {
         //cout << "you canno do is" << endl;

@@ -1240,6 +1240,20 @@ string rc_keywordToken(string sline)
 		return "<num>1";
 	else if(sline.compare("SPRITE_TYPE_DYNAMIC")==0)
 		return "<num>2";
+	else if(sline.compare("COLOR_MASK_NONE")==0)
+		return "<num>0";
+	else if(sline.compare("COLOR_MASK_ALPHA")==0)
+		return "<num>1";
+	else if(sline.compare("COLOR_MASK_RED")==0)
+		return "<num>2";
+	else if(sline.compare("COLOR_MASK_GREEN")==0)
+		return "<num>4";
+	else if(sline.compare("COLOR_MASK_BLUE")==0)
+		return "<num>8";
+	else if(sline.compare("COLOR_MASK_RGB")==0)
+		return "<num>14";
+	else if(sline.compare("COLOR_MASK_ALL")==0)
+		return "<num>15";
 	else
     {
         for(int i = 0; i < rc_constants.size(); i++)

@@ -451,7 +451,7 @@ irr::core::array<rc_material_obj> rc_material;
 struct rc_mesh_obj
 {
     int mesh_type = 0;
-    irr::scene::IAnimatedMesh* mesh;
+    irr::scene::IMesh* mesh;
 };
 irr::core::array<rc_mesh_obj> rc_mesh;
 
@@ -471,6 +471,7 @@ irr::core::array<rc_an8_obj> rc_an8;
 #define RC_NODE_TYPE_WATER		5
 #define RC_NODE_TYPE_BILLBOARD	6
 #define RC_NODE_TYPE_PARTICLE	7
+#define RC_NODE_TYPE_STMESH   	8
 
 
 #define RC_NODE_SHAPE_TYPE_NONE			0

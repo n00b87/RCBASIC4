@@ -54,8 +54,8 @@
 		</p>
 		<p id="rc_code"><code>
 			<span class="rc_keyword">Function</span>&nbsp;&nbsp;MyFunc<b>(</b>a,&nbsp;b<b>)</b>&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;c&nbsp;=&nbsp;a&nbsp;+&nbsp;b&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Return</span>&nbsp;c&nbsp;<br>
+			c&nbsp;=&nbsp;a&nbsp;+&nbsp;b&nbsp;<br>
+			<span class="rc_keyword">Return</span>&nbsp;c&nbsp;<br>
 			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Function</span>&nbsp;<br>
 		</code></p>
 		<p>
@@ -72,7 +72,7 @@
 		</p>
 		<p id="rc_code"><code>
 			<span class="rc_keyword">Function</span>&nbsp;MyString$&nbsp;<b>(</b>&nbsp;G$&nbsp;<b>)</b>&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Return</span>&nbsp;<span class="rc_string">"YOU ENTERED "</span>&nbsp;+&nbsp;G$&nbsp;<br>
+			<span class="rc_keyword">Return</span>&nbsp;<span class="rc_string">"YOU ENTERED "</span>&nbsp;+&nbsp;G$&nbsp;<br>
 			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Function</span>&nbsp;<br>
 			&nbsp;&nbsp;<br>
 			<span class="rc_keyword">Print</span>&nbsp;MyString<b>(</b><span class="rc_string">"SOMETHING"</span><b>)</b>&nbsp;<br>
@@ -88,15 +88,15 @@
 		</p>
 		<p id="rc_code"><code>
 			<span class="rc_keyword">Type</span>&nbsp;test_type&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Dim</span>&nbsp;a$&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Dim</span>&nbsp;b&nbsp;<br>
+			<span class="rc_keyword">Dim</span>&nbsp;a$&nbsp;<br>
+			<span class="rc_keyword">Dim</span>&nbsp;b&nbsp;<br>
 			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Type</span>&nbsp;<br>
 			&nbsp;&nbsp;<br>
 			<span class="rc_keyword">Function</span>&nbsp;test<b>(</b>a$,&nbsp;b<b>)</b>&nbsp;<span class="rc_keyword">As</span>&nbsp;test_type&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Dim</span>&nbsp;ret_val&nbsp;<span class="rc_keyword">As</span>&nbsp;test_type&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;ret_val.a&nbsp;=&nbsp;a&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;ret_val.b&nbsp;=&nbsp;b&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Return</span>&nbsp;ret_val&nbsp;<br>
+			<span class="rc_keyword">Dim</span>&nbsp;ret_val&nbsp;<span class="rc_keyword">As</span>&nbsp;test_type&nbsp;<br>
+			ret_val.a&nbsp;=&nbsp;a&nbsp;<br>
+			ret_val.b&nbsp;=&nbsp;b&nbsp;<br>
+			<span class="rc_keyword">Return</span>&nbsp;ret_val&nbsp;<br>
 			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Function</span>&nbsp;<br>
 			&nbsp;&nbsp;<br>
 			<span class="rc_keyword">Dim</span>&nbsp;myVar&nbsp;<span class="rc_keyword">as</span>&nbsp;test_type&nbsp;<br>
@@ -107,8 +107,8 @@
 		 You can also have a UDT as a parameter in a function: 
 		</p>
 		<p id="rc_code"><code>
-			<span class="rc_keyword">Function</span>&nbsp;<span class="rc_number">2</span><b>(</b>n&nbsp;<span class="rc_keyword">as</span>&nbsp;test_type,&nbsp;j<b>)</b>&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Return</span>&nbsp;<span class="rc_number">0</span>&nbsp;<br>
+			<span class="rc_keyword">Function</span>&nbsp;test2<b>(</b>n&nbsp;<span class="rc_keyword">as</span>&nbsp;test_type,&nbsp;j<b>)</b>&nbsp;<br>
+			<span class="rc_keyword">Return</span>&nbsp;<span class="rc_number">0</span>&nbsp;<br>
 			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Function</span>&nbsp;<br>
 		</code></p>
 		<p>
@@ -116,9 +116,9 @@
 		</p>
 		<p id="rc_code"><code>
 			<span class="rc_keyword">Sub</span>&nbsp;MySub&nbsp;<b>(</b>&nbsp;<b>)</b>&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">For</span>&nbsp;i&nbsp;=&nbsp;<span class="rc_number">1</span>&nbsp;<span class="rc_keyword">To</span>&nbsp;<span class="rc_number">5</span>&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;i&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Next</span>&nbsp;<br>
+			<span class="rc_keyword">For</span>&nbsp;i&nbsp;=&nbsp;<span class="rc_number">1</span>&nbsp;<span class="rc_keyword">To</span>&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+			&nbsp;&nbsp;&nbsp;<span class="rc_keyword">Print</span>&nbsp;i&nbsp;<br>
+			<span class="rc_keyword">Next</span>&nbsp;<br>
 			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Sub</span>&nbsp;<br>
 			&nbsp;&nbsp;<br>
 			MySub&nbsp;<b>(</b>&nbsp;<b>)</b>&nbsp;<br>
@@ -131,7 +131,7 @@
 		</p>
 		<p id="rc_code"><code>
 			<span class="rc_keyword">Sub</span>&nbsp;&nbsp;MySub&nbsp;<b>(</b>&nbsp;a&nbsp;<b>)</b>&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;a&nbsp;=&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+			a&nbsp;=&nbsp;<span class="rc_number">5</span>&nbsp;<br>
 			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Sub</span>&nbsp;<br>
 			&nbsp;&nbsp;<br>
 			n&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
@@ -144,7 +144,7 @@
 		</p>
 		<p id="rc_code"><code>
 			<span class="rc_keyword">Sub</span>&nbsp;MySub&nbsp;<b>(</b>&nbsp;<span class="rc_keyword">ByRef</span>&nbsp;a&nbsp;<b>)</b>&nbsp;<br>
-			&nbsp;&nbsp;&nbsp;a&nbsp;=&nbsp;<span class="rc_number">5</span>&nbsp;<br>
+			a&nbsp;=&nbsp;<span class="rc_number">5</span>&nbsp;<br>
 			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">Sub</span>&nbsp;<br>
 			&nbsp;&nbsp;<br>
 			n&nbsp;=&nbsp;<span class="rc_number">0</span>&nbsp;<br>
@@ -153,7 +153,7 @@
 			<span class="rc_keyword">Print</span>&nbsp;n&nbsp;<br>
 		</code></p>
 		<p>
-		 The above code is the same as the previous example except that now we use the <b>BYREF</b> keyword to change a to a reference rather than a value.  This means the when we pass the variable N to MYSUB, instead of the value stored in N being used as A, whatever we do to A will be done to N directly.  This example will output 5 to the console.  
+		 The above code is the same as the previous example except that now we use the <b>BYREF</b> keyword to change a to a reference rather than a value.  This means the when we pass the variable N to MYSUB, instead of the value stored in N being used as A, whatever we do to A will be done to N directly.  This example will output 5 to the console. 
 		</p>
 		<p>
 
