@@ -172,6 +172,14 @@ std::string rc_getAN8SceneName(int an8_id, int scene_num)
 	return rc_an8[an8_id].project.scenes[scene_num].name;
 }
 
+void rc_deleteAN8(int an8_id)
+{
+	if(an8_id < 0 || an8_id >= rc_an8.size())
+		return;
+
+	rc_an8[an8_id].active = false;
+}
+
 //delete mesh
 void rc_deleteMesh(int mesh_id)
 {

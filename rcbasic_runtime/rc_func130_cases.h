@@ -1988,6 +1988,9 @@ case FN_CreateCylinderMesh: //Number Function
 case FN_CreateVolumeLightMesh: //Number Function
 	 rc_push_num(rc_createVolumeLightMesh( CREATEVOLUMELIGHTMESH_U,  CREATEVOLUMELIGHTMESH_V,  CREATEVOLUMELIGHTMESH_FOOT_COLOR,  CREATEVOLUMELIGHTMESH_TAIL_COLOR,  CREATEVOLUMELIGHTMESH_LP_DISTANCE,  CREATEVOLUMELIGHTMESH_DIM_X,  CREATEVOLUMELIGHTMESH_DIM_Y,  CREATEVOLUMELIGHTMESH_DIM_Z ));
 	break;
+case FN_DeleteAN8: //Sub Procedure
+	rc_deleteAN8( DELETEAN8_AN8_PROJECT );
+	break;
 case FN_CreateAnimatedActor: //Number Function
 	 rc_push_num(rc_createAnimatedActor( CREATEANIMATEDACTOR_MESH ));
 	break;

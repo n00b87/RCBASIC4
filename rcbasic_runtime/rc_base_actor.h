@@ -1012,9 +1012,11 @@ void rc_addActorShadow(int actor)
     {
     	case RC_NODE_TYPE_TERRAIN:
         case RC_NODE_TYPE_OTMESH:
+		case RC_NODE_TYPE_STMESH:
         case RC_NODE_TYPE_MESH:
-            irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
-            rc_actor[actor].shadow = node->addShadowVolumeSceneNode();
+            irr::scene::IMeshSceneNode* node = (irr::scene::IMeshSceneNode*)rc_actor[actor].mesh_node;
+            if(!rc_actor[actor].shadow)
+				rc_actor[actor].shadow = node->addShadowVolumeSceneNode();
             break;
     }
 }
@@ -1031,9 +1033,12 @@ void rc_removeActorShadow(int actor)
     {
         case RC_NODE_TYPE_TERRAIN:
         case RC_NODE_TYPE_OTMESH:
+		case RC_NODE_TYPE_STMESH:
         case RC_NODE_TYPE_MESH:
-            irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
-            node->removeChild(rc_actor[actor].shadow);
+            irr::scene::ISceneNode* node = rc_actor[actor].mesh_node;
+            if(rc_actor[actor].shadow)
+				node->removeChild(rc_actor[actor].shadow);
+            rc_actor[actor].shadow = NULL;
             break;
     }
 }
@@ -1134,12 +1139,10 @@ void rc_setLightAmbientColor(int actor, Uint32 color)
     {
         case RC_NODE_TYPE_LIGHT:
             irr::scene::ILightSceneNode* node = (irr::scene::ILightSceneNode*)rc_actor[actor].mesh_node;
-            irr::video::SColor c;
-            c.set(color);
+            irr::video::SColor c(color);
             irr::video::SColorf cf(c);
-            irr::video::SLight light_data = node->getLightData();
-            light_data.AmbientColor = cf;
-            node->setLightData(light_data);
+            node->getLightData().AmbientColor = cf;
+            break;
     }
 }
 
@@ -1168,9 +1171,8 @@ void rc_setLightAttenuation(int actor, double l_constant, double l_linear, doubl
     {
         case RC_NODE_TYPE_LIGHT:
             irr::scene::ILightSceneNode* node = (irr::scene::ILightSceneNode*)rc_actor[actor].mesh_node;
-            irr::video::SLight light_data = node->getLightData();
-            light_data.Attenuation.set(l_constant, l_linear, l_quadratic);
-            node->setLightData(light_data);
+            node->getLightData().Attenuation.set(l_constant, l_linear, l_quadratic);
+            break;
     }
 }
 
@@ -1203,12 +1205,10 @@ void rc_setLightDiffuseColor(int actor, Uint32 color)
     {
         case RC_NODE_TYPE_LIGHT:
             irr::scene::ILightSceneNode* node = (irr::scene::ILightSceneNode*)rc_actor[actor].mesh_node;
-            irr::video::SColor c;
-            c.set(color);
+            irr::video::SColor c(color);
             irr::video::SColorf cf(c);
-            irr::video::SLight light_data = node->getLightData();
-            light_data.DiffuseColor = cf;
-            node->setLightData(light_data);
+            node->getLightData().DiffuseColor = cf;
+            break;
     }
 }
 
@@ -1237,9 +1237,8 @@ void rc_setLightFalloff(int actor, double falloff)
     {
         case RC_NODE_TYPE_LIGHT:
             irr::scene::ILightSceneNode* node = (irr::scene::ILightSceneNode*)rc_actor[actor].mesh_node;
-            irr::video::SLight light_data = node->getLightData();
-            light_data.Falloff = falloff;
-            node->setLightData(light_data);
+            node->getLightData().Falloff = falloff;
+            break;
     }
 }
 
@@ -1268,9 +1267,8 @@ void rc_setLightInnerCone(int actor, double angle)
     {
         case RC_NODE_TYPE_LIGHT:
             irr::scene::ILightSceneNode* node = (irr::scene::ILightSceneNode*)rc_actor[actor].mesh_node;
-            irr::video::SLight light_data = node->getLightData();
-            light_data.InnerCone = angle;
-            node->setLightData(light_data);
+            node->getLightData().InnerCone = angle;
+            break;
     }
 }
 
@@ -1299,9 +1297,8 @@ void rc_setLightOuterCone(int actor, double angle)
     {
         case RC_NODE_TYPE_LIGHT:
             irr::scene::ILightSceneNode* node = (irr::scene::ILightSceneNode*)rc_actor[actor].mesh_node;
-            irr::video::SLight light_data = node->getLightData();
-            light_data.OuterCone = angle;
-            node->setLightData(light_data);
+            node->getLightData().OuterCone = angle;
+            break;
     }
 }
 
@@ -1330,12 +1327,10 @@ void rc_setLightSpecularColor(int actor, Uint32 color)
     {
         case RC_NODE_TYPE_LIGHT:
             irr::scene::ILightSceneNode* node = (irr::scene::ILightSceneNode*)rc_actor[actor].mesh_node;
-            irr::video::SColor c;
-            c.set(color);
+            irr::video::SColor c(color);
             irr::video::SColorf cf(c);
-            irr::video::SLight light_data = node->getLightData();
-            light_data.SpecularColor = cf;
-            node->setLightData(light_data);
+            node->getLightData().SpecularColor = cf;
+            break;
     }
 }
 

@@ -1973,6 +1973,8 @@ void init_embedded_functions()
 	add_embedded_arg("dim_x", ID_TYPE_NUM);
 	add_embedded_arg("dim_y", ID_TYPE_NUM);
 	add_embedded_arg("dim_z", ID_TYPE_NUM);
+	embed_function("DeleteAN8", ID_TYPE_SUB);
+	add_embedded_arg("an8_project", ID_TYPE_NUM);
 	embed_function("CreateAnimatedActor", ID_TYPE_FN_NUM);
 	add_embedded_arg("mesh", ID_TYPE_NUM);
 	embed_function("CreateOctreeActor", ID_TYPE_FN_NUM);
