@@ -371,6 +371,9 @@ int rc_createSprite(int img_id, double w, double h)
 	rc_sprite[spr_id].physics.shape = new b2PolygonShape();
 	b2PolygonShape* fix_shape = (b2PolygonShape*)rc_sprite[spr_id].physics.shape;
 	fix_shape->SetAsBox(w/2, h/2);
+	rc_sprite[spr_id].physics.shape_type = RC_SPRITE_SHAPE_BOX;
+	rc_sprite[spr_id].physics.box_width = w;
+	rc_sprite[spr_id].physics.box_height = h;
 	sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
 	sprFixtureDef.isSensor = true;
 	sprFixtureDef.density = 1;
@@ -473,6 +476,335 @@ int rc_getSpriteSource(int spr_id)
 	return rc_sprite[spr_id].image_id;
 }
 
+void rc_setSpriteCollisionShape(int spr_id, int sprite_shape)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	//Delete Shape
+	bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
+	float density = rc_sprite[spr_id].physics.fixture->GetDensity();
+
+	if(rc_sprite[spr_id].physics.shape)
+		delete rc_sprite[spr_id].physics.shape;
+
+	rc_sprite[spr_id].physics.shape = NULL;
+
+	//Delete Fixture
+	if(rc_sprite[spr_id].physics.fixture)
+		rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+
+	rc_sprite[spr_id].physics.fixture = NULL;
+
+
+	b2FixtureDef sprFixtureDef;
+
+	switch(sprite_shape)
+	{
+		case RC_SPRITE_SHAPE_BOX:
+		{
+			rc_sprite[spr_id].physics.shape = new b2PolygonShape();
+			b2PolygonShape* fix_shape = (b2PolygonShape*)rc_sprite[spr_id].physics.shape;
+			fix_shape->SetAsBox(rc_sprite[spr_id].frame_size.Width/2, rc_sprite[spr_id].frame_size.Height/2);
+			rc_sprite[spr_id].physics.box_width = rc_sprite[spr_id].frame_size.Width;
+			rc_sprite[spr_id].physics.box_height = rc_sprite[spr_id].frame_size.Height;
+			sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
+			sprFixtureDef.isSensor = isSensor;
+			sprFixtureDef.density = density;
+			rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+			rc_sprite[spr_id].physics.shape_type = RC_SPRITE_SHAPE_BOX;
+		}
+		break;
+
+		case RC_SPRITE_SHAPE_POLYGON:
+		{
+			rc_sprite[spr_id].physics.shape = new b2PolygonShape();
+			b2PolygonShape* fix_shape = (b2PolygonShape*)rc_sprite[spr_id].physics.shape;
+			fix_shape->SetAsBox(rc_sprite[spr_id].frame_size.Width/2, rc_sprite[spr_id].frame_size.Width/2);
+			sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
+			sprFixtureDef.isSensor = isSensor;
+			sprFixtureDef.density = density;
+			rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+			rc_sprite[spr_id].physics.shape_type = RC_SPRITE_SHAPE_POLYGON;
+		}
+		break;
+
+		case RC_SPRITE_SHAPE_CIRCLE:
+		{
+			rc_sprite[spr_id].physics.shape = new b2CircleShape();
+			b2CircleShape* fix_shape = (b2CircleShape*)rc_sprite[spr_id].physics.shape;
+			fix_shape->m_radius = (rc_sprite[spr_id].frame_size.Width > rc_sprite[spr_id].frame_size.Height ? rc_sprite[spr_id].frame_size.Width : rc_sprite[spr_id].frame_size.Height) /2;
+			sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
+			sprFixtureDef.isSensor = isSensor;
+			sprFixtureDef.density = density;
+			rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+			rc_sprite[spr_id].physics.shape_type = RC_SPRITE_SHAPE_CIRCLE;
+		}
+		break;
+
+		case RC_SPRITE_SHAPE_CHAIN:
+		{
+			rc_sprite[spr_id].physics.shape = new b2ChainShape();
+			b2ChainShape* fix_shape = (b2ChainShape*)rc_sprite[spr_id].physics.shape;
+			b2Vec2 v[3];
+			v[0].Set(0, 0);
+			v[1].Set(1, 1);
+			v[2].Set(2, 2);
+			fix_shape->Clear();
+			fix_shape->CreateLoop(v, 3);
+			fix_shape->m_radius = (rc_sprite[spr_id].frame_size.Width > rc_sprite[spr_id].frame_size.Height ? rc_sprite[spr_id].frame_size.Width : rc_sprite[spr_id].frame_size.Height) /2;
+			sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
+			sprFixtureDef.isSensor = isSensor;
+			sprFixtureDef.density = density;
+			rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+			rc_sprite[spr_id].physics.shape_type = RC_SPRITE_SHAPE_CHAIN;
+		}
+		break;
+	}
+}
+
+int rc_getSpriteCollisionShape(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	return rc_sprite[spr_id].physics.shape_type;
+}
+
+void rc_setSpriteRadius(int spr_id, double radius)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	if(rc_sprite[spr_id].physics.shape_type == RC_SPRITE_SHAPE_CIRCLE)
+	{
+		bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
+		float density = rc_sprite[spr_id].physics.fixture->GetDensity();
+
+		//Delete Fixture
+		if(rc_sprite[spr_id].physics.fixture)
+			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+
+		rc_sprite[spr_id].physics.fixture = NULL;
+
+
+		b2FixtureDef sprFixtureDef;
+
+		b2CircleShape* fix_shape = (b2CircleShape*)rc_sprite[spr_id].physics.shape;
+		fix_shape->m_radius = (float)radius;
+		sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
+		sprFixtureDef.isSensor = isSensor;
+		sprFixtureDef.density = density;
+		rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+	}
+}
+
+double rc_getSpriteRadius(int spr_id)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return 0;
+
+	if(!rc_sprite[spr_id].active)
+		return 0;
+
+	if(rc_sprite[spr_id].physics.shape_type == RC_SPRITE_SHAPE_CIRCLE)
+	{
+		b2CircleShape* fix_shape = (b2CircleShape*)rc_sprite[spr_id].physics.shape;
+		return (double)fix_shape->m_radius;
+	}
+
+	return 0;
+}
+
+void rc_setSpriteBox(int spr_id, int w, int h)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	if(rc_sprite[spr_id].physics.shape_type == RC_SPRITE_SHAPE_BOX)
+	{
+		bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
+		float density = rc_sprite[spr_id].physics.fixture->GetDensity();
+
+		//Delete Fixture
+		if(rc_sprite[spr_id].physics.fixture)
+			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+
+		rc_sprite[spr_id].physics.fixture = NULL;
+
+
+		b2FixtureDef sprFixtureDef;
+
+		b2PolygonShape* fix_shape = (b2PolygonShape*)rc_sprite[spr_id].physics.shape;
+		fix_shape->SetAsBox(w/2, h/2);
+
+		rc_sprite[spr_id].physics.box_width = w;
+		rc_sprite[spr_id].physics.box_height = h;
+
+		sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
+		sprFixtureDef.isSensor = isSensor;
+		sprFixtureDef.density = density;
+		rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+	}
+}
+
+void rc_getSpriteBoxSize(int spr_id, double* w, double* h)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	*w = -1;
+	*h = -1;
+
+	if(rc_sprite[spr_id].physics.shape_type == RC_SPRITE_SHAPE_BOX)
+	{
+		*w = (double)rc_sprite[spr_id].physics.box_width;
+		*h = (double)rc_sprite[spr_id].physics.box_height;
+	}
+}
+
+
+void rc_setSpriteChain(int spr_id, double* vx, double* vy, int v_count, double prev_x, double prev_y, double next_x, double next_y)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	if(rc_sprite[spr_id].physics.shape_type == RC_SPRITE_SHAPE_CHAIN)
+	{
+		bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
+		float density = rc_sprite[spr_id].physics.fixture->GetDensity();
+
+		//Delete Fixture
+		if(rc_sprite[spr_id].physics.fixture)
+			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+
+		rc_sprite[spr_id].physics.fixture = NULL;
+
+
+		b2FixtureDef sprFixtureDef;
+
+		b2ChainShape* fix_shape = (b2ChainShape*)rc_sprite[spr_id].physics.shape;
+		fix_shape->Clear();
+
+		b2Vec2 vert[v_count+1];
+
+		for(int i = 0; i < v_count; i++)
+		{
+			vert[i] = b2Vec2((float)vx[i], (float)vy[i]);
+		}
+
+		b2Vec2 prev_vert((float)prev_x, (float)prev_y);
+		b2Vec2 next_vert((float)next_x, (float)next_y);
+		fix_shape->CreateChain(vert, v_count, prev_vert, next_vert);
+
+		sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
+		sprFixtureDef.isSensor = isSensor;
+		sprFixtureDef.density = density;
+		rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+	}
+}
+
+void rc_setSpriteChainLoop(int spr_id, double* vx, double* vy, int v_count)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	if(rc_sprite[spr_id].physics.shape_type == RC_SPRITE_SHAPE_CHAIN)
+	{
+		bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
+		float density = rc_sprite[spr_id].physics.fixture->GetDensity();
+
+		//Delete Fixture
+		if(rc_sprite[spr_id].physics.fixture)
+			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+
+		rc_sprite[spr_id].physics.fixture = NULL;
+
+
+		b2FixtureDef sprFixtureDef;
+
+		b2ChainShape* fix_shape = (b2ChainShape*)rc_sprite[spr_id].physics.shape;
+		fix_shape->Clear();
+
+		b2Vec2 vert[v_count];
+
+		for(int i = 0; i < v_count; i++)
+		{
+			vert[i] = b2Vec2((float)vx[i], (float)vy[i]);
+		}
+
+		fix_shape->CreateLoop(vert, v_count);
+
+		sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
+		sprFixtureDef.isSensor = isSensor;
+		sprFixtureDef.density = density;
+		rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+	}
+}
+
+void rc_setSpritePolygon(int spr_id, double* vx, double* vy, int v_count)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	if(v_count < 3)
+		return; // A convex hull must have atleast 3 points
+
+	if(rc_sprite[spr_id].physics.shape_type == RC_SPRITE_SHAPE_POLYGON)
+	{
+		bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
+		float density = rc_sprite[spr_id].physics.fixture->GetDensity();
+
+		//Delete Fixture
+		if(rc_sprite[spr_id].physics.fixture)
+			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+
+		rc_sprite[spr_id].physics.fixture = NULL;
+
+
+		b2FixtureDef sprFixtureDef;
+
+		b2PolygonShape* fix_shape = (b2PolygonShape*)rc_sprite[spr_id].physics.shape;
+
+		b2Vec2 vert[v_count];
+
+		for(int i = 0; i < v_count; i++)
+		{
+			vert[i] = b2Vec2((float)vx[i], (float)vy[i]);
+		}
+
+		fix_shape->Set(vert, v_count);
+
+		sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
+		sprFixtureDef.isSensor = isSensor;
+		sprFixtureDef.density = density;
+		rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+	}
+}
 
 void rc_setSpriteType(int spr_id, int body_type)
 {

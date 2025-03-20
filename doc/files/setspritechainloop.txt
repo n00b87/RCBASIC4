@@ -1,0 +1,10 @@
+#title SetSpriteChainLoop [RCBasic Doc]
+#header Sub SetSpriteChainLoop(spr_id, ByRef vx, ByRef vy, v_count)
+
+Sets the points in a collision chain loop
+
+NOTE: Since it is a loop, the shape will be a closed
+
+NOTE: Sprite collision shape must be SPRITE_SHAPE_CHAIN
+
+

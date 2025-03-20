@@ -919,9 +919,9 @@ int main(int argc, char * argv[])
     bool clean_after_build = true;
 
     //DEBUG START
-    //chdir("/home/n00b/Programs/RCBasic_v400_Linux64/examples/Spinning Axis");
+    //chdir("/home/n00b/test/SpriteShapeTest");
     //rc_filename = "/home/n00b/test/stp/serenity_main.bas";
-	//rc_filename = "/home/n00b/Downloads/Tile Scrolling/main.bas";
+	//rc_filename = "/home/n00b/test/SpriteShapeTest/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Constraint/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Simple 3D Platformer/main.bas";
     //DEBUG END

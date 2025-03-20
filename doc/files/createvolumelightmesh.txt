@@ -1,0 +1,4 @@
+#title CreateVolumeLightMesh [RCBasic Doc]
+#header Function CreateVolumeLightMesh( u, v, foot_color, tail_color, lp_distance, dim_x, dim_y, dim_z )
+
+
