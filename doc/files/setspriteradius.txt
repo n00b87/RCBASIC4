@@ -1,0 +1,8 @@
+#title SetSpriteRadius [RCBasic Doc]
+#header Sub SetSpriteRadius(spr_id, radius)
+
+Sets the radius of a sprites collision shape
+
+NOTE: Does nothing if collision shape is not SPRITE_SHAPE_CIRCLE
+
+#ref GetSpriteRadius

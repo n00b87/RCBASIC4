@@ -1,0 +1,8 @@
+#title GetSpriteBoxSize [RCBasic Doc]
+#header Sub GetSpriteBoxSize(spr_id, ByRef w, ByRef h)
+
+Returns the size of the collision box on a sprite.
+
+NOTE: Returns (-1, -1) if the collision shape is not a box
+
+#ref SetSpriteBox

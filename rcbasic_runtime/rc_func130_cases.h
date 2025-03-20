@@ -1694,6 +1694,33 @@ case FN_CastRay2D_All: //Number Function
 case FN_GetRayHit2D: //Sub Procedure
 	rc_getRayHit2D( GETRAYHIT2D_INDEX,  &GETRAYHIT2D_SPR_ID,  &GETRAYHIT2D_X,  &GETRAYHIT2D_Y,  &GETRAYHIT2D_NORMAL_X,  &GETRAYHIT2D_NORMAL_Y );
 	break;
+case FN_SetSpriteCollisionShape: //Sub Procedure
+	rc_setSpriteCollisionShape( SETSPRITECOLLISIONSHAPE_SPR_ID,  SETSPRITECOLLISIONSHAPE_SHAPE );
+	break;
+case FN_GetSpriteCollisionShape: //Number Function
+	 rc_push_num(rc_getSpriteCollisionShape( GETSPRITECOLLISIONSHAPE_SPR_ID ));
+	break;
+case FN_SetSpriteRadius: //Sub Procedure
+	rc_setSpriteRadius( SETSPRITERADIUS_SPR_ID,  SETSPRITERADIUS_RADIUS );
+	break;
+case FN_GetSpriteRadius: //Number Function
+	 rc_push_num(rc_getSpriteRadius( GETSPRITERADIUS_SPR_ID ));
+	break;
+case FN_SetSpriteBox: //Sub Procedure
+	rc_setSpriteBox( SETSPRITEBOX_SPR_ID,  SETSPRITEBOX_W,  SETSPRITEBOX_H );
+	break;
+case FN_GetSpriteBoxSize: //Sub Procedure
+	rc_getSpriteBoxSize( GETSPRITEBOXSIZE_SPR_ID,  &GETSPRITEBOXSIZE_W,  &GETSPRITEBOXSIZE_H );
+	break;
+case FN_SetSpriteChain: //Sub Procedure
+	rc_setSpriteChain( SETSPRITECHAIN_SPR_ID,  &SETSPRITECHAIN_VX,  &SETSPRITECHAIN_VY,  SETSPRITECHAIN_V_COUNT,  SETSPRITECHAIN_PREV_X,  SETSPRITECHAIN_PREV_Y,  SETSPRITECHAIN_NEXT_X,  SETSPRITECHAIN_NEXT_Y );
+	break;
+case FN_SetSpriteChainLoop: //Sub Procedure
+	rc_setSpriteChainLoop( SETSPRITECHAINLOOP_SPR_ID,  &SETSPRITECHAINLOOP_VX,  &SETSPRITECHAINLOOP_VY,  SETSPRITECHAINLOOP_V_COUNT );
+	break;
+case FN_SetSpritePolygon: //Sub Procedure
+	rc_setSpritePolygon( SETSPRITEPOLYGON_SPR_ID,  &SETSPRITEPOLYGON_VX,  &SETSPRITEPOLYGON_VY,  SETSPRITEPOLYGON_V_COUNT );
+	break;
 case FN_createDistanceJoint: //Number Function
 	 rc_push_num(rc_createDistanceJoint( CREATEDISTANCEJOINT_SPRITEA,  CREATEDISTANCEJOINT_SPRITEB,  CREATEDISTANCEJOINT_AX,  CREATEDISTANCEJOINT_AY,  CREATEDISTANCEJOINT_BX,  CREATEDISTANCEJOINT_BY,  CREATEDISTANCEJOINT_COLLIDE_CONNECT ));
 	break;

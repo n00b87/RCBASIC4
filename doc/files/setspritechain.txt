@@ -1,0 +1,7 @@
+#title SetSpriteChain [RCBasic Doc]
+#header Sub SetSpriteChain(spr_id, ByRef vx, ByRef vy, v_count, prev_x, prev_y, next_x, next_y)
+
+Sets the points in a collision chain
+
+NOTE: Sprite collision shape must be SPRITE_SHAPE_CHAIN
+

@@ -1008,21 +1008,21 @@ string rc_keywordToken(string sline)
 		return "<num>" + rc_intToString((int)SDL_FLASH_BRIEFLY);
     else if(sline.compare("FLASH_UNTIL_FOCUSED")==0)
 		return "<num>" + rc_intToString((int)SDL_FLASH_UNTIL_FOCUSED);
-	else if(sline.compare("SHAPE_TYPE_NONE")==0)
+	else if(sline.compare("ACTOR_SHAPE_NONE")==0)
 		return "<num>0";
-	else if(sline.compare("SHAPE_TYPE_BOX")==0)
+	else if(sline.compare("ACTOR_SHAPE_BOX")==0)
 		return "<num>1";
-	else if(sline.compare("SHAPE_TYPE_SPHERE")==0)
+	else if(sline.compare("ACTOR_SHAPE_SPHERE")==0)
 		return "<num>2";
-	else if(sline.compare("SHAPE_TYPE_CYLINDER")==0)
+	else if(sline.compare("ACTOR_SHAPE_CYLINDER")==0)
 		return "<num>3";
-	else if(sline.compare("SHAPE_TYPE_CAPSULE")==0)
+	else if(sline.compare("ACTOR_SHAPE_CAPSULE")==0)
 		return "<num>4";
-	else if(sline.compare("SHAPE_TYPE_CONE")==0)
+	else if(sline.compare("ACTOR_SHAPE_CONE")==0)
 		return "<num>5";
-	else if(sline.compare("SHAPE_TYPE_CONVEXHULL")==0)
+	else if(sline.compare("ACTOR_SHAPE_CONVEXHULL")==0)
 		return "<num>6";
-	else if(sline.compare("SHAPE_TYPE_TRIMESH")==0)
+	else if(sline.compare("ACTOR_SHAPE_TRIMESH")==0)
 		return "<num>7";
 	else if(sline.compare("MATERIAL_FLAG_WIREFRAME")==0)
 		return "<num>" + rc_intToString( 0x1);
@@ -1254,6 +1254,16 @@ string rc_keywordToken(string sline)
 		return "<num>14";
 	else if(sline.compare("COLOR_MASK_ALL")==0)
 		return "<num>15";
+	else if(sline.compare("SPRITE_SHAPE_NONE")==0)
+		return "<num>0";
+	else if(sline.compare("SPRITE_SHAPE_BOX")==0)
+		return "<num>1";
+	else if(sline.compare("SPRITE_SHAPE_POLYGON")==0)
+		return "<num>2";
+	else if(sline.compare("SPRITE_SHAPE_CIRCLE")==0)
+		return "<num>3";
+	else if(sline.compare("SPRITE_SHAPE_CHAIN")==0)
+		return "<num>4";
 	else
     {
         for(int i = 0; i < rc_constants.size(); i++)

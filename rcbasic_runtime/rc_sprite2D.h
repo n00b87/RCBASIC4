@@ -4,14 +4,24 @@
 #include <irrlicht.h>
 #include <box2d/box2d.h>
 
+#define RC_SPRITE_SHAPE_BOX		1
+#define RC_SPRITE_SHAPE_POLYGON	2
+#define RC_SPRITE_SHAPE_CIRCLE	3
+#define RC_SPRITE_SHAPE_CHAIN	4
+
 struct rc_sprite2D_physics_obj
 {
 	b2Body* body;
 	b2Fixture* fixture;
 	b2Shape* shape;
 
+	int shape_type;
+
 	int offset_x;
 	int offset_y;
+
+	int box_width;
+	int box_height;
 };
 
 struct rc_sprite2D_animation_obj

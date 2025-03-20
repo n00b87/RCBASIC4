@@ -1,0 +1,6 @@
+#title SetSpriteBox [RCBasic Doc]
+#header Sub SetSpriteBox(spr_id, w, h)
+
+Sets the width and Height of a sprite collision box
+
+NOTE: Sprite collision shape must be SPRITE_SHAPE_BOX

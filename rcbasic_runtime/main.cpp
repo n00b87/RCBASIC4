@@ -4443,18 +4443,9 @@ int main(int argc, char * argv[])
 
     //ogles2 test
     #ifdef RC_TESTING
-    std::string debug_opt = "a";
-    std::cin >> debug_opt;
-    if(debug_opt.compare("a")==0)
-	{
-		rc_intern_dirChange("/home/n00b/test/stp/");
-		//rc_intern_dirChange("");
-		rc_filename = "serenity_main.cbc";
-	}
-    else
-	{
-		rc_intern_dirChange("/home/n00b/Programs/RCBasic_v400_Linux64/examples/Simple 3D Platformer/");
-	}
+    rc_intern_dirChange("/home/n00b/test/SpriteShapeTest");
+	//rc_intern_dirChange("");
+	rc_filename = "main.cbc";
     #endif
     //---------------
 
