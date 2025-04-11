@@ -1,0 +1,4 @@
+#title ConvertToNormalMap [RCBasic Doc]
+#header sub ConvertToNormalMap(img_id, amp)
+
+Converts an image to a format for normal maps

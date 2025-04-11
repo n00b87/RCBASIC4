@@ -1,0 +1,6 @@
+#title GetMaterialConstant [RCBasic Doc]
+#header Sub GetMaterialConstant(material, m_constant$, ByRef n1, ByRef n2, ByRef n3, ByRef n4)
+
+Gets the constant value of an FX material
+
+#ref SetMaterialConstant

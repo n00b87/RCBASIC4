@@ -1,0 +1,6 @@
+#title SetSceneShadowColor [RCBasic Doc]
+#header Sub SetSceneShadowColor(color)
+
+Sets the shadow color of the scene
+
+#ref GetSceneShadowColor

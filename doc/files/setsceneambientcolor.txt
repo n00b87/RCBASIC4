@@ -1,0 +1,6 @@
+#title SetSceneAmbientColor [RCBasic Doc]
+#header Sub SetSceneAmbientColor(color)
+
+Sets the ambient light color of the scene
+
+#ref GetSceneAmbientColor

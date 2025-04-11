@@ -1,0 +1,8 @@
+#title GetMaterialConstantName$ [RCBasic Doc]
+#header Function GetMaterialConstantName$(material_type, index)
+
+Returns the name of a uniform for an FX material type
+
+NOTE: index should be a number between 0 and NumMaterialConstants
+
+#ref NumMaterialConstants

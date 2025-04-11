@@ -67,6 +67,10 @@
 		<Unit filename="../../irrBullet/src/irrBulletTriangleMeshShape.cpp" />
 		<Unit filename="../../irrBullet/src/irrBulletWorld.cpp" />
 		<Unit filename="../../irrBullet/src/irrBulletcommon.cpp" />
+		<Unit filename="CShader.cpp" />
+		<Unit filename="CShader.h" />
+		<Unit filename="ProjectiveTextures.cpp" />
+		<Unit filename="ProjectiveTextures.h" />
 		<Unit filename="RealisticWater.cpp" />
 		<Unit filename="RealisticWater.h" />
 		<Unit filename="camera.h" />
@@ -83,6 +87,8 @@
 		<Unit filename="rc_defines.h" />
 		<Unit filename="rc_font.h" />
 		<Unit filename="rc_func130_cases.h" />
+		<Unit filename="rc_fx_materials.h" />
+		<Unit filename="rc_fx_shaders.h" />
 		<Unit filename="rc_geometry.h" />
 		<Unit filename="rc_gfx.h" />
 		<Unit filename="rc_gfx3D.h" />

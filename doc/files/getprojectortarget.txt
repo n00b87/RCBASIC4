@@ -1,0 +1,6 @@
+#title GetProjectorTarget [RCBasic Doc]
+#header Sub GetProjectorTarget(actor, ByRef x, ByRef y, ByRef z)
+
+Get the point a projector is looking at
+
+#ref SetProjectorTarget

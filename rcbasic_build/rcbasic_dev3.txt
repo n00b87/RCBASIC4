@@ -769,6 +769,9 @@ case FN_SetAntiAliasMode: //Sub Procedure
 case FN_GetAntiAliasMode: //Number Function
 	 rc_push_num(rc_getAntiAliasMode(  ));
 	break;
+case FN_ConvertToNormalMap: //Sub Procedure
+	rc_convertToNormalMap( CONVERTTONORMALMAP_IMG_ID,  CONVERTTONORMALMAP_AMP );
+	break;
 case FN_InKey: //Number Function
 	 rc_push_num(rc_inKey(  ));
 	break;
@@ -1207,6 +1210,9 @@ case FN_NumCPUs: //Number Function
 	break;
 case FN_SystemRam: //Number Function
 	 rc_push_num(rc_intern_systemRam(  ));
+	break;
+case FN_GetGPUInfo$: //String Function
+	 rc_push_str(rc_getGPUInfo(  ));
 	break;
 case FN_DimMatrix: //Number Function
 	 rc_push_num(rc_dimMatrix( DIMMATRIX_M_ROWS,  DIMMATRIX_M_COLS ));
@@ -2102,6 +2108,9 @@ case FN_RemoveActorShadow: //Sub Procedure
 case FN_ActorExists: //Number Function
 	 rc_push_num(rc_actorExists( ACTOREXISTS_ACTOR ));
 	break;
+case FN_CreateProjectorActor: //Number Function
+	 rc_push_num(rc_createProjectorActor(  ));
+	break;
 case FN_CreateActorAnimation: //Number Function
 	 rc_push_num(rc_createActorAnimation( CREATEACTORANIMATION_ACTOR,  CREATEACTORANIMATION_START_FRAME,  CREATEACTORANIMATION_END_FRAME,  CREATEACTORANIMATION_SPEED ));
 	break;
@@ -2741,6 +2750,18 @@ case FN_GetSceneFog: //Sub Procedure
 case FN_ClearScene: //Sub Procedure
 	rc_clearScene(  );
 	break;
+case FN_SetSceneShadowColor: //Sub Procedure
+	rc_setSceneShadowColor( SETSCENESHADOWCOLOR_COLOR );
+	break;
+case FN_GetSceneShadowColor: //Number Function
+	 rc_push_num(rc_getSceneShadowColor(  ));
+	break;
+case FN_SetSceneAmbientColor: //Sub Procedure
+	rc_setSceneAmbientColor( SETSCENEAMBIENTCOLOR_COLOR );
+	break;
+case FN_GetSceneAmbientColor: //Number Function
+	 rc_push_num(rc_getSceneAmbientColor(  ));
+	break;
 case FN_startParticleEmitter: //Sub Procedure
 	rc_startParticleEmitter(  STARTPARTICLEEMITTER_ACTOR );
 	break;
@@ -2960,6 +2981,18 @@ case FN_SetTerrainCameraRotationDelta: //Sub Procedure
 case FN_SetTerrainPatchLOD: //Sub Procedure
 	rc_setTerrainPatchLOD( SETTERRAINPATCHLOD_ACTOR,  SETTERRAINPATCHLOD_PATCHX,  SETTERRAINPATCHLOD_PATCHZ,  SETTERRAINPATCHLOD_LOD );
 	break;
+case FN_SetProjectorTarget: //Sub Procedure
+	rc_setProjectorTarget( SETPROJECTORTARGET_ACTOR,  SETPROJECTORTARGET_X,  SETPROJECTORTARGET_Y,  SETPROJECTORTARGET_Z );
+	break;
+case FN_GetProjectorTarget: //Sub Procedure
+	rc_getProjectorTarget( GETPROJECTORTARGET_ACTOR,  &GETPROJECTORTARGET_X,  &GETPROJECTORTARGET_Y,  &GETPROJECTORTARGET_Z );
+	break;
+case FN_SetProjectorFOV: //Sub Procedure
+	rc_setProjectorFOV( SETPROJECTORFOV_ACTOR,  SETPROJECTORFOV_FOV );
+	break;
+case FN_GetProjectorFOV: //Number Function
+	 rc_push_num(rc_getProjectorFOV( GETPROJECTORFOV_ACTOR ));
+	break;
 case FN_createMaterial: //Number Function
 	 rc_push_num(rc_createMaterial(  ));
 	break;
@@ -3136,4 +3169,16 @@ case FN_getActorMaterialType: //Number Function
 	break;
 case FN_MaterialExists: //Number Function
 	 rc_push_num(rc_materialExists( MATERIALEXISTS_MATERIAL ));
+	break;
+case FN_NumMaterialConstants: //Number Function
+	 rc_push_num(rc_numMaterialConstants( NUMMATERIALCONSTANTS_MATERIAL_TYPE ));
+	break;
+case FN_GetMaterialConstantName$: //String Function
+	 rc_push_str(rc_getMaterialConstantName( GETMATERIALCONSTANTNAME$_MATERIAL_TYPE,  GETMATERIALCONSTANTNAME$_INDEX ));
+	break;
+case FN_SetMaterialConstant: //Sub Procedure
+	rc_setMaterialConstant( SETMATERIALCONSTANT_MATERIAL,  SETMATERIALCONSTANT_M_CONSTANT$,  SETMATERIALCONSTANT_N1,  SETMATERIALCONSTANT_N2,  SETMATERIALCONSTANT_N3,  SETMATERIALCONSTANT_N4 );
+	break;
+case FN_GetMaterialConstant: //Sub Procedure
+	rc_getMaterialConstant( GETMATERIALCONSTANT_MATERIAL,  GETMATERIALCONSTANT_M_CONSTANT$,  &GETMATERIALCONSTANT_N1,  &GETMATERIALCONSTANT_N2,  &GETMATERIALCONSTANT_N3,  &GETMATERIALCONSTANT_N4 );
 	break;

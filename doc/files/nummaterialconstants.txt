@@ -1,0 +1,4 @@
+#title NumMaterialConstants [RCBasic Doc]
+#header Function NumMaterialConstants(material_type)
+
+Returns the number of shader uniforms for an FX material

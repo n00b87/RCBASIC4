@@ -923,7 +923,7 @@ int main(int argc, char * argv[])
     //rc_filename = "/home/n00b/test/stp/serenity_main.bas";
 	//rc_filename = "/home/n00b/test/SpriteShapeTest/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Constraint/main.bas";
-	//rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Simple 3D Platformer/main.bas";
+	//rc_filename = "/home/n00b/Programs/RCBasic_v401_Linux64/examples/Simple_3D_Platformer/main.bas";
     //DEBUG END
 
     //enable_presets = true;
@@ -957,7 +957,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Compiler v4.2a" << endl;
+        cout << "RCBASIC Compiler v4.2" << endl;
         return 0;
     }
 

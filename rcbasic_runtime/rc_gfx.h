@@ -31,6 +31,7 @@
 #include "rc_joints.h"
 #include <irrtheora.h>
 
+
 using namespace irr;
 
 using namespace core;
@@ -2533,6 +2534,17 @@ int rc_createImageEx(int w, int h, double * pdata, Uint32 colorkey, bool use_col
 int rc_createImage(int w, int h, double* pdata)
 {
     return rc_createImageEx(w, h, pdata, 0, false);
+}
+
+void rc_convertToNormalMap(int img_id, double amp)
+{
+	if(img_id < 0 || img_id >= rc_image.size())
+        return;
+
+    if(!rc_image[img_id].image)
+        return;
+
+	VideoDriver->makeNormalMapTexture(rc_image[img_id].image, amp);
 }
 
 
