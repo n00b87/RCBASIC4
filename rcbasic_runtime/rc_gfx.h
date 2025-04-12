@@ -2467,7 +2467,7 @@ void rc_deleteImage(int img_id)
 
     if(rc_image[img_id].image)
     {
-        rc_image[img_id].image->drop();
+        VideoDriver->removeTexture(rc_image[img_id].image);
         rc_image[img_id].image = NULL;
         rc_image[img_id].alpha = 255;
     }

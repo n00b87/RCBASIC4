@@ -4403,7 +4403,7 @@ int main(int argc, char * argv[])
     }
 
     #ifdef RCBASIC_DEBUG
-    rc_filename = "debug.cbc";
+    //rc_filename = "debug.cbc";
     #endif // RCBASIC_DEBUG
 
     //DEBUG START
@@ -4452,7 +4452,7 @@ int main(int argc, char * argv[])
 
     //ogles2 test
     #ifdef RC_TESTING
-    rc_intern_dirChange("/home/n00b/Programs/RCBasic_v401_Linux64/examples/Simple_3D_Platformer/");
+    rc_intern_dirChange("/home/n00b/test/Special Materials/");
 	//rc_intern_dirChange("");
 	rc_filename = "main.cbc";
     #endif
