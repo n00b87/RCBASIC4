@@ -650,6 +650,8 @@ void rc_setSpriteBox(int spr_id, int w, int h)
 		b2PolygonShape* fix_shape = (b2PolygonShape*)rc_sprite[spr_id].physics.shape;
 		fix_shape->SetAsBox(w/2, h/2);
 
+		rc_sprite[spr_id].physics.offset_x = w/2;
+		rc_sprite[spr_id].physics.offset_y = h/2;
 		rc_sprite[spr_id].physics.box_width = w;
 		rc_sprite[spr_id].physics.box_height = h;
 
