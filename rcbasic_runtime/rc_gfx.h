@@ -1084,6 +1084,10 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
         canvas_id = rc_canvas.size();
         rc_canvas.push_back(canvas);
     }
+    else
+	{
+		rc_canvas[canvas_id] = canvas;
+	}
 
     if(rc_active_canvas < 0)
 	{
