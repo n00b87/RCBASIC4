@@ -1315,10 +1315,10 @@ void drawSprites(int canvas_id)
 		//position.set(x, y);
 
 
-		rotationPoint.set(x + (src_size.Width/2), y + (src_size.Height/2)); //TODO: need to account for offset once that is implemented
-		rotation = -1 * (sprite->physics.body->GetAngle() * RAD_TO_DEG); //convert Box2D radians to degrees
-
 		scale.set(sprite->scale.X, sprite->scale.Y);
+
+		rotationPoint.set(x + (src_size.Width/2)*scale.X, y + (src_size.Height/2)*scale.Y); //TODO: need to account for offset once that is implemented
+		rotation = -1 * (sprite->physics.body->GetAngle() * RAD_TO_DEG); //convert Box2D radians to degrees
 
 		color.set(sprite->alpha,
 							 sprite->color_mod.getRed(),
