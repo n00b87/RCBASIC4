@@ -1142,7 +1142,7 @@ inline int rc_intern_dirChange(std::string dpath)
 {
     if(SetCurrentDirectoryW(ConvertUtf8ToWide(dpath).c_str())==0)
     {
-        cout << "[DBG]Error: Could not change directory\n";
+        cout << "Error: Could not change directory\n";
         return 2;
     }
 

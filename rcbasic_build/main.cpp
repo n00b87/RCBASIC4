@@ -924,6 +924,8 @@ int main(int argc, char * argv[])
 	//rc_filename = "/home/n00b/test/SpriteShapeTest/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Constraint/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v401_Linux64/examples/Simple_3D_Platformer/main.bas";
+    //chdir("/home/n00b/Pictures/UNTITLED");
+    //rc_filename = "/home/n00b/Pictures/UNTITLED/nv_test.bas";
     //DEBUG END
 
     //enable_presets = true;

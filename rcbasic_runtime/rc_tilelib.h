@@ -67,6 +67,14 @@ void rc_deleteTileSet(int tileset)
 	rc_deleted_tileset.push_back(tileset);
 }
 
+bool rc_tileSetExists(int tileset)
+{
+	if(tileset < 0 || tileset >= rc_tileset.size())
+		return false;
+
+	return rc_tileset[tileset].active;
+}
+
 void rc_setTileAnimationLength(int tileset, int base_tile, int num_frames)
 {
 	if(tileset < 0 || tileset >= rc_tileset.size())
@@ -209,6 +217,14 @@ void rc_deleteTileMap(int tilemap)
 	rc_tilemap[tilemap].active = false;
 
 	rc_deleted_tilemap.push_back(tilemap);
+}
+
+bool rc_tileMapExists(int tilemap)
+{
+	if(tilemap < 0 || tilemap >= rc_tilemap.size())
+		return false;
+
+	return rc_tilemap[tilemap].active;
 }
 
 void rc_setTileMapSize(int tilemap, int widthInTiles, int heightInTiles)
@@ -390,9 +406,9 @@ void rc_drawTileMap(int tilemap, int x, int y, int w, int h, int offset_x, int o
 
 	int num_tiles_in_tset = getNumTilesInTileset(tileset);
 
-	for(int iy = 0; iy < vp_heightInTiles+1; iy++)
+	for(int iy = 0; iy < vp_heightInTiles+2; iy++)
 	{
-		for(int ix = 0; ix < vp_widthInTiles+1; ix++)
+		for(int ix = 0; ix < vp_widthInTiles+2; ix++)
 		{
 			int current_frame = 0; //TODO: ADD TIMING
 			int map_x = tile_offset_x + ix;
@@ -436,7 +452,7 @@ void rc_drawTileMap(int tilemap, int x, int y, int w, int h, int offset_x, int o
 	irr::core::rect<irr::s32> sourceRect( irr::core::vector2d<irr::s32>(0, 0), irr::core::dimension2d<irr::s32>(w, h));
 	irr::core::rect<irr::s32> dest( irr::core::vector2d<irr::s32>(x, y), irr::core::dimension2d<irr::s32>(w, h));
 
-	VideoDriver->draw2DImage(rc_tilemap[tilemap].texture, dest, sourceRect, 0, 0, false);
+	VideoDriver->draw2DImage(rc_tilemap[tilemap].texture, dest, sourceRect, 0, 0, true);
 	VideoDriver->removeTexture(rc_tilemap[tilemap].texture);
 	rc_tilemap[tilemap].texture = NULL;
 	//draw2DImage(VideoDriver, rc_tilemap[tilemap].texture, src, pos,)

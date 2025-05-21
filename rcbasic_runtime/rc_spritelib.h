@@ -381,6 +381,8 @@ int rc_createSprite(int img_id, double w, double h)
 
 	rc_sprite[spr_id].physics.offset_x = w/2;
 	rc_sprite[spr_id].physics.offset_y = h/2;
+	rc_sprite[spr_id].physics.user_offset_x = 0;
+	rc_sprite[spr_id].physics.user_offset_y = 0;
 	rc_sprite[spr_id].isSolid = false;
 
 	if(rc_sprite[spr_id].image_id < 0)
@@ -426,18 +428,26 @@ void rc_deleteSprite(int spr_id)
 		rc_sprite[spr_id].physics.body = NULL;
 	}
 
+	int parent_canvas = rc_sprite[spr_id].parent_canvas;
+
 	rc_sprite[spr_id].active = false;
 	rc_sprite[spr_id].parent_canvas = -1;
 	rc_sprite[spr_id].animation.clear();
 
-	for(int i = 0; i < rc_canvas[rc_active_canvas].sprite_id.size(); i++)
-	{
-		int canvas_sprite = rc_canvas[rc_active_canvas].sprite_id[i];
+	//std::cout << "DEBUG: Clear " << spr_id << " From " << parent_canvas << std::endl;
 
-		if(canvas_sprite == spr_id)
+	if(parent_canvas >= 0 && parent_canvas < rc_canvas.size())
+	{
+		for(int i = 0; i < rc_canvas[parent_canvas].sprite_id.size(); i++)
 		{
-			rc_canvas[rc_active_canvas].sprite_id.erase(i);
-			break;
+			int canvas_sprite = rc_canvas[parent_canvas].sprite_id[i];
+
+			if(canvas_sprite == spr_id)
+			{
+				//std::cout << "Erase: " << i << std::endl;
+				rc_canvas[parent_canvas].sprite_id.erase(i);
+				break;
+			}
 		}
 	}
 }
@@ -806,6 +816,40 @@ void rc_setSpritePolygon(int spr_id, double* vx, double* vy, int v_count)
 	}
 }
 
+void rc_setSpriteShapeOffset(int spr_id, int offset_x, int offset_y)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	rc_sprite[spr_id].physics.user_offset_x = offset_x;
+	rc_sprite[spr_id].physics.user_offset_y = offset_y;
+
+	float current_angle = rc_sprite[spr_id].physics.body->GetAngle();
+
+	double off_x = rc_sprite[spr_id].physics.user_offset_x;
+	double off_y = rc_sprite[spr_id].physics.user_offset_y;
+
+	double x = rc_sprite[spr_id].physics.body->GetPosition().x;
+	double y = rc_sprite[spr_id].physics.body->GetPosition().y;
+
+	rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(x+off_x, y+off_y), current_angle);
+}
+
+void rc_getSpriteShapeOffset(int spr_id, double* offset_x, double* offset_y)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	*offset_x = (double)rc_sprite[spr_id].physics.user_offset_x;
+	*offset_y = (double)rc_sprite[spr_id].physics.user_offset_y;
+}
+
 void rc_setSpriteType(int spr_id, int body_type)
 {
 	if(spr_id < 0 || spr_id >= rc_sprite.size())
@@ -862,6 +906,10 @@ void rc_setSpritePosition(int spr_id, double x, double y)
 	float current_angle = rc_sprite[spr_id].physics.body->GetAngle();
 	double off_x = rc_sprite[spr_id].physics.offset_x;
 	double off_y = rc_sprite[spr_id].physics.offset_y;
+
+	off_x += rc_sprite[spr_id].physics.user_offset_x;
+	off_y += rc_sprite[spr_id].physics.user_offset_y;
+
 	rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(x+off_x, y+off_y), current_angle);
 }
 
@@ -890,6 +938,9 @@ void rc_getSpritePosition(int spr_id, double* x, double* y)
 	double off_x = rc_sprite[spr_id].physics.offset_x;
 	double off_y = rc_sprite[spr_id].physics.offset_y;
 
+	off_x += rc_sprite[spr_id].physics.user_offset_x;
+	off_y += rc_sprite[spr_id].physics.user_offset_y;
+
 	*x = (double)rc_sprite[spr_id].physics.body->GetPosition().x - off_x;
 	*y = (double)rc_sprite[spr_id].physics.body->GetPosition().y - off_y;
 }
@@ -903,6 +954,7 @@ double rc_spriteX(int spr_id)
 		return 0;
 
 	double off_x = rc_sprite[spr_id].physics.offset_x;
+	off_x += rc_sprite[spr_id].physics.user_offset_x;
 
 	return (double)rc_sprite[spr_id].physics.body->GetPosition().x - off_x;
 }
@@ -916,6 +968,7 @@ double rc_spriteY(int spr_id)
 		return 0;
 
 	double off_y = rc_sprite[spr_id].physics.offset_y;
+	off_y += rc_sprite[spr_id].physics.user_offset_y;
 
 	return (double)rc_sprite[spr_id].physics.body->GetPosition().y - off_y;
 }

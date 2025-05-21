@@ -168,7 +168,7 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass)
 			break;
 
 		default:
-			std::cout << "SetActorCollisionShape Error: Invalid shape_type parameter" << std::endl;
+			std::cout << "SetActorShape Error: Invalid shape_type parameter" << std::endl;
 	}
 
 	if(rc_actor[actor_id].physics.rigid_body)

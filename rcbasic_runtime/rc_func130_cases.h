@@ -1700,11 +1700,11 @@ case FN_CastRay2D_All: //Number Function
 case FN_GetRayHit2D: //Sub Procedure
 	rc_getRayHit2D( GETRAYHIT2D_INDEX,  &GETRAYHIT2D_SPR_ID,  &GETRAYHIT2D_X,  &GETRAYHIT2D_Y,  &GETRAYHIT2D_NORMAL_X,  &GETRAYHIT2D_NORMAL_Y );
 	break;
-case FN_SetSpriteCollisionShape: //Sub Procedure
-	rc_setSpriteCollisionShape( SETSPRITECOLLISIONSHAPE_SPR_ID,  SETSPRITECOLLISIONSHAPE_SHAPE );
+case FN_SetSpriteShape: //Sub Procedure
+	rc_setSpriteCollisionShape( SETSPRITESHAPE_SPR_ID,  SETSPRITESHAPE_SHAPE );
 	break;
-case FN_GetSpriteCollisionShape: //Number Function
-	 rc_push_num(rc_getSpriteCollisionShape( GETSPRITECOLLISIONSHAPE_SPR_ID ));
+case FN_GetSpriteShape: //Number Function
+	 rc_push_num(rc_getSpriteCollisionShape( GETSPRITESHAPE_SPR_ID ));
 	break;
 case FN_SetSpriteRadius: //Sub Procedure
 	rc_setSpriteRadius( SETSPRITERADIUS_SPR_ID,  SETSPRITERADIUS_RADIUS );
@@ -1726,6 +1726,12 @@ case FN_SetSpriteChainLoop: //Sub Procedure
 	break;
 case FN_SetSpritePolygon: //Sub Procedure
 	rc_setSpritePolygon( SETSPRITEPOLYGON_SPR_ID,  &SETSPRITEPOLYGON_VX,  &SETSPRITEPOLYGON_VY,  SETSPRITEPOLYGON_V_COUNT );
+	break;
+case FN_SetSpriteShapeOffset: //Sub Procedure
+	rc_setSpriteShapeOffset( SETSPRITESHAPEOFFSET_SPR_ID,  SETSPRITESHAPEOFFSET_X,  SETSPRITESHAPEOFFSET_Y );
+	break;
+case FN_GetSpriteShapeOffset: //Sub Procedure
+	rc_getSpriteShapeOffset( GETSPRITESHAPEOFFSET_SPR_ID,  &GETSPRITESHAPEOFFSET_X,  &GETSPRITESHAPEOFFSET_Y );
 	break;
 case FN_createDistanceJoint: //Number Function
 	 rc_push_num(rc_createDistanceJoint( CREATEDISTANCEJOINT_SPRITEA,  CREATEDISTANCEJOINT_SPRITEB,  CREATEDISTANCEJOINT_AX,  CREATEDISTANCEJOINT_AY,  CREATEDISTANCEJOINT_BX,  CREATEDISTANCEJOINT_BY,  CREATEDISTANCEJOINT_COLLIDE_CONNECT ));
@@ -1982,6 +1988,12 @@ case FN_DeleteTileSet: //Sub Procedure
 case FN_DeleteTileMap: //Sub Procedure
 	rc_deleteTileMap( DELETETILEMAP_TILEMAP );
 	break;
+case FN_TileSetExists: //Number Function
+	 rc_push_num(rc_tileSetExists( TILESETEXISTS_TILESET ));
+	break;
+case FN_TileMapExists: //Number Function
+	 rc_push_num(rc_tileMapExists( TILEMAPEXISTS_TILEMAP ));
+	break;
 case FN_LoadMesh: //Number Function
 	 rc_push_num(rc_loadMesh( LOADMESH_MESH_FILE$ ));
 	break;
@@ -2162,11 +2174,11 @@ case FN_SetGravity3D: //Sub Procedure
 case FN_GetGravity3D: //Sub Procedure
 	rc_getGravity3D( &GETGRAVITY3D_X,  &GETGRAVITY3D_Y,  &GETGRAVITY3D_Z );
 	break;
-case FN_SetActorCollisionShape: //Sub Procedure
-	rc_setActorCollisionShape( SETACTORCOLLISIONSHAPE_ACTOR,  SETACTORCOLLISIONSHAPE_SHAPE_TYPE,  SETACTORCOLLISIONSHAPE_MASS );
+case FN_SetActorShape: //Sub Procedure
+	rc_setActorCollisionShape( SETACTORSHAPE_ACTOR,  SETACTORSHAPE_SHAPE_TYPE,  SETACTORSHAPE_MASS );
 	break;
-case FN_GetActorCollisionShape: //Number Function
-	 rc_push_num(rc_getActorCollisionShape( GETACTORCOLLISIONSHAPE_ACTOR ));
+case FN_GetActorShape: //Number Function
+	 rc_push_num(rc_getActorCollisionShape( GETACTORSHAPE_ACTOR ));
 	break;
 case FN_SetActorSolid: //Sub Procedure
 	rc_setActorSolid( SETACTORSOLID_ACTOR,  SETACTORSOLID_FLAG );

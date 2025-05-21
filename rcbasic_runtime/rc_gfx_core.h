@@ -695,6 +695,8 @@ void myTickCallback2(btSoftRigidDynamicsWorld* dynamicsWorld, btScalar timeStep)
         rc_collisions.push_back(collision);
         rc_actor[actorA].physics.collisions.push_back(c_index);
         rc_actor[actorB].physics.collisions.push_back(c_index);
+
+        delete manifold;
     }
 
     for(int i = 0; i < rc_actor.size(); i++)

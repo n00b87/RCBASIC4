@@ -4452,8 +4452,14 @@ int main(int argc, char * argv[])
 
     //ogles2 test
     #ifdef RC_TESTING
-    rc_intern_dirChange("/home/n00b/test/Special Materials/");
+    //rc_intern_dirChange("/home/n00b/test/SpriteShapeTest");
 	//rc_intern_dirChange("");
+	rc_filename = "main.cbc";
+
+	rc_intern_dirChange("/home/n00b/Pictures/UNTITLED");
+	rc_filename = "nv_test.cbc";
+
+	rc_intern_dirChange("/home/n00b/test/stp");
 	rc_filename = "main.cbc";
     #endif
     //---------------
