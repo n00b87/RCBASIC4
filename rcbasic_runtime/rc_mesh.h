@@ -187,7 +187,12 @@ void rc_deleteMesh(int mesh_id)
         return;
 
     if(rc_mesh[mesh_id].mesh)
-        rc_mesh[mesh_id].mesh->drop();
+	{
+		if(rc_mesh[mesh_id].mesh->getReferenceCount() > 0)
+		{
+			SceneManager->getMeshCache()->removeMesh(rc_mesh[mesh_id].mesh);
+		}
+	}
 
     rc_mesh[mesh_id].mesh = NULL;
     rc_mesh[mesh_id].mesh_type = 0;

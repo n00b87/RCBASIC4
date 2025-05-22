@@ -1,0 +1,6 @@
+#title GetProjectorFOV [RCBasic Doc]
+#header Function GetProjectorFOV(actor)
+
+Returns the field of view for a projector
+
+#ref SetProjectorFOV

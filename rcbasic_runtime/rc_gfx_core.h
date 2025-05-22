@@ -31,6 +31,7 @@
 #else
 	#include <an8parser.h>
 #endif
+#include "CShader.h"
 
 using namespace irr;
 
@@ -431,8 +432,9 @@ int rc_active_font = -1;
 bool mobile_active_window_flag = true;
 
 
-
 //------------ 3D Graphics ----------------//
+#define MAX_DEFAULT_MATERIALS 24
+
 struct rc_material_obj
 {
     irr::video::SMaterial mat;
@@ -440,6 +442,9 @@ struct rc_material_obj
     bool isReference = false;
     int refActor = -1;
     int refMatNum = 0;
+    bool isFX = false;
+    int fxMatType = -1; //FX MATERIAL TYPE (note: will be between FX_MATERIAL_BASE_INDEX and FX_MATERIAL_BASE_INDEX + rc_shader_materials.size())
+    CShader* shader = NULL;
 };
 
 irr::core::array<rc_material_obj> rc_material;
@@ -472,6 +477,7 @@ irr::core::array<rc_an8_obj> rc_an8;
 #define RC_NODE_TYPE_BILLBOARD	6
 #define RC_NODE_TYPE_PARTICLE	7
 #define RC_NODE_TYPE_STMESH   	8
+#define RC_NODE_TYPE_PROJECTOR	9
 
 
 #define RC_NODE_SHAPE_TYPE_NONE			0
@@ -555,6 +561,13 @@ struct rc_actor_animation_obj
 	irr::u32 frame_swap_time;
 };
 
+struct rc_actor_fx_material_obj
+{
+	bool inUse = false;
+	int material_id = -1; //index in rc_materials
+	int actor_material_index = -1; //index from node->getMaterial()
+};
+
 struct rc_scene_node
 {
     int node_type = 0;
@@ -570,7 +583,8 @@ struct rc_scene_node
 
     rc_particle_properties_obj particle_properties;
 
-    int material_ref_index = -1;
+    int material_ref_index = -1; //Not currently used for anything
+    irr::core::array<rc_actor_fx_material_obj> actor_fx_materials;
 
     int current_animation;
     int num_animation_loops;
@@ -681,6 +695,8 @@ void myTickCallback2(btSoftRigidDynamicsWorld* dynamicsWorld, btScalar timeStep)
         rc_collisions.push_back(collision);
         rc_actor[actorA].physics.collisions.push_back(c_index);
         rc_actor[actorB].physics.collisions.push_back(c_index);
+
+        delete manifold;
     }
 
     for(int i = 0; i < rc_actor.size(); i++)
@@ -1005,5 +1021,11 @@ SDL_Surface* convertTextureToSurface(irr::video::ITexture* itexture)
 	return surface;
 }
 
+
+std::string rc_getGPUInfo()
+{
+	std::string gpu_info = (std::string)device->getVideoDriver()->getVendorInfo().c_str();
+	return gpu_info;
+}
 
 #endif // RC_GFX_CORE_H_INCLUDED

@@ -44,6 +44,26 @@ void rc_addSceneSkyDomeEx(int img, Uint32 horiRes, Uint32 vertRes, double txPerc
 	rc_scene_properties.sky = SceneManager->addSkyDomeSceneNode(texture, horiRes, vertRes, txPercentage, spherePercentage, radius);
 }
 
+void rc_setSceneShadowColor( Uint32 color )
+{
+	SceneManager->setShadowColor(irr::video::SColor(color));
+}
+
+Uint32 rc_getSceneShadowColor( )
+{
+	return SceneManager->getShadowColor().color;
+}
+
+void rc_setSceneAmbientColor( Uint32 color )
+{
+	SceneManager->setAmbientLight(irr::video::SColor(color));
+}
+
+Uint32 rc_getSceneAmbientColor()
+{
+	return SceneManager->getAmbientLight().toSColor().color;
+}
+
 void rc_removeSceneSky()
 {
 	if(rc_scene_properties.sky)

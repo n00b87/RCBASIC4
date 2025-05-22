@@ -1,0 +1,6 @@
+#title SetProjectorFOV [RCBasic Doc]
+#header Sub SetProjectorFOV(actor, fov)
+
+Set the field of view for a projector
+
+#ref GetProjectorFOV

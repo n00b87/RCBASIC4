@@ -1,6 +1,8 @@
 #ifndef RC_BASE_ACTOR_H_INCLUDED
 #define RC_BASE_ACTOR_H_INCLUDED
 
+#include "ProjectiveTextures.h"
+
 void setSolidProperties(int actor)
 {
 	if(!rc_actor[actor].physics.isSolid)
@@ -166,7 +168,7 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass)
 			break;
 
 		default:
-			std::cout << "SetActorCollisionShape Error: Invalid shape_type parameter" << std::endl;
+			std::cout << "SetActorShape Error: Invalid shape_type parameter" << std::endl;
 	}
 
 	if(rc_actor[actor_id].physics.rigid_body)
@@ -689,6 +691,50 @@ int rc_createLightActor()
     irr::scene::ILightSceneNode* node = SceneManager->addLightSceneNode();
     rc_scene_node actor;
     actor.node_type = RC_NODE_TYPE_LIGHT;
+    actor.mesh_node = node;
+    actor.shadow = NULL;
+    actor.transition = false;
+    actor.transition_time = 0;
+    actor.material_ref_index = -1;
+
+    if(!node)
+        return -1;
+
+    for(int i = 0; i < rc_actor.size(); i++)
+    {
+        if(!rc_actor[i].mesh_node)
+        {
+            actor_id = i;
+            break;
+        }
+    }
+
+    if(actor_id < 0)
+    {
+        actor_id = rc_actor.size();
+        rc_actor.push_back(actor);
+    }
+    else
+    {
+        rc_actor[actor_id] = actor;
+    }
+
+    //Actor RigidBody
+    rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_BOX;
+    rc_actor[actor_id].physics.rigid_body = NULL;
+    rc_actor[actor_id].physics.isSolid = false;
+
+    rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
+
+    return actor_id;
+}
+
+int rc_createProjectorActor()
+{
+	int actor_id = -1;
+	CProjectiveTextures* node = new CProjectiveTextures(device, 0, SceneManager, -1);
+    rc_scene_node actor;
+    actor.node_type = RC_NODE_TYPE_PROJECTOR;
     actor.mesh_node = node;
     actor.shadow = NULL;
     actor.transition = false;
@@ -1521,5 +1567,63 @@ void rc_setTerrainPatchLOD(int actor, int patchX, int patchZ, int lod)
 			terrain->setLODOfPatch(patchX, patchZ, lod);
     }
 }
+
+
+void rc_setProjectorTarget(int actor, double x, double y, double z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+	switch(rc_actor[actor].node_type)
+    {
+    	case RC_NODE_TYPE_PROJECTOR:
+			CProjectiveTextures* projector = (CProjectiveTextures*) rc_actor[actor].mesh_node;
+			projector->setTarget(irr::core::vector3df(x,y,z));
+			break;
+    }
+}
+
+void rc_getProjectorTarget(int actor, double* x, double* y, double* z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+	switch(rc_actor[actor].node_type)
+    {
+    	case RC_NODE_TYPE_PROJECTOR:
+			CProjectiveTextures* projector = (CProjectiveTextures*) rc_actor[actor].mesh_node;
+			*x = projector->getTarget().X;
+			*y = projector->getTarget().Y;
+			*z = projector->getTarget().Z;
+			break;
+    }
+}
+
+void rc_setProjectorFOV(int actor, double fov)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+	switch(rc_actor[actor].node_type)
+    {
+    	case RC_NODE_TYPE_PROJECTOR:
+			CProjectiveTextures* projector = (CProjectiveTextures*) rc_actor[actor].mesh_node;
+			return projector->setFOV(fov);
+    }
+}
+
+double rc_getProjectorFOV(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+	switch(rc_actor[actor].node_type)
+    {
+    	case RC_NODE_TYPE_PROJECTOR:
+			CProjectiveTextures* projector = (CProjectiveTextures*) rc_actor[actor].mesh_node;
+			return projector->getFOV();
+    }
+}
+
 
 #endif // RC_BASE_ACTOR_H_INCLUDED

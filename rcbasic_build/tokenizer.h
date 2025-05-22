@@ -1112,8 +1112,30 @@ string rc_keywordToken(string sline)
 		return "<num>22";
 	else if(sline.compare("MATERIAL_TYPE_ONETEXTURE_BLEND")==0)
 		return "<num>23";
-	else if(sline.compare("MATERIAL_TYPE_FORCE_32BIT")==0)
-		return "<num>24";
+	else if(sline.compare("FX_MATERIAL_TYPE_NORMAL_BLEND")==0)
+		return "<num>128";
+	else if(sline.compare("FX_MATERIAL_TYPE_REFRACTION")==0)
+		return "<num>129";
+	else if(sline.compare("FX_MATERIAL_TYPE_REFRACTION2")==0)
+		return "<num>130";
+	else if(sline.compare("FX_MATERIAL_TYPE_GOOCH")==0)
+		return "<num>131";
+	else if(sline.compare("FX_MATERIAL_TYPE_PLASTIC")==0)
+		return "<num>132";
+	else if(sline.compare("FX_MATERIAL_TYPE_TANGENT")==0)
+		return "<num>133";
+	else if(sline.compare("FX_MATERIAL_TYPE_SPEAKER")==0)
+		return "<num>134";
+	else if(sline.compare("FX_MATERIAL_TYPE_PHONG_TEXTURE")==0)
+		return "<num>135";
+	else if(sline.compare("FX_MATERIAL_TYPE_STYLE")==0)
+		return "<num>136";
+	else if(sline.compare("FX_MATERIAL_TYPE_STYLE2")==0)
+		return "<num>137";
+	else if(sline.compare("FX_MATERIAL_TYPE_STYLE3")==0)
+		return "<num>138";
+	else if(sline.compare("FX_MATERIAL_TYPE_STYLE4")==0)
+		return "<num>139";
 	else if(sline.compare("BLEND_MODE_NONE")==0)
 		return "<num>0";
 	else if(sline.compare("BLEND_MODE_ADD")==0)

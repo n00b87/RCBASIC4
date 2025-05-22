@@ -4311,6 +4311,8 @@ void rcbasic_init()
     rc_gfx_init();
     rc_net_init();
     arr_ref_id.clear();
+
+    initFXMaterials();
 }
 
 void rcbasic_clean()
@@ -4323,6 +4325,13 @@ void rcbasic_clean()
     n_stack.empty();
     s_stack.empty();
     gosub_return_addr.empty();
+
+    for(int i = 0; i < rc_material.size(); i++)
+	{
+		if(rc_material[i].isFX && rc_material[i].shader != NULL)
+			delete rc_material[i].shader;
+		rc_material[i].shader = NULL;
+	}
 }
 
 void rcbasic_test()
@@ -4389,12 +4398,12 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Runtime v4.2a" << endl;
+        cout << "RCBASIC Runtime v4.2" << endl;
         return 0;
     }
 
     #ifdef RCBASIC_DEBUG
-    rc_filename = "debug.cbc";
+    //rc_filename = "debug.cbc";
     #endif // RCBASIC_DEBUG
 
     //DEBUG START
@@ -4443,8 +4452,14 @@ int main(int argc, char * argv[])
 
     //ogles2 test
     #ifdef RC_TESTING
-    rc_intern_dirChange("/home/n00b/test/SpriteShapeTest");
+    //rc_intern_dirChange("/home/n00b/test/SpriteShapeTest");
 	//rc_intern_dirChange("");
+	rc_filename = "main.cbc";
+
+	rc_intern_dirChange("/home/n00b/Pictures/UNTITLED");
+	rc_filename = "nv_test.cbc";
+
+	rc_intern_dirChange("/home/n00b/test/stp");
 	rc_filename = "main.cbc";
     #endif
     //---------------

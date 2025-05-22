@@ -20,6 +20,9 @@ struct rc_sprite2D_physics_obj
 	int offset_x;
 	int offset_y;
 
+	int user_offset_x;
+	int user_offset_y;
+
 	int box_width;
 	int box_height;
 };

@@ -31,6 +31,7 @@
 #include "rc_joints.h"
 #include <irrtheora.h>
 
+
 using namespace irr;
 
 using namespace core;
@@ -1083,6 +1084,10 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
         canvas_id = rc_canvas.size();
         rc_canvas.push_back(canvas);
     }
+    else
+	{
+		rc_canvas[canvas_id] = canvas;
+	}
 
     if(rc_active_canvas < 0)
 	{
@@ -1110,6 +1115,7 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
 
 void rc_canvasClose(int canvas_id)
 {
+	//std::cout << "Delete Canvas: " << canvas_id << std::endl;
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size()) //canvas 0 is being excluded because its the back buffer
         return;
 
@@ -1137,8 +1143,11 @@ void rc_canvasClose(int canvas_id)
 	for(int i = 0; i < rc_canvas[canvas_id].sprite_id.size(); i++)
 	{
 		int spr_id = rc_canvas[canvas_id].sprite_id[i];
-		rc_sprite[spr_id].active = false;
-		rc_sprite[spr_id].physics.body = NULL;
+		if(spr_id >= 0 && spr_id < rc_sprite.size())
+		{
+			rc_sprite[spr_id].active = false;
+			rc_sprite[spr_id].physics.body = NULL;
+		}
 	}
 
 	rc_canvas[canvas_id].sprite_id.clear();
@@ -2466,7 +2475,7 @@ void rc_deleteImage(int img_id)
 
     if(rc_image[img_id].image)
     {
-        rc_image[img_id].image->drop();
+        VideoDriver->removeTexture(rc_image[img_id].image);
         rc_image[img_id].image = NULL;
         rc_image[img_id].alpha = 255;
     }
@@ -2533,6 +2542,17 @@ int rc_createImageEx(int w, int h, double * pdata, Uint32 colorkey, bool use_col
 int rc_createImage(int w, int h, double* pdata)
 {
     return rc_createImageEx(w, h, pdata, 0, false);
+}
+
+void rc_convertToNormalMap(int img_id, double amp)
+{
+	if(img_id < 0 || img_id >= rc_image.size())
+        return;
+
+    if(!rc_image[img_id].image)
+        return;
+
+	VideoDriver->makeNormalMapTexture(rc_image[img_id].image, amp);
 }
 
 
