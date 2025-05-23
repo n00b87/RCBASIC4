@@ -681,7 +681,10 @@ void myTickCallback2(btSoftRigidDynamicsWorld* dynamicsWorld, btScalar timeStep)
         //std::cout << "Collision Details: " << actorA << ", " << actorB << ", " << numContacts << std::endl;
 
         if(numContacts < 1)
+		{
+			delete manifold;
 			continue;
+		}
 
         for (int j = 0; j < numContacts; j++)
 		{
