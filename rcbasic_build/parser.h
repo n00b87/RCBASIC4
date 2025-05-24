@@ -4703,7 +4703,7 @@ bool check_rule()
                         //cout << "\nRETURN FROM FUNCTION" << id[fnID].name << endl << endl;
 
 
-                        if(id[fnID].type == ID_TYPE_FN_NUM || id[fnID].type == ID_TYPE_FN_STR)
+                        if(id[fnID].type == ID_TYPE_FN_NUM || id[fnID].type == ID_TYPE_FN_STR || id[fnID].type == ID_TYPE_FN_USER)
                         {
                             break;
                         }
