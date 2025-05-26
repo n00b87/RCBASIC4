@@ -20,11 +20,23 @@ struct rc_sprite2D_physics_obj
 	int offset_x;
 	int offset_y;
 
+	int base_offset_x = 0;
+	int base_offset_y = 0;
+
+	float radius; //radius when scale is 1
+
 	int user_offset_x;
 	int user_offset_y;
 
+	int base_user_offset_x;
+	int base_user_offset_y;
+
 	int box_width;
 	int box_height;
+
+	irr::core::array<b2Vec2> vertices; //store vertices at scale 1
+	b2Vec2 prev_vertex;
+	b2Vec2 next_vertex;
 };
 
 struct rc_sprite2D_animation_obj

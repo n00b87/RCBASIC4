@@ -379,10 +379,19 @@ int rc_createSprite(int img_id, double w, double h)
 	sprFixtureDef.density = 1;
 	rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
 
+	rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(w/2, h/2), 0);
+
+
+	rc_sprite[spr_id].physics.base_offset_x = w/2;
+	rc_sprite[spr_id].physics.base_offset_y = h/2;
+	rc_sprite[spr_id].physics.base_user_offset_x = 0;
+	rc_sprite[spr_id].physics.base_user_offset_y = 0;
+
 	rc_sprite[spr_id].physics.offset_x = w/2;
 	rc_sprite[spr_id].physics.offset_y = h/2;
 	rc_sprite[spr_id].physics.user_offset_x = 0;
 	rc_sprite[spr_id].physics.user_offset_y = 0;
+
 	rc_sprite[spr_id].isSolid = false;
 
 	if(rc_sprite[spr_id].image_id < 0)
@@ -498,6 +507,9 @@ void rc_setSpriteCollisionShape(int spr_id, int sprite_shape)
 	bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
 	float density = rc_sprite[spr_id].physics.fixture->GetDensity();
 
+	float actual_x = rc_sprite[spr_id].physics.body->GetPosition().x - (rc_sprite[spr_id].physics.offset_x + rc_sprite[spr_id].physics.user_offset_x);
+	float actual_y = rc_sprite[spr_id].physics.body->GetPosition().y - (rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y);
+
 	if(rc_sprite[spr_id].physics.shape)
 		delete rc_sprite[spr_id].physics.shape;
 
@@ -521,11 +533,22 @@ void rc_setSpriteCollisionShape(int spr_id, int sprite_shape)
 			fix_shape->SetAsBox(rc_sprite[spr_id].frame_size.Width/2, rc_sprite[spr_id].frame_size.Height/2);
 			rc_sprite[spr_id].physics.box_width = rc_sprite[spr_id].frame_size.Width;
 			rc_sprite[spr_id].physics.box_height = rc_sprite[spr_id].frame_size.Height;
+
+			rc_sprite[spr_id].physics.base_offset_x = rc_sprite[spr_id].physics.box_width/2;
+			rc_sprite[spr_id].physics.base_offset_y = rc_sprite[spr_id].physics.box_height/2;
+
+			rc_sprite[spr_id].physics.offset_x = rc_sprite[spr_id].physics.box_width/2;
+			rc_sprite[spr_id].physics.offset_y = rc_sprite[spr_id].physics.box_height/2;
+
 			sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
 			sprFixtureDef.isSensor = isSensor;
 			sprFixtureDef.density = density;
 			rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
 			rc_sprite[spr_id].physics.shape_type = RC_SPRITE_SHAPE_BOX;
+
+			float center_x = actual_x + (rc_sprite[spr_id].physics.offset_x + rc_sprite[spr_id].physics.user_offset_x);
+			float center_y = actual_y + (rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y);
+			rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(center_x, center_y), rc_sprite[spr_id].physics.body->GetAngle());
 		}
 		break;
 
@@ -534,11 +557,30 @@ void rc_setSpriteCollisionShape(int spr_id, int sprite_shape)
 			rc_sprite[spr_id].physics.shape = new b2PolygonShape();
 			b2PolygonShape* fix_shape = (b2PolygonShape*)rc_sprite[spr_id].physics.shape;
 			fix_shape->SetAsBox(rc_sprite[spr_id].frame_size.Width/2, rc_sprite[spr_id].frame_size.Width/2);
+			rc_sprite[spr_id].physics.box_width = rc_sprite[spr_id].frame_size.Width;
+			rc_sprite[spr_id].physics.box_height = rc_sprite[spr_id].frame_size.Height;
+
+			rc_sprite[spr_id].physics.base_offset_x = rc_sprite[spr_id].physics.box_width/2;
+			rc_sprite[spr_id].physics.base_offset_y = rc_sprite[spr_id].physics.box_height/2;
+
+			rc_sprite[spr_id].physics.offset_x = rc_sprite[spr_id].physics.box_width/2;
+			rc_sprite[spr_id].physics.offset_y = rc_sprite[spr_id].physics.box_height/2;
+
 			sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
 			sprFixtureDef.isSensor = isSensor;
 			sprFixtureDef.density = density;
 			rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
 			rc_sprite[spr_id].physics.shape_type = RC_SPRITE_SHAPE_POLYGON;
+
+			rc_sprite[spr_id].physics.base_user_offset_x = 0;
+			rc_sprite[spr_id].physics.base_user_offset_y = 0;
+
+			rc_sprite[spr_id].physics.user_offset_x = 0;
+			rc_sprite[spr_id].physics.user_offset_y = 0;
+
+			float center_x = actual_x + (rc_sprite[spr_id].physics.offset_x + rc_sprite[spr_id].physics.user_offset_x);
+			float center_y = actual_y + (rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y);
+			rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(center_x, center_y), rc_sprite[spr_id].physics.body->GetAngle());
 		}
 		break;
 
@@ -546,12 +588,25 @@ void rc_setSpriteCollisionShape(int spr_id, int sprite_shape)
 		{
 			rc_sprite[spr_id].physics.shape = new b2CircleShape();
 			b2CircleShape* fix_shape = (b2CircleShape*)rc_sprite[spr_id].physics.shape;
-			fix_shape->m_radius = (rc_sprite[spr_id].frame_size.Width > rc_sprite[spr_id].frame_size.Height ? rc_sprite[spr_id].frame_size.Width : rc_sprite[spr_id].frame_size.Height) /2;
+			float new_radius = (rc_sprite[spr_id].frame_size.Width + rc_sprite[spr_id].frame_size.Height)/4;
+			fix_shape->m_radius = new_radius * (rc_sprite[spr_id].scale.X + rc_sprite[spr_id].scale.Y)/2;
 			sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
 			sprFixtureDef.isSensor = isSensor;
 			sprFixtureDef.density = density;
+			rc_sprite[spr_id].physics.radius = new_radius; //only storing what the sprite is as scale 1
+
+			rc_sprite[spr_id].physics.base_offset_x = rc_sprite[spr_id].frame_size.Width/2;
+			rc_sprite[spr_id].physics.base_offset_y = rc_sprite[spr_id].frame_size.Height/2;
+
+			rc_sprite[spr_id].physics.offset_x = rc_sprite[spr_id].frame_size.Width/2;
+			rc_sprite[spr_id].physics.offset_y = rc_sprite[spr_id].frame_size.Height/2;
+
 			rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
 			rc_sprite[spr_id].physics.shape_type = RC_SPRITE_SHAPE_CIRCLE;
+
+			float center_x = actual_x + (rc_sprite[spr_id].physics.offset_x + rc_sprite[spr_id].physics.user_offset_x);
+			float center_y = actual_y + (rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y);
+			rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(center_x, center_y), rc_sprite[spr_id].physics.body->GetAngle());
 		}
 		break;
 
@@ -565,12 +620,18 @@ void rc_setSpriteCollisionShape(int spr_id, int sprite_shape)
 			v[2].Set(2, 2);
 			fix_shape->Clear();
 			fix_shape->CreateLoop(v, 3);
-			fix_shape->m_radius = (rc_sprite[spr_id].frame_size.Width > rc_sprite[spr_id].frame_size.Height ? rc_sprite[spr_id].frame_size.Width : rc_sprite[spr_id].frame_size.Height) /2;
+			float new_radius = (rc_sprite[spr_id].frame_size.Width + rc_sprite[spr_id].frame_size.Height)/4;
+			fix_shape->m_radius = new_radius * ((rc_sprite[spr_id].scale.X + rc_sprite[spr_id].scale.Y)/2);
 			sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
 			sprFixtureDef.isSensor = isSensor;
 			sprFixtureDef.density = density;
 			rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
 			rc_sprite[spr_id].physics.shape_type = RC_SPRITE_SHAPE_CHAIN;
+
+			rc_sprite[spr_id].physics.base_user_offset_x = 0;
+			rc_sprite[spr_id].physics.base_user_offset_y = 0;
+			rc_sprite[spr_id].physics.user_offset_x = 0;
+			rc_sprite[spr_id].physics.user_offset_y = 0;
 		}
 		break;
 	}
@@ -606,6 +667,7 @@ void rc_setSpriteRadius(int spr_id, double radius)
 
 		rc_sprite[spr_id].physics.fixture = NULL;
 
+		rc_sprite[spr_id].physics.radius = radius / ((rc_sprite[spr_id].scale.X + rc_sprite[spr_id].scale.Y)/2); //calculate what it would be at scale 1
 
 		b2FixtureDef sprFixtureDef;
 
@@ -615,6 +677,8 @@ void rc_setSpriteRadius(int spr_id, double radius)
 		sprFixtureDef.isSensor = isSensor;
 		sprFixtureDef.density = density;
 		rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+
+		//NOTE: Changing the radius doesn't move its position so a new transform is not necessary
 	}
 }
 
@@ -648,6 +712,11 @@ void rc_setSpriteBox(int spr_id, int w, int h)
 		bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
 		float density = rc_sprite[spr_id].physics.fixture->GetDensity();
 
+		b2Vec2 pos = rc_sprite[spr_id].physics.body->GetPosition();
+
+		float bx = pos.x - (rc_sprite[spr_id].physics.offset_x + rc_sprite[spr_id].physics.user_offset_x);
+		float by = pos.y - (rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y);
+
 		//Delete Fixture
 		if(rc_sprite[spr_id].physics.fixture)
 			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
@@ -660,13 +729,32 @@ void rc_setSpriteBox(int spr_id, int w, int h)
 		b2PolygonShape* fix_shape = (b2PolygonShape*)rc_sprite[spr_id].physics.shape;
 		fix_shape->SetAsBox(w/2, h/2);
 
+		rc_sprite[spr_id].physics.vertices.clear();
+		for(int i = 0; i < fix_shape->m_count; i++)
+		{
+			rc_sprite[spr_id].physics.vertices.push_back(fix_shape->m_vertices[i]);
+		}
+
 		rc_sprite[spr_id].physics.box_width = w;
 		rc_sprite[spr_id].physics.box_height = h;
+
+		rc_sprite[spr_id].physics.base_offset_x = w/2;
+		rc_sprite[spr_id].physics.base_offset_y = h/2;
+
+		rc_sprite[spr_id].physics.offset_x = w/2;
+		rc_sprite[spr_id].physics.offset_y = h/2;
 
 		sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
 		sprFixtureDef.isSensor = isSensor;
 		sprFixtureDef.density = density;
 		rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+
+		float off_x = rc_sprite[spr_id].physics.offset_x + rc_sprite[spr_id].physics.user_offset_x;
+		float off_y = rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y;
+
+		//rc_setSpritePosition(spr_id, bx, by);
+		//std::cout << "Box At: " << bx << ", " << by << std::endl;
+		rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(bx + off_x, by + off_y), rc_sprite[spr_id].physics.body->GetAngle());
 	}
 }
 
@@ -702,6 +790,11 @@ void rc_setSpriteChain(int spr_id, double* vx, double* vy, int v_count, double p
 		bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
 		float density = rc_sprite[spr_id].physics.fixture->GetDensity();
 
+		b2Vec2 pos = rc_sprite[spr_id].physics.body->GetPosition();
+
+		float bx = pos.x - (rc_sprite[spr_id].physics.offset_x + rc_sprite[spr_id].physics.user_offset_x);
+		float by = pos.y - (rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y);
+
 		//Delete Fixture
 		if(rc_sprite[spr_id].physics.fixture)
 			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
@@ -716,19 +809,53 @@ void rc_setSpriteChain(int spr_id, double* vx, double* vy, int v_count, double p
 
 		b2Vec2 vert[v_count+1];
 
+		rc_sprite[spr_id].physics.vertices.clear();
+
+		float cx = 0;
+		float cy = 0;
+
 		for(int i = 0; i < v_count; i++)
 		{
 			vert[i] = b2Vec2((float)vx[i], (float)vy[i]);
+			cx += vx[i];
+			cy += vy[i];
 		}
 
-		b2Vec2 prev_vert((float)prev_x, (float)prev_y);
-		b2Vec2 next_vert((float)next_x, (float)next_y);
+		cx = cx / v_count;
+		cy = cy / v_count;
+
+		for(int i = 0; i < v_count; i++)
+		{
+			vert[i] -= b2Vec2(cx, cy);
+			rc_sprite[spr_id].physics.vertices.push_back(vert[i]);
+		}
+
+		b2Vec2 prev_vert((float)prev_x-cx, (float)prev_y-cy);
+		b2Vec2 next_vert((float)next_x-cx, (float)next_y-cy);
+
+		rc_sprite[spr_id].physics.prev_vertex = prev_vert;
+		rc_sprite[spr_id].physics.next_vertex = next_vert;
+
 		fix_shape->CreateChain(vert, v_count, prev_vert, next_vert);
 
 		sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
 		sprFixtureDef.isSensor = isSensor;
 		sprFixtureDef.density = density;
 		rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+
+
+		rc_sprite[spr_id].physics.base_offset_x = cx;
+		rc_sprite[spr_id].physics.base_offset_y = cy;
+
+		rc_sprite[spr_id].physics.offset_x = cx;
+		rc_sprite[spr_id].physics.offset_y = cy;
+
+		float off_x = rc_sprite[spr_id].physics.offset_x;
+		float off_y = rc_sprite[spr_id].physics.offset_y;
+
+		//rc_setSpritePosition(spr_id, bx, by);
+		//std::cout << "Box At: " << bx << ", " << by << std::endl;
+		rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(bx + off_x, by + off_y), rc_sprite[spr_id].physics.body->GetAngle());
 	}
 }
 
@@ -745,6 +872,11 @@ void rc_setSpriteChainLoop(int spr_id, double* vx, double* vy, int v_count)
 		bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
 		float density = rc_sprite[spr_id].physics.fixture->GetDensity();
 
+		b2Vec2 pos = rc_sprite[spr_id].physics.body->GetPosition();
+
+		float bx = pos.x - (rc_sprite[spr_id].physics.offset_x + rc_sprite[spr_id].physics.user_offset_x);
+		float by = pos.y - (rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y);
+
 		//Delete Fixture
 		if(rc_sprite[spr_id].physics.fixture)
 			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
@@ -759,9 +891,25 @@ void rc_setSpriteChainLoop(int spr_id, double* vx, double* vy, int v_count)
 
 		b2Vec2 vert[v_count];
 
+		rc_sprite[spr_id].physics.vertices.clear();
+
+		float cx = 0;
+		float cy = 0;
+
 		for(int i = 0; i < v_count; i++)
 		{
 			vert[i] = b2Vec2((float)vx[i], (float)vy[i]);
+			cx += vx[i];
+			cy += vy[i];
+		}
+
+		cx = cx / v_count;
+		cy = cy / v_count;
+
+		for(int i = 0; i < v_count; i++)
+		{
+			vert[i] -= b2Vec2(cx, cy);
+			rc_sprite[spr_id].physics.vertices.push_back(vert[i]);
 		}
 
 		fix_shape->CreateLoop(vert, v_count);
@@ -770,6 +918,20 @@ void rc_setSpriteChainLoop(int spr_id, double* vx, double* vy, int v_count)
 		sprFixtureDef.isSensor = isSensor;
 		sprFixtureDef.density = density;
 		rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+
+
+		rc_sprite[spr_id].physics.base_offset_x = cx;
+		rc_sprite[spr_id].physics.base_offset_y = cy;
+
+		rc_sprite[spr_id].physics.offset_x = cx;
+		rc_sprite[spr_id].physics.offset_y = cy;
+
+		float off_x = rc_sprite[spr_id].physics.offset_x;
+		float off_y = rc_sprite[spr_id].physics.offset_y;
+
+		//rc_setSpritePosition(spr_id, bx, by);
+		//std::cout << "Box At: " << bx << ", " << by << std::endl;
+		rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(bx + off_x, by + off_y), rc_sprite[spr_id].physics.body->GetAngle());
 	}
 }
 
@@ -789,6 +951,11 @@ void rc_setSpritePolygon(int spr_id, double* vx, double* vy, int v_count)
 		bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
 		float density = rc_sprite[spr_id].physics.fixture->GetDensity();
 
+		b2Vec2 pos = rc_sprite[spr_id].physics.body->GetPosition();
+
+		float bx = pos.x - (rc_sprite[spr_id].physics.offset_x + rc_sprite[spr_id].physics.user_offset_x);
+		float by = pos.y - (rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y);
+
 		//Delete Fixture
 		if(rc_sprite[spr_id].physics.fixture)
 			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
@@ -802,17 +969,47 @@ void rc_setSpritePolygon(int spr_id, double* vx, double* vy, int v_count)
 
 		b2Vec2 vert[v_count];
 
+		rc_sprite[spr_id].physics.vertices.clear();
+
+		float cx = 0;
+		float cy = 0;
+
 		for(int i = 0; i < v_count; i++)
 		{
 			vert[i] = b2Vec2((float)vx[i], (float)vy[i]);
+			cx += vx[i];
+			cy += vy[i];
+		}
+
+		cx = cx / v_count;
+		cy = cy / v_count;
+
+		for(int i = 0; i < v_count; i++)
+		{
+			vert[i] -= b2Vec2(cx, cy);
+			rc_sprite[spr_id].physics.vertices.push_back(vert[i]);
 		}
 
 		fix_shape->Set(vert, v_count);
+		//fix_shape->m_centroid = b2Vec2(cx/v_count, cy/v_count);
 
 		sprFixtureDef.shape = rc_sprite[spr_id].physics.shape;
 		sprFixtureDef.isSensor = isSensor;
 		sprFixtureDef.density = density;
 		rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&sprFixtureDef);
+
+		rc_sprite[spr_id].physics.base_offset_x = cx;
+		rc_sprite[spr_id].physics.base_offset_y = cy;
+
+		rc_sprite[spr_id].physics.offset_x = cx;
+		rc_sprite[spr_id].physics.offset_y = cy;
+
+		float off_x = rc_sprite[spr_id].physics.offset_x;
+		float off_y = rc_sprite[spr_id].physics.offset_y;
+
+		//rc_setSpritePosition(spr_id, bx, by);
+		//std::cout << "Box At: " << bx << ", " << by << std::endl;
+		rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(bx + off_x, by + off_y), rc_sprite[spr_id].physics.body->GetAngle());
 	}
 }
 
@@ -824,6 +1021,12 @@ void rc_setSpriteShapeOffset(int spr_id, int offset_x, int offset_y)
 	if(!rc_sprite[spr_id].active)
 		return;
 
+	int old_offset_x = rc_sprite[spr_id].physics.user_offset_x;
+	int old_offset_y = rc_sprite[spr_id].physics.user_offset_y;
+
+	rc_sprite[spr_id].physics.base_user_offset_x = offset_x;
+	rc_sprite[spr_id].physics.base_user_offset_y = offset_y;
+
 	rc_sprite[spr_id].physics.user_offset_x = offset_x;
 	rc_sprite[spr_id].physics.user_offset_y = offset_y;
 
@@ -832,8 +1035,32 @@ void rc_setSpriteShapeOffset(int spr_id, int offset_x, int offset_y)
 	double off_x = rc_sprite[spr_id].physics.user_offset_x;
 	double off_y = rc_sprite[spr_id].physics.user_offset_y;
 
-	double x = rc_sprite[spr_id].physics.body->GetPosition().x;
-	double y = rc_sprite[spr_id].physics.body->GetPosition().y;
+	switch(rc_sprite[spr_id].physics.shape_type)
+	{
+		case RC_SPRITE_SHAPE_BOX:
+		{
+			off_x += rc_sprite[spr_id].physics.box_width/2;
+			off_y += rc_sprite[spr_id].physics.box_height/2;
+		}
+		break;
+
+		case RC_SPRITE_SHAPE_CIRCLE:
+		{
+			off_x += rc_sprite[spr_id].physics.shape->m_radius;
+			off_y += rc_sprite[spr_id].physics.shape->m_radius;
+		}
+		break;
+
+		default:
+		{
+			//POLYGON AND CHAIN SHAPES KEEP THE SAME OFFSETS
+			off_x = 0;
+			off_y = 0;
+		}
+	}
+
+	double x = rc_sprite[spr_id].physics.body->GetPosition().x - (old_offset_x + rc_sprite[spr_id].physics.offset_x);
+	double y = rc_sprite[spr_id].physics.body->GetPosition().y - (old_offset_y + rc_sprite[spr_id].physics.offset_y);
 
 	rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(x+off_x, y+off_y), current_angle);
 }
@@ -999,6 +1226,7 @@ void rc_rotateSprite(int spr_id, double angle)
 	angle = rc_util_radians(angle);
 
 	float new_angle = rc_sprite[spr_id].physics.body->GetAngle() + angle;
+
 	rc_sprite[spr_id].physics.body->SetTransform(rc_sprite[spr_id].physics.body->GetPosition(), new_angle);
 }
 
@@ -1040,29 +1268,60 @@ void rc_setSpriteScale(int spr_id, double x, double y)
 				case b2Shape::e_circle:
 				{
 					b2CircleShape* shape = (b2CircleShape*)fixdef.shape;
-					shape->m_radius = (x+y)/2;
+					shape->m_radius = rc_sprite[spr_id].physics.radius * ((x+y)/2);
+
 				}
 				break;
 
 				case b2Shape::e_polygon:
 				{
 					b2PolygonShape* shape = (b2PolygonShape*)fixdef.shape;
+					if(rc_sprite[spr_id].physics.vertices.size() < shape->m_count)
+					{
+						for(int i = rc_sprite[spr_id].physics.vertices.size(); i < shape->m_count; i++)
+						{
+							//std::cout << "Add vec2" << std::endl;
+							rc_sprite[spr_id].physics.vertices.push_back(shape->m_vertices[i]);
+						}
+					}
+
+					b2Vec2 vert[shape->m_count];
 					for(int i = 0; i < shape->m_count; i++)
 					{
-						shape->m_vertices[i].x *= x;
-						shape->m_vertices[i].y *= y;
+						vert[i].x = rc_sprite[spr_id].physics.vertices[i].x * x;
+						vert[i].y = rc_sprite[spr_id].physics.vertices[i].y * y;
+
+						//std::cout << "SV: " << shape->m_vertices[i].x << ", " << shape->m_vertices[i].y << std::endl;
 					}
+					shape->Set(vert, shape->m_count);
+
 				}
 				break;
 
 				case b2Shape::e_chain:
 				{
 					b2ChainShape* shape = (b2ChainShape*)fixdef.shape;
+					if(rc_sprite[spr_id].physics.vertices.size() < shape->m_count)
+					{
+						while(rc_sprite[spr_id].physics.vertices.size() < shape->m_count)
+						{
+							rc_sprite[spr_id].physics.vertices.push_back(b2Vec2(0,0));
+						}
+					}
+
+					b2Vec2 vert[shape->m_count];
 					for(int i = 0; i < shape->m_count; i++)
 					{
-						shape->m_vertices[i].x *= x;
-						shape->m_vertices[i].y *= y;
+						vert[i].x = rc_sprite[spr_id].physics.vertices[i].x * x;
+						vert[i].y = rc_sprite[spr_id].physics.vertices[i].y * y;
+
+						//std::cout << "SV: " << shape->m_vertices[i].x << ", " << shape->m_vertices[i].y << std::endl;
 					}
+
+					b2Vec2 prev_vert(rc_sprite[spr_id].physics.prev_vertex.x * x, rc_sprite[spr_id].physics.prev_vertex.y * y);
+					b2Vec2 next_vert(rc_sprite[spr_id].physics.next_vertex.x * x, rc_sprite[spr_id].physics.next_vertex.y * y);
+
+					shape->CreateChain(vert, shape->m_count, prev_vert, next_vert);
 				}
 				break;
 
@@ -1086,7 +1345,38 @@ void rc_setSpriteScale(int spr_id, double x, double y)
 			}
 
 			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+
+			//std::cout << "Make magic happen: " << spr_id << std::endl;
 			rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&fixdef);
+
+
+
+
+
+			b2Vec2 old_offset = b2Vec2(rc_sprite[spr_id].physics.offset_x, rc_sprite[spr_id].physics.offset_y) + b2Vec2(rc_sprite[spr_id].physics.user_offset_x, rc_sprite[spr_id].physics.user_offset_y);
+			b2Vec2 pos = rc_sprite[spr_id].physics.body->GetPosition() - old_offset;
+
+			/*
+			if(spr_id == 1)
+			{
+				std::cout << "dbg1: " << pos.x << ", " << pos.y << " -- " << rc_sprite[spr_id].physics.offset_x << ", " << rc_sprite[spr_id].physics.offset_y << std::endl;
+
+				std::cout << "dbg2: " << rc_sprite[spr_id].physics.base_offset_x << ", " << rc_sprite[spr_id].physics.base_offset_y << std::endl;
+			}
+			*/
+
+			rc_sprite[spr_id].physics.user_offset_x = rc_sprite[spr_id].physics.base_user_offset_x * x;
+			rc_sprite[spr_id].physics.user_offset_y = rc_sprite[spr_id].physics.base_user_offset_y * y;
+
+			rc_sprite[spr_id].physics.offset_x = rc_sprite[spr_id].physics.base_offset_x * x;
+			rc_sprite[spr_id].physics.offset_y = rc_sprite[spr_id].physics.base_offset_y * y;
+
+			b2Vec2 new_offset = b2Vec2(rc_sprite[spr_id].physics.offset_x, rc_sprite[spr_id].physics.offset_y) + b2Vec2(rc_sprite[spr_id].physics.user_offset_x, rc_sprite[spr_id].physics.user_offset_y);
+
+			pos += new_offset;
+
+			rc_sprite[spr_id].physics.body->SetTransform(pos, rc_sprite[spr_id].physics.body->GetAngle());
+			//std::cout << "Done" << std::endl;
 		}
 	}
 }
@@ -1296,31 +1586,85 @@ void drawSprites(int canvas_id)
 		int spr_id = rc_canvas[canvas_id].sprite_id[spr_index];
 		rc_sprite2D_obj* sprite = &rc_sprite[spr_id];
 		//std::cout << "debug info: " << canvas_id << " --> " << spr_index << "   id = " << sprite->id << "   anim_size = " << sprite->animation.size() << std::endl; continue;
-		if(!sprite->visible)
-			continue;
+		//if(!sprite->visible)
+		//	continue;
 
 		physics_pos = sprite->physics.body->GetPosition();
 		x = (int)(physics_pos.x - sprite->physics.offset_x) - offset_x;
 		y = (int)(physics_pos.y - sprite->physics.offset_y) - offset_y;
 
-		int xf = x + sprite->frame_size.Width;
-		int yf = y + sprite->frame_size.Height;
+		if(rc_sprite[spr_id].physics.shape_type == RC_SPRITE_SHAPE_POLYGON)
+		{
+			b2PolygonShape* shape = (b2PolygonShape*)sprite->physics.shape;
+			x = (int)(sprite->physics.body->GetWorldCenter().x - sprite->physics.offset_x - offset_x);
+			y = (int)(sprite->physics.body->GetWorldCenter().y - sprite->physics.offset_y - offset_y);
+		}
+
+		int frame_offset_x =  sprite->physics.user_offset_x;
+		int frame_offset_y =  sprite->physics.user_offset_y;
+
+		/*
+		if(spr_id == 1)
+		{
+			b2Vec2 tform = sprite->physics.body->GetWorldCenter();
+
+
+			std::cout << "SPRITE: " << spr_id << " (" << tform.x << ", " << tform.y << ") " << std::endl;
+			if(sprite->physics.shape_type == RC_SPRITE_SHAPE_CIRCLE)
+			{
+				//b2CircleShape* cshape = (b2CircleShape*) sprite->physics.body->GetFixtureList()[0].GetShape();
+				std::cout << "offset: " << frame_offset_x << ", " << frame_offset_y << std::endl;
+				std::cout << "debug: " << "pbody = (" << physics_pos.x << ", " << physics_pos.y << ")  radius = " << sprite->physics.body->GetFixtureList()->GetShape()->m_radius << std::endl;
+				std::cout << "calc: calc_pos (" << x << ", " << y << ")  p_offset = (" << offset_x << ", " << offset_y << ") " << std::endl << std::endl;
+				std::cout << "-----------------" << std::endl;
+
+			}
+			else
+			{
+				//b2CircleShape* cshape = (b2CircleShape*) sprite->physics.body->GetFixtureList()[0].GetShape();
+				std::cout << "offset: " << frame_offset_x << ", " << frame_offset_y << std::endl;
+				std::cout << "debug: " << "pbody = (" << physics_pos.x << ", " << physics_pos.y << ") " << sprite->physics.box_width << " x " << sprite->physics.box_height << std::endl;
+				std::cout << "calc: calc_pos (" << x << ", " << y << ")  canvas_offset = (" << offset_x << ", " << offset_y << ") " << std::endl << std::endl;
+				std::cout << "-----------------" << std::endl;
+			}
+
+		}
+		*/
+
+		//if(!sprite->visible)
+		//	continue;
+
+		int radius = sprite->frame_size.Width;
+		if(sprite->frame_size.Height > radius)
+			radius = sprite->frame_size.Height;
+
+		radius += 1;
+
+		float max_scale = sprite->scale.X;
+		if(sprite->scale.Y > max_scale)
+			max_scale = sprite->scale.Y;
+
+		radius = (radius * max_scale) + 1;
+
+		int xf = x + radius;
+		int yf = y + radius;
 
 		//std::cout << "sprite info[" << spr_index << "]: (" << x << ", " << y << ") (" << xf << ", " << yf << ")" << std::endl;
 
-		if( (xf < 0) || (x > ((int)rc_canvas[canvas_id].viewport.dimension.Width)) )
+		position.set(x-frame_offset_x, y-frame_offset_y);
+		//position.set(x, y);
+
+		if( (xf < 0) || ((position.X - radius) > ((int)rc_canvas[canvas_id].viewport.dimension.Width)) )
 		{
 			//std::cout << "skip draw[X]: " << spr_index << std::endl;
 			continue;
 		}
 
-		if( (yf < 0) || (y > ((int)rc_canvas[canvas_id].viewport.dimension.Height)) )
+		if( (yf < 0) || ((position.Y-radius) > ((int)rc_canvas[canvas_id].viewport.dimension.Height)) )
 		{
 			//std::cout << "skip draw[Y]: " << spr_index << std::endl;
 			continue;
 		}
-
-		position.set(x, y);
 
 		int img_id = sprite->image_id;
 		if(img_id < 0 || img_id >= rc_image.size())
@@ -1370,7 +1714,7 @@ void drawSprites(int canvas_id)
 
 		scale.set(sprite->scale.X, sprite->scale.Y);
 
-		rotationPoint.set(x + (src_size.Width/2)*scale.X, y + (src_size.Height/2)*scale.Y); //TODO: need to account for offset once that is implemented
+		rotationPoint.set(x + (src_size.Width/2)*scale.X - sprite->physics.user_offset_x, y + (src_size.Height/2)*scale.Y - sprite->physics.user_offset_y); //TODO: need to account for offset once that is implemented
 		rotation = -1 * (sprite->physics.body->GetAngle() * RAD_TO_DEG); //convert Box2D radians to degrees
 
 		color.set(sprite->alpha,
