@@ -1,5 +1,6 @@
 #include "rc_steam.h"
 
+
 CSteamAchievements::CSteamAchievements(Achievement_t *Achievements, int NumAchievements):
  m_iAppID( 0 ),
  m_bInitialized( false ),
@@ -11,6 +12,11 @@ CSteamAchievements::CSteamAchievements(Achievement_t *Achievements, int NumAchie
      m_pAchievements = Achievements;
      m_iNumAchievements = NumAchievements;
      RequestStats();
+}
+
+void CSteamAchievements::OutputDebugString(std::string dbg_string)
+{
+    std::cout << dbg_string << std::endl;
 }
 
 
@@ -26,8 +32,9 @@ bool CSteamAchievements::RequestStats()
 	{
 		return false;
 	}
-	// Request user stats.
-	return SteamUserStats()->RequestCurrentStats();
+	// Request user stats.  NOTE: No longer required according to header
+	//return SteamUserStats()->RequestCurrentStats();
+	return true;
 }
 
 
@@ -60,10 +67,12 @@ void CSteamAchievements::OnUserStatsReceived( UserStatsReceived_t *pCallback )
 				Achievement_t &ach = m_pAchievements[iAch];
 
 				SteamUserStats()->GetAchievement(ach.m_pchAchievementID, &ach.m_bAchieved);
-				_snprintf( ach.m_rgchName, sizeof(ach.m_rgchName), "%s",
+
+				printf( ach.m_rgchName, sizeof(ach.m_rgchName), "%s",
 					SteamUserStats()->GetAchievementDisplayAttribute(ach.m_pchAchievementID,
 					"name"));
-				_snprintf( ach.m_rgchDescription, sizeof(ach.m_rgchDescription), "%s",
+
+				printf( ach.m_rgchDescription, sizeof(ach.m_rgchDescription), "%s",
 					SteamUserStats()->GetAchievementDisplayAttribute(ach.m_pchAchievementID,
 					"desc"));
 			}
@@ -71,7 +80,7 @@ void CSteamAchievements::OnUserStatsReceived( UserStatsReceived_t *pCallback )
 		else
 		{
 			char buffer[128];
-			_snprintf( buffer, 128, "RequestStats - failed, %d\n", pCallback->m_eResult );
+			printf( buffer, 128, "RequestStats - failed, %d\n", pCallback->m_eResult );
 			OutputDebugString( buffer );
 		}
 	}
@@ -90,7 +99,7 @@ void CSteamAchievements::OnUserStatsStored( UserStatsStored_t *pCallback )
 		else
 		{
 			char buffer[128];
-			_snprintf( buffer, 128, "StatsStored - failed, %d\n", pCallback->m_eResult );
+			printf( buffer, 128, "StatsStored - failed, %d\n", pCallback->m_eResult );
 			OutputDebugString( buffer );
 		}
 	}

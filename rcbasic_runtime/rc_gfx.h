@@ -349,6 +349,7 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     Uint32 size_n = 2;
     Uint32 dim_max = (w > h ? w : h);
     while(size_n < dim_max) size_n *= 2;
+    //std::cout << "RCTEST: " << size_n << " from " << w << ", " << h << std::endl;
     back_buffer.texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)size_n, (irr::u32)size_n), "rt", ECF_A8R8G8B8);
     #else
     back_buffer.texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>((irr::u32)w, (irr::u32)h), "rt", ECF_A8R8G8B8);

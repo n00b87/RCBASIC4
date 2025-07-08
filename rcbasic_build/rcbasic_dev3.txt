@@ -1214,6 +1214,18 @@ case FN_SystemRam: //Number Function
 case FN_GetGPUInfo$: //String Function
 	 rc_push_str(rc_getGPUInfo(  ));
 	break;
+case FN_AddSteamAchievement: //Sub Procedure
+	rc_addSteamAchievement( ADDSTEAMACHIEVEMENT_ACH_ID$,  ADDSTEAMACHIEVEMENT_ACH_NAME$ );
+	break;
+case FN_ClearSteamAchievements: //Sub Procedure
+	rc_clearSteamAchievements(  );
+	break;
+case FN_FinalizeSteamAchievements: //Sub Procedure
+	rc_finalizeSteamAchievements(  );
+	break;
+case FN_TriggerSteamAchievement: //Number Function
+	 rc_push_num(rc_triggerSteamAchievement( TRIGGERSTEAMACHIEVEMENT_ACH_NAME$ ));
+	break;
 case FN_DimMatrix: //Number Function
 	 rc_push_num(rc_dimMatrix( DIMMATRIX_M_ROWS,  DIMMATRIX_M_COLS ));
 	break;
@@ -2035,6 +2047,15 @@ case FN_CreateVolumeLightMesh: //Number Function
 	break;
 case FN_DeleteAN8: //Sub Procedure
 	rc_deleteAN8( DELETEAN8_AN8_PROJECT );
+	break;
+case FN_SetMeshBoundingBox: //Sub Procedure
+	rc_setMeshBoundingBox( SETMESHBOUNDINGBOX_MESH,  SETMESHBOUNDINGBOX_MIN_X,  SETMESHBOUNDINGBOX_MIN_Y,  SETMESHBOUNDINGBOX_MIN_Z,  SETMESHBOUNDINGBOX_MAX_X,  SETMESHBOUNDINGBOX_MAX_Y,  SETMESHBOUNDINGBOX_MAX_Z );
+	break;
+case FN_GetMeshBoundingBox: //Sub Procedure
+	rc_getMeshBoundingBox( GETMESHBOUNDINGBOX_MESH,  &GETMESHBOUNDINGBOX_MIN_X,  &GETMESHBOUNDINGBOX_MIN_Y,  &GETMESHBOUNDINGBOX_MIN_Z,  &GETMESHBOUNDINGBOX_MAX_X,  &GETMESHBOUNDINGBOX_MAX_Y,  &GETMESHBOUNDINGBOX_MAX_Z );
+	break;
+case FN_ReCalculateMeshBoundingBox: //Sub Procedure
+	rc_reCalculateMeshBoundingBox( RECALCULATEMESHBOUNDINGBOX_MESH );
 	break;
 case FN_CreateAnimatedActor: //Number Function
 	 rc_push_num(rc_createAnimatedActor( CREATEANIMATEDACTOR_MESH ));

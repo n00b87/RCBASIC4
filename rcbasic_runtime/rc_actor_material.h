@@ -167,6 +167,10 @@ int rc_createMaterial()
 		rc_material.push_back(mat);
 	}
 
+	#if defined(__ANDROID__)
+        rc_material[material_id].mat.UseMipMaps = false;
+    #endif // defined
+
 	return material_id;
 }
 
