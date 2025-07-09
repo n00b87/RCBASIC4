@@ -56,6 +56,7 @@
 #include "rc_audio.h"
 #include "rc_net.h"
 #include "rc_video.h"
+#include "rc_steam_lib.h"
 #include "rc_windowclose.h"
 #include "rc_test.h"
 #include <irrtheora.h>
@@ -4398,7 +4399,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Runtime v4.2" << endl;
+        cout << "RCBASIC Runtime v4.3" << endl;
         return 0;
     }
 
@@ -4456,10 +4457,10 @@ int main(int argc, char * argv[])
 	//rc_intern_dirChange("");
 	rc_filename = "main.cbc";
 
-	rc_intern_dirChange("/home/n00b/Pictures/UNTITLED");
-	rc_filename = "nv_test.cbc";
+	//rc_intern_dirChange("/home/n00b/Pictures/UNTITLED");
+	//rc_filename = "nv_test.cbc";
 
-	rc_intern_dirChange("/home/n00b/test/stp");
+	rc_intern_dirChange("/home/n00b/Experimental/android-project/app/src/main/assets");
 	rc_filename = "main.cbc";
     #endif
     //---------------

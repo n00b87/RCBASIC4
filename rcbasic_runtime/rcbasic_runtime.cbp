@@ -37,10 +37,12 @@
 			<Add directory="/home/n00b/Projects/irrBullet/include" />
 			<Add directory="/home/n00b/Projects/irrTheora" />
 			<Add directory="/home/n00b/Projects/an8-parser" />
+			<Add directory="/home/n00b/Projects/steamworks_sdk_162/sdk/public" />
 		</Compiler>
 		<Linker>
-			<Add option="-lSDL2main -lSDL2 -lSDL2_image -lSDL2_gfx -lSDL2_ttf -lSDL2_mixer -lSDL2_net -logg -lvorbis -lvorbisfile -ltheora -ltheoradec -lIrrlicht -lfreetype -lbox2d -lBullet3Collision -lBullet3Common -lBullet3Dynamics -lBullet3Geometry -lBulletCollision -lBulletDynamics -lBulletInverseDynamics -lBulletSoftBody -lLinearMath -pthread" />
+			<Add option="-lSDL2main -lSDL2 -lSDL2_image -lSDL2_gfx -lSDL2_ttf -lSDL2_mixer -lSDL2_net -logg -lvorbis -lvorbisfile -ltheora -ltheoradec -lIrrlicht -lfreetype -lbox2d -lBullet3Collision -lBullet3Common -lBullet3Dynamics -lBullet3Geometry -lBulletCollision -lBulletDynamics -lBulletSoftBody -lLinearMath -lsteam_api -pthread" />
 			<Add directory="/home/n00b/Projects/RCIrrlicht/lib/Linux" />
+			<Add directory="/home/n00b/Projects/steamworks_sdk_162/sdk/redistributable_bin/linux64" />
 		</Linker>
 		<Unit filename="../../irrBullet/src/irrBullet.cpp" />
 		<Unit filename="../../irrBullet/src/irrBulletBoxShape.cpp" />
@@ -71,7 +73,6 @@
 		<Unit filename="CShader.h" />
 		<Unit filename="ProjectiveTextures.cpp" />
 		<Unit filename="ProjectiveTextures.h" />
-		<Unit filename="RealisticWater.cpp" />
 		<Unit filename="RealisticWater.h" />
 		<Unit filename="camera.h" />
 		<Unit filename="gui_freetype_font.cpp" />
@@ -106,6 +107,9 @@
 		<Unit filename="rc_sprite_physics.h" />
 		<Unit filename="rc_spritelib.h" />
 		<Unit filename="rc_stdlib.h" />
+		<Unit filename="rc_steam.cpp" />
+		<Unit filename="rc_steam.h" />
+		<Unit filename="rc_steam_lib.h" />
 		<Unit filename="rc_test.h" />
 		<Unit filename="rc_tilelib.h" />
 		<Unit filename="rc_tilemap.h" />

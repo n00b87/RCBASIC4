@@ -2334,6 +2334,16 @@ void rc_getTouch(double * status, double * x, double * y, double * distX, double
     return;
 }
 
+int rc_getTouchX()
+{
+    return rc_touchX;
+}
+
+int rc_getTouchY()
+{
+    return rc_touchY;
+}
+
 void rc_getMultiTouch(double * status, double * x, double * y, double * numFingers, double * dist, double * theta)
 {
     *status = (double)rc_mt_status;
