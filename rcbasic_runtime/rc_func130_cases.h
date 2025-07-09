@@ -1042,6 +1042,12 @@ case FN_GyroName$: //String Function
 case FN_NumGyros: //Number Function
 	 rc_push_num(rc_numGyros(  ));
 	break;
+case FN_TouchX: //Number Function
+	 rc_push_num(rc_getTouchX(  ));
+	break;
+case FN_TouchY: //Number Function
+	 rc_push_num(rc_getTouchY(  ));
+	break;
 case FN_CheckSockets: //Number Function
 	 rc_push_num(rc_net_checkSockets( CHECKSOCKETS_TIMEOUT_MS ));
 	break;
@@ -1213,6 +1219,21 @@ case FN_SystemRam: //Number Function
 	break;
 case FN_GetGPUInfo$: //String Function
 	 rc_push_str(rc_getGPUInfo(  ));
+	break;
+case FN_Steam_AddAchievement: //Sub Procedure
+	rc_steam_AddAchievement( STEAM_ADDACHIEVEMENT_ACH_ID$,  STEAM_ADDACHIEVEMENT_ACH_NAME$ );
+	break;
+case FN_Steam_ClearAchievements: //Sub Procedure
+	rc_steam_ClearAchievements(  );
+	break;
+case FN_Steam_FinalizeAchievements: //Sub Procedure
+	rc_steam_FinalizeAchievements(  );
+	break;
+case FN_Steam_TriggerAchievement: //Number Function
+	 rc_push_num(rc_steam_TriggerAchievement( STEAM_TRIGGERACHIEVEMENT_ACH_NAME$ ));
+	break;
+case FN_Steam_GetID$: //String Function
+	 rc_push_str(rc_steam_GetID(  ));
 	break;
 case FN_DimMatrix: //Number Function
 	 rc_push_num(rc_dimMatrix( DIMMATRIX_M_ROWS,  DIMMATRIX_M_COLS ));
@@ -2035,6 +2056,15 @@ case FN_CreateVolumeLightMesh: //Number Function
 	break;
 case FN_DeleteAN8: //Sub Procedure
 	rc_deleteAN8( DELETEAN8_AN8_PROJECT );
+	break;
+case FN_SetMeshBoundingBox: //Sub Procedure
+	rc_setMeshBoundingBox( SETMESHBOUNDINGBOX_MESH,  SETMESHBOUNDINGBOX_MIN_X,  SETMESHBOUNDINGBOX_MIN_Y,  SETMESHBOUNDINGBOX_MIN_Z,  SETMESHBOUNDINGBOX_MAX_X,  SETMESHBOUNDINGBOX_MAX_Y,  SETMESHBOUNDINGBOX_MAX_Z );
+	break;
+case FN_GetMeshBoundingBox: //Sub Procedure
+	rc_getMeshBoundingBox( GETMESHBOUNDINGBOX_MESH,  &GETMESHBOUNDINGBOX_MIN_X,  &GETMESHBOUNDINGBOX_MIN_Y,  &GETMESHBOUNDINGBOX_MIN_Z,  &GETMESHBOUNDINGBOX_MAX_X,  &GETMESHBOUNDINGBOX_MAX_Y,  &GETMESHBOUNDINGBOX_MAX_Z );
+	break;
+case FN_ReCalculateMeshBoundingBox: //Sub Procedure
+	rc_reCalculateMeshBoundingBox( RECALCULATEMESHBOUNDINGBOX_MESH );
 	break;
 case FN_CreateAnimatedActor: //Number Function
 	 rc_push_num(rc_createAnimatedActor( CREATEANIMATEDACTOR_MESH ));

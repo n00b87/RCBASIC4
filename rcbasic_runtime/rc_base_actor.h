@@ -287,6 +287,11 @@ int rc_createAnimatedActor(int mesh_id)
 	}
 
     actor.mesh_node = node;
+
+    #if defined(__ANDROID__)
+        actor.mesh_node->setMaterialFlag(irr::video::EMF_USE_MIP_MAPS, false);
+    #endif // defined
+
     actor.shadow = NULL;
     actor.transition = false;
     actor.transition_time = 0;
@@ -366,6 +371,11 @@ int rc_createOctreeActor(int mesh_id)
     rc_scene_node actor;
     actor.node_type = RC_NODE_TYPE_OTMESH;
     actor.mesh_node = node;
+
+    #if defined(__ANDROID__)
+        actor.mesh_node->setMaterialFlag(irr::video::EMF_USE_MIP_MAPS, false);
+    #endif // defined
+
     actor.shadow = NULL;
     actor.transition = false;
     actor.transition_time = 0;
@@ -413,6 +423,11 @@ int rc_createTerrainActor( std::string height_map )
     rc_scene_node actor;
     actor.node_type = RC_NODE_TYPE_TERRAIN;
     actor.mesh_node = node;
+
+    #if defined(__ANDROID__)
+        actor.mesh_node->setMaterialFlag(irr::video::EMF_USE_MIP_MAPS, false);
+    #endif // defined
+
     actor.shadow = NULL;
     actor.transition = false;
     actor.transition_time = 0;
@@ -460,6 +475,11 @@ int rc_createParticleActor( int particle_type )
     actor.particle_properties.particle_type = particle_type;
     actor.particle_properties.mesh_id = -1;
     actor.mesh_node = node;
+
+    #if defined(__ANDROID__)
+        actor.mesh_node->setMaterialFlag(irr::video::EMF_USE_MIP_MAPS, false);
+    #endif // defined
+
     actor.shadow = NULL;
     actor.transition = false;
     actor.transition_time = 0;
@@ -506,6 +526,11 @@ int rc_createCubeActor(double cube_size)
     rc_scene_node actor;
     actor.node_type = RC_NODE_TYPE_MESH;
     actor.mesh_node = node;
+
+    #if defined(__ANDROID__)
+        actor.mesh_node->setMaterialFlag(irr::video::EMF_USE_MIP_MAPS, false);
+    #endif // defined
+
     actor.shadow = NULL;
     actor.transition = false;
     actor.transition_time = 0;
@@ -551,6 +576,11 @@ int rc_createSphereActor(double radius)
     rc_scene_node actor;
     actor.node_type = RC_NODE_TYPE_MESH;
     actor.mesh_node = node;
+
+    #if defined(__ANDROID__)
+        actor.mesh_node->setMaterialFlag(irr::video::EMF_USE_MIP_MAPS, false);
+    #endif // defined
+
     actor.shadow = NULL;
     actor.transition = false;
     actor.transition_time = 0;
@@ -604,6 +634,11 @@ int rc_createWaterActor(int mesh_id, double waveHeight, double waveSpeed, double
     rc_scene_node actor;
     actor.node_type = RC_NODE_TYPE_WATER;
     actor.mesh_node = node;
+
+    #if defined(__ANDROID__)
+        actor.mesh_node->setMaterialFlag(irr::video::EMF_USE_MIP_MAPS, false);
+    #endif // defined
+
     actor.shadow = NULL;
     actor.transition = false;
     actor.transition_time = 0;
@@ -648,6 +683,11 @@ int rc_createBillboardActor()
     rc_scene_node actor;
     actor.node_type = RC_NODE_TYPE_BILLBOARD;
     actor.mesh_node = node;
+
+    #if defined(__ANDROID__)
+        actor.mesh_node->setMaterialFlag(irr::video::EMF_USE_MIP_MAPS, false);
+    #endif // defined
+
     actor.shadow = NULL;
     actor.transition = false;
     actor.transition_time = 0;
@@ -692,6 +732,11 @@ int rc_createLightActor()
     rc_scene_node actor;
     actor.node_type = RC_NODE_TYPE_LIGHT;
     actor.mesh_node = node;
+
+    #if defined(__ANDROID__)
+        actor.mesh_node->setMaterialFlag(irr::video::EMF_USE_MIP_MAPS, false);
+    #endif // defined
+
     actor.shadow = NULL;
     actor.transition = false;
     actor.transition_time = 0;
@@ -736,6 +781,11 @@ int rc_createProjectorActor()
     rc_scene_node actor;
     actor.node_type = RC_NODE_TYPE_PROJECTOR;
     actor.mesh_node = node;
+
+    #if defined(__ANDROID__)
+        actor.mesh_node->setMaterialFlag(irr::video::EMF_USE_MIP_MAPS, false);
+    #endif // defined
+
     actor.shadow = NULL;
     actor.transition = false;
     actor.transition_time = 0;

@@ -1,7 +1,9 @@
 #ifndef RC_STEAM_H_INCLUDED
 #define RC_STEAM_H_INCLUDED
 
+#include <iostream>
 #include <steam/steam_api.h>
+#include <steam/isteamuserstats.h>
 
 #define _ACH_ID( id, name ) { id, #id, name, "", 0, 0 }
 struct Achievement_t
@@ -27,8 +29,12 @@ public:
 	CSteamAchievements(Achievement_t *Achievements, int NumAchievements);
 	~CSteamAchievements();
 
+	void OutputDebugString(std::string dbg_string);
+
 	bool RequestStats();
 	bool SetAchievement(const char* ID);
+
+	int64 GetAppID();
 
 	STEAM_CALLBACK( CSteamAchievements, OnUserStatsReceived, UserStatsReceived_t,
 		m_CallbackUserStatsReceived );

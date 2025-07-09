@@ -12,3 +12,6 @@ Function CreateConeMesh( radius, cone_length, tesselation, top_color, bottom_col
 Function CreateCylinderMesh( radius, cylinder_length, tesselation, color, close_top )
 Function CreateVolumeLightMesh( u, v, foot_color, tail_color, lp_distance, dim_x, dim_y, dim_z )
 Sub DeleteAN8( an8_project )
+Sub SetMeshBoundingBox( mesh, min_x, min_y, min_z, max_x, max_y, max_z )
+Sub GetMeshBoundingBox( mesh, ByRef min_x, ByRef min_y, ByRef min_z, ByRef max_x, ByRef max_y, ByRef max_z )
+Sub ReCalculateMeshBoundingBox( mesh )

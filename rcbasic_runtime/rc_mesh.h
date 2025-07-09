@@ -75,6 +75,51 @@ int rc_loadMeshFromArchive(std::string archive, std::string mesh_file)
     return mesh_id;
 }
 
+
+void rc_setMeshBoundingBox(int mesh_id, double min_x, double min_y, double min_z, double max_x, double max_y, double max_z)
+{
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+        return;
+
+    if(rc_mesh[mesh_id].mesh)
+    {
+        rc_mesh[mesh_id].mesh->setBoundingBox( irr::core::aabbox3df(min_x, min_y, min_z, max_x, max_y, max_z) );
+    }
+}
+
+void rc_getMeshBoundingBox(int mesh_id, double* min_x, double* min_y, double* min_z, double* max_x, double* max_y, double* max_z)
+{
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+        return;
+
+    if(rc_mesh[mesh_id].mesh)
+    {
+        irr::core::aabbox3df bbox = rc_mesh[mesh_id].mesh->getBoundingBox();
+
+        *min_x = bbox.MinEdge.X;
+        *min_y = bbox.MinEdge.Y;
+        *min_z = bbox.MinEdge.Z;
+
+        *max_x = bbox.MaxEdge.X;
+        *max_y = bbox.MaxEdge.Y;
+        *max_z = bbox.MaxEdge.Z;
+    }
+}
+
+void rc_reCalculateMeshBoundingBox(int mesh_id)
+{
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+        return;
+
+    if(rc_mesh[mesh_id].mesh)
+    {
+        for(int i = 0; i < rc_mesh[mesh_id].mesh->getMeshBufferCount(); i++)
+            rc_mesh[mesh_id].mesh->getMeshBuffer(i)->recalculateBoundingBox();
+    }
+}
+
+
+
 int rc_loadAN8(std::string an8_file)
 {
 	int id = -1;
