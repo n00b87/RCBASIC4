@@ -1,7 +1,7 @@
 #ifndef RC_STEAM_LIB_H_INCLUDED
 #define RC_STEAM_LIB_H_INCLUDED
 
-#if defined(RC_WINDOWS) || defined(RC_LINUX) || defined(RC_MAC)
+#if defined(RC_DESKTOP)
 
 #include <iostream>
 #include <vector>
@@ -90,7 +90,7 @@ bool rc_steam_TriggerAchievement(std::string ach_name)
     return false;
 }
 
-std::string rc_steam_getID()
+std::string rc_steam_GetID()
 {
     return "";
 }

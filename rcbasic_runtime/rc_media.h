@@ -1484,7 +1484,7 @@ void rc_media_setWindowFullscreen(int win_num, int flag)
         }
         else if(SDL_GetWindowDisplayMode(rc_win[win_num], &rc_displayMode[win_num])<0)
         {
-            cout << "Something happend: " << SDL_GetError() << endl;
+            cout << "SetWindowFullscreen Error: " << SDL_GetError() << endl;
             #ifndef RC_MOBILE
             rc_fullscreen_mouse_scale_x[win_num] = 1;
             rc_fullscreen_mouse_scale_y[win_num] = 1;

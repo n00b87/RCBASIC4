@@ -330,7 +330,7 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
 
 	if (!device)
     {
-        std::cout << "WindowOpen Error: Failed to Create Renderer" << std::endl;
+        std::cout << "OpenWindow Error: Failed to Create Renderer" << std::endl;
         return false;
     }
 

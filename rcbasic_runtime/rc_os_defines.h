@@ -38,6 +38,12 @@
 #define RC_DRIVER_GLES2
 #endif
 
+#ifndef RC_WEB
+#if defined(RC_WINDOWS) || defined(RC_LINUX) || defined(RC_MAC)
+#define RC_DESKTOP
+#endif // defined
+#endif // RC_WEB
+
 //FOR TESTING PURPOSES
 #ifdef RC_TESTING
 #define RC_DRIVER_GLES2
