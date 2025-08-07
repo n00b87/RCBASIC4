@@ -27,7 +27,6 @@
 
 
 #ifdef RC_ANDROID
-	#include <android_native_app_glue.h>
     #include <jni.h>
     #include <sys/param.h>
     #include <algorithm>
