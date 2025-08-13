@@ -658,10 +658,75 @@ std::string rc_getMaterialConstantName(int material_type, int index)
 
 void rc_setMaterialConstant(int material_id, std::string m_constant, double n1, double n2, double n3, double n4)
 {
+    if(material_id < 0 || material_id >= rc_material.size())
+		return;
+
+    if(!rc_material[material_id].isFX)
+        return;
+
+    float m_constant_value[] = {n1, n2, n3, n4};
+
+    for(int i = 0; i < rc_material[material_id].shader->getUniformVariableCount(); i++)
+    {
+        std::string u_var(rc_material[material_id].shader->getUniformVariable(i)->name.c_str());
+        if(u_var.compare(m_constant)==0)
+        {
+            rc_material[material_id].shader->getUniformVariable(i)->value = m_constant_value;
+            break;
+        }
+    }
 }
 
 void rc_getMaterialConstant(int material_id, std::string m_constant, double* n1, double* n2, double* n3, double* n4)
 {
+    if(material_id < 0 || material_id >= rc_material.size())
+		return;
+
+    if(!rc_material[material_id].isFX)
+        return;
+
+    *n1 = 0;
+    *n2 = 0;
+    *n3 = 0;
+    *n4 = 0;
+
+    for(int i = 0; i < rc_material[material_id].shader->getUniformVariableCount(); i++)
+    {
+        std::string u_var(rc_material[material_id].shader->getUniformVariable(i)->name.c_str());
+        if(u_var.compare(m_constant)==0)
+        {
+            switch(rc_material[material_id].shader->getUniformVariable(i)->type)
+            {
+                case ESVT_FLOAT:
+                {
+                    *n1 = rc_material[material_id].shader->getUniformVariable(i)->value[0];
+                }
+                break;
+                ESVT_VEC2:
+                {
+                    *n1 = rc_material[material_id].shader->getUniformVariable(i)->value[0];
+                    *n2 = rc_material[material_id].shader->getUniformVariable(i)->value[1];
+                }
+                break;
+                ESVT_VEC3:
+                {
+                    *n1 = rc_material[material_id].shader->getUniformVariable(i)->value[0];
+                    *n2 = rc_material[material_id].shader->getUniformVariable(i)->value[1];
+                    *n3 = rc_material[material_id].shader->getUniformVariable(i)->value[2];
+                }
+                break;
+                ESVT_VEC4:
+                {
+                    *n1 = rc_material[material_id].shader->getUniformVariable(i)->value[0];
+                    *n2 = rc_material[material_id].shader->getUniformVariable(i)->value[1];
+                    *n3 = rc_material[material_id].shader->getUniformVariable(i)->value[2];
+                    *n4 = rc_material[material_id].shader->getUniformVariable(i)->value[3];
+                }
+                break;
+            }
+            break;
+        }
+    }
 }
 
 
