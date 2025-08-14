@@ -1,0 +1,19 @@
+#title SetSpriteShape [RCBasic Doc]
+#header Sub SetSpriteShape(spr_id, shape)
+
+Sets the shape of a sprite.
+
+Possible Shapes
+#list ul
+#li SPRITE_SHAPE_NONE
+#li SPRITE_SHAPE_BOX - A rectangular shape
+#li SPRITE_SHAPE_POLYGON - A polygon (any shape with 3 or more sides)
+#li SPRITE_SHAPE_CIRCLE - A circle
+#li SPRITE_SHAPE_CHAIN - A open polygon shape
+#list ul
+#li NOTE: Mainly used for terrain
+#/list
+#/list
+
+#ref GetSpriteShape
+

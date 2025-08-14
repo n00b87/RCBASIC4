@@ -1,0 +1,86 @@
+#title Serenity3D [RCBasic Doc]
+#header Serenity3D Actors API
+
+
+<b>Function Serenity_GetActorIndex(actor_name$)</b>
+#list ul
+#li Returns the Serenity Actor Index which is used to access actor data in the API
+#/list
+<br>
+
+<b>Function Serenity_GetActorCount()</b>
+#list ul
+#li Returns the number of actors in the current stage
+#list ul
+#li NOTE: This count only includes actors that were created in Serenity3D
+#/list
+#/list
+<br>
+
+<b>Function Serenity_GetActorID(actor_index)</b>
+#list ul
+#li Returns the RCBasic Actor ID
+#/list
+<br>
+
+<b>Function Serenity_GetActorName$(actor_index)</b>
+#list ul
+#li Returns the name of the actor from the given Serenity Actor Index
+#/list
+<br>
+
+<b>Function Serenity_GetActorType(actor_index)</b>
+#list ul
+#li Returns the actor type
+#li Possible values are
+#list ul
+#li SN_ACTOR_TYPE_ANIMATED
+#li SN_ACTOR_TYPE_OCTREE
+#li SN_ACTOR_TYPE_LIGHT
+#li SN_ACTOR_TYPE_BILLBOARD
+#li SN_ACTOR_TYPE_TERRAIN
+#li SN_ACTOR_TYPE_WATER
+#li SN_ACTOR_TYPE_PARTICLE
+#li SN_ACTOR_TYPE_CUBE
+#li SN_ACTOR_TYPE_SPHERE
+#li SN_ACTOR_TYPE_PLANE
+#/list
+#/list
+<br>
+
+<b>Function Serenity_GetActorMeshIndex(actor_index)</b>
+#list ul
+#li Returns the Serenity Mesh index the actor was created from
+#/list
+<br>
+
+<b>Function Serenity_GetActorOverrideMaterialIndex(actor_index)</b>
+#list ul
+#li Returns the material index set in an actors properties on the Stage Editor tab
+#/list
+<br>
+
+<b>Function Serenity_GetActorTerrainHeightMap$(actor_index)</b>
+#list ul
+#li Returns the height map file for a terrain actor
+#/list
+<br>
+
+<b>Function Serenity_GetActorCubeSize(actor_index)</b>
+#list ul
+#li Returns the cube size for a cube actor
+#/list
+<br>
+
+<b>Function Serenity_GetActorSphereRadius(actor_index)</b>
+#list ul
+#li Returns the sphere radius for a sphere actor
+#/list
+<br>
+
+<b>Function Serenity_GetActorGroupIndex(actor_index)</b>
+#list ul
+#li Returns the Serenity Group Index the actor is grouped in or -1 if the actor is not part of a group
+#/list
+<br>
+

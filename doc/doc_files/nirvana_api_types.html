@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>Nirvana2D [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Nirvana2D API </h2></p>
+		<p>
+		 <b>Type Nirvana_Vector2D</b> 
+		</p>
+		<ul>
+		<li>
+		Dim X 
+		</li>
+		<li>
+		Dim Y 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_Size2D</b> 
+		</p>
+		<ul>
+		<li>
+		Dim Width 
+		</li>
+		<li>
+		Dim Height 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_Sprite</b> 
+		</p>
+		<ul>
+		<li>
+		Dim Name$ 
+		</li>
+		<li>
+		Dim BaseName$ 
+		</li>
+		<li>
+		Dim Sprite_ID 
+		</li>
+		<li>
+		Dim Animation_Name_Index 
+		</li>
+		<li>
+		Dim Animation_Count 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_TileMap</b> 
+		</p>
+		<ul>
+		<li>
+		Dim TilesetName$ 
+		</li>
+		<li>
+		Dim Tileset_ID 
+		</li>
+		<li>
+		Dim TileMap_ID 
+		</li>
+		<li>
+		Dim Mask_Index 
+		</li>
+		<li>
+		Dim Mask_Count 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_Background</b> 
+		</p>
+		<ul>
+		<li>
+		Dim Image_ID 
+		</li>
+		<li>
+		Dim RenderSetting 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_Shape</b> 
+		</p>
+		<ul>
+		<li>
+		Dim Sprite_ID 
+		</li>
+		<li>
+		Dim ShapeType 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_Layer</b> 
+		</p>
+		<ul>
+		<li>
+		Dim Name$ 
+		</li>
+		<li>
+		Dim LayerType 
+		</li>
+		<li>
+		Dim Visible 
+		</li>
+		<li>
+		Dim Alpha 
+		</li>
+		<li>
+		Dim Scroll_Speed As Nirvana_Vector2D 
+		</li>
+		<li>
+		Dim Ref_Canvas 
+		</li>
+		<li>
+		Dim Layer_TileMap As Nirvana_TileMap 
+		</li>
+		<li>
+		Dim Layer_Sprite_Count 
+		</li>
+		<li>
+		Dim Layer_Shape_Count 
+		</li>
+		<li>
+		Dim Bkg As Nirvana_Background 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_Stage</b> 
+		</p>
+		<ul>
+		<li>
+		Dim Active 
+		</li>
+		<li>
+		Dim Name$ 
+		</li>
+		<li>
+		Dim Tile_Size As Nirvana_Size2D 
+		</li>
+		<li>
+		Dim Stage_Size As Nirvana_Size2D 
+		</li>
+		<li>
+		Dim Layer_Count 
+		</li>
+		<li>
+		Dim Viewport_Size As Nirvana_Size2D 
+		</li>
+		<li>
+		Dim Stage_Offset As Nirvana_Vector2D 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_CreateVector2D(x, y) As Nirvana_Vector2D</b> 
+		</p>
+		<ul>
+		<li>
+		Create a 2D Vector 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_CreateSize2D(w, h) As Nirvana_Size2D</b> 
+		</p>
+		<ul>
+		<li>
+		Create a 2D Size 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+
+	</body>
+</html>

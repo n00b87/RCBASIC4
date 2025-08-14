@@ -1,0 +1,93 @@
+#title Nirvana2D [RCBasic Doc]
+#header Nirvana2D API
+
+<b>Type Nirvana_Vector2D</b>
+#list ul
+#li Dim X
+#li Dim Y
+#/list
+<br>
+
+<b>Type Nirvana_Size2D</b>
+#list ul
+#li Dim Width
+#li Dim Height
+#/list
+<br>
+
+<b>Type Nirvana_Sprite</b>
+#list ul
+#li Dim Name$
+#li Dim BaseName$
+#li Dim Sprite_ID
+#li Dim Animation_Name_Index
+#li Dim Animation_Count
+#/list
+<br>
+
+<b>Type Nirvana_TileMap</b>
+#list ul
+#li Dim TilesetName$
+#li Dim Tileset_ID
+#li Dim TileMap_ID
+#li Dim Mask_Index
+#li Dim Mask_Count
+#/list
+<br>
+
+<b>Type Nirvana_Background</b>
+#list ul
+#li Dim Image_ID
+#li Dim RenderSetting
+#/list
+<br>
+
+<b>Type Nirvana_Shape</b>
+#list ul
+#li Dim Sprite_ID
+#li Dim ShapeType
+#/list
+<br>
+
+<b>Type Nirvana_Layer</b>
+#list ul
+#li Dim Name$
+#li Dim LayerType
+#li Dim Visible
+#li Dim Alpha
+#li Dim Scroll_Speed As Nirvana_Vector2D
+#li Dim Ref_Canvas
+#li Dim Layer_TileMap As Nirvana_TileMap
+#li Dim Layer_Sprite_Count
+#li Dim Layer_Shape_Count
+#li Dim Bkg As Nirvana_Background
+#/list
+<br>
+
+<b>Type Nirvana_Stage</b>
+#list ul
+#li Dim Active
+#li Dim Name$
+#li Dim Tile_Size As Nirvana_Size2D
+#li Dim Stage_Size As Nirvana_Size2D
+#li Dim Layer_Count
+#li Dim Viewport_Size As Nirvana_Size2D
+#li Dim Stage_Offset As Nirvana_Vector2D
+#/list
+<br>
+
+
+<b>Function Nirvana_CreateVector2D(x, y) As Nirvana_Vector2D</b>
+#list ul
+#li Create a 2D Vector
+#/list
+<br>
+
+<b>Function Nirvana_CreateSize2D(w, h) As Nirvana_Size2D</b>
+#list ul
+#li Create a 2D Size
+#/list
+<br>
+
+
+

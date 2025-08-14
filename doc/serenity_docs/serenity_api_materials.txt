@@ -1,0 +1,21 @@
+#title Serenity3D [RCBasic Doc]
+#header Serenity3D Materials API
+
+<br>
+
+<b>Function Serenity_GetMaterialIndex(material_name$)</b>
+#list ul
+#li Returns the Serenity Material Index which is used to access material data in the API
+#/list
+<br>
+
+<b>Function Serenity_GetMaterialID(material_index)</b>
+#list ul
+#li Returns the RCBasic material ID or -1 if material_index is not valid
+#/list
+<br>
+
+<b>Function Serenity_GetMaterialTextureIndex(material_index, texture_level)</b>
+#list ul
+#li Returns the Serenity Texture Index which is used to access texture data in the API
+#/list

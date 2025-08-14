@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>Nirvana2D [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Nirvana2D API </h2></p>
+		<p>
+		 <br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerIndex(layer_name$)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the internal nirvana index associated with the given layer name or -1 if layer name is not an existing layer 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerCanvasID(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the RCBasic canvas of the given nirvana layer index or -1 if layer_index is not a valid layer 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerType(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the layer type or -1 if layer_index is not a valid layer 
+		</li>
+		<li>
+		Possible Layer Types 
+		<ul>
+		<li>
+		NIRVANA_LAYER_TYPE_TILEMAP 
+		</li>
+		<li>
+		NIRVANA_LAYER_TYPE_SPRITE 
+		</li>
+		<li>
+		NIRVANA_LAYER_TYPE_CANVAS_2D 
+		</li>
+		<li>
+		NIRVANA_LAYER_TYPE_CANVAS_3D 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerName$(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the name of the given layer or an empty string if layer is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerAlpha(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the layer alpha value set in the layer settings in Nirvana 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerScrollSpeed(layer_index) As Nirvana_Vector2D</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the HScroll and VScroll speed as a vector 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+
+	</body>
+</html>

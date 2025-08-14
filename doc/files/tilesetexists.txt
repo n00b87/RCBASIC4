@@ -1,0 +1,6 @@
+#title TileSetExists [RCBasic Doc]
+#header Function TileSetExists(tileset)
+
+Returns true if the given tileset is an active tileset in the program
+
+#ref TileMapExists

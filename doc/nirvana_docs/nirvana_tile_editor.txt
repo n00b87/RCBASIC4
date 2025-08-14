@@ -1,0 +1,64 @@
+#title Nirvana2D [RCBasic Doc]
+#header Nirvana2D Tile Editor
+
+The Tile editor allows you to edit tile sets used to create tile maps in the stage editor. A tile set can have animations and tile mask which are ways of flaging tiles.
+
+At the far left of the screen there are 2 buttons:
+#list ul
+#li Load Tileset - Loads a tile sheet into the tile set list.
+#list ul
+#li NOTE: This will also load any existing animation and mask data for the sheet as well.
+#/list
+#li Delete Tileset - Removes a tile set from the editor.
+#list ul
+#li NOTE: This will remove any layer in the stage that uses this tile set.
+#/list
+#/list
+
+At the top of the Tile Editor is a text field labeled "Tileset ID" where you can change the name of the Tileset. To the right of the Tileset ID field, the dimensions of the tile selected.
+
+
+<h2>Animation Editor</h2>
+#image "images/nirvana_tile_animation_editor.png", w=640, h=380
+
+<p>#1 - Tile Sheet - View and select tiles
+#list ul
+#li Movement - With the mouse hovered over the Sprite Sheet, you can use W/A/S/D to move around the sheet
+#/list
+</p>
+
+<p>#2 - Frame Panel - Select the animation frame to set
+#list ul
+#li NOTE: Must be in animate mode to change a frame from the tile sheet. Otherwise selecting a tile on the tile sheet will change the base tile to animate.
+#/list
+</p>
+
+<p>#3 - Select Base Tile - Switches to Base Tile Select Mode</p>
+
+<p>#4 - Animate Tile - Switches to Animate Mode</p>
+
+<p>#5 - Frame Count - Sets the number of frames in the base tile animation</p>
+
+<p>#6 - Speed - Sets the frames per second the base tile animation plays at</p>
+
+<p>#7 - Preview - Play the sprite animation</p>
+
+
+<h2>Mask Editor</h2>
+#image "images/nirvana_tile_mask_editor.png", w=720, h=440
+
+<p>#1 - Mask List - Select a mask to edit
+#list ul
+#li New Mask - Create a new mask in the current tile set
+#li Delete Mask - Delete the selected mask
+#/list
+</p>
+
+<p>#2 - Mask ID - Change the mask ID from this field</p>
+
+<p>#3 - Tile Sheet - View and select tiles
+#list ul
+#li Movement - With the mouse hovered over the Sprite Sheet, you can use W/A/S/D to move around the sheet
+#li Flag Tile - To flag a tile in the mask, left click the tile. To unflag a tile, Right Click on it.
+#/list
+</p>

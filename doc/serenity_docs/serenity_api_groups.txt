@@ -1,0 +1,21 @@
+#title Serenity3D [RCBasic Doc]
+#header Serenity3D Groups API
+
+
+<b>Function Serenity_GetGroupCount()</b>
+#list ul
+#li Returns the number of groups in the current stage
+#/list
+<br>
+
+<b>Function Serenity_GetGroupIndex(group_name$)</b>
+#list ul
+#li Returns the Serenity Group index from the group name or -1 if group does not exists in current stage
+#/list
+<br>
+
+<b>Function Serenity_GetGroupName$(group_index)</b>
+#list ul
+#li Returns the group name
+#/list
+<br>

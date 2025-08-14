@@ -1,0 +1,39 @@
+#title Nirvana2D [RCBasic Doc]
+#header Nirvana2D Background API
+
+
+<b>Function Nirvana_GetLayerBackgroundImageID(layer_index)</b>
+#list ul
+#li Returns the RCBasic image id of the image set on the given layer or -1 if no image is set
+#/list
+<br>
+
+<b>Function Nirvana_SetLayerBackgroundImage(layer_index, image_id)</b>
+#list ul
+#li Sets a new image on the given layer (NOTE: Layer must be a Canvas2D layer)
+#/list
+<br>
+
+<b>Function Nirvana_GetLayerBackgroundRenderType(layer_index)</b>
+#list ul
+#li Returns the render type of the layer image set in Nirvana2D
+#li Possible Render Types
+#list ul
+#li NIRVANA_IMG_RENDER_SETTING_NORMAL
+#li NIRVANA_IMG_RENDER_SETTING_STRETCHED
+#li NIRVANA_IMG_RENDER_SETTING_TILED
+#/list
+#/list
+<br>
+
+<b>Function Nirvana_SetLayerBackgroundRenderType(layer_index, render_type)</b>
+#list ul
+#li Sets the render type of the layer image (NOTE: Layer must be a Canvas2D layer)
+#li Possible Render Types
+#list ul
+#li NIRVANA_IMG_RENDER_SETTING_NORMAL
+#li NIRVANA_IMG_RENDER_SETTING_STRETCHED
+#li NIRVANA_IMG_RENDER_SETTING_TILED
+#/list
+#/list
+<br>

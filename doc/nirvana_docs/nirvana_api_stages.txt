@@ -1,0 +1,46 @@
+#title Nirvana2D [RCBasic Doc]
+#header Nirvana2D Stages API
+
+
+<b>Function Nirvana_LoadStage(stage_name$, viewport_x, viewport_y, viewport_w, viewport_h)</b>
+#list ul
+#li Loads a stage and sets the part of the window to render it to
+#/list
+<br>
+
+<b>Sub Nirvana_SetStageViewport(v_position As Nirvana_Vector2D, v_size As Nirvana_Size2D)</b>
+#list ul
+#li Returns the current viewport position and size
+#/list
+<br>
+
+<b>Function Nirvana_GetViewportPosition() As Nirvana_Vector2D</b>
+#list ul
+#li Returns the current viewport position
+#/list
+<br>
+
+
+<b>Function Nirvana_GetViewportSize() As Nirvana_Size2D</b>
+#list ul
+#li Returns the current viewport size
+#/list
+<br>
+
+<b>Sub Nirvana_SetStageOffset(offset As Nirvana_Vector2D)</b>
+#list ul
+#li Sets the camera position
+#/list
+<br>
+
+<b>Function Nirvana_GetStageOffset() As Nirvana_Vector2D</b>
+#list ul
+#li Returns the camera position
+#/list
+<br>
+
+<b>Sub Nirvana_Update()</b>
+#list ul
+#li This update function must be used in place of Update() when using Nirvana2D
+#/list
+<br>

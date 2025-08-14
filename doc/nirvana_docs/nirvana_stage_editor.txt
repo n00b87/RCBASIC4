@@ -1,0 +1,250 @@
+#title Nirvana2D [RCBasic Doc]
+#header Nirvana2D Stage Editor
+
+#image "images/nirvana_stage_editor_full_display.png", w=480, h=240
+
+The stage editor is where tiles, sprites, and background layers are brought together to form the stages that you load into your game.
+
+<br>
+<h2>The Viewport</h2>
+The main part of the stage editor you will interact with is the viewport.
+#image "images/nirvana_stage_editor_section1.png", w=640, h=380
+
+<p>#1 - Layer Selection - Select the active layer
+#list ul
+#li The active layer type will determine which tools are usable
+#li Tile Layers are the only layers where the tile info in #6 and #7 are shown
+#li Sprites and Collision shapes are only able to be added or edited on a Sprite Layer
+#li If the grid is shown, it will be aligned with the active layer.
+#/list
+</p>
+
+<p>#2 - Set Camera - You can use this to move instantly to a desired position in the stage</p>
+
+<p>#3 - Placement Mode - The left button is for free placement and the second button is for grid snapping</p>
+
+<p>#4 - Editor Viewport - This is where a majority of editing is done
+#list ul
+#li Movement - While the mouse is hovered over the viewport, use W/A/S/D to navigate. The speed of this movement can be changed from settings.
+#li If a select tool (ie. tile select, sprite select, or shape select) is active, you can hold Ctrl to select multiple items
+#li Multiple selections can also be made by holding Ctrl with Box select
+#/list
+</p>
+
+<p>#5 - Screen Mouse Info - The position of the mouse on the screen</p>
+
+<p>#6 - Stage Mouse Info - The position of the mouse in the stage
+#list ul
+#li The Tile Positions are the top left corner of the tile the mouse is located in
+#/list
+</p>
+
+<p>#7 - Camera Info - The position of the camera in the stage
+#list ul
+#li The Tile Positions are the top left corner of the tile at the top left corner of the screen
+#/list
+</p>
+
+
+<br>
+<h2>Stage Manager</h2>
+
+This is where you create stages and manage stage properties
+#image "images/nirvana_project_stage_tab.png"
+
+#list ul
+#li <image src="images/new_stage_button.png"> - Create new Stage
+#li <image src="images/yeet_stage_button.png"> - Delete highlighted stage
+#li <image src="images/nirvana_stage_properties_button.png"> - Edit the properties for a stage
+#li <image src="images/nirvana_stage_copy_button.png"> - Copy a stage
+#/list
+
+<br>
+<h2>Layer Settings</h2>
+
+This is where you create layers and edit layer settings
+#image "images/nirvana_layer_settings.png"
+
+<p>#1 - Tool Bar
+#list ul
+#li New Layer - Create a new layer
+#li Copy Layer - Copies a layer
+#li Show All - Makes all layers visible
+#li Hide All - Hides all layers
+#/list
+</p>
+
+<p>#2 - Organizer - Change the order of layers or delete layers</p>
+
+<p>#3 - Layer List - Select a layer in the list to edit its properties and toggle the check box to view/hide individual layer</p>
+
+<p>#4 - Layer Settings
+#list ul
+#li Type - The type of layer selected. There are 4 types of layers: sprite, tile, canvas 2d, and canvas 3d.
+#li Name - The name of the layer
+#li HScroll - The speed the layer scrolls horizontally
+#li VScrol - The speed the layer scrolls vertically
+#li Alpha - The transparency value
+#/list
+</p>
+
+
+<br>
+<h2>Editor Settings</h2>
+
+This is where you can change editor settings
+
+<p>#1 - Viewport
+#list ul
+#li Show Shapes - This determines whether stage collision shapes are viewable when the layer they are created on is not active
+#li Show Grid - Show the tile grid
+#list ul
+#li NOTE: Tile grid is aligned to the active layer so layers with different HScroll and VScroll speeds will have different grid alignments
+#/list
+#li Grid Color - The color of the grid
+#/list
+</p>
+
+<p>#2 - Camera
+#list ul
+#li Move Speed - The speed the viewport scrolls at when using W/A/S/D movement
+#/list
+</p>
+
+
+<br>
+<h2>Tile Map Tools</h2>
+
+These tools are only usable when a tile layer is selected.
+#image "images/nirvana_tilemap_tools.png"
+
+<p>#1 - Tools
+#list
+#li Select - Select a single tile
+#list ul
+#li Hold Ctrl to do multiple selections
+#/list
+#li Box Select - Select all tiles in box
+#list ul
+#li Hold Ctrl to do multiple selections
+#/list
+#li Move - Move the selected tiles
+#li Set Tile - Place selected tiles in stage
+#list ul
+#li You can select multiple tiles in the tile select viewport
+#li Right click to delete the tile at the mouse position in stage viewport
+#/list
+#li Copy Tile - Copies the selected tiles
+#li Fill Tile - Flood fills with a selected tile
+#li Delete Selected Tiles - Delete selected tiles
+#/list
+</p>
+
+<p>#2 - Tileset - Shows the tileset for the current layer</p>
+
+<p>#3 - Viewport - Tileset Selection</p>
+
+
+
+<br>
+<h2>Sprite Tools</h2>
+
+These tools are only usable when a sprite layer is selected.
+#image "images/nirvana_sprite_tools.png"
+
+<p>#1 - Sprite Tools
+#list ul
+#li Select - Select a single sprite
+#list ul
+#li Hold Ctrl to do multiple selections
+#/list
+#li Box Select - Select all tiles in box
+#list ul
+#li Hold Ctrl to do multiple selections
+#/list
+#li Move - Move the selected sprites
+#list ul
+#li If Placement mode is set to Tile Snap then the sprite will snap to the closest tile position
+#/list
+#li Rotate - Rotates the selected sprites
+#li Scale - Scale the selected sprites
+#li New Sprite - Add a sprite to the current layer
+#li Delete Sprite - Delete the selected sprite
+#li Copy Sprite - Copy the selected sprite
+#li Center on sprite - Center the viewport on the selected sprite
+#/list
+</p>
+
+<p>#2 - Sprite List - Select a sprite</p>
+
+<p>#3 - Sprite Properties
+#list ul
+#li Sprite ID - Name of the selected sprite
+#li Body Type - Type of physics body
+#li Animation - The default animation set on the sprite when stage first loads
+#li Position - The position of the sprite
+#li Rotation - The angle the sprite is rotated by
+#li Scale - The scale of the sprite
+#li Render Settings - Additional render settings
+#/list
+</p>
+
+
+<br>
+<h2>Collision Shape Tools</h2>
+
+These tools are only usable when a sprite layer is selected.
+#image "images/nirvana_collision_shapes.png"
+
+<p>#1 - Shape Tools
+#list ul
+#li Select - Select a single point
+#list ul
+#li Hold Ctrl to do multiple selections
+#li NOTE: While Ctrl is down, only points on the selected shape will be selected
+#/list
+#li Box Select - Select all points in box
+#list ul
+#li Hold Ctrl to do multiple selections
+#li NOTE: While Ctrl is down, only points on the selected shape will be selected
+#/list
+#li Move - Move the selected points
+#list ul
+#li If Placement mode is set to Tile Snap then the points will snap to the closest tile position
+#/list
+#li Draw Shape - Draw the shape in the stage viewport
+#li Create Shapes
+#list ul
+#li Box - An axis aligned rectangle
+#li Polygon - A closed polygon
+#li Chain - A shape made of connected points
+#li Circle - A circle
+#/list
+#li Delete Shape - Deletes the selected shape
+#/list
+</p>
+
+<p>#2 - Shape List - List of shapes in the current layer</p>
+
+<p>#3 - Shape Properties - Different properties are available for different shapes</p>
+
+
+
+<br>
+<h2>Background Image</h2>
+
+A background image can only be set for a Canvas 2D layer.
+#image "images/nirvana_image_settings.png"
+
+<p>#1 - Render Type - Determines how the image will be drawn
+#list ul
+#li Normal - Draw the image at its native resolution
+#li Stretched - Stretch the image to the size of the viewport
+#li Tiled - Tile the image as the stage scrolls
+#list ul
+#li NOTE: Background tile will scroll at layer scroll speed
+#/list
+#/list
+</p>
+
+<p>#2 - Layer Image - The image to draw on the layer</p>

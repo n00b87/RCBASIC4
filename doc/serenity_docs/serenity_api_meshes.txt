@@ -1,0 +1,97 @@
+#title Serenity3D [RCBasic Doc]
+#header Serenity3D Mesh API
+
+<br>
+
+<b>Function Serenity_GetAN8Count()</b>
+#list ul
+#li Returns the number of Anim8or objects loaded with the current stage
+#/list
+<br>
+
+<b>Function Serenity_GetAN8ID(an8_index)</b>
+#list ul
+#li Returns the RCBasic Anim8or ID
+#list ul
+#li NOTE: an8_index should be from 0 to Serenity_GetAN8Count()-1
+#/list
+#/list
+<br>
+
+<b>Function Serenity_GetMeshIndex(mesh_name$)</b>
+#list ul
+#li Returns the Serenity Mesh Index which is used to access mesh data in the API
+#/list
+<br>
+
+<b>Function Serenity_GetMeshID(mesh_index)</b>
+#list ul
+#li Returns the RCBasic Mesh ID of the given mesh index or -1 if mesh_index is not valid
+#/list
+<br>
+
+<b>Function Serenity_GetMeshName$(mesh_index)</b>
+#list ul
+#li Returns the mesh name fron the given mesh index
+#/list
+<br>
+
+<b>Function Serenity_GetMeshType(mesh_index)</b>
+#list ul
+#li Returns the mesh type
+#li Possible values are:
+#list ul
+#li SN_MESH_TYPE_NORMAL - Unless the mesh is loaded from an Anim8or project or a zip its going to be this
+#li SN_MESH_TYPE_ZIPPED - A mesh loaded from an archive like a *.pak file
+#li SN_MESH_TYPE_AN8_SCENE - Anim8or mesh
+#/list
+#/list
+<br>
+
+<b>Function Serenity_GetMeshAN8Index(mesh_index)</b>
+#list ul
+#li Returns the Serenity Anim8or object index
+#/list
+<br>
+
+<b>Function Serenity_GetMeshAN8Scene$(mesh_index)</b>
+#list ul
+#li Returns the scene name$ in Anim8or that this mesh is loaded from
+#/list
+<br>
+
+<b>Function Serenity_GetMeshArchiveName$(mesh_index)</b>
+#list ul
+#li Returns the name of the archive that the mesh is loaded from
+#/list
+<br>
+
+<b>Function Serenity_GetMeshFile$(mesh_index)</b>
+#list ul
+#li Returns the name of the mesh file that the mesh is loaded from
+#/list
+<br>
+
+<b>Function Serenity_GetMeshMaterialCount(mesh_index)</b>
+#list ul
+#li Returns the number of materials on given mesh
+#/list
+<br>
+
+<b>Function Serenity_GetMeshMaterialIndex(mesh_index, material_num)</b>
+#list ul
+#li Returns the Serenity Material Index from the material number on the given mesh
+#/list
+<br>
+
+<b>Function Serenity_GetMeshAnimationCount(mesh_index)</b>
+#list ul
+#li Returns the number of animations on the given mesh
+#/list
+<br>
+
+<b>Function Serenity_GetMeshAnimationID(mesh_index, animation_num)</b>
+#list ul
+#li Returns the RCBasic mesh animation id
+#/list
+<br>

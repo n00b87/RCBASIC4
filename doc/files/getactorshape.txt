@@ -1,0 +1,18 @@
+#title GetActorShape [RCBasic Doc]
+#header function GetActorShape(actor)
+
+Returns the shape of an actor
+
+Possible Actor Shapes
+#list ul
+#li ACTOR_SHAPE_NONE
+#li ACTOR_SHAPE_BOX
+#li ACTOR_SHAPE_SPHERE
+#li ACTOR_SHAPE_CYLINDER
+#li ACTOR_SHAPE_CAPSULE
+#li ACTOR_SHAPE_CONE
+#li ACTOR_SHAPE_CONVEXHULL
+#li ACTOR_SHAPE_TRIMESH
+#/list
+
+#ref SetActorShape

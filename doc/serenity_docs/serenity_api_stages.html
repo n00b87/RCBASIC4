@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>Serenity3D [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Serenity3D Stages API </h2></p>
+		<p>
+		 <b>Function Serenity_GetSkyShape()</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the Serenity Actor Index which is used to access actor data in the API 
+		</li>
+		<li>
+		Possible values are: 
+		<ul>
+		<li>
+		SN_SKY_TYPE_NONE 
+		</li>
+		<li>
+		SN_SKY_TYPE_BOX 
+		</li>
+		<li>
+		SN_SKY_TYPE_DOME 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Serenity_GetSkyBox() As Serenity_Sky_Box</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the sky box for the current stage 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Serenity_GetSkyDome() As Serenity_Sky_Dome</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the sky dome for the current stage 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Serenity_StageHasSky()</b> 
+		</p>
+		<ul>
+		<li>
+		Returns TRUE if the stage has a sky object and FALSE otherwise 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Serenity_GetStageIndex(stage_name$)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the Serenity Stage Index or -1 if the stage name was not found in the project 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Serenity_GetStageName$(stage_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the name of the stage from the index 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Serenity_GetStageCount()</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the number of stages in the project 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Sub Serenity_ClearStage()</b> 
+		</p>
+		<ul>
+		<li>
+		Clears the currently loaded stage 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Sub Serenity_LoadStage(stage_name$)</b> 
+		</p>
+		<ul>
+		<li>
+		Loads a stage 
+		<ul>
+		<li>
+		NOTE: Its a good idea to get the stage index first to make sure the stage exists 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Serenity_GetCurrentStageIndex()</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the index of the currently loaded stage 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+
+	</body>
+</html>

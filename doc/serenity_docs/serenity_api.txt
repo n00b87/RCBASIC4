@@ -1,0 +1,36 @@
+#title Serenity3D [RCBasic Doc]
+#header Serenity3D API
+
+This API is what allows developers to access objects created in the Serenity3D editor inside RCBasic.
+
+
+'-------SKY-------
+Function Serenity_GetSkyShape()
+
+Function Serenity_GetSkyBox() As Serenity_Sky_Box
+
+Function Serenity_GetSkyDome() As Serenity_Sky_Dome
+
+Function Serenity_StageHasSky()
+
+
+
+'-------STAGES-------
+Function Serenity_GetStageIndex(stage_name$)
+
+Function Serenity_GetStageName$(stage_index)
+
+Function Serenity_GetStageCount()
+
+Sub Serenity_ClearStage()
+
+Sub Serenity_LoadStage(stage_name$)
+
+Function Serenity_GetCurrentStageIndex()
+
+'-------GROUPS-------
+Function Serenity_GetGroupCount()
+
+Function Serenity_GetGroupIndex(group_name$)
+
+Function Serenity_GetGroupName$(group_index)

@@ -1,0 +1,6 @@
+#title Steam_ClearAchievements [RCBasic Doc]
+#header sub Steam_ClearAchievements()
+
+Clear all steam achievements from the application
+
+#ref Steam_AddAchievement Steam_FinalizeAchievements Steam_GetID Steam_TriggerAchievement

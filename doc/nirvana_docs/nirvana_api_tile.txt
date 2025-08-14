@@ -1,0 +1,77 @@
+#title Nirvana2D [RCBasic Doc]
+#header Nirvana2D API
+
+<br>
+
+<b>Type Nirvana_TileMap</b>
+#list ul
+#li Dim TilesetName$
+#li Dim Tileset_ID
+#li Dim TileMap_ID
+#li Dim Mask_Index
+#li Dim Mask_Count
+#/list
+<br><br>
+
+<b>Function Nirvana_CreateTileMap(tset_name$, tmap_width, tmap_height) As Nirvana_TileMap</b>
+#list ul
+#li Create a Nirvana TileMap
+#/list
+<br>
+
+
+<b>Function Nirvana_GetLayerTileSetName$(layer_index)</b>
+#list ul
+#li Returns the name of tileset associated with the given layer or empty string if layer is not valid
+#/list
+<br>
+
+<b>Function Nirvana_GetLayerTileSetID(layer_index)</b>
+#list ul
+#li Returns the RCBasic tileset associated with the given Nirvana layer or -1 if layer is not valid
+#/list
+<br>
+
+<b>Function Nirvana_GetLayerTileMapID(layer_index)</b>
+#list ul
+#li Returns the RCBasic tile map associated with the given layer or -1 if layer is not valid
+#/list
+<br>
+
+<b>Function Nirvana_GetLayerTileMaskCount(layer_index)</b>
+#list ul
+#li Returns the number of tile mask on a layers tileset
+#/list
+<br>
+
+<b>Function Nirvana_GetLayerTileMaskIndex(layer_index, mask_num)</b>
+#list ul
+#li Returns the Nirvana tile mask index for the given mask number in a layer or -1 if not a valid layer or mask number
+#list ul
+#li mask_num should be a number from 0 to Nirvana_GetLayerTileMaskCount(layer_index)-1
+#/list
+#/list
+<br>
+
+
+<b>Function Nirvana_GetTileMaskName$(mask_index)</b>
+#list ul
+#li Returns the name of the given tile mask or an empty string if the mask index is not valid
+#/list
+<br>
+
+<b>Function Nirvana_GetTileMaskMatrix(mask_index)</b>
+#list ul
+#li Returns the RCBasic matrix id of the given mask or -1 if the mask is not valid
+#/list
+<br>
+
+<b>Function Nirvana_GetLayerMaskHit(layer_index, mask_index, x, y)</b>
+#list ul
+#li Returns TRUE if the tile at the given position is flagged in the given mask
+#list ul
+#li NOTE: (x, y) is a world position and not a row and column position in the tile map
+#/list
+#/list
+<br>
+

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>Nirvana2D [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Nirvana2D Sprite Editor </h2></p>
+		<p>
+		 The sprite editor allows you to edit sprite definitions used to create sprites in the stage editor. A definition can have animations and the collider shapes uses in physics simulations. 
+		</p>
+		<p>
+		 At the far left of the screen there are 2 buttons: 
+		</p>
+		<ul>
+		<li>
+		Load Sprite - Loads a sprite sheet into the definition list. 
+		<ul>
+		<li>
+		NOTE: This will also load any existing animation and collision data for the sheet as well. 
+		</li>
+		</ul>
+		</li>
+		<li>
+		Delete Sprite - Removes a sprite definition from the editor. 
+		<ul>
+		<li>
+		NOTE: This will remove any sprites in the stage that use this definition. 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		 At the top of the Sprite Editor is a text field labeled "Sprite ID" where you can change the name of the Sprite. To the right of the Sprite ID field, the dimensions of the sprite frame are shown. 
+		</p>
+		<p>
+		 <h2>Animation Editor</h2> 
+		</p>
+		<p><img src="images/nirvana_sprite_animation_editor.png" width=640 height=380></p>
+		<p>
+		 <p>#1 - Animation List - This is the list of animations for the selected Sprite. Above the list are buttons for adding an animation and removing the selected animation.</p> 
+		</p>
+		<p>
+		 <p>#2 - Animation ID - This is the name of the current selected animation. You can change it from this field.</p> 
+		</p>
+		<p>
+		 <p>#3 - Sprite Sheet - This is where you can view the current sprite sheet and select a sheet frame to set as the currently selected animation frame in the Animation Frames Panel (#4). 
+		</p>
+		<ul>
+		<li>
+		Movement - With the mouse hovered over the Sprite Sheet, you can use W/A/S/D to move around the sheet 
+		</li>
+		</ul>
+		<p>
+		</p> 
+		</p>
+		<p>
+		 <p>#4 - Animation Frames - A horizontal layout of each frame in the animation. 
+		</p>
+		<ul>
+		<li>
+		Setting a frame - To set a frame, first select the animation frame on the frame panel then select the desired frame on the sprite sheet 
+		</li>
+		<li>
+		Long Animations - If the number of frames in the animation exceed the viewable frames on the frame panel, use the buttons to the left and right of the panel to scroll the panel 
+		</li>
+		</ul>
+		<p>
+		</p> 
+		</p>
+		<p>
+		 <p>#5 - Frame Count - Sets the number of frames in the current animation</p> 
+		</p>
+		<p>
+		 <p>#6 - Speed - Sets the number of frames per second the animation plays at</p> 
+		</p>
+		<p>
+		 <p>#7 - Preview - Plays the selected animation.</p> 
+		</p>
+		<p>
+		 <h2>Shape Editor</h2> 
+		</p>
+		<p><img src="images/nirvana_sprite_shape_editor.png" width=720 height=440></p>
+		<p>
+		 <p>#1 - Editor Viewport - Here you can draw a polygon shape or move and resize box and circle shapes.</p> 
+		</p>
+		<p>
+		 <p>#2 - Tool Bar - Tools for editing the shape. 
+		</p>
+		<ul>
+		<li>
+		Select - Selects a single point 
+		<ul>
+		<li>
+		NOTE: Hold Ctrl to keep previous points selected 
+		</li>
+		</ul>
+		</li>
+		<li>
+		Box Select - Selects multiple points 
+		</li>
+		<li>
+		Select - Selects a single point 
+		<ul>
+		<li>
+		NOTE: Hold Ctrl to keep previous points selected 
+		</li>
+		</ul>
+		</li>
+		<li>
+		Move - Moves the selected points 
+		</li>
+		<li>
+		Draw Polygon - When polygon shape is selected, this allows you to draw points 
+		</li>
+		</ul>
+		<p>
+		</p> 
+		</p>
+		<p>
+		 <p>#3 - Shape Selection - Select the shape type</p> 
+		</p>
+		<p>
+		 <p>#4 - Shape Parameters - Change Parameters for the shape 
+		</p>
+		<ul>
+		<li>
+		NOTE: Parameters are different depending on shape type 
+		</li>
+		</ul>
+		<p>
+		</p> 
+		</p>
+		<p>
+
+	</body>
+</html>

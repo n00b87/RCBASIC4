@@ -1,0 +1,26 @@
+#title Serenity3D [RCBasic Doc]
+#header Serenity3D Mesh Editor
+
+The mesh editor performs the following functions
+#list ol
+#li Load Mesh from file
+#li Create Mesh from a mesh primitive shape
+#li Remove mesh from project
+#/list
+<br>
+
+The mesh preview window has the same controls as the material preview.
+
+Hold the middle mouse button down and move the mouse left/right to rotate around the mesh.
+
+#image "images/serenity_mesh_editor.png", w=640, h=400
+#list ol
+#li ID - Must be a valid RCBasic variable
+#li File - The file the mesh was loaded from
+#li Materials - Add materials and set them
+#li Animations - Add and remove animations from mesh
+#list ul
+#li NOTE: MD2 meshes will load default animations
+#/list
+#/list
+

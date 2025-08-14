@@ -1,0 +1,48 @@
+#title Nirvana2D [RCBasic Doc]
+#header Nirvana2D API
+
+<br>
+
+<b>Function Nirvana_GetLayerIndex(layer_name$)</b>
+#list ul
+#li Returns the internal nirvana index associated with the given layer name or -1 if layer name is not an existing layer
+#/list
+<br>
+
+<b>Function Nirvana_GetLayerCanvasID(layer_index)</b>
+#list ul
+#li Returns the RCBasic canvas of the given nirvana layer index or -1 if layer_index is not a valid layer
+#/list
+<br>
+
+<b>Function Nirvana_GetLayerType(layer_index)</b>
+#list ul
+#li Returns the layer type or -1 if layer_index is not a valid layer
+#li Possible Layer Types
+#list ul
+#li NIRVANA_LAYER_TYPE_TILEMAP
+#li NIRVANA_LAYER_TYPE_SPRITE
+#li NIRVANA_LAYER_TYPE_CANVAS_2D
+#li NIRVANA_LAYER_TYPE_CANVAS_3D
+#/list
+#/list
+<br>
+
+<b>Function Nirvana_GetLayerName$(layer_index)</b>
+#list ul
+#li Returns the name of the given layer or an empty string if layer is not valid
+#/list
+<br>
+
+<b>Function Nirvana_GetLayerAlpha(layer_index)</b>
+#list ul
+#li Returns the layer alpha value set in the layer settings in Nirvana
+#/list
+<br>
+
+<b>Function Nirvana_GetLayerScrollSpeed(layer_index) As Nirvana_Vector2D</b>
+#list ul
+#li Returns the HScroll and VScroll speed as a vector
+#/list
+<br>
+

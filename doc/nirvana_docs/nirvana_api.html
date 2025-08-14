@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>Nirvana2D [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Nirvana2D API </h2></p>
+		<p>
+		 This API is what allows developers to access objects created in the Nirvana2D editor inside RCBasic. 
+		</p>
+		<p>
+		 <h3><u>Nirvana Types</u></h3> 
+		</p>
+		<p>
+		 <b>Type Nirvana_Vector2D</b> 
+		</p>
+		<ul>
+		<li>
+		Dim X 
+		</li>
+		<li>
+		Dim Y 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_Size2D</b> 
+		</p>
+		<ul>
+		<li>
+		Dim Width 
+		</li>
+		<li>
+		Dim Height 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_Sprite</b> 
+		</p>
+		<ul>
+		<li>
+		Dim Name$ 
+		</li>
+		<li>
+		Dim BaseName$ 
+		</li>
+		<li>
+		Dim Sprite_ID 
+		</li>
+		<li>
+		Dim Animation_Name_Index 
+		</li>
+		<li>
+		Dim Animation_Count 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_TileMap</b> 
+		</p>
+		<ul>
+		<li>
+		Dim TilesetName$ 
+		</li>
+		<li>
+		Dim Tileset_ID 
+		</li>
+		<li>
+		Dim TileMap_ID 
+		</li>
+		<li>
+		Dim Mask_Index 
+		</li>
+		<li>
+		Dim Mask_Count 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_Background</b> 
+		</p>
+		<ul>
+		<li>
+		Dim Image_ID 
+		</li>
+		<li>
+		Dim RenderSetting 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_Shape</b> 
+		</p>
+		<ul>
+		<li>
+		Dim Sprite_ID 
+		</li>
+		<li>
+		Dim ShapeType 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_Layer</b> 
+		</p>
+		<ul>
+		<li>
+		Dim Name$ 
+		</li>
+		<li>
+		Dim LayerType 
+		</li>
+		<li>
+		Dim Visible 
+		</li>
+		<li>
+		Dim Alpha 
+		</li>
+		<li>
+		Dim Scroll_Speed As Nirvana_Vector2D 
+		</li>
+		<li>
+		Dim Ref_Canvas 
+		</li>
+		<li>
+		Dim Layer_TileMap As Nirvana_TileMap 
+		</li>
+		<li>
+		Dim Layer_Sprite_Count 
+		</li>
+		<li>
+		Dim Layer_Shape_Count 
+		</li>
+		<li>
+		Dim Bkg As Nirvana_Background 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_Stage</b> 
+		</p>
+		<ul>
+		<li>
+		Dim Active 
+		</li>
+		<li>
+		Dim Name$ 
+		</li>
+		<li>
+		Dim Tile_Size As Nirvana_Size2D 
+		</li>
+		<li>
+		Dim Stage_Size As Nirvana_Size2D 
+		</li>
+		<li>
+		Dim Layer_Count 
+		</li>
+		<li>
+		Dim Viewport_Size As Nirvana_Size2D 
+		</li>
+		<li>
+		Dim Stage_Offset As Nirvana_Vector2D 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_CreateVector2D(x, y) As Nirvana_Vector2D</b> 
+		</p>
+		<ul>
+		<li>
+		Create a 2D Vector 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_CreateSize2D(w, h) As Nirvana_Size2D</b> 
+		</p>
+		<ul>
+		<li>
+		Create a 2D Size 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_CreateSprite(spriteDefinition_name$, sprite_name$) As Nirvana_Sprite</b> 
+		</p>
+		<ul>
+		<li>
+		Create a Nirvana Sprite 
+		<ul>
+		<li>
+		NOTE: spriteDefinition_name$ is the name of the base sprite created in the Sprite Editor 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_CreateTileMap(tset_name$, tmap_width, tmap_height) As Nirvana_TileMap</b> 
+		</p>
+		<ul>
+		<li>
+		Create a Nirvana TileMap 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <br> <h3><u>Nirvana Stages</u></h3> 
+		</p>
+		<p>
+		 <b>Function Nirvana_LoadStage(stage_name$, viewport_x, viewport_y, viewport_w, viewport_h)</b> 
+		</p>
+		<ul>
+		<li>
+		Loads a stage and sets the part of the window to render it to 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Sub Nirvana_Update()</b> 
+		</p>
+		<ul>
+		<li>
+		This update function must be used in place of Update() when using Nirvana2D 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <br> <h3><u>Nirvana Layers</u></h3> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerIndex(layer_name$)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the internal nirvana index associated with the given layer name or -1 if layer name is not an existing layer 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerCanvasID(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the RCBasic canvas of the given nirvana layer index or -1 if layer_index is not a valid layer 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerType(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the layer type or -1 if layer_index is not a valid layer 
+		</li>
+		<li>
+		Possible Layer Types 
+		<ul>
+		<li>
+		NIRVANA_LAYER_TYPE_TILEMAP 
+		</li>
+		<li>
+		NIRVANA_LAYER_TYPE_SPRITE 
+		</li>
+		<li>
+		NIRVANA_LAYER_TYPE_CANVAS_2D 
+		</li>
+		<li>
+		NIRVANA_LAYER_TYPE_CANVAS_3D 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerName$(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the name of the given layer or an empty string if layer is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerAlpha(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the layer alpha value set in the layer settings in Nirvana 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerScrollSpeed(layer_index) As Nirvana_Vector2D</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the HScroll and VScroll speed as a vector 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerTileSetName$(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the name of tileset associated with the given layer or empty string if layer is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerTileSetID(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the RCBasic tileset associated with the given Nirvana layer or -1 if layer is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerTileMapID(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the RCBasic tile map associated with the given layer or -1 if layer is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerTileMaskCount(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the number of tile mask on a layers tileset 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerTileMaskIndex(layer_index, mask_num)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the Nirvana tile mask index for the given mask number in a layer or -1 if not a valid layer or mask number 
+		<ul>
+		<li>
+		mask_num should be a number from 0 to Nirvana_GetLayerTileMaskCount(layer_index)-1 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerSpriteCount(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the number of sprites in a layer 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerSpriteIndex(layer_index, sprite_name$)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the Nirvana sprite index of the given sprite name in the given layer or -1 if sprite is not found 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerShapeCount(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the number of stage collision shapes in the given layer 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerBackgroundImageID(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the RCBasic image id of the image set on the given layer or -1 if no image is set 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_SetLayerBackgroundImage(layer_index, image_id)</b> 
+		</p>
+		<ul>
+		<li>
+		Sets a new image on the given layer (NOTE: Layer must be a Canvas2D layer) 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerBackgroundRenderType(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the render type of the layer image set in Nirvana2D 
+		</li>
+		<li>
+		Possible Render Types 
+		<ul>
+		<li>
+		NIRVANA_IMG_RENDER_SETTING_NORMAL 
+		</li>
+		<li>
+		NIRVANA_IMG_RENDER_SETTING_STRETCHED 
+		</li>
+		<li>
+		NIRVANA_IMG_RENDER_SETTING_TILED 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_SetLayerBackgroundRenderType(layer_index, render_type)</b> 
+		</p>
+		<ul>
+		<li>
+		Sets the render type of the layer image (NOTE: Layer must be a Canvas2D layer) 
+		</li>
+		<li>
+		Possible Render Types 
+		<ul>
+		<li>
+		NIRVANA_IMG_RENDER_SETTING_NORMAL 
+		</li>
+		<li>
+		NIRVANA_IMG_RENDER_SETTING_STRETCHED 
+		</li>
+		<li>
+		NIRVANA_IMG_RENDER_SETTING_TILED 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <br> <h3><u>TILE MASK</u></h3> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetTileMaskName$(mask_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the name of the given tile mask or an empty string if the mask index is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetTileMaskMatrix(mask_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the RCBasic matrix id of the given mask or -1 if the mask is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerMaskHit(layer_index, mask_index, x, y)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns TRUE if the tile at the given position is flagged in the given mask 
+		<ul>
+		<li>
+		NOTE: (x, y) is a world position and not a row and column position in the tile map 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <br> <h3><u>SPRITES</u></h3> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetSpriteID(sprite_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the RCBasic sprite id of the given Nirvana sprite index or -1 if the sprite index is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetSpriteName$(sprite_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the sprite name of the given Nirvana sprite index or an empty string if sprite index is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetSpriteDefinitionName$(sprite_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the sprite definition name of the given sprite index 
+		<ul>
+		<li>
+		NOTE: Sprite Definition name is the name of the base sprite created in the Sprite Editor and not the name of the sprite in the stage 
+		</li>
+		<li>
+		NOTE: There is almost no reason to get this definition name unless you wanted to look up sprites in the stage by the base sprite 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetSpriteAnimationCount(sprite_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the number of animations for the given Nirvana sprite index 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetSpriteAnimationName$(sprite_index, animation_num)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the name of the given Nirvana Sprite Index animation number 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <br> <h3><u>CAMERA</u></h3> <b>Sub Nirvana_SetStageOffset(offset As Nirvana_Vector2D)</b> 
+		</p>
+		<ul>
+		<li>
+		Sets the camera position 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetStageOffset() As Nirvana_Vector2D</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the camera position 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <br> <h3><u>VIEWPORT</u></h3> <b>Sub Nirvana_SetStageViewport(v_position As Nirvana_Vector2D, v_size As Nirvana_Size2D)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the current viewport position and size 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetViewportPosition() As Nirvana_Vector2D</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the current viewport position 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetViewportSize() As Nirvana_Size2D</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the current viewport size 
+		</li>
+		</ul>
+		<p>
+
+	</body>
+</html>

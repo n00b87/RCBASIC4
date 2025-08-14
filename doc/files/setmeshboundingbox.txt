@@ -1,0 +1,8 @@
+#title SetMeshBoundingBox [RCBasic Doc]
+#header Sub SetMeshBoundingBox( mesh, min_x, min_y, min_z, max_x, max_y, max_z )
+
+Sets the min and max corners of a meshes bounding box.
+
+NOTE: Physics shapes are determined from the bounding box data so you should adjust this before setting the shape.
+
+#ref GetMeshBoundingBox ReCalculateMeshBoundingBox

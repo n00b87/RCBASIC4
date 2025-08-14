@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>Nirvana2D [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Nirvana2D API </h2></p>
+		<p>
+		 <br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_TileMap</b> 
+		</p>
+		<ul>
+		<li>
+		Dim TilesetName$ 
+		</li>
+		<li>
+		Dim Tileset_ID 
+		</li>
+		<li>
+		Dim TileMap_ID 
+		</li>
+		<li>
+		Dim Mask_Index 
+		</li>
+		<li>
+		Dim Mask_Count 
+		</li>
+		</ul>
+		<p>
+		<br><br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_CreateTileMap(tset_name$, tmap_width, tmap_height) As Nirvana_TileMap</b> 
+		</p>
+		<ul>
+		<li>
+		Create a Nirvana TileMap 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerTileSetName$(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the name of tileset associated with the given layer or empty string if layer is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerTileSetID(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the RCBasic tileset associated with the given Nirvana layer or -1 if layer is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerTileMapID(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the RCBasic tile map associated with the given layer or -1 if layer is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerTileMaskCount(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the number of tile mask on a layers tileset 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerTileMaskIndex(layer_index, mask_num)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the Nirvana tile mask index for the given mask number in a layer or -1 if not a valid layer or mask number 
+		<ul>
+		<li>
+		mask_num should be a number from 0 to Nirvana_GetLayerTileMaskCount(layer_index)-1 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetTileMaskName$(mask_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the name of the given tile mask or an empty string if the mask index is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetTileMaskMatrix(mask_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the RCBasic matrix id of the given mask or -1 if the mask is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerMaskHit(layer_index, mask_index, x, y)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns TRUE if the tile at the given position is flagged in the given mask 
+		<ul>
+		<li>
+		NOTE: (x, y) is a world position and not a row and column position in the tile map 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+
+	</body>
+</html>

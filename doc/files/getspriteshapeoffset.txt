@@ -1,0 +1,6 @@
+#title GetSpriteShapeOffset [RCBasic Doc]
+#header Sub GetSpriteShapeOffset( spr_id, ByRef x, ByRef y )
+
+Gets the relative location the sprite shape is from where it is rendered
+
+#ref SetSpriteShapeOffset

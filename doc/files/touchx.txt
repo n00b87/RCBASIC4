@@ -1,0 +1,6 @@
+#title TouchX [RCBasic Doc]
+#header function TouchX()
+
+Return the X Position of a touch event
+
+#ref TouchY GetTouch GetTouchFinger

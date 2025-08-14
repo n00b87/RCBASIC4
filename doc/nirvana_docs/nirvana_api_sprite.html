@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>Nirvana2D [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Nirvana2D API </h2></p>
+		<p>
+		 <b>Type Nirvana_Sprite</b> 
+		</p>
+		<ul>
+		<li>
+		Dim Name$ 
+		</li>
+		<li>
+		Dim BaseName$ 
+		</li>
+		<li>
+		Dim Sprite_ID 
+		</li>
+		<li>
+		Dim Animation_Name_Index 
+		</li>
+		<li>
+		Dim Animation_Count 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Type Nirvana_Shape</b> 
+		</p>
+		<ul>
+		<li>
+		Dim Sprite_ID 
+		</li>
+		<li>
+		Dim ShapeType 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_CreateSprite(spriteDefinition_name$, sprite_name$) As Nirvana_Sprite</b> 
+		</p>
+		<ul>
+		<li>
+		Create a Nirvana Sprite 
+		<ul>
+		<li>
+		NOTE: spriteDefinition_name$ is the name of the base sprite created in the Sprite Editor 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerSpriteCount(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the number of sprites in a layer 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerSpriteIndex(layer_index, sprite_name$)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the Nirvana sprite index of the given sprite name in the given layer or -1 if sprite is not found 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetLayerShapeCount(layer_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the number of stage collision shapes in the given layer 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetSpriteID(sprite_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the RCBasic sprite id of the given Nirvana sprite index or -1 if the sprite index is not valid 
+		<ul>
+		<li>
+		NOTE: If the sprite is detached then this will return the ID of the render sprite 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetSpriteName$(sprite_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the sprite name of the given Nirvana sprite index or an empty string if sprite index is not valid 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetSpriteDefinitionName$(sprite_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the sprite definition name of the given sprite index 
+		<ul>
+		<li>
+		NOTE: Sprite Definition name is the name of the base sprite created in the Sprite Editor and not the name of the sprite in the stage 
+		</li>
+		<li>
+		NOTE: There is almost no reason to get this definition name unless you wanted to look up sprites in the stage by the base sprite 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetSpriteIsDetached(sprite_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns true if the sprite has a detached render body and dynamics body 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetDetachedSpriteID(sprite_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the sprite dynamics body ID 
+		<ul>
+		<li>
+		NOTE: This is the body that should be used for physics operations 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetSpriteAnimationCount(sprite_index)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the number of animations for the given Nirvana sprite index 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 <b>Function Nirvana_GetSpriteAnimationName$(sprite_index, animation_num)</b> 
+		</p>
+		<ul>
+		<li>
+		Returns the name of the given Nirvana Sprite Index animation number 
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+
+	</body>
+</html>

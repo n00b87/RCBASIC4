@@ -1,0 +1,75 @@
+#title Serenity3D [RCBasic Doc]
+#header Serenity3D Stages API
+
+
+<b>Function Serenity_GetSkyShape()</b>
+#list ul
+#li Returns the Serenity Actor Index which is used to access actor data in the API
+#li Possible values are:
+#list ul
+#li SN_SKY_TYPE_NONE
+#li SN_SKY_TYPE_BOX
+#li SN_SKY_TYPE_DOME
+#/list
+#/list
+<br>
+
+<b>Function Serenity_GetSkyBox() As Serenity_Sky_Box</b>
+#list ul
+#li Returns the sky box for the current stage
+#/list
+<br>
+
+<b>Function Serenity_GetSkyDome() As Serenity_Sky_Dome</b>
+#list ul
+#li Returns the sky dome for the current stage
+#/list
+<br>
+
+<b>Function Serenity_StageHasSky()</b>
+#list ul
+#li Returns TRUE if the stage has a sky object and FALSE otherwise
+#/list
+<br>
+
+
+<b>Function Serenity_GetStageIndex(stage_name$)</b>
+#list ul
+#li Returns the Serenity Stage Index or -1 if the stage name was not found in the project
+#/list
+<br>
+
+
+<b>Function Serenity_GetStageName$(stage_index)</b>
+#list ul
+#li Returns the name of the stage from the index
+#/list
+<br>
+
+<b>Function Serenity_GetStageCount()</b>
+#list ul
+#li Returns the number of stages in the project
+#/list
+<br>
+
+<b>Sub Serenity_ClearStage()</b>
+#list ul
+#li Clears the currently loaded stage
+#/list
+<br>
+
+<b>Sub Serenity_LoadStage(stage_name$)</b>
+#list ul
+#li Loads a stage
+#list ul
+#li NOTE: Its a good idea to get the stage index first to make sure the stage exists
+#/list
+#/list
+<br>
+
+<b>Function Serenity_GetCurrentStageIndex()</b>
+#list ul
+#li Returns the index of the currently loaded stage
+#/list
+<br>
+

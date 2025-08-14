@@ -1,0 +1,20 @@
+#title Serenity3D [RCBasic Doc]
+#header Serenity3D Scene Editor
+
+The scene editor performs the following functions
+#list ol
+#li Create Stages
+#li Create Actors and Place them in a stage
+#li Set Actor Properties
+#/list
+<br>
+
+The scene view is where most of the work is done.
+#image "images/serenity_scene_editor.png", w=640, h=400
+
+These are the main controls for navigating through the scene:
+#list ul
+#li Hold the middle mouse button in the viewport to go into navigate mode
+#li While the middle mouse is down, you can around with W/A/S/D and move vertically with R/F
+#li Moving the mouse will rotate the camera
+#/list

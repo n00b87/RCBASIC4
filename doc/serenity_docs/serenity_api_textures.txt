@@ -1,0 +1,34 @@
+#title Serenity3D [RCBasic Doc]
+#header Serenity3D Texture API
+
+<br>
+
+<b>Function Serenity_GetTextureIndex(texture_name$)</b>
+#list ul
+#li Returns the Serenity Texture Index which is used to access texture data in the API
+#/list
+<br>
+
+<b>Function Serenity_GetTextureID(texture_index)</b>
+#list ul
+#li Returns the RCBasic texture ID or -1 if texture_index is not valid
+#/list
+<br>
+
+<b>Function Serenity_GetTextureFile$(texture_index)</b>
+#list ul
+#li Returns the name of the texture file
+#/list
+<br>
+
+<b>Function Serenity_GetTextureColorKey(texture_index)</b>
+#list ul
+#li Returns the color key of the texture
+#/list
+<br>
+
+<b>Function Serenity_GetTextureIsColorKey(texture_index)</b>
+#list ul
+#li Returns TRUE if texture colorkey flag was set in Serenity3D
+#/list
+

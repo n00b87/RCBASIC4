@@ -1,0 +1,18 @@
+#title SetActorShape [RCBasic Doc]
+#header sub SetActorShape( actor, shape_type, mass)
+
+Sets the shape of an actor
+
+Possible Actor Shapes
+#list ul
+#li ACTOR_SHAPE_NONE
+#li ACTOR_SHAPE_BOX
+#li ACTOR_SHAPE_SPHERE
+#li ACTOR_SHAPE_CYLINDER
+#li ACTOR_SHAPE_CAPSULE
+#li ACTOR_SHAPE_CONE
+#li ACTOR_SHAPE_CONVEXHULL
+#li ACTOR_SHAPE_TRIMESH
+#/list
+
+#ref GetActorShape
