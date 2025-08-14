@@ -5,6 +5,7 @@
 //don't forget to include the CShader source
 #include "CShader.h"
 #include "rc_fx_shaders.h"
+#include "rc_stdlib.h"
 
 #define RC_FX_MATERIAL_BASE_INDEX	128
 
@@ -666,9 +667,12 @@ void rc_setMaterialConstant(int material_id, std::string m_constant, double n1, 
 
     float m_constant_value[] = {n1, n2, n3, n4};
 
+    m_constant = rc_intern_trim(rc_intern_lcase(m_constant));
+
     for(int i = 0; i < rc_material[material_id].shader->getUniformVariableCount(); i++)
     {
         std::string u_var(rc_material[material_id].shader->getUniformVariable(i)->name.c_str());
+        u_var = rc_intern_trim(rc_intern_lcase(u_var));
         if(u_var.compare(m_constant)==0)
         {
             rc_material[material_id].shader->getUniformVariable(i)->value = m_constant_value;
@@ -690,9 +694,12 @@ void rc_getMaterialConstant(int material_id, std::string m_constant, double* n1,
     *n3 = 0;
     *n4 = 0;
 
+    m_constant = rc_intern_trim(rc_intern_lcase(m_constant));
+
     for(int i = 0; i < rc_material[material_id].shader->getUniformVariableCount(); i++)
     {
         std::string u_var(rc_material[material_id].shader->getUniformVariable(i)->name.c_str());
+        u_var = rc_intern_trim(rc_intern_lcase(u_var));
         if(u_var.compare(m_constant)==0)
         {
             switch(rc_material[material_id].shader->getUniformVariable(i)->type)

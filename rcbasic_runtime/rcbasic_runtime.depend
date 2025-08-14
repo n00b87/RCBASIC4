@@ -2559,10 +2559,11 @@
 	<vector>
 	<algorithm>
 
-1755127114 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_fx_materials.h
+1755137987 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_fx_materials.h
 	<irrlicht.h>
 	"CShader.h"
 	"rc_fx_shaders.h"
+	"rc_stdlib.h"
 
 1748042868 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/CShader.h
 	<irrlicht.h>
