@@ -1,11 +1,10 @@
 # depslib dependency file v1.0
-1752028340 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
+1754545071 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
 	"rc_os_defines.h"
 	<emscripten.h>
 	<sys/param.h>
 	<sys/param.h>
 	<windows.h>
-	<android_native_app_glue.h>
 	<jni.h>
 	<sys/param.h>
 	<algorithm>
@@ -37,7 +36,7 @@
 1753538775 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
 	<TargetConditionals.h>
 
-1752028340 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
+1754605794 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
 
 1748042868 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_stdlib.h
 	"rc_os_defines.h"
@@ -2277,7 +2276,7 @@
 	"rc_gfx_core.h"
 	<irrtheora.h>
 
-1752028340 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
+1754605794 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
 
 1724469097 source:/home/n00b/Projects/irrBullet/src/irrBullet.cpp
 	"irrBullet.h"
@@ -2560,7 +2559,7 @@
 	<vector>
 	<algorithm>
 
-1752028340 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_fx_materials.h
+1755127114 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_fx_materials.h
 	<irrlicht.h>
 	"CShader.h"
 	"rc_fx_shaders.h"

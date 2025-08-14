@@ -44,6 +44,7 @@
 			<Add directory="/home/n00b/Projects/RCIrrlicht/lib/Linux" />
 			<Add directory="/home/n00b/Projects/steamworks_sdk_162/sdk/redistributable_bin/linux64" />
 		</Linker>
+		<Unit filename="../../an8-parser/an8parser.h" />
 		<Unit filename="../../irrBullet/src/irrBullet.cpp" />
 		<Unit filename="../../irrBullet/src/irrBulletBoxShape.cpp" />
 		<Unit filename="../../irrBullet/src/irrBulletBvhTriangleMeshShape.cpp" />
