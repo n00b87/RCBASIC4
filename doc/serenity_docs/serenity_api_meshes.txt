@@ -95,3 +95,9 @@
 #li Returns the RCBasic mesh animation id
 #/list
 <br>
+
+<b>Function Serenity_GetMeshAnimationIDByName(mesh_index, animation_name$)</b>
+#list ul
+#li Returns the RCBasic mesh animation id
+#/list
+<br>

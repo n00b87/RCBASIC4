@@ -236,6 +236,7 @@ void rc_setActorMaterial(int actor, int material_num, int material_id)
 		{
 			if(rc_material[material_id].shader)
 			{
+			    rc_actor[actor].mesh_node->getMaterial(material_num) = rc_material[material_id].mat;
 				rc_actor[actor].mesh_node->getMaterial(material_num).MaterialType = (video::E_MATERIAL_TYPE)rc_material[material_id].shader->getMaterial();
 				rc_material[material_id].shader->setObjectNode(rc_actor[actor].mesh_node);
 

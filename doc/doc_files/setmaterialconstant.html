@@ -11,6 +11,186 @@
 		<p>
 		 Sets the constant value of an FX material 
 		</p>
+		<p>
+		 NOTE: Each constant can ve of type Float, Vec2, Vec3, or Vec4. The ones listed as defined are set internally by the runtime. 
+		</p>
+		<p>
+		 <b>FX_MATERIAL_TYPE_NORMAL_BLEND</b> Possible Constants 
+		</p>
+		<ul>
+		<li>
+		[Float]	Alpha 
+		</li>
+		</ul>
+		<p>
+		 <b>FX_MATERIAL_TYPE_REFRACTION</b> Possible Constants 
+		</p>
+		<ul>
+		<li>
+		[Vec3]	BaseColor 
+		</li>
+		<li>
+		[Float]	Depth 
+		</li>
+		<li>
+		[Float]	MixRatio 
+		</li>
+		<li>
+		[Float]	FrameWidth 
+		</li>
+		<li>
+		[Float]	FrameHeight 
+		</li>
+		<li>
+		[-Defined-] EnvMap 
+		</li>
+		<li>
+		[-Defined-] RefractionMap 
+		</li>
+		</ul>
+		<p>
+		 <b>FX_MATERIAL_TYPE_REFRACTION2</b> Possible Constants 
+		</p>
+		<ul>
+		<li>
+		NONE 
+		</li>
+		</ul>
+		<p>
+		 <b>FX_MATERIAL_TYPE_GOOCH</b> Possible Constants 
+		</p>
+		<ul>
+		<li>
+		[Vec3]	SurfaceColor 
+		</li>
+		<li>
+		[Vec3]	WarmColor 
+		</li>
+		<li>
+		[Vec3]	CoolColor 
+		</li>
+		<li>
+		[Float]	DiffuseWarm 
+		</li>
+		<li>
+		[Float]	DiffuseCool 
+		</li>
+		</ul>
+		<p>
+		 <b>FX_MATERIAL_TYPE_PLASTIC</b> Possible Constants 
+		</p>
+		<ul>
+		<li>
+		[Vec4]	Color 
+		</li>
+		<li>
+		[Float]	Intensity 
+		</li>
+		</ul>
+		<p>
+		 <b>FX_MATERIAL_TYPE_TANGENT</b> Possible Constants 
+		</p>
+		<ul>
+		<li>
+		[Float]	BViewSpace 
+		</li>
+		<li>
+		[Defined]	MatView 
+		</li>
+		</ul>
+		<p>
+		 <b>FX_MATERIAL_TYPE_SPEAKER</b> Possible Constants 
+		</p>
+		<ul>
+		<li>
+		[Float]	PulseSharpness 
+		</li>
+		<li>
+		[Float]	Beat 
+		</li>
+		<li>
+		[Float]	Amplitude 
+		</li>
+		<li>
+		[Float]	BassFrequency 
+		</li>
+		<li>
+		[Defined] Base 
+		</li>
+		<li>
+		[Defined] View_Proj_Matrix 
+		</li>
+		<li>
+		[Defined] View_Matrix 
+		</li>
+		<li>
+		[Defined] Time_0_X 
+		</li>
+		</ul>
+		<p>
+		 <b>FX_MATERIAL_TYPE_PHONG_TEXTURE</b> Possible Constants 
+		</p>
+		<ul>
+		<li>
+		[Vec4]	fvAmbient 
+		</li>
+		<li>
+		[Vec4]	fvSpecular 
+		</li>
+		<li>
+		[Vec4]	fvDiffuse 
+		</li>
+		<li>
+		[Float] fSpecularPower 
+		</li>
+		<li>
+		[-Defined-] BaseMap 
+		</li>
+		<li>
+		[-Defined-] fvEyePosition 
+		</li>
+		</ul>
+		<p>
+		 <b>FX_MATERIAL_TYPE_STYLE</b> Possible Constants 
+		</p>
+		<ul>
+		<li>
+		[-Defined-] LightPos 
+		</li>
+		</ul>
+		<p>
+		 <b>FX_MATERIAL_TYPE_STYLE2</b> Possible Constants 
+		</p>
+		<ul>
+		<li>
+		[-Defined-] BaseMap 
+		</li>
+		</ul>
+		<p>
+		 <b>FX_MATERIAL_TYPE_STYLE3</b> Possible Constants 
+		</p>
+		<ul>
+		<li>
+		NONE 
+		</li>
+		</ul>
+		<p>
+		 <b>FX_MATERIAL_TYPE_STYLE4</b> Possible Constants 
+		</p>
+		<ul>
+		<li>
+		[Float] SilhouetteThreshold 
+		</li>
+		<li>
+		[Vec4]	SilhouetteColor 
+		</li>
+		<li>
+		[Float]	EnableLighting 
+		</li>
+		<li>
+		[-Defined-] Tex 
+		</li>
+		</ul>
 		<br><p>Related: 
 		<a href="getmaterialconstant.html">GetMaterialConstant</a>
 		</p>

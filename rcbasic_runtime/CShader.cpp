@@ -52,7 +52,7 @@ CShader::CShader(IrrlichtDevice* device, rc_shader_material_obj shader_material)
 
 	if(gpu)
 	{
-		//std::cout << "Compiling Shader" << std::endl;
+		std::cout << "Compiling Shader" << std::endl;
 		//std::cout << shader_material.vert_shader << std::endl << std::endl;
 		//std::cout << shader_material.frag_shader << std::endl << std::endl;
 		p_material = gpu->addHighLevelShaderMaterial(
@@ -60,7 +60,7 @@ CShader::CShader(IrrlichtDevice* device, rc_shader_material_obj shader_material)
 			shader_material.frag_shader.c_str(), "pixelMain", video::EPST_PS_4_1,
 			this, video::EMT_SOLID);
 
-		//std::cout << "Result: " << p_material << std::endl;
+		std::cout << "Result: " << p_material << std::endl;
 	}
 
 
