@@ -665,8 +665,6 @@ void rc_setMaterialConstant(int material_id, std::string m_constant, double n1, 
     if(!rc_material[material_id].isFX)
         return;
 
-    float m_constant_value[] = {n1, n2, n3, n4};
-
     m_constant = rc_intern_trim(rc_intern_lcase(m_constant));
 
     for(int i = 0; i < rc_material[material_id].shader->getUniformVariableCount(); i++)
@@ -675,7 +673,38 @@ void rc_setMaterialConstant(int material_id, std::string m_constant, double n1, 
         u_var = rc_intern_trim(rc_intern_lcase(u_var));
         if(u_var.compare(m_constant)==0)
         {
-            rc_material[material_id].shader->getUniformVariable(i)->value = m_constant_value;
+            switch(rc_material[material_id].shader->getUniformVariable(i)->type)
+            {
+                case ESVT_FLOAT:
+                {
+                    rc_material[material_id].shader->getUniformVariable(i)->value[0] = n1;
+                }
+                break;
+
+                case ESVT_VEC2:
+                {
+                    rc_material[material_id].shader->getUniformVariable(i)->value[0] = n1;
+                    rc_material[material_id].shader->getUniformVariable(i)->value[1] = n2;
+                }
+                break;
+
+                case ESVT_VEC3:
+                {
+                    rc_material[material_id].shader->getUniformVariable(i)->value[0] = n1;
+                    rc_material[material_id].shader->getUniformVariable(i)->value[1] = n2;
+                    rc_material[material_id].shader->getUniformVariable(i)->value[2] = n3;
+                }
+                break;
+
+                case ESVT_VEC4:
+                {
+                    rc_material[material_id].shader->getUniformVariable(i)->value[0] = n1;
+                    rc_material[material_id].shader->getUniformVariable(i)->value[1] = n2;
+                    rc_material[material_id].shader->getUniformVariable(i)->value[2] = n3;
+                    rc_material[material_id].shader->getUniformVariable(i)->value[3] = n4;
+                }
+                break;
+            }
             break;
         }
     }

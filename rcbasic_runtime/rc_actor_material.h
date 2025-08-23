@@ -28,7 +28,10 @@ bool createShaderMaterial(int material_id, int fx_material_type)
 
 	//std::cout << "Shader Index = " << shader_index << std::endl;
 
-	rc_material[material_id].shader = new CShader(device, rc_shader_materials[shader_index]);
+	rc_material[material_id].shader = NULL;
+
+	if(device)
+        rc_material[material_id].shader = new CShader(device, rc_shader_materials[shader_index]);
 
 	if(rc_material[material_id].shader)
 	{
@@ -236,6 +239,7 @@ void rc_setActorMaterial(int actor, int material_num, int material_id)
 		{
 			if(rc_material[material_id].shader)
 			{
+			    rc_actor[actor].mesh_node->getMaterial(material_num) = rc_material[material_id].mat;
 				rc_actor[actor].mesh_node->getMaterial(material_num).MaterialType = (video::E_MATERIAL_TYPE)rc_material[material_id].shader->getMaterial();
 				rc_material[material_id].shader->setObjectNode(rc_actor[actor].mesh_node);
 

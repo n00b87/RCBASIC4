@@ -3,4 +3,115 @@
 
 Sets the constant value of an FX material
 
+
+NOTE: Each constant can ve of type Float, Vec2, Vec3, or Vec4. The ones listed as defined are set internally by the runtime.
+
+<b>FX_MATERIAL_TYPE_NORMAL_BLEND</b>
+Possible Constants
+#list ul
+#li [Float]	Alpha
+#/list
+
+
+<b>FX_MATERIAL_TYPE_REFRACTION</b>
+Possible Constants
+#list ul
+#li [Vec3]	BaseColor
+#li [Float]	Depth
+#li [Float]	MixRatio
+#li [Float]	FrameWidth
+#li [Float]	FrameHeight
+#li [-Defined-] EnvMap
+#li [-Defined-] RefractionMap
+#/list
+
+	
+<b>FX_MATERIAL_TYPE_REFRACTION2</b>
+Possible Constants
+#list ul
+#li NONE
+#/list
+
+<b>FX_MATERIAL_TYPE_GOOCH</b>
+Possible Constants
+#list ul
+#li [Vec3]	SurfaceColor
+#li [Vec3]	WarmColor
+#li [Vec3]	CoolColor
+#li [Float]	DiffuseWarm
+#li [Float]	DiffuseCool
+#/list
+
+<b>FX_MATERIAL_TYPE_PLASTIC</b>
+Possible Constants
+#list ul
+#li [Vec4]	Color
+#li [Float]	Intensity
+#/list
+
+
+<b>FX_MATERIAL_TYPE_TANGENT</b>
+Possible Constants
+#list ul
+#li [Float]	BViewSpace
+#li [Defined]	MatView
+#/list
+
+
+<b>FX_MATERIAL_TYPE_SPEAKER</b>
+Possible Constants
+#list ul
+#li [Float]	PulseSharpness
+#li [Float]	Beat
+#li [Float]	Amplitude
+#li [Float]	BassFrequency
+#li [Defined] Base
+#li [Defined] View_Proj_Matrix
+#li [Defined] View_Matrix
+#li [Defined] Time_0_X
+#/list
+
+
+<b>FX_MATERIAL_TYPE_PHONG_TEXTURE</b>
+Possible Constants
+#list ul
+#li [Vec4]	fvAmbient
+#li [Vec4]	fvSpecular
+#li [Vec4]	fvDiffuse
+#li [Float] fSpecularPower
+#li [-Defined-] BaseMap
+#li [-Defined-] fvEyePosition
+#/list
+
+
+<b>FX_MATERIAL_TYPE_STYLE</b>
+Possible Constants
+#list ul
+#li [-Defined-] LightPos
+#/list
+
+
+<b>FX_MATERIAL_TYPE_STYLE2</b>
+Possible Constants
+#list ul
+#li [-Defined-] BaseMap
+#/list
+
+
+<b>FX_MATERIAL_TYPE_STYLE3</b>
+Possible Constants
+#list ul
+#li NONE
+#/list
+
+<b>FX_MATERIAL_TYPE_STYLE4</b>
+Possible Constants
+#list ul
+#li [Float] SilhouetteThreshold
+#li [Vec4]	SilhouetteColor
+#li [Float]	EnableLighting
+#li [-Defined-] Tex
+#/list
+
+
 #ref GetMaterialConstant
