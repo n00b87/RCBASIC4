@@ -28,7 +28,10 @@ bool createShaderMaterial(int material_id, int fx_material_type)
 
 	//std::cout << "Shader Index = " << shader_index << std::endl;
 
-	rc_material[material_id].shader = new CShader(device, rc_shader_materials[shader_index]);
+	rc_material[material_id].shader = NULL;
+
+	if(device)
+        rc_material[material_id].shader = new CShader(device, rc_shader_materials[shader_index]);
 
 	if(rc_material[material_id].shader)
 	{
