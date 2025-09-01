@@ -4452,7 +4452,7 @@ int main(int argc, char * argv[])
 
     //ogles2 test
     #ifdef RC_TESTING
-    rc_intern_dirChange("/home/n00b/Desktop/tutorial/sn_video_tutorial/SN_Tutorial");
+    rc_intern_dirChange("/home/n00b/Projects/SerenityEngine/Untitled_Project/test");
 	//rc_intern_dirChange("");
 	rc_filename = "main.cbc";
 

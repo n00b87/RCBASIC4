@@ -1539,6 +1539,10 @@ Uint32 rc_getSpriteAlpha(int spr_id)
 //This function is called on each canvas on update
 void drawSprites(int canvas_id)
 {
+    rc_setDriverMaterial_B(rc_canvas[canvas_id].spriteCanvasProperties.blend_mode,
+                           rc_canvas[canvas_id].spriteCanvasProperties.anti_alias,
+                           rc_canvas[canvas_id].spriteCanvasProperties.bilinear_filter);
+
 	Uint32 delta_time = SDL_GetTicks() - rc_canvas[canvas_id].physics2D.time_stamp;
 	rc_canvas[canvas_id].physics2D.time_stamp = SDL_GetTicks();
 	float step = rc_canvas[canvas_id].physics2D.timeStep < 0 ? (delta_time*0.001f) : rc_canvas[canvas_id].physics2D.timeStep;
@@ -1728,6 +1732,7 @@ void drawSprites(int canvas_id)
 	//Must set back to canvas 0 (the backbuffer) before returning
 
 	VideoDriver->setRenderTarget(rc_canvas[0].texture, false, false);
+	rc_setDriverMaterial();
 }
 
 //-----------------------------END OF SPRITE STUFF------------------------------------------------------------------------------

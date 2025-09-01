@@ -1057,6 +1057,9 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
 		canvas.physics2D.contact_listener = new rc_contactListener_obj();
 		canvas.physics2D.world->SetContactListener(canvas.physics2D.contact_listener);
 		canvas.sprite_id.clear();
+		canvas.spriteCanvasProperties.blend_mode = irr::video::EBO_ADD;
+		canvas.spriteCanvasProperties.anti_alias = irr::video::EAAM_OFF;
+		canvas.spriteCanvasProperties.bilinear_filter = false;
     }
 
     switch(mode)
@@ -1188,9 +1191,65 @@ void rc_setCanvasPhysics2D(int canvas_id, bool flag)
 		rc_canvas[canvas_id].physics2D.enabled = flag;
 }
 
+int rc_getSpriteCanvasPhysics(int canvas_id)
+{
+    if(canvas_id > 0 && canvas_id < rc_canvas.size())
+		return rc_canvas[canvas_id].physics2D.enabled;
+    return 0;
+}
+
+void rc_setSpriteCanvasBlendMode(int canvas_id, int blend_mode)
+{
+    if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
+        return;
+
+    rc_canvas[canvas_id].spriteCanvasProperties.blend_mode = (irr::video::E_BLEND_OPERATION)blend_mode;
+}
+
+int rc_getSpriteCanvasBlendMode(int canvas_id)
+{
+    if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
+        return 0;
+
+    return (int)rc_canvas[canvas_id].spriteCanvasProperties.blend_mode;
+}
+
+void rc_setSpriteCanvasAntiAliasMode(int canvas_id, int aa_mode)
+{
+    if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
+        return;
+
+    rc_canvas[canvas_id].spriteCanvasProperties.anti_alias = (irr::video::E_ANTI_ALIASING_MODE)aa_mode;
+}
+
+int rc_getSpriteCanvasAntiAliasMode(int canvas_id)
+{
+    if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
+        return 0;
+
+    return (int)rc_canvas[canvas_id].spriteCanvasProperties.anti_alias;
+}
+
+void rc_setSpriteCanvasBilinearFilter(int canvas_id, bool flag)
+{
+    if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
+        return;
+
+    rc_canvas[canvas_id].spriteCanvasProperties.bilinear_filter = flag;
+}
+
+int rc_getSpriteCanvasBilinearFilter(int canvas_id)
+{
+    if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
+        return 0;
+
+    return (int)rc_canvas[canvas_id].spriteCanvasProperties.bilinear_filter;
+}
+
+
 void rc_setCanvasVisible(int canvas_id, bool flag)
 {
-    if(canvas_id <= 0 || canvas_id >= rc_canvas.size()) //canvas 0 is being excluded because its the back buffer
+    if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
         return;
 
     if(rc_canvas[canvas_id].texture)

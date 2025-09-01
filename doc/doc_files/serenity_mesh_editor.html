@@ -26,12 +26,12 @@
 		<br> 
 		</p>
 		<p>
-		 The mesh preview window has the same controls as the material preview. 
+		 The mesh preview window has the same controls as the material preview. Hold the middle mouse button down and move the mouse left/right to rotate around the mesh. 
 		</p>
 		<p>
-		 Hold the middle mouse button down and move the mouse left/right to rotate around the mesh. 
+		 In the ID panel, you can set the ID and choose a separate mesh for collision data. 
 		</p>
-		<p><img src="images/serenity_mesh_editor.png" width=640 height=400></p>
+		<p><img src="images/mesh_id_panel.png" width=750 height=150></p>
 		<ol>
 		<li>
 		ID - Must be a valid RCBasic variable 
@@ -40,15 +40,51 @@
 		File - The file the mesh was loaded from 
 		</li>
 		<li>
-		Materials - Add materials and set them 
+		Collider - You can select another mesh to use for collision geometry 
 		</li>
+		</ol>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 The material panel is where you can set materials for a mesh. 
+		</p>
+		<p><img src="images/mesh_material_panel.png" width=600 height=240></p>
+		<ol>
 		<li>
-		Animations - Add and remove animations from mesh 
+		Add - Add a material to the mesh 
 		<ul>
 		<li>
-		NOTE: MD2 meshes will load default animations 
+		Meshes can have more than one material if there are multiple materials on the 3D model 
 		</li>
 		</ul>
+		</li>
+		<li>
+		Remove - Removes the selected mesh 
+		</li>
+		<li>
+		Set/UnSet - Sets or Clears a material slot 
+		</li>
+		</ol>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 The animation panel is pretty simplistic. You can't modify any frames. You only assign which frames belong to an animation ID for reference in your project. 
+		</p>
+		<p><img src="images/mesh_animation_panel.png" width=600 height=240></p>
+		<ol>
+		<li>
+		Animation ID - This is the name you want attached to the animation 
+		</li>
+		<li>
+		Start Frame - The first frame of the animation 
+		</li>
+		<li>
+		End Frame - The last frame of the animation 
+		</li>
+		<li>
+		Speed - The speed in frames per second of the animation 
 		</li>
 		</ol>
 		<p>
