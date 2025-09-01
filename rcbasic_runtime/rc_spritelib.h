@@ -1535,14 +1535,104 @@ Uint32 rc_getSpriteAlpha(int spr_id)
 //-----------------------------------PHYSICS----------------------------------------------------------------------------------
 
 
+void draw2DImage_sprite(int canvas_id, irr::video::IVideoDriver *driver, irr::video::ITexture* texture, irr::core::rect<irr::s32> sourceRect, irr::core::position2d<irr::s32> position, irr::core::position2d<irr::s32> rotationPoint, irr::f32 rotation, irr::core::vector2df scale, bool useAlphaChannel, irr::video::SColor color, irr::core::vector2d<irr::f32> screenSize)
+{
+    if(canvas_id < 0 || canvas_id >= rc_canvas.size())
+        return;
+
+    // Store and clear the projection matrix
+    irr::core::matrix4 oldProjMat = driver->getTransform(irr::video::ETS_PROJECTION);
+    driver->setTransform(irr::video::ETS_PROJECTION,irr::core::matrix4());
+
+    // Store and clear the view matrix
+    irr::core::matrix4 oldViewMat = driver->getTransform(irr::video::ETS_VIEW);
+    driver->setTransform(irr::video::ETS_VIEW,irr::core::matrix4());
+
+    // Store and clear the world matrix
+    irr::core::matrix4 oldWorldMat = driver->getTransform(irr::video::ETS_WORLD);
+    driver->setTransform(irr::video::ETS_WORLD,irr::core::matrix4());
+
+    // Find horizontal and vertical axes after rotation
+    irr::f32 c = cos(-rotation*irr::core::DEGTORAD);
+    irr::f32 s = sin(-rotation*irr::core::DEGTORAD);
+    irr::core::vector2df horizontalAxis(c,s);
+    irr::core::vector2df verticalAxis(s,-c);
+
+    // First, we'll find the offset of the center and then where the center would be after rotation
+    irr::core::vector2df centerOffset(position.X+sourceRect.getWidth()/2.0f*scale.X-rotationPoint.X,position.Y+sourceRect.getHeight()/2.0f*scale.Y-rotationPoint.Y);
+    irr::core::vector2df center = centerOffset.X*horizontalAxis - centerOffset.Y*verticalAxis;
+    center.X += rotationPoint.X;
+    center.Y += rotationPoint.Y;
+
+    // Now find the corners based off the center
+    irr::core::vector2df cornerOffset(sourceRect.getWidth()*scale.X/2.0f,sourceRect.getHeight()*scale.Y/2.0f);
+    verticalAxis *= cornerOffset.Y;
+    horizontalAxis *= cornerOffset.X;
+    irr::core::vector2df corner[4];
+    corner[0] = center + verticalAxis - horizontalAxis;
+    corner[1] = center + verticalAxis + horizontalAxis;
+    corner[2] = center - verticalAxis - horizontalAxis;
+    corner[3] = center - verticalAxis + horizontalAxis;
+
+    // Find the uv coordinates of the sourceRect
+    irr::core::vector2df textureSize(texture->getSize().Width, texture->getSize().Height);
+    irr::core::vector2df uvCorner[4];
+    uvCorner[0] = irr::core::vector2df(sourceRect.UpperLeftCorner.X,sourceRect.UpperLeftCorner.Y);
+    uvCorner[1] = irr::core::vector2df(sourceRect.LowerRightCorner.X,sourceRect.UpperLeftCorner.Y);
+    uvCorner[2] = irr::core::vector2df(sourceRect.UpperLeftCorner.X,sourceRect.LowerRightCorner.Y);
+    uvCorner[3] = irr::core::vector2df(sourceRect.LowerRightCorner.X,sourceRect.LowerRightCorner.Y);
+    for (irr::s32 i = 0; i < 4; i++)
+            uvCorner[i] /= textureSize;
+
+    // Vertices for the image
+    irr::video::S3DVertex vertices[4];
+    irr::u16 indices[6] = { 0, 1, 2, 3 ,2 ,1 };
+
+    // Convert pixels to world coordinates
+    //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+
+    for (irr::s32 i = 0; i < 4; i++) {
+            vertices[i].Pos = irr::core::vector3df(((corner[i].X/screenSize.X)-0.5f)*2.0f,((corner[i].Y/screenSize.Y)-0.5f)*-2.0f,1);
+            vertices[i].TCoords = uvCorner[i];
+            vertices[i].Color = color;
+    }
+
+    // Create the material
+    // IMPORTANT: For irrlicht 1.8 and above you MUST ADD THIS LINE:
+    // material.BlendOperation = irr::video::EBO_ADD;
+    irr::video::SMaterial material;
+    material.Lighting = false;
+    material.ZWriteEnable = irr::video::EZW_OFF;
+    material.ZBuffer = false;
+    material.BackfaceCulling = false;
+    material.TextureLayer[0].Texture = texture;
+    material.TextureLayer[0].BilinearFilter = rc_canvas[canvas_id].spriteCanvasProperties.bilinear_filter;
+    material.MaterialTypeParam = irr::video::pack_textureBlendFunc(irr::video::EBF_SRC_ALPHA, irr::video::EBF_ONE_MINUS_SRC_ALPHA, irr::video::EMFN_MODULATE_1X, irr::video::EAS_TEXTURE | irr::video::EAS_VERTEX_COLOR);
+    material.BlendOperation = rc_canvas[canvas_id].spriteCanvasProperties.blend_mode;
+    material.AntiAliasing = rc_canvas[canvas_id].spriteCanvasProperties.anti_alias;
+    //material.BlendOperation = irr::video::EBO_ADD;
+
+    if (useAlphaChannel)
+            material.MaterialType = irr::video::EMT_ONETEXTURE_BLEND;
+    else
+            material.MaterialType = irr::video::EMT_SOLID;
+
+    driver->setMaterial(material);
+    driver->drawIndexedTriangleList(&vertices[0],4,&indices[0],2);
+
+    // Restore projection, world, and view matrices
+    driver->setTransform(irr::video::ETS_PROJECTION,oldProjMat);
+    driver->setTransform(irr::video::ETS_VIEW,oldViewMat);
+    driver->setTransform(irr::video::ETS_WORLD,oldWorldMat);
+
+    rc_setDriverMaterial();
+}
+
+
 
 //This function is called on each canvas on update
 void drawSprites(int canvas_id)
 {
-    rc_setDriverMaterial_B(rc_canvas[canvas_id].spriteCanvasProperties.blend_mode,
-                           rc_canvas[canvas_id].spriteCanvasProperties.anti_alias,
-                           rc_canvas[canvas_id].spriteCanvasProperties.bilinear_filter);
-
 	Uint32 delta_time = SDL_GetTicks() - rc_canvas[canvas_id].physics2D.time_stamp;
 	rc_canvas[canvas_id].physics2D.time_stamp = SDL_GetTicks();
 	float step = rc_canvas[canvas_id].physics2D.timeStep < 0 ? (delta_time*0.001f) : rc_canvas[canvas_id].physics2D.timeStep;
@@ -1727,12 +1817,11 @@ void drawSprites(int canvas_id)
 							 sprite->color_mod.getBlue());
 
 		//I don't want to draw an image that doesn't exists. Thats just crazy.
-		draw2DImage(VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
+		draw2DImage_sprite(canvas_id, VideoDriver, rc_image[img_id].image, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize);
 	}
 	//Must set back to canvas 0 (the backbuffer) before returning
 
 	VideoDriver->setRenderTarget(rc_canvas[0].texture, false, false);
-	rc_setDriverMaterial();
 }
 
 //-----------------------------END OF SPRITE STUFF------------------------------------------------------------------------------
