@@ -1,0 +1,4 @@
+#title SetSpriteCanvasBlendMode [RCBasic Doc]
+#header sub SetSpriteCanvasBlendMode( c_num, blend_mode )
+
+

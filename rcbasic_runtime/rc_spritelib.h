@@ -1675,9 +1675,258 @@ void drawSprites(int canvas_id)
 	int offset_x = rc_canvas[canvas_id].offset.X;
 	int offset_y = rc_canvas[canvas_id].offset.Y;
 
-	for(int spr_index = 0; spr_index < rc_canvas[canvas_id].sprite_id.size(); spr_index++)
+	irr::core::array<irr::s32> sorted_sprites(rc_canvas[canvas_id].sprite_id.size());
+
+	sorted_sprites.clear();
+    for(int spr_index = 0; spr_index < rc_canvas[canvas_id].sprite_id.size(); spr_index++)
+    {
+        sorted_sprites.push_back(rc_canvas[canvas_id].sprite_id[spr_index]);
+    }
+
+	switch(rc_canvas[canvas_id].spriteCanvasProperties.priority)
+    {
+        case RC_SPRITE_PRIORITY_NONE:
+        {
+        }
+        break;
+
+        case RC_SPRITE_PRIORITY_LEAST_X:
+        {
+            if(rc_canvas[canvas_id].spriteCanvasProperties.order == RC_SPRITE_ORDER_ASCENDING)
+            {
+                for(int a = 0; a < sorted_sprites.size(); a++)
+                {
+                    for(int b = (a + 1); b < sorted_sprites.size(); b++)
+                    {
+                        int a_index = sorted_sprites[a];
+                        int b_index = sorted_sprites[b];
+
+                        int a_off_x = rc_sprite[a_index].physics.offset_x;
+                        a_off_x += rc_sprite[a_index].physics.user_offset_x;
+                        int a_x = rc_sprite[a_index].physics.body->GetPosition().x - a_off_x;
+
+                        int b_off_x = rc_sprite[b_index].physics.offset_x;
+                        b_off_x += rc_sprite[b_index].physics.user_offset_x;
+                        int b_x = rc_sprite[b_index].physics.body->GetPosition().x - b_off_x;
+
+                        if(b_x < a_x)
+                        {
+                            sorted_sprites[a] = b_index;
+                            sorted_sprites[b] = a_index;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for(int a = 0; a < sorted_sprites.size(); a++)
+                {
+                    for(int b = (a + 1); b < sorted_sprites.size(); b++)
+                    {
+                        int a_index = sorted_sprites[a];
+                        int b_index = sorted_sprites[b];
+
+                        int a_off_x = rc_sprite[a_index].physics.offset_x;
+                        a_off_x += rc_sprite[a_index].physics.user_offset_x;
+                        int a_x = rc_sprite[a_index].physics.body->GetPosition().x - a_off_x;
+
+                        int b_off_x = rc_sprite[b_index].physics.offset_x;
+                        b_off_x += rc_sprite[b_index].physics.user_offset_x;
+                        int b_x = rc_sprite[b_index].physics.body->GetPosition().x - b_off_x;
+
+                        if(b_x > a_x)
+                        {
+                            sorted_sprites[a] = b_index;
+                            sorted_sprites[b] = a_index;
+                        }
+                    }
+                }
+            }
+        }
+        break;
+
+        case RC_SPRITE_PRIORITY_GREATEST_X:
+        {
+            if(rc_canvas[canvas_id].spriteCanvasProperties.order == RC_SPRITE_ORDER_ASCENDING)
+            {
+                for(int a = 0; a < sorted_sprites.size(); a++)
+                {
+                    for(int b = (a + 1); b < sorted_sprites.size(); b++)
+                    {
+                        int a_index = sorted_sprites[a];
+                        int b_index = sorted_sprites[b];
+
+                        int a_off_x = rc_sprite[a_index].physics.offset_x;
+                        a_off_x += rc_sprite[a_index].physics.user_offset_x;
+                        int a_x = rc_sprite[a_index].physics.body->GetPosition().x - a_off_x;
+
+                        int b_off_x = rc_sprite[b_index].physics.offset_x;
+                        b_off_x += rc_sprite[b_index].physics.user_offset_x;
+                        int b_x = rc_sprite[b_index].physics.body->GetPosition().x - b_off_x;
+
+                        a_x += (rc_sprite[a_index].frame_size.Width * rc_sprite[a_index].scale.X);
+                        b_x += (rc_sprite[b_index].frame_size.Width * rc_sprite[b_index].scale.X);
+
+                        if(b_x < a_x)
+                        {
+                            sorted_sprites[a] = b_index;
+                            sorted_sprites[b] = a_index;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for(int a = 0; a < sorted_sprites.size(); a++)
+                {
+                    for(int b = (a + 1); b < sorted_sprites.size(); b++)
+                    {
+                        int a_index = sorted_sprites[a];
+                        int b_index = sorted_sprites[b];
+
+                        int a_off_x = rc_sprite[a_index].physics.offset_x;
+                        a_off_x += rc_sprite[a_index].physics.user_offset_x;
+                        int a_x = rc_sprite[a_index].physics.body->GetPosition().x - a_off_x;
+
+                        int b_off_x = rc_sprite[b_index].physics.offset_x;
+                        b_off_x += rc_sprite[b_index].physics.user_offset_x;
+                        int b_x = rc_sprite[b_index].physics.body->GetPosition().x - b_off_x;
+
+                        a_x += (rc_sprite[a_index].frame_size.Width * rc_sprite[a_index].scale.X);
+                        b_x += (rc_sprite[b_index].frame_size.Width * rc_sprite[b_index].scale.X);
+
+                        if(b_x > a_x)
+                        {
+                            sorted_sprites[a] = b_index;
+                            sorted_sprites[b] = a_index;
+                        }
+                    }
+                }
+            }
+        }
+        break;
+
+        case RC_SPRITE_PRIORITY_LEAST_Y:
+        {
+            if(rc_canvas[canvas_id].spriteCanvasProperties.order == RC_SPRITE_ORDER_ASCENDING)
+            {
+                for(int a = 0; a < sorted_sprites.size(); a++)
+                {
+                    for(int b = (a + 1); b < sorted_sprites.size(); b++)
+                    {
+                        int a_index = sorted_sprites[a];
+                        int b_index = sorted_sprites[b];
+
+                        int a_off_y = rc_sprite[a_index].physics.offset_y;
+                        a_off_y += rc_sprite[a_index].physics.user_offset_y;
+                        int a_y = rc_sprite[a_index].physics.body->GetPosition().y - a_off_y;
+
+                        int b_off_y = rc_sprite[b_index].physics.offset_y;
+                        b_off_y += rc_sprite[b_index].physics.user_offset_y;
+                        int b_y = rc_sprite[b_index].physics.body->GetPosition().y - b_off_y;
+
+                        if(b_y < a_y)
+                        {
+                            sorted_sprites[a] = b_index;
+                            sorted_sprites[b] = a_index;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for(int a = 0; a < sorted_sprites.size(); a++)
+                {
+                    for(int b = (a + 1); b < sorted_sprites.size(); b++)
+                    {
+                        int a_index = sorted_sprites[a];
+                        int b_index = sorted_sprites[b];
+
+                        int a_off_y = rc_sprite[a_index].physics.offset_y;
+                        a_off_y += rc_sprite[a_index].physics.user_offset_y;
+                        int a_y = rc_sprite[a_index].physics.body->GetPosition().y - a_off_y;
+
+                        int b_off_y = rc_sprite[b_index].physics.offset_y;
+                        b_off_y += rc_sprite[b_index].physics.user_offset_y;
+                        int b_y = rc_sprite[b_index].physics.body->GetPosition().y - b_off_y;
+
+                        if(b_y > a_y)
+                        {
+                            sorted_sprites[a] = b_index;
+                            sorted_sprites[b] = a_index;
+                        }
+                    }
+                }
+            }
+        }
+        break;
+
+        case RC_SPRITE_PRIORITY_GREATEST_Y:
+        {
+            if(rc_canvas[canvas_id].spriteCanvasProperties.order == RC_SPRITE_ORDER_ASCENDING)
+            {
+                for(int a = 0; a < sorted_sprites.size(); a++)
+                {
+                    for(int b = (a + 1); b < sorted_sprites.size(); b++)
+                    {
+                        int a_index = sorted_sprites[a];
+                        int b_index = sorted_sprites[b];
+
+                        int a_off_y = rc_sprite[a_index].physics.offset_y;
+                        a_off_y += rc_sprite[a_index].physics.user_offset_y;
+                        int a_y = rc_sprite[a_index].physics.body->GetPosition().y - a_off_y;
+
+                        int b_off_y = rc_sprite[b_index].physics.offset_y;
+                        b_off_y += rc_sprite[b_index].physics.user_offset_y;
+                        int b_y = rc_sprite[b_index].physics.body->GetPosition().y - b_off_y;
+
+                        a_y += (rc_sprite[a_index].frame_size.Height * rc_sprite[a_index].scale.Y);
+                        b_y += (rc_sprite[b_index].frame_size.Height * rc_sprite[b_index].scale.Y);
+
+                        if(b_y < a_y)
+                        {
+                            sorted_sprites[a] = b_index;
+                            sorted_sprites[b] = a_index;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for(int a = 0; a < sorted_sprites.size(); a++)
+                {
+                    for(int b = (a + 1); b < sorted_sprites.size(); b++)
+                    {
+                        int a_index = sorted_sprites[a];
+                        int b_index = sorted_sprites[b];
+
+                        int a_off_y = rc_sprite[a_index].physics.offset_y;
+                        a_off_y += rc_sprite[a_index].physics.user_offset_y;
+                        int a_y = rc_sprite[a_index].physics.body->GetPosition().y - a_off_y;
+
+                        int b_off_y = rc_sprite[b_index].physics.offset_y;
+                        b_off_y += rc_sprite[b_index].physics.user_offset_y;
+                        int b_y = rc_sprite[b_index].physics.body->GetPosition().y - b_off_y;
+
+                        a_y += (rc_sprite[a_index].frame_size.Height * rc_sprite[a_index].scale.Y);
+                        b_y += (rc_sprite[b_index].frame_size.Height * rc_sprite[b_index].scale.Y);
+
+                        if(b_y > a_y)
+                        {
+                            sorted_sprites[a] = b_index;
+                            sorted_sprites[b] = a_index;
+                        }
+                    }
+                }
+            }
+        }
+        break;
+    }
+
+
+	for(int spr_index = 0; spr_index < sorted_sprites.size(); spr_index++)
 	{
-		int spr_id = rc_canvas[canvas_id].sprite_id[spr_index];
+		int spr_id = sorted_sprites[spr_index];
 		rc_sprite2D_obj* sprite = &rc_sprite[spr_id];
 		//std::cout << "debug info: " << canvas_id << " --> " << spr_index << "   id = " << sprite->id << "   anim_size = " << sprite->animation.size() << std::endl; continue;
 		//if(!sprite->visible)

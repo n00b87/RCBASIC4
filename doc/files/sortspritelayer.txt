@@ -1,0 +1,4 @@
+#title SortSpriteLayer [RCBasic Doc]
+#header Function SortSpriteLayer( c_num, sort_option )
+
+

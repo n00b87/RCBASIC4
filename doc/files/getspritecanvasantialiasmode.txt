@@ -1,0 +1,4 @@
+#title GetSpriteCanvasAntiAliasMode [RCBasic Doc]
+#header function GetSpriteCanvasAntiAliasMode( c_num )
+
+

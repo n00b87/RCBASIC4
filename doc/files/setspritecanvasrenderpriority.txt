@@ -1,0 +1,4 @@
+#title SetSpriteCanvasRenderPriority [RCBasic Doc]
+#header function SetSpriteCanvasRenderPriority( c_num, priority, order )
+
+

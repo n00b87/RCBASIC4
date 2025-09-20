@@ -643,6 +643,12 @@ case FN_GetSpriteCanvasBilinearFilter: //Number Function
 case FN_GetSpriteCanvasPhysics: //Number Function
 	 rc_push_num(rc_getSpriteCanvasPhysics( GETSPRITECANVASPHYSICS_C_NUM ));
 	break;
+case FN_SetSpriteCanvasRenderPriority: //Number Function
+	 rc_push_num(rc_setSpriteCanvasRenderPriority( SETSPRITECANVASRENDERPRIORITY_C_NUM,  SETSPRITECANVASRENDERPRIORITY_PRIORITY,  SETSPRITECANVASRENDERPRIORITY_ORDER ));
+	break;
+case FN_GetSpriteCanvasRenderPriority: //Sub Procedure
+	rc_getSpriteCanvasRenderPriority( GETSPRITECANVASRENDERPRIORITY_C_NUM,  &GETSPRITECANVASRENDERPRIORITY_PRIORITY,  &GETSPRITECANVASRENDERPRIORITY_ORDER );
+	break;
 case FN_Circle: //Sub Procedure
 	rc_drawCircle( CIRCLE_X,  CIRCLE_Y,  CIRCLE_RADIUS );
 	break;

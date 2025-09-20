@@ -1,0 +1,4 @@
+#title GetSpriteCanvasPhysics [RCBasic Doc]
+#header function GetSpriteCanvasPhysics( c_num )
+
+

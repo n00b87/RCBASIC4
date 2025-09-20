@@ -543,6 +543,14 @@ void init_embedded_functions()
 	add_embedded_arg("c_num", ID_TYPE_NUM);
 	embed_function("GetSpriteCanvasPhysics", ID_TYPE_FN_NUM);
 	add_embedded_arg("c_num", ID_TYPE_NUM);
+	embed_function("SetSpriteCanvasRenderPriority", ID_TYPE_FN_NUM);
+	add_embedded_arg("c_num", ID_TYPE_NUM);
+	add_embedded_arg("priority", ID_TYPE_NUM);
+	add_embedded_arg("order", ID_TYPE_NUM);
+	embed_function("GetSpriteCanvasRenderPriority", ID_TYPE_SUB);
+	add_embedded_arg("c_num", ID_TYPE_NUM);
+	add_embedded_arg("priority", ID_TYPE_BYREF_NUM);
+	add_embedded_arg("order", ID_TYPE_BYREF_NUM);
 	embed_function("Circle", ID_TYPE_SUB);
 	add_embedded_arg("x", ID_TYPE_NUM);
 	add_embedded_arg("y", ID_TYPE_NUM);

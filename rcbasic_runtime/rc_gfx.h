@@ -1060,6 +1060,8 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
 		canvas.spriteCanvasProperties.blend_mode = irr::video::EBO_ADD;
 		canvas.spriteCanvasProperties.anti_alias = irr::video::EAAM_OFF;
 		canvas.spriteCanvasProperties.bilinear_filter = false;
+		canvas.spriteCanvasProperties.priority = RC_SPRITE_PRIORITY_NONE;
+		canvas.spriteCanvasProperties.order = RC_SPRITE_ORDER_ASCENDING;
     }
 
     switch(mode)
@@ -1244,6 +1246,26 @@ int rc_getSpriteCanvasBilinearFilter(int canvas_id)
         return 0;
 
     return (int)rc_canvas[canvas_id].spriteCanvasProperties.bilinear_filter;
+}
+
+int rc_setSpriteCanvasRenderPriority( int canvas_id, int priority, int order )
+{
+    if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
+        return 0;
+
+    rc_canvas[canvas_id].spriteCanvasProperties.priority = priority;
+    rc_canvas[canvas_id].spriteCanvasProperties.order = order;
+
+    return 1;
+}
+
+void rc_getSpriteCanvasRenderPriority( int canvas_id, double* priority, double* order )
+{
+    if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
+        return;
+
+    *priority = (double)rc_canvas[canvas_id].spriteCanvasProperties.priority;
+    *order = (double)rc_canvas[canvas_id].spriteCanvasProperties.order;
 }
 
 

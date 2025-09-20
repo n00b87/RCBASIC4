@@ -1,0 +1,4 @@
+#title GetSpriteCanvasBlendMode [RCBasic Doc]
+#header function GetSpriteCanvasBlendMode( c_num )
+
+

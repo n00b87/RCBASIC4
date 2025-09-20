@@ -1,0 +1,4 @@
+#title SetSpriteCanvasAntiAliasMode [RCBasic Doc]
+#header sub SetSpriteCanvasAntiAliasMode( c_num, aa_mode )
+
+

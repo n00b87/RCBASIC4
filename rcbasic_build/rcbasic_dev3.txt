@@ -622,6 +622,33 @@ case FN_SetCanvasPhysics2D: //Sub Procedure
 case FN_OpenCanvasSpriteLayer: //Number Function
 	 rc_push_num(rc_canvasOpenSpriteLayer( OPENCANVASSPRITELAYER_VIEWPORT_X,  OPENCANVASSPRITELAYER_VIEWPORT_Y,  OPENCANVASSPRITELAYER_VIEWPORT_W,  OPENCANVASSPRITELAYER_VIEWPORT_H ));
 	break;
+case FN_SetSpriteCanvasBlendMode: //Sub Procedure
+	rc_setSpriteCanvasBlendMode( SETSPRITECANVASBLENDMODE_C_NUM,  SETSPRITECANVASBLENDMODE_BLEND_MODE );
+	break;
+case FN_GetSpriteCanvasBlendMode: //Number Function
+	 rc_push_num(rc_getSpriteCanvasBlendMode( GETSPRITECANVASBLENDMODE_C_NUM ));
+	break;
+case FN_SetSpriteCanvasAntiAliasMode: //Sub Procedure
+	rc_setSpriteCanvasAntiAliasMode( SETSPRITECANVASANTIALIASMODE_C_NUM,  SETSPRITECANVASANTIALIASMODE_AA_MODE );
+	break;
+case FN_GetSpriteCanvasAntiAliasMode: //Number Function
+	 rc_push_num(rc_getSpriteCanvasAntiAliasMode( GETSPRITECANVASANTIALIASMODE_C_NUM ));
+	break;
+case FN_SetSpriteCanvasBilinearFilter: //Sub Procedure
+	rc_setSpriteCanvasBilinearFilter( SETSPRITECANVASBILINEARFILTER_C_NUM,  SETSPRITECANVASBILINEARFILTER_FLAG );
+	break;
+case FN_GetSpriteCanvasBilinearFilter: //Number Function
+	 rc_push_num(rc_getSpriteCanvasBilinearFilter( GETSPRITECANVASBILINEARFILTER_C_NUM ));
+	break;
+case FN_GetSpriteCanvasPhysics: //Number Function
+	 rc_push_num(rc_getSpriteCanvasPhysics( GETSPRITECANVASPHYSICS_C_NUM ));
+	break;
+case FN_SetSpriteCanvasRenderPriority: //Number Function
+	 rc_push_num(rc_setSpriteCanvasRenderPriority( SETSPRITECANVASRENDERPRIORITY_C_NUM,  SETSPRITECANVASRENDERPRIORITY_PRIORITY,  SETSPRITECANVASRENDERPRIORITY_ORDER ));
+	break;
+case FN_GetSpriteCanvasRenderPriority: //Sub Procedure
+	rc_getSpriteCanvasRenderPriority( GETSPRITECANVASRENDERPRIORITY_C_NUM,  &GETSPRITECANVASRENDERPRIORITY_PRIORITY,  &GETSPRITECANVASRENDERPRIORITY_ORDER );
+	break;
 case FN_Circle: //Sub Procedure
 	rc_drawCircle( CIRCLE_X,  CIRCLE_Y,  CIRCLE_RADIUS );
 	break;
