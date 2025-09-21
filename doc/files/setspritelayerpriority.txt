@@ -1,0 +1,4 @@
+#title SetSpriteLayerPriority [RCBasic Doc]
+#header Function SetSpriteLayerPriority( c_num, priority, order )
+
+

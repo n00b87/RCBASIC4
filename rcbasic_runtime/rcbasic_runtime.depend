@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1755890851 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
+1756697836 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
 	"rc_os_defines.h"
 	<emscripten.h>
 	<sys/param.h>
@@ -33,10 +33,10 @@
 	<irrtheora.h>
 	"rc_func130_cases.h"
 
-1755890765 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
+1756697837 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
 	<TargetConditionals.h>
 
-1754605794 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
+1758301650 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
 
 1748042868 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_stdlib.h
 	"rc_os_defines.h"
@@ -1248,7 +1248,7 @@
 1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/RealisticWater.h
 	<irrlicht.h>
 
-1754344132 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx.h
+1758334476 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx.h
 	"SDL.h"
 	<SDL2/SDL.h>
 	<irrlicht.h>
@@ -1272,7 +1272,7 @@
 	"rc_joints.h"
 	<irrtheora.h>
 
-1752028340 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx_core.h
+1758303818 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx_core.h
 	"SDL.h"
 	"btBulletDynamicsCommon.h"
 	"BulletSoftBody/btSoftRigidDynamicsWorld.h"
@@ -2145,7 +2145,8 @@
 	<BulletCollision/Gimpact/btGImpactShape.h>
 	"irrBulletTriangleMeshShape.h"
 
-1724469097 /home/n00b/Projects/irrBullet/include/irrBulletTriangleMeshShape.h
+1756629046 /home/n00b/Projects/irrBullet/include/irrBulletTriangleMeshShape.h
+	<ITerrainSceneNode.h>
 	"irrBulletCollisionShape.h"
 	<BulletCollision/CollisionShapes/btTriangleMesh.h>
 	"irrBulletCommon.h"
@@ -2276,7 +2277,7 @@
 	"rc_gfx_core.h"
 	<irrtheora.h>
 
-1754605794 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
+1758301650 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
 
 1724469097 source:/home/n00b/Projects/irrBullet/src/irrBullet.cpp
 	"irrBullet.h"
@@ -2287,10 +2288,11 @@
 	"btBulletCollisionCommon.h"
 	"irrBulletBoxShape.h"
 
-1724469097 source:/home/n00b/Projects/irrBullet/src/irrBulletBvhTriangleMeshShape.cpp
+1756630993 source:/home/n00b/Projects/irrBullet/src/irrBulletBvhTriangleMeshShape.cpp
 	<btBulletDynamicsCommon.h>
 	<btBulletCollisionCommon.h>
 	"irrBulletBvhTriangleMeshShape.h"
+	<iostream>
 
 1724627004 source:/home/n00b/Projects/irrBullet/src/irrBulletCapsuleShape.cpp
 	<ISceneNode.h>
@@ -2442,12 +2444,15 @@
 	<btBulletCollisionCommon.h>
 	"irrBulletSphereShape.h"
 
-1724469097 source:/home/n00b/Projects/irrBullet/src/irrBulletTriangleMeshShape.cpp
+1756658396 source:/home/n00b/Projects/irrBullet/src/irrBulletTriangleMeshShape.cpp
+	<ITerrainSceneNode.h>
 	<IMesh.h>
 	<IMeshBuffer.h>
+	<CDynamicMeshBuffer.h>
 	"btBulletDynamicsCommon.h"
 	"btBulletCollisionCommon.h"
 	"irrBulletTriangleMeshShape.h"
+	<iostream>
 
 1748037413 source:/home/n00b/Projects/irrBullet/src/irrBulletWorld.cpp
 	<IrrlichtDevice.h>
@@ -2494,7 +2499,7 @@
 	<SDL.h>
 	<SDL2/SDL.h>
 
-1752028340 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_spritelib.h
+1758334384 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_spritelib.h
 	"SDL.h"
 	<SDL2/SDL.h>
 	"rc_sprite2D.h"
@@ -2527,7 +2532,7 @@
 1752028340 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_base_actor.h
 	"ProjectiveTextures.h"
 
-1755897401 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_actor_material.h
+1755925625 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_actor_material.h
 	"rc_fx_materials.h"
 
 1752028340 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_actor_animation.h
@@ -2559,7 +2564,7 @@
 	<vector>
 	<algorithm>
 
-1755890976 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_fx_materials.h
+1755925625 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_fx_materials.h
 	<irrlicht.h>
 	"CShader.h"
 	"rc_fx_shaders.h"

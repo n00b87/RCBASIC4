@@ -325,12 +325,30 @@ struct rc_physicsWorld2D_obj
 	int positionIterations = 3;   //how strongly to correct position
 };
 
+struct rc_spriteCanvasProperties
+{
+    irr::video::E_BLEND_OPERATION blend_mode; // = irr::video::EBO_ADD;
+    bool bilinear_filter; // = false;
+    irr::video::E_ANTI_ALIASING_MODE anti_alias; // = irr::video::EAAM_OFF;
+    int priority;
+    int order;
+};
+
 #define RC_CANVAS_TYPE_2D		0
 #define RC_CANVAS_TYPE_3D		1
 #define RC_CANVAS_TYPE_SPRITE	2
 
 #define RC_PROJECTION_TYPE_ORTHOGRAPHIC		0
 #define RC_PROJECTION_TYPE_PERSPECTIVE		1
+
+#define RC_SPRITE_PRIORITY_NONE        0
+#define RC_SPRITE_PRIORITY_LEAST_X     1
+#define RC_SPRITE_PRIORITY_GREATEST_X  2
+#define RC_SPRITE_PRIORITY_LEAST_Y     3
+#define RC_SPRITE_PRIORITY_GREATEST_Y  4
+
+#define RC_SPRITE_ORDER_ASCENDING      0
+#define RC_SPRITE_ORDER_DESCENDING     1
 
 struct rc_canvas_obj
 {
@@ -363,6 +381,7 @@ struct rc_canvas_obj
 
     rc_physicsWorld2D_obj physics2D;
     irr::core::array<irr::s32> sprite_id;
+    rc_spriteCanvasProperties spriteCanvasProperties;
 };
 
 irr::core::array<rc_canvas_obj> rc_canvas;
@@ -802,6 +821,29 @@ void rc_setDriverMaterial()
     material.BlendOperation = rc_blend_mode;
     //material.BlendOperation = irr::video::EBO_ADD;
     material.AntiAliasing = rc_anti_alias;
+
+    material.MaterialType = irr::video::EMT_ONETEXTURE_BLEND;
+
+    VideoDriver->setMaterial(material);
+}
+
+
+void rc_setDriverMaterial_B(irr::video::E_BLEND_OPERATION op, irr::video::E_ANTI_ALIASING_MODE aa, bool bf)
+{
+	if(!VideoDriver)
+		return;
+
+	irr::video::SMaterial material;
+    material.Lighting = false;
+    material.ZWriteEnable = irr::video::EZW_OFF;
+    material.ZBuffer = false;
+    material.BackfaceCulling = false;
+    material.TextureLayer[0].Texture = 0;
+    material.TextureLayer[0].BilinearFilter = bf;
+    material.MaterialTypeParam = irr::video::pack_textureBlendFunc(irr::video::EBF_SRC_ALPHA, irr::video::EBF_ONE_MINUS_SRC_ALPHA, irr::video::EMFN_MODULATE_1X, irr::video::EAS_TEXTURE | irr::video::EAS_VERTEX_COLOR);
+    material.BlendOperation = op;
+    //material.BlendOperation = irr::video::EBO_ADD;
+    material.AntiAliasing = aa;
 
     material.MaterialType = irr::video::EMT_ONETEXTURE_BLEND;
 

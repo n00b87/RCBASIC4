@@ -1,0 +1,4 @@
+#title GetSpriteCanvasBilinearFilter [RCBasic Doc]
+#header function GetSpriteCanvasBilinearFilter( c_num )
+
+

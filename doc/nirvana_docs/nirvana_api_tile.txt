@@ -3,6 +3,9 @@
 
 <br>
 
+<h2><u><b>TILE MAP</b></u></h2><br>
+
+
 <b>Type Nirvana_TileMap</b>
 #list ul
 #li Dim TilesetName$
@@ -17,9 +20,10 @@
 #list ul
 #li Create a Nirvana TileMap
 #/list
-<br>
+<br><br>
 
 
+<h2><u><b>TILE LAYER PROPERTIES</b></u></h2><br>
 <b>Function Nirvana_GetLayerTileSetName$(layer_index)</b>
 #list ul
 #li Returns the name of tileset associated with the given layer or empty string if layer is not valid
@@ -36,7 +40,9 @@
 #list ul
 #li Returns the RCBasic tile map associated with the given layer or -1 if layer is not valid
 #/list
-<br>
+<br><br>
+
+<h2><u><b>TILE MASK</b></u></h2><br>
 
 <b>Function Nirvana_GetLayerTileMaskCount(layer_index)</b>
 #list ul
@@ -52,7 +58,6 @@
 #/list
 #/list
 <br>
-
 
 <b>Function Nirvana_GetTileMaskName$(mask_index)</b>
 #list ul
@@ -70,8 +75,39 @@
 #list ul
 #li Returns TRUE if the tile at the given position is flagged in the given mask
 #list ul
-#li NOTE: (x, y) is a world position and not a row and column position in the tile map
+#li NOTE: (x, y) is a world position and not a row/column position in the tile map
 #/list
 #/list
 <br>
 
+
+<h2><u><b>SET/GET TILES</b></u></h2><br>
+
+<b>Function Nirvana_GetTile(layer_index, x, y)</b>
+#list ul
+#li Return the tile index of the tile at the given map position
+#list ul
+#li NOTE: (x, y) is a row/colum position and not a world position in the tile map
+#/list
+#/list
+<br>
+
+
+<b>Function Nirvana_GetTileMapPosition(layer_index, stage_x, stage_y) As Nirvana_Vector2D</b>
+#list ul
+#li Return a Nirvana_Vector2D object with the row/column position of the tile at the absolute world position in the layer
+#list ul
+#li NOTE: (x, y) is a world position and not a row/column position in the tile map
+#/list
+#/list
+<br>
+
+
+<b>Function Nirvana_SetTile(layer_index, tile_index, x, y)</b>
+#list ul
+#li Sets the tile at the given row/column position in the tile map for the layer
+#list ul
+#li NOTE: (x, y) is a row/column position in the tile map
+#/list
+#/list
+<br>

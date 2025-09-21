@@ -1,0 +1,4 @@
+#title SetSpriteCanvasBilinearFilter [RCBasic Doc]
+#header sub SetSpriteCanvasBilinearFilter( c_num, flag )
+
+

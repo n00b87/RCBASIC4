@@ -5,12 +5,17 @@ The material editor allows you to create, edit, and view materials. On the left 
 
 
 The main properties panel is where a majority of settings for the material is set.
-#image "images/serenity_material_properties.png"
+#image "images/serenity_material_properties.png", w=600, h=600
 <br>
 
 
 The texture panel is where you set textures for the material. Each material can have multiple texture levels which you can set here.
 #image "images/serenity_material_texture_panel.png"
+<br>
+
+The FX Varialbe panel is where you can set variables that are used to control FX Materials. Check the SetMaterialConstant() function for info on which variables are available on which materials.
+#image "images/serenity_fx_var_panel.png"
+#ref SetMaterialConstant
 <br>
 
 

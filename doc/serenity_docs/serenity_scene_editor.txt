@@ -9,6 +9,14 @@ The scene editor performs the following functions
 #/list
 <br>
 
+
+The project tree is where the project is organized. To be able to add actors to a project there must be an active stage.
+<br>
+NOTE: A stage will be bold in the tree view when its active.
+#image "images/sn_project_tree.png", w=300, h=300
+<br>
+
+
 The scene view is where most of the work is done.
 #image "images/serenity_scene_editor.png", w=640, h=400
 

@@ -1,0 +1,4 @@
+#title GetSpriteCanvasRenderPriority [RCBasic Doc]
+#header sub GetSpriteCanvasRenderPriority( c_num, ByRef priority, ByRef order )
+
+

@@ -1286,6 +1286,20 @@ string rc_keywordToken(string sline)
 		return "<num>3";
 	else if(sline.compare("SPRITE_SHAPE_CHAIN")==0)
 		return "<num>4";
+    else if(sline.compare("SPRITE_PRIORITY_NONE")==0)
+		return "<num>0";
+    else if(sline.compare("SPRITE_PRIORITY_LEAST_X")==0)
+		return "<num>1";
+    else if(sline.compare("SPRITE_PRIORITY_GREATEST_X")==0)
+		return "<num>2";
+    else if(sline.compare("SPRITE_PRIORITY_LEAST_Y")==0)
+		return "<num>3";
+    else if(sline.compare("SPRITE_PRIORITY_GREATEST_Y")==0)
+		return "<num>4";
+    else if(sline.compare("SPRITE_ORDER_ASCENDING")==0)
+		return "<num>0";
+    else if(sline.compare("SPRITE_ORDER_DESCENDING")==0)
+		return "<num>1";
 	else
     {
         for(int i = 0; i < rc_constants.size(); i++)

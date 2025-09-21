@@ -10,17 +10,36 @@ The mesh editor performs the following functions
 <br>
 
 The mesh preview window has the same controls as the material preview.
-
 Hold the middle mouse button down and move the mouse left/right to rotate around the mesh.
 
-#image "images/serenity_mesh_editor.png", w=640, h=400
+
+In the ID panel, you can set the ID and choose a separate mesh for collision data.
+#image "images/mesh_id_panel.png", w=750, h=150
 #list ol
 #li ID - Must be a valid RCBasic variable
 #li File - The file the mesh was loaded from
-#li Materials - Add materials and set them
-#li Animations - Add and remove animations from mesh
-#list ul
-#li NOTE: MD2 meshes will load default animations
+#li Collider - You can select another mesh to use for collision geometry
 #/list
-#/list
+<br>
 
+
+The material panel is where you can set materials for a mesh.
+#image "images/mesh_material_panel.png", w=600, h=240
+#list ol
+#li Add - Add a material to the mesh
+#list ul
+#li Meshes can have more than one material if there are multiple materials on the 3D model
+#/list
+#li Remove - Removes the selected mesh
+#li Set/UnSet - Sets or Clears a material slot
+#/list
+<br>
+
+The animation panel is pretty simplistic. You can't modify any frames. You only assign which frames belong to an animation ID for reference in your project.
+#image "images/mesh_animation_panel.png", w=600, h=240
+#list ol
+#li Animation ID - This is the name you want attached to the animation
+#li Start Frame - The first frame of the animation
+#li End Frame - The last frame of the animation
+#li Speed - The speed in frames per second of the animation
+#/list
