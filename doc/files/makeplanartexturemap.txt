@@ -1,0 +1,7 @@
+#title MakePlanarTextureMap [RCBasic Doc]
+#header Sub MakePlanarTextureMap( mesh, resolution )
+
+Makes a planar texture map for the mesh.
+
+Resolution is a ratio of the world space to texture space
+	NOTE: Value should be between 0 and 1, a recommended value to start with is 0.001

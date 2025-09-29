@@ -83,6 +83,11 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass)
 					irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor_id].mesh_node;
 					shape = new ICapsuleShape(node, mass, false);
 				}
+				else if(rc_actor[actor_id].node_type == RC_NODE_TYPE_STMESH)
+				{
+					irr::scene::IMeshSceneNode* node = (irr::scene::IMeshSceneNode*)rc_actor[actor_id].mesh_node;
+					shape = new ICapsuleShape(node, mass, false);
+				}
 				else if(rc_actor[actor_id].node_type == RC_NODE_TYPE_OTMESH)
 				{
 					irr::scene::IOctreeSceneNode* node = (irr::scene::IOctreeSceneNode*)rc_actor[actor_id].mesh_node;
@@ -93,6 +98,10 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass)
 					irr::scene::ITerrainSceneNode* node = (irr::scene::ITerrainSceneNode*)rc_actor[actor_id].mesh_node;
 					shape = new ICapsuleShape(node, mass, false);
 				}
+				else
+                {
+                    shape = new ICapsuleShape(rc_actor[actor_id].mesh_node, mass, false);
+                }
 
 				rc_actor[actor_id].physics.rigid_body = rc_physics3D.world->addRigidBody(shape);
 
@@ -119,6 +128,11 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass)
 				if(rc_actor[actor_id].node_type == RC_NODE_TYPE_MESH)
 				{
 					irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor_id].mesh_node;
+					shape = new IBvhTriangleMeshShape(rc_actor[actor_id].mesh_node, node->getMesh(), mass);
+				}
+				else if(rc_actor[actor_id].node_type == RC_NODE_TYPE_STMESH)
+                {
+					irr::scene::IMeshSceneNode* node = (irr::scene::IMeshSceneNode*)rc_actor[actor_id].mesh_node;
 					shape = new IBvhTriangleMeshShape(rc_actor[actor_id].mesh_node, node->getMesh(), mass);
 				}
 				else if(rc_actor[actor_id].node_type == RC_NODE_TYPE_OTMESH)
@@ -148,6 +162,11 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass)
 				if(rc_actor[actor_id].node_type == RC_NODE_TYPE_MESH)
 				{
 					irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor_id].mesh_node;
+					shape = new IConvexHullShape(rc_actor[actor_id].mesh_node, node->getMesh(), mass);
+				}
+				else if(rc_actor[actor_id].node_type == RC_NODE_TYPE_STMESH)
+				{
+					irr::scene::IMeshSceneNode* node = (irr::scene::IMeshSceneNode*)rc_actor[actor_id].mesh_node;
 					shape = new IConvexHullShape(rc_actor[actor_id].mesh_node, node->getMesh(), mass);
 				}
 				else if(rc_actor[actor_id].node_type == RC_NODE_TYPE_OTMESH)
@@ -524,7 +543,7 @@ int rc_createCubeActor(double cube_size)
     int actor_id = -1;
     irr::scene::IMeshSceneNode* node = SceneManager->addCubeSceneNode(cube_size);
     rc_scene_node actor;
-    actor.node_type = RC_NODE_TYPE_MESH;
+    actor.node_type = RC_NODE_TYPE_STMESH;
     actor.mesh_node = node;
 
     #if defined(__ANDROID__)
@@ -574,7 +593,7 @@ int rc_createSphereActor(double radius)
     int actor_id = -1;
     irr::scene::IMeshSceneNode* node = SceneManager->addSphereSceneNode(radius);
     rc_scene_node actor;
-    actor.node_type = RC_NODE_TYPE_MESH;
+    actor.node_type = RC_NODE_TYPE_STMESH;
     actor.mesh_node = node;
 
     #if defined(__ANDROID__)
@@ -1106,14 +1125,35 @@ void rc_addActorShadow(int actor)
 
     switch(rc_actor[actor].node_type)
     {
-    	case RC_NODE_TYPE_TERRAIN:
         case RC_NODE_TYPE_OTMESH:
+        {
+            irr::scene::IOctreeSceneNode* node = (irr::scene::IOctreeSceneNode*)rc_actor[actor].mesh_node;
+            if(!rc_actor[actor].shadow)
+            {
+                rc_actor[actor].shadow = node->addShadowVolumeSceneNode();
+            }
+        }
+        break;
+
 		case RC_NODE_TYPE_STMESH:
-        case RC_NODE_TYPE_MESH:
+        {
             irr::scene::IMeshSceneNode* node = (irr::scene::IMeshSceneNode*)rc_actor[actor].mesh_node;
             if(!rc_actor[actor].shadow)
-				rc_actor[actor].shadow = node->addShadowVolumeSceneNode();
-            break;
+            {
+                rc_actor[actor].shadow = node->addShadowVolumeSceneNode();
+            }
+        }
+        break;
+
+        case RC_NODE_TYPE_MESH:
+        {
+            irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
+            if(!rc_actor[actor].shadow)
+            {
+                rc_actor[actor].shadow = node->addShadowVolumeSceneNode();
+            }
+        }
+        break;
     }
 }
 
@@ -1127,7 +1167,6 @@ void rc_removeActorShadow(int actor)
 
     switch(rc_actor[actor].node_type)
     {
-        case RC_NODE_TYPE_TERRAIN:
         case RC_NODE_TYPE_OTMESH:
 		case RC_NODE_TYPE_STMESH:
         case RC_NODE_TYPE_MESH:

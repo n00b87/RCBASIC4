@@ -118,6 +118,55 @@ void rc_reCalculateMeshBoundingBox(int mesh_id)
     }
 }
 
+void rc_reCalculateMeshNormals(int mesh_id)
+{
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+        return;
+
+    if(rc_mesh[mesh_id].mesh)
+    {
+        for(int i = 0; i < rc_mesh[mesh_id].mesh->getMeshBufferCount(); i++)
+            SceneManager->getMeshManipulator()->recalculateNormals(rc_mesh[mesh_id].mesh->getMeshBuffer(i));
+    }
+}
+
+void rc_makePlanarTextureMap(int mesh_id, double resolution)
+{
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+        return;
+
+    if(rc_mesh[mesh_id].mesh)
+    {
+        for(int i = 0; i < rc_mesh[mesh_id].mesh->getMeshBufferCount(); i++)
+            SceneManager->getMeshManipulator()->makePlanarTextureMapping(rc_mesh[mesh_id].mesh->getMeshBuffer(i), resolution);
+    }
+}
+
+int rc_getMeshPolygonCount(int mesh_id)
+{
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+        return 0;
+
+    if(rc_mesh[mesh_id].mesh)
+    {
+        if(rc_mesh[mesh_id].mesh_type == RC_MESH_TYPE_ANIMATED)
+            return SceneManager->getMeshManipulator()->getPolyCount((irr::scene::IAnimatedMesh*)rc_mesh[mesh_id].mesh);
+        else
+            return SceneManager->getMeshManipulator()->getPolyCount(rc_mesh[mesh_id].mesh);
+    }
+}
+
+void rc_flipMeshSurfaces(int mesh_id)
+{
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+        return;
+
+    if(rc_mesh[mesh_id].mesh)
+    {
+        SceneManager->getMeshManipulator()->flipSurfaces(rc_mesh[mesh_id].mesh);
+    }
+}
+
 
 
 int rc_loadAN8(std::string an8_file)

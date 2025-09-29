@@ -1,0 +1,4 @@
+#title ReCalculateMeshNormals [RCBasic Doc]
+#header Sub ReCalculateMeshNormals( mesh )
+
+Calculates the facing direction of the normals in a mesh

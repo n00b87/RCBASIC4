@@ -2081,6 +2081,15 @@ void init_embedded_functions()
 	add_embedded_arg("max_z", ID_TYPE_BYREF_NUM);
 	embed_function("ReCalculateMeshBoundingBox", ID_TYPE_SUB);
 	add_embedded_arg("mesh", ID_TYPE_NUM);
+	embed_function("MakePlanarTextureMap", ID_TYPE_SUB);
+	add_embedded_arg("mesh", ID_TYPE_NUM);
+	add_embedded_arg("resolution", ID_TYPE_NUM);
+	embed_function("ReCalculateMeshNormals", ID_TYPE_SUB);
+	add_embedded_arg("mesh", ID_TYPE_NUM);
+	embed_function("GetMeshPolygonCount", ID_TYPE_FN_NUM);
+	add_embedded_arg("mesh", ID_TYPE_NUM);
+	embed_function("FlipMeshSurfaces", ID_TYPE_SUB);
+	add_embedded_arg("mesh", ID_TYPE_NUM);
 	embed_function("CreateAnimatedActor", ID_TYPE_FN_NUM);
 	add_embedded_arg("mesh", ID_TYPE_NUM);
 	embed_function("CreateOctreeActor", ID_TYPE_FN_NUM);
