@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>GetSpriteCanvasRenderPriority [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>sub GetSpriteCanvasRenderPriority( c_num, ByRef priority, ByRef order ) </h2></p>
+		<p>
+		 Gets the order sprites are rendered on a sprite canvas. 
+		</p>
+		<p>
+		 Possible priority values 
+		</p>
+		<ul>
+		<li>
+		SPRITE_PRIORITY_NONE - Sprites are rendered in the order they are added 
+		</li>
+		<li>
+		SPRITE_PRIORITY_LEAST_X - Sprites are rendered based on the X position 
+		</li>
+		<li>
+		SPRITE_PRIORITY_GREATEST_X - Sprites are rendered based on the X position plus the width 
+		<ul>
+		<li>
+		NOTE: Width is adjusted by Scale when calculating the position 
+		</li>
+		</ul>
+		</li>
+		<li>
+		SPRITE_PRIORITY_LEAST_Y - Sprites are rendered based on the Y position 
+		</li>
+		<li>
+		SPRITE_PRIORITY_GREATEST_Y - Sprites are rendered based on the Y position plus the height 
+		<ul>
+		<li>
+		NOTE: Height is adjusted by Scale when calculating the position 
+		</li>
+		</ul>
+		</li>
+		</ul>
+		<p>
+		<br> 
+		</p>
+		<p>
+		 Possible order values 
+		</p>
+		<ul>
+		<li>
+		SPRITE_ORDER_ASCENDING - Sprites are ordered from lowest in priority to highest when rendered 
+		</li>
+		<li>
+		SPRITE_ORDER_DESCENDING  - Sprites are ordered from highest in priority to lowest when rendered 
+		</li>
+		</ul>
+		<br><p>Related: 
+		<a href="setspritecanvasrenderpriority.html">SetSpriteCanvasRenderPriority</a>
+		</p>
+		<p>
+
+	</body>
+</html>

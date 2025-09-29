@@ -1,4 +1,29 @@
 #title GetSpriteCanvasRenderPriority [RCBasic Doc]
 #header sub GetSpriteCanvasRenderPriority( c_num, ByRef priority, ByRef order )
 
+Gets the order sprites are rendered on a sprite canvas.
 
+Possible priority values
+#list ul
+#li SPRITE_PRIORITY_NONE - Sprites are rendered in the order they are added
+#li SPRITE_PRIORITY_LEAST_X - Sprites are rendered based on the X position
+#li SPRITE_PRIORITY_GREATEST_X - Sprites are rendered based on the X position plus the width
+#list ul
+#li NOTE: Width is adjusted by Scale when calculating the position
+#/list
+#li SPRITE_PRIORITY_LEAST_Y - Sprites are rendered based on the Y position
+#li SPRITE_PRIORITY_GREATEST_Y - Sprites are rendered based on the Y position plus the height
+#list ul
+#li NOTE: Height is adjusted by Scale when calculating the position
+#/list
+#/list
+<br>
+
+Possible order values
+#list ul
+#li SPRITE_ORDER_ASCENDING - Sprites are ordered from lowest in priority to highest when rendered
+#li SPRITE_ORDER_DESCENDING  - Sprites are ordered from highest in priority to lowest when rendered
+#/list
+
+
+#ref SetSpriteCanvasRenderPriority

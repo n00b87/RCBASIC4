@@ -2093,6 +2093,18 @@ case FN_GetMeshBoundingBox: //Sub Procedure
 case FN_ReCalculateMeshBoundingBox: //Sub Procedure
 	rc_reCalculateMeshBoundingBox( RECALCULATEMESHBOUNDINGBOX_MESH );
 	break;
+case FN_MakePlanarTextureMap: //Sub Procedure
+	rc_makePlanarTextureMap( MAKEPLANARTEXTUREMAP_MESH,  MAKEPLANARTEXTUREMAP_RESOLUTION );
+	break;
+case FN_ReCalculateMeshNormals: //Sub Procedure
+	rc_reCalculateMeshNormals( RECALCULATEMESHNORMALS_MESH );
+	break;
+case FN_GetMeshPolygonCount: //Number Function
+	 rc_push_num(rc_getMeshPolygonCount( GETMESHPOLYGONCOUNT_MESH ));
+	break;
+case FN_FlipMeshSurfaces: //Sub Procedure
+	rc_flipMeshSurfaces( FLIPMESHSURFACES_MESH );
+	break;
 case FN_CreateAnimatedActor: //Number Function
 	 rc_push_num(rc_createAnimatedActor( CREATEANIMATEDACTOR_MESH ));
 	break;

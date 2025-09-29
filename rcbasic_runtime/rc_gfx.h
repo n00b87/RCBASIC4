@@ -267,6 +267,93 @@ void setMouseScaling()
     }
 }
 
+
+SDL_Window* createWindow(irr::SIrrlichtCreationParameters CreationParams, std::string title, int x, int y, int Width, int Height, uint32_t SDL_Flags, irr::u8 AntiAlias, bool stencil_buffer, bool vsync)
+{
+    SDL_Window* window = NULL;
+    if (CreationParams.DriverType == irr::video::EDT_OPENGL || CreationParams.DriverType == irr::video::EDT_OGLES2 || CreationParams.DriverType == irr::video::EDT_WEBGL1)
+	{
+	    if(stencil_buffer)
+        {
+            //std::cout << "Set Stencil Size" << std::endl;
+            SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+        }
+
+		if(CreationParams.DriverType == irr::video::EDT_OPENGL)
+	    {
+	    	SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+	    }
+	    if(CreationParams.DriverType == irr::video::EDT_OGLES2 || CreationParams.DriverType == irr::video::EDT_WEBGL1)
+        {
+        	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+        }
+
+		if (CreationParams.Bits==16)
+		{
+			SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 4 );
+			SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 4 );
+			SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 4 );
+			SDL_GL_SetAttribute( SDL_GL_ALPHA_SIZE, CreationParams.WithAlphaChannel?1:0 );
+		}
+		else
+		{
+			SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 8 );
+			SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 8 );
+			SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 8 );
+			SDL_GL_SetAttribute( SDL_GL_ALPHA_SIZE, CreationParams.WithAlphaChannel ? 8 : 0 );
+		}
+		SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, CreationParams.ZBufferBits);
+		if (CreationParams.Doublebuffer)
+			SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
+		if (CreationParams.Stereobuffer)
+			SDL_GL_SetAttribute( SDL_GL_STEREO, 1 );
+		if (CreationParams.AntiAlias>1)
+		{
+			SDL_GL_SetAttribute( SDL_GL_MULTISAMPLEBUFFERS, 1 );
+			SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, CreationParams.AntiAlias );
+		}
+
+		if ( !window )
+			window = SDL_CreateWindow(title.c_str(), x, y, Width, Height, SDL_Flags);
+		if ( !window && CreationParams.AntiAlias>1)
+		{
+			while (--CreationParams.AntiAlias>1)
+			{
+				SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, CreationParams.AntiAlias );
+				window = SDL_CreateWindow(title.c_str(), x, y, Width, Height, SDL_Flags);
+				if (window)
+					break;
+			}
+			if ( !window )
+			{
+				SDL_GL_SetAttribute( SDL_GL_MULTISAMPLEBUFFERS, 0 );
+				SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, 0 );
+				window = SDL_CreateWindow(title.c_str(), x, y, Width, Height, SDL_Flags);
+				if (window)
+					std::cout << "AntiAliasing disabled due to lack of support!" << std::endl;
+			}
+		}
+	}
+	else if ( !window )
+		window = SDL_CreateWindow("", x, y, Width, Height, SDL_Flags);
+
+	if ( !window && CreationParams.Doublebuffer)
+	{
+		// Try single buffer
+		if (CreationParams.DriverType == irr::video::EDT_OPENGL || CreationParams.DriverType == irr::video::EDT_OGLES2)
+			SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
+		//SDL_Flags &= ~SDL_DOUBLEBUF;
+		window = SDL_CreateWindow(title.c_str(), x, y, Width, Height, SDL_Flags);
+	}
+
+	return window;
+}
+
+
 bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t window_flags, irr::u8 AntiAlias, bool stencil_buffer, bool vsync)
 {
     if(rc_window)
@@ -291,12 +378,6 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     rc_window_size.Width = w;
     rc_window_size.Height = h;
 
-    rc_window = SDL_CreateWindow(title.c_str(), x, y, w, h, flags);
-
-    //Get the actual size of the window to set the dimensions of the device
-    if(rc_window)
-        SDL_GetWindowSize(rc_window, &w, &h);
-
     SIrrlichtCreationParameters irr_creation_params;
     irr_creation_params.DeviceType = EIDT_SDL;
     #if defined(RC_DRIVER_GLES2)
@@ -304,8 +385,6 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     #else
     irr_creation_params.DriverType = video::EDT_OPENGL;
     #endif // defined
-    irr_creation_params.WindowId = rc_window;
-    irr_creation_params.WindowSize = dimension2d<u32>((u32)w, (u32)h);
     irr_creation_params.Bits = 16;
     irr_creation_params.Fullscreen = fullscreen;
     irr_creation_params.Stencilbuffer = stencil_buffer;
@@ -317,6 +396,17 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
 
     rc_window_setfps = vsync;
 
+    rc_window = createWindow(irr_creation_params, title.c_str(), x, y, w, h, flags, AntiAlias, stencil_buffer, vsync);
+
+    //Get the actual size of the window to set the dimensions of the device
+    if(rc_window)
+        SDL_GetWindowSize(rc_window, &w, &h);
+
+    irr_creation_params.WindowId = rc_window;
+    irr_creation_params.WindowSize = dimension2d<u32>((u32)w, (u32)h);
+
+    device = createDeviceEx(irr_creation_params);
+
     if(vsync)
 	{
 		SDL_DisplayMode dm;
@@ -324,8 +414,6 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
 		rc_setfps_refresh_rate = dm.refresh_rate;
 		rc_setfps_timer = SDL_GetTicks();
 	}
-
-	device = createDeviceEx(irr_creation_params);
 
 
 	if (!device)

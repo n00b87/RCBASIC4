@@ -1,4 +1,8 @@
 #title GetSpriteCanvasPhysics [RCBasic Doc]
 #header function GetSpriteCanvasPhysics( c_num )
 
+Returns the physics stage of a sprite canvas
 
+Return values can be true or false
+
+#ref SetCanvasPhysics2D

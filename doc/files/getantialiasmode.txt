@@ -1,4 +1,17 @@
 #title GetAntiAliasMode [RCBasic Doc]
 #header function GetAntiAliasMode( )
 
+Returns the anti-alias mode for draw image commands
 
+Possible modes
+#list
+#li AA_MODE_OFF
+#li AA_MODE_SIMPLE
+#li AA_MODE_QUALITY
+#li AA_MODE_LINE_SMOOTH
+#li AA_MODE_POINT_SMOOTH
+#li AA_MODE_FULL_BASIC
+#li AA_MODE_ALPHA_TO_COVERAGE
+#/list
+
+#ref SetAntiAliasMode

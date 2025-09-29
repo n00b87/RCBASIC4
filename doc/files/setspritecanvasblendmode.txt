@@ -1,4 +1,22 @@
 #title SetSpriteCanvasBlendMode [RCBasic Doc]
 #header sub SetSpriteCanvasBlendMode( c_num, blend_mode )
 
+Sets the blend mode used to render sprites on the given sprite canvas
 
+
+Possible Blend Modes
+#list ul
+#li BLEND_MODE_NONE
+#li BLEND_MODE_ADD
+#li BLEND_MODE_SUBTRACT
+#li BLEND_MODE_REVSUBTRACT
+#li BLEND_MODE_MIN
+#li BLEND_MODE_MAX
+#li BLEND_MODE_MIN_FACTOR
+#li BLEND_MODE_MAX_FACTOR
+#li BLEND_MODE_MIN_ALPHA
+#li BLEND_MODE_MAX_ALPHA
+#/list
+
+
+#ref SetCanvasBlendMode GetSpriteCanvasBlendMode
