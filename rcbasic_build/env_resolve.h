@@ -48,16 +48,6 @@ string resolveEnvironmentVariables(string sdata)
             }
             string env_var = sdata.substr(i+2).substr(0, end_index);
             //cout << "env_var is " << env_var << endl;
-
-            //remove quotes from environment variable
-            string tmp_env_var = env_var;
-            env_var = "";
-            for(int c = 0; c < env_var.length(); c++)
-            {
-                if(tmp_env_var.substr(c, 1).compare("\"")!=0)
-                    env_var += tmp_env_var.substr(c,1);
-            }
-
             string env_value = rc_intern_env(env_var);
             sdata_out += env_value;
             i = (i+2) + end_index;
