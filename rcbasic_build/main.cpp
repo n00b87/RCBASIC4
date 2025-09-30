@@ -133,13 +133,6 @@ bool rc_preprocessor()
             tmp_token[1] = resolveEnvironmentVariables(tmp_token[1]);
 
             inc_file.filename = tmp_token[1].substr(8);
-
-            if(inc_file.filename.length() == 0)
-            {
-                rc_setError("Expected file as argument in include");
-                return false;
-            }
-
             inc_file.filename = rc_absFilePath(inc_file.filename);
 
             for(int i = 0; i < inc_once.size(); i++)
@@ -926,8 +919,8 @@ int main(int argc, char * argv[])
     bool clean_after_build = true;
 
     //DEBUG START
-    //chdir("/home/n00b/GameDev/Ambient/Ambient_Project");
-    //rc_filename = "main.bas";
+    //chdir("/home/n00b/test/SpriteShapeTest");
+    //rc_filename = "/home/n00b/test/stp/serenity_main.bas";
 	//rc_filename = "/home/n00b/test/SpriteShapeTest/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Constraint/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v401_Linux64/examples/Simple_3D_Platformer/main.bas";
