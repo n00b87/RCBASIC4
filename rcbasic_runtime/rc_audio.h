@@ -196,6 +196,9 @@ void rc_deleteMusic()
 
 void rc_playSound(int slot, int channel, int loops)
 {
+    if(slot < 0 || slot >= rc_sound.size())
+        return;
+
     if(rc_sound[slot].sound != NULL)
     {
         Mix_PlayChannel(channel, rc_sound[slot].sound, loops);
@@ -204,6 +207,9 @@ void rc_playSound(int slot, int channel, int loops)
 
 void rc_playSoundTimed(int slot, int channel, int loops, int ms)
 {
+    if(slot < 0 || slot >= rc_sound.size())
+        return;
+
     if(rc_sound[slot].sound != NULL)
     {
         Mix_PlayChannelTimed(channel, rc_sound[slot].sound, loops, ms);
@@ -261,6 +267,9 @@ void rc_resumeMusic()
 
 void rc_deleteSound(int slot)
 {
+    if(slot < 0 || slot >= rc_sound.size())
+        return;
+
     if(rc_sound[slot].sound != NULL)
     {
         Mix_FreeChunk(rc_sound[slot].sound);
@@ -328,6 +337,9 @@ bool rc_soundIsEnabled()
 
 bool rc_soundExists(int slot)
 {
+    if(slot < 0 || slot >= rc_sound.size())
+        return false;
+
     return rc_sound[slot].active;
 }
 
@@ -343,11 +355,17 @@ int rc_getChannelVolume(int channel)
 
 void rc_setSoundVolume(int slot, int volume)
 {
+    if(slot < 0 || slot >= rc_sound.size())
+        return;
+
     Mix_VolumeChunk(rc_sound[slot].sound, volume);
 }
 
 int rc_getSoundVolume(int slot)
 {
+    if(slot < 0 || slot >= rc_sound.size())
+        return 0;
+
     return Mix_VolumeChunk(rc_sound[slot].sound, -1);
 }
 
