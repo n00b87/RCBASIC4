@@ -2093,6 +2093,18 @@ case FN_GetMeshBoundingBox: //Sub Procedure
 case FN_ReCalculateMeshBoundingBox: //Sub Procedure
 	rc_reCalculateMeshBoundingBox( RECALCULATEMESHBOUNDINGBOX_MESH );
 	break;
+case FN_MakePlanarTextureMap: //Sub Procedure
+	rc_makePlanarTextureMap( MAKEPLANARTEXTUREMAP_MESH,  MAKEPLANARTEXTUREMAP_RESOLUTION );
+	break;
+case FN_ReCalculateMeshNormals: //Sub Procedure
+	rc_reCalculateMeshNormals( RECALCULATEMESHNORMALS_MESH );
+	break;
+case FN_GetMeshPolygonCount: //Number Function
+	 rc_push_num(rc_getMeshPolygonCount( GETMESHPOLYGONCOUNT_MESH ));
+	break;
+case FN_FlipMeshSurfaces: //Sub Procedure
+	rc_flipMeshSurfaces( FLIPMESHSURFACES_MESH );
+	break;
 case FN_CreateAnimatedActor: //Number Function
 	 rc_push_num(rc_createAnimatedActor( CREATEANIMATEDACTOR_MESH ));
 	break;
@@ -2410,6 +2422,9 @@ case FN_CastRay3D_All: //Number Function
 	break;
 case FN_GetRayHit3D: //Sub Procedure
 	rc_getRayHit3D( GETRAYHIT3D_INDEX,  &GETRAYHIT3D_ACTOR_ID,  &GETRAYHIT3D_X,  &GETRAYHIT3D_Y,  &GETRAYHIT3D_Z,  &GETRAYHIT3D_NORMAL_X,  &GETRAYHIT3D_NORMAL_Y,  &GETRAYHIT3D_NORMAL_Z );
+	break;
+case FN_SetActorShapeEx: //Sub Procedure
+	rc_setActorCollisionShape( SETACTORSHAPEEX_ACTOR,  SETACTORSHAPEEX_SHAPE_TYPE,  SETACTORSHAPEEX_MASS,  SETACTORSHAPEEX_RADIUS );
 	break;
 case FN_createPointConstraint: //Number Function
 	 rc_push_num(rc_createPointConstraint(  CREATEPOINTCONSTRAINT_ACTORA,   CREATEPOINTCONSTRAINT_PXA,   CREATEPOINTCONSTRAINT_PYA,   CREATEPOINTCONSTRAINT_PZA ));

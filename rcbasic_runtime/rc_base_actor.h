@@ -17,7 +17,7 @@ void setSolidProperties(int actor)
 	}
 }
 
-void rc_setActorCollisionShape(int actor_id, int shape_type, double mass)
+void rc_setActorCollisionShape(int actor_id, int shape_type, double mass, double radius=-1)
 {
 	//std::cout << "Start ColShape" << std::endl;
 	if(rc_actor[actor_id].physics.rigid_body)

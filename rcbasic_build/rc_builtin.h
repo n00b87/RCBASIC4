@@ -2531,6 +2531,11 @@ void init_embedded_functions()
 	add_embedded_arg("normal_x", ID_TYPE_BYREF_NUM);
 	add_embedded_arg("normal_y", ID_TYPE_BYREF_NUM);
 	add_embedded_arg("normal_z", ID_TYPE_BYREF_NUM);
+	embed_function("SetActorShapeEx", ID_TYPE_SUB);
+	add_embedded_arg("actor", ID_TYPE_NUM);
+	add_embedded_arg("shape_type", ID_TYPE_NUM);
+	add_embedded_arg("mass", ID_TYPE_NUM);
+	add_embedded_arg("radius", ID_TYPE_NUM);
 	embed_function("createPointConstraint", ID_TYPE_FN_NUM);
 	add_embedded_arg("actorA", ID_TYPE_NUM);
 	add_embedded_arg("pxA", ID_TYPE_NUM);
