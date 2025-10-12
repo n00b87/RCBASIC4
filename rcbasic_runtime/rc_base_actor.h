@@ -17,7 +17,7 @@ void setSolidProperties(int actor)
 	}
 }
 
-void rc_setActorCollisionShape(int actor_id, int shape_type, double mass, double radius=-1)
+void rc_setActorCollisionShape(int actor_id, int shape_type, double mass, double radius=-1.0)
 {
 	//std::cout << "Start ColShape" << std::endl;
 	if(rc_actor[actor_id].physics.rigid_body)
@@ -53,7 +53,7 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass, double
 		case RC_NODE_SHAPE_TYPE_SPHERE:
 			{
 				rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_SPHERE;
-				ISphereShape* shape = new ISphereShape(rc_actor[actor_id].mesh_node, mass, false);
+				ISphereShape* shape = new ISphereShape(rc_actor[actor_id].mesh_node, mass, false, radius);
 
 				rc_actor[actor_id].physics.rigid_body = rc_physics3D.world->addRigidBody(shape);
 
@@ -81,26 +81,26 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass, double
 				if(rc_actor[actor_id].node_type == RC_NODE_TYPE_MESH)
 				{
 					irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor_id].mesh_node;
-					shape = new ICapsuleShape(node, mass, false);
+					shape = new ICapsuleShape(node, mass, false, radius);
 				}
 				else if(rc_actor[actor_id].node_type == RC_NODE_TYPE_STMESH)
 				{
 					irr::scene::IMeshSceneNode* node = (irr::scene::IMeshSceneNode*)rc_actor[actor_id].mesh_node;
-					shape = new ICapsuleShape(node, mass, false);
+					shape = new ICapsuleShape(node, mass, false, radius);
 				}
 				else if(rc_actor[actor_id].node_type == RC_NODE_TYPE_OTMESH)
 				{
 					irr::scene::IOctreeSceneNode* node = (irr::scene::IOctreeSceneNode*)rc_actor[actor_id].mesh_node;
-					shape = new ICapsuleShape(node, mass, false);
+					shape = new ICapsuleShape(node, mass, false, radius);
 				}
 				else if(rc_actor[actor_id].node_type == RC_NODE_TYPE_TERRAIN)
 				{
 					irr::scene::ITerrainSceneNode* node = (irr::scene::ITerrainSceneNode*)rc_actor[actor_id].mesh_node;
-					shape = new ICapsuleShape(node, mass, false);
+					shape = new ICapsuleShape(node, mass, false, radius);
 				}
 				else
                 {
-                    shape = new ICapsuleShape(rc_actor[actor_id].mesh_node, mass, false);
+                    shape = new ICapsuleShape(rc_actor[actor_id].mesh_node, mass, false, radius);
                 }
 
 				rc_actor[actor_id].physics.rigid_body = rc_physics3D.world->addRigidBody(shape);
@@ -112,7 +112,7 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass, double
 		case RC_NODE_SHAPE_TYPE_CONE:
 			{
 				rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_CONE;
-				IConeShape* shape = new IConeShape(rc_actor[actor_id].mesh_node, mass, false);
+				IConeShape* shape = new IConeShape(rc_actor[actor_id].mesh_node, mass, false, radius);
 
 				rc_actor[actor_id].physics.rigid_body = rc_physics3D.world->addRigidBody(shape);
 
