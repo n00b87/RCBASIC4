@@ -1,5 +1,5 @@
 #title CreateSprite [RCBasic Doc]
-#header function CreateSprite( img )
+#header function CreateSprite( img, frame_w, frame_h )
 
 This function returns a new sprite which you can place in a variable for use in your program.
 

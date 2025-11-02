@@ -1,4 +1,6 @@
 #title SetActorShapeEx [RCBasic Doc]
 #header sub SetActorShapeEx( actor, shape_type, mass, radius)
 
+Sets actor shape and radius for capsule, cone, and sphere shapes
 
+#ref SetActorShape
