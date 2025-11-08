@@ -208,6 +208,9 @@ int rc_net_tcp_socketReady(int _socket)
 
 int rc_net_tcp_getData(int socket, int numBytes, void * dst)
 {
+    if(socket < 0 || socket >= rc_tcp_socket.size())
+        return 0;
+
     int rtn = SDLNet_TCP_Recv(rc_tcp_socket[socket].socket, dst, numBytes);
     return rtn;
 }
@@ -235,11 +238,17 @@ int rc_net_tcp_getData_dbl(int socket, int numBytes, double * dst)
 
 void rc_net_tcp_sendData(int socket, std::string data)
 {
+    if(socket < 0 || socket >= rc_tcp_socket.size())
+        return;
+
     SDLNet_TCP_Send(rc_tcp_socket[socket].socket, data.c_str(), data.length());
 }
 
 int rc_net_tcp_acceptSocket(int socket_server)
 {
+    if(socket_server < 0 || socket_server >= rc_tcp_socket.size())
+        return -1;
+
 	int socket_client = -1;
 
     for(int i = 0; i < rc_tcp_socket.size(); i++)
@@ -315,11 +324,25 @@ bool rc_net_udp_openSocket(Uint16 port)
 
 int rc_net_udp_socketReady(int socket)
 {
+    if(socket < 0 || socket >= rc_udp_socket.size())
+        return 0;
+
     return SDLNet_SocketReady(rc_udp_socket[socket].socket);
 }
 
 int rc_net_udp_readStream(int socket, std::string * host, double * port, std::string * dst)
 {
+    if(socket < 0 || socket >= rc_udp_socket.size())
+    {
+        rc_udp_channel = 0;
+        *dst = "";
+        rc_udp_len = 0;
+        rc_udp_maxlen = rc_udp_packet->maxlen;
+        *host = SDLNet_ResolveIP(&rc_udp_packet->address);
+        *port = rc_udp_packet->address.port;
+        return 0;
+    }
+
     //cout << "DEBUG READSTREAM\n";
     //UDPsocket sd;       /* Socket descriptor */
 	//UDPpacket *p;       /* Pointer to packet memory */
@@ -432,6 +455,9 @@ void rc_net_udp_closeSocket(int socket)
 
 int rc_net_udp_sendData(int slot, std::string host, Uint16 port, std::string s_data)
 {
+    if(socket < 0 || socket >= rc_udp_socket.size())
+		return 0;
+
     IPaddress srvadd;
 
     if(s_data.length()+1 > rc_packet_size)
