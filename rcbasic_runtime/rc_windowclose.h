@@ -532,18 +532,18 @@ bool rc_update()
 			rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, fixed_timestep);
         }
 
-        for(int i = 0; i < rc_canvas.size(); i++)
+        for(int canvas_id = 0; canvas_id < rc_canvas.size(); i++)
         {
-            if(rc_canvas[i].show3D)
+            if(rc_canvas[canvas_id].show3D)
             {
-                VideoDriver->setRenderTarget(rc_canvas[i].texture, true, true, irr::video::SColor(255,120,120,120));
+                VideoDriver->setRenderTarget(rc_canvas[canvas_id].texture, true, true, irr::video::SColor(255,120,120,120));
 
-                if(rc_canvas[i].camera.camera)
-                    SceneManager->setActiveCamera(rc_canvas[i].camera.camera);
+                if(rc_canvas[canvas_id].camera.camera)
+                    SceneManager->setActiveCamera(rc_canvas[canvas_id].camera.camera);
 
-                rc_canvas[i].camera.update();
+                rc_canvas[canvas_id].camera.update();
 
-                VideoDriver->setViewPort(irr::core::rect<irr::s32>(0,0,rc_canvas[i].texture->getSize().Width,rc_canvas[i].texture->getSize().Height));
+                VideoDriver->setViewPort(irr::core::rect<irr::s32>(0,0,rc_canvas[canvas_id].texture->getSize().Width,rc_canvas[canvas_id].texture->getSize().Height));
 
                 //irr::core::rect viewport(irr::core::position, rc_canvas[i].viewport.dimension);
                 //VideoDriver->setViewPort(viewport);
