@@ -455,7 +455,7 @@ void rc_net_udp_closeSocket(int socket)
 
 int rc_net_udp_sendData(int slot, std::string host, Uint16 port, std::string s_data)
 {
-    if(socket < 0 || socket >= rc_udp_socket.size())
+    if(slot < 0 || slot >= rc_udp_socket.size())
 		return 0;
 
     IPaddress srvadd;

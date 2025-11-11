@@ -29,6 +29,7 @@
 #include "rc_spritelib.h"
 #include "rc_tilelib.h"
 #include "rc_joints.h"
+#include "rc_post_fx.h"
 #include <irrtheora.h>
 
 
@@ -1244,6 +1245,14 @@ void rc_canvasClose(int canvas_id)
 	}
 
 	rc_canvas[canvas_id].sprite_id.clear();
+
+	//delete post effects for canvas
+	for(int i = 0; i < rc_canvas[canvas_id].post_effect.size(); i++)
+    {
+        rc_removePostEffect(canvas_id, i);
+    }
+
+    rc_canvas[canvas_id].post_effect.clear();
 
     if(rc_active_canvas == canvas_id)
         rc_active_canvas = -1;

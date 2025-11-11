@@ -966,7 +966,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Compiler v4.6" << endl;
+        cout << "RCBASIC Compiler v4.7" << endl;
         return 0;
     }
 

@@ -57,6 +57,7 @@
 #include "rc_video.h"
 #include "rc_steam_lib.h"
 #include "rc_windowclose.h"
+#include "rc_render_control.h"
 #include "rc_test.h"
 #include <irrtheora.h>
 
@@ -4398,7 +4399,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Runtime v4.6" << endl;
+        cout << "RCBASIC Runtime v4.7" << endl;
         return 0;
     }
 

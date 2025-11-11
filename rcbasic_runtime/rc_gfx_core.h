@@ -334,6 +334,28 @@ struct rc_spriteCanvasProperties
     int order;
 };
 
+#define RC_POST_PROCESS_BLOOM         1
+#define RC_POST_PROCESS_BLUR          2
+#define RC_POST_PROCESS_MOTION_BLUR   3
+#define RC_POST_PROCESS_RADIAL_BLUR   4
+#define RC_POST_PROCESS_COLORIZE      5
+#define RC_POST_PROCESS_INVERT        6
+#define RC_POST_PROCESS_DISTORTION    7
+
+// strength, distance, multiplier, saturation, color
+#define RC_PP_PROPERTY_STRENGTH     1
+#define RC_PP_PROPERTY_DISTANCE     2
+#define RC_PP_PROPERTY_MULTIPLIER   3
+#define RC_PP_PROPERTY_SATURATION   4
+#define RC_PP_PROPERTY_COLOR        5
+
+struct rc_post_effect
+{
+    int type;
+    void* object;
+    bool is_active;
+};
+
 #define RC_CANVAS_TYPE_2D		0
 #define RC_CANVAS_TYPE_3D		1
 #define RC_CANVAS_TYPE_SPRITE	2
@@ -382,12 +404,15 @@ struct rc_canvas_obj
     rc_physicsWorld2D_obj physics2D;
     irr::core::array<irr::s32> sprite_id;
     rc_spriteCanvasProperties spriteCanvasProperties;
+
+    irr::core::array<rc_post_effect> post_effect;
 };
 
 irr::core::array<rc_canvas_obj> rc_canvas;
 irr::core::array<u32> rc_canvas_zOrder;
 int rc_active_canvas = -1;
 bool hasPreUpdated = false;
+bool manual_render_control = false;
 
 irr::video::SColor rc_active_color(0,0,0,0);
 irr::video::SColor rc_clear_color(0,0,0,0);
