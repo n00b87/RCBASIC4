@@ -649,6 +649,27 @@ case FN_SetSpriteCanvasRenderPriority: //Number Function
 case FN_GetSpriteCanvasRenderPriority: //Sub Procedure
 	rc_getSpriteCanvasRenderPriority( GETSPRITECANVASRENDERPRIORITY_C_NUM,  &GETSPRITECANVASRENDERPRIORITY_PRIORITY,  &GETSPRITECANVASRENDERPRIORITY_ORDER );
 	break;
+case FN_AddPostEffect: //Number Function
+	 rc_push_num(rc_addPostEffect( ADDPOSTEFFECT_C_NUM,  ADDPOSTEFFECT_EFFECT_TYPE ));
+	break;
+case FN_RemovePostEffect: //Sub Procedure
+	rc_removePostEffect( REMOVEPOSTEFFECT_C_NUM,  REMOVEPOSTEFFECT_EFFECT_NUM );
+	break;
+case FN_SetPostEffectProperty: //Sub Procedure
+	rc_setPostEffectProperty( SETPOSTEFFECTPROPERTY_C_NUM,  SETPOSTEFFECTPROPERTY_EFFECT_NUM,  SETPOSTEFFECTPROPERTY_PROPERTY,  SETPOSTEFFECTPROPERTY_PROPERTY_VALUE );
+	break;
+case FN_GetPostEffectProperty: //Number Function
+	 rc_push_num(rc_getPostEffectProperty( GETPOSTEFFECTPROPERTY_C_NUM,  GETPOSTEFFECTPROPERTY_EFFECT_NUM,  GETPOSTEFFECTPROPERTY_PROPERTY ));
+	break;
+case FN_ClearPostEffects: //Sub Procedure
+	rc_clearPostEffects( CLEARPOSTEFFECTS_C_NUM );
+	break;
+case FN_SetPostEffectActive: //Sub Procedure
+	rc_setPostEffectActive( SETPOSTEFFECTACTIVE_C_NUM,  SETPOSTEFFECTACTIVE_EFFECT_NUM,  SETPOSTEFFECTACTIVE_FLAG );
+	break;
+case FN_PostEffectIsActive: //Number Function
+	 rc_push_num(rc_postEffectIsActive( POSTEFFECTISACTIVE_C_NUM,  POSTEFFECTISACTIVE_EFFECT_NUM ));
+	break;
 case FN_Circle: //Sub Procedure
 	rc_drawCircle( CIRCLE_X,  CIRCLE_Y,  CIRCLE_RADIUS );
 	break;
@@ -2105,6 +2126,21 @@ case FN_GetMeshPolygonCount: //Number Function
 case FN_FlipMeshSurfaces: //Sub Procedure
 	rc_flipMeshSurfaces( FLIPMESHSURFACES_MESH );
 	break;
+case FN_SetMeshBuffer: //Number Function
+	 rc_push_num(rc_setMeshBuffer( SETMESHBUFFER_MESH_ID,  SETMESHBUFFER_BUFFER_NUM,  SETMESHBUFFER_VERTEX_COUNT,  &SETMESHBUFFER_VERTEX_DATA,  &SETMESHBUFFER_NORMAL_DATA,  &SETMESHBUFFER_UV_DATA,  SETMESHBUFFER_INDEX_COUNT,  &SETMESHBUFFER_INDEX_DATA ));
+	break;
+case FN_GetMeshBufferCount: //Number Function
+	 rc_push_num(rc_getMeshBufferCount( GETMESHBUFFERCOUNT_MESH_ID ));
+	break;
+case FN_GetMeshBufferVertexCount: //Number Function
+	 rc_push_num(rc_getMeshBufferVertexCount( GETMESHBUFFERVERTEXCOUNT_MESH_ID,  GETMESHBUFFERVERTEXCOUNT_BUFFER_INDEX ));
+	break;
+case FN_GetMeshBufferIndexCount: //Number Function
+	 rc_push_num(rc_getMeshBufferIndexCount( GETMESHBUFFERINDEXCOUNT_MESH_ID,  GETMESHBUFFERINDEXCOUNT_BUFFER_INDEX ));
+	break;
+case FN_GetMeshBuffer: //Number Function
+	 rc_push_num(rc_getMeshBuffer( GETMESHBUFFER_MESH_ID,  GETMESHBUFFER_BUFFER_INDEX,  &GETMESHBUFFER_VERTEX_DATA,  &GETMESHBUFFER_NORMAL_DATA,  &GETMESHBUFFER_UV_DATA,  &GETMESHBUFFER_INDEX_DATA ));
+	break;
 case FN_CreateAnimatedActor: //Number Function
 	 rc_push_num(rc_createAnimatedActor( CREATEANIMATEDACTOR_MESH ));
 	break;
@@ -2845,6 +2881,15 @@ case FN_SetSceneAmbientColor: //Sub Procedure
 	break;
 case FN_GetSceneAmbientColor: //Number Function
 	 rc_push_num(rc_getSceneAmbientColor(  ));
+	break;
+case FN_Pipeline_Begin: //Sub Procedure
+	rc_pipeline_Begin(  );
+	break;
+case FN_Pipeline_End: //Sub Procedure
+	rc_pipeline_End(  );
+	break;
+case FN_Pipeline_Render: //Sub Procedure
+	rc_pipeline_Render(  );
 	break;
 case FN_startParticleEmitter: //Sub Procedure
 	rc_startParticleEmitter(  STARTPARTICLEEMITTER_ACTOR );

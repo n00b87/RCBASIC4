@@ -1,4 +1,4 @@
 #title SetSpriteAlpha [RCBasic Doc]
 #header Sub SetSpriteAlpha(sprite, alpha)
 
-
+Sets the alpha value of a sprite

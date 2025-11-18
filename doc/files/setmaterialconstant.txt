@@ -3,17 +3,16 @@
 
 Sets the constant value of an FX material
 
+NOTE: Each constant can be of type Float, Vec2, Vec3, or Vec4. The ones listed as defined are set internally by the runtime.
 
-NOTE: Each constant can ve of type Float, Vec2, Vec3, or Vec4. The ones listed as defined are set internally by the runtime.
-
-<b>FX_MATERIAL_TYPE_NORMAL_BLEND</b>
+<b>FX_MATERIAL_TYPE_NORMAL_BLEND</b><br>
 Possible Constants
 #list ul
 #li [Float]	Alpha
 #/list
 
 
-<b>FX_MATERIAL_TYPE_REFRACTION</b>
+<b>FX_MATERIAL_TYPE_REFRACTION</b><br>
 Possible Constants
 #list ul
 #li [Vec3]	BaseColor
@@ -26,13 +25,13 @@ Possible Constants
 #/list
 
 	
-<b>FX_MATERIAL_TYPE_REFRACTION2</b>
+<b>FX_MATERIAL_TYPE_REFRACTION2</b><br>
 Possible Constants
 #list ul
 #li NONE
 #/list
 
-<b>FX_MATERIAL_TYPE_GOOCH</b>
+<b>FX_MATERIAL_TYPE_GOOCH</b><br>
 Possible Constants
 #list ul
 #li [Vec3]	SurfaceColor
@@ -42,7 +41,7 @@ Possible Constants
 #li [Float]	DiffuseCool
 #/list
 
-<b>FX_MATERIAL_TYPE_PLASTIC</b>
+<b>FX_MATERIAL_TYPE_PLASTIC</b><br>
 Possible Constants
 #list ul
 #li [Vec4]	Color
@@ -50,7 +49,7 @@ Possible Constants
 #/list
 
 
-<b>FX_MATERIAL_TYPE_TANGENT</b>
+<b>FX_MATERIAL_TYPE_TANGENT</b><br>
 Possible Constants
 #list ul
 #li [Float]	BViewSpace
@@ -58,7 +57,7 @@ Possible Constants
 #/list
 
 
-<b>FX_MATERIAL_TYPE_SPEAKER</b>
+<b>FX_MATERIAL_TYPE_SPEAKER</b><br>
 Possible Constants
 #list ul
 #li [Float]	PulseSharpness
@@ -72,7 +71,7 @@ Possible Constants
 #/list
 
 
-<b>FX_MATERIAL_TYPE_PHONG_TEXTURE</b>
+<b>FX_MATERIAL_TYPE_PHONG_TEXTURE</b><br>
 Possible Constants
 #list ul
 #li [Vec4]	fvAmbient
@@ -84,27 +83,27 @@ Possible Constants
 #/list
 
 
-<b>FX_MATERIAL_TYPE_STYLE</b>
+<b>FX_MATERIAL_TYPE_STYLE</b><br>
 Possible Constants
 #list ul
 #li [-Defined-] LightPos
 #/list
 
 
-<b>FX_MATERIAL_TYPE_STYLE2</b>
+<b>FX_MATERIAL_TYPE_STYLE2</b><br>
 Possible Constants
 #list ul
 #li [-Defined-] BaseMap
 #/list
 
 
-<b>FX_MATERIAL_TYPE_STYLE3</b>
+<b>FX_MATERIAL_TYPE_STYLE3</b><br>
 Possible Constants
 #list ul
 #li NONE
 #/list
 
-<b>FX_MATERIAL_TYPE_STYLE4</b>
+<b>FX_MATERIAL_TYPE_STYLE4</b><br>
 Possible Constants
 #list ul
 #li [Float] SilhouetteThreshold
