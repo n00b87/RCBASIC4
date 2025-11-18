@@ -851,7 +851,11 @@ void rc_deleteActor(int actor_id)
     if(!rc_actor[actor_id].mesh_node)
         return;
 
-	rc_physics3D.world->removeCollisionObject(rc_actor[actor_id].physics.rigid_body, false);
+	if(rc_actor[actor_id].physics.rigid_body)
+        rc_physics3D.world->removeCollisionObject(rc_actor[actor_id].physics.rigid_body, false);
+
+	rc_actor[actor_id].physics.rigid_body = NULL;
+
 	rc_actor[actor_id].physics.collisions.clear();
 
     rc_actor[actor_id].mesh_node->remove();
