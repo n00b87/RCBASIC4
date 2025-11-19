@@ -275,6 +275,10 @@ void init_embedded_functions()
 	add_embedded_arg("num_stack", ID_TYPE_NUM);
 	embed_function("Stack_Size_S", ID_TYPE_FN_NUM);
 	add_embedded_arg("str_stack", ID_TYPE_NUM);
+	embed_function("Stack_N_Exists", ID_TYPE_FN_NUM);
+	add_embedded_arg("num_stack", ID_TYPE_NUM);
+	embed_function("Stack_S_Exists", ID_TYPE_FN_NUM);
+	add_embedded_arg("str_stack", ID_TYPE_NUM);
 	embed_function("OpenFile", ID_TYPE_FN_NUM);
 	add_embedded_arg("fileName$", ID_TYPE_STR);
 	add_embedded_arg("mode", ID_TYPE_NUM);
@@ -1368,6 +1372,8 @@ void init_embedded_functions()
 	add_embedded_arg("x", ID_TYPE_BYREF_NUM);
 	add_embedded_arg("y", ID_TYPE_BYREF_NUM);
 	add_embedded_arg("z", ID_TYPE_BYREF_NUM);
+	embed_function("MatrixExists", ID_TYPE_FN_NUM);
+	add_embedded_arg("mA", ID_TYPE_NUM);
 	embed_function("GetClipboardText$", ID_TYPE_FN_STR);
 	embed_function("SetClipboardText", ID_TYPE_SUB);
 	add_embedded_arg("txt$", ID_TYPE_STR);

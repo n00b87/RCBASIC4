@@ -304,6 +304,12 @@ case FN_Stack_Size_N: //Number Function
 case FN_Stack_Size_S: //Number Function
 	 rc_push_num(rc_intern_s_stack_size( STACK_SIZE_S_STR_STACK ));
 	break;
+case FN_Stack_N_Exists: //Number Function
+	 rc_push_num(rc_intern_n_stack_exists( STACK_N_EXISTS_NUM_STACK ));
+	break;
+case FN_Stack_S_Exists: //Number Function
+	 rc_push_num(rc_intern_s_stack_exists( STACK_S_EXISTS_STR_STACK ));
+	break;
 case FN_OpenFile: //Number Function
 	 rc_push_num(rc_intern_fileOpen( OPENFILE_FILENAME$,  OPENFILE_MODE ));
 	break;
@@ -1444,6 +1450,9 @@ case FN_GetMatrixRotation: //Sub Procedure
 	break;
 case FN_GetMatrixScale: //Sub Procedure
 	rc_getMatrixScale( GETMATRIXSCALE_MA,  &GETMATRIXSCALE_X,  &GETMATRIXSCALE_Y,  &GETMATRIXSCALE_Z );
+	break;
+case FN_MatrixExists: //Number Function
+	 rc_push_num(rc_matrixExists( MATRIXEXISTS_MA ));
 	break;
 case FN_GetClipboardText$: //String Function
 	 rc_push_str(rc_getClipboardText(  ));
