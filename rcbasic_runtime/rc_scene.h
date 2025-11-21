@@ -86,6 +86,8 @@ void rc_clearScene()
 			}
 		}
 
+		rc_projector_actors.clear();
+
 		for(int i = 0; i < rc_actor.size(); i++)
 		{
 			if(rc_actor[i].mesh_node)

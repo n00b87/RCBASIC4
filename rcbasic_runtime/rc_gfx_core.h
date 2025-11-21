@@ -639,7 +639,7 @@ struct rc_scene_node
 };
 
 irr::core::array<rc_scene_node> rc_actor;
-
+irr::core::array<int> rc_projector_actors;
 irr::core::array<int> rc_transition_actor;
 
 

@@ -585,6 +585,23 @@ bool rc_update()
 
                     SceneManager->drawAll();
 
+                    for(int p_actor = 0; p_actor < rc_projector_actors.size(); p_actor++)
+                    {
+                        int actor_id = rc_projector_actors[p_actor];
+
+                        if(actor_id < 0 || actor_id >= rc_actor.size())
+                            continue;
+
+                        if(!rc_actor[actor_id].mesh_node)
+                            continue;
+
+                        if(rc_actor[actor_id].mesh_node->isVisible())
+                        {
+                            CProjectiveTextures* pt_node = (CProjectiveTextures*)rc_actor[actor_id].mesh_node;
+                            pt_node->render();
+                        }
+                    }
+
                     //render post effects
                     for(int effect_num = 0; effect_num < rc_canvas[rc_active_canvas].post_effect.size(); effect_num++)
                     {

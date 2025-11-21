@@ -1743,7 +1743,7 @@ struct CircleSettings
     f32 radius;             // in pixels
     f32 radius2;
     video::SColor color;
-    u32 numVertices = 21;   // including center
+    u32 numVertices = 121;   // including center
 };
 
 void makeCircle(irr::core::array<irr::video::S3DVertex>& vertices, irr::core::array<irr::u16>& indices, const CircleSettings& settings)
