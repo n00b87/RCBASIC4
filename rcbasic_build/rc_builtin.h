@@ -1739,6 +1739,10 @@ void init_embedded_functions()
 	add_embedded_arg("spr_id", ID_TYPE_NUM);
 	add_embedded_arg("x", ID_TYPE_BYREF_NUM);
 	add_embedded_arg("y", ID_TYPE_BYREF_NUM);
+	embed_function("GetSpriteWorldCenter", ID_TYPE_SUB);
+	add_embedded_arg("spr_id", ID_TYPE_NUM);
+	add_embedded_arg("x", ID_TYPE_BYREF_NUM);
+	add_embedded_arg("y", ID_TYPE_BYREF_NUM);
 	embed_function("createDistanceJoint", ID_TYPE_FN_NUM);
 	add_embedded_arg("spriteA", ID_TYPE_NUM);
 	add_embedded_arg("spriteB", ID_TYPE_NUM);
