@@ -542,7 +542,47 @@ bool rc_update()
             {
                 if(rc_canvas[canvas_id].show3D)
                 {
-                    VideoDriver->setRenderTarget(rc_canvas[canvas_id].texture, true, true, rc_clear_color);
+                    if(rc_canvas[canvas_id].post_effect.is_active)
+                    {
+                        if(rc_canvas[canvas_id].post_effect.type == RC_POST_PROCESS_DISTORTION)
+                        {
+                            IPostProcessGlass* post_process = (IPostProcessGlass*) rc_canvas[canvas_id].post_effect.object;
+                            VideoDriver->setRenderTarget(post_process->rt0, true, true);
+                        }
+                        else if(rc_canvas[canvas_id].post_effect.type == RC_POST_PROCESS_BLOOM)
+                        {
+                            IPostProcessBloom* post_process = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect.object;
+                            VideoDriver->setRenderTarget(post_process->rt0, true, true);
+                        }
+                        else if(rc_canvas[canvas_id].post_effect.type == RC_POST_PROCESS_BLUR)
+                        {
+                            IPostProcessBlur* post_process = (IPostProcessBlur*) rc_canvas[canvas_id].post_effect.object;
+                            VideoDriver->setRenderTarget(post_process->rt0, true, true);
+                        }
+                        else if(rc_canvas[canvas_id].post_effect.type == RC_POST_PROCESS_COLORIZE)
+                        {
+                            IPostProcessColor* post_process = (IPostProcessColor*) rc_canvas[canvas_id].post_effect.object;
+                            VideoDriver->setRenderTarget(post_process->rt0, true, true);
+                        }
+                        else if(rc_canvas[canvas_id].post_effect.type == RC_POST_PROCESS_INVERT)
+                        {
+                            IPostProcessInvert* post_process = (IPostProcessInvert*) rc_canvas[canvas_id].post_effect.object;
+                            VideoDriver->setRenderTarget(post_process->rt0, true, true, irr::video::SColor(0,0,0,0));
+                        }
+                        else if(rc_canvas[canvas_id].post_effect.type == RC_POST_PROCESS_RADIAL_BLUR)
+                        {
+                            IPostProcessRadialBlur* post_process = (IPostProcessRadialBlur*) rc_canvas[canvas_id].post_effect.object;
+                            VideoDriver->setRenderTarget(post_process->rt0, true, true);
+                        }
+                        else
+                        {
+                            VideoDriver->setRenderTarget(rc_canvas[canvas_id].texture, true, true, rc_clear_color);
+                        }
+                    }
+                    else
+                    {
+                        VideoDriver->setRenderTarget(rc_canvas[canvas_id].texture, true, true, rc_clear_color);
+                    }
 
                     if(rc_canvas[canvas_id].camera.camera)
                         SceneManager->setActiveCamera(rc_canvas[canvas_id].camera.camera);
@@ -583,7 +623,16 @@ bool rc_update()
                     rc_active_color = current_color;
                     rc_setDriverMaterial();
 
-                    SceneManager->drawAll();
+                    if(rc_canvas[canvas_id].post_effect.type == RC_POST_PROCESS_MOTION_BLUR && rc_canvas[canvas_id].post_effect.is_active)
+                    {
+                        //render motion blur
+                        IPostProcessMotionBlur* post_process = (IPostProcessMotionBlur*) rc_canvas[canvas_id].post_effect.object;
+                        post_process->render();
+                    }
+                    else
+                    {
+                        SceneManager->drawAll();
+                    }
 
                     for(int p_actor = 0; p_actor < rc_projector_actors.size(); p_actor++)
                     {
@@ -603,9 +652,10 @@ bool rc_update()
                     }
 
                     //render post effects
-                    for(int effect_num = 0; effect_num < rc_canvas[rc_active_canvas].post_effect.size(); effect_num++)
+                    if(rc_canvas[canvas_id].post_effect.is_active)
                     {
-                        rc_renderPostEffect(canvas_id, effect_num); //It won't render if not active so no check needs to be done here
+                        VideoDriver->setRenderTarget(rc_canvas[canvas_id].texture, true, true, rc_clear_color);
+                        rc_renderPostEffect(canvas_id);
                     }
 
                     //VideoDriver->draw2DRectangle(irr::video::SColor(255,0,255,0), irr::core::rect<irr::s32>(10,40,100,500));

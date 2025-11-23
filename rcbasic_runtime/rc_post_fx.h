@@ -920,39 +920,83 @@ public:
 
 
 
-
-
-int rc_addPostEffect(int canvas_id, int effect_type)
+void rc_clearPostEffect(int canvas_id)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
-        return -1;
+        return;
 
-    int pp_id = -1;
+    rc_canvas[canvas_id].post_effect.is_active = false;
 
-    for(int i = 0; i < rc_canvas[canvas_id].post_effect.size(); i++)
+    if(rc_canvas[canvas_id].post_effect.object)
     {
-        if(rc_canvas[canvas_id].post_effect[i].type < 0)
+        switch(rc_canvas[canvas_id].post_effect.type)
         {
-            pp_id = i;
+            case RC_POST_PROCESS_BLOOM:
+            {
+                IPostProcessBloom* post_process = (IPostProcessBloom*)rc_canvas[canvas_id].post_effect.object;
+                post_process->remove();
+            }
+            break;
+
+            case RC_POST_PROCESS_BLUR:
+            {
+                IPostProcessBlur* post_process = (IPostProcessBlur*)rc_canvas[canvas_id].post_effect.object;
+                post_process->remove();
+            }
+            break;
+
+            case RC_POST_PROCESS_COLORIZE:
+            {
+                IPostProcessColor* post_process = (IPostProcessColor*)rc_canvas[canvas_id].post_effect.object;
+                post_process->remove();
+            }
+            break;
+
+            case RC_POST_PROCESS_DISTORTION:
+            {
+                IPostProcessGlass* post_process = (IPostProcessGlass*)rc_canvas[canvas_id].post_effect.object;
+                post_process->remove();
+            }
+            break;
+
+            case RC_POST_PROCESS_INVERT:
+            {
+                IPostProcessInvert* post_process = (IPostProcessInvert*)rc_canvas[canvas_id].post_effect.object;
+                post_process->remove();
+            }
+            break;
+
+            case RC_POST_PROCESS_MOTION_BLUR:
+            {
+                IPostProcessMotionBlur* post_process = (IPostProcessMotionBlur*)rc_canvas[canvas_id].post_effect.object;
+                post_process->remove();
+            }
+            break;
+
+            case RC_POST_PROCESS_RADIAL_BLUR:
+            {
+                IPostProcessRadialBlur* post_process = (IPostProcessRadialBlur*)rc_canvas[canvas_id].post_effect.object;
+                post_process->remove();
+            }
+            break;
         }
     }
 
-    if(pp_id < 0)
-    {
-        pp_id = rc_canvas[canvas_id].post_effect.size();
+    rc_canvas[canvas_id].post_effect.object = NULL;
+    rc_canvas[canvas_id].post_effect.type = -1;
+}
 
-        rc_post_effect pfx;
-        pfx.type = effect_type;
-        pfx.object = NULL;
-        pfx.is_active = true;
-        rc_canvas[canvas_id].post_effect.push_back(pfx);
-    }
-    else
-    {
-        rc_canvas[canvas_id].post_effect[pp_id].type = effect_type;
-        rc_canvas[canvas_id].post_effect[pp_id].object = NULL;
-        rc_canvas[canvas_id].post_effect[pp_id].is_active = true;
-    }
+
+bool rc_setPostEffect(int canvas_id, int effect_type)
+{
+    if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
+        return false;
+
+    rc_clearPostEffect(canvas_id);
+
+    rc_canvas[canvas_id].post_effect.type = effect_type;
+    rc_canvas[canvas_id].post_effect.object = NULL;
+    rc_canvas[canvas_id].post_effect.is_active = true;
 
 
     switch(effect_type)
@@ -968,7 +1012,7 @@ int rc_addPostEffect(int canvas_id, int effect_type)
 
             Bloom->initiate(rc_canvas[canvas_id].viewport.dimension.Width, rc_canvas[canvas_id].viewport.dimension.Height, setup, SceneManager);
 
-            rc_canvas[canvas_id].post_effect[pp_id].object = Bloom;
+            rc_canvas[canvas_id].post_effect.object = Bloom;
         }
         break;
 
@@ -979,7 +1023,7 @@ int rc_addPostEffect(int canvas_id, int effect_type)
             float sampleDist = 0.001;
             Blur->initiate(rc_canvas[canvas_id].viewport.dimension.Width, rc_canvas[canvas_id].viewport.dimension.Height, sampleDist, SceneManager);
 
-            rc_canvas[canvas_id].post_effect[pp_id].object = Blur;
+            rc_canvas[canvas_id].post_effect.object = Blur;
         }
         break;
 
@@ -992,7 +1036,7 @@ int rc_addPostEffect(int canvas_id, int effect_type)
             setup.col=video::SColorf(0,0,0,0);
             PPE_Color->initiate(rc_canvas[canvas_id].viewport.dimension.Width, rc_canvas[canvas_id].viewport.dimension.Height, setup, SceneManager);
 
-            rc_canvas[canvas_id].post_effect[pp_id].object = PPE_Color;
+            rc_canvas[canvas_id].post_effect.object = PPE_Color;
         }
         break;
 
@@ -1001,7 +1045,7 @@ int rc_addPostEffect(int canvas_id, int effect_type)
             IPostProcessInvert *Invert = new IPostProcessInvert(SceneManager->getRootSceneNode(), SceneManager, -1);
             Invert->initiate(rc_canvas[canvas_id].viewport.dimension.Width, rc_canvas[canvas_id].viewport.dimension.Height, SceneManager);
 
-            rc_canvas[canvas_id].post_effect[pp_id].object = Invert;
+            rc_canvas[canvas_id].post_effect.object = Invert;
         }
         break;
 
@@ -1011,7 +1055,7 @@ int rc_addPostEffect(int canvas_id, int effect_type)
             float strength = 0.1;
             Blur->initiate(rc_canvas[canvas_id].viewport.dimension.Width, rc_canvas[canvas_id].viewport.dimension.Height, strength, SceneManager);
 
-            rc_canvas[canvas_id].post_effect[pp_id].object = Blur;
+            rc_canvas[canvas_id].post_effect.object = Blur;
         }
         break;
 
@@ -1022,7 +1066,7 @@ int rc_addPostEffect(int canvas_id, int effect_type)
             float strength = 1;
             Blur->initiate(rc_canvas[canvas_id].viewport.dimension.Width, rc_canvas[canvas_id].viewport.dimension.Height, dist, strength, SceneManager);
 
-            rc_canvas[canvas_id].post_effect[pp_id].object = Blur;
+            rc_canvas[canvas_id].post_effect.object = Blur;
         }
         break;
 
@@ -1032,120 +1076,62 @@ int rc_addPostEffect(int canvas_id, int effect_type)
             float strength = 0.1;
             Glass->initiate(rc_canvas[canvas_id].viewport.dimension.Width, rc_canvas[canvas_id].viewport.dimension.Height, strength, SceneManager);
 
-            rc_canvas[canvas_id].post_effect[pp_id].object = Glass;
+            rc_canvas[canvas_id].post_effect.object = Glass;
         }
         break;
     }
 
-
-    return pp_id;
-}
-
-void rc_removePostEffect(int canvas_id, int effect_id)
-{
-    if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
-        return;
-
-    if(effect_id < 0 || effect_id >= rc_canvas[canvas_id].post_effect.size())
-        return;
-
-    rc_canvas[canvas_id].post_effect[effect_id].is_active = false;
-
-    if(rc_canvas[canvas_id].post_effect[effect_id].object)
+    if(!rc_canvas[canvas_id].post_effect.object)
     {
-        switch(rc_canvas[canvas_id].post_effect[effect_id].type)
-        {
-            case RC_POST_PROCESS_BLOOM:
-                delete (IPostProcessBloom*)rc_canvas[canvas_id].post_effect[effect_id].object;
-            break;
-
-            case RC_POST_PROCESS_BLUR:
-                delete (IPostProcessBlur*)rc_canvas[canvas_id].post_effect[effect_id].object;
-            break;
-
-            case RC_POST_PROCESS_COLORIZE:
-                delete (IPostProcessColor*)rc_canvas[canvas_id].post_effect[effect_id].object;
-            break;
-
-            case RC_POST_PROCESS_DISTORTION:
-                delete (IPostProcessGlass*)rc_canvas[canvas_id].post_effect[effect_id].object;
-            break;
-
-            case RC_POST_PROCESS_INVERT:
-                delete (IPostProcessInvert*)rc_canvas[canvas_id].post_effect[effect_id].object;
-            break;
-
-            case RC_POST_PROCESS_MOTION_BLUR:
-                delete (IPostProcessMotionBlur*)rc_canvas[canvas_id].post_effect[effect_id].object;
-            break;
-
-            case RC_POST_PROCESS_RADIAL_BLUR:
-                delete (IPostProcessRadialBlur*)rc_canvas[canvas_id].post_effect[effect_id].object;
-            break;
-        }
+        rc_canvas[canvas_id].post_effect.is_active = false;
+        rc_canvas[canvas_id].post_effect.type = -1;
     }
 
-    rc_canvas[canvas_id].post_effect[effect_id].object = NULL;
-    rc_canvas[canvas_id].post_effect[effect_id].type = -1;
+
+    return true;
 }
 
-void rc_clearPostEffects(int canvas_id)
+
+void rc_setPostEffectStrength(int canvas_id, double strength)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
         return;
 
-    for(int i = 0; i < rc_canvas[canvas_id].post_effect.size(); i++)
-    {
-        rc_removePostEffect(canvas_id, i);
-    }
-
-    rc_canvas[canvas_id].post_effect.clear();
-}
-
-
-void rc_setPostEffectStrength(int canvas_id, int effect_id, double strength)
-{
-    if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
-        return;
-
-    if(effect_id < 0 || effect_id >= rc_canvas[canvas_id].post_effect.size())
-        return;
-
-    int effect_type = rc_canvas[canvas_id].post_effect[effect_id].type; //type will be -1 if effect has been removed
+    int effect_type = rc_canvas[canvas_id].post_effect.type; //type will be -1 if effect has been removed
 
     switch(effect_type)
     {
         case RC_POST_PROCESS_BLOOM:
         {
-            IPostProcessBloom *Bloom = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessBloom *Bloom = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect.object;
             Bloom->callback->strength = (float)strength;
         }
         break;
 
         case RC_POST_PROCESS_COLORIZE:
         {
-            IPostProcessColor * PPE_Color = (IPostProcessColor*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessColor * PPE_Color = (IPostProcessColor*) rc_canvas[canvas_id].post_effect.object;
             PPE_Color->callback->coloringStrength = (float)strength;
         }
         break;
 
         case RC_POST_PROCESS_MOTION_BLUR:
         {
-            IPostProcessMotionBlur *Blur = (IPostProcessMotionBlur*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessMotionBlur *Blur = (IPostProcessMotionBlur*) rc_canvas[canvas_id].post_effect.object;
             Blur->callback->strength = (float)strength;
         }
         break;
 
         case RC_POST_PROCESS_RADIAL_BLUR:
         {
-            IPostProcessRadialBlur *Blur = (IPostProcessRadialBlur*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessRadialBlur *Blur = (IPostProcessRadialBlur*) rc_canvas[canvas_id].post_effect.object;
             Blur->callback->sampleStrength = (float)strength;
         }
         break;
 
         case RC_POST_PROCESS_DISTORTION:
         {
-            IPostProcessGlass *Glass = (IPostProcessGlass*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessGlass *Glass = (IPostProcessGlass*) rc_canvas[canvas_id].post_effect.object;
             Glass->callback->strength = (float)strength;
         }
         break;
@@ -1153,35 +1139,32 @@ void rc_setPostEffectStrength(int canvas_id, int effect_id, double strength)
 }
 
 
-void rc_setPostEffectDistance(int canvas_id, int effect_id, double dist)
+void rc_setPostEffectDistance(int canvas_id, double dist)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
         return;
 
-    if(effect_id < 0 || effect_id >= rc_canvas[canvas_id].post_effect.size())
-        return;
-
-    int effect_type = rc_canvas[canvas_id].post_effect[effect_id].type; //type will be -1 if effect has been removed
+    int effect_type = rc_canvas[canvas_id].post_effect.type; //type will be -1 if effect has been removed
 
     switch(effect_type)
     {
         case RC_POST_PROCESS_BLOOM:
         {
-            IPostProcessBloom *Bloom = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessBloom *Bloom = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect.object;
             Bloom->callback->sampleDist = (float)dist;
         }
         break;
 
         case RC_POST_PROCESS_BLUR:
         {
-            IPostProcessBlur *Blur = (IPostProcessBlur*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessBlur *Blur = (IPostProcessBlur*) rc_canvas[canvas_id].post_effect.object;
             Blur->callback->sampleDist = (float)dist;
         }
         break;
 
         case RC_POST_PROCESS_RADIAL_BLUR:
         {
-            IPostProcessRadialBlur *Blur = (IPostProcessRadialBlur*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessRadialBlur *Blur = (IPostProcessRadialBlur*) rc_canvas[canvas_id].post_effect.object;
             Blur->callback->sampleDist = (float)dist;
         }
         break;
@@ -1190,21 +1173,18 @@ void rc_setPostEffectDistance(int canvas_id, int effect_id, double dist)
 
 
 
-void rc_setPostEffectMultiplier(int canvas_id, int effect_id, double multiplier)
+void rc_setPostEffectMultiplier(int canvas_id, double multiplier)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
         return;
 
-    if(effect_id < 0 || effect_id >= rc_canvas[canvas_id].post_effect.size())
-        return;
-
-    int effect_type = rc_canvas[canvas_id].post_effect[effect_id].type; //type will be -1 if effect has been removed
+    int effect_type = rc_canvas[canvas_id].post_effect.type; //type will be -1 if effect has been removed
 
     switch(effect_type)
     {
         case RC_POST_PROCESS_BLOOM:
         {
-            IPostProcessBloom *Bloom = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessBloom *Bloom = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect.object;
             Bloom->callback->multiplier = (float)multiplier;
         }
         break;
@@ -1212,21 +1192,18 @@ void rc_setPostEffectMultiplier(int canvas_id, int effect_id, double multiplier)
 }
 
 
-void rc_setPostEffectSaturation(int canvas_id, int effect_id, double saturation)
+void rc_setPostEffectSaturation(int canvas_id, double saturation)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
         return;
 
-    if(effect_id < 0 || effect_id >= rc_canvas[canvas_id].post_effect.size())
-        return;
-
-    int effect_type = rc_canvas[canvas_id].post_effect[effect_id].type; //type will be -1 if effect has been removed
+    int effect_type = rc_canvas[canvas_id].post_effect.type; //type will be -1 if effect has been removed
 
     switch(effect_type)
     {
         case RC_POST_PROCESS_COLORIZE:
         {
-            IPostProcessColor * PPE_Color = (IPostProcessColor*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessColor * PPE_Color = (IPostProcessColor*) rc_canvas[canvas_id].post_effect.object;
             PPE_Color->callback->saturation = (float)saturation;
         }
         break;
@@ -1234,21 +1211,18 @@ void rc_setPostEffectSaturation(int canvas_id, int effect_id, double saturation)
 }
 
 
-void rc_setPostEffectColor(int canvas_id, int effect_id, double c_color)
+void rc_setPostEffectColor(int canvas_id, double c_color)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
         return;
 
-    if(effect_id < 0 || effect_id >= rc_canvas[canvas_id].post_effect.size())
-        return;
-
-    int effect_type = rc_canvas[canvas_id].post_effect[effect_id].type; //type will be -1 if effect has been removed
+    int effect_type = rc_canvas[canvas_id].post_effect.type; //type will be -1 if effect has been removed
 
     switch(effect_type)
     {
         case RC_POST_PROCESS_COLORIZE:
         {
-            IPostProcessColor * PPE_Color = (IPostProcessColor*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessColor * PPE_Color = (IPostProcessColor*) rc_canvas[canvas_id].post_effect.object;
             PPE_Color->callback->col = irr::video::SColorf( irr::video::SColor((irr::u32) c_color) );
         }
         break;
@@ -1256,37 +1230,37 @@ void rc_setPostEffectColor(int canvas_id, int effect_id, double c_color)
 }
 
 
-void rc_setPostEffectProperty(int canvas_id, int effect_id, int effect_property, double effect_value)
+void rc_setPostEffectProperty(int canvas_id, int effect_property, double effect_value)
 {
     switch(effect_property)
     {
         case RC_PP_PROPERTY_STRENGTH:
         {
-            rc_setPostEffectStrength(canvas_id, effect_id, effect_value);
+            rc_setPostEffectStrength(canvas_id, effect_value);
         }
         break;
 
         case RC_PP_PROPERTY_DISTANCE:
         {
-            rc_setPostEffectDistance(canvas_id, effect_id, effect_value);
+            rc_setPostEffectDistance(canvas_id, effect_value);
         }
         break;
 
         case RC_PP_PROPERTY_MULTIPLIER:
         {
-            rc_setPostEffectMultiplier(canvas_id, effect_id, effect_value);
+            rc_setPostEffectMultiplier(canvas_id, effect_value);
         }
         break;
 
         case RC_PP_PROPERTY_SATURATION:
         {
-            rc_setPostEffectSaturation(canvas_id, effect_id, effect_value);
+            rc_setPostEffectSaturation(canvas_id, effect_value);
         }
         break;
 
         case RC_PP_PROPERTY_COLOR:
         {
-            rc_setPostEffectColor(canvas_id, effect_id, effect_value);
+            rc_setPostEffectColor(canvas_id, effect_value);
         }
         break;
     }
@@ -1298,49 +1272,46 @@ void rc_setPostEffectProperty(int canvas_id, int effect_id, int effect_property,
 
 
 
-double rc_getPostEffectStrength(int canvas_id, int effect_id)
+double rc_getPostEffectStrength(int canvas_id)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
         return 0;
 
-    if(effect_id < 0 || effect_id >= rc_canvas[canvas_id].post_effect.size())
-        return 0;
-
-    int effect_type = rc_canvas[canvas_id].post_effect[effect_id].type; //type will be -1 if effect has been removed
+    int effect_type = rc_canvas[canvas_id].post_effect.type; //type will be -1 if effect has been removed
 
     switch(effect_type)
     {
         case RC_POST_PROCESS_BLOOM:
         {
-            IPostProcessBloom *Bloom = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessBloom *Bloom = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect.object;
             return (double)Bloom->callback->strength;
         }
         break;
 
         case RC_POST_PROCESS_COLORIZE:
         {
-            IPostProcessColor * PPE_Color = (IPostProcessColor*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessColor * PPE_Color = (IPostProcessColor*) rc_canvas[canvas_id].post_effect.object;
             return (double)PPE_Color->callback->coloringStrength;
         }
         break;
 
         case RC_POST_PROCESS_MOTION_BLUR:
         {
-            IPostProcessMotionBlur *Blur = (IPostProcessMotionBlur*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessMotionBlur *Blur = (IPostProcessMotionBlur*) rc_canvas[canvas_id].post_effect.object;
             return (double)Blur->callback->strength;
         }
         break;
 
         case RC_POST_PROCESS_RADIAL_BLUR:
         {
-            IPostProcessRadialBlur *Blur = (IPostProcessRadialBlur*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessRadialBlur *Blur = (IPostProcessRadialBlur*) rc_canvas[canvas_id].post_effect.object;
             return (double)Blur->callback->sampleStrength;
         }
         break;
 
         case RC_POST_PROCESS_DISTORTION:
         {
-            IPostProcessGlass *Glass = (IPostProcessGlass*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessGlass *Glass = (IPostProcessGlass*) rc_canvas[canvas_id].post_effect.object;
             return (double)Glass->callback->strength;
         }
         break;
@@ -1350,35 +1321,32 @@ double rc_getPostEffectStrength(int canvas_id, int effect_id)
 }
 
 
-double rc_getPostEffectDistance(int canvas_id, int effect_id)
+double rc_getPostEffectDistance(int canvas_id)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
         return 0;
 
-    if(effect_id < 0 || effect_id >= rc_canvas[canvas_id].post_effect.size())
-        return 0;
-
-    int effect_type = rc_canvas[canvas_id].post_effect[effect_id].type; //type will be -1 if effect has been removed
+    int effect_type = rc_canvas[canvas_id].post_effect.type; //type will be -1 if effect has been removed
 
     switch(effect_type)
     {
         case RC_POST_PROCESS_BLOOM:
         {
-            IPostProcessBloom *Bloom = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessBloom *Bloom = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect.object;
             return (double)Bloom->callback->sampleDist;
         }
         break;
 
         case RC_POST_PROCESS_BLUR:
         {
-            IPostProcessBlur *Blur = (IPostProcessBlur*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessBlur *Blur = (IPostProcessBlur*) rc_canvas[canvas_id].post_effect.object;
             return (double)Blur->callback->sampleDist;
         }
         break;
 
         case RC_POST_PROCESS_RADIAL_BLUR:
         {
-            IPostProcessRadialBlur *Blur = (IPostProcessRadialBlur*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessRadialBlur *Blur = (IPostProcessRadialBlur*) rc_canvas[canvas_id].post_effect.object;
             return (double)Blur->callback->sampleDist;
         }
         break;
@@ -1389,21 +1357,18 @@ double rc_getPostEffectDistance(int canvas_id, int effect_id)
 
 
 
-double rc_getPostEffectMultiplier(int canvas_id, int effect_id)
+double rc_getPostEffectMultiplier(int canvas_id)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
         return 0;
 
-    if(effect_id < 0 || effect_id >= rc_canvas[canvas_id].post_effect.size())
-        return 0;
-
-    int effect_type = rc_canvas[canvas_id].post_effect[effect_id].type; //type will be -1 if effect has been removed
+    int effect_type = rc_canvas[canvas_id].post_effect.type; //type will be -1 if effect has been removed
 
     switch(effect_type)
     {
         case RC_POST_PROCESS_BLOOM:
         {
-            IPostProcessBloom *Bloom = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessBloom *Bloom = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect.object;
             return (double)Bloom->callback->multiplier;
         }
         break;
@@ -1413,21 +1378,18 @@ double rc_getPostEffectMultiplier(int canvas_id, int effect_id)
 }
 
 
-double rc_getPostEffectSaturation(int canvas_id, int effect_id)
+double rc_getPostEffectSaturation(int canvas_id)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
         return 0;
 
-    if(effect_id < 0 || effect_id >= rc_canvas[canvas_id].post_effect.size())
-        return 0;
-
-    int effect_type = rc_canvas[canvas_id].post_effect[effect_id].type; //type will be -1 if effect has been removed
+    int effect_type = rc_canvas[canvas_id].post_effect.type; //type will be -1 if effect has been removed
 
     switch(effect_type)
     {
         case RC_POST_PROCESS_COLORIZE:
         {
-            IPostProcessColor * PPE_Color = (IPostProcessColor*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessColor * PPE_Color = (IPostProcessColor*) rc_canvas[canvas_id].post_effect.object;
             return (double)PPE_Color->callback->saturation;
         }
         break;
@@ -1437,21 +1399,18 @@ double rc_getPostEffectSaturation(int canvas_id, int effect_id)
 }
 
 
-double rc_getPostEffectColor(int canvas_id, int effect_id)
+double rc_getPostEffectColor(int canvas_id)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
         return 0;
 
-    if(effect_id < 0 || effect_id >= rc_canvas[canvas_id].post_effect.size())
-        return 0;
-
-    int effect_type = rc_canvas[canvas_id].post_effect[effect_id].type; //type will be -1 if effect has been removed
+    int effect_type = rc_canvas[canvas_id].post_effect.type; //type will be -1 if effect has been removed
 
     switch(effect_type)
     {
         case RC_POST_PROCESS_COLORIZE:
         {
-            IPostProcessColor * PPE_Color = (IPostProcessColor*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessColor * PPE_Color = (IPostProcessColor*) rc_canvas[canvas_id].post_effect.object;
             return (double)PPE_Color->callback->col.toSColor().color;
         }
         break;
@@ -1461,37 +1420,37 @@ double rc_getPostEffectColor(int canvas_id, int effect_id)
 }
 
 
-double rc_getPostEffectProperty(int canvas_id, int effect_id, int effect_property)
+double rc_getPostEffectProperty(int canvas_id, int effect_property)
 {
     switch(effect_property)
     {
         case RC_PP_PROPERTY_STRENGTH:
         {
-            return rc_getPostEffectStrength(canvas_id, effect_id);
+            return rc_getPostEffectStrength(canvas_id);
         }
         break;
 
         case RC_PP_PROPERTY_DISTANCE:
         {
-            return rc_getPostEffectDistance(canvas_id, effect_id);
+            return rc_getPostEffectDistance(canvas_id);
         }
         break;
 
         case RC_PP_PROPERTY_MULTIPLIER:
         {
-            return rc_getPostEffectMultiplier(canvas_id, effect_id);
+            return rc_getPostEffectMultiplier(canvas_id);
         }
         break;
 
         case RC_PP_PROPERTY_SATURATION:
         {
-            return rc_getPostEffectSaturation(canvas_id, effect_id);
+            return rc_getPostEffectSaturation(canvas_id);
         }
         break;
 
         case RC_PP_PROPERTY_COLOR:
         {
-            return rc_getPostEffectColor(canvas_id, effect_id);
+            return rc_getPostEffectColor(canvas_id);
         }
         break;
     }
@@ -1500,84 +1459,78 @@ double rc_getPostEffectProperty(int canvas_id, int effect_id, int effect_propert
 }
 
 
-void rc_setPostEffectActive(int canvas_id, int effect_id, bool flag)
+void rc_setPostEffectActive(int canvas_id, bool flag)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
         return;
 
-    if(effect_id < 0 || effect_id >= rc_canvas[canvas_id].post_effect.size())
-        return;
-
-    rc_canvas[canvas_id].post_effect[effect_id].is_active = flag;
+    rc_canvas[canvas_id].post_effect.is_active = flag;
 }
 
-bool rc_postEffectIsActive(int canvas_id, int effect_id)
+bool rc_postEffectIsActive(int canvas_id)
 {
     if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
         return false;
 
-    if(effect_id < 0 || effect_id >= rc_canvas[canvas_id].post_effect.size())
-        return false;
-
-    return rc_canvas[canvas_id].post_effect[effect_id].is_active;
+    return rc_canvas[canvas_id].post_effect.is_active;
 }
 
 
 
-void rc_renderPostEffect(int canvas_id, int effect_id)
+void rc_renderPostEffect(int canvas_id)
 {
-    if(!rc_canvas[canvas_id].post_effect[effect_id].is_active)
+    if(!rc_canvas[canvas_id].post_effect.is_active)
         return;
 
-    int effect_type = rc_canvas[canvas_id].post_effect[effect_id].type; //type will be -1 if effect has been removed
+    int effect_type = rc_canvas[canvas_id].post_effect.type; //type will be -1 if effect has been removed
 
     switch(effect_type)
     {
         case RC_POST_PROCESS_BLOOM:
         {
-            IPostProcessBloom *Bloom = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessBloom *Bloom = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect.object;
             Bloom->render();
         }
         break;
 
         case RC_POST_PROCESS_BLUR:
         {
-            IPostProcessBlur *Blur = (IPostProcessBlur*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessBlur *Blur = (IPostProcessBlur*) rc_canvas[canvas_id].post_effect.object;
             Blur->render();
         }
         break;
 
         case RC_POST_PROCESS_COLORIZE:
         {
-            IPostProcessColor * PPE_Color = (IPostProcessColor*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessColor * PPE_Color = (IPostProcessColor*) rc_canvas[canvas_id].post_effect.object;
             PPE_Color->render();
         }
         break;
 
         case RC_POST_PROCESS_INVERT:
         {
-            IPostProcessInvert *Invert = (IPostProcessInvert*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessInvert *Invert = (IPostProcessInvert*) rc_canvas[canvas_id].post_effect.object;
             Invert->render();
         }
         break;
 
         case RC_POST_PROCESS_MOTION_BLUR:
         {
-            IPostProcessMotionBlur *Blur = (IPostProcessMotionBlur*) rc_canvas[canvas_id].post_effect[effect_id].object;
-            Blur->render();
+            IPostProcessMotionBlur *Blur = (IPostProcessMotionBlur*) rc_canvas[canvas_id].post_effect.object;
+            Blur->renderFinal();
         }
         break;
 
         case RC_POST_PROCESS_RADIAL_BLUR:
         {
-            IPostProcessRadialBlur *Blur = (IPostProcessRadialBlur*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessRadialBlur *Blur = (IPostProcessRadialBlur*) rc_canvas[canvas_id].post_effect.object;
             Blur->render();
         }
         break;
 
         case RC_POST_PROCESS_DISTORTION:
         {
-            IPostProcessGlass *Glass = (IPostProcessGlass*) rc_canvas[canvas_id].post_effect[effect_id].object;
+            IPostProcessGlass *Glass = (IPostProcessGlass*) rc_canvas[canvas_id].post_effect.object;
             Glass->render();
         }
         break;

@@ -405,7 +405,7 @@ struct rc_canvas_obj
     irr::core::array<irr::s32> sprite_id;
     rc_spriteCanvasProperties spriteCanvasProperties;
 
-    irr::core::array<rc_post_effect> post_effect;
+    rc_post_effect post_effect;
 };
 
 irr::core::array<rc_canvas_obj> rc_canvas;

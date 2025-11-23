@@ -1078,6 +1078,9 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
     canvas.type = canvas_type;
     canvas.show3D = false;
     canvas.physics2D.enabled = false;
+    canvas.post_effect.object = NULL;
+    canvas.post_effect.type = -1;
+    canvas.post_effect.is_active = false;
 
     #ifdef RC_DRIVER_GLES2
     Uint32 size_n = 2;
@@ -1247,12 +1250,8 @@ void rc_canvasClose(int canvas_id)
 	rc_canvas[canvas_id].sprite_id.clear();
 
 	//delete post effects for canvas
-	for(int i = 0; i < rc_canvas[canvas_id].post_effect.size(); i++)
-    {
-        rc_removePostEffect(canvas_id, i);
-    }
+	rc_clearPostEffect(canvas_id);
 
-    rc_canvas[canvas_id].post_effect.clear();
 
     if(rc_active_canvas == canvas_id)
         rc_active_canvas = -1;
@@ -1537,6 +1536,9 @@ int rc_cloneCanvas(int origin_canvas_id, int mode)
     canvas.show3D = rc_canvas[origin_canvas_id].show3D;
     canvas.color_mod = rc_canvas[origin_canvas_id].color_mod;
     canvas.texture = rc_canvas[origin_canvas_id].texture;
+    canvas.post_effect.is_active = false;
+    canvas.post_effect.object = NULL;
+    canvas.post_effect.type = -1;
     //canvas.sprite_layer = rc_canvas[origin_canvas_id].sprite_layer;
 
     if(!canvas.texture)

@@ -926,7 +926,7 @@ int main(int argc, char * argv[])
     bool clean_after_build = true;
 
     //DEBUG START
-    //chdir("/home/n00b/GameDev/Ambient/Ambient_Project");
+    //chdir("/home/n00b/Music/v47/RCBasic_Package/examples/Serenity_Demo2");
     //rc_filename = "main.bas";
 	//rc_filename = "/home/n00b/test/SpriteShapeTest/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Constraint/main.bas";

@@ -655,26 +655,23 @@ case FN_SetSpriteCanvasRenderPriority: //Number Function
 case FN_GetSpriteCanvasRenderPriority: //Sub Procedure
 	rc_getSpriteCanvasRenderPriority( GETSPRITECANVASRENDERPRIORITY_C_NUM,  &GETSPRITECANVASRENDERPRIORITY_PRIORITY,  &GETSPRITECANVASRENDERPRIORITY_ORDER );
 	break;
-case FN_AddPostEffect: //Number Function
-	 rc_push_num(rc_addPostEffect( ADDPOSTEFFECT_C_NUM,  ADDPOSTEFFECT_EFFECT_TYPE ));
+case FN_SetPostEffect: //Number Function
+	 rc_push_num(rc_setPostEffect( SETPOSTEFFECT_C_NUM,  SETPOSTEFFECT_EFFECT_TYPE ));
 	break;
-case FN_RemovePostEffect: //Sub Procedure
-	rc_removePostEffect( REMOVEPOSTEFFECT_C_NUM,  REMOVEPOSTEFFECT_EFFECT_NUM );
+case FN_ClearPostEffect: //Sub Procedure
+	rc_clearPostEffect( CLEARPOSTEFFECT_C_NUM );
 	break;
 case FN_SetPostEffectProperty: //Sub Procedure
-	rc_setPostEffectProperty( SETPOSTEFFECTPROPERTY_C_NUM,  SETPOSTEFFECTPROPERTY_EFFECT_NUM,  SETPOSTEFFECTPROPERTY_PROPERTY,  SETPOSTEFFECTPROPERTY_PROPERTY_VALUE );
+	rc_setPostEffectProperty( SETPOSTEFFECTPROPERTY_C_NUM,  SETPOSTEFFECTPROPERTY_PROPERTY,  SETPOSTEFFECTPROPERTY_PROPERTY_VALUE );
 	break;
 case FN_GetPostEffectProperty: //Number Function
-	 rc_push_num(rc_getPostEffectProperty( GETPOSTEFFECTPROPERTY_C_NUM,  GETPOSTEFFECTPROPERTY_EFFECT_NUM,  GETPOSTEFFECTPROPERTY_PROPERTY ));
-	break;
-case FN_ClearPostEffects: //Sub Procedure
-	rc_clearPostEffects( CLEARPOSTEFFECTS_C_NUM );
+	 rc_push_num(rc_getPostEffectProperty( GETPOSTEFFECTPROPERTY_C_NUM,  GETPOSTEFFECTPROPERTY_PROPERTY ));
 	break;
 case FN_SetPostEffectActive: //Sub Procedure
-	rc_setPostEffectActive( SETPOSTEFFECTACTIVE_C_NUM,  SETPOSTEFFECTACTIVE_EFFECT_NUM,  SETPOSTEFFECTACTIVE_FLAG );
+	rc_setPostEffectActive( SETPOSTEFFECTACTIVE_C_NUM,  SETPOSTEFFECTACTIVE_FLAG );
 	break;
 case FN_PostEffectIsActive: //Number Function
-	 rc_push_num(rc_postEffectIsActive( POSTEFFECTISACTIVE_C_NUM,  POSTEFFECTISACTIVE_EFFECT_NUM ));
+	 rc_push_num(rc_postEffectIsActive( POSTEFFECTISACTIVE_C_NUM ));
 	break;
 case FN_Circle: //Sub Procedure
 	rc_drawCircle( CIRCLE_X,  CIRCLE_Y,  CIRCLE_RADIUS );
