@@ -340,7 +340,7 @@ struct rc_spriteCanvasProperties
 #define RC_POST_PROCESS_RADIAL_BLUR   4
 #define RC_POST_PROCESS_COLORIZE      5
 #define RC_POST_PROCESS_INVERT        6
-#define RC_POST_PROCESS_DISTORTION    7
+#define RC_POST_PROCESS_MINERAL       7
 
 // strength, distance, multiplier, saturation, color
 #define RC_PP_PROPERTY_STRENGTH     1

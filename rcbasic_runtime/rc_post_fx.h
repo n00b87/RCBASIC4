@@ -952,7 +952,7 @@ void rc_clearPostEffect(int canvas_id)
             }
             break;
 
-            case RC_POST_PROCESS_DISTORTION:
+            case RC_POST_PROCESS_MINERAL:
             {
                 IPostProcessGlass* post_process = (IPostProcessGlass*)rc_canvas[canvas_id].post_effect.object;
                 post_process->remove();
@@ -1070,7 +1070,7 @@ bool rc_setPostEffect(int canvas_id, int effect_type)
         }
         break;
 
-        case RC_POST_PROCESS_DISTORTION:
+        case RC_POST_PROCESS_MINERAL:
         {
             IPostProcessGlass *Glass = new IPostProcessGlass(SceneManager->getRootSceneNode(), SceneManager, -1);
             float strength = 0.1;
@@ -1129,7 +1129,7 @@ void rc_setPostEffectStrength(int canvas_id, double strength)
         }
         break;
 
-        case RC_POST_PROCESS_DISTORTION:
+        case RC_POST_PROCESS_MINERAL:
         {
             IPostProcessGlass *Glass = (IPostProcessGlass*) rc_canvas[canvas_id].post_effect.object;
             Glass->callback->strength = (float)strength;
@@ -1309,7 +1309,7 @@ double rc_getPostEffectStrength(int canvas_id)
         }
         break;
 
-        case RC_POST_PROCESS_DISTORTION:
+        case RC_POST_PROCESS_MINERAL:
         {
             IPostProcessGlass *Glass = (IPostProcessGlass*) rc_canvas[canvas_id].post_effect.object;
             return (double)Glass->callback->strength;
@@ -1528,7 +1528,7 @@ void rc_renderPostEffect(int canvas_id)
         }
         break;
 
-        case RC_POST_PROCESS_DISTORTION:
+        case RC_POST_PROCESS_MINERAL:
         {
             IPostProcessGlass *Glass = (IPostProcessGlass*) rc_canvas[canvas_id].post_effect.object;
             Glass->render();

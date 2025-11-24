@@ -1300,29 +1300,29 @@ string rc_keywordToken(string sline)
 		return "<num>0";
     else if(sline.compare("SPRITE_ORDER_DESCENDING")==0)
 		return "<num>1";
-    else if(sline.compare("POST_PROCESS_TYPE_BLOOM")==0)
+    else if(sline.compare("POST_EFFECT_TYPE_BLOOM")==0)
 		return "<num>1";
-    else if(sline.compare("POST_PROCESS_TYPE_BLUR")==0)
+    else if(sline.compare("POST_EFFECT_TYPE_BLUR")==0)
 		return "<num>2";
-    else if(sline.compare("POST_PROCESS_TYPE_MOTION_BLUR")==0)
+    else if(sline.compare("POST_EFFECT_TYPE_MOTION_BLUR")==0)
 		return "<num>3";
-    else if(sline.compare("POST_PROCESS_TYPE_RADIAL_BLUR")==0)
+    else if(sline.compare("POST_EFFECT_TYPE_RADIAL_BLUR")==0)
 		return "<num>4";
-    else if(sline.compare("POST_PROCESS_TYPE_COLORIZE")==0)
+    else if(sline.compare("POST_EFFECT_TYPE_COLORIZE")==0)
 		return "<num>5";
-    else if(sline.compare("POST_PROCESS_TYPE_INVERT")==0)
+    else if(sline.compare("POST_EFFECT_TYPE_INVERT")==0)
 		return "<num>6";
-    else if(sline.compare("POST_PROCESS_TYPE_DISTORTION")==0)
+    else if(sline.compare("POST_EFFECT_TYPE_MINERAL")==0)
 		return "<num>7";
-    else if(sline.compare("POST_PROCESS_PROPERTY_STRENGTH")==0)
+    else if(sline.compare("POST_EFFECT_PROPERTY_STRENGTH")==0)
 		return "<num>1";
-    else if(sline.compare("POST_PROCESS_PROPERTY_DISTANCE")==0)
+    else if(sline.compare("POST_EFFECT_PROPERTY_DISTANCE")==0)
 		return "<num>2";
-    else if(sline.compare("POST_PROCESS_PROPERTY_MULTIPLIER")==0)
+    else if(sline.compare("POST_EFFECT_PROPERTY_MULTIPLIER")==0)
 		return "<num>3";
-    else if(sline.compare("POST_PROCESS_PROPERTY_SATURATION")==0)
+    else if(sline.compare("POST_EFFECT_PROPERTY_SATURATION")==0)
 		return "<num>4";
-    else if(sline.compare("POST_PROCESS_PROPERTY_COLOR")==0)
+    else if(sline.compare("POST_EFFECT_PROPERTY_COLOR")==0)
 		return "<num>5";
 	else
     {

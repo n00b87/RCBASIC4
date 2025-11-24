@@ -122,7 +122,7 @@ void rc_pipeline_Render()
     {
         if(rc_canvas[rc_active_canvas].post_effect.is_active)
         {
-            if(rc_canvas[rc_active_canvas].post_effect.type == RC_POST_PROCESS_DISTORTION)
+            if(rc_canvas[rc_active_canvas].post_effect.type == RC_POST_PROCESS_MINERAL)
             {
                 IPostProcessGlass* post_process = (IPostProcessGlass*) rc_canvas[rc_active_canvas].post_effect.object;
                 VideoDriver->setRenderTarget(post_process->rt0, true, true);
