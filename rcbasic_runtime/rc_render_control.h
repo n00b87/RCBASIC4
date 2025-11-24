@@ -99,11 +99,17 @@ void rc_pipeline_Render()
     if(!manual_render_control)
         return;
 
+    //std::cout << "db 1" << std::endl;
+
     if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
         return;
 
-    if(rc_canvas[rc_active_canvas].texture)
+    //std::cout << "db 2: " << (rc_canvas[rc_active_canvas].texture == NULL ? "NULL" : "OK") << std::endl;
+
+    if(!rc_canvas[rc_active_canvas].texture)
         return;
+
+    //std::cout << "Render" << std::endl;
 
     //VideoDriver->setRenderTarget(rc_canvas[0].texture);
     irr::core::vector2d<s32> bb_position(0,0);
@@ -153,7 +159,7 @@ void rc_pipeline_Render()
         }
         else
         {
-            VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, true, true, rc_clear_color);
+            VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
         }
 
         if(rc_canvas[rc_active_canvas].camera.camera)
@@ -201,6 +207,7 @@ void rc_pipeline_Render()
         }
         else
         {
+            //std::cout << "draw all" << std::endl;
             SceneManager->drawAll();
         }
 
