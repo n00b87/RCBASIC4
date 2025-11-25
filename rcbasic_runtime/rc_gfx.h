@@ -10,6 +10,10 @@
 #if defined(RC_ANDROID) || defined(RC_WINDOWS)
 	#include <irrlicht.h>
 	#include <btBulletDynamicsCommon.h>
+	#include <android/log.h>
+
+#define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR  , TAG,__VA_ARGS__)
+
 #else
 	#include <irrlicht.h>
 	#include <bullet/btBulletDynamicsCommon.h>
@@ -1982,7 +1986,77 @@ void rc_drawCircleFill(int x, int y, double r)
         video::EIT_16BIT);
 }
 
+#ifdef RC_ANDROID
+int rc_loadFont(std::string fnt_file, int font_size)
+{
+	irr::io::path file_path = fnt_file.c_str();
+    int font_id = -1;
+    for(int i = 0; i < rc_font.size(); i++)
+    {
+        if(!rc_font[i].active)
+        {
+            font_id = i;
+            break;
+        }
+    }
 
+    CGUITTFace* Face;
+    CGUIFreetypeFont* dfont;
+
+    dfont = new CGUIFreetypeFont(VideoDriver);
+    bool load_status = dfont->sdl_loadfont(fnt_file.c_str(), font_size);
+
+    if(!load_status)
+    {
+        LOGE("RCTEST", "LOAD STATUS FALSE");
+        return -1;
+    }
+
+    if(!dfont)
+    {
+        LOGE("RCTEST", "DFONT FAILED");
+        return -1;
+    }
+
+    Face = dfont->getFace();
+
+    if(!Face)
+    {
+        LOGE("RCTEST", "FACE NULL");
+        return -1;
+    }
+
+    LOGE("RCTEST", "ATTACH FACE SUCCESS");
+
+
+    if(font_id < 0)
+    {
+        font_id = rc_font.size();
+
+        rc_font_obj f;
+
+        f.face = Face;
+        f.font = dfont;
+        f.font_size = font_size;
+        f.active = true;
+
+        rc_font.push_back(f);
+
+        rc_active_font = font_id;
+    }
+    else
+    {
+        rc_font[font_id].face = Face;
+        rc_font[font_id].font = dfont;
+        rc_font[font_id].font_size = font_size;
+        rc_font[font_id].active = true;
+    }
+
+    //std::cout << "id: " << font_id << std::endl;
+
+    return font_id;
+}
+#else
 int rc_loadFont(std::string fnt_file, int font_size)
 {
 	irr::io::path file_path = fnt_file.c_str();
@@ -2033,6 +2107,7 @@ int rc_loadFont(std::string fnt_file, int font_size)
 
     return font_id;
 }
+#endif // RC_ANDROID
 
 bool rc_fontExists(int font_id)
 {
