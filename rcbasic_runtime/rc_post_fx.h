@@ -1085,6 +1085,7 @@ bool rc_setPostEffect(int canvas_id, int effect_type)
     {
         rc_canvas[canvas_id].post_effect.is_active = false;
         rc_canvas[canvas_id].post_effect.type = -1;
+        return false;
     }
 
 
