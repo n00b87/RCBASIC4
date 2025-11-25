@@ -10,9 +10,11 @@
 #if defined(RC_ANDROID) || defined(RC_WINDOWS)
 	#include <irrlicht.h>
 	#include <btBulletDynamicsCommon.h>
-	#include <android/log.h>
 
-#define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR  , TAG,__VA_ARGS__)
+#if defined(RC_ANDROID)
+	#include <android/log.h>
+    #define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR  , TAG,__VA_ARGS__)
+#endif // defined
 
 #else
 	#include <irrlicht.h>

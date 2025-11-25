@@ -143,7 +143,7 @@
 		</p>
 		<ul>
 		<li>
-		Type - The type of layer selected. There are 4 types of layers: sprite, tile, canvas 2d, and canvas 3d. 
+		Type - The type of layer selected. There are 5 types of layers: sprite, tile, isometric tile, canvas 2d, and canvas 3d. 
 		</li>
 		<li>
 		Name - The name of the layer 
@@ -156,6 +156,26 @@
 		</li>
 		<li>
 		Alpha - The transparency value 
+		</li>
+		</ul>
+		<p>
+		</p> 
+		</p>
+		<p>
+		 <p>#5 - Sprite Layers have extra settings that can be changed. 
+		</p>
+		<ul>
+		<li>
+		Sprite Grid - Grid type can be either SQUARE or ISOMETRIC and determines how sprites move and snap when snap tile movement is enabled. 
+		</li>
+		<li>
+		Sort By - This setting will override SpriteZ values and determines the priority sprites are rendered in 
+		</li>
+		<li>
+		Order - This determines whether the priority set by Sort By is in ascending or descending order 
+		</li>
+		<li>
+		Shape Data - You can use this to have the editor generate the shapes when generating code or just export the shape data so you can handle collision yourself 
 		</li>
 		</ul>
 		<p>
@@ -205,6 +225,9 @@
 		</p>
 		<p>
 		 These tools are only usable when a tile layer is selected. 
+		</p>
+		<p>
+		 NOTE: There is a subset of these tools available on sprite layers. The sprite layer tools will create a sprite with the selected tiles. 
 		</p>
 		<p><img src="images/nirvana_tilemap_tools.png" ></p>
 		<p>
