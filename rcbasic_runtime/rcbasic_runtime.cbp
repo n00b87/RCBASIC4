@@ -130,6 +130,8 @@
 		<Unit filename="rc_os_defines.h" />
 		<Unit filename="rc_particles.h" />
 		<Unit filename="rc_physics3D_base.h" />
+		<Unit filename="rc_post_fx.h" />
+		<Unit filename="rc_render_control.h" />
 		<Unit filename="rc_scene.h" />
 		<Unit filename="rc_sprite2D.h" />
 		<Unit filename="rc_sprite_physics.h" />

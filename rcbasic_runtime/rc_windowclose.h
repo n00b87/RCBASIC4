@@ -489,38 +489,42 @@ bool rc_update()
         Uint32 current_time_ms = SDL_GetTicks();
         double frame_current_time = ((double)current_time_ms)/1000.0;
 
-        for(int i = 0; i < rc_transition_actor.size();)
-		{
-			int t_actor = rc_transition_actor[i];
+        if(!manual_render_control)
+        {
+            for(int i = 0; i < rc_transition_actor.size();)
+            {
+                int t_actor = rc_transition_actor[i];
 
-			if((frame_current_time - rc_actor[t_actor].transition_start_time) >= rc_actor[t_actor].transition_time)
-			{
-				irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[t_actor].mesh_node;
-				node->setTransitionTime(0);
-				node->setJointMode(irr::scene::EJUOR_NONE);
-				rc_actor[t_actor].transition = false;
-				rc_actor[t_actor].transition_time = 0;
-				rc_actor[t_actor].transition_start_time = 0;
-				rc_transition_actor.erase(t_actor);
+                if((frame_current_time - rc_actor[t_actor].transition_start_time) >= rc_actor[t_actor].transition_time)
+                {
+                    irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[t_actor].mesh_node;
+                    node->setTransitionTime(0);
+                    node->setJointMode(irr::scene::EJUOR_NONE);
+                    rc_actor[t_actor].transition = false;
+                    rc_actor[t_actor].transition_time = 0;
+                    rc_actor[t_actor].transition_start_time = 0;
+                    rc_transition_actor.erase(t_actor);
 
-				rc_actor[t_actor].animation[0].start_frame = (int)rc_actor[t_actor].transition_frame;
-				rc_actor[t_actor].animation[0].end_frame = (int)rc_actor[t_actor].transition_frame;
-				rc_actor[t_actor].animation[0].fps = 0;
-				rc_actor[t_actor].current_animation_loop = 0;
-				rc_actor[t_actor].isPlaying = true;
-				rc_actor[t_actor].current_animation = 0;
-			}
-			else
-			{
-				//std::cout << "Animate dammit" << std::endl;
-				irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[t_actor].mesh_node;
-				node->animateJoints();
-				i++;
-			}
-		}
+                    rc_actor[t_actor].animation[0].start_frame = (int)rc_actor[t_actor].transition_frame;
+                    rc_actor[t_actor].animation[0].end_frame = (int)rc_actor[t_actor].transition_frame;
+                    rc_actor[t_actor].animation[0].fps = 0;
+                    rc_actor[t_actor].current_animation_loop = 0;
+                    rc_actor[t_actor].isPlaying = true;
+                    rc_actor[t_actor].current_animation = 0;
+                }
+                else
+                {
+                    //std::cout << "Animate dammit" << std::endl;
+                    irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[t_actor].mesh_node;
+                    node->animateJoints();
+                    i++;
+                }
+            }
+        }
 
 
-        VideoDriver->beginScene(true, true);
+        if(!manual_render_control)
+            VideoDriver->beginScene(true, true);
 
         if(!hasPreUpdated)
         {
@@ -532,61 +536,138 @@ bool rc_update()
 			rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, fixed_timestep);
         }
 
-        for(int i = 0; i < rc_canvas.size(); i++)
+        if(!manual_render_control)
         {
-            if(rc_canvas[i].show3D)
+            for(int canvas_id = 0; canvas_id < rc_canvas.size(); canvas_id++)
             {
-                VideoDriver->setRenderTarget(rc_canvas[i].texture, true, true, irr::video::SColor(255,120,120,120));
+                if(rc_canvas[canvas_id].show3D)
+                {
+                    if(rc_canvas[canvas_id].post_effect.is_active)
+                    {
+                        if(rc_canvas[canvas_id].post_effect.type == RC_POST_PROCESS_MINERAL)
+                        {
+                            IPostProcessGlass* post_process = (IPostProcessGlass*) rc_canvas[canvas_id].post_effect.object;
+                            VideoDriver->setRenderTarget(post_process->rt0, true, true);
+                        }
+                        else if(rc_canvas[canvas_id].post_effect.type == RC_POST_PROCESS_BLOOM)
+                        {
+                            IPostProcessBloom* post_process = (IPostProcessBloom*) rc_canvas[canvas_id].post_effect.object;
+                            VideoDriver->setRenderTarget(post_process->rt0, true, true);
+                        }
+                        else if(rc_canvas[canvas_id].post_effect.type == RC_POST_PROCESS_BLUR)
+                        {
+                            IPostProcessBlur* post_process = (IPostProcessBlur*) rc_canvas[canvas_id].post_effect.object;
+                            VideoDriver->setRenderTarget(post_process->rt0, true, true);
+                        }
+                        else if(rc_canvas[canvas_id].post_effect.type == RC_POST_PROCESS_COLORIZE)
+                        {
+                            IPostProcessColor* post_process = (IPostProcessColor*) rc_canvas[canvas_id].post_effect.object;
+                            VideoDriver->setRenderTarget(post_process->rt0, true, true);
+                        }
+                        else if(rc_canvas[canvas_id].post_effect.type == RC_POST_PROCESS_INVERT)
+                        {
+                            IPostProcessInvert* post_process = (IPostProcessInvert*) rc_canvas[canvas_id].post_effect.object;
+                            VideoDriver->setRenderTarget(post_process->rt0, true, true, irr::video::SColor(0,0,0,0));
+                        }
+                        else if(rc_canvas[canvas_id].post_effect.type == RC_POST_PROCESS_RADIAL_BLUR)
+                        {
+                            IPostProcessRadialBlur* post_process = (IPostProcessRadialBlur*) rc_canvas[canvas_id].post_effect.object;
+                            VideoDriver->setRenderTarget(post_process->rt0, true, true);
+                        }
+                        else
+                        {
+                            VideoDriver->setRenderTarget(rc_canvas[canvas_id].texture, true, true, rc_clear_color);
+                        }
+                    }
+                    else
+                    {
+                        VideoDriver->setRenderTarget(rc_canvas[canvas_id].texture, true, true, rc_clear_color);
+                    }
 
-                if(rc_canvas[i].camera.camera)
-                    SceneManager->setActiveCamera(rc_canvas[i].camera.camera);
+                    if(rc_canvas[canvas_id].camera.camera)
+                        SceneManager->setActiveCamera(rc_canvas[canvas_id].camera.camera);
 
-                rc_canvas[i].camera.update();
+                    rc_canvas[canvas_id].camera.update();
 
-                VideoDriver->setViewPort(irr::core::rect<irr::s32>(0,0,rc_canvas[i].texture->getSize().Width,rc_canvas[i].texture->getSize().Height));
+                    VideoDriver->setViewPort(irr::core::rect<irr::s32>(0,0,rc_canvas[canvas_id].texture->getSize().Width,rc_canvas[canvas_id].texture->getSize().Height));
 
-                //irr::core::rect viewport(irr::core::position, rc_canvas[i].viewport.dimension);
-                //VideoDriver->setViewPort(viewport);
-                irr::video::SColor current_color = rc_active_color;
-                irr::video::SMaterial m;
-				m.Lighting=false;
-				VideoDriver->setMaterial(m);
-				VideoDriver->setTransform(video::ETS_WORLD, core::matrix4());
-                for(int i = 0; i < rc_prim3d_operation.size(); i++)
-				{
-					switch(rc_prim3d_operation[i].prim_type)
-					{
-						case PRIM3D_LINE:
-							rc_active_color = rc_prim3d_operation[i].color;
-							prim3d_drawLine3D(rc_prim3d_operation[i].x[0], rc_prim3d_operation[i].y[0], rc_prim3d_operation[i].z[0],
-											  rc_prim3d_operation[i].x[1], rc_prim3d_operation[i].y[1], rc_prim3d_operation[i].z[1]);
-							break;
-						case PRIM3D_BOX:
-							rc_active_color = rc_prim3d_operation[i].color;
-							prim3d_drawBox3D(rc_prim3d_operation[i].x[0], rc_prim3d_operation[i].y[0], rc_prim3d_operation[i].z[0],
-											 rc_prim3d_operation[i].x[1], rc_prim3d_operation[i].y[1], rc_prim3d_operation[i].z[1]);
-							break;
-						case PRIM3D_TRIANGLE:
-							rc_active_color = rc_prim3d_operation[i].color;
-							prim3d_drawTriangle3D(rc_prim3d_operation[i].x[0], rc_prim3d_operation[i].y[0], rc_prim3d_operation[i].z[0],
-												  rc_prim3d_operation[i].x[1], rc_prim3d_operation[i].y[1], rc_prim3d_operation[i].z[1],
-												  rc_prim3d_operation[i].x[2], rc_prim3d_operation[i].y[2], rc_prim3d_operation[i].z[2]);
-							break;
-					}
-				}
-				rc_active_color = current_color;
-				rc_setDriverMaterial();
+                    //irr::core::rect viewport(irr::core::position, rc_canvas[i].viewport.dimension);
+                    //VideoDriver->setViewPort(viewport);
+                    irr::video::SColor current_color = rc_active_color;
+                    irr::video::SMaterial m;
+                    m.Lighting=false;
+                    VideoDriver->setMaterial(m);
+                    VideoDriver->setTransform(video::ETS_WORLD, core::matrix4());
+                    for(int i = 0; i < rc_prim3d_operation.size(); i++)
+                    {
+                        switch(rc_prim3d_operation[i].prim_type)
+                        {
+                            case PRIM3D_LINE:
+                                rc_active_color = rc_prim3d_operation[i].color;
+                                prim3d_drawLine3D(rc_prim3d_operation[i].x[0], rc_prim3d_operation[i].y[0], rc_prim3d_operation[i].z[0],
+                                                  rc_prim3d_operation[i].x[1], rc_prim3d_operation[i].y[1], rc_prim3d_operation[i].z[1]);
+                                break;
+                            case PRIM3D_BOX:
+                                rc_active_color = rc_prim3d_operation[i].color;
+                                prim3d_drawBox3D(rc_prim3d_operation[i].x[0], rc_prim3d_operation[i].y[0], rc_prim3d_operation[i].z[0],
+                                                 rc_prim3d_operation[i].x[1], rc_prim3d_operation[i].y[1], rc_prim3d_operation[i].z[1]);
+                                break;
+                            case PRIM3D_TRIANGLE:
+                                rc_active_color = rc_prim3d_operation[i].color;
+                                prim3d_drawTriangle3D(rc_prim3d_operation[i].x[0], rc_prim3d_operation[i].y[0], rc_prim3d_operation[i].z[0],
+                                                      rc_prim3d_operation[i].x[1], rc_prim3d_operation[i].y[1], rc_prim3d_operation[i].z[1],
+                                                      rc_prim3d_operation[i].x[2], rc_prim3d_operation[i].y[2], rc_prim3d_operation[i].z[2]);
+                                break;
+                        }
+                    }
+                    rc_active_color = current_color;
+                    rc_setDriverMaterial();
 
-                SceneManager->drawAll();
-                //VideoDriver->draw2DRectangle(irr::video::SColor(255,0,255,0), irr::core::rect<irr::s32>(10,40,100,500));
+                    if(rc_canvas[canvas_id].post_effect.type == RC_POST_PROCESS_MOTION_BLUR && rc_canvas[canvas_id].post_effect.is_active)
+                    {
+                        //render motion blur
+                        IPostProcessMotionBlur* post_process = (IPostProcessMotionBlur*) rc_canvas[canvas_id].post_effect.object;
+                        post_process->render();
+                    }
+                    else
+                    {
+                        SceneManager->drawAll();
+                    }
 
-                //vector3df p0(0, 0, 0);
-				//vector3df p1(10, 30, 0);
-				//vector3df p2(20, -30, 0);
-				//vector3df p3(30, 0, 0);
-				//drawBezierCurve(VideoDriver, p0, p1, p2, p3, irr::video::SColor(255, 0, 255, 0), 100);
+                    for(int p_actor = 0; p_actor < rc_projector_actors.size(); p_actor++)
+                    {
+                        int actor_id = rc_projector_actors[p_actor];
 
-                VideoDriver->setRenderTarget(rc_canvas[0].texture);
+                        if(actor_id < 0 || actor_id >= rc_actor.size())
+                            continue;
+
+                        if(!rc_actor[actor_id].mesh_node)
+                            continue;
+
+                        if(rc_actor[actor_id].mesh_node->isVisible())
+                        {
+                            CProjectiveTextures* pt_node = (CProjectiveTextures*)rc_actor[actor_id].mesh_node;
+                            pt_node->render();
+                        }
+                    }
+
+                    //render post effects
+                    if(rc_canvas[canvas_id].post_effect.is_active)
+                    {
+                        VideoDriver->setRenderTarget(rc_canvas[canvas_id].texture, true, true, rc_clear_color);
+                        rc_renderPostEffect(canvas_id);
+                    }
+
+                    //VideoDriver->draw2DRectangle(irr::video::SColor(255,0,255,0), irr::core::rect<irr::s32>(10,40,100,500));
+
+                    //vector3df p0(0, 0, 0);
+                    //vector3df p1(10, 30, 0);
+                    //vector3df p2(20, -30, 0);
+                    //vector3df p3(30, 0, 0);
+                    //drawBezierCurve(VideoDriver, p0, p1, p2, p3, irr::video::SColor(255, 0, 255, 0), 100);
+
+                    VideoDriver->setRenderTarget(rc_canvas[0].texture);
+                }
             }
         }
 
@@ -607,35 +688,41 @@ bool rc_update()
                 //std::cout << "draw canvas[" << canvas_id << "] (" << rc_canvas[canvas_id].offset.X << ", " <<  rc_canvas[canvas_id].offset.Y << ") (" << rc_canvas[canvas_id].viewport.dimension.Width << ", " << rc_canvas[canvas_id].viewport.dimension.Height << ")" << std::endl;
 
                 #if defined(RC_DRIVER_GLES2)
-                if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_3D)
+                if(!manual_render_control)
                 {
-                	src = irr::core::rect<s32>( irr::core::vector2d<s32>(0, 0), rc_canvas[canvas_id].texture->getSize() );
-                	dest = irr::core::rect<s32>( irr::core::vector2d<s32>(dest.UpperLeftCorner.X, dest.UpperLeftCorner.Y + dest.getHeight()), irr::core::dimension2d<s32>(dest.getWidth(), -1*dest.getHeight()) );
-                }
-                else if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_2D)
-				{
-					irr::core::dimension2d<irr::u32> cv_dim = rc_canvas[canvas_id].viewport.dimension;
-					irr::core::position2d<irr::s32> cv_pos = rc_canvas[canvas_id].viewport.position;
-					irr::core::vector2d<irr::s32> cv_offset(rc_canvas[canvas_id].offset.X, rc_canvas[canvas_id].texture->getSize().Height - rc_canvas[canvas_id].offset.Y - cv_dim.Height);
-					src = irr::core::rect<s32>( cv_offset, cv_dim );
-					dest = irr::core::rect<s32>( irr::core::vector2d<s32>(cv_pos.X, cv_pos.Y + cv_dim.Height), irr::core::dimension2d<s32>(cv_dim.Width, -1*cv_dim.Height) );
-				}
-				else if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_SPRITE)
-				{
+                    if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_3D)
+                    {
+                        src = irr::core::rect<s32>( irr::core::vector2d<s32>(0, 0), rc_canvas[canvas_id].texture->getSize() );
+                        dest = irr::core::rect<s32>( irr::core::vector2d<s32>(dest.UpperLeftCorner.X, dest.UpperLeftCorner.Y + dest.getHeight()), irr::core::dimension2d<s32>(dest.getWidth(), -1*dest.getHeight()) );
+                    }
+                    else if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_2D)
+                    {
+                        irr::core::dimension2d<irr::u32> cv_dim = rc_canvas[canvas_id].viewport.dimension;
+                        irr::core::position2d<irr::s32> cv_pos = rc_canvas[canvas_id].viewport.position;
+                        irr::core::vector2d<irr::s32> cv_offset(rc_canvas[canvas_id].offset.X, rc_canvas[canvas_id].texture->getSize().Height - rc_canvas[canvas_id].offset.Y - cv_dim.Height);
+                        src = irr::core::rect<s32>( cv_offset, cv_dim );
+                        dest = irr::core::rect<s32>( irr::core::vector2d<s32>(cv_pos.X, cv_pos.Y + cv_dim.Height), irr::core::dimension2d<s32>(cv_dim.Width, -1*cv_dim.Height) );
+                    }
+                    else if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_SPRITE)
+                    {
 
-					src = irr::core::rect<s32>( irr::core::vector2d<s32>(0, 0), rc_canvas[canvas_id].texture->getSize() );
-                	dest = irr::core::rect<s32>( irr::core::vector2d<s32>(dest.UpperLeftCorner.X, dest.UpperLeftCorner.Y + dest.getHeight()), irr::core::dimension2d<s32>(dest.getWidth(), -1*dest.getHeight()) );
-					drawSprites(canvas_id);
-				}
+                        src = irr::core::rect<s32>( irr::core::vector2d<s32>(0, 0), rc_canvas[canvas_id].texture->getSize() );
+                        dest = irr::core::rect<s32>( irr::core::vector2d<s32>(dest.UpperLeftCorner.X, dest.UpperLeftCorner.Y + dest.getHeight()), irr::core::dimension2d<s32>(dest.getWidth(), -1*dest.getHeight()) );
+                        drawSprites(canvas_id);
+                    }
+                }
                 //dest = irr::core::rect<s32>( irr::core::vector2d<s32>(dest.UpperLeftCorner.X, dest.UpperLeftCorner.Y + dest.getHeight()), irr::core::dimension2d<s32>(dest.getWidth(), -1*dest.getHeight()) );
                 draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
                 #else
-                if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_SPRITE)
-				{
+                if(!manual_render_control)
+                {
+                    if(rc_canvas[canvas_id].type == RC_CANVAS_TYPE_SPRITE)
+                    {
 
-					src = irr::core::rect<s32>( irr::core::vector2d<s32>(0, 0), rc_canvas[canvas_id].viewport.dimension); //sprite layers will just offset the sprites in drawSprites()
-					drawSprites(canvas_id);
-				}
+                        src = irr::core::rect<s32>( irr::core::vector2d<s32>(0, 0), rc_canvas[canvas_id].viewport.dimension); //sprite layers will just offset the sprites in drawSprites()
+                        drawSprites(canvas_id);
+                    }
+                }
 
                 draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
                 #endif // defined
@@ -653,49 +740,56 @@ bool rc_update()
 		//VideoDriver->draw2DRectangle(irr::video::SColor(255,255,0,0), irr::core::rect<irr::s32>(0,0,100,500));
 
 		VideoDriver->setRenderTarget(0);
-		//VideoDriver->beginScene(true, true);
-		//VideoDriver->draw2DImage(rc_canvas[0].texture, irr::core::vector2d<irr::s32>(0,0));
 
-		//debug
-		//std::cout << "scale:: " << rc_window_size.Width << ", " << win_w << ", " << rc_canvas[0].texture->getSize().Width << std::endl;
-		//irr::core::rect<s32> src( irr::core::vector2d<s32>(0,0), rc_canvas[0].texture->getSize() );
-		#ifdef RC_DRIVER_GLES2
-		irr::core::rect<s32> src( irr::core::vector2d<s32>(0,0), rc_canvas[0].texture->getSize()  );
-		irr::core::rect<s32> dest( irr::core::vector2d<s32>(0,0), irr::core::dimension2d<s32>(win_w*w_scale, win_h*h_scale) );
-		#else
-		irr::core::rect<s32> src( irr::core::vector2d<s32>(0,0), rc_window_size  );
-		irr::core::rect<s32> dest;
+		if(!manual_render_control)
+		{
+            //VideoDriver->beginScene(true, true);
+            //VideoDriver->draw2DImage(rc_canvas[0].texture, irr::core::vector2d<irr::s32>(0,0));
 
-		if(rc_windowIsFullscreen())
-			dest = irr::core::rect<s32>( irr::core::vector2d<s32>(0,0), irr::core::dimension2d<s32>(win_w, win_h) );
-		else
-			dest = irr::core::rect<s32>( irr::core::vector2d<s32>(0,rc_canvas[0].texture->getSize().Height - rc_window_size.Height), irr::core::dimension2d<s32>(win_w, win_h) );
-		#endif // RC_DRIVER_GLES2
+            //debug
+            //std::cout << "scale:: " << rc_window_size.Width << ", " << win_w << ", " << rc_canvas[0].texture->getSize().Width << std::endl;
+            //irr::core::rect<s32> src( irr::core::vector2d<s32>(0,0), rc_canvas[0].texture->getSize() );
+            #ifdef RC_DRIVER_GLES2
+            irr::core::rect<s32> src( irr::core::vector2d<s32>(0,0), rc_canvas[0].texture->getSize()  );
+            irr::core::rect<s32> dest( irr::core::vector2d<s32>(0,0), irr::core::dimension2d<s32>(win_w*w_scale, win_h*h_scale) );
+            #else
+            irr::core::rect<s32> src( irr::core::vector2d<s32>(0,0), rc_window_size  );
+            irr::core::rect<s32> dest;
 
-		//irr::video::SColor color(0);
-		VideoDriver->draw2DImage(rc_canvas[0].texture, dest, src);
-		//draw2DImage2(VideoDriver, rc_canvas[0].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, false, color, screenSize);
-		//irr::core::rect<irr::s32> src( irr::core::vector2d<irr::s32>(0, 0), rc_canvas[0].texture->getSize() );
-		//irr::core::rect<irr::s32> dest( irr::core::vector2d<irr::s32>(0, 0), irr::core::dimension2d<irr::s32>( );
-		//draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
+            if(rc_windowIsFullscreen())
+                dest = irr::core::rect<s32>( irr::core::vector2d<s32>(0,0), irr::core::dimension2d<s32>(win_w, win_h) );
+            else
+                dest = irr::core::rect<s32>( irr::core::vector2d<s32>(0,rc_canvas[0].texture->getSize().Height - rc_window_size.Height), irr::core::dimension2d<s32>(win_w, win_h) );
+            #endif // RC_DRIVER_GLES2
 
-		//VideoDriver->draw2DImage(rc_image[0].image, irr::core::rect<irr::s32>(0,0,100,100), irr::core::rect<irr::s32>(0,0,100,100));
-		//VideoDriver->draw2DRectangle(irr::video::SColor(255,255,0,0), irr::core::rect<irr::s32>(0,0,100,100));
-		//end debug
+            //irr::video::SColor color(0);
+            VideoDriver->draw2DImage(rc_canvas[0].texture, dest, src);
+            //draw2DImage2(VideoDriver, rc_canvas[0].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, false, color, screenSize);
+            //irr::core::rect<irr::s32> src( irr::core::vector2d<irr::s32>(0, 0), rc_canvas[0].texture->getSize() );
+            //irr::core::rect<irr::s32> dest( irr::core::vector2d<irr::s32>(0, 0), irr::core::dimension2d<irr::s32>( );
+            //draw2DImage2(VideoDriver, rc_canvas[canvas_id].texture, src, dest, irr::core::position2d<irr::s32>(0, 0), 0, true, color, screenSize);
 
-		//device->getGUIEnvironment()->drawAll();
-		VideoDriver->endScene();
+            //VideoDriver->draw2DImage(rc_image[0].image, irr::core::rect<irr::s32>(0,0,100,100), irr::core::rect<irr::s32>(0,0,100,100));
+            //VideoDriver->draw2DRectangle(irr::video::SColor(255,255,0,0), irr::core::rect<irr::s32>(0,0,100,100));
+            //end debug
 
-		rc_setActiveCanvas(rc_active_canvas);
+            //device->getGUIEnvironment()->drawAll();
+            VideoDriver->endScene();
+
+            rc_setActiveCanvas(rc_active_canvas);
+		}
     }
 
     hasPreUpdated = false; //Will be set to true if PreUpdate() is called
 
-    #ifdef RC_WEB
-	   emscripten_sleep(0);
-	#else
-	   SDL_Delay(0);
-	#endif // RC_WEB
+    if(!manual_render_control)
+    {
+        #ifdef RC_WEB
+           emscripten_sleep(0);
+        #else
+           SDL_Delay(0);
+        #endif // RC_WEB
+    }
 
     return (!Close);
 }

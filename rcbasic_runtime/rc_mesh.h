@@ -398,7 +398,7 @@ int rc_createVolumeLightMesh( double u, double v, double foot_color, double tail
 
 
 //create mesh from geometry data [TODO]
-bool rc_addMeshBuffer(int mesh_id, int vertex_count, double* vertex_data, double* normal_data, double* uv_data, int index_count, double* index_data)
+int rc_addMeshBuffer(int mesh_id, int vertex_count, double* vertex_data, double* normal_data, double* uv_data, int index_count, double* index_data)
 {
     irr::scene::ISkinnedMesh * mesh = (irr::scene::ISkinnedMesh*) rc_mesh[mesh_id].mesh;
 
@@ -407,7 +407,7 @@ bool rc_addMeshBuffer(int mesh_id, int vertex_count, double* vertex_data, double
     if(!mbuf)
     {
         mesh->drop();
-        return false;
+        return -1;
     }
 
     irr::core::array<irr::video::S3DVertex> vertices;
@@ -437,7 +437,162 @@ bool rc_addMeshBuffer(int mesh_id, int vertex_count, double* vertex_data, double
 
     }
 
+    int mbuf_index = mesh->getMeshBufferCount()-1;
+
+    return mbuf_index;
+}
+
+
+bool rc_setMeshBuffer(int mesh_id, int buffer_index, int vertex_count, double* vertex_data, double* normal_data, double* uv_data, int index_count, double* index_data)
+{
+    irr::scene::ISkinnedMesh * mesh = (irr::scene::ISkinnedMesh*) rc_mesh[mesh_id].mesh;
+
+    if(buffer_index < 0 || buffer_index >= mesh->getMeshBufferCount())
+        return false;
+
+    irr::scene::SSkinMeshBuffer* mbuf = (irr::scene::SSkinMeshBuffer*)mesh->getMeshBuffer(buffer_index);
+
+    if(!mbuf)
+    {
+        mesh->drop();
+        return false;
+    }
+
+    irr::core::array<irr::video::S3DVertex> vertices;
+    irr::core::array<irr::u16> indices;
+
+    for(int i = 0; i < vertex_count; i++)
+    {
+        irr::video::S3DVertex v;
+        v.Pos = irr::core::vector3df( (irr::f32) vertex_data[i*3], (irr::f32) vertex_data[i*3+1], (irr::f32) vertex_data[i*3+2] );
+        v.Normal = irr::core::vector3df( (irr::f32) normal_data[i*3], (irr::f32) normal_data[i*3+1], (irr::f32) normal_data[i*3+2] );
+        v.TCoords = irr::core::vector2df( (irr::f32) uv_data[i*2], (irr::f32) uv_data[i*2+1] );
+        vertices.push_back(v);
+    }
+
+    for(int i = 0; i < index_count; i++)
+    {
+        indices.push_back( (irr::u16) index_data[i] );
+    }
+
+    if(indices.size() > 0)
+    {
+        mbuf->Indices.clear();
+        mbuf->Vertices_Standard.clear();
+
+        for(int i = 0; i < vertices.size(); i++)
+            mbuf->Vertices_Standard.push_back(vertices[i]);
+
+        for(int i = 0; i < indices.size(); i++)
+            mbuf->Indices.push_back(indices[i]);
+
+    }
+
     return true;
 }
+
+
+int rc_getMeshBufferCount(int mesh_id)
+{
+    irr::scene::ISkinnedMesh * mesh = (irr::scene::ISkinnedMesh*) rc_mesh[mesh_id].mesh;
+
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+        return false;
+
+    return rc_mesh[mesh_id].mesh->getMeshBufferCount();
+}
+
+int rc_getMeshBufferVertexCount(int mesh_id, int buffer_index)
+{
+    irr::scene::ISkinnedMesh * mesh = (irr::scene::ISkinnedMesh*) rc_mesh[mesh_id].mesh;
+
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+        return 0;
+
+    int buffer_count = rc_mesh[mesh_id].mesh->getMeshBufferCount();
+
+    if(buffer_index < 0 || buffer_index >= buffer_count)
+        return 0;
+
+    irr::scene::SSkinMeshBuffer* mbuf = (irr::scene::SSkinMeshBuffer*)mesh->getMeshBuffer(buffer_index);
+
+    if(!mbuf)
+    {
+        return 0;
+    }
+
+    return mbuf->getVertexCount();
+}
+
+int rc_getMeshBufferIndexCount(int mesh_id, int buffer_index)
+{
+    irr::scene::ISkinnedMesh * mesh = (irr::scene::ISkinnedMesh*) rc_mesh[mesh_id].mesh;
+
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+        return 0;
+
+    int buffer_count = rc_mesh[mesh_id].mesh->getMeshBufferCount();
+
+    if(buffer_index < 0 || buffer_index >= buffer_count)
+        return 0;
+
+    irr::scene::SSkinMeshBuffer* mbuf = (irr::scene::SSkinMeshBuffer*)mesh->getMeshBuffer(buffer_index);
+
+    if(!mbuf)
+    {
+        return 0;
+    }
+
+    return mbuf->getIndexCount();
+}
+
+bool rc_getMeshBuffer(int mesh_id, int buffer_index, double* vertex_data, double* normal_data, double* uv_data, double* index_data)
+{
+    irr::scene::ISkinnedMesh * mesh = (irr::scene::ISkinnedMesh*) rc_mesh[mesh_id].mesh;
+
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+        return false;
+
+    int buffer_count = rc_mesh[mesh_id].mesh->getMeshBufferCount();
+
+    if(buffer_index < 0 || buffer_index >= buffer_count)
+        return false;
+
+    irr::scene::SSkinMeshBuffer* mbuf = (irr::scene::SSkinMeshBuffer*)mesh->getMeshBuffer(buffer_index);
+
+    if(!mbuf)
+    {
+        return false;
+    }
+
+    int vertex_count = mbuf->getVertexCount();
+    int index_count = mbuf->getIndexCount();
+
+    for(int i = 0; i < vertex_count; i++)
+    {
+        irr::video::S3DVertex* v = mbuf->getVertex(i);
+
+        vertex_data[i*3]   = (double)v->Pos.X;
+        vertex_data[i*3+1] = (double)v->Pos.Y;
+        vertex_data[i*3+2] = (double)v->Pos.Z;
+
+        normal_data[i*3]   = (double)v->Normal.X;
+        normal_data[i*3+1] = (double)v->Normal.Y;
+        normal_data[i*3+2] = (double)v->Normal.Z;
+
+        uv_data[i*2]   = (double)v->TCoords.X;
+        uv_data[i*2+1] = (double)v->TCoords.Y;
+    }
+
+    for(int i = 0; i < index_count; i++)
+    {
+        index_data[i] = (double)mbuf->getIndices()[i];
+    }
+
+    return true;
+}
+
+
+
 
 #endif // RC_MESH_H_INCLUDED

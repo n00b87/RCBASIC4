@@ -1348,4 +1348,11 @@ void rc_getMatrixScale(int mA, double* x, double* y, double* z)
 	*z = m.getScale().Z;
 }
 
+bool rc_matrixExists(int mA)
+{
+    if(mA < 0 || mA >= rc_matrix.size())
+        return false;
+    return rc_matrix[mA].active;
+}
+
 #endif // RC_MATRIX_H_INCLUDED

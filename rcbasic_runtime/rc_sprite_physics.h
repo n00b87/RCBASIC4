@@ -12,6 +12,18 @@ void rc_getSpriteCenter(int spr_id, double* x, double* y)
 	*y = (double)rc_sprite[spr_id].physics.body->GetLocalCenter().y;
 }
 
+void rc_getSpriteWorldCenter(int spr_id, double* x, double* y)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return;
+
+	if(!rc_sprite[spr_id].active)
+		return;
+
+	*x = (double)rc_sprite[spr_id].physics.body->GetWorldCenter().x;
+	*y = (double)rc_sprite[spr_id].physics.body->GetWorldCenter().y;
+}
+
 void rc_setSpriteLinearVelocity(int spr_id, double x, double y)
 {
 	if(spr_id < 0 || spr_id >= rc_sprite.size())

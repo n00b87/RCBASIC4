@@ -11,7 +11,7 @@ SetMatrixTranslation(frameA, 0, 1, 0) 'Sets the attach point of the constraint t
 hinge = CreateHingeConstraint(actorA, frameA, true)
 #/code
 
-Note: It is recommended to use CreateSlideConstraintEx() in most cases
+Note: It is recommended to use CreateHingeConstraintEx() in most cases
 
 #ref CreateHingeConstraintEx SetIdentityMatrix SetMatrixTranslation SetMatrixRotation
 

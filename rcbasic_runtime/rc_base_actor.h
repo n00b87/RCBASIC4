@@ -839,6 +839,8 @@ int rc_createProjectorActor()
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
+    rc_projector_actors.push_back(actor_id);
+
     return actor_id;
 }
 
@@ -851,7 +853,23 @@ void rc_deleteActor(int actor_id)
     if(!rc_actor[actor_id].mesh_node)
         return;
 
-	rc_physics3D.world->removeCollisionObject(rc_actor[actor_id].physics.rigid_body, false);
+    if(rc_actor[actor_id].node_type == RC_NODE_TYPE_PROJECTOR)
+    {
+        for(int i = 0; i < rc_projector_actors.size(); i++)
+        {
+            if(rc_projector_actors[i] == actor_id)
+            {
+                rc_projector_actors.erase(i);
+                break;
+            }
+        }
+    }
+
+	if(rc_actor[actor_id].physics.rigid_body)
+        rc_physics3D.world->removeCollisionObject(rc_actor[actor_id].physics.rigid_body, false);
+
+	rc_actor[actor_id].physics.rigid_body = NULL;
+
 	rc_actor[actor_id].physics.collisions.clear();
 
     rc_actor[actor_id].mesh_node->remove();

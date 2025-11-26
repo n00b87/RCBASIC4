@@ -57,6 +57,7 @@
 #include "rc_video.h"
 #include "rc_steam_lib.h"
 #include "rc_windowclose.h"
+#include "rc_render_control.h"
 #include "rc_test.h"
 #include <irrtheora.h>
 
@@ -4398,7 +4399,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Runtime v4.6" << endl;
+        cout << "RCBASIC Runtime v4.7" << endl;
         return 0;
     }
 
@@ -4452,7 +4453,7 @@ int main(int argc, char * argv[])
 
     //ogles2 test
     #ifdef RC_TESTING
-    rc_intern_dirChange("/home/n00b/GameDev/Irrlicht Demo");
+    rc_intern_dirChange("/home/n00b/Music/v47/RCBasic_Package/examples/Custom Rendering");
 	//rc_intern_dirChange("");
 	rc_filename = "main.cbc";
 

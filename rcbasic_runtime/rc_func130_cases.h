@@ -304,6 +304,12 @@ case FN_Stack_Size_N: //Number Function
 case FN_Stack_Size_S: //Number Function
 	 rc_push_num(rc_intern_s_stack_size( STACK_SIZE_S_STR_STACK ));
 	break;
+case FN_Stack_N_Exists: //Number Function
+	 rc_push_num(rc_intern_n_stack_exists( STACK_N_EXISTS_NUM_STACK ));
+	break;
+case FN_Stack_S_Exists: //Number Function
+	 rc_push_num(rc_intern_s_stack_exists( STACK_S_EXISTS_STR_STACK ));
+	break;
 case FN_OpenFile: //Number Function
 	 rc_push_num(rc_intern_fileOpen( OPENFILE_FILENAME$,  OPENFILE_MODE ));
 	break;
@@ -648,6 +654,24 @@ case FN_SetSpriteCanvasRenderPriority: //Number Function
 	break;
 case FN_GetSpriteCanvasRenderPriority: //Sub Procedure
 	rc_getSpriteCanvasRenderPriority( GETSPRITECANVASRENDERPRIORITY_C_NUM,  &GETSPRITECANVASRENDERPRIORITY_PRIORITY,  &GETSPRITECANVASRENDERPRIORITY_ORDER );
+	break;
+case FN_SetPostEffect: //Number Function
+	 rc_push_num(rc_setPostEffect( SETPOSTEFFECT_C_NUM,  SETPOSTEFFECT_EFFECT_TYPE ));
+	break;
+case FN_ClearPostEffect: //Sub Procedure
+	rc_clearPostEffect( CLEARPOSTEFFECT_C_NUM );
+	break;
+case FN_SetPostEffectProperty: //Sub Procedure
+	rc_setPostEffectProperty( SETPOSTEFFECTPROPERTY_C_NUM,  SETPOSTEFFECTPROPERTY_PROPERTY,  SETPOSTEFFECTPROPERTY_PROPERTY_VALUE );
+	break;
+case FN_GetPostEffectProperty: //Number Function
+	 rc_push_num(rc_getPostEffectProperty( GETPOSTEFFECTPROPERTY_C_NUM,  GETPOSTEFFECTPROPERTY_PROPERTY ));
+	break;
+case FN_SetPostEffectActive: //Sub Procedure
+	rc_setPostEffectActive( SETPOSTEFFECTACTIVE_C_NUM,  SETPOSTEFFECTACTIVE_FLAG );
+	break;
+case FN_PostEffectIsActive: //Number Function
+	 rc_push_num(rc_postEffectIsActive( POSTEFFECTISACTIVE_C_NUM ));
 	break;
 case FN_Circle: //Sub Procedure
 	rc_drawCircle( CIRCLE_X,  CIRCLE_Y,  CIRCLE_RADIUS );
@@ -1424,6 +1448,9 @@ case FN_GetMatrixRotation: //Sub Procedure
 case FN_GetMatrixScale: //Sub Procedure
 	rc_getMatrixScale( GETMATRIXSCALE_MA,  &GETMATRIXSCALE_X,  &GETMATRIXSCALE_Y,  &GETMATRIXSCALE_Z );
 	break;
+case FN_MatrixExists: //Number Function
+	 rc_push_num(rc_matrixExists( MATRIXEXISTS_MA ));
+	break;
 case FN_GetClipboardText$: //String Function
 	 rc_push_str(rc_getClipboardText(  ));
 	break;
@@ -1781,6 +1808,9 @@ case FN_SetSpriteShapeOffset: //Sub Procedure
 case FN_GetSpriteShapeOffset: //Sub Procedure
 	rc_getSpriteShapeOffset( GETSPRITESHAPEOFFSET_SPR_ID,  &GETSPRITESHAPEOFFSET_X,  &GETSPRITESHAPEOFFSET_Y );
 	break;
+case FN_GetSpriteWorldCenter: //Sub Procedure
+	rc_getSpriteWorldCenter( GETSPRITEWORLDCENTER_SPR_ID,  &GETSPRITEWORLDCENTER_X,  &GETSPRITEWORLDCENTER_Y );
+	break;
 case FN_createDistanceJoint: //Number Function
 	 rc_push_num(rc_createDistanceJoint( CREATEDISTANCEJOINT_SPRITEA,  CREATEDISTANCEJOINT_SPRITEB,  CREATEDISTANCEJOINT_AX,  CREATEDISTANCEJOINT_AY,  CREATEDISTANCEJOINT_BX,  CREATEDISTANCEJOINT_BY,  CREATEDISTANCEJOINT_COLLIDE_CONNECT ));
 	break;
@@ -2104,6 +2134,21 @@ case FN_GetMeshPolygonCount: //Number Function
 	break;
 case FN_FlipMeshSurfaces: //Sub Procedure
 	rc_flipMeshSurfaces( FLIPMESHSURFACES_MESH );
+	break;
+case FN_SetMeshBuffer: //Number Function
+	 rc_push_num(rc_setMeshBuffer( SETMESHBUFFER_MESH_ID,  SETMESHBUFFER_BUFFER_NUM,  SETMESHBUFFER_VERTEX_COUNT,  &SETMESHBUFFER_VERTEX_DATA,  &SETMESHBUFFER_NORMAL_DATA,  &SETMESHBUFFER_UV_DATA,  SETMESHBUFFER_INDEX_COUNT,  &SETMESHBUFFER_INDEX_DATA ));
+	break;
+case FN_GetMeshBufferCount: //Number Function
+	 rc_push_num(rc_getMeshBufferCount( GETMESHBUFFERCOUNT_MESH_ID ));
+	break;
+case FN_GetMeshBufferVertexCount: //Number Function
+	 rc_push_num(rc_getMeshBufferVertexCount( GETMESHBUFFERVERTEXCOUNT_MESH_ID,  GETMESHBUFFERVERTEXCOUNT_BUFFER_INDEX ));
+	break;
+case FN_GetMeshBufferIndexCount: //Number Function
+	 rc_push_num(rc_getMeshBufferIndexCount( GETMESHBUFFERINDEXCOUNT_MESH_ID,  GETMESHBUFFERINDEXCOUNT_BUFFER_INDEX ));
+	break;
+case FN_GetMeshBuffer: //Number Function
+	 rc_push_num(rc_getMeshBuffer( GETMESHBUFFER_MESH_ID,  GETMESHBUFFER_BUFFER_INDEX,  &GETMESHBUFFER_VERTEX_DATA,  &GETMESHBUFFER_NORMAL_DATA,  &GETMESHBUFFER_UV_DATA,  &GETMESHBUFFER_INDEX_DATA ));
 	break;
 case FN_CreateAnimatedActor: //Number Function
 	 rc_push_num(rc_createAnimatedActor( CREATEANIMATEDACTOR_MESH ));
@@ -2845,6 +2890,15 @@ case FN_SetSceneAmbientColor: //Sub Procedure
 	break;
 case FN_GetSceneAmbientColor: //Number Function
 	 rc_push_num(rc_getSceneAmbientColor(  ));
+	break;
+case FN_Pipeline_Begin: //Sub Procedure
+	rc_pipeline_Begin(  );
+	break;
+case FN_Pipeline_End: //Sub Procedure
+	rc_pipeline_End(  );
+	break;
+case FN_Pipeline_Render: //Sub Procedure
+	rc_pipeline_Render(  );
 	break;
 case FN_startParticleEmitter: //Sub Procedure
 	rc_startParticleEmitter(  STARTPARTICLEEMITTER_ACTOR );

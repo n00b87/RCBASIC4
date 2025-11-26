@@ -10,6 +10,12 @@
 #if defined(RC_ANDROID) || defined(RC_WINDOWS)
 	#include <irrlicht.h>
 	#include <btBulletDynamicsCommon.h>
+
+#if defined(RC_ANDROID)
+	#include <android/log.h>
+    #define LOGE(TAG, ...) __android_log_print(ANDROID_LOG_ERROR  , TAG,__VA_ARGS__)
+#endif // defined
+
 #else
 	#include <irrlicht.h>
 	#include <bullet/btBulletDynamicsCommon.h>
@@ -29,6 +35,7 @@
 #include "rc_spritelib.h"
 #include "rc_tilelib.h"
 #include "rc_joints.h"
+#include "rc_post_fx.h"
 #include <irrtheora.h>
 
 
@@ -392,7 +399,7 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
     irr_creation_params.EventReceiver = 0;
     irr_creation_params.WindowPosition = position2d<s32>(x, y);
     irr_creation_params.AntiAlias = AntiAlias;
-    irr_creation_params.OGLES2ShaderPath = ".shaders/";
+    irr_creation_params.OGLES2ShaderPath = "shaders/";
 
     rc_window_setfps = vsync;
 
@@ -1077,6 +1084,9 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
     canvas.type = canvas_type;
     canvas.show3D = false;
     canvas.physics2D.enabled = false;
+    canvas.post_effect.object = NULL;
+    canvas.post_effect.type = -1;
+    canvas.post_effect.is_active = false;
 
     #ifdef RC_DRIVER_GLES2
     Uint32 size_n = 2;
@@ -1244,6 +1254,10 @@ void rc_canvasClose(int canvas_id)
 	}
 
 	rc_canvas[canvas_id].sprite_id.clear();
+
+	//delete post effects for canvas
+	rc_clearPostEffect(canvas_id);
+
 
     if(rc_active_canvas == canvas_id)
         rc_active_canvas = -1;
@@ -1528,6 +1542,9 @@ int rc_cloneCanvas(int origin_canvas_id, int mode)
     canvas.show3D = rc_canvas[origin_canvas_id].show3D;
     canvas.color_mod = rc_canvas[origin_canvas_id].color_mod;
     canvas.texture = rc_canvas[origin_canvas_id].texture;
+    canvas.post_effect.is_active = false;
+    canvas.post_effect.object = NULL;
+    canvas.post_effect.type = -1;
     //canvas.sprite_layer = rc_canvas[origin_canvas_id].sprite_layer;
 
     if(!canvas.texture)
@@ -1734,7 +1751,7 @@ struct CircleSettings
     f32 radius;             // in pixels
     f32 radius2;
     video::SColor color;
-    u32 numVertices = 21;   // including center
+    u32 numVertices = 121;   // including center
 };
 
 void makeCircle(irr::core::array<irr::video::S3DVertex>& vertices, irr::core::array<irr::u16>& indices, const CircleSettings& settings)
@@ -1971,7 +1988,77 @@ void rc_drawCircleFill(int x, int y, double r)
         video::EIT_16BIT);
 }
 
+#ifdef RC_ANDROID
+int rc_loadFont(std::string fnt_file, int font_size)
+{
+	irr::io::path file_path = fnt_file.c_str();
+    int font_id = -1;
+    for(int i = 0; i < rc_font.size(); i++)
+    {
+        if(!rc_font[i].active)
+        {
+            font_id = i;
+            break;
+        }
+    }
 
+    CGUITTFace* Face;
+    CGUIFreetypeFont* dfont;
+
+    dfont = new CGUIFreetypeFont(VideoDriver);
+    bool load_status = dfont->sdl_loadfont(fnt_file.c_str(), font_size);
+
+    if(!load_status)
+    {
+        LOGE("RCTEST", "LOAD STATUS FALSE");
+        return -1;
+    }
+
+    if(!dfont)
+    {
+        LOGE("RCTEST", "DFONT FAILED");
+        return -1;
+    }
+
+    Face = dfont->getFace();
+
+    if(!Face)
+    {
+        LOGE("RCTEST", "FACE NULL");
+        return -1;
+    }
+
+    LOGE("RCTEST", "ATTACH FACE SUCCESS");
+
+
+    if(font_id < 0)
+    {
+        font_id = rc_font.size();
+
+        rc_font_obj f;
+
+        f.face = Face;
+        f.font = dfont;
+        f.font_size = font_size;
+        f.active = true;
+
+        rc_font.push_back(f);
+
+        rc_active_font = font_id;
+    }
+    else
+    {
+        rc_font[font_id].face = Face;
+        rc_font[font_id].font = dfont;
+        rc_font[font_id].font_size = font_size;
+        rc_font[font_id].active = true;
+    }
+
+    //std::cout << "id: " << font_id << std::endl;
+
+    return font_id;
+}
+#else
 int rc_loadFont(std::string fnt_file, int font_size)
 {
 	irr::io::path file_path = fnt_file.c_str();
@@ -2022,6 +2109,7 @@ int rc_loadFont(std::string fnt_file, int font_size)
 
     return font_id;
 }
+#endif // RC_ANDROID
 
 bool rc_fontExists(int font_id)
 {

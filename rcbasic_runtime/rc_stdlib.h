@@ -1547,6 +1547,20 @@ inline unsigned long rc_intern_s_stack_size( int stack_id )
     return rc_user_s_stack[stack_id].data.size();
 }
 
+inline bool rc_intern_n_stack_exists( int stack_id )
+{
+    if(stack_id < 0 || stack_id >= rc_user_n_stack.size())
+        return false;
+    return rc_user_n_stack[stack_id].active;
+}
+
+inline bool rc_intern_s_stack_exists( int stack_id )
+{
+    if(stack_id < 0 || stack_id >= rc_user_s_stack.size())
+        return false;
+    return rc_user_s_stack[stack_id].active;
+}
+
 inline void rc_intern_getPowerInfo(double * status, double * secs, double * pct)
 {
     int s = 0;

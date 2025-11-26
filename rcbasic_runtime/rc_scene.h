@@ -86,11 +86,17 @@ void rc_clearScene()
 			}
 		}
 
+		rc_projector_actors.clear();
+
 		for(int i = 0; i < rc_actor.size(); i++)
 		{
 			if(rc_actor[i].mesh_node)
 			{
-				rc_physics3D.world->removeCollisionObject(rc_actor[i].physics.rigid_body, false);
+				if(rc_actor[i].physics.rigid_body)
+                    rc_physics3D.world->removeCollisionObject(rc_actor[i].physics.rigid_body, false);
+
+				rc_actor[i].physics.rigid_body = NULL;
+
 				rc_actor[i].physics.collisions.clear();
 
 				rc_actor[i].mesh_node->remove();

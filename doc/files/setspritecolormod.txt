@@ -1,4 +1,5 @@
 #title SetSpriteColorMod [RCBasic Doc]
 #header Sub SetSpriteColorMod(sprite, color)
 
+Sets the color modulation of a sprite.
 

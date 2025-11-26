@@ -80,7 +80,7 @@ This is where you create layers and edit layer settings
 
 <p>#4 - Layer Settings
 #list ul
-#li Type - The type of layer selected. There are 4 types of layers: sprite, tile, canvas 2d, and canvas 3d.
+#li Type - The type of layer selected. There are 5 types of layers: sprite, tile, isometric tile, canvas 2d, and canvas 3d.
 #li Name - The name of the layer
 #li HScroll - The speed the layer scrolls horizontally
 #li VScrol - The speed the layer scrolls vertically
@@ -88,6 +88,14 @@ This is where you create layers and edit layer settings
 #/list
 </p>
 
+<p>#5 - Sprite Layers have extra settings that can be changed.
+#list ul
+#li Sprite Grid - Grid type can be either SQUARE or ISOMETRIC and determines how sprites move and snap when snap tile movement is enabled.
+#li Sort By - This setting will override SpriteZ values and determines the priority sprites are rendered in
+#li Order - This determines whether the priority set by Sort By is in ascending or descending order
+#li Shape Data - You can use this to have the editor generate the shapes when generating code or just export the shape data so you can handle collision yourself
+#/list
+</p>
 
 <br>
 <h2>Editor Settings</h2>
@@ -116,6 +124,9 @@ This is where you can change editor settings
 <h2>Tile Map Tools</h2>
 
 These tools are only usable when a tile layer is selected.
+
+NOTE: There is a subset of these tools available on sprite layers. The sprite layer tools will create a sprite with the selected tiles.
+
 #image "images/nirvana_tilemap_tools.png"
 
 <p>#1 - Tools
