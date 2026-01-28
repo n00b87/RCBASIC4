@@ -593,6 +593,4 @@ bool rc_getMeshBuffer(int mesh_id, int buffer_index, double* vertex_data, double
 }
 
 
-
-
 #endif // RC_MESH_H_INCLUDED

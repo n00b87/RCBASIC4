@@ -283,6 +283,8 @@ struct rc_physicsWorld3D_obj
 {
 	irrBulletWorld* world;
 
+	bool enabled;
+
 	irr::f32 DeltaTime;
 	irr::u32 maxSubSteps;
 	irr::f32 fixedTimeStep;

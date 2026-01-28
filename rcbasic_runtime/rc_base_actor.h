@@ -2,6 +2,7 @@
 #define RC_BASE_ACTOR_H_INCLUDED
 
 #include "ProjectiveTextures.h"
+#include "rc_matrix.h"
 
 void setSolidProperties(int actor)
 {
@@ -1503,6 +1504,196 @@ Uint32 rc_getLightSpecularColor(int actor)
     return 0;
 }
 
+
+int GetActorBoneCount( int actor )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+		return 0;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_MESH:
+        {
+            irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
+            return node->getJointCount();
+        }
+        break;
+    }
+
+    return 0;
+}
+
+irr::u32 GetActorBoneIndex( int actor, std::string bone_name )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+		return 0;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_MESH:
+        {
+            irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
+            irr::scene::IBoneSceneNode* bone = node->getJointNode(bone_name.c_str());
+            if(bone)
+            {
+                return bone->getBoneIndex();
+            }
+        }
+        break;
+    }
+
+    return -1;
+}
+
+std::string GetActorBoneName( int actor, irr::u32 bone_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+		return "";
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_MESH:
+        {
+            irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
+            irr::scene::IBoneSceneNode* bone = node->getJointNode(bone_index);
+            if(bone)
+            {
+                return (std::string)bone->getBoneName() + "\0";
+            }
+        }
+        break;
+    }
+
+    return "";
+}
+
+bool GetActorBonePosition( int actor, int bone_index, double* x, double* y, double* z )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+		return false;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_MESH:
+        {
+            irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
+            irr::scene::IBoneSceneNode* bone = node->getJointNode(bone_index);
+            if(bone)
+            {
+                *x = (double)bone->getPosition().X;
+                *y = (double)bone->getPosition().Y;
+                *z = (double)bone->getPosition().Z;
+                return true;
+            }
+        }
+        break;
+    }
+
+    return false;
+}
+
+bool GetActorBoneRotation( int actor, int bone_index, double* x, double* y, double* z )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+		return false;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_MESH:
+        {
+            irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
+            irr::scene::IBoneSceneNode* bone = node->getJointNode(bone_index);
+            if(bone)
+            {
+                *x = (double)bone->getRotation().X;
+                *y = (double)bone->getRotation().Y;
+                *z = (double)bone->getRotation().Z;
+                return true;
+            }
+        }
+        break;
+    }
+
+    return false;
+}
+
+bool GetActorBoneScale( int actor, int bone_index, double* x, double* y, double* z )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+		return false;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_MESH:
+        {
+            irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
+            irr::scene::IBoneSceneNode* bone = node->getJointNode(bone_index);
+            if(bone)
+            {
+                *x = (double)bone->getScale().X;
+                *y = (double)bone->getScale().Y;
+                *z = (double)bone->getScale().Z;
+                return true;
+            }
+        }
+        break;
+    }
+
+    return false;
+}
+
+bool GetActorBoneRelativeTranform( int actor, int bone_index, int t_matrix )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+		return false;
+
+    if(!rc_matrixExists(t_matrix))
+        return false;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_MESH:
+        {
+            irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
+            irr::scene::IBoneSceneNode* bone = node->getJointNode(bone_index);
+            if(bone)
+            {
+                rc_convertFromIrrMatrix(bone->getRelativeTransformation(), t_matrix);
+                return true;
+            }
+        }
+        break;
+    }
+
+    return false;
+}
+
+
+bool GetActorBoneAbsoluteTranform( int actor, int bone_index, int t_matrix )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+		return false;
+
+    if(!rc_matrixExists(t_matrix))
+        return false;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_MESH:
+        {
+            irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
+            irr::scene::IBoneSceneNode* bone = node->getJointNode(bone_index);
+            if(bone)
+            {
+                rc_convertFromIrrMatrix(bone->getAbsoluteTransformation(), t_matrix);
+                return true;
+            }
+        }
+        break;
+    }
+
+    return false;
+}
 
 
 

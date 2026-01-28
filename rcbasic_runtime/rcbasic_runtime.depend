@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1763950157 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
+1764140917 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
 	"rc_os_defines.h"
 	<emscripten.h>
 	<sys/param.h>
@@ -37,9 +37,9 @@
 1763959134 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
 	<TargetConditionals.h>
 
-1763875558 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
+1764140917 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
 
-1763522526 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_stdlib.h
+1764140917 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_stdlib.h
 	"rc_os_defines.h"
 	<sys/param.h>
 	<iostream>
@@ -112,7 +112,7 @@
 
 1752004854 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/theoraplay.h
 
-1763524510 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_matrix.h
+1764140917 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_matrix.h
 	<iostream>
 	<vector>
 	<bits/stdc++.h>
@@ -1249,11 +1249,12 @@
 1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/RealisticWater.h
 	<irrlicht.h>
 
-1763874908 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx.h
+1769130613 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx.h
 	"SDL.h"
 	<SDL2/SDL.h>
 	<irrlicht.h>
 	<btBulletDynamicsCommon.h>
+	<android/log.h>
 	<irrlicht.h>
 	<bullet/btBulletDynamicsCommon.h>
 	<iostream>
@@ -1274,7 +1275,7 @@
 	"rc_post_fx.h"
 	<irrtheora.h>
 
-1763958975 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx_core.h
+1769129955 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx_core.h
 	"SDL.h"
 	"btBulletDynamicsCommon.h"
 	"BulletSoftBody/btSoftRigidDynamicsWorld.h"
@@ -2247,7 +2248,7 @@
 	<SDL2/SDL.h>
 	<SDL2/SDL_mixer.h>
 
-1762655675 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_net.h
+1764140917 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_net.h
 	"rc_os_defines.h"
 	<android/log.h>
 	"SDL.h"
@@ -2279,7 +2280,7 @@
 	"rc_gfx_core.h"
 	<irrtheora.h>
 
-1763875558 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
+1764140917 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
 
 1760243468 source:/home/n00b/Projects/irrBullet/src/irrBullet.cpp
 	"irrBullet.h"
@@ -2519,7 +2520,7 @@
 	<irrlicht.h>
 	<vector>
 
-1763784488 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_sprite_physics.h
+1764140917 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_sprite_physics.h
 	"rc_sprite2D.h"
 
 1758412944 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_joints.h
@@ -2531,8 +2532,9 @@
 1758412944 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_physics3D_base.h
 	"rc_gfx_core.h"
 
-1763707569 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_base_actor.h
+1769134196 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_base_actor.h
 	"ProjectiveTextures.h"
+	"rc_matrix.h"
 
 1758412944 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_actor_material.h
 	"rc_fx_materials.h"
@@ -2543,16 +2545,16 @@
 
 1758412944 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_constraint.h
 
-1762832155 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_mesh.h
+1769132494 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_mesh.h
 
 1758412944 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_particles.h
 
-1763707707 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_scene.h
+1764140917 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_scene.h
 	"rc_gfx_core.h"
 
 1758412944 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_camera.h
 
-1763959070 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_windowclose.h
+1769130046 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_windowclose.h
 
 1650940764 /usr/include/bullet/BulletCollision/NarrowPhaseCollision/btRaycastCallback.h
 	"BulletCollision/CollisionShapes/btTriangleCallback.h"
@@ -2746,12 +2748,12 @@
 	<sstream>
 	"rc_steam.h"
 
-1763959070 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_render_control.h
+1764140917 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_render_control.h
 	<irrlicht.h>
 	"rc_gfx_core.h"
 	"rc_post_fx.h"
 
-1763959070 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_post_fx.h
+1769129441 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_post_fx.h
 	<irrlicht.h>
 	<cstdlib>
 	"rc_gfx_core.h"

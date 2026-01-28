@@ -526,7 +526,7 @@ bool rc_update()
         if(!manual_render_control)
             VideoDriver->beginScene(true, true);
 
-        if(!hasPreUpdated)
+        if(rc_physics3D.enabled && (!hasPreUpdated))
         {
         	//rc_physics3D.DeltaTime = device->getTimer()->getTime() - rc_physics3D.TimeStamp;
 			//rc_physics3D.TimeStamp = device->getTimer()->getTime();

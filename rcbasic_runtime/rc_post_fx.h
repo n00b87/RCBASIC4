@@ -1539,4 +1539,16 @@ void rc_renderPostEffect(int canvas_id)
 
 }
 
+
+int rc_getPostEffectType(int canvas_id)
+{
+    if(canvas_id <= 0 || canvas_id >= rc_canvas.size())
+        return -1;
+
+    if(!rc_canvas[canvas_id].post_effect.is_active)
+        return -1;
+
+    return rc_canvas[canvas_id].post_effect.type; //type will be -1 if effect has been removed
+}
+
 #endif // RC_POST_FX_H_INCLUDED

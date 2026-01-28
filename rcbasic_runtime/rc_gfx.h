@@ -467,6 +467,8 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
 
 	rc_physics3D.world->setInternalTickCallback((btInternalTickCallback)myTickCallback2);
 
+	rc_physics3D.enabled = true;
+
 	setMouseScaling();
 
     return true;
@@ -481,6 +483,17 @@ bool rc_windowOpen(std::string title, int w, int h, bool fullscreen, bool vsync)
     }
 
     return true;
+}
+
+void rc_setPhysics3D(bool flag)
+{
+    rc_physics3D.enabled = flag;
+    rc_physics3D.TimeStamp = SDL_GetTicks();
+}
+
+bool rc_getPhysics3D()
+{
+    return rc_physics3D.enabled;
 }
 
 void rc_cls()
@@ -3362,6 +3375,12 @@ void rc_setColorKey(int img_id, Uint32 colorkey)
 		colorkey = img_pixels[0];
 		rc_image[img_id].image->unlock();
 	}
+	else
+	{
+		Uint32* img_pixels = (Uint32*)rc_image[img_id].image->lock();
+		rc_image[img_id].image->unlock();
+	}
+
     VideoDriver->makeColorKeyTexture(rc_image[img_id].image, irr::video::SColor(colorkey));
 }
 
