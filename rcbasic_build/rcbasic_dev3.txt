@@ -673,6 +673,9 @@ case FN_SetPostEffectActive: //Sub Procedure
 case FN_PostEffectIsActive: //Number Function
 	 rc_push_num(rc_postEffectIsActive( POSTEFFECTISACTIVE_C_NUM ));
 	break;
+case FN_GetPostEffectType: //Number Function
+	 rc_push_num(rc_getPostEffectType( GETPOSTEFFECTTYPE_C_NUM ));
+	break;
 case FN_Circle: //Sub Procedure
 	rc_drawCircle( CIRCLE_X,  CIRCLE_Y,  CIRCLE_RADIUS );
 	break;
@@ -2282,6 +2285,30 @@ case FN_SetActorMD2AnimationByName: //Sub Procedure
 case FN_DeleteActorAnimation: //Sub Procedure
 	rc_deleteActorAnimation( DELETEACTORANIMATION_ACTOR,  DELETEACTORANIMATION_ANIMATION );
 	break;
+case FN_GetActorBoneCount: //Number Function
+	 rc_push_num(rc_getActorBoneCount( GETACTORBONECOUNT_ACTOR ));
+	break;
+case FN_GetActorBoneIndex: //Number Function
+	 rc_push_num(rc_getActorBoneIndex( GETACTORBONEINDEX_ACTOR,  GETACTORBONEINDEX_BONE_NAME$ ));
+	break;
+case FN_GetActorBoneName$: //String Function
+	 rc_push_str(rc_getActorBoneName( GETACTORBONENAME$_ACTOR,  GETACTORBONENAME$_BONE_INDEX ));
+	break;
+case FN_GetActorBonePosition: //Number Function
+	 rc_push_num(rc_getActorBonePosition( GETACTORBONEPOSITION_ACTOR,  GETACTORBONEPOSITION_BONE_INDEX,  &GETACTORBONEPOSITION_X,  &GETACTORBONEPOSITION_Y,  &GETACTORBONEPOSITION_Z ));
+	break;
+case FN_GetActorBoneRotation: //Number Function
+	 rc_push_num(rc_getActorBoneRotation( GETACTORBONEROTATION_ACTOR,  GETACTORBONEROTATION_BONE_INDEX,  &GETACTORBONEROTATION_X,  &GETACTORBONEROTATION_Y,  &GETACTORBONEROTATION_Z ));
+	break;
+case FN_GetActorBoneScale: //Number Function
+	 rc_push_num(rc_getActorBoneScale( GETACTORBONESCALE_ACTOR,  GETACTORBONESCALE_BONE_INDEX,  &GETACTORBONESCALE_X,  &GETACTORBONESCALE_Y,  &GETACTORBONESCALE_Z ));
+	break;
+case FN_GetActorBoneRelativeTranform: //Number Function
+	 rc_push_num(rc_getActorBoneRelativeTranform( GETACTORBONERELATIVETRANFORM_ACTOR,  GETACTORBONERELATIVETRANFORM_BONE_INDEX,  GETACTORBONERELATIVETRANFORM_T_MATRIX ));
+	break;
+case FN_GetActorBoneAbsoluteTranform: //Number Function
+	 rc_push_num(rc_getActorBoneAbsoluteTranform( GETACTORBONEABSOLUTETRANFORM_ACTOR,  GETACTORBONEABSOLUTETRANFORM_BONE_INDEX,  GETACTORBONEABSOLUTETRANFORM_T_MATRIX ));
+	break;
 case FN_SetGravity3D: //Sub Procedure
 	rc_setGravity3D( SETGRAVITY3D_X,  SETGRAVITY3D_Y,  SETGRAVITY3D_Z );
 	break;
@@ -2899,6 +2926,12 @@ case FN_Pipeline_End: //Sub Procedure
 	break;
 case FN_Pipeline_Render: //Sub Procedure
 	rc_pipeline_Render(  );
+	break;
+case FN_SetPhysics3D: //Sub Procedure
+	rc_setPhysics3D( SETPHYSICS3D_FLAG );
+	break;
+case FN_GetPhysics3D: //Number Function
+	 rc_push_num(rc_getPhysics3D(  ));
 	break;
 case FN_startParticleEmitter: //Sub Procedure
 	rc_startParticleEmitter(  STARTPARTICLEEMITTER_ACTOR );

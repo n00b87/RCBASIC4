@@ -4399,7 +4399,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Runtime v4.7" << endl;
+        cout << "RCBASIC Runtime v4.8" << endl;
         return 0;
     }
 

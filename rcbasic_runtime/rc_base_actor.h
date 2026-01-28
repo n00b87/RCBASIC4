@@ -1505,7 +1505,7 @@ Uint32 rc_getLightSpecularColor(int actor)
 }
 
 
-int GetActorBoneCount( int actor )
+int rc_getActorBoneCount( int actor )
 {
     if(actor < 0 || actor >= rc_actor.size())
 		return 0;
@@ -1523,7 +1523,7 @@ int GetActorBoneCount( int actor )
     return 0;
 }
 
-irr::u32 GetActorBoneIndex( int actor, std::string bone_name )
+irr::u32 rc_getActorBoneIndex( int actor, std::string bone_name )
 {
     if(actor < 0 || actor >= rc_actor.size())
 		return 0;
@@ -1545,7 +1545,7 @@ irr::u32 GetActorBoneIndex( int actor, std::string bone_name )
     return -1;
 }
 
-std::string GetActorBoneName( int actor, irr::u32 bone_index )
+std::string rc_getActorBoneName( int actor, irr::u32 bone_index )
 {
     if(actor < 0 || actor >= rc_actor.size())
 		return "";
@@ -1567,7 +1567,7 @@ std::string GetActorBoneName( int actor, irr::u32 bone_index )
     return "";
 }
 
-bool GetActorBonePosition( int actor, int bone_index, double* x, double* y, double* z )
+bool rc_getActorBonePosition( int actor, int bone_index, double* x, double* y, double* z )
 {
     if(actor < 0 || actor >= rc_actor.size())
 		return false;
@@ -1592,7 +1592,7 @@ bool GetActorBonePosition( int actor, int bone_index, double* x, double* y, doub
     return false;
 }
 
-bool GetActorBoneRotation( int actor, int bone_index, double* x, double* y, double* z )
+bool rc_getActorBoneRotation( int actor, int bone_index, double* x, double* y, double* z )
 {
     if(actor < 0 || actor >= rc_actor.size())
 		return false;
@@ -1617,7 +1617,7 @@ bool GetActorBoneRotation( int actor, int bone_index, double* x, double* y, doub
     return false;
 }
 
-bool GetActorBoneScale( int actor, int bone_index, double* x, double* y, double* z )
+bool rc_getActorBoneScale( int actor, int bone_index, double* x, double* y, double* z )
 {
     if(actor < 0 || actor >= rc_actor.size())
 		return false;
@@ -1642,7 +1642,7 @@ bool GetActorBoneScale( int actor, int bone_index, double* x, double* y, double*
     return false;
 }
 
-bool GetActorBoneRelativeTranform( int actor, int bone_index, int t_matrix )
+bool rc_getActorBoneRelativeTranform( int actor, int bone_index, int t_matrix )
 {
     if(actor < 0 || actor >= rc_actor.size())
 		return false;
@@ -1669,7 +1669,7 @@ bool GetActorBoneRelativeTranform( int actor, int bone_index, int t_matrix )
 }
 
 
-bool GetActorBoneAbsoluteTranform( int actor, int bone_index, int t_matrix )
+bool rc_getActorBoneAbsoluteTranform( int actor, int bone_index, int t_matrix )
 {
     if(actor < 0 || actor >= rc_actor.size())
 		return false;
