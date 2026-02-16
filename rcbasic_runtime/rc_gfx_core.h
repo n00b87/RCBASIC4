@@ -524,6 +524,7 @@ irr::core::array<rc_an8_obj> rc_an8;
 #define RC_NODE_TYPE_PARTICLE	7
 #define RC_NODE_TYPE_STMESH   	8
 #define RC_NODE_TYPE_PROJECTOR	9
+#define RC_NODE_TYPE_COMPOSITE	10
 
 
 #define RC_NODE_SHAPE_TYPE_NONE			0
@@ -535,6 +536,7 @@ irr::core::array<rc_an8_obj> rc_an8;
 #define RC_NODE_SHAPE_TYPE_CONVEXHULL	6
 #define RC_NODE_SHAPE_TYPE_TRIMESH		7
 #define RC_NODE_SHAPE_TYPE_HEIGHTFIELD	8
+#define RC_NODE_SHAPE_TYPE_COMPOSITE    9
 
 struct rc_node_physics_collision
 {
@@ -638,6 +640,8 @@ struct rc_scene_node
 	bool isPlaying;
     irr::core::array<int> deleted_animation;
     irr::core::array<rc_actor_animation_obj> animation;
+
+    irr::core::array<int> child_actors; // Only used for composite actor types
 };
 
 irr::core::array<rc_scene_node> rc_actor;

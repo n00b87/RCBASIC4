@@ -57,6 +57,7 @@
 		<Unit filename="../../irrBullet/include/irrBulletCollisionShape.h" />
 		<Unit filename="../../irrBullet/include/irrBulletCommon.h" />
 		<Unit filename="../../irrBullet/include/irrBulletCompileConfig.h" />
+		<Unit filename="../../irrBullet/include/irrBulletCompoundShape.h" />
 		<Unit filename="../../irrBullet/include/irrBulletConeShape.h" />
 		<Unit filename="../../irrBullet/include/irrBulletConvexHullShape.h" />
 		<Unit filename="../../irrBullet/include/irrBulletCylinderShape.h" />
@@ -82,6 +83,7 @@
 		<Unit filename="../../irrBullet/src/irrBulletCollisionObjectAffectorAttract.cpp" />
 		<Unit filename="../../irrBullet/src/irrBulletCollisionObjectAffectorDelete.cpp" />
 		<Unit filename="../../irrBullet/src/irrBulletCollisionShape.cpp" />
+		<Unit filename="../../irrBullet/src/irrBulletCompoundShape.cpp" />
 		<Unit filename="../../irrBullet/src/irrBulletConeShape.cpp" />
 		<Unit filename="../../irrBullet/src/irrBulletConvexHullShape.cpp" />
 		<Unit filename="../../irrBullet/src/irrBulletCylinderShape.cpp" />

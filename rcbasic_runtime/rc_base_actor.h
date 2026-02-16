@@ -20,6 +20,9 @@ void setSolidProperties(int actor)
 
 void rc_setActorCollisionShape(int actor_id, int shape_type, double mass, double radius=-1.0)
 {
+    if(rc_actor[actor_id].node_type == RC_NODE_TYPE_COMPOSITE && shape_type != RC_NODE_SHAPE_TYPE_COMPOSITE)
+        return;
+
 	//std::cout << "Start ColShape" << std::endl;
 	if(rc_actor[actor_id].physics.rigid_body)
 	{
@@ -185,6 +188,22 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass, double
 
 				setSolidProperties(actor_id);
 			}
+			break;
+
+        case RC_NODE_SHAPE_TYPE_COMPOSITE:
+			if(rc_actor[actor_id].node_type == RC_NODE_TYPE_COMPOSITE)
+			{
+				rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_COMPOSITE;
+				ICompoundShape* shape = new ICompoundShape(rc_actor[actor_id].mesh_node, mass, false);
+
+				rc_actor[actor_id].physics.rigid_body = rc_physics3D.world->addRigidBody(shape);
+
+				setSolidProperties(actor_id);
+			}
+			else
+            {
+                std::cout << "SetActorShape Error: Composite Shapes can only be set on Composite Actors" << std::endl;
+            }
 			break;
 
 		default:
@@ -369,6 +388,60 @@ int rc_createAnimatedActor(int mesh_id)
     rc_actor[actor_id].physics.isSolid = false;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
+
+    return actor_id;
+}
+
+
+//add mesh actor to scene
+int rc_createCompositeActor()
+{
+    int actor_id = -1;
+
+    irr::scene::ISceneNode* node;
+
+    rc_scene_node actor;
+
+    actor.node_type = RC_NODE_TYPE_COMPOSITE; //STATIC MESH NODE
+
+    node = SceneManager->addSceneNode("composite");
+
+    actor.mesh_node = node;
+
+    actor.shadow = NULL;
+    actor.transition = false;
+    actor.transition_time = 0;
+    actor.material_ref_index = -1;
+
+    if(!node)
+        return -1;
+
+    for(int i = 0; i < rc_actor.size(); i++)
+    {
+        if(!rc_actor[i].mesh_node)
+        {
+            actor_id = i;
+            break;
+        }
+    }
+
+    if(actor_id < 0)
+    {
+        actor_id = rc_actor.size();
+        rc_actor.push_back(actor);
+    }
+    else
+    {
+        rc_actor[actor_id] = actor;
+    }
+
+
+    //Actor RigidBody
+    rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_COMPOSITE;
+    rc_actor[actor_id].physics.rigid_body = NULL;
+    rc_actor[actor_id].physics.isSolid = false;
+
+    rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_COMPOSITE, 1);
 
     return actor_id;
 }
@@ -866,6 +939,24 @@ void rc_deleteActor(int actor_id)
         }
     }
 
+
+    for(int i = 0; i < rc_actor[actor_id].child_actors.size(); i++)
+    {
+        int child_id = rc_actor[actor_id].child_actors[i];
+
+        if(child_id < 0 || child_id >= rc_actor.size())
+            continue;
+
+        if(rc_actor[child_id].mesh_node == NULL)
+            continue;
+
+        rc_actor[actor_id].mesh_node->removeChild(rc_actor[child_id].mesh_node);
+        rc_deleteActor(child_id);
+    }
+
+    rc_actor[actor_id].child_actors.clear();
+
+
 	if(rc_actor[actor_id].physics.rigid_body)
         rc_physics3D.world->removeCollisionObject(rc_actor[actor_id].physics.rigid_body, false);
 
@@ -1111,6 +1202,349 @@ void rc_getActorRotation(int actor, double* x, double* y, double* z)
 		*z = actor_transform.getRotationDegrees().Z;
 	}
 }
+
+// --------------COMPOSITE STUFF-------------------
+//Function AddCompositeChild(actor, child_actor, t_matrix)
+int rc_addCompositeChild(int actor, int child_actor, int t_matrix)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return -1;
+
+    if(child_actor < 0 || child_actor >= rc_actor.size())
+        return -1;
+
+    if(t_matrix < 0 || t_matrix >= rc_matrix.size())
+        return -1;
+
+    int index = -1;
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_COMPOSITE:
+            {
+                ICompoundShape* parent_shape = (ICompoundShape*)rc_actor[actor].physics.rigid_body->getCollisionShape();
+                ICollisionShape* child_shape = rc_actor[child_actor].physics.rigid_body->getCollisionShape();
+
+                irr::core::matrix4 irr_mat = rc_convertToIrrMatrix(t_matrix);
+
+                index = parent_shape->addChildShape(irr_mat, child_shape);
+
+                rc_actor[actor].mesh_node->addChild(rc_actor[child_actor].mesh_node);
+
+                rc_actor[actor].child_actors.push_back(child_actor);
+            }
+            break;
+    }
+
+    return index;
+}
+
+
+//Function GetCompositeChildCount(actor)
+int rc_getCompositeChildCount(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    int child_count = 0;
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_COMPOSITE:
+            {
+                child_count = rc_actor[actor].child_actors.size();
+            }
+            break;
+    }
+
+    return child_count;
+}
+
+
+//Function GetCompositeChild(actor, child_index)
+int rc_getCompositeChild(int actor, int child_index)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return -1;
+
+    if(child_index < 0 || child_index >= rc_actor[actor].child_actors.size())
+        return -1;
+
+    int child_id = -1;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_COMPOSITE:
+            {
+                child_id = rc_actor[actor].child_actors[child_index];
+            }
+            break;
+    }
+
+    return child_id;
+}
+
+
+//Function GetCompositeChildIndex(actor, child_actor)
+int rc_getCompositeChildIndex(int actor, int child_actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return -1;
+
+    if(child_actor < 0 || child_actor >= rc_actor.size())
+        return -1;
+
+    int child_index = -1;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_COMPOSITE:
+            {
+                for(int i = 0; i < rc_actor[actor].child_actors.size(); i++)
+                {
+                    if(rc_actor[actor].child_actors[i] == child_actor)
+                    {
+                        child_index = i;
+                        break;
+                    }
+                }
+            }
+            break;
+    }
+
+    return child_index;
+}
+
+
+//Sub RemoveCompositeChild(actor, child_index)
+void rc_removeCompositeChild(int actor, int child_index)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(child_index < 0 || child_index >= rc_actor[actor].child_actors.size())
+        return;
+
+    int child_actor = rc_actor[actor].child_actors[child_index];
+
+    if(rc_actor[child_actor].mesh_node == NULL)
+        return;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_COMPOSITE:
+            {
+                ICompoundShape* parent_shape = (ICompoundShape*)rc_actor[actor].physics.rigid_body->getCollisionShape();
+
+                ICollisionShape* child_shape = rc_actor[child_actor].physics.rigid_body->getCollisionShape();
+
+                parent_shape->removeChildShape(child_shape);
+
+                int child_actor = rc_actor[actor].child_actors[child_index];
+
+                if(rc_actor[actor].mesh_node != NULL && rc_actor[child_actor].mesh_node != NULL)
+                    rc_actor[actor].mesh_node->removeChild(rc_actor[child_actor].mesh_node);
+
+                rc_actor[actor].child_actors.erase(child_index);
+            }
+            break;
+    }
+
+    return;
+}
+
+
+//Function GetCompositeChildTransform(actor, child_index, t_matrix)
+bool rc_getCompositeChildTransform(int actor, int child_index, int t_matrix)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return false;
+
+    if(child_index < 0 || child_index >= rc_actor[actor].child_actors.size())
+        return false;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_COMPOSITE:
+            {
+                ICompoundShape* parent_shape = (ICompoundShape*)rc_actor[actor].physics.rigid_body->getCollisionShape();
+                rc_convertFromIrrMatrix(parent_shape->getChildTransform(child_index), t_matrix);
+            }
+            break;
+    }
+
+    return true;
+}
+
+
+//Function GetCompositeAABB(actor, t_matrix, ByRef min_x, ByRef min_y, ByRef min_z, ByRef max_x, ByRef max_y, ByRef max_z)
+bool rc_getCompositeAABB(int actor, int t_matrix, double* min_x, double* min_y, double* min_z, double* max_x, double* max_y, double* max_z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return false;
+
+    if(t_matrix < 0 || t_matrix >= rc_matrix.size())
+        return false;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_COMPOSITE:
+            {
+                ICompoundShape* parent_shape = (ICompoundShape*)rc_actor[actor].physics.rigid_body->getCollisionShape();
+                irr::core::matrix4 irr_mat;
+                irr::core::vector3df aabb_min(0.0f, 0.0f, 0.0f);
+                irr::core::vector3df aabb_max(0.0f, 0.0f, 0.0f);
+                parent_shape->getAabb(irr_mat, aabb_min, aabb_max);
+                rc_convertFromIrrMatrix(irr_mat, t_matrix);
+
+                *min_x = (double)aabb_min.X;
+                *min_y = (double)aabb_min.Y;
+                *min_z = (double)aabb_min.Z;
+
+                *max_x = (double)aabb_max.X;
+                *max_y = (double)aabb_max.Y;
+                *max_z = (double)aabb_max.Z;
+            }
+            break;
+    }
+
+    return true;
+}
+
+
+//Sub RecalculateCompositeAABB(actor)
+void rc_recalculateCompositeAABB(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_COMPOSITE:
+            {
+                ICompoundShape* parent_shape = (ICompoundShape*)rc_actor[actor].physics.rigid_body->getCollisionShape();
+                parent_shape->recalculateLocalAabb();
+            }
+            break;
+    }
+
+    return;
+}
+
+
+//Sub GenerateCompositeAABBFromChildren(actor)
+void rc_generateCompositeAABBFromChildren(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_COMPOSITE:
+            {
+                ICompoundShape* parent_shape = (ICompoundShape*)rc_actor[actor].physics.rigid_body->getCollisionShape();
+                parent_shape->createAabbTreeFromChildren();
+            }
+            break;
+    }
+
+    return;
+}
+
+
+//Sub CalculateCompositePrincipalTransform(actor, ByRef masses, principal_matrix, ByRef x, ByRef y, ByRef z)
+void rc_calculateCompositePrincipalTransform(int actor, double* masses, int principal_matrix, double* x, double* y, double* z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(principal_matrix < 0 || principal_matrix >= rc_matrix.size())
+        return;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_COMPOSITE:
+            {
+                ICompoundShape* parent_shape = (ICompoundShape*)rc_actor[actor].physics.rigid_body->getCollisionShape();
+
+                irr::core::matrix4 irr_mat = rc_convertToIrrMatrix(principal_matrix);
+
+                int num_children = rc_actor[actor].child_actors.size();
+                float f_mass[num_children];
+                for(int i = 0; i < num_children; i++)
+                    f_mass[i] = (float)masses[i];
+
+                irr::core::vector3df inertia(x[0], y[0], z[0]);
+
+                parent_shape->calculatePrincipalAxisTransform(f_mass, irr_mat, inertia);
+
+                *x = inertia.X;
+                *y = inertia.Y;
+                *z = inertia.Z;
+
+                for(int i = 0; i < num_children; i++)
+                    masses[i] = f_mass[i];
+
+                rc_convertFromIrrMatrix(irr_mat, principal_matrix);
+            }
+            break;
+    }
+
+    return;
+}
+
+
+//Sub UpdateCompositeChildTransform(actor, child_index, t_matrix, recalc_flag)
+void rc_updateCompositeChildTransform(int actor, int child_index, int t_matrix, bool recalc_flag)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(child_index < 0 || child_index >= rc_actor[actor].child_actors.size())
+        return;
+
+    if(t_matrix < 0 || t_matrix >= rc_matrix.size())
+        return;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_COMPOSITE:
+            {
+                ICompoundShape* parent_shape = (ICompoundShape*)rc_actor[actor].physics.rigid_body->getCollisionShape();
+
+                irr::core::matrix4 irr_mat = rc_convertToIrrMatrix(t_matrix);
+
+                parent_shape->updateChildTransform(child_index, irr_mat, recalc_flag);
+
+                rc_convertFromIrrMatrix(irr_mat, t_matrix);
+            }
+            break;
+    }
+
+    return;
+}
+
+
+//Function GetCompositeUpdateRevision(actor)
+int rc_getCompositeUpdateRevision(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return -1;
+
+    int update_rev = -1;
+
+    switch(rc_actor[actor].node_type)
+    {
+        case RC_NODE_TYPE_COMPOSITE:
+            {
+                ICompoundShape* parent_shape = (ICompoundShape*)rc_actor[actor].physics.rigid_body->getCollisionShape();
+                update_rev = parent_shape->getUpdateRevision();
+            }
+            break;
+    }
+
+    return update_rev;
+}
+
+
 
 //---------------PROPERTIES------------------------
 
