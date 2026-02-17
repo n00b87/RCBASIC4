@@ -446,7 +446,7 @@ bool rcbasic_compile()
         {
             vm_asm.push_back("dbg uint=0 uint=" + rc_uint64ToString(rcbasic_program.top().dbg_inc_index) + " uint=" + rc_uint64ToString(rcbasic_program.top().line_number));
         }
-        cout << "line " << rcbasic_program.top().line_number << ": " << rcbasic_file.tellg() << " -> " << line << endl;
+        //cout << "line " << rcbasic_program.top().line_number << ": " << rcbasic_file.tellg() << " -> " << line << endl;
         if(!rcbasic_program.top().eof_reached)
             rcbasic_program.top().line_position = rcbasic_file.tellg();
         //vm_asm.push_back("mov n0 " + rc_intToString(rcbasic_program.top().line_number));
@@ -926,7 +926,8 @@ int main(int argc, char * argv[])
     bool clean_after_build = true;
 
     //DEBUG START
-    chdir("/home/n00b/GameDev/Ambient/Ambient_Project");
+    //chdir("/home/n00b/Programs/rcbasic/examples/Sprite_Test");
+    //chdir("/home/n00b/GameDev/Ambient/Ambient_Project");
     rc_filename = "main.bas";
 	//rc_filename = "/home/n00b/test/SpriteShapeTest/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Constraint/main.bas";

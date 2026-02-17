@@ -4453,7 +4453,7 @@ int main(int argc, char * argv[])
 
     //ogles2 test
     #ifdef RC_TESTING
-    rc_intern_dirChange("/home/n00b/Music/v47/RCBasic_Package/examples/Custom Rendering");
+    rc_intern_dirChange("/home/n00b/Programs/rcbasic/examples/Sprite_Test");
 	//rc_intern_dirChange("");
 	rc_filename = "main.cbc";
 
