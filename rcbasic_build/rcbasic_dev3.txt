@@ -3176,6 +3176,42 @@ case FN_SetProjectorFOV: //Sub Procedure
 case FN_GetProjectorFOV: //Number Function
 	 rc_push_num(rc_getProjectorFOV( GETPROJECTORFOV_ACTOR ));
 	break;
+case FN_AddCompositeChild: //Number Function
+	 rc_push_num(rc_addCompositeChild( ADDCOMPOSITECHILD_ACTOR,  ADDCOMPOSITECHILD_CHILD_ACTOR,  ADDCOMPOSITECHILD_T_MATRIX ));
+	break;
+case FN_GetCompositeChildCount: //Number Function
+	 rc_push_num(rc_getCompositeChildCount( GETCOMPOSITECHILDCOUNT_ACTOR ));
+	break;
+case FN_GetCompositeChild: //Number Function
+	 rc_push_num(rc_getCompositeChild( GETCOMPOSITECHILD_ACTOR,  GETCOMPOSITECHILD_CHILD_INDEX ));
+	break;
+case FN_GetCompositeChildIndex: //Number Function
+	 rc_push_num(rc_getCompositeChildIndex( GETCOMPOSITECHILDINDEX_ACTOR,  GETCOMPOSITECHILDINDEX_CHILD_ACTOR ));
+	break;
+case FN_RemoveCompositeChild: //Sub Procedure
+	rc_removeCompositeChild( REMOVECOMPOSITECHILD_ACTOR,  REMOVECOMPOSITECHILD_CHILD_INDEX );
+	break;
+case FN_GetCompositeChildTransform: //Number Function
+	 rc_push_num(rc_getCompositeChildTransform( GETCOMPOSITECHILDTRANSFORM_ACTOR,  GETCOMPOSITECHILDTRANSFORM_CHILD_INDEX,  GETCOMPOSITECHILDTRANSFORM_T_MATRIX ));
+	break;
+case FN_GetCompositeAABB: //Number Function
+	 rc_push_num(rc_getCompositeAABB( GETCOMPOSITEAABB_ACTOR,  GETCOMPOSITEAABB_T_MATRIX,  &GETCOMPOSITEAABB_MIN_X,  &GETCOMPOSITEAABB_MIN_Y,  &GETCOMPOSITEAABB_MIN_Z,  &GETCOMPOSITEAABB_MAX_X,  &GETCOMPOSITEAABB_MAX_Y,  &GETCOMPOSITEAABB_MAX_Z ));
+	break;
+case FN_RecalculateCompositeAABB: //Sub Procedure
+	rc_recalculateCompositeAABB( RECALCULATECOMPOSITEAABB_ACTOR );
+	break;
+case FN_GenerateCompositeAABBFromChildren: //Sub Procedure
+	rc_generateCompositeAABBFromChildren( GENERATECOMPOSITEAABBFROMCHILDREN_ACTOR );
+	break;
+case FN_CalculateCompositePrincipalTransform: //Sub Procedure
+	rc_calculateCompositePrincipalTransform( CALCULATECOMPOSITEPRINCIPALTRANSFORM_ACTOR,  &CALCULATECOMPOSITEPRINCIPALTRANSFORM_MASSES,  CALCULATECOMPOSITEPRINCIPALTRANSFORM_PRINCIPAL_MATRIX,  &CALCULATECOMPOSITEPRINCIPALTRANSFORM_X,  &CALCULATECOMPOSITEPRINCIPALTRANSFORM_Y,  &CALCULATECOMPOSITEPRINCIPALTRANSFORM_Z );
+	break;
+case FN_UpdateCompositeChildTransform: //Sub Procedure
+	rc_updateCompositeChildTransform( UPDATECOMPOSITECHILDTRANSFORM_ACTOR,  UPDATECOMPOSITECHILDTRANSFORM_CHILD_INDEX,  UPDATECOMPOSITECHILDTRANSFORM_T_MATRIX,  UPDATECOMPOSITECHILDTRANSFORM_RECALC_FLAG );
+	break;
+case FN_GetCompositeUpdateRevision: //Number Function
+	 rc_push_num(rc_getCompositeUpdateRevision( GETCOMPOSITEUPDATEREVISION_ACTOR ));
+	break;
 case FN_createMaterial: //Number Function
 	 rc_push_num(rc_createMaterial(  ));
 	break;

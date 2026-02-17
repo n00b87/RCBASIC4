@@ -23,10 +23,14 @@ int rc_createSpriteAnimation(int spr_id, int anim_length, double fps)
 	if(!rc_sprite[spr_id].active)
 		return -1;
 
+    if(rc_sprite[spr_id].image_id < 0 || rc_sprite[spr_id].image_id >= rc_image.size())
+        return -1;
+
 	if(anim_length <= 0)
 		anim_length = 1;
 
 	rc_sprite2D_animation_obj animation;
+	animation.src_image_id = rc_sprite[spr_id].image_id;
 	animation.current_frame = 0;
 	animation.fps = fps;
 	animation.frame_swap_time = 1000/fps;
@@ -312,6 +316,21 @@ bool rc_spriteExists(int spr_id)
 	return rc_sprite[spr_id].active;
 }
 
+void rc_getSpriteBoxVertices(int spr_id)
+{
+    b2PolygonShape* shape = (b2PolygonShape*)rc_sprite[spr_id].physics.fixture->GetShape();
+
+    int m_count = shape->m_count;
+
+    rc_sprite[spr_id].physics.vertices.clear();
+
+    for(int i = 0; i < m_count; i++)
+    {
+        rc_sprite[spr_id].physics.vertices.push_back(shape->m_vertices[i]);
+    }
+
+}
+
 int rc_createSprite(int img_id, double w, double h)
 {
 	if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
@@ -384,6 +403,8 @@ int rc_createSprite(int img_id, double w, double h)
 
 	rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(w/2, h/2), 0);
 
+	rc_getSpriteBoxVertices(spr_id);
+
 
 	rc_sprite[spr_id].physics.base_offset_x = w/2;
 	rc_sprite[spr_id].physics.base_offset_y = h/2;
@@ -445,6 +466,18 @@ void rc_deleteSprite(int spr_id)
                     rc_canvas[rc_sprite[spr_id].parent_canvas].physics2D.world->DestroyBody(rc_sprite[spr_id].physics.body);
             }
 		}
+		else
+        {
+            int parent_id = rc_sprite[spr_id].parent_sprite;
+
+            if(parent_id >= 0 && parent_id < rc_sprite.size())
+            {
+                if(rc_sprite[parent_id].physics.body)
+                {
+                    rc_sprite[parent_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+                }
+            }
+        }
 		rc_sprite[spr_id].physics.body = NULL;
 	}
 
@@ -455,6 +488,8 @@ void rc_deleteSprite(int spr_id)
 	rc_sprite[spr_id].animation.clear();
 	rc_sprite[spr_id].child_sprites.clear();
 	rc_sprite[spr_id].parent_sprite = -1;
+	rc_sprite[spr_id].physics.fixture = NULL;
+	rc_sprite[spr_id].physics.body = NULL;
 
 	//std::cout << "DEBUG: Clear " << spr_id << " From " << parent_canvas << std::endl;
 
@@ -503,10 +538,24 @@ int rc_addSpriteChild(int spr_id, int child_sprite_id, double x, double y)
             int v_count = rc_sprite[child_sprite_id].physics.vertices.size();
             b2Vec2 vert[v_count];
 
+            b2PolygonShape* n = (b2PolygonShape*)rc_sprite[spr_id].physics.fixture->GetShape();
+
+            //std::cout << "V_COUNT = " << v_count << ", " << n->m_count << std::endl;
+
+            for(int i = 0; i < v_count; i++)
+            {
+                vert[i] = n->m_vertices[i];
+                //std::cout << "S_OUT: " << vert[i].x << ", " << vert[i].y << std::endl;
+            }
+
             for(int i = 0; i < v_count; i++)
             {
                 vert[i] = b2Mul(t, rc_sprite[child_sprite_id].physics.vertices[i]);
+
+                //std::cout << "V_OUT: " << vert[i].x << ", " << vert[i].y << std::endl;
             }
+
+            shape->Set(vert, v_count);
         }
         break;
 
@@ -543,9 +592,12 @@ int rc_addSpriteChild(int spr_id, int child_sprite_id, double x, double y)
         break;
 	}
 
+	childFixtureDef.isSensor = !rc_sprite[child_sprite_id].isSolid;
 	rc_sprite[child_sprite_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&childFixtureDef);
 
 	rc_sprite[child_sprite_id].physics.fixture_def = childFixtureDef;
+	rc_sprite[child_sprite_id].physics.fixture_offset_x = x;
+	rc_sprite[child_sprite_id].physics.fixture_offset_y = y;
 
 	if(rc_sprite[child_sprite_id].physics.body)
 	{
@@ -645,25 +697,27 @@ void rc_removeSpriteChild(int spr_id, int child_index)
 	}
 
 
-	b2BodyDef sprBodyDef;
-
 	int frame_w = rc_sprite[child_sprite_id].frame_size.Width;
 	int frame_h = rc_sprite[child_sprite_id].frame_size.Height;
 
 	float body_x = rc_sprite[child_sprite_id].physics.body->GetPosition().x;
 	float body_y = rc_sprite[child_sprite_id].physics.body->GetPosition().y;
 
-	int x = body_x + rc_sprite[child_sprite_id].physics.fixture_offset_x;
-	int y = body_y + rc_sprite[child_sprite_id].physics.fixture_offset_y;
+	int x = body_x + rc_sprite[child_sprite_id].physics.fixture_offset_x;// - (frame_w/2);
+	int y = body_y + rc_sprite[child_sprite_id].physics.fixture_offset_y;// - (frame_h/2);
 
 	rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[child_sprite_id].physics.fixture);
 
+	b2BodyDef sprBodyDef;
 
 	sprBodyDef.type = b2_dynamicBody;
 	sprBodyDef.position.Set(x, y);
 	sprBodyDef.angle = angle;
 	sprBodyDef.userData.pointer = child_sprite_id;
-	rc_sprite[child_sprite_id].physics.body = rc_canvas[rc_active_canvas].physics2D.world->CreateBody(&sprBodyDef);
+
+	int parent_canvas = rc_sprite[child_sprite_id].parent_canvas;
+
+	rc_sprite[child_sprite_id].physics.body = rc_canvas[parent_canvas].physics2D.world->CreateBody(&sprBodyDef);
 
 	rc_sprite[child_sprite_id].isSolid = rc_sprite[spr_id].isSolid;
 	childFixtureDef.isSensor = !rc_sprite[child_sprite_id].isSolid;
@@ -787,6 +841,8 @@ void rc_setSpriteCollisionShape(int spr_id, int sprite_shape)
 			float center_x = actual_x + (rc_sprite[spr_id].physics.offset_x + rc_sprite[spr_id].physics.user_offset_x);
 			float center_y = actual_y + (rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y);
 			rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(center_x, center_y), rc_sprite[spr_id].physics.body->GetAngle());
+
+			rc_getSpriteBoxVertices(spr_id);
 		}
 		break;
 
@@ -999,6 +1055,8 @@ void rc_setSpriteBox(int spr_id, int w, int h)
 		rc_sprite[spr_id].physics.body->SetTransform(b2Vec2(bx + off_x, by + off_y), rc_sprite[spr_id].physics.body->GetAngle());
 
 		rc_sprite[spr_id].physics.fixture_def = sprFixtureDef;
+
+		rc_getSpriteBoxVertices(spr_id);
 	}
 }
 
@@ -2195,6 +2253,7 @@ void drawSprites(int canvas_id)
 
 		if(rc_sprite[spr_id].parent_sprite >= 0 && rc_sprite[spr_id].parent_sprite < rc_sprite.size())
         {
+            //std::cout << "ADD OFFSET: " << rc_sprite[spr_id].physics.fixture_offset_x << ", " << rc_sprite[spr_id].physics.fixture_offset_y << std::endl;
             x += rc_sprite[spr_id].physics.fixture_offset_x;
             y += rc_sprite[spr_id].physics.fixture_offset_y;
         }
@@ -2265,12 +2324,19 @@ void drawSprites(int canvas_id)
 			continue;
 		}
 
-		int img_id = sprite->image_id;
-		if(img_id < 0 || img_id >= rc_image.size())
-			continue;
+		int img_id = -1;
 
 		//src_size = rc_image[img_id].image->getSize();
 		int current_animation = sprite->current_animation;
+
+		if(current_animation < 0 || current_animation >= sprite->animation.size())
+            continue;
+
+		img_id = sprite->animation[current_animation].src_image_id;
+
+		if(img_id < 0 || img_id >= rc_image.size())
+			continue;
+
 		if((spr_timer - sprite->animation[current_animation].frame_start_time) >= sprite->animation[current_animation].frame_swap_time)
 		{
 			sprite->animation[current_animation].current_frame++;

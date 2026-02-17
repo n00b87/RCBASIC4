@@ -45,6 +45,8 @@ struct rc_sprite2D_physics_obj
 
 struct rc_sprite2D_animation_obj
 {
+    int src_image_id;
+
 	irr::core::array<int> frames;
 
 	int num_frames;
