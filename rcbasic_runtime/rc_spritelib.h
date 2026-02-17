@@ -678,6 +678,27 @@ void rc_removeSpriteChild(int spr_id, int child_index)
 }
 
 
+int rc_getSpriteChildIndex(int spr_id, int child_spr_id)
+{
+    if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return -1;
+
+	if(!rc_sprite[spr_id].active)
+		return -1;
+
+    if(child_spr_id < 0 || child_spr_id >= rc_sprite.size())
+        return -1;
+
+    for(int i = 0; i < rc_sprite[spr_id].child_sprites.size(); i++)
+    {
+        if(rc_sprite[spr_id].child_sprites[i] == child_spr_id)
+            return i;
+    }
+
+    return -1;
+}
+
+
 void rc_setSpriteSource(int spr_id, int img_id)
 {
 	if(spr_id < 0 || spr_id >= rc_sprite.size())

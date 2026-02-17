@@ -1571,6 +1571,15 @@ case FN_GetSpriteColorMod: //Number Function
 case FN_GetSpriteAlpha: //Number Function
 	 rc_push_num(rc_getSpriteAlpha( GETSPRITEALPHA_SPRITE ));
 	break;
+case FN_AddSpriteChild: //Number Function
+	 rc_push_num(rc_addSpriteChild( ADDSPRITECHILD_SPRITE,  ADDSPRITECHILD_CHILD_SPRITE,  ADDSPRITECHILD_X,  ADDSPRITECHILD_Y ));
+	break;
+case FN_RemoveSpriteChild: //Sub Procedure
+	rc_removeSpriteChild( REMOVESPRITECHILD_SPRITE,  REMOVESPRITECHILD_CHILD_INDEX );
+	break;
+case FN_GetSpriteChildIndex: //Number Function
+	 rc_push_num(rc_getSpriteChildIndex( GETSPRITECHILDINDEX_SPRITE,  GETSPRITECHILDINDEX_CHILD_SPRITE ));
+	break;
 case FN_CreateSpriteAnimation: //Number Function
 	 rc_push_num(rc_createSpriteAnimation( CREATESPRITEANIMATION_SPRITE,  CREATESPRITEANIMATION_ANIM_LENGTH,  CREATESPRITEANIMATION_SPEED ));
 	break;
@@ -2239,6 +2248,9 @@ case FN_ActorExists: //Number Function
 	break;
 case FN_CreateProjectorActor: //Number Function
 	 rc_push_num(rc_createProjectorActor(  ));
+	break;
+case FN_CreateCompositeActor: //Number Function
+	 rc_push_num(rc_createCompositeActor(  ));
 	break;
 case FN_CreateActorAnimation: //Number Function
 	 rc_push_num(rc_createActorAnimation( CREATEACTORANIMATION_ACTOR,  CREATEACTORANIMATION_START_FRAME,  CREATEACTORANIMATION_END_FRAME,  CREATEACTORANIMATION_SPEED ));
