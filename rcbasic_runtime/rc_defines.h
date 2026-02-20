@@ -3365,175 +3365,357 @@
 #define UPDATECOMPOSITECHILDTRANSFORM_RECALC_FLAG num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define FN_GetCompositeUpdateRevision 1064
 #define GETCOMPOSITEUPDATEREVISION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_createMaterial 1065
-#define FN_deleteMaterial 1066
+#define FN_AddVehicleWheel 1065
+#define ADDVEHICLEWHEEL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define ADDVEHICLEWHEEL_WHEEL_ACTOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define ADDVEHICLEWHEEL_IS_FRONT_WHEEL num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_GetVehicleAxis 1066
+#define GETVEHICLEAXIS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETVEHICLEAXIS_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define GETVEHICLEAXIS_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define GETVEHICLEAXIS_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
+#define FN_GetVehicleForwardVector 1067
+#define GETVEHICLEFORWARDVECTOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETVEHICLEFORWARDVECTOR_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define GETVEHICLEFORWARDVECTOR_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define GETVEHICLEFORWARDVECTOR_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
+#define FN_GetVehicleCurrentSpeed 1068
+#define GETVEHICLECURRENTSPEED_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define FN_GetWheelCount 1069
+#define GETWHEELCOUNT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define FN_GetVehicleChassisWorldTransform 1070
+#define GETVEHICLECHASSISWORLDTRANSFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETVEHICLECHASSISWORLDTRANSFORM_T_MATRIX num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelSteeringValue 1071
+#define GETWHEELSTEERINGVALUE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELSTEERINGVALUE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelWorldTransform 1072
+#define GETWHEELWORLDTRANSFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELWORLDTRANSFORM_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define GETWHEELWORLDTRANSFORM_T_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_GetWheelConnectionPoint 1073
+#define GETWHEELCONNECTIONPOINT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELCONNECTIONPOINT_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define GETWHEELCONNECTIONPOINT_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define GETWHEELCONNECTIONPOINT_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
+#define GETWHEELCONNECTIONPOINT_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
+#define FN_GetWheelDirection 1074
+#define GETWHEELDIRECTION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELDIRECTION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define GETWHEELDIRECTION_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define GETWHEELDIRECTION_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
+#define GETWHEELDIRECTION_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
+#define FN_GetWheelAxel 1075
+#define GETWHEELAXEL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELAXEL_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define GETWHEELAXEL_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define GETWHEELAXEL_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
+#define GETWHEELAXEL_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
+#define FN_GetWheelSuspensionLength 1076
+#define GETWHEELSUSPENSIONLENGTH_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELSUSPENSIONLENGTH_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelMaxSuspensionTravel 1077
+#define GETWHEELMAXSUSPENSIONTRAVEL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELMAXSUSPENSIONTRAVEL_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelRadius 1078
+#define GETWHEELRADIUS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELRADIUS_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelSuspensionStiffness 1079
+#define GETWHEELSUSPENSIONSTIFFNESS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELSUSPENSIONSTIFFNESS_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelDampingCompression 1080
+#define GETWHEELDAMPINGCOMPRESSION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELDAMPINGCOMPRESSION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelDampingRelaxation 1081
+#define GETWHEELDAMPINGRELAXATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELDAMPINGRELAXATION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelFrictionSlip 1082
+#define GETWHEELFRICTIONSLIP_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELFRICTIONSLIP_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelRotation 1083
+#define GETWHEELROTATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELROTATION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelRotationDelta 1084
+#define GETWHEELROTATIONDELTA_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELROTATIONDELTA_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelRollInfluence 1085
+#define GETWHEELROLLINFLUENCE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELROLLINFLUENCE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelEngineForce 1086
+#define GETWHEELENGINEFORCE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELENGINEFORCE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelBrake 1087
+#define GETWHEELBRAKE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELBRAKE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_WheelIsFront 1088
+#define WHEELISFRONT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define WHEELISFRONT_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelInverseContactSuspension 1089
+#define GETWHEELINVERSECONTACTSUSPENSION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELINVERSECONTACTSUSPENSION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_GetWheelSuspensionVelocity 1090
+#define GETWHEELSUSPENSIONVELOCITY_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELSUSPENSIONVELOCITY_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_ResetVehicleSuspension 1091
+#define RESETVEHICLESUSPENSION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define FN_SetWheelSteeringValue 1092
+#define SETWHEELSTEERINGVALUE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELSTEERINGVALUE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELSTEERINGVALUE_STEERING num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_ApplyWheelEngineForce 1093
+#define APPLYWHEELENGINEFORCE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define APPLYWHEELENGINEFORCE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define APPLYWHEELENGINEFORCE_FORCE num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_SetWheelBrake 1094
+#define SETWHEELBRAKE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELBRAKE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELBRAKE_BRAKE num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_SetVehiclePitchControl 1095
+#define SETVEHICLEPITCHCONTROL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETVEHICLEPITCHCONTROL_PITCH num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_SetWheelConnectionPoint 1096
+#define SETWHEELCONNECTIONPOINT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELCONNECTIONPOINT_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELCONNECTIONPOINT_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define SETWHEELCONNECTIONPOINT_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
+#define SETWHEELCONNECTIONPOINT_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
+#define FN_SetWheelDirection 1097
+#define SETWHEELDIRECTION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELDIRECTION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELDIRECTION_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define SETWHEELDIRECTION_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
+#define SETWHEELDIRECTION_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
+#define FN_SetWheelAxel 1098
+#define SETWHEELAXEL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELAXEL_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELAXEL_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define SETWHEELAXEL_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
+#define SETWHEELAXEL_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
+#define FN_SetWheelSuspensionLength 1099
+#define SETWHEELSUSPENSIONLENGTH_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELSUSPENSIONLENGTH_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELSUSPENSIONLENGTH_S_LENGTH num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_SetWheelMaxSuspensionTravel 1100
+#define SETWHEELMAXSUSPENSIONTRAVEL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELMAXSUSPENSIONTRAVEL_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELMAXSUSPENSIONTRAVEL_MAX_TRAVEL num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_SetWheelRadius 1101
+#define SETWHEELRADIUS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELRADIUS_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELRADIUS_RADIUS num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_SetWheelSuspensionStiffness 1102
+#define SETWHEELSUSPENSIONSTIFFNESS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELSUSPENSIONSTIFFNESS_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELSUSPENSIONSTIFFNESS_STIFFNESS num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_SetWheelDampingCompression 1103
+#define SETWHEELDAMPINGCOMPRESSION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELDAMPINGCOMPRESSION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELDAMPINGCOMPRESSION_DCOMP_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_SetWheelDampingRelaxation 1104
+#define SETWHEELDAMPINGRELAXATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELDAMPINGRELAXATION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELDAMPINGRELAXATION_DREL_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_SetWheelFrictionSlip 1105
+#define SETWHEELFRICTIONSLIP_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELFRICTIONSLIP_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELFRICTIONSLIP_FSLIP_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_SetWheelRotation 1106
+#define SETWHEELROTATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELROTATION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELROTATION_ROT num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_SetWheelRotationDelta 1107
+#define SETWHEELROTATIONDELTA_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELROTATIONDELTA_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELROTATIONDELTA_ROT_DELTA num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_SetWheelRollInfluence 1108
+#define SETWHEELROLLINFLUENCE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELROLLINFLUENCE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELROLLINFLUENCE_ROLL_INFLUENCE num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_SetWheelInverseContactSuspension 1109
+#define SETWHEELINVERSECONTACTSUSPENSION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELINVERSECONTACTSUSPENSION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELINVERSECONTACTSUSPENSION_C_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_SetWheelSuspensionVelocity 1110
+#define SETWHEELSUSPENSIONVELOCITY_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELSUSPENSIONVELOCITY_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELSUSPENSIONVELOCITY_VELOCITY num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_SetWheelActorOffsetTransform 1111
+#define SETWHEELACTOROFFSETTRANSFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETWHEELACTOROFFSETTRANSFORM_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define SETWHEELACTOROFFSETTRANSFORM_T_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_GetWheelActorOffsetTransform 1112
+#define GETWHEELACTOROFFSETTRANSFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define GETWHEELACTOROFFSETTRANSFORM_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define GETWHEELACTOROFFSETTRANSFORM_T_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_createMaterial 1113
+#define FN_deleteMaterial 1114
 #define DELETEMATERIAL_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setActorMaterial 1067
+#define FN_setActorMaterial 1115
 #define SETACTORMATERIAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORMATERIAL_MATERIAL_NUM num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORMATERIAL_MATERIAL_ID num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getActorMaterial 1068
+#define FN_getActorMaterial 1116
 #define GETACTORMATERIAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORMATERIAL_MATERIAL_NUM num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_copyActorMaterial 1069
+#define FN_copyActorMaterial 1117
 #define COPYACTORMATERIAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define COPYACTORMATERIAL_MATERIAL_NUM num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_copyMaterial 1070
+#define FN_copyMaterial 1118
 #define COPYMATERIAL_SMATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialTextureCanvas 1071
+#define FN_setMaterialTextureCanvas 1119
 #define SETMATERIALTEXTURECANVAS_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALTEXTURECANVAS_LEVEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMATERIALTEXTURECANVAS_CANVAS_ID num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_setMaterialAmbientColor 1072
+#define FN_setMaterialAmbientColor 1120
 #define SETMATERIALAMBIENTCOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALAMBIENTCOLOR_COLOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialAmbientColor 1073
+#define FN_getMaterialAmbientColor 1121
 #define GETMATERIALAMBIENTCOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialAntiAliasing 1074
+#define FN_setMaterialAntiAliasing 1122
 #define SETMATERIALANTIALIASING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALANTIALIASING_AA num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialAntiAliasing 1075
+#define FN_getMaterialAntiAliasing 1123
 #define GETMATERIALANTIALIASING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialBackfaceCulling 1076
+#define FN_setMaterialBackfaceCulling 1124
 #define SETMATERIALBACKFACECULLING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALBACKFACECULLING_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialBackfaceCulling 1077
+#define FN_getMaterialBackfaceCulling 1125
 #define GETMATERIALBACKFACECULLING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialBlendFactor 1078
+#define FN_setMaterialBlendFactor 1126
 #define SETMATERIALBLENDFACTOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALBLENDFACTOR_BF num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialBlendFactor 1079
+#define FN_getMaterialBlendFactor 1127
 #define GETMATERIALBLENDFACTOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialBlendMode 1080
+#define FN_setMaterialBlendMode 1128
 #define SETMATERIALBLENDMODE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALBLENDMODE_BLEND_MODE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialBlendMode 1081
+#define FN_getMaterialBlendMode 1129
 #define GETMATERIALBLENDMODE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialColorMask 1082
+#define FN_setMaterialColorMask 1130
 #define SETMATERIALCOLORMASK_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALCOLORMASK_COLOR_MASK num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialColorMask 1083
+#define FN_getMaterialColorMask 1131
 #define GETMATERIALCOLORMASK_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialColorMode 1084
+#define FN_setMaterialColorMode 1132
 #define SETMATERIALCOLORMODE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALCOLORMODE_COLOR_MODE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialColorMode 1085
+#define FN_getMaterialColorMode 1133
 #define GETMATERIALCOLORMODE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialDiffuseColor 1086
+#define FN_setMaterialDiffuseColor 1134
 #define SETMATERIALDIFFUSECOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALDIFFUSECOLOR_COLOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialDiffuseColor 1087
+#define FN_getMaterialDiffuseColor 1135
 #define GETMATERIALDIFFUSECOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialEmissiveColor 1088
+#define FN_setMaterialEmissiveColor 1136
 #define SETMATERIALEMISSIVECOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALEMISSIVECOLOR_COLOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialEmissiveColor 1089
+#define FN_getMaterialEmissiveColor 1137
 #define GETMATERIALEMISSIVECOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialFog 1090
+#define FN_setMaterialFog 1138
 #define SETMATERIALFOG_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALFOG_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialFog 1091
+#define FN_getMaterialFog 1139
 #define GETMATERIALFOG_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialFrontfaceCulling 1092
+#define FN_setMaterialFrontfaceCulling 1140
 #define SETMATERIALFRONTFACECULLING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALFRONTFACECULLING_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialFrontfaceCulling 1093
+#define FN_getMaterialFrontfaceCulling 1141
 #define GETMATERIALFRONTFACECULLING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialGouraudShading 1094
+#define FN_setMaterialGouraudShading 1142
 #define SETMATERIALGOURAUDSHADING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALGOURAUDSHADING_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_materialIsGouraudShaded 1095
+#define FN_materialIsGouraudShaded 1143
 #define MATERIALISGOURAUDSHADED_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_materialIsAplhaBlend 1096
+#define FN_materialIsAplhaBlend 1144
 #define MATERIALISAPLHABLEND_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_materialIsTransparent 1097
+#define FN_materialIsTransparent 1145
 #define MATERIALISTRANSPARENT_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialLighting 1098
+#define FN_setMaterialLighting 1146
 #define SETMATERIALLIGHTING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALLIGHTING_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_materialIsLit 1099
+#define FN_materialIsLit 1147
 #define MATERIALISLIT_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialType 1100
+#define FN_setMaterialType 1148
 #define SETMATERIALTYPE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALTYPE_MAT_TYPE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialType 1101
+#define FN_getMaterialType 1149
 #define GETMATERIALTYPE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialNormalize 1102
+#define FN_setMaterialNormalize 1150
 #define SETMATERIALNORMALIZE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALNORMALIZE_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_materialIsNormalized 1103
+#define FN_materialIsNormalized 1151
 #define MATERIALISNORMALIZED_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialPointCloud 1104
+#define FN_setMaterialPointCloud 1152
 #define SETMATERIALPOINTCLOUD_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALPOINTCLOUD_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_materialIsPointCloud 1105
+#define FN_materialIsPointCloud 1153
 #define MATERIALISPOINTCLOUD_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialFlag 1106
+#define FN_setMaterialFlag 1154
 #define SETMATERIALFLAG_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALFLAG_MATERIAL_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMATERIALFLAG_F_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getMaterialFlag 1107
+#define FN_getMaterialFlag 1155
 #define GETMATERIALFLAG_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMATERIALFLAG_MATERIAL_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setMaterialTexture 1108
+#define FN_setMaterialTexture 1156
 #define SETMATERIALTEXTURE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALTEXTURE_LEVEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMATERIALTEXTURE_IMG_ID num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_setMaterialShininess 1109
+#define FN_setMaterialShininess 1157
 #define SETMATERIALSHININESS_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALSHININESS_SHININESS num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialShininess 1110
+#define FN_getMaterialShininess 1158
 #define GETMATERIALSHININESS_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialSpecularColor 1111
+#define FN_setMaterialSpecularColor 1159
 #define SETMATERIALSPECULARCOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALSPECULARCOLOR_COLOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialSpecularColor 1112
+#define FN_getMaterialSpecularColor 1160
 #define GETMATERIALSPECULARCOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialThickness 1113
+#define FN_setMaterialThickness 1161
 #define SETMATERIALTHICKNESS_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALTHICKNESS_THICKNESS num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialThickness 1114
+#define FN_getMaterialThickness 1162
 #define GETMATERIALTHICKNESS_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialWireframe 1115
+#define FN_setMaterialWireframe 1163
 #define SETMATERIALWIREFRAME_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALWIREFRAME_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_materialIsWireframe 1116
+#define FN_materialIsWireframe 1164
 #define MATERIALISWIREFRAME_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setActorTexture 1117
+#define FN_setActorTexture 1165
 #define SETACTORTEXTURE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORTEXTURE_LAYER num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORTEXTURE_IMAGE_ID num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getActorMaterialCount 1118
+#define FN_getActorMaterialCount 1166
 #define GETACTORMATERIALCOUNT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setActorMaterialFlag 1119
+#define FN_setActorMaterialFlag 1167
 #define SETACTORMATERIALFLAG_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORMATERIALFLAG_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORMATERIALFLAG_FLAG_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getActorMaterialFlag 1120
+#define FN_getActorMaterialFlag 1168
 #define GETACTORMATERIALFLAG_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORMATERIALFLAG_MATERIAL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORMATERIALFLAG_FLAG num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_setActorMaterialType 1121
+#define FN_setActorMaterialType 1169
 #define SETACTORMATERIALTYPE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORMATERIALTYPE_MATERIAL_TYPE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getActorMaterialType 1122
+#define FN_getActorMaterialType 1170
 #define GETACTORMATERIALTYPE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORMATERIALTYPE_MATERIAL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_MaterialExists 1123
+#define FN_MaterialExists 1171
 #define MATERIALEXISTS_MATERIAL num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_NumMaterialConstants 1124
+#define FN_NumMaterialConstants 1172
 #define NUMMATERIALCONSTANTS_MATERIAL_TYPE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetMaterialConstantName$ 1125
+#define FN_GetMaterialConstantName$ 1173
 #define GETMATERIALCONSTANTNAME$_MATERIAL_TYPE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMATERIALCONSTANTNAME$_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetMaterialConstant 1126
+#define FN_SetMaterialConstant 1174
 #define SETMATERIALCONSTANT_MATERIAL num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALCONSTANT_M_CONSTANT$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define SETMATERIALCONSTANT_N1 num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMATERIALCONSTANT_N2 num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETMATERIALCONSTANT_N3 num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define SETMATERIALCONSTANT_N4 num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_GetMaterialConstant 1127
+#define FN_GetMaterialConstant 1175
 #define GETMATERIALCONSTANT_MATERIAL num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMATERIALCONSTANT_M_CONSTANT$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define GETMATERIALCONSTANT_N1 num_var[1].nref[0].value[ num_var[1].byref_offset ]
