@@ -525,6 +525,7 @@ irr::core::array<rc_an8_obj> rc_an8;
 #define RC_NODE_TYPE_STMESH   	8
 #define RC_NODE_TYPE_PROJECTOR	9
 #define RC_NODE_TYPE_COMPOSITE	10
+#define RC_NODE_TYPE_VEHICLE    11
 
 
 #define RC_NODE_SHAPE_TYPE_NONE			0
@@ -537,6 +538,7 @@ irr::core::array<rc_an8_obj> rc_an8;
 #define RC_NODE_SHAPE_TYPE_TRIMESH		7
 #define RC_NODE_SHAPE_TYPE_HEIGHTFIELD	8
 #define RC_NODE_SHAPE_TYPE_COMPOSITE    9
+#define RC_NODE_SHAPE_TYPE_IMPACT_MESH  10
 
 struct rc_node_physics_collision
 {
@@ -552,6 +554,8 @@ irr::core::array<rc_node_physics_collision> rc_collisions;
 struct rc_node_physics
 {
 	IRigidBody* rigid_body;
+
+	int impact_mesh_id;
 
 	int shape_type;
 	bool isSolid;
@@ -616,6 +620,26 @@ struct rc_actor_fx_material_obj
 	int actor_material_index = -1; //index from node->getMaterial()
 };
 
+struct rc_composite_child
+{
+    int id;
+    irr::core::matrix4 child_transform;
+    ICollisionShape* shape;
+};
+
+struct rc_vehicle_wheel
+{
+    int actor_id;
+    irr::core::matrix4 offset_transform;
+};
+
+struct rc_vehicle_properties
+{
+    int chassis_actor_id;
+    IRaycastVehicle* vehicle;
+    irr::core::array<rc_vehicle_wheel> wheels;
+};
+
 struct rc_scene_node
 {
     int node_type = 0;
@@ -641,11 +665,15 @@ struct rc_scene_node
     irr::core::array<int> deleted_animation;
     irr::core::array<rc_actor_animation_obj> animation;
 
-    irr::core::array<int> child_actors; // Only used for composite actor types
+    int parent_id;
+    irr::core::array<rc_composite_child> child_actors; // Only used for composite actor types
+
+    rc_vehicle_properties vehicle_properties;
 };
 
 irr::core::array<rc_scene_node> rc_actor;
 irr::core::array<int> rc_projector_actors;
+irr::core::array<int> rc_vehicle_actors;
 irr::core::array<int> rc_transition_actor;
 
 

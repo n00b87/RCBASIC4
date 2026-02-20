@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1771296134 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
+1771311954 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
 	"rc_os_defines.h"
 	<emscripten.h>
 	<sys/param.h>
@@ -1275,7 +1275,7 @@
 	"rc_post_fx.h"
 	<irrtheora.h>
 
-1771041726 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx_core.h
+1771574063 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx_core.h
 	"SDL.h"
 	"btBulletDynamicsCommon.h"
 	"BulletSoftBody/btSoftRigidDynamicsWorld.h"
@@ -2341,7 +2341,7 @@
 	"irrBulletCollisionObject.h"
 	<vector3d.h>
 
-1760243468 source:/home/n00b/Projects/irrBullet/src/irrBulletCollisionShape.cpp
+1771381630 source:/home/n00b/Projects/irrBullet/src/irrBulletCollisionShape.cpp
 	<btBulletDynamicsCommon.h>
 	<btBulletCollisionCommon.h>
 	<BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h>
@@ -2387,7 +2387,7 @@
 	"irrBulletCompileConfig.h"
 	"irrBulletWorld.h"
 
-1760243468 source:/home/n00b/Projects/irrBullet/src/irrBulletGImpactMeshShape.cpp
+1771492413 source:/home/n00b/Projects/irrBullet/src/irrBulletGImpactMeshShape.cpp
 	<btBulletDynamicsCommon.h>
 	<btBulletCollisionCommon.h>
 	<BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h>
@@ -2533,7 +2533,7 @@
 1758412944 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_physics3D_base.h
 	"rc_gfx_core.h"
 
-1771135335 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_base_actor.h
+1771579368 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_base_actor.h
 	"ProjectiveTextures.h"
 	"rc_matrix.h"
 
@@ -2550,12 +2550,14 @@
 
 1758412944 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_particles.h
 
-1764140917 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_scene.h
+1771479046 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_scene.h
 	"rc_gfx_core.h"
+	"rc_base_actor.h"
+	"rc_constraint.h"
 
 1758412944 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_camera.h
 
-1769130046 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_windowclose.h
+1771572803 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_windowclose.h
 
 1650940764 /usr/include/bullet/BulletCollision/NarrowPhaseCollision/btRaycastCallback.h
 	"BulletCollision/CollisionShapes/btTriangleCallback.h"
@@ -2749,7 +2751,7 @@
 	<sstream>
 	"rc_steam.h"
 
-1764140917 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_render_control.h
+1771572779 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_render_control.h
 	<irrlicht.h>
 	"rc_gfx_core.h"
 	"rc_post_fx.h"
@@ -2759,11 +2761,11 @@
 	<cstdlib>
 	"rc_gfx_core.h"
 
-1771135300 /home/n00b/Projects/irrBullet/include/irrBulletCompoundShape.h
+1771366010 /home/n00b/Projects/irrBullet/include/irrBulletCompoundShape.h
 	"irrBulletCollisionShape.h"
 	<vector>
 
-1771135300 source:/home/n00b/Projects/irrBullet/src/irrBulletCompoundShape.cpp
+1771391831 source:/home/n00b/Projects/irrBullet/src/irrBulletCompoundShape.cpp
 	<ISceneNode.h>
 	"btBulletDynamicsCommon.h"
 	"btBulletCollisionCommon.h"

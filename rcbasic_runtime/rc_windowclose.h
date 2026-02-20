@@ -520,11 +520,12 @@ bool rc_update()
                     i++;
                 }
             }
+
         }
 
 
-        if(!manual_render_control)
-            VideoDriver->beginScene(true, true);
+        //if(!manual_render_control)
+          //  VideoDriver->beginScene(true, true);
 
         if(rc_physics3D.enabled && (!hasPreUpdated))
         {
@@ -535,6 +536,31 @@ bool rc_update()
 			float fixed_timestep = rc_physics3D.fixedTimeStep < 0 ? rc_physics3D.DeltaTime*0.001f : rc_physics3D.fixedTimeStep;
 			rc_physics3D.world->stepSimulation(rc_physics3D.DeltaTime*0.001f, rc_physics3D.maxSubSteps, fixed_timestep);
         }
+
+        for(int i = 0; i < rc_vehicle_actors.size(); i++)
+        {
+            int vehicle_actor = rc_vehicle_actors[i];
+
+            for(int wheel_index = 0; wheel_index < rc_actor[vehicle_actor].vehicle_properties.wheels.size(); wheel_index++)
+            {
+                SWheelInfo &info = rc_actor[vehicle_actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+                int wheel_actor = rc_actor[vehicle_actor].vehicle_properties.wheels[wheel_index].actor_id;
+
+                if(wheel_actor < 0 || wheel_actor >= rc_actor.size())
+                    continue;
+
+                rc_actor[wheel_actor].physics.rigid_body->setWorldTransform(info.worldTransform);
+                irr::core::matrix4 actor_transform = rc_actor[wheel_actor].physics.rigid_body->getWorldTransform();
+
+                rc_actor[wheel_actor].mesh_node->setPosition( actor_transform.getTranslation() );
+                rc_actor[wheel_actor].mesh_node->setRotation( actor_transform.getRotationDegrees() );
+                rc_actor[wheel_actor].mesh_node->updateAbsolutePosition();
+            }
+        }
+
+        if(!manual_render_control)
+            VideoDriver->beginScene(true, true);
 
         if(!manual_render_control)
         {

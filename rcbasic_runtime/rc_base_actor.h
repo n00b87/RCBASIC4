@@ -6,28 +6,107 @@
 
 void setSolidProperties(int actor)
 {
-	if(!rc_actor[actor].physics.isSolid)
+    if(rc_actor[actor].node_type == RC_NODE_TYPE_VEHICLE)
+    {
+        int chassis_actor = rc_actor[actor].vehicle_properties.chassis_actor_id;
+
+        if(chassis_actor >= 0 && chassis_actor < rc_actor.size())
+        {
+            if(rc_actor[chassis_actor].physics.rigid_body)
+            {
+                if(!rc_actor[chassis_actor].physics.isSolid)
+                {
+                    rc_actor[chassis_actor].physics.gravity = rc_actor[chassis_actor].physics.rigid_body->getGravity();
+                    rc_actor[chassis_actor].physics.rigid_body->setGravity(irr::core::vector3df(0,0,0));
+                    rc_actor[chassis_actor].physics.rigid_body->setCollisionFlags( ECollisionFlag::ECF_NO_CONTACT_RESPONSE );
+                }
+            }
+        }
+
+        for(int i = 0; i < rc_actor[actor].vehicle_properties.wheels.size(); i++)
+        {
+            int wheel_actor = rc_actor[actor].vehicle_properties.wheels[i].actor_id;
+
+            if(wheel_actor < 0 || wheel_actor >= rc_actor.size())
+                continue;
+
+            if(!rc_actor[wheel_actor].physics.rigid_body)
+                continue;
+
+            if(!rc_actor[wheel_actor].physics.isSolid)
+            {
+                rc_actor[wheel_actor].physics.gravity = rc_actor[wheel_actor].physics.rigid_body->getGravity();
+                rc_actor[wheel_actor].physics.rigid_body->setGravity(irr::core::vector3df(0,0,0));
+                rc_actor[wheel_actor].physics.rigid_body->setCollisionFlags( ECollisionFlag::ECF_NO_CONTACT_RESPONSE );
+            }
+        }
+    }
+    else
 	{
-		rc_actor[actor].physics.gravity = rc_actor[actor].physics.rigid_body->getGravity();
-		rc_actor[actor].physics.rigid_body->setGravity(irr::core::vector3df(0,0,0));
-		rc_actor[actor].physics.rigid_body->setCollisionFlags( ECollisionFlag::ECF_NO_CONTACT_RESPONSE );
-	}
-	else
-	{
-		//rc_actor[actor].physics.rigid_body->setGravity(rc_actor[actor].physics.gravity);
+	    if(!rc_actor[actor].physics.isSolid)
+        {
+            rc_actor[actor].physics.gravity = rc_actor[actor].physics.rigid_body->getGravity();
+            rc_actor[actor].physics.rigid_body->setGravity(irr::core::vector3df(0,0,0));
+            rc_actor[actor].physics.rigid_body->setCollisionFlags( ECollisionFlag::ECF_NO_CONTACT_RESPONSE );
+        }
+        else
+        {
+            //rc_actor[actor].physics.rigid_body->setGravity(rc_actor[actor].physics.gravity);
+        }
 	}
 }
 
 void rc_setActorCollisionShape(int actor_id, int shape_type, double mass, double radius=-1.0)
 {
+    if(actor_id < 0 || actor_id >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor_id].node_type == RC_NODE_TYPE_VEHICLE)
+        return;
+
     if(rc_actor[actor_id].node_type == RC_NODE_TYPE_COMPOSITE && shape_type != RC_NODE_SHAPE_TYPE_COMPOSITE)
         return;
+
+    if(shape_type == RC_NODE_SHAPE_TYPE_IMPACT_MESH)
+    {
+        rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_IMPACT_MESH;
+
+        if(rc_actor[actor_id].physics.impact_mesh_id < 0)
+        {
+            return;
+        }
+    }
 
 	//std::cout << "Start ColShape" << std::endl;
 	if(rc_actor[actor_id].physics.rigid_body)
 	{
-		rc_physics3D.world->removeCollisionObject(rc_actor[actor_id].physics.rigid_body, false);
-		delete rc_actor[actor_id].physics.rigid_body;
+	    if(rc_actor[actor_id].physics.rigid_body->getCollisionShape()->getShapeType() == ECollisionShapeType::ECST_COMPOUND)
+        {
+            ICompoundShape* shape = (ICompoundShape*)rc_actor[actor_id].physics.rigid_body->getCollisionShape();
+
+            //std::cout << "Child Actors: " << rc_actor[actor_id].child_actors.size() << std::endl;
+
+            int num_shapes = shape->getNumChildShapes();
+            for(int i = 0; i < num_shapes; i++)
+            {
+                ICollisionShape* child_shape = rc_actor[actor_id].child_actors[i].shape; //shape->getChildShape(0);
+                shape->removeChildShape(child_shape);
+            }
+
+            irr::scene::ISceneNode* empty_node = SceneManager->addEmptySceneNode();
+            IBoxShape* new_child_shape = new IBoxShape(empty_node, 0, false);
+            rc_actor[actor_id].physics.rigid_body->setCollisionShape(new_child_shape);
+
+            rc_physics3D.world->removeCollisionObject(rc_actor[actor_id].physics.rigid_body, false);
+            delete rc_actor[actor_id].physics.rigid_body;
+
+            empty_node->remove();
+        }
+        else
+		{
+		    rc_physics3D.world->removeCollisionObject(rc_actor[actor_id].physics.rigid_body, false);
+            delete rc_actor[actor_id].physics.rigid_body;
+		}
 	}
 
 	rc_actor[actor_id].physics.rigid_body = NULL;
@@ -194,9 +273,23 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass, double
 			if(rc_actor[actor_id].node_type == RC_NODE_TYPE_COMPOSITE)
 			{
 				rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_COMPOSITE;
+
 				ICompoundShape* shape = new ICompoundShape(rc_actor[actor_id].mesh_node, mass, false);
 
-				rc_actor[actor_id].physics.rigid_body = rc_physics3D.world->addRigidBody(shape);
+				for(int i = 0; i < rc_actor[actor_id].child_actors.size(); i++)
+                {
+                    int child_id = rc_actor[actor_id].child_actors[i].id;
+
+                    if(child_id < 0 || child_id >= rc_actor.size())
+                        continue;
+
+                    if(!rc_actor[actor_id].child_actors[i].shape)
+                        continue;
+
+                    shape->addChildShape(rc_actor[actor_id].child_actors[i].child_transform, rc_actor[actor_id].child_actors[i].shape);
+                }
+
+                rc_actor[actor_id].physics.rigid_body = rc_physics3D.world->addRigidBody(shape);
 
 				setSolidProperties(actor_id);
 			}
@@ -204,6 +297,19 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass, double
             {
                 std::cout << "SetActorShape Error: Composite Shapes can only be set on Composite Actors" << std::endl;
             }
+			break;
+
+        case RC_NODE_SHAPE_TYPE_IMPACT_MESH:
+			{
+				rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_IMPACT_MESH;
+				int mesh_id = rc_actor[actor_id].physics.impact_mesh_id;
+				irr::scene::IMesh* mesh = rc_mesh[mesh_id].mesh;
+				IGImpactMeshShape* shape = new IGImpactMeshShape(rc_actor[actor_id].mesh_node, mesh, mass);
+
+				rc_actor[actor_id].physics.rigid_body = rc_physics3D.world->addRigidBody(shape);
+
+				setSolidProperties(actor_id);
+			}
 			break;
 
 		default:
@@ -228,6 +334,32 @@ void rc_setActorSleepState(int actor, int state)
 	{
 		rc_actor[actor].physics.rigid_body->getPointer()->forceActivationState(state);
 	}
+
+	if(rc_actor[actor].node_type == RC_NODE_TYPE_VEHICLE)
+    {
+        int chassis_id = rc_actor[actor].vehicle_properties.chassis_actor_id;
+
+        if(chassis_id >= 0 && chassis_id < rc_actor.size())
+        {
+            if(rc_actor[chassis_id].physics.rigid_body)
+            {
+                rc_actor[chassis_id].physics.rigid_body->getPointer()->forceActivationState(state);
+            }
+        }
+
+        for(int i = 0; i < rc_actor[actor].vehicle_properties.wheels.size(); i++)
+        {
+            int wheel_id = rc_actor[actor].vehicle_properties.wheels[i].actor_id;
+
+            if(wheel_id < 0 || wheel_id >= rc_actor.size())
+                continue;
+
+            if(rc_actor[wheel_id].physics.rigid_body)
+            {
+                rc_actor[wheel_id].physics.rigid_body->getPointer()->forceActivationState(state);
+            }
+        }
+    }
 }
 
 int rc_getActorCollisionShape(int actor)
@@ -252,8 +384,38 @@ void rc_setActorSolid(int actor_id, bool flag)
 
 	if(flag != rc_actor[actor_id].physics.isSolid)
 	{
-		rc_actor[actor_id].physics.isSolid = flag;
-		rc_setActorCollisionShape(actor_id, rc_actor[actor_id].physics.shape_type, rc_actor[actor_id].physics.mass);
+	    if(rc_actor[actor_id].node_type == RC_NODE_TYPE_VEHICLE)
+        {
+            int chassis_id = rc_actor[actor_id].vehicle_properties.chassis_actor_id;
+
+            if(chassis_id >= 0 && chassis_id < rc_actor.size())
+            {
+                if(rc_actor[chassis_id].physics.rigid_body)
+                {
+                    rc_actor[chassis_id].physics.isSolid = flag;
+                    rc_setActorCollisionShape(chassis_id, rc_actor[chassis_id].physics.shape_type, rc_actor[chassis_id].physics.mass);
+                }
+            }
+
+            for(int i = 0; i < rc_actor[actor_id].vehicle_properties.wheels.size(); i++)
+            {
+                int wheel_id = rc_actor[actor_id].vehicle_properties.wheels[i].actor_id;
+
+                if(wheel_id < 0 || wheel_id >= rc_actor.size())
+                    continue;
+
+                if(rc_actor[wheel_id].physics.rigid_body)
+                {
+                    rc_actor[wheel_id].physics.isSolid = flag;
+                    rc_setActorCollisionShape(wheel_id, rc_actor[wheel_id].physics.shape_type, rc_actor[wheel_id].physics.mass);
+                }
+            }
+        }
+		else
+		{
+		    rc_actor[actor_id].physics.isSolid = flag;
+            rc_setActorCollisionShape(actor_id, rc_actor[actor_id].physics.shape_type, rc_actor[actor_id].physics.mass);
+		}
 	}
 }
 
@@ -279,6 +441,12 @@ bool rc_actorExists(int actor_id)
 
 bool rc_getActorCollision(int actor1, int actor2)
 {
+    if(actor1 < 0 || actor1 >= rc_actor.size())
+        return false;
+
+    if(actor2 < 0 || actor2 >= rc_actor.size())
+        return false;
+
 	for(int i = 0; i < rc_actor[actor1].physics.collisions.size(); i++)
 	{
 		int c_index = rc_actor[actor1].physics.collisions[i];
@@ -293,7 +461,85 @@ bool rc_getActorCollision(int actor1, int actor2)
 		}
 	}
 
+	if(rc_actor[actor1].node_type == RC_NODE_TYPE_VEHICLE)
+    {
+        if(rc_actor[actor2].node_type == RC_NODE_TYPE_VEHICLE)
+        {
+            int chassis_id1 = rc_actor[actor1].vehicle_properties.chassis_actor_id;
+            int chassis_id2 = rc_actor[actor2].vehicle_properties.chassis_actor_id;
+
+            if(rc_getActorCollision(chassis_id1, chassis_id2))
+                return true;
+
+            for(int i1 = 0; i1 < rc_actor[actor1].vehicle_properties.wheels.size(); i1++)
+            {
+                int wheel_id1 = rc_actor[actor1].vehicle_properties.wheels[i1].actor_id;
+
+                if(rc_getActorCollision(wheel_id1, chassis_id2))
+                    return true;
+
+                for(int i2 = 0; i2 < rc_actor[actor2].vehicle_properties.wheels.size(); i2++)
+                {
+                    int wheel_id2 = rc_actor[actor2].vehicle_properties.wheels[i2].actor_id;
+
+                    if(i1 == 0)
+                    {
+                        if(rc_getActorCollision(wheel_id2, chassis_id1))
+                            return true;
+                    }
+
+                    if(rc_getActorCollision(wheel_id2, wheel_id1))
+                        return true;
+                }
+            }
+        }
+        else
+        {
+            int chassis_id = rc_actor[actor1].vehicle_properties.chassis_actor_id;
+
+            if(rc_getActorCollision(chassis_id, actor2))
+                return true;
+
+            for(int i = 0; i < rc_actor[actor1].vehicle_properties.wheels.size(); i++)
+            {
+                int wheel_id = rc_actor[actor1].vehicle_properties.wheels[i].actor_id;
+
+                if(rc_getActorCollision(wheel_id, actor2))
+                    return true;
+            }
+        }
+    }
+
     return false;
+}
+
+int rc_getActorType(int actor_id)
+{
+    if(actor_id < 0 || actor_id >= rc_actor.size())
+        return -1;
+
+    if(!rc_actor[actor_id].mesh_node)
+        return -1;
+
+    return rc_actor[actor_id].node_type;
+}
+
+void rc_setActorImpactMesh(int actor_id, int mesh_id, double mass)
+{
+    if(actor_id < 0 || actor_id >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor_id].mesh_node)
+        return;
+
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+        return;
+
+    rc_actor[actor_id].physics.impact_mesh_id = mesh_id;
+    rc_actor[actor_id].physics.mass = mass;
+
+    if(rc_actor[actor_id].physics.shape_type == RC_NODE_SHAPE_TYPE_IMPACT_MESH)
+        rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_IMPACT_MESH, rc_actor[actor_id].physics.mass);
 }
 
 
@@ -386,6 +632,9 @@ int rc_createAnimatedActor(int mesh_id)
     rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_BOX;
     rc_actor[actor_id].physics.rigid_body = NULL;
     rc_actor[actor_id].physics.isSolid = false;
+    rc_actor[actor_id].physics.impact_mesh_id = -1;
+
+    rc_actor[actor_id].parent_id = -1;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
@@ -404,7 +653,7 @@ int rc_createCompositeActor()
 
     actor.node_type = RC_NODE_TYPE_COMPOSITE; //STATIC MESH NODE
 
-    node = SceneManager->addSceneNode("composite");
+    node = SceneManager->addEmptySceneNode();
 
     actor.mesh_node = node;
 
@@ -414,7 +663,10 @@ int rc_createCompositeActor()
     actor.material_ref_index = -1;
 
     if(!node)
+    {
+        //std::cout << "Composite DBG: NO NODE" << std::endl;
         return -1;
+    }
 
     for(int i = 0; i < rc_actor.size(); i++)
     {
@@ -440,8 +692,93 @@ int rc_createCompositeActor()
     rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_COMPOSITE;
     rc_actor[actor_id].physics.rigid_body = NULL;
     rc_actor[actor_id].physics.isSolid = false;
+    rc_actor[actor_id].physics.impact_mesh_id = -1;
+
+    rc_actor[actor_id].parent_id = -1;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_COMPOSITE, 1);
+
+    return actor_id;
+}
+
+
+int rc_createVehicleActor(int chassis_actor)
+{
+    int actor_id = -1;
+
+    if(chassis_actor < 0 || chassis_actor >= rc_actor.size())
+        return -1;
+
+    if(!rc_actor[chassis_actor].mesh_node)
+        return -1;
+
+    irr::scene::ISceneNode* node;
+
+    rc_scene_node actor;
+
+    actor.node_type = RC_NODE_TYPE_VEHICLE;
+
+    node = rc_actor[chassis_actor].mesh_node;
+
+    actor.mesh_node = node;
+
+    actor.shadow = NULL;
+    actor.transition = false;
+    actor.transition_time = 0;
+    actor.material_ref_index = -1;
+
+    if(!node)
+    {
+        //std::cout << "Composite DBG: NO NODE" << std::endl;
+        return -1;
+    }
+
+    if(!rc_actor[chassis_actor].physics.rigid_body)
+        return -1;
+
+    //Create RayCast Vehicle
+    actor.vehicle_properties.vehicle = rc_physics3D.world->addRaycastVehicle(rc_actor[chassis_actor].physics.rigid_body);
+
+    actor.vehicle_properties.chassis_actor_id = chassis_actor;
+
+    irr::core::matrix4 t_mat = actor.vehicle_properties.vehicle->getChassisWorldTransform();
+    rc_actor[chassis_actor].mesh_node->setPosition(t_mat.getTranslation());
+    rc_actor[chassis_actor].mesh_node->setRotation(t_mat.getRotationDegrees());
+    rc_actor[chassis_actor].mesh_node->setScale(t_mat.getScale());
+    rc_actor[chassis_actor].mesh_node->updateAbsolutePosition();
+
+
+    for(int i = 0; i < rc_actor.size(); i++)
+    {
+        if(!rc_actor[i].mesh_node)
+        {
+            actor_id = i;
+            break;
+        }
+    }
+
+    if(actor_id < 0)
+    {
+        actor_id = rc_actor.size();
+        rc_actor.push_back(actor);
+    }
+    else
+    {
+        rc_actor[actor_id] = actor;
+    }
+
+
+    //Actor RigidBody
+    rc_actor[actor_id].physics = rc_actor[chassis_actor].physics;
+
+    rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_NONE;
+    rc_actor[actor_id].physics.collisions.clear();
+
+    rc_actor[actor_id].parent_id = -1;
+
+    rc_vehicle_actors.push_back(actor_id);
+
+    setSolidProperties(actor_id);
 
     return actor_id;
 }
@@ -500,6 +837,9 @@ int rc_createOctreeActor(int mesh_id)
     rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_BOX;
     rc_actor[actor_id].physics.rigid_body = NULL;
     rc_actor[actor_id].physics.isSolid = false;
+    rc_actor[actor_id].physics.impact_mesh_id = -1;
+
+    rc_actor[actor_id].parent_id = -1;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
@@ -552,6 +892,9 @@ int rc_createTerrainActor( std::string height_map )
     rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_BOX;
     rc_actor[actor_id].physics.rigid_body = NULL;
     rc_actor[actor_id].physics.isSolid = false;
+    rc_actor[actor_id].physics.impact_mesh_id = -1;
+
+    rc_actor[actor_id].parent_id = -1;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 0);
 
@@ -604,6 +947,9 @@ int rc_createParticleActor( int particle_type )
     rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_BOX;
     rc_actor[actor_id].physics.rigid_body = NULL;
     rc_actor[actor_id].physics.isSolid = false;
+    rc_actor[actor_id].physics.impact_mesh_id = -1;
+
+    rc_actor[actor_id].parent_id = -1;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 0);
 
@@ -655,6 +1001,9 @@ int rc_createCubeActor(double cube_size)
     rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_BOX;
     rc_actor[actor_id].physics.rigid_body = NULL;
     rc_actor[actor_id].physics.isSolid = false;
+    rc_actor[actor_id].physics.impact_mesh_id = -1;
+
+    rc_actor[actor_id].parent_id = -1;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
@@ -705,6 +1054,9 @@ int rc_createSphereActor(double radius)
     rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_SPHERE;
     rc_actor[actor_id].physics.rigid_body = NULL;
     rc_actor[actor_id].physics.isSolid = false;
+    rc_actor[actor_id].physics.impact_mesh_id = -1;
+
+    rc_actor[actor_id].parent_id = -1;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_SPHERE, 1);
 
@@ -763,6 +1115,9 @@ int rc_createWaterActor(int mesh_id, double waveHeight, double waveSpeed, double
     rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_BOX;
     rc_actor[actor_id].physics.rigid_body = NULL;
     rc_actor[actor_id].physics.isSolid = false;
+    rc_actor[actor_id].physics.impact_mesh_id = -1;
+
+    rc_actor[actor_id].parent_id = -1;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
@@ -812,6 +1167,9 @@ int rc_createBillboardActor()
     rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_BOX;
     rc_actor[actor_id].physics.rigid_body = NULL;
     rc_actor[actor_id].physics.isSolid = false;
+    rc_actor[actor_id].physics.impact_mesh_id = -1;
+
+    rc_actor[actor_id].parent_id = -1;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
@@ -861,6 +1219,9 @@ int rc_createLightActor()
     rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_BOX;
     rc_actor[actor_id].physics.rigid_body = NULL;
     rc_actor[actor_id].physics.isSolid = false;
+    rc_actor[actor_id].physics.impact_mesh_id = -1;
+
+    rc_actor[actor_id].parent_id = -1;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
@@ -910,6 +1271,9 @@ int rc_createProjectorActor()
     rc_actor[actor_id].physics.shape_type = RC_NODE_SHAPE_TYPE_BOX;
     rc_actor[actor_id].physics.rigid_body = NULL;
     rc_actor[actor_id].physics.isSolid = false;
+    rc_actor[actor_id].physics.impact_mesh_id = -1;
+
+    rc_actor[actor_id].parent_id = -1;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
@@ -942,7 +1306,7 @@ void rc_deleteActor(int actor_id)
 
     for(int i = 0; i < rc_actor[actor_id].child_actors.size(); i++)
     {
-        int child_id = rc_actor[actor_id].child_actors[i];
+        int child_id = rc_actor[actor_id].child_actors[i].id;
 
         if(child_id < 0 || child_id >= rc_actor.size())
             continue;
@@ -950,7 +1314,6 @@ void rc_deleteActor(int actor_id)
         if(rc_actor[child_id].mesh_node == NULL)
             continue;
 
-        rc_actor[actor_id].mesh_node->removeChild(rc_actor[child_id].mesh_node);
         rc_deleteActor(child_id);
     }
 
@@ -958,9 +1321,33 @@ void rc_deleteActor(int actor_id)
 
 
 	if(rc_actor[actor_id].physics.rigid_body)
+    {
         rc_physics3D.world->removeCollisionObject(rc_actor[actor_id].physics.rigid_body, false);
+        delete rc_actor[actor_id].physics.rigid_body;
+    }
+
+    if(rc_actor[actor_id].node_type == RC_NODE_TYPE_VEHICLE)
+    {
+        if(rc_actor[actor_id].vehicle_properties.vehicle)
+        {
+            rc_physics3D.world->removeRaycastVehicle(rc_actor[actor_id].vehicle_properties.vehicle);
+            delete rc_actor[actor_id].vehicle_properties.vehicle;
+        }
+
+        for(int i = 0; i < rc_vehicle_actors.size(); i++)
+        {
+            if(rc_vehicle_actors[i] == actor_id)
+            {
+                rc_vehicle_actors.erase(i);
+                break;
+            }
+        }
+    }
 
 	rc_actor[actor_id].physics.rigid_body = NULL;
+	rc_actor[actor_id].vehicle_properties.vehicle = NULL;
+	rc_actor[actor_id].vehicle_properties.wheels.clear();
+	rc_actor[actor_id].physics.impact_mesh_id = -1;
 
 	rc_actor[actor_id].physics.collisions.clear();
 
@@ -971,6 +1358,7 @@ void rc_deleteActor(int actor_id)
     rc_actor[actor_id].transition = false;
     rc_actor[actor_id].transition_time = 0;
     rc_actor[actor_id].material_ref_index = -1;
+    rc_actor[actor_id].parent_id = -1;
 }
 
 
@@ -1207,6 +1595,8 @@ void rc_getActorRotation(int actor, double* x, double* y, double* z)
 //Function AddCompositeChild(actor, child_actor, t_matrix)
 int rc_addCompositeChild(int actor, int child_actor, int t_matrix)
 {
+    //std::cout << "AddChild DBG: " << actor << ", " << child_actor << ", " << t_matrix << std::endl;
+
 	if(actor < 0 || actor >= rc_actor.size())
         return -1;
 
@@ -1230,7 +1620,32 @@ int rc_addCompositeChild(int actor, int child_actor, int t_matrix)
 
                 rc_actor[actor].mesh_node->addChild(rc_actor[child_actor].mesh_node);
 
-                rc_actor[actor].child_actors.push_back(child_actor);
+                irr::core::matrix4 irr_mat_t = irr_mat * rc_actor[actor].mesh_node->getAbsoluteTransformation();
+
+                irr::core::vector3df pos = irr_mat_t.getTranslation();
+                irr::core::vector3df rot = irr_mat_t.getRotationDegrees();
+                irr::core::vector3df scale = irr_mat_t.getScale();
+
+                rc_actor[child_actor].mesh_node->setPosition(pos);
+                rc_actor[child_actor].mesh_node->setRotation(rot);
+                rc_actor[child_actor].mesh_node->setScale(scale);
+                rc_actor[child_actor].mesh_node->updateAbsolutePosition();
+
+                rc_actor[child_actor].parent_id = actor;
+
+                rc_physics3D.world->removeCollisionObject(rc_actor[child_actor].physics.rigid_body, false);
+
+                rc_actor[child_actor].physics.rigid_body->setWorldTransform( rc_actor[child_actor].mesh_node->getAbsoluteTransformation() );
+
+                rc_composite_child child;
+                child.id = child_actor;
+                child.child_transform = irr_mat;
+                child.shape = parent_shape->getChildShape(index);
+
+                rc_actor[actor].child_actors.push_back(child);
+
+                //std::cout << "Add Child Actor" << std::endl;
+
             }
             break;
     }
@@ -1274,7 +1689,7 @@ int rc_getCompositeChild(int actor, int child_index)
     {
         case RC_NODE_TYPE_COMPOSITE:
             {
-                child_id = rc_actor[actor].child_actors[child_index];
+                child_id = rc_actor[actor].child_actors[child_index].id;
             }
             break;
     }
@@ -1300,7 +1715,7 @@ int rc_getCompositeChildIndex(int actor, int child_actor)
             {
                 for(int i = 0; i < rc_actor[actor].child_actors.size(); i++)
                 {
-                    if(rc_actor[actor].child_actors[i] == child_actor)
+                    if(rc_actor[actor].child_actors[i].id == child_actor)
                     {
                         child_index = i;
                         break;
@@ -1323,7 +1738,7 @@ void rc_removeCompositeChild(int actor, int child_index)
     if(child_index < 0 || child_index >= rc_actor[actor].child_actors.size())
         return;
 
-    int child_actor = rc_actor[actor].child_actors[child_index];
+    int child_actor = rc_actor[actor].child_actors[child_index].id;
 
     if(rc_actor[child_actor].mesh_node == NULL)
         return;
@@ -1334,14 +1749,40 @@ void rc_removeCompositeChild(int actor, int child_index)
             {
                 ICompoundShape* parent_shape = (ICompoundShape*)rc_actor[actor].physics.rigid_body->getCollisionShape();
 
-                ICollisionShape* child_shape = rc_actor[child_actor].physics.rigid_body->getCollisionShape();
+                ICollisionShape* child_shape = rc_actor[actor].child_actors[child_index].shape;
 
                 parent_shape->removeChildShape(child_shape);
 
-                int child_actor = rc_actor[actor].child_actors[child_index];
+                int child_actor = rc_actor[actor].child_actors[child_index].id;
 
                 if(rc_actor[actor].mesh_node != NULL && rc_actor[child_actor].mesh_node != NULL)
-                    rc_actor[actor].mesh_node->removeChild(rc_actor[child_actor].mesh_node);
+                {
+                    //rc_actor[child_actor].mesh_node->grab();
+                    rc_actor[child_actor].mesh_node->setParent( SceneManager->getRootSceneNode() );
+                }
+
+                rc_actor[child_actor].physics.rigid_body->setCollisionShape(child_shape);
+
+                rc_physics3D.world->addRigidBody(rc_actor[child_actor].physics.rigid_body);
+
+                irr::core::matrix4 irr_mat_t = rc_actor[actor].physics.rigid_body->getWorldTransform();
+                irr_mat_t = irr_mat_t * rc_actor[actor].child_actors[child_index].child_transform;
+
+                rc_actor[child_actor].physics.rigid_body->setWorldTransform(irr_mat_t);
+
+                irr::core::vector3df pos = irr_mat_t.getTranslation();
+                irr::core::vector3df rot = irr_mat_t.getRotationDegrees();
+                irr::core::vector3df scale = irr_mat_t.getScale();
+
+                //std::cout << "child_actor = " << child_actor << std::endl;
+
+                rc_actor[child_actor].mesh_node->setPosition(pos);
+                rc_actor[child_actor].mesh_node->setRotation(rot);
+                rc_actor[child_actor].mesh_node->setScale(scale);
+                rc_actor[child_actor].mesh_node->updateAbsolutePosition();
+
+                rc_actor[child_actor].parent_id = -1;
+
 
                 rc_actor[actor].child_actors.erase(child_index);
             }
@@ -1366,7 +1807,9 @@ bool rc_getCompositeChildTransform(int actor, int child_index, int t_matrix)
         case RC_NODE_TYPE_COMPOSITE:
             {
                 ICompoundShape* parent_shape = (ICompoundShape*)rc_actor[actor].physics.rigid_body->getCollisionShape();
-                rc_convertFromIrrMatrix(parent_shape->getChildTransform(child_index), t_matrix);
+                //std::cout << "child_index = " << child_index << ",  t_matrix = " << t_matrix << std::endl;
+                irr::core::matrix4 irr_mat = parent_shape->getChildTransform(child_index);
+                rc_convertFromIrrMatrix(irr_mat, t_matrix);
             }
             break;
     }
@@ -2355,6 +2798,961 @@ double rc_getProjectorFOV(int actor)
 			CProjectiveTextures* projector = (CProjectiveTextures*) rc_actor[actor].mesh_node;
 			return projector->getFOV();
     }
+}
+
+
+
+//-----------------VEHICLE ACTOR------------------------------
+
+int rc_addVehicleWheel( int actor, int wheel_actor, bool is_front_wheel )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return -1;
+
+    if(!rc_actor[actor].mesh_node)
+        return -1;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return -1;
+
+    if(wheel_actor < 0 || wheel_actor >= rc_actor.size())
+        return -1;
+
+    if(!rc_actor[wheel_actor].mesh_node)
+        return -1;
+
+    SWheelInfoConstructionInfo wheel_info;
+    wheel_info.isFrontWheel = is_front_wheel;
+
+    int wheel_index = rc_actor[actor].vehicle_properties.wheels.size();
+
+    rc_vehicle_wheel wheel_obj;
+    rc_physics3D.world->removeCollisionObject(rc_actor[wheel_actor].physics.rigid_body);
+    wheel_obj.actor_id = wheel_actor;
+    wheel_obj.offset_transform = -1;
+
+    rc_actor[actor].vehicle_properties.wheels.push_back(wheel_obj);
+
+    SWheelInfo& info = rc_actor[actor].vehicle_properties.vehicle->addWheel(wheel_info);
+
+    rc_actor[wheel_actor].physics.rigid_body->setWorldTransform(info.worldTransform);
+
+    irr::core::matrix4 actor_transform = rc_actor[actor].physics.rigid_body->getWorldTransform();
+    rc_actor[actor].physics.rigid_body->clearForces();
+    rc_actor[actor].physics.rigid_body->setWorldTransform(actor_transform);
+    rc_actor[actor].mesh_node->setPosition( actor_transform.getTranslation() );
+    rc_actor[actor].mesh_node->setRotation( actor_transform.getRotationDegrees() );
+    rc_actor[actor].mesh_node->setScale( actor_transform.getScale() );
+    rc_actor[actor].mesh_node->updateAbsolutePosition();
+
+    return wheel_index;
+}
+
+
+void rc_setWheelActorOffsetTransform( int actor, int wheel_index, int t_matrix )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    if(t_matrix < 0 || t_matrix >= rc_matrix.size())
+        return;
+
+    rc_actor[actor].vehicle_properties.wheels[wheel_index].offset_transform = rc_convertToIrrMatrix(t_matrix);
+}
+
+void rc_getWheelActorOffsetTransform( int actor, int wheel_index, int t_matrix )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    if(t_matrix < 0 || t_matrix >= rc_matrix.size())
+        return;
+
+    rc_convertFromIrrMatrix(rc_actor[actor].vehicle_properties.wheels[wheel_index].offset_transform, t_matrix);
+}
+
+
+void rc_setWheelConnectionPoint( int actor, int wheel_index, double x, double y, double z )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.chassisConnectionPointCS.set((float)x, (float)y, (float)z);
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+}
+
+void rc_setWheelDirection( int actor, int wheel_index, double x, double y, double z )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.wheelDirectionCS.set((float)x, (float)y, (float)z);
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+}
+
+void rc_setWheelAxel( int actor, int wheel_index, double x, double y, double z )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.wheelAxleCS.set((float)x, (float)y, (float)z);
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+}
+
+void rc_setWheelSuspensionLength( int actor, int wheel_index, double s_length )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.suspensionRestLength = s_length;
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+}
+
+void rc_setWheelMaxSuspensionTravel( int actor, int wheel_index, double max_travel )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.maxSuspensionTravelCm = max_travel;
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+}
+
+void rc_setWheelRadius( int actor, int wheel_index, double radius )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.wheelRadius = radius;
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+}
+
+
+void rc_getVehicleAxis( int actor, double* x, double* y, double* z  )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    *x = rc_actor[actor].vehicle_properties.vehicle->getRightAxis();
+    *y = rc_actor[actor].vehicle_properties.vehicle->getUpAxis();
+    *z = rc_actor[actor].vehicle_properties.vehicle->getForwardAxis();
+
+}
+
+void rc_getVehicleForwardVector( int actor, double* x, double* y, double* z )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    *x = rc_actor[actor].vehicle_properties.vehicle->getForwardVector().X;
+    *y = rc_actor[actor].vehicle_properties.vehicle->getForwardVector().Y;
+    *z = rc_actor[actor].vehicle_properties.vehicle->getForwardVector().Z;
+}
+
+double rc_getVehicleCurrentSpeed( int actor )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    return rc_actor[actor].vehicle_properties.vehicle->getCurrentSpeedKmHour();
+}
+
+int rc_getWheelCount( int actor )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    return rc_actor[actor].vehicle_properties.wheels.size();
+}
+
+void rc_getVehicleChassisWorldTransform( int actor, int t_matrix )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(t_matrix < 0 || t_matrix >= rc_matrix.size())
+        return;
+
+    rc_convertFromIrrMatrix(rc_actor[actor].vehicle_properties.vehicle->getChassisWorldTransform(), t_matrix);
+}
+
+
+double rc_getWheelSteeringValue( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    return rc_actor[actor].vehicle_properties.vehicle->getSteeringValue(wheel_index);
+}
+
+
+void rc_getWheelWorldTransform( int actor, int wheel_index, int t_matrix )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    if(t_matrix < 0 || t_matrix >= rc_matrix.size())
+        return;
+
+    rc_convertFromIrrMatrix(rc_actor[actor].vehicle_properties.vehicle->getWheelTransformWS(wheel_index), t_matrix);
+}
+
+void rc_getWheelConnectionPoint( int actor, int wheel_index, double* x, double* y, double* z)
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    *x = info.chassisConnectionPointCS.X;
+    *y = info.chassisConnectionPointCS.Y;
+    *z = info.chassisConnectionPointCS.Z;
+}
+
+void rc_getWheelDirection( int actor, int wheel_index, double* x, double* y, double* z )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    *x = info.wheelDirectionCS.X;
+    *y = info.wheelDirectionCS.Y;
+    *z = info.wheelDirectionCS.Z;
+}
+
+void rc_getWheelAxel( int actor, int wheel_index, double* x, double* y, double* z )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    *x = info.wheelAxleCS.X;
+    *y = info.wheelAxleCS.Y;
+    *z = info.wheelAxleCS.Z;
+}
+
+
+double rc_getWheelSuspensionLength( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.suspensionRestLength;
+}
+
+
+double rc_getWheelMaxSuspensionTravel( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.maxSuspensionTravelCm;
+}
+
+double rc_getWheelRadius( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.wheelRadius;
+}
+
+double rc_getWheelSuspensionStiffness( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.suspensionStiffness;
+}
+
+double rc_getWheelDampingCompression( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.wheelDampingCompression;
+}
+
+double rc_getWheelDampingRelaxation( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.wheelDampingRelaxation;
+}
+
+double rc_getWheelFrictionSlip( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.frictionSlip;
+}
+
+double rc_getWheelRotation( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.wheelRotation;
+}
+
+double rc_getWheelRotationDelta( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.deltaRotation;
+}
+
+double rc_getWheelRollInfluence( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.rollInfluence;
+}
+
+double rc_getWheelEngineForce( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.engineForce;
+}
+
+double rc_getWheelBrake( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.brake;
+}
+
+bool rc_wheelIsFront( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return false;
+
+    if(!rc_actor[actor].mesh_node)
+        return false;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return false;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return false;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.isFrontWheel;
+}
+
+double rc_getWheelInverseContactSuspension( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.clippedInvContactDotSuspension;
+}
+
+double rc_getWheelSuspensionVelocity( int actor, int wheel_index )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return 0;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    return info.suspensionRelativeVelocity;
+}
+
+void rc_resetVehicleSuspension( int actor )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+
+    rc_actor[actor].vehicle_properties.vehicle->resetSuspension();
+}
+
+void rc_setWheelSteeringValue( int actor, int wheel_index, double steering )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    rc_actor[actor].vehicle_properties.vehicle->setSteeringValue(steering, wheel_index);
+}
+
+void rc_applyWheelEngineForce( int actor, int wheel_index, double force )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    rc_actor[actor].vehicle_properties.vehicle->applyEngineForce(force, wheel_index);
+}
+
+void rc_setWheelBrake( int actor, int wheel_index, double brake )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    rc_actor[actor].vehicle_properties.vehicle->setBrake(brake, wheel_index);
+}
+
+void rc_setVehiclePitchControl( int actor, double pitch )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    rc_actor[actor].vehicle_properties.vehicle->setPitchControl(pitch);
+}
+
+
+
+void rc_setWheelSuspensionStiffness( int actor, int wheel_index, double stiffness )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.suspensionStiffness = stiffness;
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+}
+
+void rc_setWheelDampingCompression( int actor, int wheel_index, double dcomp_value )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.wheelDampingCompression = dcomp_value;
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+}
+
+void rc_setWheelDampingRelaxation( int actor, int wheel_index, double drel_value )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.wheelDampingRelaxation = drel_value;
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+}
+
+void rc_setWheelFrictionSlip( int actor, int wheel_index, double fslip_value )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.frictionSlip = fslip_value;
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+}
+
+void rc_setWheelRotation( int actor, int wheel_index, double rot )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.wheelRotation = rot;
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+}
+
+void rc_setWheelRotationDelta( int actor, int wheel_index, double rot_delta )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.deltaRotation = rot_delta;
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+}
+
+void rc_setWheelRollInfluence( int actor, int wheel_index, double roll_influence )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.rollInfluence = roll_influence;
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+}
+
+void rc_setWheelInverseContactSuspension( int actor, int wheel_index, double c_value )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.clippedInvContactDotSuspension = c_value;
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+}
+
+void rc_setWheelSuspensionVelocity( int actor, int wheel_index, double velocity )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(!rc_actor[actor].mesh_node)
+        return;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return;
+
+    if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
+        return;
+
+    SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    info.suspensionRelativeVelocity = velocity;
+
+    rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
 }
 
 
