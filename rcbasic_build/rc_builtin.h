@@ -2173,6 +2173,10 @@ void init_embedded_functions()
 	add_embedded_arg("hmap_file$", ID_TYPE_STR);
 	embed_function("CreateParticleActor", ID_TYPE_FN_NUM);
 	add_embedded_arg("particle_type", ID_TYPE_NUM);
+	embed_function("CreateProjectorActor", ID_TYPE_FN_NUM);
+	embed_function("CreateCompositeActor", ID_TYPE_FN_NUM);
+	embed_function("CreateVehicleActor", ID_TYPE_FN_NUM);
+	add_embedded_arg("chassis_actor", ID_TYPE_NUM);
 	embed_function("DeleteActor", ID_TYPE_SUB);
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	embed_function("GetActorTransform", ID_TYPE_SUB);
@@ -2244,8 +2248,8 @@ void init_embedded_functions()
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	embed_function("ActorExists", ID_TYPE_FN_NUM);
 	add_embedded_arg("actor", ID_TYPE_NUM);
-	embed_function("CreateProjectorActor", ID_TYPE_FN_NUM);
-	embed_function("CreateCompositeActor", ID_TYPE_FN_NUM);
+	embed_function("GetActorType", ID_TYPE_FN_NUM);
+	add_embedded_arg("actor", ID_TYPE_NUM);
 	embed_function("CreateActorAnimation", ID_TYPE_FN_NUM);
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	add_embedded_arg("start_frame", ID_TYPE_NUM);
@@ -2635,6 +2639,10 @@ void init_embedded_functions()
 	add_embedded_arg("shape_type", ID_TYPE_NUM);
 	add_embedded_arg("mass", ID_TYPE_NUM);
 	add_embedded_arg("radius", ID_TYPE_NUM);
+	embed_function("SetActorImpactMesh", ID_TYPE_SUB);
+	add_embedded_arg("actor", ID_TYPE_NUM);
+	add_embedded_arg("mesh", ID_TYPE_NUM);
+	add_embedded_arg("mass", ID_TYPE_NUM);
 	embed_function("createPointConstraint", ID_TYPE_FN_NUM);
 	add_embedded_arg("actorA", ID_TYPE_NUM);
 	add_embedded_arg("pxA", ID_TYPE_NUM);

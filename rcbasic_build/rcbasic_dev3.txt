@@ -2189,6 +2189,15 @@ case FN_CreateTerrainActor: //Number Function
 case FN_CreateParticleActor: //Number Function
 	 rc_push_num(rc_createParticleActor( CREATEPARTICLEACTOR_PARTICLE_TYPE ));
 	break;
+case FN_CreateProjectorActor: //Number Function
+	 rc_push_num(rc_createProjectorActor(  ));
+	break;
+case FN_CreateCompositeActor: //Number Function
+	 rc_push_num(rc_createCompositeActor(  ));
+	break;
+case FN_CreateVehicleActor: //Number Function
+	 rc_push_num(rc_createVehicleActor( CREATEVEHICLEACTOR_CHASSIS_ACTOR ));
+	break;
 case FN_DeleteActor: //Sub Procedure
 	rc_deleteActor( DELETEACTOR_ACTOR );
 	break;
@@ -2246,11 +2255,8 @@ case FN_RemoveActorShadow: //Sub Procedure
 case FN_ActorExists: //Number Function
 	 rc_push_num(rc_actorExists( ACTOREXISTS_ACTOR ));
 	break;
-case FN_CreateProjectorActor: //Number Function
-	 rc_push_num(rc_createProjectorActor(  ));
-	break;
-case FN_CreateCompositeActor: //Number Function
-	 rc_push_num(rc_createCompositeActor(  ));
+case FN_GetActorType: //Number Function
+	 rc_push_num(rc_getActorType( GETACTORTYPE_ACTOR ));
 	break;
 case FN_CreateActorAnimation: //Number Function
 	 rc_push_num(rc_createActorAnimation( CREATEACTORANIMATION_ACTOR,  CREATEACTORANIMATION_START_FRAME,  CREATEACTORANIMATION_END_FRAME,  CREATEACTORANIMATION_SPEED ));
@@ -2509,6 +2515,9 @@ case FN_GetRayHit3D: //Sub Procedure
 	break;
 case FN_SetActorShapeEx: //Sub Procedure
 	rc_setActorCollisionShape( SETACTORSHAPEEX_ACTOR,  SETACTORSHAPEEX_SHAPE_TYPE,  SETACTORSHAPEEX_MASS,  SETACTORSHAPEEX_RADIUS );
+	break;
+case FN_SetActorImpactMesh: //Sub Procedure
+	rc_setActorImpactMesh( SETACTORIMPACTMESH_ACTOR,  SETACTORIMPACTMESH_MESH,  SETACTORIMPACTMESH_MASS );
 	break;
 case FN_createPointConstraint: //Number Function
 	 rc_push_num(rc_createPointConstraint(  CREATEPOINTCONSTRAINT_ACTORA,   CREATEPOINTCONSTRAINT_PXA,   CREATEPOINTCONSTRAINT_PYA,   CREATEPOINTCONSTRAINT_PZA ));
