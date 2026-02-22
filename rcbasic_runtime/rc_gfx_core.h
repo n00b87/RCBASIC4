@@ -419,6 +419,8 @@ bool manual_render_control = false;
 irr::video::SColor rc_active_color(0,0,0,0);
 irr::video::SColor rc_clear_color(0,0,0,0);
 
+int rc_num_circle_points = 60;
+
 bool rc_init_events = false;
 bool rc_init_timer = false;
 bool rc_init_video = false;
@@ -640,6 +642,12 @@ struct rc_vehicle_properties
     irr::core::array<rc_vehicle_wheel> wheels;
 };
 
+struct rc_projector_properties
+{
+    int project_texture_id;
+    irr::core::array<int> effect_actors;
+};
+
 struct rc_scene_node
 {
     int node_type = 0;
@@ -666,9 +674,14 @@ struct rc_scene_node
     irr::core::array<rc_actor_animation_obj> animation;
 
     int parent_id;
+    int parent_vehicle;
+    bool isWheel;
     irr::core::array<rc_composite_child> child_actors; // Only used for composite actor types
 
     rc_vehicle_properties vehicle_properties;
+
+    rc_projector_properties projector_properties;
+    irr::core::array<int> projector_parent;
 };
 
 irr::core::array<rc_scene_node> rc_actor;
@@ -1123,6 +1136,24 @@ SDL_Surface* convertTextureToSurface(irr::video::ITexture* itexture)
 	}
 
 	return surface;
+}
+
+bool rc_saveBMP(int img_id, std::string img_file)
+{
+    if(img_id < 0 || img_id >= rc_image.size())
+        return false;
+
+    if(rc_image[img_id].image)
+    {
+        irr::video::ITexture* img_texture = rc_image[img_id].image;
+        SDL_Surface* surface = convertTextureToSurface(img_texture);
+
+        SDL_SaveBMP(surface, img_file.c_str());
+
+        return true;
+    }
+
+    return false;
 }
 
 

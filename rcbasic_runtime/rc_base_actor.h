@@ -406,8 +406,8 @@ void rc_setActorSolid(int actor_id, bool flag)
 
                 if(rc_actor[wheel_id].physics.rigid_body)
                 {
-                    rc_actor[wheel_id].physics.isSolid = flag;
-                    rc_setActorCollisionShape(wheel_id, rc_actor[wheel_id].physics.shape_type, rc_actor[wheel_id].physics.mass);
+                    //rc_actor[wheel_id].physics.isSolid = flag;
+                    //rc_setActorCollisionShape(wheel_id, rc_actor[wheel_id].physics.shape_type, rc_actor[wheel_id].physics.mass);
                 }
             }
         }
@@ -635,6 +635,7 @@ int rc_createAnimatedActor(int mesh_id)
     rc_actor[actor_id].physics.impact_mesh_id = -1;
 
     rc_actor[actor_id].parent_id = -1;
+    rc_actor[actor_id].isWheel = false;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
@@ -695,6 +696,7 @@ int rc_createCompositeActor()
     rc_actor[actor_id].physics.impact_mesh_id = -1;
 
     rc_actor[actor_id].parent_id = -1;
+    rc_actor[actor_id].isWheel = false;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_COMPOSITE, 1);
 
@@ -738,6 +740,7 @@ int rc_createVehicleActor(int chassis_actor)
 
     //Create RayCast Vehicle
     actor.vehicle_properties.vehicle = rc_physics3D.world->addRaycastVehicle(rc_actor[chassis_actor].physics.rigid_body);
+    actor.vehicle_properties.vehicle->getVehicleRaycaster()->setUseFilter(false);
 
     actor.vehicle_properties.chassis_actor_id = chassis_actor;
 
@@ -775,10 +778,11 @@ int rc_createVehicleActor(int chassis_actor)
     rc_actor[actor_id].physics.collisions.clear();
 
     rc_actor[actor_id].parent_id = -1;
+    rc_actor[actor_id].isWheel = false;
 
     rc_vehicle_actors.push_back(actor_id);
 
-    setSolidProperties(actor_id);
+    //setSolidProperties(actor_id);
 
     return actor_id;
 }
@@ -840,6 +844,7 @@ int rc_createOctreeActor(int mesh_id)
     rc_actor[actor_id].physics.impact_mesh_id = -1;
 
     rc_actor[actor_id].parent_id = -1;
+    rc_actor[actor_id].isWheel = false;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
@@ -895,6 +900,7 @@ int rc_createTerrainActor( std::string height_map )
     rc_actor[actor_id].physics.impact_mesh_id = -1;
 
     rc_actor[actor_id].parent_id = -1;
+    rc_actor[actor_id].isWheel = false;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 0);
 
@@ -950,6 +956,7 @@ int rc_createParticleActor( int particle_type )
     rc_actor[actor_id].physics.impact_mesh_id = -1;
 
     rc_actor[actor_id].parent_id = -1;
+    rc_actor[actor_id].isWheel = false;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 0);
 
@@ -1004,6 +1011,7 @@ int rc_createCubeActor(double cube_size)
     rc_actor[actor_id].physics.impact_mesh_id = -1;
 
     rc_actor[actor_id].parent_id = -1;
+    rc_actor[actor_id].isWheel = false;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
@@ -1057,6 +1065,7 @@ int rc_createSphereActor(double radius)
     rc_actor[actor_id].physics.impact_mesh_id = -1;
 
     rc_actor[actor_id].parent_id = -1;
+    rc_actor[actor_id].isWheel = false;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_SPHERE, 1);
 
@@ -1118,6 +1127,7 @@ int rc_createWaterActor(int mesh_id, double waveHeight, double waveSpeed, double
     rc_actor[actor_id].physics.impact_mesh_id = -1;
 
     rc_actor[actor_id].parent_id = -1;
+    rc_actor[actor_id].isWheel = false;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
@@ -1170,6 +1180,7 @@ int rc_createBillboardActor()
     rc_actor[actor_id].physics.impact_mesh_id = -1;
 
     rc_actor[actor_id].parent_id = -1;
+    rc_actor[actor_id].isWheel = false;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
@@ -1222,6 +1233,7 @@ int rc_createLightActor()
     rc_actor[actor_id].physics.impact_mesh_id = -1;
 
     rc_actor[actor_id].parent_id = -1;
+    rc_actor[actor_id].isWheel = false;
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
@@ -1274,6 +1286,10 @@ int rc_createProjectorActor()
     rc_actor[actor_id].physics.impact_mesh_id = -1;
 
     rc_actor[actor_id].parent_id = -1;
+    rc_actor[actor_id].isWheel = false;
+
+    rc_actor[actor_id].projector_properties.project_texture_id = -1;
+    rc_actor[actor_id].projector_properties.effect_actors.clear();
 
     rc_setActorCollisionShape(actor_id, RC_NODE_SHAPE_TYPE_BOX, 1);
 
@@ -1281,6 +1297,26 @@ int rc_createProjectorActor()
 
     return actor_id;
 }
+
+
+void removeProjectorParent(int projector_actor, int tgt_actor)
+{
+    if(projector_actor < 0 || projector_actor >= rc_actor.size())
+        return;
+
+    if(tgt_actor < 0 || tgt_actor >= rc_actor.size())
+        return;
+
+    for(int i = 0; i < rc_actor[tgt_actor].projector_parent.size(); i++)
+    {
+        if(rc_actor[tgt_actor].projector_parent[i] == projector_actor)
+        {
+            rc_actor[tgt_actor].projector_parent.erase(i);
+            break;
+        }
+    }
+}
+
 
 //delete actor
 void rc_deleteActor(int actor_id)
@@ -1291,6 +1327,10 @@ void rc_deleteActor(int actor_id)
     if(!rc_actor[actor_id].mesh_node)
         return;
 
+    // This is to prevent deleting wheels attached to vehicles
+    if(rc_actor[actor_id].isWheel && rc_actor[actor_id].parent_id >= 0)
+        return;
+
     if(rc_actor[actor_id].node_type == RC_NODE_TYPE_PROJECTOR)
     {
         for(int i = 0; i < rc_projector_actors.size(); i++)
@@ -1299,6 +1339,43 @@ void rc_deleteActor(int actor_id)
             {
                 rc_projector_actors.erase(i);
                 break;
+            }
+        }
+
+        for(int i = 0; i < rc_actor[actor_id].projector_properties.effect_actors.size(); i++)
+        {
+            int tgt_id = rc_actor[actor_id].projector_properties.effect_actors[i];
+            removeProjectorParent(actor_id, tgt_id);
+        }
+    }
+
+    //Remove actor from any projectors it may be added to
+    for(int i = 0; i < rc_actor[actor_id].projector_parent.size(); i++)
+    {
+        int parent_id = rc_actor[actor_id].projector_parent[i];
+
+        if(parent_id < 0 || parent_id >= rc_actor.size())
+            continue;
+
+        for(int e_index = 0; e_index < rc_actor[parent_id].projector_properties.effect_actors.size(); e_index++)
+        {
+            if(rc_actor[parent_id].projector_properties.effect_actors[e_index] == actor_id)
+            {
+                rc_actor[parent_id].projector_properties.effect_actors.erase(e_index);
+                break;
+            }
+        }
+
+        if(rc_actor[parent_id].mesh_node)
+        {
+            CProjectiveTextures* parent_node = (CProjectiveTextures*)rc_actor[parent_id].mesh_node;
+            for(int node_index = 0; node_index < parent_node->nodeArray.size(); node_index++)
+            {
+                if(parent_node->nodeArray[node_index] == rc_actor[actor_id].mesh_node)
+                {
+                    parent_node->nodeArray.erase(node_index);
+                    break;
+                }
             }
         }
     }
@@ -1320,7 +1397,7 @@ void rc_deleteActor(int actor_id)
     rc_actor[actor_id].child_actors.clear();
 
 
-	if(rc_actor[actor_id].physics.rigid_body)
+	if(rc_actor[actor_id].physics.rigid_body && rc_actor[actor_id].node_type != RC_NODE_TYPE_VEHICLE)
     {
         rc_physics3D.world->removeCollisionObject(rc_actor[actor_id].physics.rigid_body, false);
         delete rc_actor[actor_id].physics.rigid_body;
@@ -1328,10 +1405,23 @@ void rc_deleteActor(int actor_id)
 
     if(rc_actor[actor_id].node_type == RC_NODE_TYPE_VEHICLE)
     {
+        for(int i = 0; i < rc_actor[actor_id].vehicle_properties.wheels.size(); i++)
+        {
+            int wheel_actor = rc_actor[actor_id].vehicle_properties.wheels[i].actor_id;
+
+            if(wheel_actor < 0 || wheel_actor >= rc_actor.size())
+                continue;
+
+            rc_actor[wheel_actor].parent_id = -1;
+
+            rc_deleteActor(wheel_actor); //This should never happen but you can never be too careful with pointers
+        }
+
+        rc_deleteActor(rc_actor[actor_id].vehicle_properties.chassis_actor_id);
+
         if(rc_actor[actor_id].vehicle_properties.vehicle)
         {
             rc_physics3D.world->removeRaycastVehicle(rc_actor[actor_id].vehicle_properties.vehicle);
-            delete rc_actor[actor_id].vehicle_properties.vehicle;
         }
 
         for(int i = 0; i < rc_vehicle_actors.size(); i++)
@@ -1344,6 +1434,10 @@ void rc_deleteActor(int actor_id)
         }
     }
 
+    rc_actor[actor_id].projector_parent.clear();
+    rc_actor[actor_id].projector_properties.effect_actors.clear();
+    rc_actor[actor_id].projector_properties.project_texture_id = -1;
+
 	rc_actor[actor_id].physics.rigid_body = NULL;
 	rc_actor[actor_id].vehicle_properties.vehicle = NULL;
 	rc_actor[actor_id].vehicle_properties.wheels.clear();
@@ -1351,7 +1445,10 @@ void rc_deleteActor(int actor_id)
 
 	rc_actor[actor_id].physics.collisions.clear();
 
-    rc_actor[actor_id].mesh_node->remove();
+    // Vehicles use the same mesh_node as there chassis which is deleted above
+    if(rc_actor[actor_id].node_type != RC_NODE_TYPE_VEHICLE)
+        rc_actor[actor_id].mesh_node->remove();
+
     rc_actor[actor_id].mesh_node = NULL;
     rc_actor[actor_id].shadow = NULL;
     rc_actor[actor_id].node_type = 0;
@@ -2801,6 +2898,197 @@ double rc_getProjectorFOV(int actor)
 }
 
 
+void rc_setProjectorTexture(int actor, int img_id)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(img_id < 0 || img_id >= rc_image.size())
+        return;
+
+    if(!rc_image[img_id].image)
+        return;
+
+	switch(rc_actor[actor].node_type)
+    {
+    	case RC_NODE_TYPE_PROJECTOR:
+			CProjectiveTextures* projector = (CProjectiveTextures*) rc_actor[actor].mesh_node;
+			projector->texture = rc_image[img_id].image;
+			rc_actor[actor].projector_properties.project_texture_id = img_id;
+			break;
+    }
+}
+
+int rc_getProjectorTexture(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return -1;
+
+	switch(rc_actor[actor].node_type)
+    {
+    	case RC_NODE_TYPE_PROJECTOR:
+			return rc_actor[actor].projector_properties.project_texture_id;
+    }
+
+    return -1;
+}
+
+
+int rc_addProjectorEffectActor(int actor, int tgt_actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return -1;
+
+    if(tgt_actor < 0 || tgt_actor >= rc_actor.size())
+        return -1;
+
+    if(rc_actor[actor].mesh_node == NULL || rc_actor[tgt_actor].mesh_node == NULL)
+        return -1;
+
+    int n_index = -1;
+
+	switch(rc_actor[actor].node_type)
+    {
+    	case RC_NODE_TYPE_PROJECTOR:
+    	    {
+    	        CProjectiveTextures* projector = (CProjectiveTextures*) rc_actor[actor].mesh_node;
+
+                bool na_found = false;
+
+                for(int i = 0; i < projector->nodeArray.size(); i++)
+                {
+                    if(projector->nodeArray[i] == rc_actor[tgt_actor].mesh_node)
+                    {
+                        na_found = true;
+                        break;
+                    }
+                }
+
+                if(!na_found)
+                {
+                    n_index = projector->nodeArray.size();
+                    projector->nodeArray.push_back(rc_actor[tgt_actor].mesh_node);
+
+                    removeProjectorParent(actor, tgt_actor);
+
+                    rc_actor[tgt_actor].projector_parent.push_back(actor);
+
+                    bool id_found = false;
+                    for(int i = 0; i < rc_actor[actor].projector_properties.effect_actors.size(); i++)
+                    {
+                        if(rc_actor[actor].projector_properties.effect_actors[i] == tgt_actor)
+                        {
+                            id_found = true;
+                            break;
+                        }
+                    }
+
+                    if(!id_found)
+                    {
+                        rc_actor[actor].projector_properties.effect_actors.push_back(tgt_actor);
+                    }
+                }
+    	    }
+    	    break;
+    }
+
+    return n_index;
+}
+
+
+int rc_getProjectorEffectActorCount(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(rc_actor[actor].mesh_node == NULL)
+        return 0;
+
+	switch(rc_actor[actor].node_type)
+    {
+    	case RC_NODE_TYPE_PROJECTOR:
+    	    CProjectiveTextures* projector = (CProjectiveTextures*) rc_actor[actor].mesh_node;
+			return projector->nodeArray.size();
+    }
+
+    return 0;
+}
+
+int rc_getProjectorEffectActor(int actor, int tgt_index)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return -1;
+
+    if(rc_actor[actor].mesh_node == NULL)
+        return -1;
+
+
+	switch(rc_actor[actor].node_type)
+    {
+    	case RC_NODE_TYPE_PROJECTOR:
+    	    CProjectiveTextures* projector = (CProjectiveTextures*) rc_actor[actor].mesh_node;
+
+    	    if(tgt_index < 0 || tgt_index >= projector->nodeArray.size())
+            {
+                return -1;
+            }
+            else
+            {
+                for(int i = 0; i < rc_actor[actor].projector_properties.effect_actors.size(); i++)
+                {
+                    int tgt_id = rc_actor[actor].projector_properties.effect_actors[i];
+                    if(tgt_id < 0 || tgt_id >= rc_actor.size())
+                        continue;
+
+                    if(rc_actor[tgt_id].mesh_node == projector->nodeArray[tgt_index])
+                        return tgt_id;
+                }
+            }
+
+			break;
+
+    }
+
+    return -1;
+}
+
+
+void rc_removeProjectorEffectActor(int actor, int tgt_index)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor].mesh_node == NULL)
+        return;
+
+	switch(rc_actor[actor].node_type)
+    {
+    	case RC_NODE_TYPE_PROJECTOR:
+    	    CProjectiveTextures* projector = (CProjectiveTextures*) rc_actor[actor].mesh_node;
+			if(tgt_index >= 0 && tgt_index < projector->nodeArray.size())
+            {
+                for(int i = 0; i < rc_actor[actor].projector_properties.effect_actors.size(); i++)
+                {
+                    int tgt_id = rc_actor[actor].projector_properties.effect_actors[i];
+                    if(tgt_id < 0 || tgt_id >= rc_actor.size())
+                        continue;
+
+                    if(rc_actor[tgt_id].mesh_node == projector->nodeArray[tgt_index])
+                    {
+                        removeProjectorParent(actor, tgt_id);
+                        rc_actor[actor].projector_properties.effect_actors.erase(i);
+                        break;
+                    }
+                }
+
+                projector->nodeArray.erase(tgt_index);
+            }
+			break;
+
+    }
+
+}
+
 
 //-----------------VEHICLE ACTOR------------------------------
 
@@ -2827,15 +3115,17 @@ int rc_addVehicleWheel( int actor, int wheel_actor, bool is_front_wheel )
     int wheel_index = rc_actor[actor].vehicle_properties.wheels.size();
 
     rc_vehicle_wheel wheel_obj;
-    rc_physics3D.world->removeCollisionObject(rc_actor[wheel_actor].physics.rigid_body);
+    rc_physics3D.world->removeCollisionObject(rc_actor[wheel_actor].physics.rigid_body, false);
     wheel_obj.actor_id = wheel_actor;
-    wheel_obj.offset_transform = -1;
+    wheel_obj.offset_transform.makeIdentity();
 
     rc_actor[actor].vehicle_properties.wheels.push_back(wheel_obj);
 
     SWheelInfo& info = rc_actor[actor].vehicle_properties.vehicle->addWheel(wheel_info);
 
     rc_actor[wheel_actor].physics.rigid_body->setWorldTransform(info.worldTransform);
+    rc_actor[wheel_actor].isWheel = true;
+    rc_actor[wheel_actor].parent_id = actor;
 
     irr::core::matrix4 actor_transform = rc_actor[actor].physics.rigid_body->getWorldTransform();
     rc_actor[actor].physics.rigid_body->clearForces();
@@ -2904,11 +3194,16 @@ void rc_setWheelConnectionPoint( int actor, int wheel_index, double x, double y,
     if(wheel_index < 0 || wheel_index >= rc_actor[actor].vehicle_properties.wheels.size())
         return;
 
+    //std::cout << "setWheelConnectionPoint: " << wheel_index << std::endl;
     SWheelInfo &info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
 
     info.chassisConnectionPointCS.set((float)x, (float)y, (float)z);
 
     rc_actor[actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+
+    //info = rc_actor[actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
+
+    //std::cout << "setWheelConnectionPoint OUT: " << info.chassisConnectionPointCS.X << ", " << info.chassisConnectionPointCS.Y << ", " << info.chassisConnectionPointCS.Z << std::endl;
 }
 
 void rc_setWheelDirection( int actor, int wheel_index, double x, double y, double z )

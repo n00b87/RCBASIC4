@@ -178,6 +178,20 @@ int rc_getSpriteAnimationLength(int spr_id, int animation)
 	return rc_sprite[spr_id].animation[animation].num_frames;
 }
 
+int rc_getSpriteAnimationSource(int spr_id, int animation)
+{
+	if(spr_id < 0 || spr_id >= rc_sprite.size())
+		return -1;
+
+	if(!rc_sprite[spr_id].active)
+		return -1;
+
+	if(animation < 0 || animation >= rc_sprite[spr_id].animation.size())
+		return -1;
+
+	return rc_sprite[spr_id].animation[animation].src_image_id;
+}
+
 void rc_setSpriteAnimationSpeed(int spr_id, int animation, double fps)
 {
 	if(spr_id < 0 || spr_id >= rc_sprite.size())

@@ -730,6 +730,9 @@ case FN_Box3D: //Sub Procedure
 case FN_Triangle3D: //Sub Procedure
 	rc_drawTriangle3D( TRIANGLE3D_X1,  TRIANGLE3D_Y1,  TRIANGLE3D_Z1,  TRIANGLE3D_X2,  TRIANGLE3D_Y2,  TRIANGLE3D_Z2,  TRIANGLE3D_X3,  TRIANGLE3D_Y3,  TRIANGLE3D_Z3 );
 	break;
+case FN_SetRenderCirclePoints: //Sub Procedure
+	rc_setRenderCirclePoints( SETRENDERCIRCLEPOINTS_NUM_POINTS );
+	break;
 case FN_LoadImage: //Number Function
 	 rc_push_num(rc_loadImage( LOADIMAGE_IMG$ ));
 	break;
@@ -816,6 +819,9 @@ case FN_DrawImage_Flip: //Sub Procedure
 	break;
 case FN_DrawImage_FlipEx: //Sub Procedure
 	rc_drawImage_FlipEx( DRAWIMAGE_FLIPEX_SLOT,  DRAWIMAGE_FLIPEX_X,  DRAWIMAGE_FLIPEX_Y,  DRAWIMAGE_FLIPEX_SRC_X,  DRAWIMAGE_FLIPEX_SRC_Y,  DRAWIMAGE_FLIPEX_SRC_W,  DRAWIMAGE_FLIPEX_SRC_H,  DRAWIMAGE_FLIPEX_H,  DRAWIMAGE_FLIPEX_V );
+	break;
+case FN_SaveBMP: //Number Function
+	 rc_push_num(rc_saveBMP( SAVEBMP_IMG,  SAVEBMP_FILE$ ));
 	break;
 case FN_SetAntiAliasMode: //Sub Procedure
 	rc_setAntiAliasMode( SETANTIALIASMODE_AA_MODE );
@@ -1062,6 +1068,9 @@ case FN_TextWidth: //Number Function
 	break;
 case FN_TextHeight: //Number Function
 	 rc_push_num(rc_getTextHeight( TEXTHEIGHT_TXT$ ));
+	break;
+case FN_ActiveFont: //Number Function
+	 rc_push_num(rc_activeFont(  ));
 	break;
 case FN_TouchPressure: //Number Function
 	 rc_push_num(rc_touchPressure(  ));
@@ -1624,6 +1633,9 @@ case FN_SpriteAnimationIsPlaying: //Number Function
 	break;
 case FN_DeleteSpriteAnimation: //Sub Procedure
 	rc_deleteSpriteAnimation( DELETESPRITEANIMATION_SPRITE,  DELETESPRITEANIMATION_ANIMATION );
+	break;
+case FN_GetSpriteAnimationSource: //Number Function
+	 rc_push_num(rc_getSpriteAnimationSource( GETSPRITEANIMATIONSOURCE_SPRITE,  GETSPRITEANIMATIONSOURCE_ANIMATION ));
 	break;
 case FN_getSpriteCenter: //Sub Procedure
 	rc_getSpriteCenter( GETSPRITECENTER_SPR_ID,  &GETSPRITECENTER_X,  &GETSPRITECENTER_Y );
@@ -3184,6 +3196,24 @@ case FN_SetProjectorFOV: //Sub Procedure
 	break;
 case FN_GetProjectorFOV: //Number Function
 	 rc_push_num(rc_getProjectorFOV( GETPROJECTORFOV_ACTOR ));
+	break;
+case FN_SetProjectorTexture: //Sub Procedure
+	rc_setProjectorTexture( SETPROJECTORTEXTURE_ACTOR,  SETPROJECTORTEXTURE_IMG_ID );
+	break;
+case FN_GetProjectorTexture: //Number Function
+	 rc_push_num(rc_getProjectorTexture( GETPROJECTORTEXTURE_ACTOR ));
+	break;
+case FN_AddProjectorEffectActor: //Number Function
+	 rc_push_num(rc_addProjectorEffectActor( ADDPROJECTOREFFECTACTOR_ACTOR,  ADDPROJECTOREFFECTACTOR_TGT_ACTOR ));
+	break;
+case FN_GetProjectorEffectActorCount: //Number Function
+	 rc_push_num(rc_getProjectorEffectActorCount( GETPROJECTOREFFECTACTORCOUNT_ACTOR ));
+	break;
+case FN_GetProjectorEffectActor: //Number Function
+	 rc_push_num(rc_getProjectorEffectActor( GETPROJECTOREFFECTACTOR_ACTOR,  GETPROJECTOREFFECTACTOR_TGT_INDEX ));
+	break;
+case FN_RemoveProjectorEffectActor: //Sub Procedure
+	rc_removeProjectorEffectActor( REMOVEPROJECTOREFFECTACTOR_ACTOR,  REMOVEPROJECTOREFFECTACTOR_TGT_INDEX );
 	break;
 case FN_AddCompositeChild: //Number Function
 	 rc_push_num(rc_addCompositeChild( ADDCOMPOSITECHILD_ACTOR,  ADDCOMPOSITECHILD_CHILD_ACTOR,  ADDCOMPOSITECHILD_T_MATRIX ));

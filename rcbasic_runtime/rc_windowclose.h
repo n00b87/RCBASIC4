@@ -541,8 +541,17 @@ bool rc_update()
         {
             int vehicle_actor = rc_vehicle_actors[i];
 
+            //irr::core::matrix4 mt =rc_actor[vehicle_actor].physics.rigid_body->getWorldTransform();
+            //btVector3 v_from( mt.getTranslation().X, mt.getTranslation().Y, mt.getTranslation().Y );
+            //btVector3 v_to( v_from.getX(), v_from.getY() + 30, v_from.getZ());
+            //btVehicleRaycaster::btVehicleRaycasterResult rst;
+            //rc_actor[vehicle_actor].vehicle_properties.vehicle->getVehicleRaycaster()->castRay(v_from, v_to, rst);
+
+            //std::cout << "cast: " << rst.m_hitPointInWorld.getX() << ", " << rst.m_hitPointInWorld.getY() << ", " << rst.m_hitPointInWorld.getZ() << std::endl;
+
             for(int wheel_index = 0; wheel_index < rc_actor[vehicle_actor].vehicle_properties.wheels.size(); wheel_index++)
             {
+                rc_actor[vehicle_actor].vehicle_properties.vehicle->updateWheelTransform(wheel_index, true);
                 SWheelInfo &info = rc_actor[vehicle_actor].vehicle_properties.vehicle->getWheelInfo(wheel_index);
 
                 int wheel_actor = rc_actor[vehicle_actor].vehicle_properties.wheels[wheel_index].actor_id;
@@ -550,8 +559,38 @@ bool rc_update()
                 if(wheel_actor < 0 || wheel_actor >= rc_actor.size())
                     continue;
 
+                if(wheel_index == 0)
+                {
+                    irr::core::matrix4 mt = info.worldTransform;
+                    btVector3 v_from( mt.getTranslation().X, mt.getTranslation().Y, mt.getTranslation().Y );
+                    float radius = info.wheelRadius;
+                    btVector3 v_to( v_from.getX(), v_from.getY() + 30, v_from.getZ());
+                    btVehicleRaycaster::btVehicleRaycasterResult rst;
+                    rc_actor[vehicle_actor].vehicle_properties.vehicle->getVehicleRaycaster()->castRay(v_from, v_to, rst);
+
+                    //std::cout << "cast: r=" << radius << "    hit = ( " << rst.m_hitPointInWorld.getX() << ", " << rst.m_hitPointInWorld.getY() << ", " << rst.m_hitPointInWorld.getZ() << " )   ";
+                    //if(info.raycastInfo.isInContact)
+                    //std::cout << "contact=" << (info.raycastInfo.isInContact ? "true" : "false") << std::endl;
+                }
+
                 rc_actor[wheel_actor].physics.rigid_body->setWorldTransform(info.worldTransform);
-                irr::core::matrix4 actor_transform = rc_actor[wheel_actor].physics.rigid_body->getWorldTransform();
+
+                irr::core::matrix4 offset_transform = rc_actor[vehicle_actor].vehicle_properties.wheels[wheel_index].offset_transform;
+                irr::core::vector3df rot_vector( 0, info.wheelRotation, 0 );
+                irr::core::matrix4 wheel_rot_m;
+                wheel_rot_m.makeIdentity();
+                wheel_rot_m.setRotationDegrees(rot_vector);
+
+                irr::core::matrix4 actor_transform = info.worldTransform * offset_transform;
+
+                //info.wheelRotation = info.wheelRotation + 1;
+                rc_actor[vehicle_actor].vehicle_properties.vehicle->updateWheelInfo(wheel_index);
+                //irr::core::vector3df actor_rot_vector = actor_transform.getRotationDegrees();
+
+                //std::cout << "VT: " << actor_rot_vector.X << ", " << actor_rot_vector.Y << ", " << actor_rot_vector.Z << std::endl;
+
+                //std::cout << wheel_index << " setWheelConnectionPoint OUT: " << info.chassisConnectionPointCS.X << ", " << info.chassisConnectionPointCS.Y << ", " << info.chassisConnectionPointCS.Z << std::endl;
+                //std::cout << wheel_index << " info: " << info.worldTransform.getTranslation().X << ", " << info.worldTransform.getTranslation().Y << ", " << info.worldTransform.getTranslation().Z << std::endl;
 
                 rc_actor[wheel_actor].mesh_node->setPosition( actor_transform.getTranslation() );
                 rc_actor[wheel_actor].mesh_node->setRotation( actor_transform.getRotationDegrees() );

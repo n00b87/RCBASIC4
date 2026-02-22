@@ -1907,6 +1907,13 @@ double radians(double degree)
     return (degree * (pi / 180));
 }
 
+
+void rc_setRenderCirclePoints(int num_points)
+{
+    if(num_points >= 3)
+        rc_num_circle_points = num_points;
+}
+
 void makeEllipse(irr::core::array<irr::video::S3DVertex>& vertices, irr::core::array<irr::u16>& indices, const CircleSettings& settings)
 {
     const f64 stepSize = 360.0 / (f64)(settings.numVertices-1); // degree angles between vertex points on circle
@@ -1941,7 +1948,7 @@ void rc_drawEllipse(int x, int y, int rx, int ry)
     circle.radius = ry;
     circle.radius2 = rx;
     circle.color = rc_active_color;
-    circle.numVertices = 21;
+    circle.numVertices = rc_num_circle_points;
     makeEllipse(verticesCircle, indicesCircle, circle);
 
     for(int i = 2; i < verticesCircle.size(); i++)
@@ -1967,7 +1974,7 @@ void rc_drawEllipseFill(int x, int y, int rx, int ry)
     circle.radius = ry;
     circle.radius2 = rx;
     circle.color = rc_active_color;
-    circle.numVertices = 21;
+    circle.numVertices = rc_num_circle_points;
     makeEllipse(verticesCircle, indicesCircle, circle);
 
     VideoDriver->draw2DVertexPrimitiveList(verticesCircle.pointer(), verticesCircle.size(),
@@ -1984,21 +1991,6 @@ void rc_drawCircleFill(int x, int y, double r)
 {
 	rc_drawEllipseFill(x, y, r, r);
 	return;
-
-    irr::core::vector2d<s32> r_pos(x,y);
-
-    // create the circle
-    irr::core::array<irr::video::S3DVertex> verticesCircle;
-    irr::core::array<irr::u16> indicesCircle;
-    CircleSettings circle;
-    circle.center = r_pos;
-    circle.radius = r;
-    circle.color = rc_active_color;
-    makeCircle(verticesCircle, indicesCircle, circle);
-
-    VideoDriver->draw2DVertexPrimitiveList(verticesCircle.pointer(), verticesCircle.size(),
-        indicesCircle.pointer(), indicesCircle.size()-2, video::EVT_STANDARD, scene::EPT_TRIANGLE_FAN,
-        video::EIT_16BIT);
 }
 
 #ifdef RC_ANDROID
@@ -2152,6 +2144,11 @@ void rc_setFont(int font_id)
 {
     if(rc_fontExists(font_id))
         rc_active_font = font_id;
+}
+
+int rc_activeFont()
+{
+    return rc_active_font;
 }
 
 void rc_drawText(std::string txt, int x, int y)
