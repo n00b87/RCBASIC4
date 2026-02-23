@@ -156,7 +156,8 @@ void CProjectiveTextures::render()
 	{
 		projMat.MaterialType = (irr::video::E_MATERIAL_TYPE)projTex;
 		projMat.TextureLayer[0].Texture = texture;
-//		projMat.TextureLayer[0].TextureWrap = ETC_CLAMP_TO_BORDER;
+		projMat.TextureLayer[0].TextureWrapU = irr::video::ETC_CLAMP_TO_BORDER;
+		projMat.TextureLayer[0].TextureWrapV = irr::video::ETC_CLAMP_TO_BORDER;
 
 		pVideo->setTransform(irr::video::ETS_WORLD,nodeArray[i]->getAbsoluteTransformation());
 		pVideo->setMaterial(projMat);

@@ -51,6 +51,7 @@
 #include "rc_gfx.h"
 #include "rc_gfx3D.h"
 #include "rc_matrix.h"
+#include "rc_vectorMath.h"
 #include "rc_geometry.h"
 #include "rc_audio.h"
 #include "rc_net.h"

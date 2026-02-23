@@ -39,6 +39,7 @@ Include "/home/n00b/Projects/RCBASIC4/rcbasic_build/intern_lib/actor_physics.bas
 Include "/home/n00b/Projects/RCBASIC4/rcbasic_build/intern_lib/constraint3D.bas"
 Include "/home/n00b/Projects/RCBASIC4/rcbasic_build/intern_lib/camera.bas"
 Include "/home/n00b/Projects/RCBASIC4/rcbasic_build/intern_lib/scene.bas"
+Include "/home/n00b/Projects/RCBASIC4/rcbasic_build/intern_lib/billboard.bas"
 Include "/home/n00b/Projects/RCBASIC4/rcbasic_build/intern_lib/particles.bas"
 Include "/home/n00b/Projects/RCBASIC4/rcbasic_build/intern_lib/lights.bas"
 Include "/home/n00b/Projects/RCBASIC4/rcbasic_build/intern_lib/terrain.bas"

@@ -2841,6 +2841,39 @@ void rc_setTerrainPatchLOD(int actor, int patchX, int patchZ, int lod)
 }
 
 
+//BILLBOARDS
+void rc_setBillboardSize(int actor, double w, double h)
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+	switch(rc_actor[actor].node_type)
+    {
+    	case RC_NODE_TYPE_BILLBOARD:
+			irr::scene::IBillboardSceneNode* node = (irr::scene::IBillboardSceneNode*) rc_actor[actor].mesh_node;
+			node->setSize(irr::core::dimension2df(w, h));
+			break;
+    }
+}
+
+
+void rc_getBillboardSize(int actor, double* w, double* h)
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+	switch(rc_actor[actor].node_type)
+    {
+    	case RC_NODE_TYPE_BILLBOARD:
+			irr::scene::IBillboardSceneNode* node = (irr::scene::IBillboardSceneNode*) rc_actor[actor].mesh_node;
+			*w = node->getSize().Width;
+			*h = node->getSize().Height;
+			break;
+    }
+}
+
+
+//PROJECTORS
 void rc_setProjectorTarget(int actor, double x, double y, double z)
 {
 	if(actor < 0 || actor >= rc_actor.size())

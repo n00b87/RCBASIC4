@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1771642154 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
+1771816782 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
 	"rc_os_defines.h"
 	<emscripten.h>
 	<sys/param.h>
@@ -23,6 +23,7 @@
 	"rc_gfx.h"
 	"rc_gfx3D.h"
 	"rc_matrix.h"
+	"rc_vectorMath.h"
 	"rc_geometry.h"
 	"rc_audio.h"
 	"rc_net.h"
@@ -34,10 +35,10 @@
 	<irrtheora.h>
 	"rc_func130_cases.h"
 
-1771296059 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
+1771823013 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
 	<TargetConditionals.h>
 
-1771750699 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
+1771822804 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
 
 1764140917 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_stdlib.h
 	"rc_os_defines.h"
@@ -1275,7 +1276,7 @@
 	"rc_post_fx.h"
 	<irrtheora.h>
 
-1771745708 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx_core.h
+1771813730 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx_core.h
 	"SDL.h"
 	"btBulletDynamicsCommon.h"
 	"BulletSoftBody/btSoftRigidDynamicsWorld.h"
@@ -2281,7 +2282,7 @@
 	"rc_gfx_core.h"
 	<irrtheora.h>
 
-1771750699 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
+1771822804 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
 
 1760243468 source:/home/n00b/Projects/irrBullet/src/irrBullet.cpp
 	"irrBullet.h"
@@ -2533,7 +2534,7 @@
 1758412944 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_physics3D_base.h
 	"rc_gfx_core.h"
 
-1771748492 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_base_actor.h
+1771808408 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_base_actor.h
 	"ProjectiveTextures.h"
 	"rc_matrix.h"
 
@@ -2591,7 +2592,7 @@
 1771743310 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/ProjectiveTextures.h
 	<irrlicht.h>
 
-1771745563 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/ProjectiveTextures.cpp
+1771813624 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/ProjectiveTextures.cpp
 	"ProjectiveTextures.h"
 	<string>
 
@@ -2770,4 +2771,7 @@
 	"btBulletDynamicsCommon.h"
 	"btBulletCollisionCommon.h"
 	"irrBulletCompoundShape.h"
+
+1771822932 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_vectorMath.h
+	<irrlicht.h>
 
