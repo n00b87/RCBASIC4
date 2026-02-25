@@ -4455,7 +4455,7 @@ int main(int argc, char * argv[])
 
     //ogles2 test
     #ifdef RC_TESTING
-    rc_intern_dirChange("/home/n00b/Music/test_v48_1/test_v48_2");
+    rc_intern_dirChange("/home/n00b/Music/Testing_Stuff");
 	//rc_intern_dirChange("");
 	rc_filename = "main.cbc";
 
