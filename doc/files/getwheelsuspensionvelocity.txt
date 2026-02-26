@@ -1,0 +1,9 @@
+#title GetWheelSuspensionVelocity [RCBasic Doc]
+#header Function GetWheelSuspensionVelocity( actor, wheel )
+
+Returns the suspension velocity.
+
+This value is the speed that the suspension compresses or extends at.
+
+#ref SetWheelSuspensionVelocity
+

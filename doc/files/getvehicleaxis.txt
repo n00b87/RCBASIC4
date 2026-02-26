@@ -1,0 +1,14 @@
+#title GetVehicleAxis [RCBasic Doc]
+#header Sub GetVehicleAxis( actor, ByRef x, ByRef y, ByRef z  )
+
+Gets the axis used to define a vehicles orientation.
+
+#table
+#row "Direction",         "Axis",           "Meaning"
+#row "X",                 "Right Axis",     "Wheel axle direction"
+#row "Y",                 "Up Axis",        "Suspension direction"
+#row "Z",                 "Forward Axis",   "Driving direction"
+#/table
+
+#ref SetWheelAxel SetSuspensionLength SetWheelDirection
+

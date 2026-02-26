@@ -1,0 +1,11 @@
+#title AddProjectorEffectActor [RCBasic Doc]
+#header Function AddProjectorEffectActor(actor, tgt_actor)
+
+Add an effect actor from a projector.
+
+Returns the index of the effect actor in the projector.
+
+Refer to the included Projector Demo for an example
+
+#ref RemoveProjectorEffectActor
+

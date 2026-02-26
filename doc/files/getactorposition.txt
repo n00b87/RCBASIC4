@@ -1,6 +1,7 @@
 #title GetActorPosition [RCBasic Doc]
-#header sub GetActorPosition( actor, ByRef x, ByRef y, ByRef z )
+#header Sub GetActorPosition( actor, ByRef x, ByRef y, ByRef z )
 
 Gets the actors position
 
 #ref SetActorPosition
+

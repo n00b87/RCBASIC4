@@ -1,4 +1,5 @@
 #title SoundExists [RCBasic Doc]
-#header function SoundExists(snd)
+#header Function SoundExists(snd)
 
 Returns true if the snd id given is associated with an allocated audio track in memory
+

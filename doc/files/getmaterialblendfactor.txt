@@ -1,7 +1,8 @@
-#title getMaterialBlendFactor [RCBasic Doc]
-#header function  getMaterialBlendFactor( material_id)
+#title GetMaterialBlendFactor [RCBasic Doc]
+#header Function  GetMaterialBlendFactor( material_id)
 
 Returns a materials blend factor
 
 
  
+

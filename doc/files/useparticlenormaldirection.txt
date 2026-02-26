@@ -1,7 +1,8 @@
-#title useParticleNormalDirection [RCBasic Doc]
-#header sub  useParticleNormalDirection( actor,  flag)
+#title UseParticleNormalDirection [RCBasic Doc]
+#header Sub  UseParticleNormalDirection( actor,  flag)
 
 Sets whether particle emitter is using vertex normal for direction, or direction specified. 
 
 #ref particleIsUsingNormalDirection
+
 

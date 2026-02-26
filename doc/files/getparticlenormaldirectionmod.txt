@@ -1,8 +1,9 @@
-#title getParticleNormalDirectionMod [RCBasic Doc]
-#header function  getParticleNormalDirectionMod( actor)
+#title GetParticleNormalDirectionMod [RCBasic Doc]
+#header Function  GetParticleNormalDirectionMod( actor)
 
 Returns the normal direction modifier for a particle emitter
 
 Note: Only applies to mesh particle emitter
 
 #ref SetParticleNormalDirectionMod
+

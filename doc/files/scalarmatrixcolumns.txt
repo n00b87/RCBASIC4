@@ -1,4 +1,5 @@
 #title ScalarMatrixColumns [RCBasic Doc]
-#header function ScalarMatrixColumns(mA, mB, c, num_cols, s_value)
+#header Function ScalarMatrixColumns(mA, mB, c, num_cols, s_value)
 
 Multiplies values in the specified columns of matrix mA by scalar value and stores the results in mB
+

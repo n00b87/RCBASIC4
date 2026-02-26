@@ -4,3 +4,4 @@
 Sets the width and Height of a sprite collision box
 
 NOTE: Sprite collision shape must be SPRITE_SHAPE_BOX
+

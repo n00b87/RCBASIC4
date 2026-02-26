@@ -1,6 +1,7 @@
 #title GetCameraPosition [RCBasic Doc]
-#header sub GetCameraPosition(ByRef x, ByRef y, ByRef z)
+#header Sub GetCameraPosition(ByRef x, ByRef y, ByRef z)
 
 Gets the position of the camera
 
 #ref SetCameraPosition TranslateCamera
+

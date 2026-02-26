@@ -1,0 +1,5 @@
+#title GetVehicleForwardVector [RCBasic Doc]
+#header Sub GetVehicleForwardVector( actor, ByRef x, ByRef y, ByRef z )
+
+Gets the forward vector of a vehicle
+

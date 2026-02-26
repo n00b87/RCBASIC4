@@ -1,0 +1,7 @@
+#title SetWheelRotation [RCBasic Doc]
+#header Sub SetWheelRotation( actor, wheel, rot )
+
+Sets a wheel's spin rotation.
+
+#ref GetWheelRotation
+

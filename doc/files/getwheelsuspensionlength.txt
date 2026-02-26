@@ -1,0 +1,7 @@
+#title GetWheelSuspensionLength [RCBasic Doc]
+#header Function GetWheelSuspensionLength( actor, wheel )
+
+Returns the suspsension rest length of a wheel
+
+#ref SetWheelSuspensionLength
+

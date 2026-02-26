@@ -1,4 +1,5 @@
 #title ShowMouse [RCBasic Doc]
-#header sub ShowMouse()
+#header Sub ShowMouse()
 
 Sets the mouse cursor visible
+

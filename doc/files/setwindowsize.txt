@@ -1,4 +1,5 @@
 #title SetWindowSize [RCBasic Doc]
-#header sub SetWindowSize( w, h )
+#header Sub SetWindowSize( w, h )
 
 Sets the size of a window
+

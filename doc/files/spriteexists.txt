@@ -2,3 +2,4 @@
 #header Function SpriteExists(sprite)
 
 Returns true if the sprite id is a valid sprite id
+

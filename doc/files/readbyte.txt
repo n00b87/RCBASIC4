@@ -1,4 +1,5 @@
 #title ReadByte [RCBasic Doc]
-#header function ReadByte(stream)
+#header Function ReadByte(stream)
 
 Reads a byte from a file.
+

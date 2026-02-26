@@ -1,5 +1,5 @@
-#title getJointSpeed [RCBasic Doc]
-#header function  getJointSpeed( joint_id)
+#title GetJointSpeed [RCBasic Doc]
+#header Function  GetJointSpeed( joint_id)
 
 Returns the current joint angle speed
 
@@ -8,3 +8,4 @@ Used with
 #li Prismatic Joint
 #li Revolute Joint
 #/list
+

@@ -1,4 +1,5 @@
 #title SetWindowTitle [RCBasic Doc]
-#header sub SetWindowTitle( title$ )
+#header Sub SetWindowTitle( title$ )
 
 Sets the title of the window
+

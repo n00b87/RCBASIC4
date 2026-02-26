@@ -1,6 +1,7 @@
-#title setSpriteAngularDamping [RCBasic Doc]
-#header sub setSpriteAngularDamping( spr_id,   angularDamping)
+#title SetSpriteAngularDamping [RCBasic Doc]
+#header Sub SetSpriteAngularDamping( spr_id,   angularDamping)
 
 Sets a sprite's angular damping
 
 #ref GetSpriteAngularDamping
+

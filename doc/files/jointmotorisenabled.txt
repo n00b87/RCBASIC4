@@ -1,5 +1,5 @@
-#title jointMotorIsEnabled [RCBasic Doc]
-#header function jointMotorIsEnabled( joint_id)
+#title JointMotorIsEnabled [RCBasic Doc]
+#header Function JointMotorIsEnabled( joint_id)
 
 Returns whether or not the joint motor is enabled
 
@@ -11,3 +11,4 @@ Used with
 #/list
 
 #ref EnableJointMotor
+

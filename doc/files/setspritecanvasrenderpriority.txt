@@ -1,5 +1,5 @@
 #title SetSpriteCanvasRenderPriority [RCBasic Doc]
-#header function SetSpriteCanvasRenderPriority( c_num, priority, order )
+#header Function SetSpriteCanvasRenderPriority( c_num, priority, order )
 
 Sets the order sprites are rendered on a sprite canvas.
 
@@ -29,3 +29,4 @@ Possible order values
 
 
 #ref GetSpriteCanvasRenderPriority
+

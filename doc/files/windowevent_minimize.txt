@@ -1,4 +1,5 @@
 #title WindowEvent_Minimize [RCBasic Doc]
-#header function WindowEvent_Minimize()
+#header Function WindowEvent_Minimize()
 
 Returns true if the window minimize event is called.
+

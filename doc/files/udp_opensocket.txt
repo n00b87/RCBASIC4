@@ -1,4 +1,5 @@
 #title UDP_OpenSocket [RCBasic Doc]
-#header function UDP_OpenSocket(port)
+#header Function UDP_OpenSocket(port)
 
 Opens a UDP socket
+

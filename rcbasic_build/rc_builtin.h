@@ -3630,10 +3630,6 @@ void init_embedded_functions()
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	add_embedded_arg("wheel", ID_TYPE_NUM);
 	add_embedded_arg("rot", ID_TYPE_NUM);
-	embed_function("SetWheelRotationDelta", ID_TYPE_SUB);
-	add_embedded_arg("actor", ID_TYPE_NUM);
-	add_embedded_arg("wheel", ID_TYPE_NUM);
-	add_embedded_arg("rot_delta", ID_TYPE_NUM);
 	embed_function("SetWheelRollInfluence", ID_TYPE_SUB);
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	add_embedded_arg("wheel", ID_TYPE_NUM);
@@ -3654,6 +3650,8 @@ void init_embedded_functions()
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	add_embedded_arg("wheel", ID_TYPE_NUM);
 	add_embedded_arg("t_matrix", ID_TYPE_NUM);
+	embed_function("GetVehiclePitchControl", ID_TYPE_FN_NUM);
+	add_embedded_arg("actor", ID_TYPE_NUM);
 	embed_function("createMaterial", ID_TYPE_FN_NUM);
 	embed_function("deleteMaterial", ID_TYPE_SUB);
 	add_embedded_arg("material_id", ID_TYPE_NUM);

@@ -1,4 +1,5 @@
 #title GetMultiTouch [RCBasic Doc]
-#header sub GetMultiTouch(byref status, byref x, byref y, byref fingers, byref dist, byref theta)
+#header Sub GetMultiTouch(ByRef status, ByRef x, ByRef y, ByRef fingers, ByRef dist, ByRef theta)
 
 Gets the status, position, number of fingers, distance between the fingers and rotation of a multi-finger gesture
+

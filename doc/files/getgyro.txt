@@ -1,4 +1,5 @@
 #title GetGyro [RCBasic Doc]
-#header sub GetGyro(gyro_num, ByRef x, ByRef y, ByRef z)
+#header Sub GetGyro(gyro_num, ByRef x, ByRef y, ByRef z)
 
 Gets the values of a Gyro sensor
+

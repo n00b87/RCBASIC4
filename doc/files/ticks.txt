@@ -1,4 +1,5 @@
 #title Ticks [RCBasic Doc]
-#header function Ticks()
+#header Function Ticks()
 
 Returns the number of CPU ticks since the start of a program
+

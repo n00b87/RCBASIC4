@@ -1,4 +1,5 @@
 #title Hex$ [RCBasic Doc]
-#header function Hex$(n)
+#header Function Hex$(n)
 
 Returns a hexadecimal representation of a number.
+

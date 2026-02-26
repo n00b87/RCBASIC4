@@ -1,4 +1,5 @@
 #title Date$ [RCBasic Doc]
-#header function Date$()
+#header Function Date$()
 
 Returns the date in "MM-DD-YYYY" format
+

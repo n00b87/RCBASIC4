@@ -1,5 +1,5 @@
 #title CastRay3D_All [RCBasic Doc]
-#header function CastRay3D_All( from_x, from_y, from_z, to_x, to_y, to_z )
+#header Function CastRay3D_All( from_x, from_y, from_z, to_x, to_y, to_z )
 
 Cast a ray and gets all hits on the ray
 
@@ -8,3 +8,4 @@ Returns the number of hits from the ray cast
 NOTE: GetRayHit3D is used to read each hit
 
 #ref GetRayHit3D CastRay3D CastRay2D CastRay2D_All GetRayHit2D
+

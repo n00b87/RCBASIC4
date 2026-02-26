@@ -1,4 +1,5 @@
 #title InKey [RCBasic Doc]
-#header function InKey()
+#header Function InKey()
 
 Returns the character value of the key that was pressed.
+

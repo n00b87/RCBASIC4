@@ -1,6 +1,7 @@
-#title setParticleMaxStartColor [RCBasic Doc]
-#header sub  setParticleMaxStartColor( actor,  color)
+#title SetParticleMaxStartColor [RCBasic Doc]
+#header Sub  SetParticleMaxStartColor( actor,  color)
 
 Sets max starting color for particles
 
 #ref SetParticleMaxStartColor
+

@@ -1,6 +1,7 @@
 #title ChannelIsPaused [RCBasic Doc]
-#header function ChannelIsPaused(channel)
+#header Function ChannelIsPaused(channel)
 
 Returns true if an audio channel is currently paused
 
 #ref PauseSound
+

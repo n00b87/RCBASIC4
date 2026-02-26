@@ -1,6 +1,7 @@
 #title GetMatrixTranslation [RCBasic Doc]
-#header sub GetMatrixTranslation( mA, ByRef x, ByRef y, ByRef z)
+#header Sub GetMatrixTranslation( mA, ByRef x, ByRef y, ByRef z)
 
 Get the position vector of a matrix
 
 #ref SetMatrixTranslation
+

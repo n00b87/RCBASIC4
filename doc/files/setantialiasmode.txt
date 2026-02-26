@@ -1,5 +1,5 @@
 #title SetAntiAliasMode [RCBasic Doc]
-#header sub SetAntiAliasMode( aa_mode )
+#header Sub SetAntiAliasMode( aa_mode )
 
 Sets the anti-alias mode for draw image commands
 
@@ -15,3 +15,4 @@ Possible modes
 #/list
 
 #ref GetAntiAliasMode
+

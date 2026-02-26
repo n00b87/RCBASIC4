@@ -1,5 +1,5 @@
-#title setConeLimit [RCBasic Doc]
-#header sub  setConeLimit( constraint_id,  swingSpan1,  swingSpan2,  twistSpan,  softness,  bias_factor,  relaxation_factor)
+#title SetConeLimit [RCBasic Doc]
+#header Sub  SetConeLimit( constraint_id,  swingSpan1,  swingSpan2,  twistSpan,  softness,  bias_factor,  relaxation_factor)
 
 Sets the angular limits for the rotation of the constrained actors. These limits specify how much twisting and swinging is permitted between the two actors connected by the constraint, ensuring the motion stays within a desired range.
 
@@ -10,3 +10,4 @@ Sets the angular limits for the rotation of the constrained actors. These limits
 <b>Relaxation Factor:</b> This affects how fast the constraint will "relax" after reaching its limit, allowing it to stabilize after hitting the constraint.
 
 #ref GetConeLimit
+

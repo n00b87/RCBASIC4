@@ -1,5 +1,5 @@
 #title GetLinePlaneIntersection [RCBasic Doc]
-#header function GetLinePlaneIntersection(ByRef line_point, ByRef line_direction, ByRef plane_point_1, ByRef plane_point_2, ByRef plane_point_3, ByRef intersection)
+#header Function GetLinePlaneIntersection(ByRef line_point, ByRef line_direction, ByRef plane_point_1, ByRef plane_point_2, ByRef plane_point_3, ByRef intersection)
 
 This function calculates the intersection between a line and a plane in 3D space and stores the result in intersection
 
@@ -13,3 +13,4 @@ Parameters:
 #/list
 
 Returns true if intersection point is on the plane
+

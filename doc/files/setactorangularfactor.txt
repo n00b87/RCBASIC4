@@ -1,9 +1,10 @@
 #title SetActorAngularFactor [RCBasic Doc]
-#header sub SetActorAngularFactor( actor,   x,   y,   z)
+#header Sub SetActorAngularFactor( actor,   x,   y,   z)
 
 Sets an actor's angular factor.
 
 The angular factor determines how the actor responds to angular velocity or torque.
 
 #ref GetActorAngularFactor SetActorAngularFactor SetActorLinearFactor 
+
 

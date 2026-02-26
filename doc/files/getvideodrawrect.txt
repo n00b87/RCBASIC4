@@ -1,4 +1,5 @@
 #title GetVideoDrawRect [RCBasic Doc]
-#header sub GetVideoDrawRect(byref x, byref y, byref w, byref h)
+#header Sub GetVideoDrawRect(ByRef x, ByRef y, ByRef w, ByRef h)
 
 Gets the position and dimensions of the area video playback is shown at.
+

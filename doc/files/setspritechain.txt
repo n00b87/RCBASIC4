@@ -5,3 +5,4 @@ Sets the points in a collision chain
 
 NOTE: Sprite collision shape must be SPRITE_SHAPE_CHAIN
 
+

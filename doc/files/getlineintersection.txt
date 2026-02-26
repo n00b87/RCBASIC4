@@ -4,3 +4,4 @@
 Sets (i_x, i_y) to the intersection of lines p0-p1 and p2-p3
 
 Returns true if there is a collision and false if not
+

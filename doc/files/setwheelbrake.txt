@@ -1,0 +1,7 @@
+#title SetWheelBrake [RCBasic Doc]
+#header Sub SetWheelBrake( actor, wheel, brake )
+
+Sets the brake value for a wheel
+
+#ref GetWheelBrake
+

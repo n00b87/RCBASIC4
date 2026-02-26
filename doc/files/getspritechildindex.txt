@@ -1,0 +1,7 @@
+#title GetSpriteChildIndex [RCBasic Doc]
+#header Function GetSpriteChildIndex(sprite, child_sprite)
+
+Returns the index a child_sprite is stored at in a parent sprite
+
+Returns -1 if child_sprite is not a child of sprite
+

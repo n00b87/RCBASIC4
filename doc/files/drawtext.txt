@@ -1,4 +1,5 @@
 #title DrawText [RCBasic Doc]
-#header sub DrawText(txt$, x, y)
+#header Sub DrawText(txt$, x, y)
 
  Draws text to the current canvas
+

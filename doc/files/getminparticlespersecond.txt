@@ -1,7 +1,8 @@
-#title getMinParticlesPerSecond [RCBasic Doc]
-#header function  getMinParticlesPerSecond( actor)
+#title GetMinParticlesPerSecond [RCBasic Doc]
+#header Function  GetMinParticlesPerSecond( actor)
 
 Returns the min number of particles emitted per second
 
 #ref SetMinParticlesPerSecond GetMaxParticlesPerSecond SetMaxParticlesPerSecond
+
 

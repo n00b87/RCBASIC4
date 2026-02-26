@@ -1,4 +1,5 @@
 #title SetGravity3D [RCBasic Doc]
-#header sub SetGravity3D(x, y, z)
+#header Sub SetGravity3D(x, y, z)
 
 Sets the world gravity
+

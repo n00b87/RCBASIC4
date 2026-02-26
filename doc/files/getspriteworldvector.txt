@@ -1,4 +1,5 @@
-#title getSpriteWorldVector [RCBasic Doc]
-#header sub getSpriteWorldVector( spr_id,   lX,   lY,  ByRef  x,  ByRef  y)
+#title GetSpriteWorldVector [RCBasic Doc]
+#header Sub GetSpriteWorldVector( spr_id,   lX,   lY,  ByRef  x,  ByRef  y)
 
 Get the world coordinates of a vector given the local coordinates. 
+

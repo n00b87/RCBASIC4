@@ -1,4 +1,5 @@
 #title WindowIsBordered [RCBasic Doc]
-#header function WindowIsBordered()
+#header Function WindowIsBordered()
 
 Returns true if the window has a border, otherwise it will return false.
+

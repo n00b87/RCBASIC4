@@ -1,6 +1,7 @@
-#title lightIsCastingShadow [RCBasic Doc]
-#header function lightIsCastingShadow( actor )
+#title LightIsCastingShadow [RCBasic Doc]
+#header Function LightIsCastingShadow( actor )
 
 Returns true if shadow casting is enabled for the given light
 
 #ref SetLightShadowCast
+

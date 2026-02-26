@@ -1,0 +1,9 @@
+#title GetPhysics3D [RCBasic Doc]
+#header Function GetPhysics3D( )
+
+Return if the physics engine is enabled
+
+NOTE: While the physics engine is disabled, actor collisions won't be able to be checked.
+
+#ref SetPhysics3D
+

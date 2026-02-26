@@ -1,0 +1,7 @@
+#title GetWheelFrictionSlip [RCBasic Doc]
+#header Function GetWheelFrictionSlip( actor, wheel )
+
+Returns the friction slip of a wheel
+
+#ref SetWheelFrictionSlip
+

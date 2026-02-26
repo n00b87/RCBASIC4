@@ -1,4 +1,5 @@
 #title UDP_CloseSocket [RCBasic Doc]
-#header sub UDP_CloseSocket(socket)
+#header Sub UDP_CloseSocket(socket)
 
 Closes a UDP Socket
+

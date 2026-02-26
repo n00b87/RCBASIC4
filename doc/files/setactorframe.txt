@@ -1,5 +1,5 @@
 #title SetActorFrame [RCBasic Doc]
-#header sub SetActorFrame( actor, frame )
+#header Sub SetActorFrame( actor, frame )
 
 Sets the current frame of an actor
 
@@ -7,3 +7,4 @@ Note: This function will set the actor's animation to 0 which is a default 1 fra
 
 
 #ref GetActorFrame
+

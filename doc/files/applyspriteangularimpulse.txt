@@ -1,6 +1,7 @@
-#title applySpriteAngularImpulse [RCBasic Doc]
-#header sub applySpriteAngularImpulse( spr_id,   impulse)
+#title ApplySpriteAngularImpulse [RCBasic Doc]
+#header Sub ApplySpriteAngularImpulse( spr_id,   impulse)
 
 Apply an angular impulse to a body. This method affects the body’s rotational motion, changing its angular velocity based on the impulse applied.
 
 #ref ApplySpriteLinearImpulse
+

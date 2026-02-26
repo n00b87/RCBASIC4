@@ -1,4 +1,5 @@
 #title CreateMesh [RCBasic Doc]
-#header function CreateMesh( )
+#header Function CreateMesh( )
 
 Returns a new mesh
+

@@ -1,0 +1,5 @@
+#title GetCompositeChildTransform [RCBasic Doc]
+#header Function GetCompositeChildTransform(actor, child_index, t_matrix)
+
+Stores the transform from composite actor to the child index shape in t_matrix
+

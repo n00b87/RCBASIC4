@@ -8,3 +8,4 @@ Gets the resolution and refresh rate of a display
 #li w, h - The width and height of the display will be stored in these variables
 #li freq - The refresh rate will be stored in this variable 
 #/list
+

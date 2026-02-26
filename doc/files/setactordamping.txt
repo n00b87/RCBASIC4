@@ -1,6 +1,7 @@
-#title setActorDamping [RCBasic Doc]
-#header sub setActorDamping( actor,   lin_damping,   ang_damping)
+#title SetActorDamping [RCBasic Doc]
+#header Sub SetActorDamping( actor,   lin_damping,   ang_damping)
 
 Sets the linear and angular damping for an actor
 
 #ref GetActorLinearDamping GetActorAngularDamping
+

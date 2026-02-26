@@ -1,5 +1,5 @@
 #title CreateParticleActor [RCBasic Doc]
-#header function CreateParticleActor( particle_type )
+#header Function CreateParticleActor( particle_type )
 
 Returns a new particle actor
 
@@ -14,3 +14,4 @@ Possible Particle Types
 #/list
 
 #ref CreateMeshOctreeActor CreateCubeActor CreateSphereActor CreateWaterPlaneActor CreateLightActor CreateBillboardActor CreateTerrainActor
+

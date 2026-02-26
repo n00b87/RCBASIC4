@@ -1,0 +1,16 @@
+#title GetPostEffectType [RCBasic Doc]
+#header Function GetPostEffectType( c_num )
+
+Returns the type of post effect set on the given canvas.
+
+Possible Effect Types
+#list ul
+#li POST_EFFECT_TYPE_BLOOM
+#li POST_EFFECT_TYPE_BLUR
+#li POST_EFFECT_TYPE_MOTION_BLUR
+#li POST_EFFECT_TYPE_RADIAL_BLUR
+#li POST_EFFECT_TYPE_COLORIZE
+#li POST_EFFECT_TYPE_INVERT
+#li POST_EFFECT_TYPE_MINERAL
+#/list
+

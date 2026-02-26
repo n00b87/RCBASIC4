@@ -1,5 +1,5 @@
 #title OpenFile [RCBasic Doc]
-#header function OpenFile(fileName$, mode)
+#header Function OpenFile(fileName$, mode)
 
 Returns an ID for an open file to read or write.
 
@@ -24,3 +24,4 @@ Possible Binary Modes
 #li BINARY_OUTPUT_PLUS - Opens a file for both reading and writing.  If the file already exist it will be overwritten.
 #li BINARY_APPEND_PLUS - Opens a file for reading and appending binary data to the end of the file. 
 #/list
+

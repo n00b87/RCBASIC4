@@ -1,0 +1,7 @@
+#title PostEffectIsActive [RCBasic Doc]
+#header Function PostEffectIsActive( c_num )
+
+Returns TRUE if an effect is active on the canvas and FALSE if not.
+
+#ref SetPostEffectActive
+

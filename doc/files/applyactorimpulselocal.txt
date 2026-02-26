@@ -1,5 +1,5 @@
 #title ApplyActorImpulseLocal [RCBasic Doc]
-#header sub ApplyActorImpulseLocal( actor,   x,   y,   z,   rel_x,   rel_y,   rel_z)
+#header Sub ApplyActorImpulseLocal( actor,   x,   y,   z,   rel_x,   rel_y,   rel_z)
 
 Applies an impulse to an actor at a specific point. Unlike ApplyActorCentralImpulse(local/world), which applies impulse only at the center of mass (affecting linear velocity), this can generate both linear motion and rotation (torque), depending on where the force is applied relative to the center of mass.
 
@@ -9,4 +9,5 @@ Applies an impulse to an actor at a specific point. Unlike ApplyActorCentralImpu
 #/list
 
 #ref ApplyActorImpulseWorld ApplyActorForceLocal ApplyActorForceWorld
+
 

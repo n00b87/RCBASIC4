@@ -1,0 +1,5 @@
+#title GetPostEffectProperty [RCBasic Doc]
+#header Function GetPostEffectProperty( c_num, property)
+
+Returns the value of the property on the current canvas post effect.
+

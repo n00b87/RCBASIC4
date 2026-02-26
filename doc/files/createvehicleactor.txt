@@ -1,0 +1,7 @@
+#title CreateVehicleActor [RCBasic Doc]
+#header Function CreateVehicleActor( chassis_actor )
+
+Creates a vehicle actor. The chassis_actor is another actor that will be attached as the main body of the vehicle.
+
+#ref AddVehicleWheel
+

@@ -1,5 +1,5 @@
 #title SetActorShape [RCBasic Doc]
-#header sub SetActorShape( actor, shape_type, mass)
+#header Sub SetActorShape( actor, shape_type, mass)
 
 Sets the shape of an actor
 
@@ -13,6 +13,11 @@ Possible Actor Shapes
 #li ACTOR_SHAPE_CONE
 #li ACTOR_SHAPE_CONVEXHULL
 #li ACTOR_SHAPE_TRIMESH
+#li ACTOR_SHAPE_COMPOSITE
+#li ACTOR_SHAPE_IMPACT_MESH
 #/list
 
-#ref GetActorShape
+NOTE: ACTOR_SHAPE_COMPOSITE is not a shape you can set. It is a shape that is automatically set on composite actors.
+
+#ref SetActorShapeEx GetActorShape
+

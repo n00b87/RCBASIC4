@@ -1,4 +1,5 @@
 #title Time$ [RCBasic Doc]
-#header function Time$()
+#header Function Time$()
 
 Returns the current time in "HH:MM:SS" format
+

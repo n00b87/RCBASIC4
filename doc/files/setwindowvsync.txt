@@ -1,4 +1,5 @@
 #title SetWindowVSync [RCBasic Doc]
-#header sub SetWindowVSync( flag )
+#header Sub SetWindowVSync( flag )
+
 
 

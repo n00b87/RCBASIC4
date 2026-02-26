@@ -1,8 +1,9 @@
-#title getParticleRadius [RCBasic Doc]
-#header function  getParticleRadius( actor)
+#title GetParticleRadius [RCBasic Doc]
+#header Function  GetParticleRadius( actor)
 
 Returns the radius of a particle emitter
 
 Note: Only applies to Sphere, Cylinder, and Ring emitters
 
 #ref SetParticleRadius
+

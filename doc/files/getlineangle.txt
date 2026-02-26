@@ -1,0 +1,5 @@
+#title GetLineAngle [RCBasic Doc]
+#header Function GetLineAngle(x1, y1, x2, y2)
+
+Gets an angle between 2 points
+

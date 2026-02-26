@@ -1,5 +1,5 @@
-#title getMaterialType [RCBasic Doc]
-#header function  getMaterialType( material_id)
+#title GetMaterialType [RCBasic Doc]
+#header Function  GetMaterialType( material_id)
 
 Returns a material's type
 
@@ -44,3 +44,4 @@ Possible types
 #/list
 
 #ref SetMaterialType GetActorMaterialType SetActorMaterialType
+

@@ -1,0 +1,5 @@
+#title Stack_N_Exists [RCBasic Doc]
+#header Function Stack_N_Exists( num_stack )
+
+Returns TRUE if the given number stack exists and FALSE if not.
+

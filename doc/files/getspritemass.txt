@@ -1,4 +1,5 @@
-#title getSpriteMass [RCBasic Doc]
-#header function  getSpriteMass( spr_id)
+#title GetSpriteMass [RCBasic Doc]
+#header Function  GetSpriteMass( spr_id)
 
 Returns the total mass of the body. 
+

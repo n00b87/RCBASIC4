@@ -1,6 +1,7 @@
 #title CreateImage [RCBasic Doc]
-#header function CreateImage(w, h, byref buffer)
+#header Function CreateImage(w, h, ByRef buffer)
 
 Returns an image created from the buffer provided
 
 #ref CreateImageEx LoadImage
+

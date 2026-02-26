@@ -1,0 +1,8 @@
+#title GetActorBoneIndex [RCBasic Doc]
+#header Function GetActorBoneIndex( actor, bone_name$ )
+
+Returns a bone index based on its name
+
+NOTE: This is only for actors that use skeletal animation (ie. *.b3d, *.x, *.ms3d, and actors created from Anim8or files)
+
+

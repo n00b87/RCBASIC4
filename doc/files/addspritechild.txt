@@ -1,0 +1,7 @@
+#title AddSpriteChild [RCBasic Doc]
+#header Function AddSpriteChild(sprite, child_sprite, x, y)
+
+Adds a sprite as a child to another sprite. Child sprite is offset by given position.
+
+#ref RemoveSpriteChild
+

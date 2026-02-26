@@ -1,0 +1,5 @@
+#title NormalizeVector [RCBasic Doc]
+#header Sub NormalizeVector(x, y, z, ByRef nx, ByRef ny, ByRef nz)
+
+Returns a normalized vector from (x,y,z)
+

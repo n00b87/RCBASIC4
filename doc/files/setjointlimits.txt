@@ -1,5 +1,5 @@
-#title setJointLimits [RCBasic Doc]
-#header sub setJointLimits( joint_id,   lower_limit,   upper_limit)
+#title SetJointLimits [RCBasic Doc]
+#header Sub SetJointLimits( joint_id,   lower_limit,   upper_limit)
 
 Sets the minimum and maximum limits, restricting how far or how much rotation the connected bodies can move relative to each other.
 
@@ -11,3 +11,4 @@ Used with
 #/list
 
 #ref GetJointLowerLimit GetJointUpperLimit
+

@@ -1,8 +1,9 @@
 #title SetCanvasOffset [RCBasic Doc]
-#header sub SetCanvasOffset(c_num, x, y)
+#header Sub SetCanvasOffset(c_num, x, y)
 
 Sets the offset of a canvas
 
 The canvas offset is what part of the canvas is visible during rendering.
 
 #ref GetCanvasOffset
+

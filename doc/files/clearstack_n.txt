@@ -1,6 +1,7 @@
 #title ClearStack_N [RCBasic Doc]
-#header sub ClearStack_N( num_stack )
+#header Sub ClearStack_N( num_stack )
 
 Removes all elements from the stack
 
 #ref ClearStack_S
+

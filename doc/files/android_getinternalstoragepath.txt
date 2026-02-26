@@ -1,6 +1,7 @@
 #title Android_GetInternalStoragePath$ [RCBasic Doc]
-#header function Android_GetInternalStoragePath$()
+#header Function Android_GetInternalStoragePath$()
 
 Returns the internal storage path
 
 #ref Android_GetExternalStorageState Android_GetExternalStoragePath$
+

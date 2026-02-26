@@ -1,0 +1,7 @@
+#title RemoveSpriteChild [RCBasic Doc]
+#header Sub RemoveSpriteChild(sprite, child_index)
+
+Removes the child at the given index from the parent sprite
+
+#ref AddSpriteChild
+

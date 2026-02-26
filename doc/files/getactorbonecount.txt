@@ -1,0 +1,8 @@
+#title GetActorBoneCount [RCBasic Doc]
+#header Function GetActorBoneCount( actor )
+
+Returns the number of bones in an actor
+
+NOTE: This is only for actors that use skeletal animation (ie. *.b3d, *.x, *.ms3d, and actors created from Anim8or files)
+
+

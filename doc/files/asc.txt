@@ -2,3 +2,4 @@
 #header Function Asc(c$)
 
 Returns the ASCII value of a character.
+

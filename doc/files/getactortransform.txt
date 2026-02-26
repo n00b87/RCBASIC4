@@ -1,4 +1,5 @@
 #title GetActorTransform [RCBasic Doc]
-#header sub GetActorTransform( actor, matrix )
+#header Sub GetActorTransform( actor, matrix )
 
 Stores the actors absolute transformation in the given matrix
+

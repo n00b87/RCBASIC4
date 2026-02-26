@@ -1,6 +1,7 @@
-#title applySpriteLinearImpulse [RCBasic Doc]
-#header sub applySpriteLinearImpulse( spr_id,   iX,   iY,   pX,   pY)
+#title ApplySpriteLinearImpulse [RCBasic Doc]
+#header Sub ApplySpriteLinearImpulse( spr_id,   iX,   iY,   pX,   pY)
 
 Apply an instantaneous linear impulse to a body. This method directly affects the body’s linear motion by changing its velocity based on the impulse applied.
 
 #ref ApplySpriteAngularImpulse
+

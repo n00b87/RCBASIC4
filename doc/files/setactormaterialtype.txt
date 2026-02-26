@@ -1,5 +1,5 @@
-#title setActorMaterialType [RCBasic Doc]
-#header sub  setActorMaterialType( actor,  material_type)
+#title SetActorMaterialType [RCBasic Doc]
+#header Sub  SetActorMaterialType( actor,  material_type)
 
 Sets the material type of an actor material
 
@@ -46,3 +46,4 @@ Possible material types
 #/list
 
 #ref GetActorMaterialType GetActorMaterial
+

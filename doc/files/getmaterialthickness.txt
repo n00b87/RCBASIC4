@@ -1,8 +1,9 @@
-#title getMaterialThickness [RCBasic Doc]
-#header function  getMaterialThickness( material_id)
+#title GetMaterialThickness [RCBasic Doc]
+#header Function  GetMaterialThickness( material_id)
 
 Returns a material's thickness value
 
 Thickness value is mainly for primitives such as lines
 
 #ref SetMaterialThickness
+

@@ -1,4 +1,0 @@
-#title GetActorStartFrame [RCBasic Doc]
-#header function GetActorStartFrame( actor )
-
-Returns the start frame of an actor's animation

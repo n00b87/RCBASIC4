@@ -1,6 +1,7 @@
 #title SetSpriteFriction [RCBasic Doc]
-#header sub SetSpriteFriction( spr_id, friction )
+#header Sub SetSpriteFriction( spr_id, friction )
 
 Sets a sprite's friction
 
 #ref GetSpriteFriction
+

@@ -1,0 +1,119 @@
+#title RCBasic Sprites [RCBasic Doc]
+#header SPRITES
+
+The last section was a basic overview of graphics so in this section, I am going to go more indepth on sprites. In RCBasic, sprites are 2D objects with animation and physics properties. Sprite physics and animations are updated each time Update() is called.
+
+To create a sprite, you must have a sprite canvas as your active canvas.  Here is a quick explanation of how to open a new sprite canvas.
+#code
+pos_x = 0
+pos_y = 0
+viewport_width = 640
+viewport_height = 480
+
+sprite_canvas = OpenCanvasSpriteLayer(pos_x, pos_y, viewport_width, viewport_height)
+#/code
+
+Sprite canvases are opened with <a href="opencanvasspritelayer.html">OpenCanvasSpriteLayer()</a>. You only need to pass the position in the window where the viewport starts at and the size of the viewport. Sprite canvases don't have a fixed size since it only renders the part of the canvas that is visible.
+
+Once you have opened a sprite canvas, use the <a href="canvas.html">Canvas()</a> function to set the sprite canvas as active.
+#code
+Canvas(sprite_canvas)
+#/code
+
+Now you are ready to create a sprite. To create a sprite, normally you would need a sprite sheet. The sprite sheet is a image file that contains all the animations for your sprite.
+#code
+spriteSheet = LoadImage("graizor.png")
+
+frame_width = 32
+frame_height = 32
+
+mySprite = CreateSprite(spriteSheet, frame_width, frame_height)
+#/code
+
+Sprites are created with the <a href="createsprite.html">CreateSprite()</a> function. Sprites have a default animation that is 1 frame in length and set as the first frame in the sprite sheet. The frames in a sprite sheet start at 0 and increase going from left to right and continue incrementing down each row.  So if each row as 4 frames then the first row would have frames 0 to 3 and the second row would start at 4 and continue until the end of the last row.
+#image "images/sprite_frames.png"
+
+To animate our sprite, we have to create an animation for it. You can create an animation with the <a href="createspriteanimation.html">CreateSpriteAnimation()</a> function.
+#code
+walk_left_animation = CreateSpriteAnimation(mySprite, 4, 12)
+SetSpriteAnimationFrame(mySprite, walk_left_animation, 0, 28)
+SetSpriteAnimationFrame(mySprite, walk_left_animation, 1, 29)
+SetSpriteAnimationFrame(mySprite, walk_left_animation, 2, 30)
+SetSpriteAnimationFrame(mySprite, walk_left_animation, 3, 31)
+#/code
+
+CreateSpriteAnimation() takes 3 parameters
+#list ul
+#li sprite - A sprite created with CreateSprite()
+#li animation length - number of frames in the animation
+#li animation speed - frames per second for the animation
+#/list
+
+<a href="setspriteanimationframe.html">SetSpriteAnimationFrame()</a> takes 4 parameters
+#list ul
+#li sprite - the sprite the animation is on
+#li animation - the animation created with CreateSpriteAnimation()
+#li animation frame - the animation frame number  NOTE: first frame is 0
+#li sheet index - the index of the frame on the sprite sheet  NOTE: This will match one of the numbers in the top corner of each frame in the picture above
+#/list
+
+
+Now to play the animation, we just set the animation on the sprite.
+#code
+SetSpriteAnimation(mySprite, walk_left_animation, -1)
+#/code
+
+<a href="setspriteanimation.html">SetSpriteAnimation()</a> takes the sprite, the animation, and the last parameter is the number of times to loop the animation. Setting it to a value less than 0 will cause it to loop infinitely.
+
+Thats the basics of sprite animation. Next lets go over sprite physics. By default, a sprite is non-solid which means it won't collide with anything. To change our sprite to solid, we just call the <a href="setspritesolid.html">SetSpriteSolid()</a> function.
+#code
+SetSpriteSolid(mySprite, TRUE)
+#/code
+
+To have the sprite fall, we need to set gravity for our sprite canvas. We do that with <a href="setgravity2d.html">SetGravity2D()</a>.
+#code
+SetGravity2D(0, 30)
+#/code
+
+SetGravity2D() takes an x and y value for the direction gravity pulls in. We just want gravity pulling down on our sprite. This would have our sprite falling forever since there is no ground for the sprite to collide with. So we need to create another sprite for the ground.
+#code
+ground = CreateSprite(-1, 640, 100)
+SetSpriteSolid(ground, TRUE)
+SetSpritePosition(ground, 0, 380)
+SetSpriteType(ground, SPRITE_TYPE_STATIC)
+#/code
+
+There is a few things to go over with how the ground was created. First, we use -1 instead of an image for the ground. If you use a value less than 0 when creating a sprite, it will just create a physics object without any animation. This works well for a ground since we can draw an image on a paint canvas or draw a tile map.
+
+On the next 2 lines we are setting the ground as solid and setting the grounds position to the bottom of our screen.
+
+The last line is setting the ground sprite as static. This sets the ground as an unmovable object.
+
+Since the ground does not have an image associated with it, we can just open a paint canvas over the sprite layer and draw a rectangle covering the area where our ground physics object is.
+#code
+paint_canvas = OpenCanvas(640, 480, 0, 0, 640, 480, 1)
+SetCanvasZ(paint_canvas, 1)
+#/code
+
+We use OpenCanvas() from the last section to open a paint canvas here. Setting the last parameter in OpenCanvas() to 1 will make the canvas background clear so we can see the sprite canvas behind it.
+
+<a href="setcanvasz.html">SetCanvasZ()</a> changes the render order for the canvas. Canvases with a higher Z order are drawn on top of canvases with lower Z order. Now we can switch to the paint canvas to draw a rectangle using the functions from the last section.
+#code
+SetColor( RGB(200, 0, 0) )  'Sets the drawing color to red
+RectFill(0, 380, 640, 100)    'Draws a filled rectangle with the current draw color
+#/code
+
+We are drawing our rectangle at the location where we positioned our ground sprite above with the size that we made our ground sprite object. That will make our sprite ground visible for us to land on.
+
+The last thing we will do is make our sprite move when we press a key.
+#code
+If Key(K_RIGHT) Then
+   SetSpriteLinearVelocity(mySprite, 30, 0)
+End If
+#/code
+
+<a href="key.html">Key()</a> returns true if the key code parameter is pressed. You can see a list of all the key codes in the <a href="key_codes.html">Key Codes</a> section in the Appendix.
+
+We use <a href="setspritelinearvelocity.html">SetSpriteLinearVelocity()</a> to move the sprite instead of SetSpritePosition() because we don't want to directly move a sprite that we want physics to be applied to. There are a few functions for applying forces to a sprite that you can find under the Sprite Physics section in the manual.
+
+And that is it for our simple overview of sprites. To see a full working example of the concepts covered here, try out the Sprite Test example in the examples folder.

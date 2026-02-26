@@ -1,4 +1,5 @@
 #title Reverse$ [RCBasic Doc]
-#header function Reverse$(src$)
+#header Function Reverse$(src$)
 
 Returns src$ with the characters in reverse order.
+

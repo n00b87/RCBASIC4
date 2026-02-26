@@ -1,0 +1,7 @@
+#title GetWheelRadius [RCBasic Doc]
+#header Function GetWheelRadius( actor, wheel )
+
+You will never guess what this returns
+
+#ref SetWheelRadius
+

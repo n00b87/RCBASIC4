@@ -1,4 +1,5 @@
 #title InsertMatrixColumns [RCBasic Doc]
-#header function InsertMatrixColumns(mA, c, num_cols)
+#header Function InsertMatrixColumns(mA, c, num_cols)
 
 Insert a number of empty columns into matrix mA starting at the specified column.
+

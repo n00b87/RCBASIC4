@@ -1,4 +1,5 @@
 #title Pset [RCBasic Doc]
-#header sub Pset(x,y)
+#header Sub Pset(x,y)
 
 Draws a pixel
+

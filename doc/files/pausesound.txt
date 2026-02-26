@@ -1,4 +1,5 @@
 #title PauseSound [RCBasic Doc]
-#header sub PauseSound(channel)
+#header Sub PauseSound(channel)
 
 Pauses a sound at its current position.
+

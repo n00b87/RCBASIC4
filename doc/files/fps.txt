@@ -1,4 +1,5 @@
 #title FPS [RCBasic Doc]
-#header function FPS()
+#header Function FPS()
 
 Returns the number of frames being rendered per second
+

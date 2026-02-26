@@ -1,6 +1,7 @@
 #title Write [RCBasic Doc]
-#header sub Write(stream, txt$)
+#header Sub Write(stream, txt$)
 
 Writes a string to a file.
 
 #ref WriteLine
+

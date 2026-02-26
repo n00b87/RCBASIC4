@@ -1,6 +1,7 @@
 #title SetWorld2DPositionIterations [RCBasic Doc]
-#header sub SetWorld2DPositionIterations( p )
+#header Sub SetWorld2DPositionIterations( p )
 
 Sets the number of position iterations for the position constraint solver
 
 #ref GetWorld2DPositionIterations
+

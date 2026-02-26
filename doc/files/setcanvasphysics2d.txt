@@ -1,4 +1,5 @@
 #title SetCanvasPhysics2D [RCBasic Doc]
-#header sub SetCanvasPhysics2D(c_num, state)
+#header Sub SetCanvasPhysics2D(c_num, state)
+
 
 

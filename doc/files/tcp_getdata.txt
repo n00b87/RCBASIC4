@@ -1,4 +1,5 @@
 #title TCP_GetData [RCBasic Doc]
-#header function TCP_GetData(socket, numBytes, ByRef sData$)
+#header Function TCP_GetData(socket, numBytes, ByRef sData$)
 
 Reads a given number of bytes from a socket
+

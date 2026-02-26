@@ -1,5 +1,5 @@
-#title getParticleType [RCBasic Doc]
-#header function  getParticleType( actor )
+#title GetParticleType [RCBasic Doc]
+#header Function  GetParticleType( actor )
 
 Returns the particle type
 
@@ -14,3 +14,4 @@ Possible Particle Types
 #/list
 
 #ref CreateParticleActor
+

@@ -1,0 +1,7 @@
+#title SetPostEffectActive [RCBasic Doc]
+#header Sub SetPostEffectActive( c_num, flag )
+
+Enables or Disables currently set effect
+
+#ref PostEffectIsActive
+

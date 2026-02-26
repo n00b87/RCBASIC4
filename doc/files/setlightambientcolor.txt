@@ -1,4 +1,5 @@
 #title SetLightAmbientColor [RCBasic Doc]
-#header sub SetLightAmbientColor( actor, color )
+#header Sub SetLightAmbientColor( actor, color )
 
 Sets the ambient color for a light
+

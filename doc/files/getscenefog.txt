@@ -2,3 +2,4 @@
 #header Sub GetSceneFog (ByRef color, ByRef fog_type, ByRef start_val, ByRef end_val, ByRef density, ByRef pixelFog, ByRef rangeFog)
 
 
+

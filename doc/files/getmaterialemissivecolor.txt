@@ -1,6 +1,7 @@
-#title getMaterialEmissiveColor [RCBasic Doc]
-#header function  getMaterialEmissiveColor( material_id)
+#title GetMaterialEmissiveColor [RCBasic Doc]
+#header Function  GetMaterialEmissiveColor( material_id)
 
 Returns a material's emissive color
 
 #ref SetMaterialEmissiveColor
+

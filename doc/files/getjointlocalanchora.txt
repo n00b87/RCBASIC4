@@ -1,5 +1,5 @@
-#title getJointLocalAnchorA [RCBasic Doc]
-#header sub getJointLocalAnchorA( joint_id,  ByRef  x,  ByRef  y)
+#title GetJointLocalAnchorA [RCBasic Doc]
+#header Sub GetJointLocalAnchorA( joint_id,  ByRef  x,  ByRef  y)
 
 Returns the local anchor point relative to bodyA's origin. 
 
@@ -13,3 +13,4 @@ Returns the local anchor point relative to bodyA's origin.
 #/list
 
 #ref GetJointLocalAnchorB
+

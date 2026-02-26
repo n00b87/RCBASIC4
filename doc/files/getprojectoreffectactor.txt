@@ -1,0 +1,9 @@
+#title GetProjectorEffectActor [RCBasic Doc]
+#header Function GetProjectorEffectActor(actor, tgt_index)
+
+Returns the effect actor at tgt_index in a projector
+
+Refer to the included Projector Demo for an example
+
+#ref AddProjectorEffectActor
+

@@ -1,5 +1,5 @@
 #title FlashWindow [RCBasic Doc]
-#header function FlashWindow( flag )
+#header Function FlashWindow( flag )
 
 Flashes a window to specify an alert
 
@@ -11,3 +11,4 @@ Possible flag values:
 #li FLASH_BRIEFLY
 #li FLASH_UNTIL_FOCUSED
 #/list
+

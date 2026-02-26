@@ -8,3 +8,4 @@ NOTE: Since it is a loop, the shape will be a closed
 NOTE: Sprite collision shape must be SPRITE_SHAPE_CHAIN
 
 
+

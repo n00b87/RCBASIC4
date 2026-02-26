@@ -1,4 +1,5 @@
-#title getSpriteLinearVelocityFromWorldPoint [RCBasic Doc]
-#header sub getSpriteLinearVelocityFromWorldPoint( spr_id,   wX,   wY,  ByRef  x,  ByRef  y)
+#title GetSpriteLinearVelocityFromWorldPoint [RCBasic Doc]
+#header Sub GetSpriteLinearVelocityFromWorldPoint( spr_id,   wX,   wY,  ByRef  x,  ByRef  y)
 
 Get the world linear velocity of a world point attached to this body. 
+

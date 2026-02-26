@@ -1,6 +1,7 @@
 #title SetCanvasVisible [RCBasic Doc]
-#header sub SetCanvasVisible(c_num, flag)
+#header Sub SetCanvasVisible(c_num, flag)
 
 Sets whether a canvas is shown or not.
 
 #ref CanvasIsVisible
+

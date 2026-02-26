@@ -64,3 +64,4 @@ Wend
 <br>
 
 #ref SetSpriteRotation RotateSprite
+

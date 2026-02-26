@@ -1,4 +1,5 @@
 #title SwapMatrixColumn [RCBasic Doc]
-#header function SwapMatrixColumn(mA, C1, C2)
+#header Function SwapMatrixColumn(mA, C1, C2)
 
 Swaps the contents of 2 columns in a matrix
+

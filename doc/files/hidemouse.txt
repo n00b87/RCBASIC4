@@ -1,4 +1,5 @@
 #title HideMouse [RCBasic Doc]
-#header sub HideMouse()
+#header Sub HideMouse()
 
 Makes the mouse cursor invisible.
+

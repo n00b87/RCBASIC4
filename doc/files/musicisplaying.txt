@@ -1,4 +1,5 @@
 #title MusicIsPlaying [RCBasic Doc]
-#header function MusicIsPlaying()
+#header Function MusicIsPlaying()
 
 Returns true if the music track is currently playing
+

@@ -1,5 +1,5 @@
-#title enableJointMotor [RCBasic Doc]
-#header sub enableJointMotor( joint_id,  flag)
+#title EnableJointMotor [RCBasic Doc]
+#header Sub EnableJointMotor( joint_id,  flag)
 
 Enables or disables the joint motor
 
@@ -11,3 +11,4 @@ Used with
 #/list
 
 #ref JointMotorIsEnabled
+

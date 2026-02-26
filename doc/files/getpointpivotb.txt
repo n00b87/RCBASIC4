@@ -1,7 +1,8 @@
-#title getPointPivotB [RCBasic Doc]
-#header sub  getPointtPivotB( constraint_id, ByRef x, ByRef y, ByRef z)
+#title GetPointPivotB [RCBasic Doc]
+#header Sub  GetPointtPivotB( constraint_id, ByRef x, ByRef y, ByRef z)
 
 Gets the pivot point on the first actor (Body B) of the constraint. This pivot point defines the specific location in the local space of Body B where the point-to-point constraint is anchored.
 
 #ref GetPointPivotA SetPointPivotB
+
 

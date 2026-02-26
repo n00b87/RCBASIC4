@@ -6,3 +6,4 @@ Opens a graphics window
 Returns true if window was opened and false if a window could not be opened
 
 #ref OpenWindowEx
+

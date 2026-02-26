@@ -1,5 +1,5 @@
-#title setMaterialBlendMode [RCBasic Doc]
-#header sub  setMaterialBlendMode( material_id,  blend_mode)
+#title SetMaterialBlendMode [RCBasic Doc]
+#header Sub  SetMaterialBlendMode( material_id,  blend_mode)
 
 Sets a material's blend mode
 
@@ -18,4 +18,5 @@ Possible Blend Modes
 #/list
 
 #ref SetMaterialBlendMode
+
 

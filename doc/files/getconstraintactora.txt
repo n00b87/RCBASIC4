@@ -1,4 +1,5 @@
-#title getConstraintActorA [RCBasic Doc]
-#header function  getConstraintActorA( constraint_id)
+#title GetConstraintActorA [RCBasic Doc]
+#header Function  GetConstraintActorA( constraint_id)
 
 Returns the first actor in a constraint
+

@@ -1,6 +1,7 @@
 #title NumCPUs [RCBasic Doc]
-#header function NumCPUs()
+#header Function NumCPUs()
 
 Returns the number of CPUs (ie. cores) available
+
 
 

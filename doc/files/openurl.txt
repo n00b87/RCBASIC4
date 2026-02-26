@@ -1,4 +1,5 @@
 #title OpenURL [RCBasic Doc]
-#header function OpenURL(url$)
+#header Function OpenURL(url$)
 
 Opens a URL in the internet browser 
+

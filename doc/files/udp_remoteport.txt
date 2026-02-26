@@ -1,4 +1,5 @@
 #title UDP_RemotePort [RCBasic Doc]
-#header function UDP_RemotePort(socket)
+#header Function UDP_RemotePort(socket)
 
 Returns the port the socket is connected on.
+

@@ -4,3 +4,4 @@
 Sets the number of frames in a sprite animation
 
 #ref GetSpriteAnimationLength
+

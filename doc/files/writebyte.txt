@@ -1,6 +1,7 @@
 #title WriteByte [RCBasic Doc]
-#header sub WriteByte(stream, byte)
+#header Sub WriteByte(stream, byte)
 
 Writes a byte to the file.
 
 #ref WriteByteBuffer
+

@@ -1,0 +1,5 @@
+#title GetCompositeChildIndex [RCBasic Doc]
+#header Function GetCompositeChildIndex(actor, child_actor)
+
+Returns the index an actor is stored at in a composite actor
+

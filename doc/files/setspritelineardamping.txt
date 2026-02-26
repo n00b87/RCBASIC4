@@ -1,6 +1,7 @@
-#title setSpriteLinearDamping [RCBasic Doc]
-#header sub setSpriteLinearDamping( spr_id,   linearDamping)
+#title SetSpriteLinearDamping [RCBasic Doc]
+#header Sub SetSpriteLinearDamping( spr_id,   linearDamping)
 
 Sets the linear damping of a sprite
 
 #ref GetSpriteLinearDamping
+

@@ -1,5 +1,5 @@
 #title Steam_TriggerAchievement [RCBasic Doc]
-#header function Steam_TriggerAchievement( ach_name$ )
+#header Function Steam_TriggerAchievement( ach_name$ )
 
 Unlocks a steam achievement in the current application.
 
@@ -7,3 +7,4 @@ Returns True if the achievement was triggered and false if not.
 
 
 #ref Steam_AddAchievement Steam_ClearAchievements Steam_FinalizeAchievements Steam_GetID
+

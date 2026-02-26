@@ -1,10 +1,12 @@
 #title CreatePlaneMesh [RCBasic Doc]
-#header Function CreatePlaneMesh( w, h, tileCount_w, tileCount_h )
+#header Function CreatePlaneMesh( w, h, tileCount_w, tileCount_h, txRepeat_x, txRepeat_y )
 
 Creates a flat plane
 
 #list
 #li w, h - The width and height of the plane
 #li tileCount_w, TileCount_h - The number of subdivisions across and down the plane
+#li txRepeat_x, txRepeat_y - The number of times to repeat the texture across and down the plane
 #/list
+
 

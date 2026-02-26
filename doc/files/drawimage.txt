@@ -1,4 +1,5 @@
 #title DrawImage [RCBasic Doc]
-#header sub DrawImage(img, x, y)
+#header Sub DrawImage(img, x, y)
 
 Draws an image on the active canvas
+

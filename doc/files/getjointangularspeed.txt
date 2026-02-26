@@ -1,6 +1,7 @@
-#title getJointAngularSpeed [RCBasic Doc]
-#header function  getJointAngularSpeed( joint_id)
+#title GetJointAngularSpeed [RCBasic Doc]
+#header Function  GetJointAngularSpeed( joint_id)
 
 Return the current joint angular speed
 
 Used with Wheel Joint
+

@@ -1,4 +1,5 @@
 #title FileLength [RCBasic Doc]
-#header function FileLength(fileName$)
+#header Function FileLength(fileName$)
 
  Returns the size of a file in bytes.
+

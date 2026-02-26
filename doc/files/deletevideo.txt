@@ -1,4 +1,5 @@
 #title DeleteVideo [RCBasic Doc]
-#header sub DeleteVideo()
+#header Sub DeleteVideo()
 
 Removes the current video track from memory
+

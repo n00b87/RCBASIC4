@@ -2,3 +2,4 @@
 #header Sub SetSpritePolygon(spr_id, ByRef vx, ByRef vy, v_count)
 
 Sets the points in a polygon sprite shape
+

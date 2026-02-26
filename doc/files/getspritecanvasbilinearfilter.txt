@@ -1,6 +1,7 @@
 #title GetSpriteCanvasBilinearFilter [RCBasic Doc]
-#header function GetSpriteCanvasBilinearFilter( c_num )
+#header Function GetSpriteCanvasBilinearFilter( c_num )
 
 Returns the bi-linear filter flag for the sprite canvas
 
 #ref SetSpriteCanvasBilinearFilter
+

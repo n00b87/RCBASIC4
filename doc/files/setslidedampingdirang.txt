@@ -1,6 +1,7 @@
-#title setSlideDampingDirAng [RCBasic Doc]
-#header sub  setSlideDampingDirAng( constraint_id,  n)
+#title SetSlideDampingDirAng [RCBasic Doc]
+#header Sub  SetSlideDampingDirAng( constraint_id,  n)
 
 Sets the angular directional damping value. This damping factor specifically affects angular motion in the direction of movement along the constraint's axes.
+
 
 

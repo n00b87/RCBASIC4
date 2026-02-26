@@ -1,8 +1,9 @@
 #title ZeroMatrix [RCBasic Doc]
-#header sub ZeroMatrix(mA)
+#header Sub ZeroMatrix(mA)
 
 Clears a matrix
 
 Note: Literally does the exact same thing as ClearMatrix. Its here as a legacy call convention.
 
 #ref ClearMatrix
+

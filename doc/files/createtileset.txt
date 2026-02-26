@@ -69,3 +69,4 @@ Wend
 #image "images/testTileSet.png"
 
 #ref CreateTileMap SetTile FillTile DrawTileMap
+

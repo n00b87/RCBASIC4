@@ -1,4 +1,5 @@
 #title IsEqualMatrix [RCBasic Doc]
-#header function IsEqualMatrix(mA, mB, tolerance)
+#header Function IsEqualMatrix(mA, mB, tolerance)
 
 Returns true if matrix mA is within tolerance of matrix mB 
+

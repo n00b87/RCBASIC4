@@ -1,5 +1,5 @@
 #title UDP_SocketReady [RCBasic Doc]
-#header function UDP_SocketReady(socket)
+#header Function UDP_SocketReady(socket)
 
 Returns 0 for no activity and non zero for activity. You need to call CheckSockets() at some point before this otherwise it will always
 return 0.
@@ -11,3 +11,4 @@ End If
 #/code
 
 #ref CheckSockets
+

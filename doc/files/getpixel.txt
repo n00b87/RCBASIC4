@@ -1,4 +1,5 @@
 #title GetPixel [RCBasic Doc]
-#header function GetPixel(x,y)
+#header Function GetPixel(x,y)
 
 Returns the color of a pixel
+

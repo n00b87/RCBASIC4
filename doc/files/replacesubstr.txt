@@ -1,4 +1,5 @@
 #title ReplaceSubstr$ [RCBasic Doc]
-#header function ReplaceSubstr$(src$, rpc$, pos)
+#header Function ReplaceSubstr$(src$, rpc$, pos)
 
 Overwrites the characters at the given position in src$ with rpc$.
+

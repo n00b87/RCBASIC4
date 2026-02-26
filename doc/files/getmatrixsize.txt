@@ -1,6 +1,7 @@
 #title GetMatrixSize [RCBasic Doc]
-#header sub GetMatrixSize(mA, ByRef r, ByRef c)
+#header Sub GetMatrixSize(mA, ByRef r, ByRef c)
 
 Gets the number of rows and columns in a matrix
 
 #ref DimMatrix
+

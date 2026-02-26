@@ -3407,9 +3407,6 @@ case FN_SetWheelFrictionSlip: //Sub Procedure
 case FN_SetWheelRotation: //Sub Procedure
 	rc_setWheelRotation( SETWHEELROTATION_ACTOR,  SETWHEELROTATION_WHEEL,  SETWHEELROTATION_ROT );
 	break;
-case FN_SetWheelRotationDelta: //Sub Procedure
-	rc_setWheelRotationDelta( SETWHEELROTATIONDELTA_ACTOR,  SETWHEELROTATIONDELTA_WHEEL,  SETWHEELROTATIONDELTA_ROT_DELTA );
-	break;
 case FN_SetWheelRollInfluence: //Sub Procedure
 	rc_setWheelRollInfluence( SETWHEELROLLINFLUENCE_ACTOR,  SETWHEELROLLINFLUENCE_WHEEL,  SETWHEELROLLINFLUENCE_ROLL_INFLUENCE );
 	break;
@@ -3424,6 +3421,9 @@ case FN_SetWheelActorOffsetTransform: //Sub Procedure
 	break;
 case FN_GetWheelActorOffsetTransform: //Sub Procedure
 	rc_getWheelActorOffsetTransform( GETWHEELACTOROFFSETTRANSFORM_ACTOR,  GETWHEELACTOROFFSETTRANSFORM_WHEEL,  GETWHEELACTOROFFSETTRANSFORM_T_MATRIX );
+	break;
+case FN_GetVehiclePitchControl: //Number Function
+	 rc_push_num(rc_getVehiclePitchControl( GETVEHICLEPITCHCONTROL_ACTOR ));
 	break;
 case FN_createMaterial: //Number Function
 	 rc_push_num(rc_createMaterial(  ));

@@ -1,6 +1,7 @@
-#title getSpriteGravityScale [RCBasic Doc]
-#header function  getSpriteGravityScale( spr_id)
+#title GetSpriteGravityScale [RCBasic Doc]
+#header Function  GetSpriteGravityScale( spr_id)
 
 Returns a sprite's gravity scale
 
 #ref SetSpriteGravityScale
+

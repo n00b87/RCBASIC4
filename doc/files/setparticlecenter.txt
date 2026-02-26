@@ -1,9 +1,10 @@
-#title setParticleCenter [RCBasic Doc]
-#header sub  setParticleCenter( actor,  x,  y,  z)
+#title SetParticleCenter [RCBasic Doc]
+#header Sub  SetParticleCenter( actor,  x,  y,  z)
 
 Sets the center of a particle emitter
 
 Note: applies to Sphere, Cylinder, and Ring emitters
 
 #ref GetParticleCenter
+
 

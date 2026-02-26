@@ -1,4 +1,5 @@
 #title CopyFile [RCBasic Doc]
-#header sub CopyFile(src$, dst$)
+#header Sub CopyFile(src$, dst$)
 
 Copies the contents of src$ file to a new dst$ file
+

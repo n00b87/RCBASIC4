@@ -1,0 +1,9 @@
+#title SetWheelAxel [RCBasic Doc]
+#header Sub SetWheelAxel( actor, wheel, x, y, z )
+
+Sets the wheel axel direction.
+
+The axel is the axis the wheel rotates around.
+
+#ref GetWheelAxel
+

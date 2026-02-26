@@ -1,4 +1,5 @@
 #title MouseButton [RCBasic Doc]
-#header function MouseButton(mb)
+#header Function MouseButton(mb)
 
 Returns true if mouse button is pressed
+

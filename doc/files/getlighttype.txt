@@ -1,5 +1,5 @@
 #title GetLightType [RCBasic Doc]
-#header function GetLightType( actor )
+#header Function GetLightType( actor )
 
 Returns the type of light
 
@@ -13,3 +13,4 @@ Possible Light Types
 #/list
 
 #ref SetLightType
+

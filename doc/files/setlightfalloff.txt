@@ -1,6 +1,7 @@
 #title SetLightFalloff [RCBasic Doc]
-#header sub SetLightFalloff( actor, falloff )
+#header Sub SetLightFalloff( actor, falloff )
 
 Sets the strength decrease between the inner and outer cone of a light
 
 Note: Only applies to spot lights
+

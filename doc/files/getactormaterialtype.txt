@@ -1,5 +1,5 @@
 #title GetActorMaterialType [RCBasic Doc]
-#header function  GetActorMaterialType( actor, material )
+#header Function  GetActorMaterialType( actor, material )
 
 Returns the material type of an actor material
 
@@ -44,3 +44,4 @@ Possible material types
 #/list
 
 #ref SetActorMaterialType GetMaterialType SetMaterialType
+

@@ -1,4 +1,5 @@
 #title StopSound [RCBasic Doc]
-#header sub StopSound(channel)
+#header Sub StopSound(channel)
 
 Stops playing sound on the specified channel
+

@@ -1,4 +1,5 @@
 #title RaiseWindow [RCBasic Doc]
-#header sub RaiseWindow( )
+#header Sub RaiseWindow( )
 
 Places the current window on top of the other windows.
+

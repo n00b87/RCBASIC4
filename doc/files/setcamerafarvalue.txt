@@ -1,6 +1,7 @@
 #title SetCameraFarValue [RCBasic Doc]
-#header sub SetCameraFarValue( zf )
+#header Sub SetCameraFarValue( zf )
 
 Sets the distance to the camera far plane
 
 #ref GetCameraFarValue
+

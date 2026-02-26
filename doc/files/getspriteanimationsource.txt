@@ -1,0 +1,5 @@
+#title GetSpriteAnimationSource [RCBasic Doc]
+#header Function GetSpriteAnimationSource(sprite, animation)
+
+Returns the image associated with the given sprite animation.
+

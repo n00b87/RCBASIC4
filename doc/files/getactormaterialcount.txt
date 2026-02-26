@@ -1,4 +1,5 @@
-#title getActorMaterialCount [RCBasic Doc]
-#header function  getActorMaterialCount( actor)
+#title GetActorMaterialCount [RCBasic Doc]
+#header Function  GetActorMaterialCount( actor)
 
 Returns the number of materials for an actor.
+

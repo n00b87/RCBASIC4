@@ -1,0 +1,11 @@
+#title AddVehicleWheel [RCBasic Doc]
+#header Function AddVehicleWheel( actor, wheel_actor, is_front_wheel )
+
+Add a wheel to a vehicle actor
+
+is_front_wheel sets whether it should be considered a front wheel for physics and control
+
+NOTE: Once an actor is set as a wheel, the vehicle controls all transforms for the actor
+
+#ref CreateVehicleActor
+

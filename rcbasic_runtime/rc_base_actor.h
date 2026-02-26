@@ -779,6 +779,7 @@ int rc_createVehicleActor(int chassis_actor)
 
     rc_actor[actor_id].parent_id = -1;
     rc_actor[actor_id].isWheel = false;
+    rc_actor[actor_id].vehicle_properties.pitch_control = 0;
 
     rc_vehicle_actors.push_back(actor_id);
 
@@ -3890,6 +3891,22 @@ void rc_setVehiclePitchControl( int actor, double pitch )
         return;
 
     rc_actor[actor].vehicle_properties.vehicle->setPitchControl(pitch);
+    rc_actor[actor].vehicle_properties.pitch_control = pitch;
+}
+
+
+double rc_getVehiclePitchControl( int actor )
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(!rc_actor[actor].mesh_node)
+        return 0;
+
+    if(rc_actor[actor].node_type != RC_NODE_TYPE_VEHICLE)
+        return 0;
+
+    return rc_actor[actor].vehicle_properties.pitch_control;
 }
 
 

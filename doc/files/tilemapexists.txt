@@ -4,3 +4,4 @@
 Returns true if the given tilemap is an active tilemap in the program
 
 #ref TileSetExists
+

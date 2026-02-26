@@ -1,4 +1,5 @@
 #title GetTextSize [RCBasic Doc]
-#header sub GetTextSize(txt$, byref w, byref h)
+#header Sub GetTextSize(txt$, ByRef w, ByRef h)
 
 Gets the size of the text if rendered with the current font
+

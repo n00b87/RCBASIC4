@@ -1,4 +1,5 @@
 #title MouseY [RCBasic Doc]
-#header function MouseY()
+#header Function MouseY()
 
 Returns the mouse y position
+

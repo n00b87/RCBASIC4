@@ -1,0 +1,5 @@
+#title GetVehicleChassisWorldTransform [RCBasic Doc]
+#header Sub GetVehicleChassisWorldTransform( actor, t_matrix )
+
+Stores the world transform of the chassis actor in a vehicle
+

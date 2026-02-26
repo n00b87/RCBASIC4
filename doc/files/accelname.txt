@@ -1,6 +1,7 @@
 #title AccelName$ [RCBasic Doc]
-#header function AccelName$(accel_num)
+#header Function AccelName$(accel_num)
 
 
 Returns the name of an accelerometer
+
 

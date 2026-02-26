@@ -1,5 +1,5 @@
 #title Update [RCBasic Doc]
-#header sub Update()
+#header Sub Update()
 
 This is the most important function in a graphics window. It must be called every frame.
 
@@ -17,3 +17,4 @@ It performs a few different operations
 #/list
 
 If you have a window open, you should have this function being called in your main render loop every frame.
+

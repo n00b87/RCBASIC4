@@ -1,6 +1,7 @@
 #title SetClearColor [RCBasic Doc]
-#header sub SetClearColor(c)
+#header Sub SetClearColor(c)
 
 Sets the color that a canvas is cleared to on ClearCanvas()
 
 #ref ClearCanvas
+

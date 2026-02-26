@@ -1,0 +1,5 @@
+#title MatrixExists [RCBasic Doc]
+#header Function MatrixExists( mA )
+
+Returns TRUE if a matrix exists and FALSE if not.
+

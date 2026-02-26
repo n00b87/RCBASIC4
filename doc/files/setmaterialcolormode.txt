@@ -1,5 +1,5 @@
-#title setMaterialColorMode [RCBasic Doc]
-#header sub  setMaterialColorMode( material_id,  color_mode)
+#title SetMaterialColorMode [RCBasic Doc]
+#header Sub  SetMaterialColorMode( material_id,  color_mode)
 
 Sets the color mode of a material
 
@@ -14,3 +14,4 @@ Possible modes
 #/list
 
 #ref GetMaterialColorMode
+

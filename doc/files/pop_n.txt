@@ -1,6 +1,7 @@
 #title Pop_N [RCBasic Doc]
-#header function Pop_N( num_stack )
+#header Function Pop_N( num_stack )
 
 Removes the top number off a number stack and returns it
 
 #ref Push_N
+

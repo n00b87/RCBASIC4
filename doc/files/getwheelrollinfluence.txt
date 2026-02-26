@@ -1,0 +1,11 @@
+#title GetWheelRollInfluence [RCBasic Doc]
+#header Function GetWheelRollInfluence( actor, wheel )
+
+Returns the roll_influence for a wheel.
+
+Roll influence controls how much a wheel’s suspension force contributes to the vehicle’s body roll (sideways tipping).
+
+It’s essentially a stability scaling factor.
+
+#ref SetWheelRollInfluence
+

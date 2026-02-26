@@ -1,6 +1,7 @@
 #title GetMatrixScale [RCBasic Doc]
-#header sub GetMatrixScale( mA, ByRef x, ByRef y, ByRef z)
+#header Sub GetMatrixScale( mA, ByRef x, ByRef y, ByRef z)
 
 Gets the scale vector of a matrix
 
 #ref SetMatrixScale
+

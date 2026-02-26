@@ -1,5 +1,5 @@
-#title createConeConstraintEx [RCBasic Doc]
-#header function  createConeConstraintEx( actorA,  actorB,  rbAFrame_matrix,  rbBFrame_matrix)
+#title CreateConeConstraintEx [RCBasic Doc]
+#header Function  CreateConeConstraintEx( actorA,  actorB,  rbAFrame_matrix,  rbBFrame_matrix)
 
 The Cone Constraint is a type of joint constraint used to simulate realistic rotational movement between two actors (or between an actor and the world) with specific angular limits. This constraint is especially useful for simulating ball-and-socket joints with some twisting freedom but restricted cone-like movement, such as human shoulders or robotic arms.
 
@@ -21,3 +21,4 @@ test_cone = CreateConeConstraint( actorA, rbA )
 #/code
 
 #ref CreateConeConstraint SetIdentityMatrix SetMatrixTranslation SetMatrixRotation
+

@@ -1,0 +1,5 @@
+#title ClearPostEffect [RCBasic Doc]
+#header Sub ClearPostEffect( c_num )
+
+Removes the current post effect from the canvas.
+

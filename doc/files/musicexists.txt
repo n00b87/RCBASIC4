@@ -1,4 +1,5 @@
 #title MusicExists [RCBasic Doc]
-#header function MusicExists()
+#header Function MusicExists()
 
 Returns true if there is a music track loaded
+

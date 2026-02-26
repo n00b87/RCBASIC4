@@ -1,4 +1,5 @@
-#title getConstraintActorB [RCBasic Doc]
-#header function  getConstraintActorB( constraint_id)
+#title GetConstraintActorB [RCBasic Doc]
+#header Function  GetConstraintActorB( constraint_id)
 
 Returns the second actor in a constraint
+

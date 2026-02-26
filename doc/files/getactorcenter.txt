@@ -1,4 +1,5 @@
-#title getActorCenter [RCBasic Doc]
-#header sub getActorCenter( actor,  ByRef  x,  ByRef  y,  ByRef  z)
+#title GetActorCenter [RCBasic Doc]
+#header Sub GetActorCenter( actor,  ByRef  x,  ByRef  y,  ByRef  z)
 
 Gets an actor's center of mass position. This is useful for setting the origin of constraints.
+

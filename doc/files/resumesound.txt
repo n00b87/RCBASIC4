@@ -1,6 +1,7 @@
 #title ResumeSound [RCBasic Doc]
-#header sub ResumeSound(channel)
+#header Sub ResumeSound(channel)
 
 Resumes playing sound on the given channel.
 
 #ref PauseSound
+

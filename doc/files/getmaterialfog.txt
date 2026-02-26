@@ -1,6 +1,7 @@
-#title getMaterialFog [RCBasic Doc]
-#header function  getMaterialFog( material_id)
+#title GetMaterialFog [RCBasic Doc]
+#header Function  GetMaterialFog( material_id)
 
 Returns true if fog is enabled for a material
 
 #ref SetMaterialFog
+

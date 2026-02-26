@@ -1,0 +1,7 @@
+#title SetActorImpactMesh [RCBasic Doc]
+#header Sub SetActorImpactMesh( actor, mesh, mass )
+
+Sets the collision mesh for an actor with a shape type of ACTOR_SHAPE_IMPACT_MESH
+
+#ref SetActorShape
+

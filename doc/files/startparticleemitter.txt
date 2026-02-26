@@ -1,6 +1,7 @@
-#title startParticleEmitter [RCBasic Doc]
-#header sub  startParticleEmitter( actor)
+#title StartParticleEmitter [RCBasic Doc]
+#header Sub  StartParticleEmitter( actor)
 
 Starts particle emission for a particle actor
 
 #ref StopParticleEmitter
+

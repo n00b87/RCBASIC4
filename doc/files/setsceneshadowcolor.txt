@@ -4,3 +4,4 @@
 Sets the shadow color of the scene
 
 #ref GetSceneShadowColor
+

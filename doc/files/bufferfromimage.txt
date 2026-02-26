@@ -1,4 +1,5 @@
 #title BufferFromImage [RCBasic Doc]
-#header sub BufferFromImage(slot, byref buffer)
+#header Sub BufferFromImage(slot, ByRef buffer)
+
 
 

@@ -1,4 +1,5 @@
 #title SetCanvasAlpha [RCBasic Doc]
-#header sub SetCanvasAlpha(c_num, a)
+#header Sub SetCanvasAlpha(c_num, a)
 
 Sets the alpha blending value for a canvas
+

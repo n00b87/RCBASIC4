@@ -1,0 +1,5 @@
+#title GetBillboardSize [RCBasic Doc]
+#header Sub GetBillboardSize(actor, ByRef w, ByRef h)
+
+Gets the width and height of a billboard.
+

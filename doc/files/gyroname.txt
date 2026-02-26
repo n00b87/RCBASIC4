@@ -1,4 +1,5 @@
 #title GyroName$ [RCBasic Doc]
-#header function GyroName$(gyro_num)
+#header Function GyroName$(gyro_num)
 
 Returns the name of the gyroscope.
+

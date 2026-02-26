@@ -1,4 +1,5 @@
-#title getConstraintAppliedImpulse [RCBasic Doc]
-#header function  getConstraintAppliedImpulse( constraint_id)
+#title GetConstraintAppliedImpulse [RCBasic Doc]
+#header Function  GetConstraintAppliedImpulse( constraint_id)
 
 Returns the impulse applied to a constraint during the last simulation step. This impulse is the force integrated over a small time step (impulse = force × time) and is applied to resolve the constraint and maintain its behavior, such as keeping two objects connected or restricting movement.
+

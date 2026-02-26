@@ -1,4 +1,5 @@
 #title MakeDir [RCBasic Doc]
-#header function MakeDir(p$)
+#header Function MakeDir(p$)
 
 Creates a new directory.
+

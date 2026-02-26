@@ -1,5 +1,5 @@
 #title JoyRumblePlay [RCBasic Doc]
-#header sub JoyRumblePlay(joy_num, strength, duration)
+#header Sub JoyRumblePlay(joy_num, strength, duration)
 
 Rumbles a joystick at a specified strength for the specifed duration.
 
@@ -7,3 +7,4 @@ Rumbles a joystick at a specified strength for the specifed duration.
 #li Strength - A value between 0 and 1
 #li Duration - Value is in milliseconds
 #/list
+

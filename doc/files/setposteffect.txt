@@ -1,0 +1,48 @@
+#title SetPostEffect [RCBasic Doc]
+#header Function SetPostEffect( c_num, effect_type )
+
+Sets a post effect on an canvas.
+
+Returns TRUE if successful and FALSE if not.
+
+NOTE: Post Effects only apply to 3D canvases.
+
+Possible Effects and there properties:
+#list ul
+#li POST_EFFECT_TYPE_BLOOM 
+	#list ul
+	#li POST_EFFECT_PROPERTY_STRENGTH
+	#li POST_EFFECT_PROPERTY_DISTANCE
+	#li POST_EFFECT_PROPERTY_MULTIPLIER
+	#/list
+#li POST_EFFECT_TYPE_BLUR
+	#list ul
+	#li POST_EFFECT_PROPERTY_DISTANCE
+	#/list
+#li POST_EFFECT_TYPE_MOTION_BLUR
+	#list ul
+	#li POST_EFFECT_PROPERTY_STRENGTH
+	#/list
+#li POST_EFFECT_TYPE_RADIAL_BLUR
+	#list ul
+	#li POST_EFFECT_PROPERTY_STRENGTH
+	#li POST_EFFECT_PROPERTY_DISTANCE
+	#/list
+#li POST_EFFECT_TYPE_COLORIZE
+	#list ul
+	#li POST_EFFECT_PROPERTY_STRENGTH
+	#li POST_EFFECT_PROPERTY_SATURATION
+	#li POST_EFFECT_PROPERTY_COLOR
+	#/list
+#li POST_EFFECT_TYPE_INVERT
+	#list ul
+	#li NONE
+	#/list
+#li POST_EFFECT_TYPE_MINERAL
+	#list ul
+	#li POST_EFFECT_PROPERTY_STRENGTH
+	#/list
+#/list
+
+#ref ClearPostEffect
+

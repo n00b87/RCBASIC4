@@ -1,4 +1,5 @@
 #title SetMatrixRotation [RCBasic Doc]
-#header sub SetMatrixRotation( mA, x, y, z )
+#header Sub SetMatrixRotation( mA, x, y, z )
 
 Sets the rotation vector of a matrix
+

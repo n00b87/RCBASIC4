@@ -1,0 +1,23 @@
+#title GetActorType [RCBasic Doc]
+#header Function GetActorType( actor )
+
+Returns an actor's type
+
+Actor Types
+#list ul
+#li ACTOR_TYPE_NONE
+#li ACTOR_TYPE_MESH
+#li ACTOR_TYPE_OTMESH
+#li ACTOR_TYPE_LIGHT
+#li ACTOR_TYPE_TERRAIN
+#li ACTOR_TYPE_WATER
+#li ACTOR_TYPE_BILLBOARD
+#li ACTOR_TYPE_PARTICLE
+#li ACTOR_TYPE_PRIMITIVE
+#li ACTOR_TYPE_PROJECTOR
+#li ACTOR_TYPE_COMPOSITE
+#li ACTOR_TYPE_VEHICLE
+#/list
+
+NOTE: Cube and Sphere actors both return ACTOR_TYPE_PRIMITIVE
+

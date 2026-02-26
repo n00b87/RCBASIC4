@@ -1,0 +1,5 @@
+#title RecalculateCompositeAABB [RCBasic Doc]
+#header Sub RecalculateCompositeAABB(actor)
+
+Recalculates the bounding box for a composite actor
+

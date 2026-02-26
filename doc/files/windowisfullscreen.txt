@@ -1,4 +1,5 @@
 #title WindowIsFullscreen [RCBasic Doc]
-#header function WindowIsFullscreen()
+#header Function WindowIsFullscreen()
 
 Returns true if the window is fullscreen, otherwise it will return false.
+

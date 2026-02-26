@@ -1,6 +1,7 @@
-#title setSpriteLinearVelocity [RCBasic Doc]
-#header sub setSpriteLinearVelocity( spr_id,   x,   y)
+#title SetSpriteLinearVelocity [RCBasic Doc]
+#header Sub SetSpriteLinearVelocity( spr_id,   x,   y)
 
 Sets a sprite's linear velocity
 
 #ref GetSpriteLinearVelocity
+

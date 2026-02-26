@@ -1,4 +1,5 @@
 #title SetClipboardText [RCBasic Doc]
-#header sub SetClipboardText(txt$)
+#header Sub SetClipboardText(txt$)
 
 Sets the clipboard text.
+

@@ -1,4 +1,5 @@
 #title AddMatrix [RCBasic Doc]
-#header function AddMatrix(mA, mB, mC)
+#header Function AddMatrix(mA, mB, mC)
 
 Adds matrix mA to matrix mB and stores the results in mC
+

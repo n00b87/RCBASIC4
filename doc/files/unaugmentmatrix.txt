@@ -1,4 +1,5 @@
 #title UnAugmentMatrix [RCBasic Doc]
-#header function UnAugmentMatrix(mA, mB, mC)
+#header Function UnAugmentMatrix(mA, mB, mC)
 
 Splits matrix mA into coefficient mB and augment mC 
+

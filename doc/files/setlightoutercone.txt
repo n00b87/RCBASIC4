@@ -1,5 +1,6 @@
 #title SetLightOuterCone [RCBasic Doc]
-#header sub SetLightOuterCone( actor, angle)
+#header Sub SetLightOuterCone( actor, angle)
 
 Sets the outer cone of a spot light
+
 

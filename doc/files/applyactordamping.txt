@@ -1,5 +1,5 @@
 #title ApplyActorDamping [RCBasic Doc]
-#header sub ApplyActorDamping( actor,   timeStep)
+#header Sub ApplyActorDamping( actor,   timeStep)
 
 Reduces the velocity of an actor over time, simulating the effect of friction or air resistance.
 
@@ -20,3 +20,4 @@ Wend
 #/code
 
 #ref setActorDamping getActorLinearDamping getActorAngularDamping
+

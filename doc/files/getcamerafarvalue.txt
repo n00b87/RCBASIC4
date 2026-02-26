@@ -1,6 +1,7 @@
 #title GetCameraFarValue [RCBasic Doc]
-#header function GetCameraFarValue( )
+#header Function GetCameraFarValue( )
 
 Returns the far plane of the camera on the active canvas
 
 #ref GetCameraNearValue
+

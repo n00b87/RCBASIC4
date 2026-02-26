@@ -1,8 +1,9 @@
-#title setJointAngularOffset [RCBasic Doc]
-#header sub setJointAngularOffset( joint_id,   angleOffset)
+#title SetJointAngularOffset [RCBasic Doc]
+#header Sub SetJointAngularOffset( joint_id,   angleOffset)
 
 Set the target angular offset
 
 Used with Motor Joint
 
 #ref GetJointAngularOffset
+

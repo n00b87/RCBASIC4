@@ -1,0 +1,5 @@
+#title Pipeline_Begin [RCBasic Doc]
+#header Sub Pipeline_Begin()
+
+Begins a custom rendering process.
+

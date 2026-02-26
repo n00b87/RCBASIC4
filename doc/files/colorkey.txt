@@ -1,4 +1,5 @@
 #title ColorKey [RCBasic Doc]
-#header sub ColorKey(img_id, c)
+#header Sub ColorKey(img_id, c)
 
 Sets the color key for an image
+

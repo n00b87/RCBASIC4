@@ -1,0 +1,10 @@
+#title SetWheelDirection [RCBasic Doc]
+#header Sub SetWheelDirection( actor, wheel, x, y, z )
+
+Sets a wheel's direction
+
+This direction is the direction the suspension of the wheel extends to and not the direction the wheel rolls.
+Basically, if the suspension is pointing straight down then the direction would be (0, -1, 0).
+
+#ref GetWheelDirection
+

@@ -1,5 +1,5 @@
 #title ActorIsVisible [RCBasic Doc]
-#header function ActorIsVisible( actor )
+#header Function ActorIsVisible( actor )
 
 Returns true if an actor is visible
 
@@ -11,3 +11,4 @@ Print "Actor solid state: "; ActorIsSolid(actor) 'Outputs 0
 #/code
 
 #ref SetActorVisible
+

@@ -1,6 +1,7 @@
 #title RemoveSceneSky [RCBasic Doc]
-#header sub RemoveSceneSky( )
+#header Sub RemoveSceneSky( )
 
 Removes the sky from the current 3D scene
 
 #ref AddSceneSkyBox AddSceneSkyDome AddSceneSkyDomeEx
+

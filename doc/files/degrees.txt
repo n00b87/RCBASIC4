@@ -1,4 +1,5 @@
 #title Degrees [RCBasic Doc]
-#header function Degrees(r)
+#header Function Degrees(r)
 
 Returns angle converted from radians to degrees
+

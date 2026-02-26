@@ -1,0 +1,12 @@
+#title GetWheelSuspensionStiffness [RCBasic Doc]
+#header Function GetWheelSuspensionStiffness( actor, wheel )
+
+Returns the suspension stiffness of a wheel.
+
+#list ul
+#li Higher stiffness - stronger upward force for the same compression
+#li Lower stiffness - softer suspension
+#/list
+
+#ref SetWheelSuspensionStiffness
+

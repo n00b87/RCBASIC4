@@ -2,3 +2,4 @@
 #header Sub DeleteImage(img)
 
 Removes an image from memory
+

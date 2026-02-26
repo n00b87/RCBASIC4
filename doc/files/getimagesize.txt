@@ -1,4 +1,5 @@
 #title GetImageSize [RCBasic Doc]
-#header sub GetImageSize(slot, byref w, byref h)
+#header Sub GetImageSize(slot, ByRef w, ByRef h)
 
 Gets the Size of an image
+

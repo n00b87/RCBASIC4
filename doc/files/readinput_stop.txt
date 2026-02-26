@@ -1,4 +1,5 @@
 #title ReadInput_Stop [RCBasic Doc]
-#header sub ReadInput_Stop()
+#header Sub ReadInput_Stop()
 
 Stops reading input from the keyboard.
+

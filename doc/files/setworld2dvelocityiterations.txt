@@ -1,6 +1,7 @@
 #title SetWorld2DVelocityIterations [RCBasic Doc]
-#header sub SetWorld2DVelocityIterations( v )
+#header Sub SetWorld2DVelocityIterations( v )
 
 Sets the number of velocity iterations for the velocity constraint solver
 
 #ref GetWorld2DVelocityIterations
+

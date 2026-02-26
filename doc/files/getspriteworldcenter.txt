@@ -1,0 +1,5 @@
+#title GetSpriteWorldCenter [RCBasic Doc]
+#header Sub GetSpriteWorldCenter( spr_id, ByRef x, ByRef y )
+
+Gets the center of a sprite's shape as world coordinates.
+

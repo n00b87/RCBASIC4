@@ -1,6 +1,7 @@
 #title XOrBit [RCBasic Doc]
-#header function XOrBit(a, b)
+#header Function XOrBit(a, b)
 
 Returns the value of the bitwise XOR operation on the operands A and B
 
 #ref OrBit AndBit
+

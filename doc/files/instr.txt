@@ -1,4 +1,5 @@
 #title InStr [RCBasic Doc]
-#header function InStr(src$, substr$)
+#header Function InStr(src$, Substr$)
 
 Returns the position in src$ where substr$ is found.  If not found it will return -1.
+

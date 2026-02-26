@@ -1,5 +1,5 @@
 #title GetActorShape [RCBasic Doc]
-#header function GetActorShape(actor)
+#header Function GetActorShape(actor)
 
 Returns the shape of an actor
 
@@ -13,6 +13,11 @@ Possible Actor Shapes
 #li ACTOR_SHAPE_CONE
 #li ACTOR_SHAPE_CONVEXHULL
 #li ACTOR_SHAPE_TRIMESH
+#li ACTOR_SHAPE_COMPOSITE
+#li ACTOR_SHAPE_IMPACT_MESH
 #/list
 
-#ref SetActorShape
+NOTE: ACTOR_SHAPE_COMPOSITE is not a shape you can set. It is a shape that is automatically set on composite actors.
+
+#ref SetActorShape SetActorShapeEx
+

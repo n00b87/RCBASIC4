@@ -1,5 +1,5 @@
-#title setActorMaterialFlag [RCBasic Doc]
-#header sub  setActorMaterialFlag( actor,  flag,  flag_value)
+#title SetActorMaterialFlag [RCBasic Doc]
+#header Sub  SetActorMaterialFlag( actor,  flag,  flag_value)
 
 Sets the value of an actor's material flag. 
 
@@ -30,3 +30,4 @@ Possible values for flag:
 #/list
 
 #ref GetActorMaterialFlag GetActorMaterial
+

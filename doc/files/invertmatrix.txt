@@ -1,4 +1,5 @@
 #title InvertMatrix [RCBasic Doc]
-#header function InvertMatrix(mA, mB)
+#header Function InvertMatrix(mA, mB)
 
 Stores the inverse matrix of mA in mB 
+

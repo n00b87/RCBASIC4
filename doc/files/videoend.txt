@@ -1,4 +1,5 @@
 #title VideoEnd [RCBasic Doc]
-#header function VideoEnd()
+#header Function VideoEnd()
 
 Returns true when the currently playing video reaches the end
+

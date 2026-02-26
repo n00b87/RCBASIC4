@@ -640,6 +640,7 @@ struct rc_vehicle_properties
     int chassis_actor_id;
     IRaycastVehicle* vehicle;
     irr::core::array<rc_vehicle_wheel> wheels;
+    double pitch_control;  //bullet has know way of getting this value so I am keeping track of it manually
 };
 
 struct rc_projector_properties

@@ -1,5 +1,5 @@
 #title SetActorAutoCulling [RCBasic Doc]
-#header sub SetActorAutoCulling( actor, cull_type )
+#header Sub SetActorAutoCulling( actor, cull_type )
 
 Sets the automatic culling state for an actor
 
@@ -13,3 +13,4 @@ Possible Culling States
 #/list
 
 #ref GetActorAutoCulling
+

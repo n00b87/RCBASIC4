@@ -6,3 +6,4 @@ Gets the constant value of an FX material
 NOTE: To see a list of constants for each material type, reference SetMaterialConstant()
 
 #ref SetMaterialConstant
+

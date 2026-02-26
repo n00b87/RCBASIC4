@@ -3627,30 +3627,28 @@
 #define SETWHEELROTATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELROTATION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELROTATION_ROT num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelRotationDelta 1127
-#define SETWHEELROTATIONDELTA_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define SETWHEELROTATIONDELTA_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define SETWHEELROTATIONDELTA_ROT_DELTA num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelRollInfluence 1128
+#define FN_SetWheelRollInfluence 1127
 #define SETWHEELROLLINFLUENCE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELROLLINFLUENCE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELROLLINFLUENCE_ROLL_INFLUENCE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelInverseContactSuspension 1129
+#define FN_SetWheelInverseContactSuspension 1128
 #define SETWHEELINVERSECONTACTSUSPENSION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELINVERSECONTACTSUSPENSION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELINVERSECONTACTSUSPENSION_C_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelSuspensionVelocity 1130
+#define FN_SetWheelSuspensionVelocity 1129
 #define SETWHEELSUSPENSIONVELOCITY_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELSUSPENSIONVELOCITY_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELSUSPENSIONVELOCITY_VELOCITY num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelActorOffsetTransform 1131
+#define FN_SetWheelActorOffsetTransform 1130
 #define SETWHEELACTOROFFSETTRANSFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELACTOROFFSETTRANSFORM_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELACTOROFFSETTRANSFORM_T_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetWheelActorOffsetTransform 1132
+#define FN_GetWheelActorOffsetTransform 1131
 #define GETWHEELACTOROFFSETTRANSFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELACTOROFFSETTRANSFORM_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETWHEELACTOROFFSETTRANSFORM_T_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
+#define FN_GetVehiclePitchControl 1132
+#define GETVEHICLEPITCHCONTROL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define FN_createMaterial 1133
 #define FN_deleteMaterial 1134
 #define DELETEMATERIAL_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]

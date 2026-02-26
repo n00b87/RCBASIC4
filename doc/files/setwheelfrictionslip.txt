@@ -1,0 +1,14 @@
+#title SetWheelFrictionSlip [RCBasic Doc]
+#header Sub SetWheelFrictionSlip( actor, wheel, fslip_value )
+
+Sets the friction slip value for a wheel.
+
+This value determines how much grip a wheel has before it starts sliding
+
+#list ul
+#li Lower value - more slippery
+#li Higher value - more firm grip
+#/list
+
+#ref GetWheelFrictionSlip
+

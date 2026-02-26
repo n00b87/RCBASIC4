@@ -1,4 +1,5 @@
 #title CopyImage [RCBasic Doc]
-#header function CopyImage( img_id )
+#header Function CopyImage( img_id )
 
 Returns a copy of an image
+

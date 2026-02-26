@@ -1,6 +1,7 @@
-#title setMaterialGouraudShading [RCBasic Doc]
-#header sub  setMaterialGouraudShading( material_id,  flag)
+#title SetMaterialGouraudShading [RCBasic Doc]
+#header Sub  SetMaterialGouraudShading( material_id,  flag)
 
 Sets whether material will use gourad shading or flat shading
 
 True for goraud, False for flat
+

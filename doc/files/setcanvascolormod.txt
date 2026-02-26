@@ -1,4 +1,5 @@
 #title SetCanvasColorMod [RCBasic Doc]
-#header sub SetCanvasColorMod(c_num, c)
+#header Sub SetCanvasColorMod(c_num, c)
 
 Sets the color modulation value for a canvas
+

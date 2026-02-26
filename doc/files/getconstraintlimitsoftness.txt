@@ -1,5 +1,5 @@
-#title getConstraintLimitSoftness [RCBasic Doc]
-#header function  getConstraintLimitSoftness( constraint_id)
+#title GetConstraintLimitSoftness [RCBasic Doc]
+#header Function  GetConstraintLimitSoftness( constraint_id)
 
 Returns the softness parameter associated with the limits of the constraint. This softness affects how the constraint behaves when the angular motion of the connected actors approaches their defined limits.
 
@@ -9,3 +9,4 @@ Returns the softness parameter associated with the limits of the constraint. Thi
 #/list
 
 #ref SetConstraintSoftnessDirAng SetConstraintSoftnessDirLin SetConstraintSoftnessLimAng SetConstraintSoftnessLimLin SetConstraintSoftnessOrthoAng
+

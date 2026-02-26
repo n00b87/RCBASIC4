@@ -1,4 +1,5 @@
 #title LoadMusic [RCBasic Doc]
-#header sub LoadMusic(music_file$)
+#header Sub LoadMusic(music_file$)
 
 Loads a music track
+

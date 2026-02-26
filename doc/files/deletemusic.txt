@@ -1,4 +1,5 @@
 #title DeleteMusic [RCBasic Doc]
-#header sub DeleteMusic()
+#header Sub DeleteMusic()
 
 Removes the current music track from memory
+

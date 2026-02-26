@@ -1,4 +1,5 @@
 #title SetVideoVolume [RCBasic Doc]
-#header sub SetVideoVolume( vol )
+#header Sub SetVideoVolume( vol )
 
 Sets the volume of the video track
+

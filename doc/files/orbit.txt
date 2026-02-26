@@ -1,6 +1,7 @@
 #title OrBit [RCBasic Doc]
-#header function OrBit(a, b)
+#header Function OrBit(a, b)
 
 Returns the value of the bitwise OR operation on the operands A and B
 
 #ref XOrBit AndBit
+
