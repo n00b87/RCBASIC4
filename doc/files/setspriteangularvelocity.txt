@@ -1,6 +1,7 @@
-#title setSpriteAngularVelocity [RCBasic Doc]
-#header sub setSpriteAngularVelocity( spr_id,   av)
+#title SetSpriteAngularVelocity [RCBasic Doc]
+#header Sub SetSpriteAngularVelocity( spr_id,   av)
 
 Sets the angular velocity of a sprite
 
 #ref GetSpriteAngularVelocity
+

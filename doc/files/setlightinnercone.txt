@@ -1,4 +1,5 @@
 #title SetLightInnerCone [RCBasic Doc]
-#header sub SetLightInnerCone( actor, angle )
+#header Sub SetLightInnerCone( actor, angle )
 
 Sets the inner cone of a spot light
+

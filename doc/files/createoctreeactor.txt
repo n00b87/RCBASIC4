@@ -1,8 +1,9 @@
 #title CreateOctreeActor [RCBasic Doc]
-#header function CreateOctreeActor( mesh )
+#header Function CreateOctreeActor( mesh )
 
 Returns a mesh actor optimized for large objects (such as levels)
 
 #ref CreateMesh LoadMesh
 <br>
 #ref CreateAnimatedActor CreateCubeActor CreateSphereActor CreateWaterActor CreateLightActor CreateBillboardActor CreateTerrainActor
+

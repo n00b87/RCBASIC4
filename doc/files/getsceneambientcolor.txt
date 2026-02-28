@@ -4,3 +4,4 @@
 Returns the ambient light color of the scene
 
 #ref SetSceneAmbientColor
+

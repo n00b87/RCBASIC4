@@ -1,4 +1,5 @@
 #title GetJoyTrackBall [RCBasic Doc]
-#header sub GetJoyTrackBall(joy_num, ball, byref dx, byref dy)
+#header Sub GetJoyTrackBall(joy_num, ball, ByRef dx, ByRef dy)
 
 Gets the axis values of a track ball
+

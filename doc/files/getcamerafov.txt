@@ -1,4 +1,5 @@
 #title GetCameraFOV [RCBasic Doc]
-#header function GetCameraFOV( )
+#header Function GetCameraFOV( )
 
 Returns the field of view of the camera on the active canvas
+

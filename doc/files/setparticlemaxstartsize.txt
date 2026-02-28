@@ -1,6 +1,7 @@
-#title setParticleMaxStartSize [RCBasic Doc]
-#header sub  setParticleMaxStartSize( actor,  w,  h)
+#title SetParticleMaxStartSize [RCBasic Doc]
+#header Sub  SetParticleMaxStartSize( actor,  w,  h)
 
 Sets the max start size for the particles
 
 #ref SetParticleMaxStartSize
+

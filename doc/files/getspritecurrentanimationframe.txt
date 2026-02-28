@@ -2,3 +2,4 @@
 #header Function GetSpriteCurrentAnimationFrame(sprite)
 
 Returns the current frame of a sprite's animation
+

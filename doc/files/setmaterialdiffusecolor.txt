@@ -1,4 +1,5 @@
-#title setMaterialDiffuseColor [RCBasic Doc]
-#header sub  setMaterialDiffuseColor( material_id,  color)
+#title SetMaterialDiffuseColor [RCBasic Doc]
+#header Sub  SetMaterialDiffuseColor( material_id,  color)
 
 Set's a material's diffuse color
+

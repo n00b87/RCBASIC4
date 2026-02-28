@@ -1,5 +1,5 @@
-#title getJointMotorSpeed [RCBasic Doc]
-#header function  getJointMotorSpeed( joint_id)
+#title GetJointMotorSpeed [RCBasic Doc]
+#header Function  GetJointMotorSpeed( joint_id)
 
 Returns the motor speed
 
@@ -11,3 +11,4 @@ Used with
 #/list
 
 #ref SetJointMotorSpeed
+

@@ -1,0 +1,7 @@
+#title GetWheelRotation [RCBasic Doc]
+#header Function GetWheelRotation( actor, wheel )
+
+Returns a wheel's spin rotation.
+
+#ref SetWheelRotation
+

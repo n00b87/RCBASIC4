@@ -1,0 +1,8 @@
+#title GetWheelSteeringValue [RCBasic Doc]
+#header Function GetWheelSteeringValue( actor, wheel )
+
+Returns the steering value for a wheel
+
+#ref SetWheelSteeringValue
+
+

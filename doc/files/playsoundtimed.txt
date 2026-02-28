@@ -1,4 +1,5 @@
 #title PlaySoundTimed [RCBasic Doc]
-#header sub PlaySoundTimed(slot, channel, loops, ms)
+#header Sub PlaySoundTimed(slot, channel, loops, ms)
 
 Plays sound for a given number of loops until the given number of milliseconds is reached.
+

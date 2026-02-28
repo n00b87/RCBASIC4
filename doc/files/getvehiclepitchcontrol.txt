@@ -1,0 +1,7 @@
+#title GetVehiclePitchControl [RCBasic Doc]
+#header Function GetVehiclePitchControl( actor )
+
+Returns the pitch control for a vehicle
+
+#ref SetVehiclePitchControl
+

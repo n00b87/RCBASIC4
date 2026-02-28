@@ -1,0 +1,7 @@
+#title GetWheelAxel [RCBasic Doc]
+#header Sub GetWheelAxel( actor, wheel, ByRef x, ByRef y, ByRef z )
+
+Get the axel direction of a wheel on a vehicle
+
+#ref SetWheelAxel
+

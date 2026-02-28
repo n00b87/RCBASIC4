@@ -1,0 +1,7 @@
+#title SetWheelConnectionPoint [RCBasic Doc]
+#header Sub SetWheelConnectionPoint( actor, wheel, x, y, z )
+
+Sets the point in local space where the wheel connects to the chassis
+
+#ref GetWheelConnectionPoint
+

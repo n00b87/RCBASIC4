@@ -1,6 +1,7 @@
-#title useConstraintFrameOffset [RCBasic Doc]
-#header sub  useConstraintFrameOffset( constraint_id,  flag)
+#title UseConstraintFrameOffset [RCBasic Doc]
+#header Sub  UseConstraintFrameOffset( constraint_id,  flag)
 
 Enables or disables the use of frame offsets in a constraint. When frame offsets are used, the constraint operates relative to specific local frames defined in the two connected actors, rather than directly in the world frame.
 
 Note: Only applies to the hinge and slide constraint
+

@@ -1,0 +1,5 @@
+#title Stack_S_Exists [RCBasic Doc]
+#header Function Stack_S_Exists( str_stack )
+
+Returns TRUE if the given string stack exists and FALSE if not.
+

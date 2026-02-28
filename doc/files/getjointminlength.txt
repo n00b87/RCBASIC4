@@ -1,8 +1,9 @@
-#title getJointMinLength [RCBasic Doc]
-#header function  getJointMinLength( joint_id)
+#title GetJointMinLength [RCBasic Doc]
+#header Function  GetJointMinLength( joint_id)
 
 Returns the minimum length
 
 Used with Distance Joint
 
 #ref GetJointMaxLength
+

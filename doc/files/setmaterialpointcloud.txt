@@ -1,4 +1,5 @@
-#title setMaterialPointCloud [RCBasic Doc]
-#header sub  setMaterialPointCloud( material_id,  flag)
+#title SetMaterialPointCloud [RCBasic Doc]
+#header Sub  SetMaterialPointCloud( material_id,  flag)
 
 Sets whether material is drawn as a point cloud or filled triangles
+

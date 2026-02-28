@@ -1,4 +1,5 @@
 #title ImageExists [RCBasic Doc]
-#header function ImageExists(img)
+#header Function ImageExists(img)
 
 Returns true if img is associated with an allocated image in memory
+

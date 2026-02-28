@@ -1,4 +1,5 @@
-#title setMaterialFog [RCBasic Doc]
-#header sub  setMaterialFog( material_id,  flag)
+#title SetMaterialFog [RCBasic Doc]
+#header Sub  SetMaterialFog( material_id,  flag)
 
 Enables or disables fog
+

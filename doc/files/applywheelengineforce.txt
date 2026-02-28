@@ -1,0 +1,7 @@
+#title ApplyWheelEngineForce [RCBasic Doc]
+#header Sub ApplyWheelEngineForce( actor, wheel, force )
+
+Apply force to a wheel.
+
+NOTE: For movement, you can apply force to a vehicle the same way you apply it to any actor. Refer to the actor physics section for documentation on that. 
+

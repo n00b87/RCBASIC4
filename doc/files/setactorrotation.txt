@@ -1,6 +1,7 @@
 #title SetActorRotation [RCBasic Doc]
-#header sub SetActorRotation( actor, x, y, z )
+#header Sub SetActorRotation( actor, x, y, z )
 
 Sets the rotation of an actor around each axis
 
 #ref RotateActor GetActorRotation
+

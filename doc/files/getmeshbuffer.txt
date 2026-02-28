@@ -1,0 +1,7 @@
+#title GetMeshBuffer [RCBasic Doc]
+#header Function GetMeshBuffer( mesh_id, buffer_index, ByRef vertex_data, ByRef normal_data, ByRef uv_data, ByRef index_data )
+
+Gets the data in a mesh buffer.
+
+Returns TRUE if successful and FALSE if not.
+

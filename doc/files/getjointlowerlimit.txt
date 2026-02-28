@@ -1,5 +1,5 @@
-#title getJointLowerLimit [RCBasic Doc]
-#header function  getJointLowerLimit( joint_id)
+#title GetJointLowerLimit [RCBasic Doc]
+#header Function  GetJointLowerLimit( joint_id)
 
 Get the lower joint translation limit, usually in meters.
 
@@ -11,3 +11,4 @@ Used with
 #/list
 
 #ref GetJointUpperLimit
+

@@ -1,7 +1,8 @@
 #title SetCanvasViewport [RCBasic Doc]
-#header sub SetCanvasViewport(cnum, x, y, w, h)
+#header Sub SetCanvasViewport(cnum, x, y, w, h)
 
 Sets the position and size of a canvas viewport
 
 #ref GetCanvasViewport
+
 

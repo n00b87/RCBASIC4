@@ -1,6 +1,7 @@
 #title Steam_FinalizeAchievements [RCBasic Doc]
-#header sub Steam_FinalizeAchievements()
+#header Sub Steam_FinalizeAchievements()
 
 This function must be called once all steam achievements have been added
 
 #ref Steam_AddAchievement Steam_ClearAchievements Steam_GetID Steam_TriggerAchievement
+

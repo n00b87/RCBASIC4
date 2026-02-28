@@ -1,4 +1,5 @@
 #title PauseVideo [RCBasic Doc]
-#header sub PauseVideo()
+#header Sub PauseVideo()
 
 Pauses the currently loaded video track
+

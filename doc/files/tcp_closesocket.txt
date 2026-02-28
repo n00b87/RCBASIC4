@@ -1,4 +1,5 @@
 #title TCP_CloseSocket [RCBasic Doc]
-#header sub TCP_CloseSocket(socket)
+#header Sub TCP_CloseSocket(socket)
 
 Closes a socket
+

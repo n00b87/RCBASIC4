@@ -1,4 +1,5 @@
 #title GetTouch [RCBasic Doc]
-#header sub GetTouch(byref status, byref x, byref y, byref dx, byref dy)
+#header Sub GetTouch(ByRef status, ByRef x, ByRef y, ByRef dx, ByRef dy)
 
 Gets the position and distance of motion of a touch event
+

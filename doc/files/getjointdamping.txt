@@ -1,5 +1,5 @@
-#title getJointDamping [RCBasic Doc]
-#header function  getJointDamping( joint_id)
+#title GetJointDamping [RCBasic Doc]
+#header Function  GetJointDamping( joint_id)
 
 Returns the damping value for a joint
 
@@ -11,3 +11,4 @@ Used with
 #/list
 
 #ref SetJointDamping
+

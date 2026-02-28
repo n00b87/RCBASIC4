@@ -4,3 +4,4 @@
 Sets the speed of a tile's animation
 
 #ref GetTileAnimationSpeed
+

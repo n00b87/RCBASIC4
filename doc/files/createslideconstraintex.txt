@@ -1,5 +1,5 @@
 #title CreateSlideConstraintEx [RCBasic Doc]
-#header function CreateSlideConstraintEx( actorA,  actorB,  frameInA_matrix,  frameInB_matrix,  useLinearReferenceFrameA)
+#header Function CreateSlideConstraintEx( actorA,  actorB,  frameInA_matrix,  frameInB_matrix,  useLinearReferenceFrameA)
 
 A type of constraint that restricts the motion between two actors (or between an actor and the world) in such a way that they can slide along a specific axis and rotate around the same axis, while limiting or allowing movement along other axes. This constraint is similar to a prismatic joint with added rotational freedom, making it useful for simulating objects like pistons, sliding doors, or rail systems.
 
@@ -21,4 +21,5 @@ slide = CreateSlideConstraintEx(actorA, actorB, frameA, frameB, true)
 Note: It is recommended to use CreateSlideConstraintEx() in most cases
 
 #ref CreateSlideConstraint SetIdentityMatrix SetMatrixTranslation SetMatrixRotation
+
 

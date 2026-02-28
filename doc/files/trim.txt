@@ -1,4 +1,5 @@
 #title Trim$ [RCBasic Doc]
-#header function Trim$(src$)
+#header Function Trim$(src$)
 
 Returns src$ with all leading and trailing spaces removed
+

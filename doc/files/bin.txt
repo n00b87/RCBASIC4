@@ -1,4 +1,5 @@
 #title Bin$ [RCBasic Doc]
-#header function Bin$(n)
+#header Function Bin$(n)
 
 Returns the binary representation of a number.
+

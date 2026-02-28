@@ -1,4 +1,5 @@
 #title TranslateCamera [RCBasic Doc]
-#header sub TranslateCamera( x, y, z)
+#header Sub TranslateCamera( x, y, z)
 
 Moves the camera relative to its current position
+

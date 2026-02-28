@@ -1,6 +1,7 @@
 #title GetWorld2DVelocityIterations [RCBasic Doc]
-#header function GetWorld2DVelocityIterations()
+#header Function GetWorld2DVelocityIterations()
 
 Returns the number of velocity iterations for the velocity constraint solver
 
 #ref SetWorld2DVelocityIterations
+

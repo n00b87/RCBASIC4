@@ -1,4 +1,5 @@
 #title GetTouchFinger [RCBasic Doc]
-#header sub GetTouchFinger(finger, byref x, byref y, byref pressure)
+#header Sub GetTouchFinger(finger, ByRef x, ByRef y, ByRef pressure)
 
 Gets the position and pressure of a finger on a touch event
+

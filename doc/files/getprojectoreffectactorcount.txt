@@ -1,0 +1,5 @@
+#title GetProjectorEffectActorCount [RCBasic Doc]
+#header Function GetProjectorEffectActorCount(actor)
+
+Returns the number of effect actors on a projector
+

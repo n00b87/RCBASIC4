@@ -1,0 +1,5 @@
+#title GetMeshBufferVertexCount [RCBasic Doc]
+#header Function GetMeshBufferVertexCount( mesh_id, buffer_index )
+
+Returns the number of vertices in a mesh buffer.
+

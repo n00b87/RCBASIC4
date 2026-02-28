@@ -1,0 +1,6 @@
+#title SetBillboardSize [RCBasic Doc]
+#header Sub SetBillboardSize(actor, w, h)
+
+Sets the size of a billboard.
+
+

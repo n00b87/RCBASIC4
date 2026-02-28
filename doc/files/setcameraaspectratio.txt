@@ -1,6 +1,7 @@
 #title SetCameraAspectRatio [RCBasic Doc]
-#header sub SetCameraAspectRatio( aspect )
+#header Sub SetCameraAspectRatio( aspect )
 
 Sets the aspect ratio for the active canvas camera
 
 #ref GetCameraAspectRatio
+

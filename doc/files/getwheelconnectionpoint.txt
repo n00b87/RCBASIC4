@@ -1,0 +1,7 @@
+#title GetWheelConnectionPoint [RCBasic Doc]
+#header Sub GetWheelConnectionPoint( actor, wheel, ByRef x, ByRef y, ByRef z)
+
+Gets the point in local space that a wheel is connected to a vehicle at
+
+#ref SetWheelConnectionPoint
+

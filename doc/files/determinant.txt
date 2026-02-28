@@ -1,4 +1,5 @@
 #title Determinant [RCBasic Doc]
-#header function Determinant(mA)
+#header Function Determinant(mA)
 
 Returns the determinant of matrix mA 
+

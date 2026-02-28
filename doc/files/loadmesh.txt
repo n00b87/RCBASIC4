@@ -1,5 +1,5 @@
 #title LoadMesh [RCBasic Doc]
-#header function LoadMesh( mesh_file$ )
+#header Function LoadMesh( mesh_file$ )
 
 Returns a mesh id for the loaded mesh
 
@@ -34,3 +34,4 @@ Supported formats
 #/list
 
 #ref LoadMeshFromArchive
+

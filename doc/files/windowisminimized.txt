@@ -1,4 +1,5 @@
 #title WindowIsMinimized [RCBasic Doc]
-#header function WindowIsMinimized()
+#header Function WindowIsMinimized()
 
 Returns true if the window is minimized, otherwise it will return false.
+

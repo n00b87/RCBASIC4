@@ -1,4 +1,5 @@
 #title NumJoyTrackBalls [RCBasic Doc]
-#header function NumJoyTrackBalls(joy_num)
+#header Function NumJoyTrackBalls(joy_num)
 
 Returns the number of trackballs detected on a joystick
+

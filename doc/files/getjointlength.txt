@@ -1,9 +1,10 @@
-#title getJointLength [RCBasic Doc]
-#header function  getJointLength( joint_id)
+#title GetJointLength [RCBasic Doc]
+#header Function  GetJointLength( joint_id)
 
 Returns the Joint Length
 
 Used with distance Joints
 
 #ref SetJointLength
+
 

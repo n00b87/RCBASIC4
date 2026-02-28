@@ -1,0 +1,7 @@
+#title Pipeline_Render [RCBasic Doc]
+#header Sub Pipeline_Render()
+
+Render the active canvas.
+
+NOTE: Must be used between Pipeline_Begin() and Pipeline_End().
+

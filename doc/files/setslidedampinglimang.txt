@@ -1,8 +1,9 @@
-#title setSlideDampingLimAng [RCBasic Doc]
-#header sub  setSlideDampingLimAng( constraint_id,  n)
+#title SetSlideDampingLimAng [RCBasic Doc]
+#header Sub  SetSlideDampingLimAng( constraint_id,  n)
 
 Sets the angular limit damping factor for a constraint. This damping applies specifically to the angular motion of an object when it reaches the limit of its allowed rotational range.
 
 
 #ref GetSlideDampingLimAng
+
 

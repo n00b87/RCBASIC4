@@ -1,4 +1,5 @@
 #title SetMouseZone [RCBasic Doc]
-#header sub SetMouseZone(x, y, w, h)
+#header Sub SetMouseZone(x, y, w, h)
 
 Constrains the mouse to a specified area of the window
+

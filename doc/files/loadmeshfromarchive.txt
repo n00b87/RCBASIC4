@@ -1,5 +1,5 @@
 #title LoadMeshFromArchive [RCBasic Doc]
-#header function LoadMeshFromArchive( archive$, mesh_file$ )
+#header Function LoadMeshFromArchive( archive$, mesh_file$ )
 
 Returns a mesh id for the loaded mesh from an archive (*.zip, *.pak, etc.)
 
@@ -34,3 +34,4 @@ Supported formats
 #/list
 
 #ref LoadMesh
+

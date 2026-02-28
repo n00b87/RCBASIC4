@@ -1,4 +1,5 @@
 #title Cos [RCBasic Doc]
-#header function Cos(n)
+#header Function Cos(n)
 
 Returns the Cosine of an angle
+

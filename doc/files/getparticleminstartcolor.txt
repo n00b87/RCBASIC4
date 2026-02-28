@@ -1,6 +1,7 @@
-#title getParticleMinStartColor [RCBasic Doc]
-#header function  getParticleMinStartColor( actor)
+#title GetParticleMinStartColor [RCBasic Doc]
+#header Function  GetParticleMinStartColor( actor)
 
 Returns the min start color for particles
 
 #ref SetParticleMinStartColor
+

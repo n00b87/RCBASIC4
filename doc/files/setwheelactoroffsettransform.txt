@@ -1,0 +1,9 @@
+#title SetWheelActorOffsetTransform [RCBasic Doc]
+#header Sub SetWheelActorOffsetTransform( actor, wheel, t_matrix )
+
+Sets an local offset transform for the wheel actor. This is mainly for when the actors local transform does not line up with the axis for the vehicle.
+
+Refer to the Vehicle demo to see an example of this.
+
+#ref GetWheelActorOffsetTransform
+

@@ -1,7 +1,8 @@
-#title setParticleDirection [RCBasic Doc]
-#header sub  setParticleDirection( actor,  x,  y,  z)
+#title SetParticleDirection [RCBasic Doc]
+#header Sub  SetParticleDirection( actor,  x,  y,  z)
 
 Sets the direction of a particle emitter
 
 #ref GetParticleDirection
+
 

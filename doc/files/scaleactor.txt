@@ -1,6 +1,7 @@
 #title ScaleActor [RCBasic Doc]
-#header sub ScaleActor( actor, x, y, z )
+#header Sub ScaleActor( actor, x, y, z )
 
 Multiplies the actor's current scale by the vector given
 
 #ref SetActorScale
+

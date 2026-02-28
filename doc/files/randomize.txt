@@ -1,4 +1,5 @@
 #title Randomize [RCBasic Doc]
-#header function Randomize(n)
+#header Function Randomize(n)
 
 Seeds the random number generator
+

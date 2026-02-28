@@ -1,5 +1,5 @@
 #title SetMaterialType [RCBasic Doc]
-#header sub  SetMaterialType( material_id,  mat_type)
+#header Sub  SetMaterialType( material_id,  mat_type)
 
 Sets the material type
 
@@ -44,3 +44,4 @@ Possible material types
 #/list
 
 #ref GetMaterialType
+

@@ -1,5 +1,5 @@
-#title enableJointLimit [RCBasic Doc]
-#header sub enableJointLimit( joint_id,  flag)
+#title EnableJointLimit [RCBasic Doc]
+#header Sub EnableJointLimit( joint_id,  flag)
 
 Enables or disables joint limits
 
@@ -11,3 +11,4 @@ Used with
 #/list
 
 #ref JointIsLimitEnabled SetJointLimits
+

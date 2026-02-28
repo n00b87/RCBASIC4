@@ -1,6 +1,7 @@
 #title CloseWindow [RCBasic Doc]
-#header sub CloseWindow( )
+#header Sub CloseWindow( )
 
 Closes the graphics window
 
 #ref OpenWindow
+

@@ -1,4 +1,5 @@
 #title EllipseFill [RCBasic Doc]
-#header sub EllipseFill(x,y,rx,ry)
+#header Sub EllipseFill(x,y,rx,ry)
 
 Draws a filled ellipse on the current canvas.
+

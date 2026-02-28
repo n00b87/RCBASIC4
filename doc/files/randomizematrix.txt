@@ -1,4 +1,5 @@
 #title RandomizeMatrix [RCBasic Doc]
-#header sub RandomizeMatrix(mA, vmin, vmax)
+#header Sub RandomizeMatrix(mA, vmin, vmax)
 
 Stores random values between vmin and vmax in the matrix mA 
+

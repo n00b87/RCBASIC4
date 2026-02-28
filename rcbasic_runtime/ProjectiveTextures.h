@@ -37,7 +37,7 @@ public:
 	virtual void OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData);
 
 	irr::video::ITexture* texture;
-	irr::core::array<irr::scene::IMeshSceneNode*> nodeArray;
+	irr::core::array<irr::scene::ISceneNode*> nodeArray;
 
 private:
 

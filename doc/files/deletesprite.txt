@@ -46,3 +46,4 @@ Here is an example:
 #image "images/theEye.png"
 
 #ref OpenCanvasSpriteLayer SetSpritePosition CreateSprite
+

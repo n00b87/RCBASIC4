@@ -1,4 +1,5 @@
 #title StringFill$ [RCBasic Doc]
-#header function StringFill$(src$, n)
+#header Function StringFill$(src$, n)
 
 Returns a string filled with src$ repeated n times
+

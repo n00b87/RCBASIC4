@@ -1,6 +1,7 @@
-#title getActorAngularVelocityLocal [RCBasic Doc]
-#header sub getActorAngularVelocityLocal( actor,  ByRef  x,  ByRef  y,  ByRef  z)
+#title GetActorAngularVelocityLocal [RCBasic Doc]
+#header Sub GetActorAngularVelocityLocal( actor,  ByRef  x,  ByRef  y,  ByRef  z)
 
 Gets an actor's Angular Velocity
 
 #ref GetActorAngularVelocityWorld SetActorAngularVelocityLocal SetActorAngularVelocityWorld
+

@@ -1,5 +1,5 @@
 #title SetActorMD2Animation [RCBasic Doc]
-#header sub SetActorMD2Animation( actor, anim )
+#header Sub SetActorMD2Animation( actor, anim )
 
 Sets the current animation for an *.md2 model
 
@@ -29,3 +29,4 @@ Possible Animations
 #/list
 
 #ref SetActorMD2AnimationByName
+

@@ -1,6 +1,7 @@
 #title GetVideoStats [RCBasic Doc]
-#header sub GetVideoStats(vFile$, byref vLen, byref vfps, byref frame_w, byref frame_h)
+#header Sub GetVideoStats(vFile$, ByRef vLen, ByRef vfps, ByRef frame_w, ByRef frame_h)
 
 Gets video data from a video file.
 
 Note: This function is slow and should not be used during time critical sections in your code.
+

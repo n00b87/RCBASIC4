@@ -1,0 +1,11 @@
+#title AddCompositeChild [RCBasic Doc]
+#header Function AddCompositeChild(actor, child_actor, t_matrix)
+
+Adds a child Actor to a composite actor.
+
+Returns the child index in the composite actor.
+
+NOTE: Reference the included Composite Demo for an example
+
+#ref CreateCompositeActor
+

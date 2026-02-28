@@ -1,4 +1,5 @@
 #title RemoveFile [RCBasic Doc]
-#header function RemoveFile(fileName$)
+#header Function RemoveFile(fileName$)
 
 Removes a file.
+

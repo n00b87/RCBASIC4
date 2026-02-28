@@ -1,4 +1,5 @@
 #title VideoIsPlaying [RCBasic Doc]
-#header function VideoIsPlaying()
+#header Function VideoIsPlaying()
 
 Returns true if a video is playing
+

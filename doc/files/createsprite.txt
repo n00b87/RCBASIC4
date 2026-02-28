@@ -1,5 +1,5 @@
 #title CreateSprite [RCBasic Doc]
-#header function CreateSprite( img, frame_w, frame_h )
+#header Function CreateSprite( img, frame_w, frame_h )
 
 This function returns a new sprite which you can place in a variable for use in your program.
 
@@ -36,3 +36,4 @@ Here is an example of opening a sprite canvas layer, creating a sprite, setting 
 #image "images/theEye.png"
 
 #ref OpenCanvasSpriteLayer SetSpritePosition
+

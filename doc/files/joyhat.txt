@@ -1,5 +1,5 @@
 #title JoyHat [RCBasic Doc]
-#header function JoyHat(joy_num, joy_hat)
+#header Function JoyHat(joy_num, joy_hat)
 
 Returns the position of the Hat.
 
@@ -15,3 +15,4 @@ Possible Hat Positions
 #li HAT_LEFTUP
 #li HAT_LEFTDOWN
 #/list
+

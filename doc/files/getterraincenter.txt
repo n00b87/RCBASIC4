@@ -1,4 +1,5 @@
 #title GetTerrainCenter [RCBasic Doc]
-#header sub GetTerrainCenter( actor, ByRef x, ByRef y, ByRef z )
+#header Sub GetTerrainCenter( actor, ByRef x, ByRef y, ByRef z )
 
 Gets the center point of a terrain actor
+

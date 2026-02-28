@@ -1,6 +1,7 @@
 #title GetCanvasAlpha [RCBasic Doc]
-#header function GetCanvasAlpha(c_num)
+#header Function GetCanvasAlpha(c_num)
 
 Returns the alpha blend value of a canvas
 
 #ref SetCanvasAlpha
+

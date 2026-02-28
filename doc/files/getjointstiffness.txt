@@ -1,5 +1,5 @@
-#title getJointStiffness [RCBasic Doc]
-#header function  getJointStiffness( joint_id)
+#title GetJointStiffness [RCBasic Doc]
+#header Function  GetJointStiffness( joint_id)
 
 Returns spring stiffness
 
@@ -11,3 +11,4 @@ Used with
 #/list
 
 #ref SetJointStiffness
+

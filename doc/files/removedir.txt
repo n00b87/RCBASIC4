@@ -1,4 +1,5 @@
 #title RemoveDir [RCBasic Doc]
-#header function RemoveDir(p$)
+#header Function RemoveDir(p$)
 
 Removes a directory.
+

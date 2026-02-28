@@ -1,4 +1,5 @@
 #title AndBit [RCBasic Doc]
-#header function AndBit(a,b)
+#header Function AndBit(a,b)
 
 Returns the bitwise AND operation of 2 numbers
+

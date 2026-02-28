@@ -1,6 +1,7 @@
 #title GetSpriteRestitution [RCBasic Doc]
-#header function GetSpriteRestitution( spr_id )
+#header Function GetSpriteRestitution( spr_id )
 
 Returns the restitution coefficient for a sprite
 
 #ref SetSpriteRestitution
+

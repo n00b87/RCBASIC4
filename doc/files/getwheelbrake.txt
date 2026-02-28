@@ -1,0 +1,7 @@
+#title GetWheelBrake [RCBasic Doc]
+#header Function GetWheelBrake( actor, wheel )
+
+Returns the brake value of a wheel on a vehicle
+
+#ref SetWheelBrake
+

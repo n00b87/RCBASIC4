@@ -13,7 +13,11 @@ struct rc_sprite2D_physics_obj
 {
 	b2Body* body;
 	b2Fixture* fixture;
+	b2FixtureDef fixture_def;
 	b2Shape* shape;
+
+	int fixture_offset_x;
+	int fixture_offset_y;
 
 	int shape_type;
 
@@ -41,6 +45,8 @@ struct rc_sprite2D_physics_obj
 
 struct rc_sprite2D_animation_obj
 {
+    int src_image_id;
+
 	irr::core::array<int> frames;
 
 	int num_frames;
@@ -82,6 +88,9 @@ struct rc_sprite2D_obj
 	int parent_canvas = -1;
 
 	double z;
+
+	int parent_sprite;
+	irr::core::array<int> child_sprites;
 };
 
 irr::core::array<rc_sprite2D_obj> rc_sprite;

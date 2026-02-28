@@ -1,4 +1,5 @@
-#title getLightRadius [RCBasic Doc]
-#header function getLightRadius( actor )
+#title GetLightRadius [RCBasic Doc]
+#header Function GetLightRadius( actor )
 
 Returns the radius of the light
+

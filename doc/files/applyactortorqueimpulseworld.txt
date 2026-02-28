@@ -8,3 +8,4 @@ Applies an impulse that directly affects the angular velocity of an actor, causi
 #/list
 
 #ref ApplyActorTorque ApplyActorTorqueImpulseLocal
+

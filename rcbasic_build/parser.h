@@ -6196,14 +6196,22 @@ bool check_rule()
                 }
                 else
                 {
-                    switch(var_type)
+                    if(var_id_index >= 0 && var_id_index < id.size())
                     {
-                        case ID_TYPE_NUM:
-                            vm_asm.push_back("mov !" + rc_intToString(id[var_id_index].vec_pos) + " " + expr_result);
-                            break;
-                        case ID_TYPE_STR:
-                            vm_asm.push_back("mov$ !" + rc_intToString(id[var_id_index].vec_pos) + " " + expr_result);
-                            break;
+                        switch(var_type)
+                        {
+                            case ID_TYPE_NUM:
+                                vm_asm.push_back("mov !" + rc_intToString(id[var_id_index].vec_pos) + " " + expr_result);
+                                break;
+                            case ID_TYPE_STR:
+                                vm_asm.push_back("mov$ !" + rc_intToString(id[var_id_index].vec_pos) + " " + expr_result);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        rc_setError("Identifier \"" + var_id + "\" could not be resolved");
+                        return false;
                     }
                 }
 

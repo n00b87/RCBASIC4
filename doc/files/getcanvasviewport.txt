@@ -1,6 +1,7 @@
 #title GetCanvasViewport [RCBasic Doc]
-#header sub GetCanvasViewport(c_num, byref x, byref y, byref w, byref h)
+#header Sub GetCanvasViewport(c_num, ByRef x, ByRef y, ByRef w, ByRef h)
 
 Gets the position and size of a canvas viewport
 
 #ref OpenCanvas SetCanvasViewport
+

@@ -1,0 +1,5 @@
+#title GetMeshBufferIndexCount [RCBasic Doc]
+#header Function GetMeshBufferIndexCount( mesh_id, buffer_index )
+
+Returns the number of indices in a mesh buffer
+

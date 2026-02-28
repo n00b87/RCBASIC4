@@ -1,4 +1,5 @@
 #title TranslateActorLocal [RCBasic Doc]
-#header sub TranslateActorLocal( actor, x, y, z )
+#header Sub TranslateActorLocal( actor, x, y, z )
 
 Moves an actor relative to its current position
+

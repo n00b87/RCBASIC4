@@ -1,0 +1,7 @@
+#title GetProjectorTexture [RCBasic Doc]
+#header Function GetProjectorTexture(actor)
+
+Returns the image currently being projected by the projector
+
+#ref SetProjectorTexture
+

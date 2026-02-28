@@ -1,0 +1,9 @@
+#title SetPhysics3D [RCBasic Doc]
+#header Sub SetPhysics3D( flag )
+
+Enables or disables the physics engine.
+
+NOTE: While the physics engine is disabled, actor collisions won't be able to be checked.
+
+#ref GetPhysics3D
+

@@ -1,0 +1,18 @@
+#title SetPostEffectProperty [RCBasic Doc]
+#header Sub SetPostEffectProperty( c_num, property, property_value )
+
+Sets the value of a post effect property for a canvas.
+
+Possible Properties:
+#list ul
+#li POST_EFFECT_PROPERTY_STRENGTH
+#li POST_EFFECT_PROPERTY_DISTANCE 
+#li POST_EFFECT_PROPERTY_MULTIPLIER 
+#li POST_EFFECT_PROPERTY_SATURATION 
+#li POST_EFFECT_PROPERTY_COLOR
+#/list
+
+Reference SetPostEffect() for which properties apply to each effect
+
+#ref GetPostEffectProperty SetPostEffect
+

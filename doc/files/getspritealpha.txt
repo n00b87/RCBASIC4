@@ -2,3 +2,4 @@
 #header Function GetSpriteAlpha(sprite)
 
 Returns the alpha value of a sprite
+

@@ -1,4 +1,5 @@
 #title Line [RCBasic Doc]
-#header sub Line(x1, y1, x2, y2)
+#header Sub Line(x1, y1, x2, y2)
 
 Draws a line
+

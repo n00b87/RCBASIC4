@@ -1,9 +1,10 @@
 #title NumberArrayDim [RCBasic Doc]
-#header function NumberArrayDim(Byref id)
+#header Function NumberArrayDim(ByRef id)
 
 This function is exists to be internally called by the runtime but should not be called directly.
 
 <b>Use ArrayDim()</b>
 
 #ref ArrayDim
+
 

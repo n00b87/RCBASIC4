@@ -1,0 +1,5 @@
+#title WheelIsFront [RCBasic Doc]
+#header Function WheelIsFront( actor, wheel )
+
+Returns TRUE if a wheel is set as a front wheel
+

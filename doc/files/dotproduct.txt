@@ -1,0 +1,5 @@
+#title DotProduct [RCBasic Doc]
+#header Function DotProduct(x1, y1, z1, x2, y2, z2)
+
+Returns the dot product from 2 vectors
+

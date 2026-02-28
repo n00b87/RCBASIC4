@@ -1,4 +1,5 @@
 #title CopyMatrix [RCBasic Doc]
-#header sub CopyMatrix(mA, mB)
+#header Sub CopyMatrix(mA, mB)
 
 Copies matrix mA to matrix mB
+

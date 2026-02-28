@@ -1,5 +1,5 @@
 #title GetSpriteCanvasRenderPriority [RCBasic Doc]
-#header sub GetSpriteCanvasRenderPriority( c_num, ByRef priority, ByRef order )
+#header Sub GetSpriteCanvasRenderPriority( c_num, ByRef priority, ByRef order )
 
 Gets the order sprites are rendered on a sprite canvas.
 
@@ -27,3 +27,4 @@ Possible order values
 
 
 #ref SetSpriteCanvasRenderPriority
+

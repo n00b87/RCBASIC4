@@ -4,3 +4,4 @@
 Delete's a sprite's animation
 
 #ref CreateSpriteAnimation
+

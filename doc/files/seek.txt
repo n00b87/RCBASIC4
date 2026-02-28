@@ -1,6 +1,7 @@
 #title Seek [RCBasic Doc]
-#header function Seek(stream, pos)
+#header Function Seek(stream, pos)
 
 Sets the position within a file to read from or write to.
 
 #ref Tell
+

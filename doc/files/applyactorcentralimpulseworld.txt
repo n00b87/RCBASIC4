@@ -1,5 +1,5 @@
 #title ApplyActorCentralImpulseWorld [RCBasic Doc]
-#header sub ApplyActorCentralImpulseWorld( actor,   x,   y,   z)
+#header Sub ApplyActorCentralImpulseWorld( actor,   x,   y,   z)
 
 Applies an impulse directly to the center of mass of an actor. An impulse differs from a continuous force in that it applies an immediate, short-duration change to the velocity of the actor. It affects the linear velocity but does not generate rotational effects (since it's applied to the center of mass).
 
@@ -8,4 +8,5 @@ Applies an impulse directly to the center of mass of an actor. An impulse differ
 #/list
 
 #ref ApplyActorCentralForceLocal ApplyActorCentralForceWorld ApplyActorCentralImpulseLocal
+
 

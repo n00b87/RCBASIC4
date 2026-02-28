@@ -1,5 +1,5 @@
-#title setJointStiffness [RCBasic Doc]
-#header sub setJointStiffness( joint_id,   stiffness)
+#title SetJointStiffness [RCBasic Doc]
+#header Sub SetJointStiffness( joint_id,   stiffness)
 
 Sets how rigid a joint is
 
@@ -11,3 +11,4 @@ Used with:
 #/list
 
 #ref GetJointStiffness
+

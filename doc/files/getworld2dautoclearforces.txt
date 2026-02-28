@@ -1,6 +1,7 @@
 #title GetWorld2DAutoClearForces [RCBasic Doc]
-#header function GetWorld2DAutoClearForces()
+#header Function GetWorld2DAutoClearForces()
 
 Returns the auto clear forces flag for the active canvas
 
 #ref SetWorld2DAutoClearForces
+

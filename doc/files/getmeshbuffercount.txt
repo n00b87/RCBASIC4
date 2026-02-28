@@ -1,0 +1,5 @@
+#title GetMeshBufferCount [RCBasic Doc]
+#header Function GetMeshBufferCount( mesh_id )
+
+Returns the number of mesh buffers in a mesh.
+

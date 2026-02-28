@@ -1,8 +1,9 @@
-#title useParticleOutlineOnly [RCBasic Doc]
-#header sub  useParticleOutlineOnly( actor,  flag)
+#title UseParticleOutlineOnly [RCBasic Doc]
+#header Sub  UseParticleOutlineOnly( actor,  flag)
 
 Set whether or not to draw points inside the cylinder.
 
 Note: Only applies to cylinder emitter
 
 #ref particleIsUsingOutlineOnly
+

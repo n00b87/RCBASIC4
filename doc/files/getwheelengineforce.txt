@@ -1,0 +1,7 @@
+#title GetWheelEngineForce [RCBasic Doc]
+#header Function GetWheelEngineForce( actor, wheel )
+
+Returns the engine force currently applied to a wheel
+
+#ref SetWheelEngineForce
+

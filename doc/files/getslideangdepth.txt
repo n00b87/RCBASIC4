@@ -1,4 +1,5 @@
 #title GetSlideAngDepth [RCBasic Doc]
-#header function  GetSlideAngDepth( constraint_id)
+#header Function  GetSlideAngDepth( constraint_id)
 
 Gets the angular depth or the angular deviation from the expected orientation of the two actors (or one actor and the world) constrained by the slider. This "angular depth" refers to how much the actors are misaligned rotationally relative to the constraint’s expected or allowed configuration.
+

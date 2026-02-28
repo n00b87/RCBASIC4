@@ -1,0 +1,5 @@
+#title GetRotationToTarget [RCBasic Doc]
+#header Sub GetRotationToTarget(x, y, z, tgt_x, tgt_y, tgt_z, ByRef rx, ByRef ry, ByRef rz)
+
+Gets a rotation vector to a target from an origin point
+

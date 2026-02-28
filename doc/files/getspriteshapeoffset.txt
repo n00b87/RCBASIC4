@@ -4,3 +4,4 @@
 Gets the relative location the sprite shape is from where it is rendered
 
 #ref SetSpriteShapeOffset
+

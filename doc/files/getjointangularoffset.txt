@@ -1,8 +1,9 @@
-#title getJointAngularOffset [RCBasic Doc]
-#header function  getJointAngularOffset( joint_id)
+#title GetJointAngularOffset [RCBasic Doc]
+#header Function  GetJointAngularOffset( joint_id)
 
 Returns the target angular offset
 
 Used with Motor Joint
 
 #ref SetJointAngularOffset
+

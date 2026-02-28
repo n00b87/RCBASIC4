@@ -1,4 +1,5 @@
 #title ClipMatrix [RCBasic Doc]
-#header sub ClipMatrix(mA, r, c, num_rows, num_cols, mB)
+#header Sub ClipMatrix(mA, r, c, num_rows, num_cols, mB)
 
 Copies the specified portion of matrix mA into matrix mB
+

@@ -1,4 +1,5 @@
 #title Triangle3D [RCBasic Doc]
-#header sub Triangle3D(x1, y1, z1, x2, y2, z2, x3, y3, z3)
+#header Sub Triangle3D(x1, y1, z1, x2, y2, z2, x3, y3, z3)
 
 Draws a triangle in 3D space
+

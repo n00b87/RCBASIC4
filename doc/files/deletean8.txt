@@ -2,3 +2,4 @@
 #header Sub DeleteAN8( an8_project )
 
 Clears a anim8or project from program memory.
+

@@ -1,4 +1,5 @@
 #title Key [RCBasic Doc]
-#header function Key(key_code)
+#header Function Key(key_code)
 
 Returns true if the given key was pressed and false otherwise.
+

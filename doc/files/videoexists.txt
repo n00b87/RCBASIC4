@@ -1,4 +1,5 @@
 #title VideoExists [RCBasic Doc]
-#header function VideoExists()
+#header Function VideoExists()
 
 Returns true if there is a video loaded
+

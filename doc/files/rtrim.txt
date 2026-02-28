@@ -1,4 +1,5 @@
 #title Rtrim$ [RCBasic Doc]
-#header function Rtrim$(src$)
+#header Function Rtrim$(src$)
 
 Returns src$ with all the spaces after the last non-space character removed.
+

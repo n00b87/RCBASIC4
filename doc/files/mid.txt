@@ -1,4 +1,5 @@
 #title Mid$ [RCBasic Doc]
-#header function Mid$(src$, start, n)
+#header Function Mid$(src$, start, n)
 
 Returns a substring n characters long starting at start pos.
+

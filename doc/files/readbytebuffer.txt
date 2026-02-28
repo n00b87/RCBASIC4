@@ -1,5 +1,5 @@
 #title ReadByteBuffer [RCBasic Doc]
-#header function ReadByteBuffer(stream, ByRef buf, buf_size)
+#header Function ReadByteBuffer(stream, ByRef buf, buf_size)
 
 Reads a number of bytes from a file stream to an array.
 
@@ -10,3 +10,4 @@ Reads a number of bytes from a file stream to an array.
 #/list
 
 #ref ReadByte
+

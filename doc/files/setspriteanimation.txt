@@ -6,3 +6,4 @@ Sets the current animation for a sprite
 Note: Once an animation is set, it will automatically start
 
 #ref GetSpriteAnimation
+

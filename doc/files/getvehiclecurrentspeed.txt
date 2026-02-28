@@ -1,0 +1,5 @@
+#title GetVehicleCurrentSpeed [RCBasic Doc]
+#header Function GetVehicleCurrentSpeed( actor )
+
+Returns the current speed set on the vehicle
+

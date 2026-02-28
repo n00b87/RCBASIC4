@@ -74,3 +74,4 @@ Wend
 <br>
 
 #ref ScaleSprite SetSpriteScale
+

@@ -4,3 +4,4 @@
 Returns the last frame in an actor's animation
 
 #ref SetActorAnimationFrames
+

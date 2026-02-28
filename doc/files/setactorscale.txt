@@ -1,6 +1,7 @@
 #title SetActorScale [RCBasic Doc]
-#header sub SetActorScale( actor, x, y, z )
+#header Sub SetActorScale( actor, x, y, z )
 
 Sets the scale of an actor
 
 #ref ScaleActor GetActorScale
+

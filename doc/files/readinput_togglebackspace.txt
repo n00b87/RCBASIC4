@@ -1,4 +1,5 @@
 #title ReadInput_ToggleBackspace [RCBasic Doc]
-#header sub ReadInput_ToggleBackspace(flag)
+#header Sub ReadInput_ToggleBackspace(flag)
 
 Determines whether the backspace is applied during ReadInput events.
+

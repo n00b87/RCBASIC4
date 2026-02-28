@@ -1,5 +1,5 @@
-#title getJointTranslation [RCBasic Doc]
-#header function  getJointTranslation( joint_id)
+#title GetJointTranslation [RCBasic Doc]
+#header Function  GetJointTranslation( joint_id)
 
 Returns the current joint translation, usually in meters. 
 
@@ -8,3 +8,4 @@ Used with
 #li Prismatic Joint
 #li Wheel Joint
 #/list
+

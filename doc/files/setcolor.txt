@@ -1,4 +1,5 @@
 #title SetColor [RCBasic Doc]
-#header sub SetColor(c)
+#header Sub SetColor(c)
 
 Sets the current draw color
+

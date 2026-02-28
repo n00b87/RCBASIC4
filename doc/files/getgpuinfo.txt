@@ -1,4 +1,5 @@
 #title GetGPUInfo$ [RCBasic Doc]
-#header function GetGPUInfo$()
+#header Function GetGPUInfo$()
 
 Returns the GPU Vendor info
+

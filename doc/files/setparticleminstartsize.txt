@@ -1,7 +1,8 @@
-#title setParticleMinStartSize [RCBasic Doc]
-#header sub  setParticleMinStartSize( actor,  w,  h)
+#title SetParticleMinStartSize [RCBasic Doc]
+#header Sub  SetParticleMinStartSize( actor,  w,  h)
 
 Sets the min start size for particle emitter
 
 #ref GetParticleMinStartSize
+
 

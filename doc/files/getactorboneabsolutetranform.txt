@@ -1,0 +1,8 @@
+#title GetActorBoneAbsoluteTranform [RCBasic Doc]
+#header Function GetActorBoneAbsoluteTranform( actor, bone_index, t_matrix )
+
+Stores the absolute transform of a bone in t_matrix
+
+NOTE: This is only for actors that use skeletal animation (ie. *.b3d, *.x, *.ms3d, and actors created from Anim8or files)
+
+

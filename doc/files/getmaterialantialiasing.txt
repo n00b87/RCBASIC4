@@ -1,5 +1,5 @@
 #title GetMaterialAntiAliasing [RCBasic Doc]
-#header function  GetMaterialAntiAliasing( material_id)
+#header Function  GetMaterialAntiAliasing( material_id)
 
 Returns the anti-aliasing mode for the material
 
@@ -15,3 +15,4 @@ Possible modes returned
 #/list
 
 #ref SetMaterialAntiAliasing
+

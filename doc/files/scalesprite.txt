@@ -4,3 +4,4 @@
 Sets the scale of a sprite relative to its current scale
 
 #ref SetSpriteScale GetSpriteScale
+

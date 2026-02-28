@@ -1,6 +1,7 @@
 #title Steam_GetID$ [RCBasic Doc]
-#header function Steam_GetID$()
+#header Function Steam_GetID$()
 
 Returns the steam ID of the application which is needed to use the Steamworks API
 
 #ref Steam_AddAchievement Steam_ClearAchievements Steam_FinalizeAchievements Steam_TriggerAchievement
+

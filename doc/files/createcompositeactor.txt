@@ -1,0 +1,9 @@
+#title CreateCompositeActor [RCBasic Doc]
+#header Function CreateCompositeActor()
+
+Creates a composite actor
+
+Refer to the included Composite Demo for an example
+
+#ref AddCompositeChild
+

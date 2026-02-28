@@ -1,8 +1,9 @@
-#title getJointCurrentLength [RCBasic Doc]
-#header function  getJointCurrentLength( joint_id)
+#title GetJointCurrentLength [RCBasic Doc]
+#header Function  GetJointCurrentLength( joint_id)
 
 Returns the current distance between BodyA and BodyB
 
 Used with Distance Joint
 
 #ref GetJointLength
+

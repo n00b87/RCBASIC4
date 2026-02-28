@@ -1,5 +1,5 @@
 #title GetBlendMode [RCBasic Doc]
-#header function GetBlendMode( )
+#header Function GetBlendMode( )
 
 Returns the current blend mode
 
@@ -20,3 +20,4 @@ Possible Blend Modes
 #/list
 
 #ref SetBlendMode
+

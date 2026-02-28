@@ -1,6 +1,7 @@
-#title getParticleMaxAngle [RCBasic Doc]
-#header function  getParticleMaxAngle( actor)
+#title GetParticleMaxAngle [RCBasic Doc]
+#header Function  GetParticleMaxAngle( actor)
 
 Returns the max angle of particle emission
 
 #ref SetParticleMaxAngle
+

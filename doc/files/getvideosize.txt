@@ -1,4 +1,5 @@
 #title GetVideoSize [RCBasic Doc]
-#header sub GetVideoSize(byref w, byref h)
+#header Sub GetVideoSize(ByRef w, ByRef h)
 
 Gets the size of video's frames
+

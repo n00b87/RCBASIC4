@@ -1,0 +1,5 @@
+#title ResetVehicleSuspension [RCBasic Doc]
+#header Sub ResetVehicleSuspension( actor )
+
+Sets the suspension of a vehicle back to its base length.
+

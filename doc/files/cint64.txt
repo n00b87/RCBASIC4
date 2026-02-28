@@ -1,4 +1,5 @@
 #title CInt64 [RCBasic Doc]
-#header function CInt64(i)
+#header Function CInt64(i)
 
 Returns a 64-bit signed integer.
+

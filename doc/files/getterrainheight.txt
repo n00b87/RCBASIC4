@@ -1,4 +1,5 @@
 #title GetTerrainHeight [RCBasic Doc]
-#header function GetTerrainHeight( actor, patchX, patchZ )
+#header Function GetTerrainHeight( actor, patchX, patchZ )
 
 Returns the height of a terrain patch
+

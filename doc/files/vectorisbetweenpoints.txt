@@ -1,0 +1,5 @@
+#title VectorIsBetweenPoints [RCBasic Doc]
+#header Function VectorIsBetweenPoints(x, y, z, start_x, start_y, start_z, end_x, end_y, end_z)
+
+Returns TRUE if a vector is between 2 points
+

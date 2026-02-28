@@ -1,6 +1,7 @@
 #title SetActorPosition [RCBasic Doc]
-#header sub SetActorPosition( actor, x, y, z )
+#header Sub SetActorPosition( actor, x, y, z )
 
 Sets the absolute position of an actor
 
 #ref TranslateActorLocal TranslateActorWorld GetActorPosition
+

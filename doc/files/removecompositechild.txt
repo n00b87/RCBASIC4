@@ -1,0 +1,9 @@
+#title RemoveCompositeChild [RCBasic Doc]
+#header Sub RemoveCompositeChild(actor, child_index)
+
+Removes the actor stored as a child at the given index in a composite actor
+
+NOTE: This will change the index of all the remaining child actors
+
+#ref AddCompositeChild
+

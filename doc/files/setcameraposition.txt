@@ -1,6 +1,7 @@
 #title SetCameraPosition [RCBasic Doc]
-#header sub SetCameraPosition( x, y, z)
+#header Sub SetCameraPosition( x, y, z)
 
 Sets the absolute position of the camera in the scene
 
 #ref TranslateCamera GetCameraPosition
+

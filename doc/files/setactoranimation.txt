@@ -1,5 +1,5 @@
 #title SetActorAnimation [RCBasic Doc]
-#header sub SetActorAnimation( actor, animation, num_loops)
+#header Sub SetActorAnimation( actor, animation, num_loops)
 
 Sets the current animation for an actor to start playing
 
@@ -10,3 +10,4 @@ Notes on num_loops
 #/list
 
 #ref CreateActorAnimation
+

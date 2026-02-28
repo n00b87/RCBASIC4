@@ -1,8 +1,9 @@
 #title SetCanvasZ [RCBasic Doc]
-#header sub SetCanvasZ(c_num, z)
+#header Sub SetCanvasZ(c_num, z)
 
 Sets the Canvas Z Order.
 
 Note: Canvases with a higher Z order are drawn first and those with lower values will be drawn on top
 
 #ref SetCanvasZ
+

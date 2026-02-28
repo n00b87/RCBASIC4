@@ -1,0 +1,11 @@
+#title RemoveProjectorEffectActor [RCBasic Doc]
+#header Sub RemoveProjectorEffectActor(actor, tgt_index)
+
+Removes an effect actor from a projector.
+
+NOTE: Removing an effect actor will change the order of other effect actors so you will need to get the new index for other effect actors.
+
+Refer to the included Projector Demo for an example
+
+#ref AddProjectorEffectActor
+

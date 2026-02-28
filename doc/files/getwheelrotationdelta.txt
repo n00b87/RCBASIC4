@@ -1,0 +1,7 @@
+#title GetWheelRotationDelta [RCBasic Doc]
+#header Function GetWheelRotationDelta( actor, wheel )
+
+Returns how much the wheels spin angle changed since the last frame.
+
+#ref SetWheelRotationDelta
+

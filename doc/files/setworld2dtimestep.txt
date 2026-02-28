@@ -1,6 +1,7 @@
 #title SetWorld2DTimeStep [RCBasic Doc]
-#header sub SetWorld2DTimeStep( ts )
+#header Sub SetWorld2DTimeStep( ts )
 
 Sets the timestep for the active canvas
 
 #ref GetWorld2DTimeStep
+

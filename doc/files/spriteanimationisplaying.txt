@@ -2,3 +2,4 @@
 #header Function SpriteAnimationIsPlaying(sprite)
 
 Returns true if there is an animation playing on the sprite
+

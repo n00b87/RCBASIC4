@@ -1,4 +1,5 @@
 #title LoadImageEx [RCBasic Doc]
-#header function LoadImageEx(img$, colkey)
+#header Function LoadImageEx(img$, colkey)
 
 Returns an image id for an image loaded into memory
+

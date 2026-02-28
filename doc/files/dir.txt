@@ -1,4 +1,5 @@
 #title Dir$ [RCBasic Doc]
-#header function Dir$()
+#header Function Dir$()
 
 Returns the current working directory
+

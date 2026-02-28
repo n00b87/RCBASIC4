@@ -1,0 +1,7 @@
+#title GetWheelDampingRelaxation [RCBasic Doc]
+#header Function GetWheelDampingRelaxation( actor, wheel )
+
+Returns the damping relaxation of a wheel
+
+#ref GetWheelDampingCompression SetWheelDampingRelaxation
+

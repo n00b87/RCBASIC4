@@ -1,5 +1,6 @@
 #title CreateStack_N [RCBasic Doc]
-#header function CreateStack_N( )
+#header Function CreateStack_N( )
 
 Returns a new number stack
+
 

@@ -1,6 +1,7 @@
 #title SetSpriteRestitutionThreshold [RCBasic Doc]
-#header sub SetSpriteRestitutionThreshold( spr_id, threshold )
+#header Sub SetSpriteRestitutionThreshold( spr_id, threshold )
 
 Sets the restitution threshold for a sprite.
 
 #ref GetSpriteRestitutionThreshold
+

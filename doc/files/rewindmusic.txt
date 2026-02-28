@@ -1,4 +1,5 @@
 #title RewindMusic [RCBasic Doc]
-#header sub RewindMusic()
+#header Sub RewindMusic()
 
 Rewinds the music track.
+

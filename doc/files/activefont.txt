@@ -1,0 +1,15 @@
+#title ActiveFont [RCBasic Doc]
+#header Function ActiveFont()
+
+Returns the current font that will be used with DrawText
+
+#code
+test_font = LoadFont("test_font.ttf", 12)
+SetFont(test_font)
+If ActiveFont() = test_font Then
+	Print "Test Font is active"
+End If
+#/code
+
+#ref LoadFont SetFont DrawText
+

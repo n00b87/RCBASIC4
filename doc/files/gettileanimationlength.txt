@@ -4,3 +4,4 @@
 Return the number of frames in a tile's animation
 
 #ref SetTileAnimationLength
+

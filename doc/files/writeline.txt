@@ -1,6 +1,7 @@
 #title WriteLine [RCBasic Doc]
-#header sub WriteLine(stream, txt$)
+#header Sub WriteLine(stream, txt$)
 
 Writes a string to a text file with a new-line appended at the end
 
 #ref Write ReadLine$
+

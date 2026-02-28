@@ -1,4 +1,5 @@
 #title JoyAxis [RCBasic Doc]
-#header function JoyAxis(joy_num, joy_axis)
+#header Function JoyAxis(joy_num, joy_axis)
 
 Returns the value of an axis on a joystick.
+

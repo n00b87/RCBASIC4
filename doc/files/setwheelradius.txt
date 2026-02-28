@@ -1,0 +1,7 @@
+#title SetWheelRadius [RCBasic Doc]
+#header Sub SetWheelRadius( actor, wheel, radius )
+
+Sets the radius of a wheel
+
+#ref GetWheelRadius
+

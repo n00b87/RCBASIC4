@@ -1,4 +1,5 @@
 #title Ucase$ [RCBasic Doc]
-#header function Ucase$(src$)
+#header Function Ucase$(src$)
 
 Returns src$ with all characters uppercase
+

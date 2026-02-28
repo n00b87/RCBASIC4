@@ -1,4 +1,5 @@
 #title Right$ [RCBasic Doc]
-#header function Right$(src$, n)
+#header Function Right$(src$, n)
 
 Returns n number of characters from the right side of src$.
+

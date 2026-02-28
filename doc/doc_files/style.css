@@ -1,8 +1,7 @@
 table, th, td { border: 1px solid black; } th, td { padding: 10px; }
-body { background-color: #064066; color: #FFFFFF; }
+body { background-color: #161A23; color: #FFFFFF; }
 a { color: #40bfb8; }
 a::before {
-  content: "---";
   font-family: monospace, monospace;
   display: inline-block;
   margin-right: 6px;

@@ -4,12 +4,24 @@
 	<head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="style.css">
+		<style>
+	body { background-color: #212837; color: #FFFFFF; }
+	a { color: #40bfb8; }
+	a::before {
+	  content: "---";
+	  font-family: monospace, monospace;
+	  display: inline-block;
+	  margin-right: 6px;
+	  color: #40bfb8;
+	}
+	</style>
 		
 		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
 		<title> RCBasic </title>
 	</head>
 
 	<body>
+<img src="images/banner.png" style="width:70%;height:70%;">
     
 <ul id="myUL">
   <li><span class="box" >Getting Started</span>
@@ -32,7 +44,17 @@
 <a  href="func_sub.html" target="main">Functions</a><br>
 <a  href="scope.html" target="main">Scope</a><br>
 <a  href="comments.html" target="main">Comments</a><br>
-<a  href="graphics.html" target="main">Graphics</a><br>
+
+<ul id="myUL">
+  <li><span class="box" >Graphics</span>
+    <ul class="nested">
+      <li><a  href="graphics.html" target="main">Intro to Graphics</a></li>
+      <li><a  href="graphics2.html" target="main">Sprites</a></li>
+      <li><a  href="graphics3.html" target="main">3D Graphics</a></li>
+    </ul>
+  </li>
+</ul>
+
 <a  href="sound.html" target="main">Sound</a><br>
 
 <ul id="myUL">

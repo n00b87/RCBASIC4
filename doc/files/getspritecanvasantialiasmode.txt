@@ -1,5 +1,5 @@
 #title GetSpriteCanvasAntiAliasMode [RCBasic Doc]
-#header function GetSpriteCanvasAntiAliasMode( c_num )
+#header Function GetSpriteCanvasAntiAliasMode( c_num )
 
 Returns the anti-alias mode for a sprite canvas
 
@@ -15,3 +15,4 @@ Possible modes
 #/list
 
 #ref SetSpriteCanvasAntiAliasMode
+

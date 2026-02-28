@@ -1,0 +1,14 @@
+#title CalculateCompositePrincipalTransform [RCBasic Doc]
+#header Sub CalculateCompositePrincipalTransform(actor, ByRef masses, principal_matrix, ByRef x, ByRef y, ByRef z)
+
+Calculates the center of mass and principal intertia axes for a composite actor.
+
+Parameters:
+#list ul
+#li masses - An array with masses for each child in the compound shape
+#li principal_matrix - This will be set to principal axis transform
+#li (x, y, z) - Inertia
+#/list
+
+#ref CreateCompositeActor
+

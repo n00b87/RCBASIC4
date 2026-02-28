@@ -1,5 +1,5 @@
 #title AddSceneSkyDomeEx [RCBasic Doc]
-#header sub AddSceneSkyDomeEx( img, horiRes, vertRes, txPercentage, spherePercentage, radius)
+#header Sub AddSceneSkyDomeEx( img, horiRes, vertRes, txPercentage, spherePercentage, radius)
 
 Adds a sky dome to the scene
 
@@ -13,3 +13,4 @@ Adds a sky dome to the scene
 #/list
 
 #ref AddSceneSkyBox AddSceneSkyDome
+

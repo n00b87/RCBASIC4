@@ -1,4 +1,5 @@
 #title GetMusicVolume [RCBasic Doc]
-#header function GetMusicVolume()
+#header Function GetMusicVolume()
 
 Returns the music track's volume
+

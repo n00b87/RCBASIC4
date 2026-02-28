@@ -1,0 +1,5 @@
+#title GetWheelDirection [RCBasic Doc]
+#header Sub GetWheelDirection( actor, wheel, ByRef x, ByRef y, ByRef z )
+
+Gets the direction of a wheel on a vehicle
+

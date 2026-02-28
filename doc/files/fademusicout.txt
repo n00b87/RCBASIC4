@@ -1,4 +1,5 @@
 #title FadeMusicOut [RCBasic Doc]
-#header sub FadeMusicOut(fade_time)
+#header Sub FadeMusicOut(fade_time)
 
 Fades music out
+

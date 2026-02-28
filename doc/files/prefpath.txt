@@ -1,4 +1,5 @@
 #title PrefPath$ [RCBasic Doc]
-#header function PrefPath$(org_name$, app_name$)
+#header Function PrefPath$(org_name$, app_name$)
 
 Returns the preferred path for storing files.
+

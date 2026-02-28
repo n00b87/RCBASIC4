@@ -1,0 +1,7 @@
+#title SetWheelSteeringValue [RCBasic Doc]
+#header Sub SetWheelSteeringValue( actor, wheel, steering )
+
+Sets the steering value for a wheel
+
+#ref GetWheelSteeringValue
+

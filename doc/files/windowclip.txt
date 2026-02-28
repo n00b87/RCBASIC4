@@ -1,6 +1,7 @@
 #title WindowClip [RCBasic Doc]
-#header function WindowClip(x, y, w, h)
+#header Function WindowClip(x, y, w, h)
 
 Returns an image with a portion of the window stored
 
 #ref CanvasClip
+

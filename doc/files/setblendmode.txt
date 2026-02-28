@@ -1,5 +1,5 @@
 #title SetBlendMode [RCBasic Doc]
-#header sub SetBlendMode( blend_mode )
+#header Sub SetBlendMode( blend_mode )
 
 Sets the current blend mode
 
@@ -20,4 +20,5 @@ Possible Blend Modes
 #/list
 
 #ref SetBlendMode
+
 

@@ -1,5 +1,5 @@
-#title jointIsLimitEnabled [RCBasic Doc]
-#header function jointIsLimitEnabled( joint_id)
+#title JointIsLimitEnabled [RCBasic Doc]
+#header Function JointIsLimitEnabled( joint_id)
 
 Returns whether or not the joint limit is enabled
 
@@ -11,3 +11,4 @@ Used with
 #/list
 
 #ref EnableJointLimit SetJointLimits
+

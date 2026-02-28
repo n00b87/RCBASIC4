@@ -1,7 +1,8 @@
 #title TouchY [RCBasic Doc]
-#header function TouchY()
+#header Function TouchY()
 
 Return the Y Position of a touch event
 
 #ref TouchX GetTouch GetTouchFinger
+
 

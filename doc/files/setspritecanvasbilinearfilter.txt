@@ -1,6 +1,7 @@
 #title SetSpriteCanvasBilinearFilter [RCBasic Doc]
-#header sub SetSpriteCanvasBilinearFilter( c_num, flag )
+#header Sub SetSpriteCanvasBilinearFilter( c_num, flag )
 
 Enables or disables bi-linear filter for the sprite canvas
 
 #ref GetSpriteCanvasBilinearFilter
+

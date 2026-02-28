@@ -1,4 +1,5 @@
 #title NumSoundChannels [RCBasic Doc]
-#header function NumSoundChannels()
+#header Function NumSoundChannels()
 
 Returns the number of sound channels available
+

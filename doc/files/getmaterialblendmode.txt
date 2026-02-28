@@ -1,5 +1,5 @@
-#title getMaterialBlendMode [RCBasic Doc]
-#header function  getMaterialBlendMode( material_id)
+#title GetMaterialBlendMode [RCBasic Doc]
+#header Function  GetMaterialBlendMode( material_id)
 
 Returns a materials blend mode
 
@@ -18,3 +18,4 @@ Possible Blend Modes
 #/list
 
 #ref SetMaterialBlendMode
+

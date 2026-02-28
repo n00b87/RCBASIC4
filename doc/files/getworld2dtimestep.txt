@@ -1,6 +1,7 @@
 #title GetWorld2DTimeStep [RCBasic Doc]
-#header function GetWorld2DTimeStep()
+#header Function GetWorld2DTimeStep()
 
 Returns the timestep for the active canvas
 
 #ref SetWorld2DTimeStep
+

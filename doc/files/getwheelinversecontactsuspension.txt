@@ -1,0 +1,11 @@
+#title GetWheelInverseContactSuspension [RCBasic Doc]
+#header Function GetWheelInverseContactSuspension( actor, wheel )
+
+Returns the clipped inverse contact dot suspension.
+
+This value is a stability factor used to adjust suspension force when the ground contact surface is tilted.
+
+It prevents suspension forces from exploding when the wheel contacts steep surfaces.
+
+#ref SetWheelInverseContactSuspension
+

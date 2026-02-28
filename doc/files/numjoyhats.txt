@@ -1,4 +1,5 @@
 #title NumJoyHats [RCBasic Doc]
-#header function NumJoyHats(joy_num)
+#header Function NumJoyHats(joy_num)
 
 Returns the number of hats on a joystick
+

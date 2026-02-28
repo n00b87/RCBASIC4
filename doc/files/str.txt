@@ -1,4 +1,5 @@
 #title Str$ [RCBasic Doc]
-#header function Str$(n)
+#header Function Str$(n)
 
 Returns a number converted to a string
+

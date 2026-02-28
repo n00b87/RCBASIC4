@@ -1,4 +1,5 @@
 #title SystemRam [RCBasic Doc]
-#header function SystemRam()
+#header Function SystemRam()
 
 Returns the amount of RAM available
+

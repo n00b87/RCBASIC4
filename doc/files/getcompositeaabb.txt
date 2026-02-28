@@ -1,0 +1,7 @@
+#title GetCompositeAABB [RCBasic Doc]
+#header Function GetCompositeAABB(actor, t_matrix, ByRef min_x, ByRef min_y, ByRef min_z, ByRef max_x, ByRef max_y, ByRef max_z)
+
+Returns the bounding box of a composite actor
+
+t_matrix will store the transform for the bounding box
+

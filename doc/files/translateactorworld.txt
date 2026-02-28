@@ -1,4 +1,5 @@
 #title TranslateActorWorld [RCBasic Doc]
-#header sub TranslateActorWorld( actor, x, y, z )
+#header Sub TranslateActorWorld( actor, x, y, z )
 
 Moves an actor relative to its current position
+

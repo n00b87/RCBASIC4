@@ -1,6 +1,7 @@
-#title getParticleMaxStartColor [RCBasic Doc]
-#header function  getParticleMaxStartColor( actor)
+#title GetParticleMaxStartColor [RCBasic Doc]
+#header Function  GetParticleMaxStartColor( actor)
 
 Returns max starting color for particles
 
 #ref SetParticleMaxStartColor
+

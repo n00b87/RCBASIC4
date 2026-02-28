@@ -150,17 +150,58 @@ void CProjectiveTextures::render()
 
 	recalculateViewArea();
 
+	irr::scene::IMesh* mesh  = NULL;
+
 	for(irr::u32 i=0; i<nodeArray.size(); ++i)
 	{
 		projMat.MaterialType = (irr::video::E_MATERIAL_TYPE)projTex;
 		projMat.TextureLayer[0].Texture = texture;
-//		projMat.TextureLayer[0].TextureWrap = ETC_CLAMP_TO_BORDER;
+		projMat.TextureLayer[0].TextureWrapU = irr::video::ETC_CLAMP_TO_BORDER;
+		projMat.TextureLayer[0].TextureWrapV = irr::video::ETC_CLAMP_TO_BORDER;
 
 		pVideo->setTransform(irr::video::ETS_WORLD,nodeArray[i]->getAbsoluteTransformation());
 		pVideo->setMaterial(projMat);
 
-		for(irr::u32 j=0; j<nodeArray[i]->getMaterialCount(); ++j)
-			pVideo->drawMeshBuffer(nodeArray[i]->getMesh()->getMeshBuffer(j));
+		mesh = NULL;
+
+		switch(nodeArray[i]->getType())
+		{
+            case irr::scene::ESNT_CUBE:
+            case irr::scene::ESNT_SPHERE:
+            case irr::scene::ESNT_MESH:
+            {
+                irr::scene::IMeshSceneNode* m_node = (irr::scene::IMeshSceneNode*)nodeArray[i];
+                mesh = m_node->getMesh();
+            }
+            break;
+
+            case irr::scene::ESNT_OCTREE:
+            {
+                irr::scene::IOctreeSceneNode* m_node = (irr::scene::IOctreeSceneNode*)nodeArray[i];
+                mesh = m_node->getMesh();
+            }
+            break;
+
+            case irr::scene::ESNT_ANIMATED_MESH:
+            {
+                irr::scene::IAnimatedMeshSceneNode* m_node = (irr::scene::IAnimatedMeshSceneNode*)nodeArray[i];
+                mesh = m_node->getMesh();
+            }
+            break;
+
+            case irr::scene::ESNT_TERRAIN:
+            {
+                irr::scene::ITerrainSceneNode* m_node = (irr::scene::ITerrainSceneNode*)nodeArray[i];
+                mesh = m_node->getMesh();
+            }
+            break;
+		}
+
+		if(mesh)
+		{
+		    for(irr::u32 j=0; j<nodeArray[i]->getMaterialCount(); ++j)
+                pVideo->drawMeshBuffer(mesh->getMeshBuffer(j));
+		}
 	}
 }
 

@@ -2,3 +2,4 @@
 #header Function CreateVolumeLightMesh( u, v, foot_color, tail_color, lp_distance, dim_x, dim_y, dim_z )
 
 Create a mesh to represent a light volume.
+

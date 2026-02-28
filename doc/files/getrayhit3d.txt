@@ -1,5 +1,5 @@
 #title GetRayHit3D [RCBasic Doc]
-#header sub GetRayHit3D( index, ByRef actor_id, ByRef x, ByRef y, ByRef z, ByRef normal_x, ByRef normal_y, ByRef normal_z )
+#header Sub GetRayHit3D( index, ByRef actor_id, ByRef x, ByRef y, ByRef z, ByRef normal_x, ByRef normal_y, ByRef normal_z )
 
 This function will get the collision point and the normal of a ray hit.
 
@@ -10,3 +10,4 @@ NOTES:
 #/list
 
 #ref CastRay3D CastRay3D_All CastRay2D CastRay2D_All GetRayHit2D
+

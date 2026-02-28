@@ -1,0 +1,8 @@
+#title GetActorBonePosition [RCBasic Doc]
+#header Function GetActorBonePosition( actor, bone_index, ByRef x, ByRef y, ByRef z )
+
+Gets an actor's bone position
+
+NOTE: This is only for actors that use skeletal animation (ie. *.b3d, *.x, *.ms3d, and actors created from Anim8or files)
+
+

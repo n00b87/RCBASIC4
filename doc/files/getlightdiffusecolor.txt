@@ -1,4 +1,5 @@
 #title GetLightDiffuseColor [RCBasic Doc]
-#header function GetLightDiffuseColor( actor )
+#header Function GetLightDiffuseColor( actor )
 
 Returns the diffuse color of the light
+

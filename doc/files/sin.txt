@@ -1,4 +1,5 @@
 #title Sin [RCBasic Doc]
-#header function Sin(n)
+#header Function Sin(n)
 
 Returns the sine of angle n
+

@@ -1,6 +1,7 @@
 #title SetCameraNearValue [RCBasic Doc]
-#header sub SetCameraNearValue( zn )
+#header Sub SetCameraNearValue( zn )
 
 Sets the distance of the camera near plane
 
 #ref GetCameraNearValue
+

@@ -1,0 +1,7 @@
+#title GetWheelCount [RCBasic Doc]
+#header Function GetWheelCount( actor )
+
+Returns the number of wheels on a vehicle
+
+#ref AddVehicleWheel
+

@@ -4,3 +4,4 @@
 Closes a canvas
 
 #ref OpenCanvas
+

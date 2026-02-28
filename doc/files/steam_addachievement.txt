@@ -1,8 +1,9 @@
 #title Steam_AddAchievement [RCBasic Doc]
-#header sub Steam_AddAchievement( ach_id$, ach_name$ )
+#header Sub Steam_AddAchievement( ach_id$, ach_name$ )
 
 Add a steam achievement to the current program
 
 NOTE: This only works for desktop applications
 
 #ref Steam_ClearAchievements Steam_FinalizeAchievements Steam_GetID Steam_TriggerAchievement
+

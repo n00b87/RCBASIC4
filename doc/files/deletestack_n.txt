@@ -1,4 +1,5 @@
 #title DeleteStack_N [RCBasic Doc]
-#header sub DeleteStack_N( num_stack )
+#header Sub DeleteStack_N( num_stack )
 
 Removes a number stack from memory
+

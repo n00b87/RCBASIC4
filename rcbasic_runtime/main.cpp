@@ -51,6 +51,7 @@
 #include "rc_gfx.h"
 #include "rc_gfx3D.h"
 #include "rc_matrix.h"
+#include "rc_vectorMath.h"
 #include "rc_geometry.h"
 #include "rc_audio.h"
 #include "rc_net.h"
@@ -4318,6 +4319,7 @@ void rcbasic_init()
 
 void rcbasic_clean()
 {
+    rc_clearScene();
 	rc_audio_quit();
     rc_net_quit();
     rc_gfx_quit();
@@ -4453,7 +4455,7 @@ int main(int argc, char * argv[])
 
     //ogles2 test
     #ifdef RC_TESTING
-    rc_intern_dirChange("/home/n00b/Music/v47/RCBasic_Package/examples/Custom Rendering");
+    rc_intern_dirChange("/home/n00b/Music/Testing_Stuff");
 	//rc_intern_dirChange("");
 	rc_filename = "main.cbc";
 

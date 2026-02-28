@@ -1,4 +1,5 @@
-#title setMaterialNormalize [RCBasic Doc]
-#header sub  setMaterialNormalize( material_id,  flag)
+#title SetMaterialNormalize [RCBasic Doc]
+#header Sub  SetMaterialNormalize( material_id,  flag)
 
 Sets whether normals should be normalized
+

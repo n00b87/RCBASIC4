@@ -1,4 +1,5 @@
-#title getSpriteAngularVelocity [RCBasic Doc]
-#header function  getSpriteAngularVelocity( spr_id)
+#title GetSpriteAngularVelocity [RCBasic Doc]
+#header Function  GetSpriteAngularVelocity( spr_id)
 
 Returns the angular velocity
+

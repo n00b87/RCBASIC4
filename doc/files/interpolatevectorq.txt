@@ -1,0 +1,5 @@
+#title InterpolateVectorQ [RCBasic Doc]
+#header Sub InterpolateVectorQ(x1, y1, z1, x2, y2, z2, x3, y3, z3, distance, ByRef ix, ByRef iy, ByRef iz)
+
+Gets a quadratic interpolated vector based on a distance between 3 vectors
+

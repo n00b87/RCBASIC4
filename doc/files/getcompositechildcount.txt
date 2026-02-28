@@ -1,0 +1,5 @@
+#title GetCompositeChildCount [RCBasic Doc]
+#header Function GetCompositeChildCount(actor)
+
+Returns the number of child actors in a composite actor
+

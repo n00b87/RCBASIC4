@@ -1,5 +1,5 @@
-#title getActorMaterialFlag [RCBasic Doc]
-#header function  getActorMaterialFlag( actor,  material,  flag)
+#title GetActorMaterialFlag [RCBasic Doc]
+#header Function  GetActorMaterialFlag( actor,  material,  flag)
 
 Returns the value of the specified material flag
 
@@ -28,3 +28,4 @@ Possible values for flag:
 #/list
 
 #ref GetMaterialFlag
+

@@ -1,4 +1,5 @@
 #title FileExists [RCBasic Doc]
-#header function FileExists(fileName$)
+#header Function FileExists(fileName$)
 
 Returns true if a file exists
+

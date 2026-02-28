@@ -1,4 +1,5 @@
 #title DeleteSound [RCBasic Doc]
-#header sub DeleteSound(snd)
+#header Sub DeleteSound(snd)
 
 Removes a sound from memory
+

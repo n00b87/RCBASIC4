@@ -75,3 +75,4 @@ Wend
 <br>
 
 #ref SetSpriteType
+

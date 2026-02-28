@@ -1,6 +1,7 @@
 #title SetActorAnimationSpeed [RCBasic Doc]
-#header sub SetActorAnimationSpeed( actor, animation, speed )
+#header Sub SetActorAnimationSpeed( actor, animation, speed )
 
 Set the FPS of an actor animation
 
 #ref GetActorAnimationSpeed
+

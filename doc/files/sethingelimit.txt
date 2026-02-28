@@ -1,5 +1,5 @@
-#title setHingeLimit [RCBasic Doc]
-#header sub  setHingeLimit( constraint_id,  low,  high,  softness,  bias_factor,  relaxation_factor)
+#title SetHingeLimit [RCBasic Doc]
+#header Sub  SetHingeLimit( constraint_id,  low,  high,  softness,  bias_factor,  relaxation_factor)
 
 Defines the angular limits of the hinge's rotation. A hinge constraint allows two actors (or one actor and the world) to rotate around a single axis, similar to a door hinge. This function restricts how far this rotation can go by setting minimum and maximum angles.
 
@@ -14,3 +14,4 @@ By default, if no limits are applied, the hinge can rotate freely around the axi
 #/list
 
 #ref GetHingeLimitBiasFactor GetHingeLimitRelaxationFactor GetHingeLimitSign GetHingeSolveLimit
+

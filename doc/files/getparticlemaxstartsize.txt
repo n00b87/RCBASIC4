@@ -1,6 +1,7 @@
-#title getParticleMaxStartSize [RCBasic Doc]
-#header sub  getParticleMaxStartSize( actor, ByRef w, ByRef h)
+#title GetParticleMaxStartSize [RCBasic Doc]
+#header Sub  GetParticleMaxStartSize( actor, ByRef w, ByRef h)
 
 Gets the max start size for the particles
 
 #ref SetParticleMaxStartSize
+

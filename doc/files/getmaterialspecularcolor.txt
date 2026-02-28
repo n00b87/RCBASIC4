@@ -1,6 +1,7 @@
-#title getMaterialSpecularColor [RCBasic Doc]
-#header function  getMaterialSpecularColor( material_id)
+#title GetMaterialSpecularColor [RCBasic Doc]
+#header Function  GetMaterialSpecularColor( material_id)
 
 Returns the specular color for a material
 
 #ref SetMaterialSpecularColor
+

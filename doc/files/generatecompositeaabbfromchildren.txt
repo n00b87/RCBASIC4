@@ -1,0 +1,5 @@
+#title GenerateCompositeAABBFromChildren [RCBasic Doc]
+#header Sub GenerateCompositeAABBFromChildren(actor)
+
+Generates a bounding box based on the child actors
+

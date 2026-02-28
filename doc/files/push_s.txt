@@ -1,7 +1,8 @@
 #title Push_S [RCBasic Doc]
-#header sub Push_S( str_stack, s$ )
+#header Sub Push_S( str_stack, s$ )
 
 Pushes a string onto a string stack
 
 #ref Pop_S
+
 

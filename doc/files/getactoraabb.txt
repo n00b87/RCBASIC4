@@ -1,4 +1,5 @@
-#title getActorAABB [RCBasic Doc]
-#header sub getActorAABB( actor,  ByRef  min_x,  ByRef  min_y,  ByRef  min_z,  ByRef  max_x,  ByRef  max_y,  ByRef  max_z)
+#title GetActorAABB [RCBasic Doc]
+#header Sub GetActorAABB( actor,  ByRef  min_x,  ByRef  min_y,  ByRef  min_z,  ByRef  max_x,  ByRef  max_y,  ByRef  max_z)
 
 Gets the bounding box for an actor.
+

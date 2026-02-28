@@ -1,4 +1,5 @@
-#title setMaterialWireframe [RCBasic Doc]
-#header sub  setMaterialWireframe( material_id,  flag)
+#title SetMaterialWireframe [RCBasic Doc]
+#header Sub  SetMaterialWireframe( material_id,  flag)
 
 Sets whether a material is draw as unfilled triangles or filled triangles
+

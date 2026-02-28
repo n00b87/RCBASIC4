@@ -1,5 +1,5 @@
-#title getJointMaxMotorTorque [RCBasic Doc]
-#header function  getJointMaxMotorTorque( joint_id)
+#title GetJointMaxMotorTorque [RCBasic Doc]
+#header Function  GetJointMaxMotorTorque( joint_id)
 
 Returns the maximum torque (rotational force) that the motor can apply to achieve the target motor speed set by SetMotorSpeed. This allows you to control how much power the motorized joint has.
 
@@ -10,3 +10,4 @@ Used with
 #/list
 
 #ref SetJointMaxMotorTorque
+

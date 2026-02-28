@@ -1,4 +1,5 @@
 #title GetChannelVolume [RCBasic Doc]
-#header function GetChannelVolume(channel)
+#header Function GetChannelVolume(channel)
 
 Returns the volume of the audio on a channel
+

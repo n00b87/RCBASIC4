@@ -1,4 +1,5 @@
 #title WindowHasMouseFocus [RCBasic Doc]
-#header function WindowHasMouseFocus()
+#header Function WindowHasMouseFocus()
 
 Returns true if the window has mouse focus, otherwise it returns false.
+

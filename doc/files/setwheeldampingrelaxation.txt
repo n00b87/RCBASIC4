@@ -1,0 +1,7 @@
+#title SetWheelDampingRelaxation [RCBasic Doc]
+#header Sub SetWheelDampingRelaxation( actor, wheel, drel_value )
+
+Sets a wheels damping relaxation
+
+#ref GetWheelDampingRelaxation SetWheelDampingCompression
+

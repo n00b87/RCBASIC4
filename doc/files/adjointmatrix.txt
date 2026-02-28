@@ -1,4 +1,5 @@
 #title AdjointMatrix [RCBasic Doc]
-#header function AdjointMatrix(mA, mB)
+#header Function AdjointMatrix(mA, mB)
 
 Stores the adjoint matrix of mA in mB 
+

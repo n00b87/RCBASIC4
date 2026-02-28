@@ -1,5 +1,5 @@
-#title setActorMassProperties [RCBasic Doc]
-#header sub setActorMassProperties( actor,   mass,   inertia_x,   inertia_y,   inertia_z)
+#title SetActorMassProperties [RCBasic Doc]
+#header Sub SetActorMassProperties( actor,   mass,   inertia_x,   inertia_y,   inertia_z)
 
 Set the mass and local inertia of an actor. This is crucial for defining how the actor behaves under the influence of forces and torques, especially when it comes to simulating realistic motion and rotation.
 
@@ -15,3 +15,4 @@ Inertial
 #/list
 
 #ref GetActorLocalInertia GetActorInverseMass
+

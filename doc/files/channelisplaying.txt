@@ -1,6 +1,7 @@
 #title ChannelIsPlaying [RCBasic Doc]
-#header function ChannelIsPlaying(channel)
+#header Function ChannelIsPlaying(channel)
 
 Returns true if an audio channel is playing
 
 #ref ChannelIsPaused PlaySound PlaySoundTimed
+

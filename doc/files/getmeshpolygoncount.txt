@@ -2,3 +2,4 @@
 #header Function GetMeshPolygonCount( mesh )
 
 Returns the number of polygons in a mesh
+

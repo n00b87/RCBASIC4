@@ -190,6 +190,30 @@ case FN_GetCircleLineIntersection: //Number Function
 case FN_GetLinePlaneIntersection: //Number Function
 	 rc_push_num(GetLinePlaneIntersection( &GETLINEPLANEINTERSECTION_LINE_POINT,  &GETLINEPLANEINTERSECTION_LINE_DIRECTION,  &GETLINEPLANEINTERSECTION_PLANE_POINT_1,  &GETLINEPLANEINTERSECTION_PLANE_POINT_2,  &GETLINEPLANEINTERSECTION_PLANE_POINT_3,  &GETLINEPLANEINTERSECTION_INTERSECTION ));
 	break;
+case FN_GetLineAngle: //Number Function
+	 rc_push_num(rc_getLineAngle( GETLINEANGLE_X1,  GETLINEANGLE_Y1,  GETLINEANGLE_X2,  GETLINEANGLE_Y2 ));
+	break;
+case FN_DotProduct: //Number Function
+	 rc_push_num(rc_dotProduct( DOTPRODUCT_X1,  DOTPRODUCT_Y1,  DOTPRODUCT_Z1,  DOTPRODUCT_X2,  DOTPRODUCT_Y2,  DOTPRODUCT_Z2 ));
+	break;
+case FN_InterpolateVector: //Sub Procedure
+	rc_interpolateVector( INTERPOLATEVECTOR_X1,  INTERPOLATEVECTOR_Y1,  INTERPOLATEVECTOR_Z1,  INTERPOLATEVECTOR_X2,  INTERPOLATEVECTOR_Y2,  INTERPOLATEVECTOR_Z2,  INTERPOLATEVECTOR_DISTANCE,  &INTERPOLATEVECTOR_IX,  &INTERPOLATEVECTOR_IY,  &INTERPOLATEVECTOR_IZ );
+	break;
+case FN_InterpolateVectorQ: //Sub Procedure
+	rc_interpolateVectorQ( INTERPOLATEVECTORQ_X1,  INTERPOLATEVECTORQ_Y1,  INTERPOLATEVECTORQ_Z1,  INTERPOLATEVECTORQ_X2,  INTERPOLATEVECTORQ_Y2,  INTERPOLATEVECTORQ_Z2,  INTERPOLATEVECTORQ_X3,  INTERPOLATEVECTORQ_Y3,  INTERPOLATEVECTORQ_Z3,  INTERPOLATEVECTORQ_DISTANCE,  &INTERPOLATEVECTORQ_IX,  &INTERPOLATEVECTORQ_IY,  &INTERPOLATEVECTORQ_IZ );
+	break;
+case FN_VectorIsBetweenPoints: //Number Function
+	 rc_push_num(rc_vectorIsBetweenPoints( VECTORISBETWEENPOINTS_X,  VECTORISBETWEENPOINTS_Y,  VECTORISBETWEENPOINTS_Z,  VECTORISBETWEENPOINTS_START_X,  VECTORISBETWEENPOINTS_START_Y,  VECTORISBETWEENPOINTS_START_Z,  VECTORISBETWEENPOINTS_END_X,  VECTORISBETWEENPOINTS_END_Y,  VECTORISBETWEENPOINTS_END_Z ));
+	break;
+case FN_NormalizeVector: //Sub Procedure
+	rc_normalizeVector( NORMALIZEVECTOR_X,  NORMALIZEVECTOR_Y,  NORMALIZEVECTOR_Z,  &NORMALIZEVECTOR_NX,  &NORMALIZEVECTOR_NY,  &NORMALIZEVECTOR_NZ );
+	break;
+case FN_GetHorizontalAngle: //Sub Procedure
+	rc_getHorizontalAngle( GETHORIZONTALANGLE_X,  GETHORIZONTALANGLE_Y,  GETHORIZONTALANGLE_Z,  &GETHORIZONTALANGLE_HX,  &GETHORIZONTALANGLE_HY,  &GETHORIZONTALANGLE_HZ );
+	break;
+case FN_GetRotationToTarget: //Sub Procedure
+	rc_getRotationToTarget( GETROTATIONTOTARGET_X,  GETROTATIONTOTARGET_Y,  GETROTATIONTOTARGET_Z,  GETROTATIONTOTARGET_TGT_X,  GETROTATIONTOTARGET_TGT_Y,  GETROTATIONTOTARGET_TGT_Z,  &GETROTATIONTOTARGET_RX,  &GETROTATIONTOTARGET_RY,  &GETROTATIONTOTARGET_RZ );
+	break;
 case FN_Asc: //Number Function
 	 rc_push_num(rc_intern_asc( ASC_C$ ));
 	break;
@@ -730,6 +754,9 @@ case FN_Box3D: //Sub Procedure
 case FN_Triangle3D: //Sub Procedure
 	rc_drawTriangle3D( TRIANGLE3D_X1,  TRIANGLE3D_Y1,  TRIANGLE3D_Z1,  TRIANGLE3D_X2,  TRIANGLE3D_Y2,  TRIANGLE3D_Z2,  TRIANGLE3D_X3,  TRIANGLE3D_Y3,  TRIANGLE3D_Z3 );
 	break;
+case FN_SetRenderCirclePoints: //Sub Procedure
+	rc_setRenderCirclePoints( SETRENDERCIRCLEPOINTS_NUM_POINTS );
+	break;
 case FN_LoadImage: //Number Function
 	 rc_push_num(rc_loadImage( LOADIMAGE_IMG$ ));
 	break;
@@ -816,6 +843,9 @@ case FN_DrawImage_Flip: //Sub Procedure
 	break;
 case FN_DrawImage_FlipEx: //Sub Procedure
 	rc_drawImage_FlipEx( DRAWIMAGE_FLIPEX_SLOT,  DRAWIMAGE_FLIPEX_X,  DRAWIMAGE_FLIPEX_Y,  DRAWIMAGE_FLIPEX_SRC_X,  DRAWIMAGE_FLIPEX_SRC_Y,  DRAWIMAGE_FLIPEX_SRC_W,  DRAWIMAGE_FLIPEX_SRC_H,  DRAWIMAGE_FLIPEX_H,  DRAWIMAGE_FLIPEX_V );
+	break;
+case FN_SaveBMP: //Number Function
+	 rc_push_num(rc_saveBMP( SAVEBMP_IMG,  SAVEBMP_FILE$ ));
 	break;
 case FN_SetAntiAliasMode: //Sub Procedure
 	rc_setAntiAliasMode( SETANTIALIASMODE_AA_MODE );
@@ -1062,6 +1092,9 @@ case FN_TextWidth: //Number Function
 	break;
 case FN_TextHeight: //Number Function
 	 rc_push_num(rc_getTextHeight( TEXTHEIGHT_TXT$ ));
+	break;
+case FN_ActiveFont: //Number Function
+	 rc_push_num(rc_activeFont(  ));
 	break;
 case FN_TouchPressure: //Number Function
 	 rc_push_num(rc_touchPressure(  ));
@@ -1571,6 +1604,15 @@ case FN_GetSpriteColorMod: //Number Function
 case FN_GetSpriteAlpha: //Number Function
 	 rc_push_num(rc_getSpriteAlpha( GETSPRITEALPHA_SPRITE ));
 	break;
+case FN_AddSpriteChild: //Number Function
+	 rc_push_num(rc_addSpriteChild( ADDSPRITECHILD_SPRITE,  ADDSPRITECHILD_CHILD_SPRITE,  ADDSPRITECHILD_X,  ADDSPRITECHILD_Y ));
+	break;
+case FN_RemoveSpriteChild: //Sub Procedure
+	rc_removeSpriteChild( REMOVESPRITECHILD_SPRITE,  REMOVESPRITECHILD_CHILD_INDEX );
+	break;
+case FN_GetSpriteChildIndex: //Number Function
+	 rc_push_num(rc_getSpriteChildIndex( GETSPRITECHILDINDEX_SPRITE,  GETSPRITECHILDINDEX_CHILD_SPRITE ));
+	break;
 case FN_CreateSpriteAnimation: //Number Function
 	 rc_push_num(rc_createSpriteAnimation( CREATESPRITEANIMATION_SPRITE,  CREATESPRITEANIMATION_ANIM_LENGTH,  CREATESPRITEANIMATION_SPEED ));
 	break;
@@ -1615,6 +1657,9 @@ case FN_SpriteAnimationIsPlaying: //Number Function
 	break;
 case FN_DeleteSpriteAnimation: //Sub Procedure
 	rc_deleteSpriteAnimation( DELETESPRITEANIMATION_SPRITE,  DELETESPRITEANIMATION_ANIMATION );
+	break;
+case FN_GetSpriteAnimationSource: //Number Function
+	 rc_push_num(rc_getSpriteAnimationSource( GETSPRITEANIMATIONSOURCE_SPRITE,  GETSPRITEANIMATIONSOURCE_ANIMATION ));
 	break;
 case FN_getSpriteCenter: //Sub Procedure
 	rc_getSpriteCenter( GETSPRITECENTER_SPR_ID,  &GETSPRITECENTER_X,  &GETSPRITECENTER_Y );
@@ -2180,6 +2225,15 @@ case FN_CreateTerrainActor: //Number Function
 case FN_CreateParticleActor: //Number Function
 	 rc_push_num(rc_createParticleActor( CREATEPARTICLEACTOR_PARTICLE_TYPE ));
 	break;
+case FN_CreateProjectorActor: //Number Function
+	 rc_push_num(rc_createProjectorActor(  ));
+	break;
+case FN_CreateCompositeActor: //Number Function
+	 rc_push_num(rc_createCompositeActor(  ));
+	break;
+case FN_CreateVehicleActor: //Number Function
+	 rc_push_num(rc_createVehicleActor( CREATEVEHICLEACTOR_CHASSIS_ACTOR ));
+	break;
 case FN_DeleteActor: //Sub Procedure
 	rc_deleteActor( DELETEACTOR_ACTOR );
 	break;
@@ -2237,8 +2291,8 @@ case FN_RemoveActorShadow: //Sub Procedure
 case FN_ActorExists: //Number Function
 	 rc_push_num(rc_actorExists( ACTOREXISTS_ACTOR ));
 	break;
-case FN_CreateProjectorActor: //Number Function
-	 rc_push_num(rc_createProjectorActor(  ));
+case FN_GetActorType: //Number Function
+	 rc_push_num(rc_getActorType( GETACTORTYPE_ACTOR ));
 	break;
 case FN_CreateActorAnimation: //Number Function
 	 rc_push_num(rc_createActorAnimation( CREATEACTORANIMATION_ACTOR,  CREATEACTORANIMATION_START_FRAME,  CREATEACTORANIMATION_END_FRAME,  CREATEACTORANIMATION_SPEED ));
@@ -2497,6 +2551,9 @@ case FN_GetRayHit3D: //Sub Procedure
 	break;
 case FN_SetActorShapeEx: //Sub Procedure
 	rc_setActorCollisionShape( SETACTORSHAPEEX_ACTOR,  SETACTORSHAPEEX_SHAPE_TYPE,  SETACTORSHAPEEX_MASS,  SETACTORSHAPEEX_RADIUS );
+	break;
+case FN_SetActorImpactMesh: //Sub Procedure
+	rc_setActorImpactMesh( SETACTORIMPACTMESH_ACTOR,  SETACTORIMPACTMESH_MESH,  SETACTORIMPACTMESH_MASS );
 	break;
 case FN_createPointConstraint: //Number Function
 	 rc_push_num(rc_createPointConstraint(  CREATEPOINTCONSTRAINT_ACTORA,   CREATEPOINTCONSTRAINT_PXA,   CREATEPOINTCONSTRAINT_PYA,   CREATEPOINTCONSTRAINT_PZA ));
@@ -2933,6 +2990,12 @@ case FN_SetPhysics3D: //Sub Procedure
 case FN_GetPhysics3D: //Number Function
 	 rc_push_num(rc_getPhysics3D(  ));
 	break;
+case FN_GetBillboardSize: //Sub Procedure
+	rc_getBillboardSize( GETBILLBOARDSIZE_ACTOR,  &GETBILLBOARDSIZE_W,  &GETBILLBOARDSIZE_H );
+	break;
+case FN_SetBillboardSize: //Sub Procedure
+	rc_setBillboardSize( SETBILLBOARDSIZE_ACTOR,  SETBILLBOARDSIZE_W,  SETBILLBOARDSIZE_H );
+	break;
 case FN_startParticleEmitter: //Sub Procedure
 	rc_startParticleEmitter(  STARTPARTICLEEMITTER_ACTOR );
 	break;
@@ -3163,6 +3226,204 @@ case FN_SetProjectorFOV: //Sub Procedure
 	break;
 case FN_GetProjectorFOV: //Number Function
 	 rc_push_num(rc_getProjectorFOV( GETPROJECTORFOV_ACTOR ));
+	break;
+case FN_SetProjectorTexture: //Sub Procedure
+	rc_setProjectorTexture( SETPROJECTORTEXTURE_ACTOR,  SETPROJECTORTEXTURE_IMG_ID );
+	break;
+case FN_GetProjectorTexture: //Number Function
+	 rc_push_num(rc_getProjectorTexture( GETPROJECTORTEXTURE_ACTOR ));
+	break;
+case FN_AddProjectorEffectActor: //Number Function
+	 rc_push_num(rc_addProjectorEffectActor( ADDPROJECTOREFFECTACTOR_ACTOR,  ADDPROJECTOREFFECTACTOR_TGT_ACTOR ));
+	break;
+case FN_GetProjectorEffectActorCount: //Number Function
+	 rc_push_num(rc_getProjectorEffectActorCount( GETPROJECTOREFFECTACTORCOUNT_ACTOR ));
+	break;
+case FN_GetProjectorEffectActor: //Number Function
+	 rc_push_num(rc_getProjectorEffectActor( GETPROJECTOREFFECTACTOR_ACTOR,  GETPROJECTOREFFECTACTOR_TGT_INDEX ));
+	break;
+case FN_RemoveProjectorEffectActor: //Sub Procedure
+	rc_removeProjectorEffectActor( REMOVEPROJECTOREFFECTACTOR_ACTOR,  REMOVEPROJECTOREFFECTACTOR_TGT_INDEX );
+	break;
+case FN_AddCompositeChild: //Number Function
+	 rc_push_num(rc_addCompositeChild( ADDCOMPOSITECHILD_ACTOR,  ADDCOMPOSITECHILD_CHILD_ACTOR,  ADDCOMPOSITECHILD_T_MATRIX ));
+	break;
+case FN_GetCompositeChildCount: //Number Function
+	 rc_push_num(rc_getCompositeChildCount( GETCOMPOSITECHILDCOUNT_ACTOR ));
+	break;
+case FN_GetCompositeChild: //Number Function
+	 rc_push_num(rc_getCompositeChild( GETCOMPOSITECHILD_ACTOR,  GETCOMPOSITECHILD_CHILD_INDEX ));
+	break;
+case FN_GetCompositeChildIndex: //Number Function
+	 rc_push_num(rc_getCompositeChildIndex( GETCOMPOSITECHILDINDEX_ACTOR,  GETCOMPOSITECHILDINDEX_CHILD_ACTOR ));
+	break;
+case FN_RemoveCompositeChild: //Sub Procedure
+	rc_removeCompositeChild( REMOVECOMPOSITECHILD_ACTOR,  REMOVECOMPOSITECHILD_CHILD_INDEX );
+	break;
+case FN_GetCompositeChildTransform: //Number Function
+	 rc_push_num(rc_getCompositeChildTransform( GETCOMPOSITECHILDTRANSFORM_ACTOR,  GETCOMPOSITECHILDTRANSFORM_CHILD_INDEX,  GETCOMPOSITECHILDTRANSFORM_T_MATRIX ));
+	break;
+case FN_GetCompositeAABB: //Number Function
+	 rc_push_num(rc_getCompositeAABB( GETCOMPOSITEAABB_ACTOR,  GETCOMPOSITEAABB_T_MATRIX,  &GETCOMPOSITEAABB_MIN_X,  &GETCOMPOSITEAABB_MIN_Y,  &GETCOMPOSITEAABB_MIN_Z,  &GETCOMPOSITEAABB_MAX_X,  &GETCOMPOSITEAABB_MAX_Y,  &GETCOMPOSITEAABB_MAX_Z ));
+	break;
+case FN_RecalculateCompositeAABB: //Sub Procedure
+	rc_recalculateCompositeAABB( RECALCULATECOMPOSITEAABB_ACTOR );
+	break;
+case FN_GenerateCompositeAABBFromChildren: //Sub Procedure
+	rc_generateCompositeAABBFromChildren( GENERATECOMPOSITEAABBFROMCHILDREN_ACTOR );
+	break;
+case FN_CalculateCompositePrincipalTransform: //Sub Procedure
+	rc_calculateCompositePrincipalTransform( CALCULATECOMPOSITEPRINCIPALTRANSFORM_ACTOR,  &CALCULATECOMPOSITEPRINCIPALTRANSFORM_MASSES,  CALCULATECOMPOSITEPRINCIPALTRANSFORM_PRINCIPAL_MATRIX,  &CALCULATECOMPOSITEPRINCIPALTRANSFORM_X,  &CALCULATECOMPOSITEPRINCIPALTRANSFORM_Y,  &CALCULATECOMPOSITEPRINCIPALTRANSFORM_Z );
+	break;
+case FN_UpdateCompositeChildTransform: //Sub Procedure
+	rc_updateCompositeChildTransform( UPDATECOMPOSITECHILDTRANSFORM_ACTOR,  UPDATECOMPOSITECHILDTRANSFORM_CHILD_INDEX,  UPDATECOMPOSITECHILDTRANSFORM_T_MATRIX,  UPDATECOMPOSITECHILDTRANSFORM_RECALC_FLAG );
+	break;
+case FN_GetCompositeUpdateRevision: //Number Function
+	 rc_push_num(rc_getCompositeUpdateRevision( GETCOMPOSITEUPDATEREVISION_ACTOR ));
+	break;
+case FN_AddVehicleWheel: //Number Function
+	 rc_push_num(rc_addVehicleWheel( ADDVEHICLEWHEEL_ACTOR,  ADDVEHICLEWHEEL_WHEEL_ACTOR,  ADDVEHICLEWHEEL_IS_FRONT_WHEEL ));
+	break;
+case FN_GetVehicleAxis: //Sub Procedure
+	rc_getVehicleAxis( GETVEHICLEAXIS_ACTOR,  &GETVEHICLEAXIS_X,  &GETVEHICLEAXIS_Y,  &GETVEHICLEAXIS_Z );
+	break;
+case FN_GetVehicleForwardVector: //Sub Procedure
+	rc_getVehicleForwardVector( GETVEHICLEFORWARDVECTOR_ACTOR,  &GETVEHICLEFORWARDVECTOR_X,  &GETVEHICLEFORWARDVECTOR_Y,  &GETVEHICLEFORWARDVECTOR_Z );
+	break;
+case FN_GetVehicleCurrentSpeed: //Number Function
+	 rc_push_num(rc_getVehicleCurrentSpeed( GETVEHICLECURRENTSPEED_ACTOR ));
+	break;
+case FN_GetWheelCount: //Number Function
+	 rc_push_num(rc_getWheelCount( GETWHEELCOUNT_ACTOR ));
+	break;
+case FN_GetVehicleChassisWorldTransform: //Sub Procedure
+	rc_getVehicleChassisWorldTransform( GETVEHICLECHASSISWORLDTRANSFORM_ACTOR,  GETVEHICLECHASSISWORLDTRANSFORM_T_MATRIX );
+	break;
+case FN_GetWheelSteeringValue: //Number Function
+	 rc_push_num(rc_getWheelSteeringValue( GETWHEELSTEERINGVALUE_ACTOR,  GETWHEELSTEERINGVALUE_WHEEL ));
+	break;
+case FN_GetWheelWorldTransform: //Sub Procedure
+	rc_getWheelWorldTransform( GETWHEELWORLDTRANSFORM_ACTOR,  GETWHEELWORLDTRANSFORM_WHEEL,  GETWHEELWORLDTRANSFORM_T_MATRIX );
+	break;
+case FN_GetWheelConnectionPoint: //Sub Procedure
+	rc_getWheelConnectionPoint( GETWHEELCONNECTIONPOINT_ACTOR,  GETWHEELCONNECTIONPOINT_WHEEL,  &GETWHEELCONNECTIONPOINT_X,  &GETWHEELCONNECTIONPOINT_Y,  &GETWHEELCONNECTIONPOINT_Z );
+	break;
+case FN_GetWheelDirection: //Sub Procedure
+	rc_getWheelDirection( GETWHEELDIRECTION_ACTOR,  GETWHEELDIRECTION_WHEEL,  &GETWHEELDIRECTION_X,  &GETWHEELDIRECTION_Y,  &GETWHEELDIRECTION_Z );
+	break;
+case FN_GetWheelAxel: //Sub Procedure
+	rc_getWheelAxel( GETWHEELAXEL_ACTOR,  GETWHEELAXEL_WHEEL,  &GETWHEELAXEL_X,  &GETWHEELAXEL_Y,  &GETWHEELAXEL_Z );
+	break;
+case FN_GetWheelSuspensionLength: //Number Function
+	 rc_push_num(rc_getWheelSuspensionLength( GETWHEELSUSPENSIONLENGTH_ACTOR,  GETWHEELSUSPENSIONLENGTH_WHEEL ));
+	break;
+case FN_GetWheelMaxSuspensionTravel: //Number Function
+	 rc_push_num(rc_getWheelMaxSuspensionTravel( GETWHEELMAXSUSPENSIONTRAVEL_ACTOR,  GETWHEELMAXSUSPENSIONTRAVEL_WHEEL ));
+	break;
+case FN_GetWheelRadius: //Number Function
+	 rc_push_num(rc_getWheelRadius( GETWHEELRADIUS_ACTOR,  GETWHEELRADIUS_WHEEL ));
+	break;
+case FN_GetWheelSuspensionStiffness: //Number Function
+	 rc_push_num(rc_getWheelSuspensionStiffness( GETWHEELSUSPENSIONSTIFFNESS_ACTOR,  GETWHEELSUSPENSIONSTIFFNESS_WHEEL ));
+	break;
+case FN_GetWheelDampingCompression: //Number Function
+	 rc_push_num(rc_getWheelDampingCompression( GETWHEELDAMPINGCOMPRESSION_ACTOR,  GETWHEELDAMPINGCOMPRESSION_WHEEL ));
+	break;
+case FN_GetWheelDampingRelaxation: //Number Function
+	 rc_push_num(rc_getWheelDampingRelaxation( GETWHEELDAMPINGRELAXATION_ACTOR,  GETWHEELDAMPINGRELAXATION_WHEEL ));
+	break;
+case FN_GetWheelFrictionSlip: //Number Function
+	 rc_push_num(rc_getWheelFrictionSlip( GETWHEELFRICTIONSLIP_ACTOR,  GETWHEELFRICTIONSLIP_WHEEL ));
+	break;
+case FN_GetWheelRotation: //Number Function
+	 rc_push_num(rc_getWheelRotation( GETWHEELROTATION_ACTOR,  GETWHEELROTATION_WHEEL ));
+	break;
+case FN_GetWheelRotationDelta: //Number Function
+	 rc_push_num(rc_getWheelRotationDelta( GETWHEELROTATIONDELTA_ACTOR,  GETWHEELROTATIONDELTA_WHEEL ));
+	break;
+case FN_GetWheelRollInfluence: //Number Function
+	 rc_push_num(rc_getWheelRollInfluence( GETWHEELROLLINFLUENCE_ACTOR,  GETWHEELROLLINFLUENCE_WHEEL ));
+	break;
+case FN_GetWheelEngineForce: //Number Function
+	 rc_push_num(rc_getWheelEngineForce( GETWHEELENGINEFORCE_ACTOR,  GETWHEELENGINEFORCE_WHEEL ));
+	break;
+case FN_GetWheelBrake: //Number Function
+	 rc_push_num(rc_getWheelBrake( GETWHEELBRAKE_ACTOR,  GETWHEELBRAKE_WHEEL ));
+	break;
+case FN_WheelIsFront: //Number Function
+	 rc_push_num(rc_wheelIsFront( WHEELISFRONT_ACTOR,  WHEELISFRONT_WHEEL ));
+	break;
+case FN_GetWheelInverseContactSuspension: //Number Function
+	 rc_push_num(rc_getWheelInverseContactSuspension( GETWHEELINVERSECONTACTSUSPENSION_ACTOR,  GETWHEELINVERSECONTACTSUSPENSION_WHEEL ));
+	break;
+case FN_GetWheelSuspensionVelocity: //Number Function
+	 rc_push_num(rc_getWheelSuspensionVelocity( GETWHEELSUSPENSIONVELOCITY_ACTOR,  GETWHEELSUSPENSIONVELOCITY_WHEEL ));
+	break;
+case FN_ResetVehicleSuspension: //Sub Procedure
+	rc_resetVehicleSuspension( RESETVEHICLESUSPENSION_ACTOR );
+	break;
+case FN_SetWheelSteeringValue: //Sub Procedure
+	rc_setWheelSteeringValue( SETWHEELSTEERINGVALUE_ACTOR,  SETWHEELSTEERINGVALUE_WHEEL,  SETWHEELSTEERINGVALUE_STEERING );
+	break;
+case FN_ApplyWheelEngineForce: //Sub Procedure
+	rc_applyWheelEngineForce( APPLYWHEELENGINEFORCE_ACTOR,  APPLYWHEELENGINEFORCE_WHEEL,  APPLYWHEELENGINEFORCE_FORCE );
+	break;
+case FN_SetWheelBrake: //Sub Procedure
+	rc_setWheelBrake( SETWHEELBRAKE_ACTOR,  SETWHEELBRAKE_WHEEL,  SETWHEELBRAKE_BRAKE );
+	break;
+case FN_SetVehiclePitchControl: //Sub Procedure
+	rc_setVehiclePitchControl( SETVEHICLEPITCHCONTROL_ACTOR,  SETVEHICLEPITCHCONTROL_PITCH );
+	break;
+case FN_SetWheelConnectionPoint: //Sub Procedure
+	rc_setWheelConnectionPoint( SETWHEELCONNECTIONPOINT_ACTOR,  SETWHEELCONNECTIONPOINT_WHEEL,  SETWHEELCONNECTIONPOINT_X,  SETWHEELCONNECTIONPOINT_Y,  SETWHEELCONNECTIONPOINT_Z );
+	break;
+case FN_SetWheelDirection: //Sub Procedure
+	rc_setWheelDirection( SETWHEELDIRECTION_ACTOR,  SETWHEELDIRECTION_WHEEL,  SETWHEELDIRECTION_X,  SETWHEELDIRECTION_Y,  SETWHEELDIRECTION_Z );
+	break;
+case FN_SetWheelAxel: //Sub Procedure
+	rc_setWheelAxel( SETWHEELAXEL_ACTOR,  SETWHEELAXEL_WHEEL,  SETWHEELAXEL_X,  SETWHEELAXEL_Y,  SETWHEELAXEL_Z );
+	break;
+case FN_SetWheelSuspensionLength: //Sub Procedure
+	rc_setWheelSuspensionLength( SETWHEELSUSPENSIONLENGTH_ACTOR,  SETWHEELSUSPENSIONLENGTH_WHEEL,  SETWHEELSUSPENSIONLENGTH_S_LENGTH );
+	break;
+case FN_SetWheelMaxSuspensionTravel: //Sub Procedure
+	rc_setWheelMaxSuspensionTravel( SETWHEELMAXSUSPENSIONTRAVEL_ACTOR,  SETWHEELMAXSUSPENSIONTRAVEL_WHEEL,  SETWHEELMAXSUSPENSIONTRAVEL_MAX_TRAVEL );
+	break;
+case FN_SetWheelRadius: //Sub Procedure
+	rc_setWheelRadius( SETWHEELRADIUS_ACTOR,  SETWHEELRADIUS_WHEEL,  SETWHEELRADIUS_RADIUS );
+	break;
+case FN_SetWheelSuspensionStiffness: //Sub Procedure
+	rc_setWheelSuspensionStiffness( SETWHEELSUSPENSIONSTIFFNESS_ACTOR,  SETWHEELSUSPENSIONSTIFFNESS_WHEEL,  SETWHEELSUSPENSIONSTIFFNESS_STIFFNESS );
+	break;
+case FN_SetWheelDampingCompression: //Sub Procedure
+	rc_setWheelDampingCompression( SETWHEELDAMPINGCOMPRESSION_ACTOR,  SETWHEELDAMPINGCOMPRESSION_WHEEL,  SETWHEELDAMPINGCOMPRESSION_DCOMP_VALUE );
+	break;
+case FN_SetWheelDampingRelaxation: //Sub Procedure
+	rc_setWheelDampingRelaxation( SETWHEELDAMPINGRELAXATION_ACTOR,  SETWHEELDAMPINGRELAXATION_WHEEL,  SETWHEELDAMPINGRELAXATION_DREL_VALUE );
+	break;
+case FN_SetWheelFrictionSlip: //Sub Procedure
+	rc_setWheelFrictionSlip( SETWHEELFRICTIONSLIP_ACTOR,  SETWHEELFRICTIONSLIP_WHEEL,  SETWHEELFRICTIONSLIP_FSLIP_VALUE );
+	break;
+case FN_SetWheelRotation: //Sub Procedure
+	rc_setWheelRotation( SETWHEELROTATION_ACTOR,  SETWHEELROTATION_WHEEL,  SETWHEELROTATION_ROT );
+	break;
+case FN_SetWheelRollInfluence: //Sub Procedure
+	rc_setWheelRollInfluence( SETWHEELROLLINFLUENCE_ACTOR,  SETWHEELROLLINFLUENCE_WHEEL,  SETWHEELROLLINFLUENCE_ROLL_INFLUENCE );
+	break;
+case FN_SetWheelInverseContactSuspension: //Sub Procedure
+	rc_setWheelInverseContactSuspension( SETWHEELINVERSECONTACTSUSPENSION_ACTOR,  SETWHEELINVERSECONTACTSUSPENSION_WHEEL,  SETWHEELINVERSECONTACTSUSPENSION_C_VALUE );
+	break;
+case FN_SetWheelSuspensionVelocity: //Sub Procedure
+	rc_setWheelSuspensionVelocity( SETWHEELSUSPENSIONVELOCITY_ACTOR,  SETWHEELSUSPENSIONVELOCITY_WHEEL,  SETWHEELSUSPENSIONVELOCITY_VELOCITY );
+	break;
+case FN_SetWheelActorOffsetTransform: //Sub Procedure
+	rc_setWheelActorOffsetTransform( SETWHEELACTOROFFSETTRANSFORM_ACTOR,  SETWHEELACTOROFFSETTRANSFORM_WHEEL,  SETWHEELACTOROFFSETTRANSFORM_T_MATRIX );
+	break;
+case FN_GetWheelActorOffsetTransform: //Sub Procedure
+	rc_getWheelActorOffsetTransform( GETWHEELACTOROFFSETTRANSFORM_ACTOR,  GETWHEELACTOROFFSETTRANSFORM_WHEEL,  GETWHEELACTOROFFSETTRANSFORM_T_MATRIX );
+	break;
+case FN_GetVehiclePitchControl: //Number Function
+	 rc_push_num(rc_getVehiclePitchControl( GETVEHICLEPITCHCONTROL_ACTOR ));
 	break;
 case FN_createMaterial: //Number Function
 	 rc_push_num(rc_createMaterial(  ));

@@ -1,4 +1,5 @@
 #title NumFingers [RCBasic Doc]
-#header function NumFingers()
+#header Function NumFingers()
 
 Returns the number of fingers detected in the current touch event
+

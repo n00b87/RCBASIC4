@@ -6,3 +6,4 @@ Returns the radius of a sprites collision shape
 NOTE: Returns 0 if collision shape is not SPRITE_SHAPE_CIRCLE
 
 #ref SetSpriteRadius
+

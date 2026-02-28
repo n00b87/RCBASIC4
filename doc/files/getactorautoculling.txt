@@ -1,5 +1,5 @@
 #title GetActorAutoCulling [RCBasic Doc]
-#header function GetActorAutoCulling( actor )
+#header Function GetActorAutoCulling( actor )
 
 Returns the automatic culling state for an actor
 
@@ -13,4 +13,5 @@ Possible Culling States
 #/list
 
 #ref SetActorAutoCulling
+
 

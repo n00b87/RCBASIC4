@@ -1,5 +1,5 @@
 #title WindowMode [RCBasic Doc]
-#header function WindowMode(visible, fullscreen, resizable, borderless, highDPI)
+#header Function WindowMode(visible, fullscreen, resizable, borderless, highDPI)
 
 Returns a bitmask of the combined window flags that can be used in OpenWindow() to set the mode for the window.
 
@@ -18,3 +18,4 @@ mode = WindowMode(1, 1, 0, 0, 0)
 #/code
 
 #ref OpenWindow GetWindowMode
+

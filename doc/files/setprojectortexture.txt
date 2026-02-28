@@ -1,0 +1,7 @@
+#title SetProjectorTexture [RCBasic Doc]
+#header Sub SetProjectorTexture(actor, img_id)
+
+Sets the texture that is projected by a projector.
+
+#ref CreateProjectorActor
+

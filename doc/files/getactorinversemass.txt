@@ -1,6 +1,7 @@
-#title getActorInverseMass [RCBasic Doc]
-#header function  getActorInverseMass( actor)
+#title GetActorInverseMass [RCBasic Doc]
+#header Function  GetActorInverseMass( actor)
 
 Returns an actor's inverse mass
 
 #ref SetActorMassProperties
+

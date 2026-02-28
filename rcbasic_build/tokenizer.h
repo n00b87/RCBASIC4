@@ -1024,6 +1024,10 @@ string rc_keywordToken(string sline)
 		return "<num>6";
 	else if(sline.compare("ACTOR_SHAPE_TRIMESH")==0)
 		return "<num>7";
+    else if(sline.compare("ACTOR_SHAPE_COMPOSITE")==0)
+		return "<num>9";
+    else if(sline.compare("ACTOR_SHAPE_IMPACT_MESH")==0)
+		return "<num>10";
 	else if(sline.compare("MATERIAL_FLAG_WIREFRAME")==0)
 		return "<num>" + rc_intToString( 0x1);
 	else if(sline.compare("MATERIAL_FLAG_POINTCLOUD")==0)
@@ -1324,6 +1328,30 @@ string rc_keywordToken(string sline)
 		return "<num>4";
     else if(sline.compare("POST_EFFECT_PROPERTY_COLOR")==0)
 		return "<num>5";
+    else if(sline.compare("ACTOR_TYPE_NONE")==0)
+        return "<num>0";
+    else if(sline.compare("ACTOR_TYPE_ANIMATED")==0)
+        return "<num>1";
+    else if(sline.compare("ACTOR_TYPE_OCTREE")==0)
+        return "<num>2";
+    else if(sline.compare("ACTOR_TYPE_LIGHT")==0)
+        return "<num>3";
+    else if(sline.compare("ACTOR_TYPE_TERRAIN")==0)
+        return "<num>4";
+    else if(sline.compare("ACTOR_TYPE_WATER")==0)
+        return "<num>5";
+    else if(sline.compare("ACTOR_TYPE_BILLBOARD")==0)
+        return "<num>6";
+    else if(sline.compare("ACTOR_TYPE_PARTICLE")==0)
+        return "<num>7";
+    else if(sline.compare("ACTOR_TYPE_PRIMITIVE")==0)
+        return "<num>8";
+    else if(sline.compare("ACTOR_TYPE_PROJECTOR")==0)
+        return "<num>9";
+    else if(sline.compare("ACTOR_TYPE_COMPOSITE")==0)
+        return "<num>10";
+    else if(sline.compare("ACTOR_TYPE_VEHICLE")==0)
+        return "<num>11";
 	else
     {
         for(int i = 0; i < rc_constants.size(); i++)

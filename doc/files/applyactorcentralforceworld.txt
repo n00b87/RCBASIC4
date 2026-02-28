@@ -1,5 +1,5 @@
 #title ApplyActorCentralForceWorld [RCBasic Doc]
-#header sub ApplyActorCentralForceWorld( actor,   x,   y,   z)
+#header Sub ApplyActorCentralForceWorld( actor,   x,   y,   z)
 
 Applies a force to the center of mass of an actor in world coordinate space. This force impacts the linear velocity of the object without affecting its rotation.
 
@@ -8,3 +8,4 @@ Applies a force to the center of mass of an actor in world coordinate space. Thi
 #/list
 
 #ref ApplyActorCentralForceLocal ApplyActorCentralImpulseLocal ApplyActorCentralImpulseWorld
+

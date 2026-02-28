@@ -419,6 +419,8 @@ bool manual_render_control = false;
 irr::video::SColor rc_active_color(0,0,0,0);
 irr::video::SColor rc_clear_color(0,0,0,0);
 
+int rc_num_circle_points = 60;
+
 bool rc_init_events = false;
 bool rc_init_timer = false;
 bool rc_init_video = false;
@@ -524,6 +526,8 @@ irr::core::array<rc_an8_obj> rc_an8;
 #define RC_NODE_TYPE_PARTICLE	7
 #define RC_NODE_TYPE_STMESH   	8
 #define RC_NODE_TYPE_PROJECTOR	9
+#define RC_NODE_TYPE_COMPOSITE	10
+#define RC_NODE_TYPE_VEHICLE    11
 
 
 #define RC_NODE_SHAPE_TYPE_NONE			0
@@ -535,6 +539,8 @@ irr::core::array<rc_an8_obj> rc_an8;
 #define RC_NODE_SHAPE_TYPE_CONVEXHULL	6
 #define RC_NODE_SHAPE_TYPE_TRIMESH		7
 #define RC_NODE_SHAPE_TYPE_HEIGHTFIELD	8
+#define RC_NODE_SHAPE_TYPE_COMPOSITE    9
+#define RC_NODE_SHAPE_TYPE_IMPACT_MESH  10
 
 struct rc_node_physics_collision
 {
@@ -550,6 +556,8 @@ irr::core::array<rc_node_physics_collision> rc_collisions;
 struct rc_node_physics
 {
 	IRigidBody* rigid_body;
+
+	int impact_mesh_id;
 
 	int shape_type;
 	bool isSolid;
@@ -614,6 +622,33 @@ struct rc_actor_fx_material_obj
 	int actor_material_index = -1; //index from node->getMaterial()
 };
 
+struct rc_composite_child
+{
+    int id;
+    irr::core::matrix4 child_transform;
+    ICollisionShape* shape;
+};
+
+struct rc_vehicle_wheel
+{
+    int actor_id;
+    irr::core::matrix4 offset_transform;
+};
+
+struct rc_vehicle_properties
+{
+    int chassis_actor_id;
+    IRaycastVehicle* vehicle;
+    irr::core::array<rc_vehicle_wheel> wheels;
+    double pitch_control;  //bullet has know way of getting this value so I am keeping track of it manually
+};
+
+struct rc_projector_properties
+{
+    int project_texture_id;
+    irr::core::array<int> effect_actors;
+};
+
 struct rc_scene_node
 {
     int node_type = 0;
@@ -638,10 +673,21 @@ struct rc_scene_node
 	bool isPlaying;
     irr::core::array<int> deleted_animation;
     irr::core::array<rc_actor_animation_obj> animation;
+
+    int parent_id;
+    int parent_vehicle;
+    bool isWheel;
+    irr::core::array<rc_composite_child> child_actors; // Only used for composite actor types
+
+    rc_vehicle_properties vehicle_properties;
+
+    rc_projector_properties projector_properties;
+    irr::core::array<int> projector_parent;
 };
 
 irr::core::array<rc_scene_node> rc_actor;
 irr::core::array<int> rc_projector_actors;
+irr::core::array<int> rc_vehicle_actors;
 irr::core::array<int> rc_transition_actor;
 
 
@@ -878,10 +924,13 @@ void rc_setDriverMaterial_B(irr::video::E_BLEND_OPERATION op, irr::video::E_ANTI
 }
 
 
-void draw2DImage(irr::video::IVideoDriver *driver, irr::video::ITexture* texture, irr::core::rect<irr::s32> sourceRect, irr::core::position2d<irr::s32> position, irr::core::position2d<irr::s32> rotationPoint, irr::f32 rotation, irr::core::vector2df scale, bool useAlphaChannel, irr::video::SColor color, irr::core::vector2d<irr::f32> screenSize)
+void draw2DImage(irr::video::IVideoDriver *driver, irr::video::ITexture* texture, irr::core::rect<irr::s32> sourceRect, irr::core::position2d<irr::s32> position, irr::core::position2d<irr::s32> rotationPoint, irr::f32 rotation, irr::core::vector2df scale, bool useAlphaChannel, irr::video::SColor color, irr::core::vector2d<irr::f32> screenSize, bool check_canvas=true)
 {
-    if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
-        return;
+    if(check_canvas)
+    {
+        if(rc_active_canvas < 0 || rc_active_canvas >= rc_canvas.size())
+            return;
+    }
 
     // Store and clear the projection matrix
     irr::core::matrix4 oldProjMat = driver->getTransform(irr::video::ETS_PROJECTION);
@@ -1064,33 +1113,129 @@ void draw2DImage2(irr::video::IVideoDriver *driver, irr::video::ITexture* textur
 }
 
 
+void util_drawTexture_Flip(irr::video::ITexture* tgt_texture, irr::video::ITexture* itexture, int x, int y, bool h, bool v)
+{
+    if(tgt_texture != NULL && itexture != NULL)
+    {
+        irr::core::dimension2d<irr::u32> src_size = itexture->getSize();
+        irr::core::rect<irr::s32> sourceRect(0, 0, src_size.Width, src_size.Height);
+
+        irr::core::position2d<irr::s32> rotationPoint(x + (src_size.Width/2), y + (src_size.Height/2));
+
+        irr::f32 rotation = 0;
+        irr::core::vector2df scale((irr::f32)(h ? -1 : 1), (irr::f32) (v ? -1 : 1));
+
+        irr::core::position2d<irr::s32> position( (h ? x+src_size.Width : x), (v ? y+src_size.Height : y));
+
+        bool useAlphaChannel = true;
+        irr::video::SColor color(255,0,0,0);
+
+        //irr::core::vector2df screenSize(rc_canvas[rc_active_canvas].dimension.Width, rc_canvas[rc_active_canvas].dimension.Height);
+        irr::core::vector2df screenSize(tgt_texture->getSize().Width, tgt_texture->getSize().Height);
+
+        draw2DImage(VideoDriver, itexture, sourceRect, position, rotationPoint, rotation, scale, useAlphaChannel, color, screenSize, false);
+    }
+}
+
+
 SDL_Surface* convertTextureToSurface(irr::video::ITexture* itexture)
 {
-	Uint32 t_width, t_height;
-	t_width = itexture->getSize().Width;
-	t_height = itexture->getSize().Height;
+	Uint32 w, h;
+	w = itexture->getSize().Width;
+	h = itexture->getSize().Height;
 
-	SDL_Surface* surface = SDL_CreateRGBSurface(0, t_width, t_height, 32, 0, 0, 0, 0);
+	irr::video::ITexture* tgt_texture = NULL;
+	#ifdef RC_DRIVER_GLES2
+    Uint32 size_n = 2;
+    Uint32 dim_max = (w > h ? w : h);
+    while(size_n < dim_max) size_n *= 2;
+    //w = size_n;
+    //h = size_n;
+    tgt_texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<u32>(size_n,size_n), "rt", ECF_A8R8G8B8);
+    #else
+    tgt_texture = VideoDriver->addRenderTargetTexture(irr::core::dimension2d<u32>(w,h), "rt", ECF_A8R8G8B8);
+    #endif // RC_WEB
+
+    if(!tgt_texture)
+        return NULL;
+
+    VideoDriver->setRenderTarget(tgt_texture, false, false);
+    VideoDriver->draw2DImage(itexture, irr::core::vector2d<irr::s32>(0,0));
+
+    if(rc_active_canvas >= 0 && rc_active_canvas < rc_canvas.size())
+    {
+        if(rc_canvas[rc_active_canvas].texture)
+            VideoDriver->setRenderTarget(rc_canvas[rc_active_canvas].texture, false, false);
+
+		rc_setDriverMaterial();
+    }
+    else
+    {
+        if(rc_canvas[0].texture)
+            VideoDriver->setRenderTarget(rc_canvas[0].texture, false, false);
+
+		rc_setDriverMaterial();
+    }
+
+
+
+	SDL_Surface* tmp_surface = SDL_CreateRGBSurface(0, w, h, 32, 0, 0, 0, 0);
+	SDL_Surface* surface = SDL_ConvertSurfaceFormat(tmp_surface, SDL_PIXELFORMAT_ARGB8888, 0);
+	SDL_FreeSurface(tmp_surface);
 
 	if(surface)
 	{
+	    SDL_LockSurface(surface);
 		Uint32* surface_pixels = (Uint32*)surface->pixels;
 
-		Uint32* texture_pixels = (Uint32*)rc_canvas[rc_active_canvas].texture->lock();
+		irr::u8* texture_pixels = (irr::u8*)tgt_texture->lock(irr::video::ETLM_READ_ONLY);
 
 		int i = 0;
-		for(int y = 0; y < t_height; y++)
+		irr::video::SColor * texel;
+		u32 pitch = tgt_texture->getPitch();
+		irr::video::SColor c;
+
+		for(int y = 0; y < h; y++)
 		{
-			for(int x = 0; x < t_width; x++)
+			for(int x = 0; x < w; x++)
 			{
-				surface_pixels[i] = texture_pixels[i];
+                texel = (SColor *)(texture_pixels + ((y * pitch) + (x * sizeof(SColor))));
+                c = texel[0];
+
+				surface_pixels[y*w+x] = c.color;
 			}
 		}
 
-		rc_canvas[rc_active_canvas].texture->unlock();
+
+		tgt_texture->unlock();
+		SDL_UnlockSurface(surface);
 	}
 
+	VideoDriver->removeTexture(tgt_texture);
+
 	return surface;
+}
+
+bool rc_saveBMP(int img_id, std::string img_file)
+{
+    if(img_id < 0 || img_id >= rc_image.size())
+        return false;
+
+    if(rc_image[img_id].image)
+    {
+        irr::video::ITexture* img_texture = rc_image[img_id].image;
+        SDL_Surface* surface = convertTextureToSurface(img_texture);
+
+        if(surface)
+        {
+            SDL_SaveBMP(surface, img_file.c_str());
+            SDL_FreeSurface(surface);
+        }
+
+        return true;
+    }
+
+    return false;
 }
 
 

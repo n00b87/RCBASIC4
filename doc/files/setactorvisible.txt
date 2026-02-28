@@ -1,6 +1,7 @@
 #title SetActorVisible [RCBasic Doc]
-#header sub SetActorVisible( actor, flag )
+#header Sub SetActorVisible( actor, flag )
 
 Sets whether the actor is visible in the scene
 
 #ref ActorIsVisible
+

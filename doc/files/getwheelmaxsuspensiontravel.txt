@@ -1,0 +1,9 @@
+#title GetWheelMaxSuspensionTravel [RCBasic Doc]
+#header Function GetWheelMaxSuspensionTravel( actor, wheel )
+
+Returns the max suspension travel distance.
+
+This value is the maximum distance the suspension is allowed to extend or compress from its rest length set with SetSuspensionLength().
+
+#ref SetWheelMaxSuspension
+

@@ -1,6 +1,7 @@
 #title SetActorGravity [RCBasic Doc]
-#header sub SetActorGravity( actor, x, y, z )
+#header Sub SetActorGravity( actor, x, y, z )
 
 Sets the gravity vector of an actor.
 
 #ref SetGravity3D
+

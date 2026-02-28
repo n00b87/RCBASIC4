@@ -1,4 +1,5 @@
-#title getSpriteWorldPoint [RCBasic Doc]
-#header sub getSpriteWorldPoint( spr_id,   lX,   lY,  ByRef  x,  ByRef  y)
+#title GetSpriteWorldPoint [RCBasic Doc]
+#header Sub GetSpriteWorldPoint( spr_id,   lX,   lY,  ByRef  x,  ByRef  y)
 
 Get the world coordinates of a point given the local coordinates. 
+

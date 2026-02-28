@@ -1,4 +1,5 @@
 #title GetLightInnerCone [RCBasic Doc]
-#header function GetLightInnerCone( actor )
+#header Function GetLightInnerCone( actor )
 
 Returns the inner cone of a spot light
+

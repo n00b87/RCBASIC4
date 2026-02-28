@@ -1,6 +1,7 @@
-#title getParticleDirection [RCBasic Doc]
-#header sub  getParticleDirection( actor, ByRef x, ByRef y, ByRef z)
+#title GetParticleDirection [RCBasic Doc]
+#header Sub  GetParticleDirection( actor, ByRef x, ByRef y, ByRef z)
 
 Gets the direction of a particle emitter
 
 #ref SetParticleDirection
+

@@ -1,0 +1,7 @@
+#title SetRenderCirclePoints [RCBasic Doc]
+#header Sub SetRenderCirclePoints(num_points)
+
+Sets the number of points used to draw circles with Circle, CircleFill, Ellipse, and EllipseFill
+
+#ref Circle CircleFill Ellipse EllipseFill
+

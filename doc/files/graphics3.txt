@@ -1,0 +1,125 @@
+#title RCBasic Sprites [RCBasic Doc]
+#header 3D Graphics
+
+This last section will cover how 3D graphics work in RCBasic. We can render the scene with a 3D canvas which is opened with <a href="opencanvas3d.html">OpenCanvas3D()</a>
+#code
+viewport_width = 640
+viewport_height = 480
+scene_canvas = OpenCanvas3D(0, 0, viewport_width, viewport_height, 1)
+#/code
+
+OpenCanvas3D takes some of the same parameters as OpenCanvas. It will open a canvas to view the 3D scene. You can open multiple 3D canvases to view the 3D scene from different camera angles but there is only one 3D scene.
+
+Next, lets go over actors. Actors are objects in our 3D scene and similiar to what sprites are on a sprite canvas. There are different types of actors that we can create and each one serves a different purpose. For now lets just create an animated actor.
+#code
+hero_mesh = LoadMesh("char.ms3d")       ' Load a 3D model from a file
+hero = CreateAnimatedActor(hero_mesh)   ' Create an animated object in our scene from the 3D model
+#/code
+
+We use <a href="loadmesh.html">LoadMesh()</a> to load a 3D model into our program. If we want to make multiple actors in our scene from this 3D model, we only need to load the model once.
+
+After we load the model, we use <a href="createanimatedactor.html">CreateAnimatedActor()</a> to create an object in our scene using the 3D model. Animated actors function like 3D version of sprites since they have animation and physics. Adding animation to our animated actor is a similiar process to adding animation to our sprite from the last section.
+
+#code
+RUN_ANIMATION = CreateActorAnimation(hero, 13, 36, 30)
+#/code
+
+<a href="createactoranimation.html">CreateActorAnimation()</a> takes 4 parameters.
+#list ul
+#li actor - the actor we created with CreateAnimatedActor()
+#list ul
+#li NOTE: We can only create animations for animated actors
+#/list
+#li start frame - The first frame of the animation
+#li end frame - The last frame of the animation
+#li speed - The frames per second of the animtion
+#/list
+
+Now that we have an animation, we can set the actor's animation in the same way we set the sprite's animation in the last section.
+#code
+SetActorAnimation(hero, RUN_ANIMATION, -1)
+#/code
+
+<a href="setactoranimation.html">SetActorAnimation()</a> works the same way that SetSpriteAnimation() does. It takes the actor, the animation, and number of animation loops. We can set it to a value less than 0 to loop infinitely just like we did with our sprite in the last section.
+
+Currently, the actor will not have any color. We need to add a texture to the actor. We will also disable lighting for the actor for now so that it just renders with the texture applied.
+#code
+hero_material = GetActorMaterial(hero, 0)
+
+SetMaterialLighting(hero_material, FALSE)
+
+hero_texture = LoadImage("hero.png")
+SetMaterialTexture(hero_material, 0, hero_texture)
+#/code
+
+First, we get a reference to our actors material with <a href="getactormaterial.html">GetActorMaterial()</a>. We use this reference to set properties for the actor's material. The material determines how the actor is rendered.
+
+Next, we disable lighting for the material. This means that lighting will not determine how light or dark the texture will be rendered at.
+
+Finally, we load an image and set it to the first texture slot on the material with <a href="setmaterialtexture.html">SetMaterialTexture()</a>.
+
+This now puts our actor in our scene with our texture applied. But just like in the sprite section, our actor needs to have physics applied to it. So lets make the actor solid and set our scene gravity.
+#code
+SetActorSolid(cube, TRUE)
+SetGravity3D(0, -10, 0)
+#/code
+
+<a href="setactorsolid.html">SetActorSolid()</a> functions just like SetSpriteSolid() does. <a href="setgravity3d.html">SetGravity3D()</a> is like SetGravity2D() but it adds a 3rd dimension to it.
+
+Now we need a ground plane. Lets create a plane mesh and then create an octree actor from it to serve as our ground. Octree actors are actors with meshes that have optimizations for large scenes.
+#code
+plane_mesh = CreatePlaneMesh(1000, 1000, 100, 100, 100, 100)
+plane = CreateOctreeActor(plane_mesh)
+#/code
+
+<a href="createplanemesh.html">CreatePlaneMesh()</a> is used to create a plane mesh rather than use LoadMesh() to load it from an external file like we did earlier. 
+
+<a href="createoctreeactor.html">CreateOctreeActor()</a> will create an octree actor rather than an animated actor.
+
+Next we will set a solid color material for our plane rather than load another texture.
+#code
+plane_material = CreateMaterial()
+SetMaterialType(plane_material, FX_MATERIAL_TYPE_PLASTIC)
+SetActorMaterial(plane, 0, plane_material)
+#/code
+
+We are using an FX material here which is a special type of material with separate properties from a normal material. This time we had to use <a href="creatematerial.html">CreateMaterial()</a> to make a new material. To make FX materials, you must create a new material since you can not set any of the FX material types on a material attached to an actor.
+
+Then we just set our material type with <a href="setmaterialtype.html">SetMaterialType()</a> and set the material on the actor with <a href="setactormaterial.html">SetActorMaterial()</a>.
+
+Now lets set our physics properties for our plane.
+#code
+SetActorSolid(plane, TRUE)
+SetActorShape(plane, ACTOR_SHAPE_TRIMESH, 0)
+#/code
+
+Yet again, we are using SetActorSolid() to set our actor solid. We use <a href="setactorshape.html">SetActorShape()</a> to change the shape of the plane to ACTOR_SHAPE_TRIMESH. By default, actors shapes are ACTOR_SHAPE_BOX. Boxes are fine for our actor's hit box but we want a shape with more geometry for our ground usually.
+
+Just like what we did with our sprites in the last lesson, lets have the actor move when a key is pressed.
+#code
+If Key(K_RIGHT) Then
+   SetActorLinearVelocityLocal(hero, 0, 0, 20)
+End If
+#/code
+
+This looks very similiar to our code for moving the sprite in the last lesson. <a href="setactorlinearvelocitylocal.html">SetActorLinearVelocityLocal()</a> has a little bit longer name. It has a companion function called <a href="setactorlinearvelocityworld.html">SetActorLinearVelocityWorld()</a> which applies a transform based on world instead of local space.
+
+Before moving on, I want to quickly explain the difference between local transforms and world transforms.
+#list ul
+#li Local Transforms - These transforms apply to the direction you are facing. Basically if you increase your Z position, you will move forward in the direction you are facing.
+#li World Transforms - These transforms apply to the absolute direction in the world. Basically, if you increase your Z position, you will move in the direction of the Z axis regardless of the direction you are facing.
+#/list
+
+Before ending this lesson, lets do a quick overview of how to set the camera. Each 3D canvas has its own camera. To set the camera for a 3D canvas you must make sure you set the 3D canvas active with Canvas().
+#code
+Canvas(scene_canvas)
+
+SetCameraPosition(0, 30, -100)  'Set the camera position
+SetCameraRotation(20, 0, 0)     'Set the camera rotation
+#/code
+
+<a href="setcameraposition.html">SetCameraPosition()</a> and <a href="setcamerarotation.html">SetCameraRotation()</a> do exactly what you think they do. There are also other functions to set camera FOV(field of view), aspect ratio, etc. Look in the camera section for more info.
+
+Refer to the Intro to 3D demo for the complete code for this lesson.
+
+RCBasic has several functions for graphics, physics, etc., so if you can't find it in the manual then feel free to ask a question on the <a href="http://rcbasic.freeforums.net">forum</a>.

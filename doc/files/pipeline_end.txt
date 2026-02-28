@@ -1,0 +1,5 @@
+#title Pipeline_End [RCBasic Doc]
+#header Sub Pipeline_End()
+
+Ends a custom rendering process.
+

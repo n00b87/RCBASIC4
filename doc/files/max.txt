@@ -1,6 +1,7 @@
 #title Max [RCBasic Doc]
-#header function Max(a, b)
+#header Function Max(a, b)
 
 Returns the highest of two numbers.
 
 #ref Min
+

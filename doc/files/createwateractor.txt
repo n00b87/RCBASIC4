@@ -1,6 +1,7 @@
 #title CreateWaterActor [RCBasic Doc]
-#header function CreateWaterActor( mesh, waveHeight, waveSpeed, waveLength )
+#header Function CreateWaterActor( mesh, waveHeight, waveSpeed, waveLength )
 
 Creates an actor with water properties set on a base mesh
 
 #ref CreateAnimatedActor CreateOctreeActor CreateSphereActor CreateCubeActor CreateLightActor CreateBillboardActor CreateTerrainActor
+

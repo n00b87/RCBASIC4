@@ -1,5 +1,5 @@
 #title AddActorShadow [RCBasic Doc]
-#header sub AddActorShadow( actor )
+#header Sub AddActorShadow( actor )
 
 Cast a shadow on an actor during lighting calculations
 
@@ -7,3 +7,4 @@ Note: Also check the section on lights for more info
 
 
 #ref RemoveActorShadow
+

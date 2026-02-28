@@ -1,5 +1,5 @@
-#title setMaterialAntiAliasing [RCBasic Doc]
-#header sub  setMaterialAntiAliasing( material_id,  aa)
+#title SetMaterialAntiAliasing [RCBasic Doc]
+#header Sub  SetMaterialAntiAliasing( material_id,  aa)
 
 Sets the anti-aliasing mode for the material
 
@@ -15,3 +15,4 @@ Possible modes returned
 #/list
 
 #ref GetMaterialAntiAliasing
+

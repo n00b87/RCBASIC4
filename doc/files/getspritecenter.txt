@@ -1,4 +1,5 @@
-#title getSpriteCenter [RCBasic Doc]
-#header sub getSpriteCenter( spr_id,  ByRef  x,  ByRef  y)
+#title GetSpriteCenter [RCBasic Doc]
+#header Sub GetSpriteCenter( spr_id,  ByRef  x,  ByRef  y)
 
 Returns a sprites center of mass
+

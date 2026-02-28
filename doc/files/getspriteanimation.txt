@@ -4,3 +4,4 @@
 Returns the current animation set on a sprite
 
 #ref SetSpriteAnimation
+

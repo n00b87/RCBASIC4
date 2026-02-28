@@ -1,0 +1,5 @@
+#title GetCompositeUpdateRevision [RCBasic Doc]
+#header Function GetCompositeUpdateRevision(actor)
+
+Returns a counter that increments when the composite actor shape is modifed
+

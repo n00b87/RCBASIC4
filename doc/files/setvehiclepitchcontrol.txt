@@ -1,0 +1,9 @@
+#title SetVehiclePitchControl [RCBasic Doc]
+#header Sub SetVehiclePitchControl( actor, pitch )
+
+Sets a vehicles pitch control.
+
+Pitch control is a tuning parameter that adds an extra torque to the chassis based on engine force to control how much the vehicle tilts forward or backward under acceleration and braking.
+
+#ref GetVehiclePitchControl
+

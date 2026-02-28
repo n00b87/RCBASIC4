@@ -1,4 +1,5 @@
 #title GetLightOuterCone [RCBasic Doc]
-#header function GetLightOuterCone( actor )
+#header Function GetLightOuterCone( actor )
 
 Returns the outer cone of a spot light
+

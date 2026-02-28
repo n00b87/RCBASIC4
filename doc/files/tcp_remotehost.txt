@@ -1,4 +1,5 @@
 #title TCP_RemoteHost [RCBasic Doc]
-#header function TCP_RemoteHost(socket)
+#header Function TCP_RemoteHost(socket)
 
 Returns the destination host address
+

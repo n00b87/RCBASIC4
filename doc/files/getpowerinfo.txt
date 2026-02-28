@@ -15,3 +15,4 @@ Possible Statuses
 #li POWERSTATE_CHARGING
 #li POWERSTATE_CHARGED
 #/list
+

@@ -1,4 +1,5 @@
 #title GetVideoPosition [RCBasic Doc]
-#header function GetVideoPosition()
+#header Function GetVideoPosition()
 
 Returns the current position in the video playback.
+

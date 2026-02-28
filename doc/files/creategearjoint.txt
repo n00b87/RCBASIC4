@@ -1,5 +1,5 @@
-#title createGearJoint [RCBasic Doc]
-#header function createGearJoint( jointA,  jointB,   g_ratio, collide_connect)
+#title CreateGearJoint [RCBasic Doc]
+#header Function CreateGearJoint( jointA,  jointB,   g_ratio, collide_connect)
 
 Creates a Gear Joint
 
@@ -11,4 +11,5 @@ Parameters
 #li spriteB - second body
 #li ratio - ratio of how much influence jointA has compared to jointB
 #/list
+
 

@@ -1,5 +1,5 @@
 #title ActiveCanvas [RCBasic Doc]
-#header function ActiveCanvas()
+#header Function ActiveCanvas()
 
 
 Returns the canvas that drawing commands are currently applied to
@@ -20,3 +20,4 @@ If ActiveCanvas() = c2 Then
 	Print "Active canvas is now c2"
 End If
 #/code
+

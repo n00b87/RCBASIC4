@@ -1,9 +1,10 @@
 #title SetSpriteDensity [RCBasic Doc]
-#header sub SetSpriteDensity( spr_id, density )
+#header Sub SetSpriteDensity( spr_id, density )
 
 Sets the density of a sprite. Higher density means a heavier sprite.
 
 Density is used to calculate mass for a sprite.
 
 #ref GetSpriteDensity
+
 

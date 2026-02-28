@@ -1,0 +1,9 @@
+#title GetWheelWorldTransform [RCBasic Doc]
+#header Sub GetWheelWorldTransform( actor, wheel, t_matrix )
+
+Returns the world transform of a wheel on a vehicle.
+
+NOTE: This will not be the world tranform of the actor if an offset transform has been set. In that case you will need to multiply the offset by the world transform.
+
+#ref SetWheelWorldTransform
+

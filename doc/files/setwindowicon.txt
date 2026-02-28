@@ -1,4 +1,5 @@
 #title SetWindowIcon [RCBasic Doc]
-#header sub SetWindowIcon( img )
+#header Sub SetWindowIcon( img )
 
 Sets the icon that is displayed on the window border
+
