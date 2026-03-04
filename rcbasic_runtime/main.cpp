@@ -685,7 +685,7 @@ void dbg_1(uint32_t dbg_fn, uint64_t arg1, uint64_t arg2)
         case 0:
             //current_src_file = arg1;
             //current_src_line = arg2;
-            std::cout << "file: " << arg1 << "  line: " << arg2 << std::endl;
+            //std::cout << "file: " << arg1 << "  line: " << arg2 << std::endl;
             break;
     }
 
@@ -4401,7 +4401,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Runtime v4.8" << endl;
+        cout << "RCBASIC Runtime v4.9" << endl;
         return 0;
     }
 
