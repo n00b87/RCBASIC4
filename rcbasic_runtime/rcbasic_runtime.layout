@@ -2,93 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="../../irrBullet/src/irrBulletWorld.cpp" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_audio.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="5457" topLine="159" />
-		</Cursor>
-	</File>
-	<File name="rc_sprite_physics.h" open="0" top="0" tabpos="38" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="605" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="rc_base_actor.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="82026" topLine="2841" />
-		</Cursor>
-		<Folding>
-			<Collapse line="527" />
-			<Collapse line="856" />
-			<Collapse line="911" />
-			<Collapse line="968" />
-			<Collapse line="1022" />
-			<Collapse line="1076" />
-			<Collapse line="1137" />
-			<Collapse line="1190" />
-		</Folding>
-	</File>
-	<File name="../../irrBullet/src/irrBulletCapsuleShape.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="522" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/src/irrBulletBvhTriangleMeshShape.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="680" topLine="19" />
-		</Cursor>
-	</File>
-	<File name="../../an8-parser/an8parser.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="31142" topLine="1338" />
-		</Cursor>
-	</File>
-	<File name="rc_render_control.h" open="1" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="209" topLine="174" />
-		</Cursor>
-		<Folding>
-			<Collapse line="202" />
-			<Collapse line="232" />
-		</Folding>
-	</File>
-	<File name="rc_fx_materials.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="921" topLine="589" />
-		</Cursor>
-	</File>
-	<File name="rc_font.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/include/irrBulletWorld.h" open="1" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5395" topLine="153" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/src/irrBullet.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="7" />
-		</Cursor>
-	</File>
-	<File name="rc_stdlib.h" open="0" top="0" tabpos="41" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="35300" topLine="1513" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/src/irrBulletTriangleMeshShape.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5626" topLine="48" />
-		</Cursor>
-	</File>
-	<File name="rc_media.h" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="72119" topLine="1937" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/include/irrBulletBoxShape.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="7" />
+			<Cursor1 position="6652" topLine="38" />
 		</Cursor>
 	</File>
 	<File name="rc_test.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -96,44 +12,39 @@
 			<Cursor1 position="115" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="rc_net.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../irrBullet/src/irrBulletMotionState.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="10210" topLine="395" />
+			<Cursor1 position="1755" topLine="25" />
 		</Cursor>
 	</File>
-	<File name="rc_particles.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_physics3D_base.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6262" topLine="615" />
+			<Cursor1 position="3283" topLine="66" />
 		</Cursor>
 	</File>
-	<File name="rc_constraint.h" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../irrBullet/src/irrBullet.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8391" topLine="231" />
+			<Cursor1 position="0" topLine="7" />
 		</Cursor>
 	</File>
-	<File name="rc_geometry.h" open="0" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../irrBullet/src/irrBulletRigidBody.cpp" open="1" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="20919" topLine="652" />
+			<Cursor1 position="2316" topLine="71" />
 		</Cursor>
 	</File>
-	<File name="rc_steam.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_tilelib.h" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1410" topLine="0" />
+			<Cursor1 position="10085" topLine="360" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../irrBullet/include/irrBulletTriangleMeshShape.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="974" topLine="35" />
+			<Cursor1 position="366" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="../../irrBullet/src/irrBulletRigidBody.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_tilemap.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3466" topLine="114" />
-		</Cursor>
-	</File>
-	<File name="gui_freetype_font.cpp" open="0" top="0" tabpos="24" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="792" topLine="0" />
+			<Cursor1 position="243" topLine="26" />
 		</Cursor>
 	</File>
 	<File name="../../irrBullet/include/irrBulletCompoundShape.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -141,39 +52,29 @@
 			<Cursor1 position="1091" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="ProjectiveTextures.h" open="1" top="0" tabpos="26" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../an8-parser/an8parser.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="31142" topLine="1338" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/src/irrBulletGImpactMeshShape.cpp" open="0" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="673" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="ProjectiveTextures.h" open="0" top="0" tabpos="26" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1288" topLine="8" />
 		</Cursor>
 	</File>
-	<File name="../../irrBullet/src/irrBulletcommon.cpp" open="1" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../irrBullet/src/irrBulletWorld.cpp" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3955" topLine="70" />
+			<Cursor1 position="7044" topLine="223" />
 		</Cursor>
 	</File>
-	<File name="camera.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_video.h" open="0" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4758" topLine="241" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/src/irrBulletMotionState.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1755" topLine="25" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/src/irrBulletCompoundShape.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2790" topLine="141" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/include/irrBulletConeShape.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="rc_audio.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6652" topLine="38" />
+			<Cursor1 position="515" topLine="80" />
 		</Cursor>
 	</File>
 	<File name="rc_spritelib.h" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -202,94 +103,9 @@
 			<Collapse line="2008" />
 		</Folding>
 	</File>
-	<File name="rc_gfx3D.h" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="813" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="CShader.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1032" topLine="31" />
-		</Cursor>
-	</File>
 	<File name="rc_joints.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="310" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="CShader.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1204" topLine="34" />
-		</Cursor>
-	</File>
-	<File name="rc_steam_lib.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1942" topLine="71" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/src/irrBulletCollisionObject.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="322" topLine="4" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/include/irrBulletTriangleMeshShape.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="366" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/include/irrBulletRigidBody.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="10715" topLine="295" />
-		</Cursor>
-	</File>
-	<File name="rc_scene.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="135" topLine="51" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/src/irrBulletRayCastVehicle.cpp" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="974" topLine="18" />
-		</Cursor>
-	</File>
-	<File name="rc_sprite2D.h" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="835" topLine="32" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/src/irrBulletCollisionCallBackInformation.cpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1253" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="rc_actor_physics.h" open="1" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2190" topLine="88" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/src/irrBulletGhostObject.cpp" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1861" topLine="27" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/include/irrBulletCommon.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="43" />
-		</Cursor>
-	</File>
-	<File name="rc_windowclose.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="21459" topLine="372" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/include/irrBulletCollisionShape.h" open="1" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="792" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/include/irrBullet.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1948" topLine="81" />
 		</Cursor>
 	</File>
 	<File name="rc_mesh.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -297,49 +113,9 @@
 			<Cursor1 position="14948" topLine="552" />
 		</Cursor>
 	</File>
-	<File name="../../irrBullet/include/irrBulletBvhTriangleMeshShape.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_steam_lib.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="796" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/include/irrBulletCollisionObject.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7030" topLine="192" />
-		</Cursor>
-	</File>
-	<File name="rc_os_defines.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="93" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="rc_vectorMath.h" open="1" top="0" tabpos="27" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="195" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/src/irrBulletCollisionShape.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1845" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="ProjectiveTextures.cpp" open="1" top="0" tabpos="25" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6024" topLine="148" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/src/irrBulletCylinderShape.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="../../irrBullet/src/irrBulletSoftBody.cpp" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="885" topLine="2" />
-		</Cursor>
-	</File>
-	<File name="rc_steam.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="854" topLine="0" />
+			<Cursor1 position="1942" topLine="71" />
 		</Cursor>
 	</File>
 	<File name="rc_actor_animation.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -347,9 +123,43 @@
 			<Cursor1 position="9998" topLine="302" />
 		</Cursor>
 	</File>
-	<File name="gui_freetype_font.h" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_render_control.h" open="1" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1638" topLine="52" />
+			<Cursor1 position="209" topLine="174" />
+		</Cursor>
+		<Folding>
+			<Collapse line="202" />
+			<Collapse line="232" />
+		</Folding>
+	</File>
+	<File name="../../irrBullet/include/irrBulletCommon.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="43" />
+		</Cursor>
+	</File>
+	<File name="rc_constraint.h" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8391" topLine="231" />
+		</Cursor>
+	</File>
+	<File name="rc_actor_material.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="751" topLine="1310" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/include/irrBulletConeShape.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/include/irrBulletBoxShape.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="7" />
+		</Cursor>
+	</File>
+	<File name="rc_os_defines.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="93" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="rc_fx_shaders.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -357,24 +167,44 @@
 			<Cursor1 position="178" topLine="769" />
 		</Cursor>
 	</File>
-	<File name="../../irrBullet/src/irrBulletGImpactMeshShape.cpp" open="1" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../irrBullet/src/irrBulletTriangleMeshShape.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="673" topLine="6" />
+			<Cursor1 position="5626" topLine="48" />
+		</Cursor>
+	</File>
+	<File name="rc_particles.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6262" topLine="615" />
+		</Cursor>
+	</File>
+	<File name="CShader.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1032" topLine="31" />
 		</Cursor>
 	</File>
 	<File name="rc_gfx.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="73645" topLine="3" />
+			<Cursor1 position="26307" topLine="964" />
+		</Cursor>
+	</File>
+	<File name="rc_steam.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1410" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="rc_media.h" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="72119" topLine="1937" />
 		</Cursor>
 	</File>
 	<File name="../../irrBullet/include/irrBulletRayCastVehicle.h" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6820" topLine="178" />
+			<Cursor1 position="1595" topLine="52" />
 		</Cursor>
 	</File>
 	<File name="rc_gfx_core.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="37367" topLine="953" />
+			<Cursor1 position="16362" topLine="342" />
 		</Cursor>
 		<Folding>
 			<Collapse line="104" />
@@ -382,9 +212,44 @@
 			<Collapse line="467" />
 		</Folding>
 	</File>
-	<File name="rc_actor_material.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_stdlib.h" open="0" top="0" tabpos="41" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="751" topLine="1310" />
+			<Cursor1 position="35300" topLine="1513" />
+		</Cursor>
+	</File>
+	<File name="rc_vectorMath.h" open="0" top="0" tabpos="27" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="195" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/src/irrBulletCollisionCallBackInformation.cpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1253" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="rc_fx_materials.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="921" topLine="589" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/src/irrBulletGhostObject.cpp" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1861" topLine="27" />
+		</Cursor>
+	</File>
+	<File name="rc_gfx3D.h" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="813" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="rc_windowclose.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="14394" topLine="465" />
+		</Cursor>
+	</File>
+	<File name="rc_func130_cases.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="30904" topLine="796" />
 		</Cursor>
 	</File>
 	<File name="rc_matrix.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -392,9 +257,89 @@
 			<Cursor1 position="34351" topLine="1250" />
 		</Cursor>
 	</File>
-	<File name="rc_physics3D_base.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_scene.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3283" topLine="66" />
+			<Cursor1 position="135" topLine="51" />
+		</Cursor>
+	</File>
+	<File name="rc_sprite2D.h" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="835" topLine="32" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/src/irrBulletSoftBody.cpp" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="885" topLine="2" />
+		</Cursor>
+	</File>
+	<File name="gui_freetype_font.h" open="1" top="1" tabpos="26" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1638" topLine="101" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/src/irrBulletcommon.cpp" open="1" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3955" topLine="70" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/src/irrBulletCompoundShape.cpp" open="1" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4021" topLine="101" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/include/irrBulletRigidBody.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12968" topLine="286" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/src/irrBulletCollisionShape.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1845" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="gui_freetype_font.cpp" open="0" top="0" tabpos="24" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="792" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="CShader.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1204" topLine="34" />
+		</Cursor>
+	</File>
+	<File name="rc_geometry.h" open="0" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="20919" topLine="652" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/include/irrBulletCollisionObject.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7030" topLine="192" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/src/irrBulletCapsuleShape.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="522" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/src/irrBulletCollisionObject.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="322" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="rc_font.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/src/irrBulletRayCastVehicle.cpp" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4091" topLine="99" />
+		</Cursor>
+	</File>
+	<File name="rc_net.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="10210" topLine="395" />
 		</Cursor>
 	</File>
 	<File name="rc_defines.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -402,14 +347,34 @@
 			<Cursor1 position="190390" topLine="2847" />
 		</Cursor>
 	</File>
-	<File name="rc_tilelib.h" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../irrBullet/include/irrBulletWorld.h" open="0" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="10085" topLine="360" />
+			<Cursor1 position="5395" topLine="153" />
 		</Cursor>
 	</File>
-	<File name="rc_tilemap.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_base_actor.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="243" topLine="26" />
+			<Cursor1 position="24471" topLine="745" />
+		</Cursor>
+		<Folding>
+			<Collapse line="527" />
+			<Collapse line="857" />
+			<Collapse line="912" />
+			<Collapse line="969" />
+			<Collapse line="1023" />
+			<Collapse line="1077" />
+			<Collapse line="1138" />
+			<Collapse line="1191" />
+		</Folding>
+	</File>
+	<File name="../../irrBullet/include/irrBullet.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1948" topLine="81" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="133566" topLine="4439" />
 		</Cursor>
 	</File>
 	<File name="rc_post_fx.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -417,14 +382,49 @@
 			<Cursor1 position="50535" topLine="1520" />
 		</Cursor>
 	</File>
-	<File name="rc_video.h" open="0" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="rc_actor_physics.h" open="1" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="515" topLine="80" />
+			<Cursor1 position="2649" topLine="100" />
 		</Cursor>
 	</File>
-	<File name="rc_func130_cases.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../../irrBullet/src/irrBulletBvhTriangleMeshShape.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="30904" topLine="788" />
+			<Cursor1 position="680" topLine="19" />
+		</Cursor>
+	</File>
+	<File name="rc_steam.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="854" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/include/irrBulletCollisionShape.h" open="1" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="792" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="camera.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4758" topLine="241" />
+		</Cursor>
+	</File>
+	<File name="rc_sprite_physics.h" open="0" top="0" tabpos="38" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="605" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/src/irrBulletCylinderShape.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="../../irrBullet/include/irrBulletBvhTriangleMeshShape.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="796" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="ProjectiveTextures.cpp" open="0" top="0" tabpos="25" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6024" topLine="148" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

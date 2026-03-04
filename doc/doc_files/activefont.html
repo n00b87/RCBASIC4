@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>ActiveFont [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Function ActiveFont() </h2></p>
+		<p>
+		 Returns the current font that will be used with DrawText 
+		</p>
+		<p id="rc_code"><code>
+			test_font&nbsp;=&nbsp;LoadFont<b>(</b><span class="rc_string">"test_font.ttf"</span>,&nbsp;<span class="rc_number">12</span><b>)</b>&nbsp;<br>
+			SetFont<b>(</b>test_font<b>)</b>&nbsp;<br>
+			<span class="rc_keyword">If</span>&nbsp;ActiveFont<b>(</b><b>)</b>&nbsp;=&nbsp;test_font&nbsp;<span class="rc_keyword">Then</span>&nbsp;<br>
+			<span class="rc_keyword">Print</span>&nbsp;<span class="rc_string">"Test Font is active"</span>&nbsp;<br>
+			<span class="rc_keyword">End</span>&nbsp;<span class="rc_keyword">If</span>&nbsp;<br>
+		</code></p>
+		<br><p>Related: 
+		<a href="loadfont.html">LoadFont</a>
+		<a href="setfont.html">SetFont</a>
+		<a href="drawtext.html">DrawText</a>
+		</p>
+		<p>
+		</p>
+
+	</body>
+</html>

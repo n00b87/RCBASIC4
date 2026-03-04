@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title>SaveBMP [RCBasic Doc] </title>
+	</head>
+
+	<body>
+		<p><h2>Function SaveBMP(img, file$) </h2></p>
+		<p>
+		 Save an image to a *.bmp file 
+		</p>
+		<p id="rc_code"><code>
+			title$&nbsp;=&nbsp;<span class="rc_string">"Sprite Test"</span>&nbsp;<br>
+			w&nbsp;=&nbsp;<span class="rc_number">640</span>&nbsp;<br>
+			h&nbsp;=&nbsp;<span class="rc_number">480</span>&nbsp;<br>
+			fullscreen&nbsp;=&nbsp;<span class="rc_keyword">FALSE</span>&nbsp;<br>
+			vsync&nbsp;=&nbsp;<span class="rc_keyword">FALSE</span>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			OpenWindow<b>(</b>&nbsp;title$,&nbsp;w,&nbsp;h,&nbsp;fullscreen,&nbsp;vsync&nbsp;<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			my_canvas&nbsp;=&nbsp;OpenCanvas<b>(</b>w,&nbsp;h,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;w,&nbsp;h,&nbsp;<span class="rc_number">1</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Canvas<b>(</b>my_canvas<b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			SetColor<b>(</b>RGB<b>(</b><span class="rc_number">255</span>,0,&nbsp;<span class="rc_number">0</span><b>)</b><b>)</b>&nbsp;<br>
+			CircleFill<b>(</b><span class="rc_number">50</span>,&nbsp;<span class="rc_number">50</span>,&nbsp;<span class="rc_number">25</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			SetColor<b>(</b>RGB<b>(</b><span class="rc_number">0</span>,&nbsp;<span class="rc_number">255</span>,&nbsp;<span class="rc_number">0</span><b>)</b><b>)</b>&nbsp;<br>
+			CircleFill<b>(</b><span class="rc_number">590</span>,&nbsp;<span class="rc_number">50</span>,&nbsp;<span class="rc_number">25</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			SetColor<b>(</b>RGB<b>(</b><span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">255</span><b>)</b><b>)</b>&nbsp;<br>
+			CircleFill<b>(</b><span class="rc_number">590</span>,&nbsp;<span class="rc_number">430</span>,&nbsp;<span class="rc_number">25</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			img&nbsp;=&nbsp;CanvasClip<b>(</b><span class="rc_number">0</span>,&nbsp;<span class="rc_number">0</span>,&nbsp;<span class="rc_number">640</span>,&nbsp;<span class="rc_number">480</span><b>)</b>&nbsp;<br>
+			SaveBMP<b>(</b>img,&nbsp;<span class="rc_string">"test.bmp"</span><b>)</b>&nbsp;<br>
+			&nbsp;&nbsp;<br>
+			Update<b>(</b><b>)</b>&nbsp;<br>
+			WaitKey<b>(</b><b>)</b>&nbsp;<br>
+		</code></p>
+		<p>
+		</p>
+
+	</body>
+</html>
