@@ -1555,6 +1555,9 @@ void init_embedded_functions()
 	embed_function("GetSpriteChildIndex", ID_TYPE_FN_NUM);
 	add_embedded_arg("sprite", ID_TYPE_NUM);
 	add_embedded_arg("child_sprite", ID_TYPE_NUM);
+	embed_function("GetSpriteCollision", ID_TYPE_FN_NUM);
+	add_embedded_arg("spriteA", ID_TYPE_NUM);
+	add_embedded_arg("spriteB", ID_TYPE_NUM);
 	embed_function("CreateSpriteAnimation", ID_TYPE_FN_NUM);
 	add_embedded_arg("sprite", ID_TYPE_NUM);
 	add_embedded_arg("anim_length", ID_TYPE_NUM);

@@ -3,6 +3,7 @@
 
 //USED FOR TESTING ONLY
 //#define RC_TESTING
+//#define RCBASIC_DEBUG
 
 //I am checking Android first since I think it also defines __linux__
 

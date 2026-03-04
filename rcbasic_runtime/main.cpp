@@ -1,5 +1,3 @@
-//#define RCBASIC_DEBUG 1
-
 #include "rc_os_defines.h"
 
 #ifdef RC_WEB
@@ -679,17 +677,19 @@ double readDouble()
 
 void dbg_1(uint32_t dbg_fn, uint64_t arg1, uint64_t arg2)
 {
-    #ifdef RCBASIC_DEBUG
-    output_debug_message();
+    //#ifdef RCBASIC_DEBUG
+    //output_debug_message();
 
     switch(dbg_fn)
     {
         case 0:
-            current_src_file = arg1;
-            current_src_line = arg2;
+            //current_src_file = arg1;
+            //current_src_line = arg2;
+            //std::cout << "file: " << arg1 << "  line: " << arg2 << std::endl;
             break;
     }
-    #endif // RCBASIC_DEBUG
+
+    //#endif // RCBASIC_DEBUG
 }
 
 void mov_32(int n1, int n2)
@@ -4401,7 +4401,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Runtime v4.8" << endl;
+        cout << "RCBASIC Runtime v4.9" << endl;
         return 0;
     }
 
@@ -4455,9 +4455,10 @@ int main(int argc, char * argv[])
 
     //ogles2 test
     #ifdef RC_TESTING
-    rc_intern_dirChange("/home/n00b/Music/Testing_Stuff");
+    rc_intern_dirChange("/home/n00b/GameDev/Ambient/Ambient_Project");
 	//rc_intern_dirChange("");
-	rc_filename = "main.cbc";
+	//rc_filename = "main.cbc";
+	rc_filename = "debug.cbc";
 
 	//rc_intern_dirChange("/home/n00b/Pictures/UNTITLED");
 	//rc_filename = "nv_test.cbc";
