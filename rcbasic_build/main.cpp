@@ -926,6 +926,7 @@ int main(int argc, char * argv[])
     bool clean_after_build = true;
 
     //DEBUG START
+    //rcbasic_build_debug = true;
     //chdir("/home/n00b/Programs/rcbasic/examples/Sprite_Test");
     //chdir("/home/n00b/GameDev/Ambient/Ambient_Project");
     rc_filename = "main.bas";
@@ -967,7 +968,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Compiler v4.8" << endl;
+        cout << "RCBASIC Compiler v4.9" << endl;
         return 0;
     }
 

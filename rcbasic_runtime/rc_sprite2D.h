@@ -91,6 +91,8 @@ struct rc_sprite2D_obj
 
 	int parent_sprite;
 	irr::core::array<int> child_sprites;
+
+	irr::core::array<int> contact_sprites;
 };
 
 irr::core::array<rc_sprite2D_obj> rc_sprite;

@@ -305,6 +305,9 @@ class rc_contactListener_obj : public b2ContactListener
 
 		rc_sprite2D_obj* spriteB = &rc_sprite[contact->GetFixtureB()->GetBody()->GetUserData().pointer];
 
+		spriteA->contact_sprites.push_back(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
+		spriteB->contact_sprites.push_back(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
+
 	  //std::cout << "sprite[" << spriteA->id << "] collide with sprite[" << spriteB->id << "]" << std::endl;
 
 	}

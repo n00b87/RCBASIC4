@@ -1613,6 +1613,9 @@ case FN_RemoveSpriteChild: //Sub Procedure
 case FN_GetSpriteChildIndex: //Number Function
 	 rc_push_num(rc_getSpriteChildIndex( GETSPRITECHILDINDEX_SPRITE,  GETSPRITECHILDINDEX_CHILD_SPRITE ));
 	break;
+case FN_GetSpriteCollision: //Number Function
+	 rc_push_num(rc_getSpriteCollision( GETSPRITECOLLISION_SPRITEA,  GETSPRITECOLLISION_SPRITEB ));
+	break;
 case FN_CreateSpriteAnimation: //Number Function
 	 rc_push_num(rc_createSpriteAnimation( CREATESPRITEANIMATION_SPRITE,  CREATESPRITEANIMATION_ANIM_LENGTH,  CREATESPRITEANIMATION_SPEED ));
 	break;
