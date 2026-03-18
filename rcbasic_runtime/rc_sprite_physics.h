@@ -390,7 +390,7 @@ void rc_setSpriteDensity( int spr_id, double density )
 	if(!rc_sprite[spr_id].active)
 		return;
 
-	rc_sprite[spr_id].physics.fixture->SetDensity(density);
+	rc_sprite[spr_id].physics.body->GetFixtureList()->SetDensity(density);
 }
 
 double rc_getSpriteDensity( int spr_id )
@@ -401,7 +401,7 @@ double rc_getSpriteDensity( int spr_id )
 	if(!rc_sprite[spr_id].active)
 		return 0;
 
-	return rc_sprite[spr_id].physics.fixture->GetDensity();
+	return rc_sprite[spr_id].physics.body->GetFixtureList()->GetDensity();
 }
 
 void rc_setSpriteFriction( int spr_id, double friction )
@@ -412,7 +412,7 @@ void rc_setSpriteFriction( int spr_id, double friction )
 	if(!rc_sprite[spr_id].active)
 		return;
 
-	rc_sprite[spr_id].physics.fixture->SetFriction(friction);
+	rc_sprite[spr_id].physics.body->GetFixtureList()->SetFriction(friction);
 }
 
 double rc_getSpriteFriction( int spr_id )
@@ -423,7 +423,7 @@ double rc_getSpriteFriction( int spr_id )
 	if(!rc_sprite[spr_id].active)
 		return 0;
 
-	return rc_sprite[spr_id].physics.fixture->GetFriction();
+	return rc_sprite[spr_id].physics.body->GetFixtureList()->GetFriction();
 }
 
 void rc_setSpriteRestitution( int spr_id, double restitution )
@@ -434,7 +434,7 @@ void rc_setSpriteRestitution( int spr_id, double restitution )
 	if(!rc_sprite[spr_id].active)
 		return;
 
-	rc_sprite[spr_id].physics.fixture->SetRestitution(restitution);
+	rc_sprite[spr_id].physics.body->GetFixtureList()->SetRestitution(restitution);
 }
 
 double rc_getSpriteRestitution( int spr_id )
@@ -445,7 +445,7 @@ double rc_getSpriteRestitution( int spr_id )
 	if(!rc_sprite[spr_id].active)
 		return 0;
 
-	return rc_sprite[spr_id].physics.fixture->GetRestitution();
+	return rc_sprite[spr_id].physics.body->GetFixtureList()->GetRestitution();
 }
 
 void rc_setSpriteRestitutionThreshold( int spr_id, double threshold )
@@ -456,7 +456,7 @@ void rc_setSpriteRestitutionThreshold( int spr_id, double threshold )
 	if(!rc_sprite[spr_id].active)
 		return;
 
-	rc_sprite[spr_id].physics.fixture->SetRestitutionThreshold(threshold);
+	rc_sprite[spr_id].physics.body->GetFixtureList()->SetRestitutionThreshold(threshold);
 }
 
 double rc_getSpriteRestitutionThreshold( int spr_id )
@@ -467,7 +467,7 @@ double rc_getSpriteRestitutionThreshold( int spr_id )
 	if(!rc_sprite[spr_id].active)
 		return 0;
 
-	return rc_sprite[spr_id].physics.fixture->GetRestitutionThreshold();
+	return rc_sprite[spr_id].physics.body->GetFixtureList()->GetRestitutionThreshold();
 }
 
 void rc_getSpriteAABB( int spr_id, double* x1, double* y1, double* x2, double* y2 )
@@ -478,7 +478,7 @@ void rc_getSpriteAABB( int spr_id, double* x1, double* y1, double* x2, double* y
 	if(!rc_sprite[spr_id].active)
 		return;
 
-	b2AABB bound_box = rc_sprite[spr_id].physics.fixture->GetAABB(0);
+	b2AABB bound_box = rc_sprite[spr_id].physics.body->GetFixtureList()->GetAABB(0);
 	*x1 = bound_box.upperBound.x;
 	*y1 = bound_box.upperBound.y;
 	*x2 = bound_box.lowerBound.x;

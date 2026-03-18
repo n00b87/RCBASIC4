@@ -332,7 +332,7 @@ bool rc_spriteExists(int spr_id)
 
 void rc_getSpriteBoxVertices(int spr_id)
 {
-    b2PolygonShape* shape = (b2PolygonShape*)rc_sprite[spr_id].physics.fixture->GetShape();
+    b2PolygonShape* shape = (b2PolygonShape*)rc_sprite[spr_id].physics.body->GetFixtureList()->GetShape();
 
     int m_count = shape->m_count;
 
@@ -488,7 +488,7 @@ void rc_deleteSprite(int spr_id)
             {
                 if(rc_sprite[parent_id].physics.body)
                 {
-                    rc_sprite[parent_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+                    rc_sprite[parent_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.body->GetFixtureList());
                 }
             }
         }
@@ -552,7 +552,7 @@ int rc_addSpriteChild(int spr_id, int child_sprite_id, double x, double y)
             int v_count = rc_sprite[child_sprite_id].physics.vertices.size();
             b2Vec2 vert[v_count];
 
-            b2PolygonShape* n = (b2PolygonShape*)rc_sprite[spr_id].physics.fixture->GetShape();
+            b2PolygonShape* n = (b2PolygonShape*)rc_sprite[spr_id].physics.body->GetFixtureList()->GetShape();
 
             //std::cout << "V_COUNT = " << v_count << ", " << n->m_count << std::endl;
 
@@ -720,7 +720,7 @@ void rc_removeSpriteChild(int spr_id, int child_index)
 	int x = body_x + rc_sprite[child_sprite_id].physics.fixture_offset_x;// - (frame_w/2);
 	int y = body_y + rc_sprite[child_sprite_id].physics.fixture_offset_y;// - (frame_h/2);
 
-	rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[child_sprite_id].physics.fixture);
+	rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[child_sprite_id].physics.body->GetFixtureList());
 
 	b2BodyDef sprBodyDef;
 
@@ -810,8 +810,8 @@ void rc_setSpriteCollisionShape(int spr_id, int sprite_shape)
 		return;
 
 	//Delete Shape
-	bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
-	float density = rc_sprite[spr_id].physics.fixture->GetDensity();
+	bool isSensor = rc_sprite[spr_id].physics.body->GetFixtureList()->IsSensor();
+	float density = rc_sprite[spr_id].physics.body->GetFixtureList()->GetDensity();
 
 	float actual_x = rc_sprite[spr_id].physics.body->GetPosition().x - (rc_sprite[spr_id].physics.offset_x + rc_sprite[spr_id].physics.user_offset_x);
 	float actual_y = rc_sprite[spr_id].physics.body->GetPosition().y - (rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y);
@@ -822,8 +822,8 @@ void rc_setSpriteCollisionShape(int spr_id, int sprite_shape)
 	rc_sprite[spr_id].physics.shape = NULL;
 
 	//Delete Fixture
-	if(rc_sprite[spr_id].physics.fixture)
-		rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+	if(rc_sprite[spr_id].physics.body->GetFixtureList())
+		rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.body->GetFixtureList());
 
 	rc_sprite[spr_id].physics.fixture = NULL;
 
@@ -968,12 +968,12 @@ void rc_setSpriteRadius(int spr_id, double radius)
 
 	if(rc_sprite[spr_id].physics.shape_type == RC_SPRITE_SHAPE_CIRCLE)
 	{
-		bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
-		float density = rc_sprite[spr_id].physics.fixture->GetDensity();
+		bool isSensor = rc_sprite[spr_id].physics.body->GetFixtureList()->IsSensor();
+		float density = rc_sprite[spr_id].physics.body->GetFixtureList()->GetDensity();
 
 		//Delete Fixture
-		if(rc_sprite[spr_id].physics.fixture)
-			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+		if(rc_sprite[spr_id].physics.body->GetFixtureList())
+			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.body->GetFixtureList());
 
 		rc_sprite[spr_id].physics.fixture = NULL;
 
@@ -1021,8 +1021,8 @@ void rc_setSpriteBox(int spr_id, int w, int h)
 
 	if(rc_sprite[spr_id].physics.shape_type == RC_SPRITE_SHAPE_BOX)
 	{
-		bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
-		float density = rc_sprite[spr_id].physics.fixture->GetDensity();
+		bool isSensor = rc_sprite[spr_id].physics.body->GetFixtureList()->IsSensor();
+		float density = rc_sprite[spr_id].physics.body->GetFixtureList()->GetDensity();
 
 		b2Vec2 pos = rc_sprite[spr_id].physics.body->GetPosition();
 
@@ -1030,8 +1030,8 @@ void rc_setSpriteBox(int spr_id, int w, int h)
 		float by = pos.y - (rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y);
 
 		//Delete Fixture
-		if(rc_sprite[spr_id].physics.fixture)
-			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+		if(rc_sprite[spr_id].physics.body->GetFixtureList())
+			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.body->GetFixtureList());
 
 		rc_sprite[spr_id].physics.fixture = NULL;
 
@@ -1103,8 +1103,8 @@ void rc_setSpriteChain(int spr_id, double* vx, double* vy, int v_count, double p
 
 	if(rc_sprite[spr_id].physics.shape_type == RC_SPRITE_SHAPE_CHAIN)
 	{
-		bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
-		float density = rc_sprite[spr_id].physics.fixture->GetDensity();
+		bool isSensor = rc_sprite[spr_id].physics.body->GetFixtureList()->IsSensor();
+		float density = rc_sprite[spr_id].physics.body->GetFixtureList()->GetDensity();
 
 		b2Vec2 pos = rc_sprite[spr_id].physics.body->GetPosition();
 
@@ -1112,8 +1112,8 @@ void rc_setSpriteChain(int spr_id, double* vx, double* vy, int v_count, double p
 		float by = pos.y - (rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y);
 
 		//Delete Fixture
-		if(rc_sprite[spr_id].physics.fixture)
-			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+		if(rc_sprite[spr_id].physics.body->GetFixtureList())
+			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.body->GetFixtureList());
 
 		rc_sprite[spr_id].physics.fixture = NULL;
 
@@ -1187,8 +1187,8 @@ void rc_setSpriteChainLoop(int spr_id, double* vx, double* vy, int v_count)
 
 	if(rc_sprite[spr_id].physics.shape_type == RC_SPRITE_SHAPE_CHAIN)
 	{
-		bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
-		float density = rc_sprite[spr_id].physics.fixture->GetDensity();
+		bool isSensor = rc_sprite[spr_id].physics.body->GetFixtureList()->IsSensor();
+		float density = rc_sprite[spr_id].physics.body->GetFixtureList()->GetDensity();
 
 		b2Vec2 pos = rc_sprite[spr_id].physics.body->GetPosition();
 
@@ -1196,8 +1196,8 @@ void rc_setSpriteChainLoop(int spr_id, double* vx, double* vy, int v_count)
 		float by = pos.y - (rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y);
 
 		//Delete Fixture
-		if(rc_sprite[spr_id].physics.fixture)
-			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+		if(rc_sprite[spr_id].physics.body->GetFixtureList())
+			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.body->GetFixtureList());
 
 		rc_sprite[spr_id].physics.fixture = NULL;
 
@@ -1268,8 +1268,8 @@ void rc_setSpritePolygon(int spr_id, double* vx, double* vy, int v_count)
 
 	if(rc_sprite[spr_id].physics.shape_type == RC_SPRITE_SHAPE_POLYGON)
 	{
-		bool isSensor = rc_sprite[spr_id].physics.fixture->IsSensor();
-		float density = rc_sprite[spr_id].physics.fixture->GetDensity();
+		bool isSensor = rc_sprite[spr_id].physics.body->GetFixtureList()->IsSensor();
+		float density = rc_sprite[spr_id].physics.body->GetFixtureList()->GetDensity();
 
 		b2Vec2 pos = rc_sprite[spr_id].physics.body->GetPosition();
 
@@ -1277,8 +1277,8 @@ void rc_setSpritePolygon(int spr_id, double* vx, double* vy, int v_count)
 		float by = pos.y - (rc_sprite[spr_id].physics.offset_y + rc_sprite[spr_id].physics.user_offset_y);
 
 		//Delete Fixture
-		if(rc_sprite[spr_id].physics.fixture)
-			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+		if(rc_sprite[spr_id].physics.body->GetFixtureList())
+			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.body->GetFixtureList());
 
 		rc_sprite[spr_id].physics.fixture = NULL;
 
@@ -1430,7 +1430,7 @@ void rc_setSpriteSolid(int spr_id, bool flag)
 		return;
 
 	rc_sprite[spr_id].isSolid = flag;
-	rc_sprite[spr_id].physics.fixture->SetSensor(!flag);
+	rc_sprite[spr_id].physics.body->GetFixtureList()->SetSensor(!flag);
 }
 
 bool rc_spriteIsSolid(int spr_id)
@@ -1575,13 +1575,13 @@ void rc_setSpriteScale(int spr_id, double x, double y)
 
 	if(true) //(rc_sprite[spr_id].isSolid) //I probably originally planned on not having a fixture for non-solid sprites but then I discovered sensors
 	{
-		if(rc_sprite[spr_id].physics.fixture)
+		if(rc_sprite[spr_id].physics.body->GetFixtureList())
 		{
 			b2FixtureDef fixdef;
-			fixdef.density = rc_sprite[spr_id].physics.fixture->GetDensity();
-			fixdef.friction = rc_sprite[spr_id].physics.fixture->GetFriction();
-			fixdef.restitution = rc_sprite[spr_id].physics.fixture->GetRestitution();
-			fixdef.restitutionThreshold = rc_sprite[spr_id].physics.fixture->GetRestitutionThreshold();
+			fixdef.density = rc_sprite[spr_id].physics.body->GetFixtureList()->GetDensity();
+			fixdef.friction = rc_sprite[spr_id].physics.body->GetFixtureList()->GetFriction();
+			fixdef.restitution = rc_sprite[spr_id].physics.body->GetFixtureList()->GetRestitution();
+			fixdef.restitutionThreshold = rc_sprite[spr_id].physics.body->GetFixtureList()->GetRestitutionThreshold();
 			fixdef.shape = rc_sprite[spr_id].physics.shape;
 			fixdef.isSensor = !(rc_sprite[spr_id].isSolid);
 
@@ -1666,7 +1666,7 @@ void rc_setSpriteScale(int spr_id, double x, double y)
 				break;
 			}
 
-			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.fixture);
+			rc_sprite[spr_id].physics.body->DestroyFixture(rc_sprite[spr_id].physics.body->GetFixtureList());
 
 			//std::cout << "Make magic happen: " << spr_id << std::endl;
 			rc_sprite[spr_id].physics.fixture = rc_sprite[spr_id].physics.body->CreateFixture(&fixdef);
