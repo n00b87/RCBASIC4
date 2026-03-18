@@ -391,6 +391,7 @@ void rc_setSpriteDensity( int spr_id, double density )
 		return;
 
 	rc_sprite[spr_id].physics.body->GetFixtureList()->SetDensity(density);
+	rc_sprite[spr_id].physics.body->ResetMassData();
 }
 
 double rc_getSpriteDensity( int spr_id )
