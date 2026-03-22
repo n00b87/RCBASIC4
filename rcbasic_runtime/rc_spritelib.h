@@ -2274,8 +2274,8 @@ void drawSprites(int canvas_id)
 		int spr_id = sorted_sprites[spr_index];
 		rc_sprite2D_obj* sprite = &rc_sprite[spr_id];
 		//std::cout << "debug info: " << canvas_id << " --> " << spr_index << "   id = " << sprite->id << "   anim_size = " << sprite->animation.size() << std::endl; continue;
-		//if(!sprite->visible)
-		//	continue;
+		if(!sprite->visible)
+			continue;
 
 		physics_pos = sprite->physics.body->GetPosition();
 		x = (int)(physics_pos.x - sprite->physics.offset_x) - offset_x;
