@@ -1108,6 +1108,7 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
     canvas.post_effect.object = NULL;
     canvas.post_effect.type = -1;
     canvas.post_effect.is_active = false;
+    canvas.bkg_render = true;
 
     #ifdef RC_DRIVER_GLES2
     Uint32 size_n = 2;
