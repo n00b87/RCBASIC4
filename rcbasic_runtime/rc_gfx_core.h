@@ -402,6 +402,7 @@ struct rc_canvas_obj
     int mode;
 
     bool visible = true;
+    bool bkg_render = true;
     int z = 0;
 
     irr::u32 color_mod;

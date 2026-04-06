@@ -642,85 +642,88 @@
 #define POSTEFFECTISACTIVE_C_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define FN_GetPostEffectType 224
 #define GETPOSTEFFECTTYPE_C_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_Circle 225
+#define FN_SetCanvasBackgroundRender 225
+#define SETCANVASBACKGROUNDRENDER_C_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
+#define SETCANVASBACKGROUNDRENDER_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
+#define FN_Circle 226
 #define CIRCLE_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CIRCLE_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CIRCLE_RADIUS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_CircleFill 226
+#define FN_CircleFill 227
 #define CIRCLEFILL_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CIRCLEFILL_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CIRCLEFILL_RADIUS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_Ellipse 227
+#define FN_Ellipse 228
 #define ELLIPSE_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ELLIPSE_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define ELLIPSE_RX num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define ELLIPSE_RY num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_EllipseFill 228
+#define FN_EllipseFill 229
 #define ELLIPSEFILL_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ELLIPSEFILL_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define ELLIPSEFILL_RX num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define ELLIPSEFILL_RY num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_FloodFill 229
+#define FN_FloodFill 230
 #define FLOODFILL_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define FLOODFILL_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetPixel 230
+#define FN_GetPixel 231
 #define GETPIXEL_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETPIXEL_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetColor 231
+#define FN_SetColor 232
 #define SETCOLOR_C num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_Line 232
+#define FN_Line 233
 #define LINE_X1 num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define LINE_Y1 num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define LINE_X2 num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define LINE_Y2 num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_Poly 233
+#define FN_Poly 234
 #define POLY_N num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define POLY_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define POLY_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_Rect 234
+#define FN_Rect 235
 #define RECT_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define RECT_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define RECT_W num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define RECT_H num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_RectFill 235
+#define FN_RectFill 236
 #define RECTFILL_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define RECTFILL_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define RECTFILL_W num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define RECTFILL_H num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_RGB 236
+#define FN_RGB 237
 #define RGB_R num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define RGB_G num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define RGB_B num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_RGBA 237
+#define FN_RGBA 238
 #define RGBA_R num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define RGBA_G num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define RGBA_B num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define RGBA_A num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_Pset 238
+#define FN_Pset 239
 #define PSET_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define PSET_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_Triangle 239
+#define FN_Triangle 240
 #define TRIANGLE_X1 num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define TRIANGLE_Y1 num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define TRIANGLE_X2 num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define TRIANGLE_Y2 num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define TRIANGLE_X3 num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define TRIANGLE_Y3 num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_Line3D 240
+#define FN_Line3D 241
 #define LINE3D_X1 num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define LINE3D_Y1 num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define LINE3D_Z1 num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define LINE3D_X2 num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define LINE3D_Y2 num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define LINE3D_Z2 num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_Box3D 241
+#define FN_Box3D 242
 #define BOX3D_MIN_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define BOX3D_MIN_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define BOX3D_MIN_Z num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define BOX3D_MAX_X num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define BOX3D_MAX_Y num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define BOX3D_MAX_Z num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_Triangle3D 242
+#define FN_Triangle3D 243
 #define TRIANGLE3D_X1 num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define TRIANGLE3D_Y1 num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define TRIANGLE3D_Z1 num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -730,59 +733,59 @@
 #define TRIANGLE3D_X3 num_var[6].nref[0].value[ num_var[6].byref_offset ]
 #define TRIANGLE3D_Y3 num_var[7].nref[0].value[ num_var[7].byref_offset ]
 #define TRIANGLE3D_Z3 num_var[8].nref[0].value[ num_var[8].byref_offset ]
-#define FN_SetRenderCirclePoints 243
+#define FN_SetRenderCirclePoints 244
 #define SETRENDERCIRCLEPOINTS_NUM_POINTS num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_LoadImage 244
+#define FN_LoadImage 245
 #define LOADIMAGE_IMG$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_LoadImageEx 245
+#define FN_LoadImageEx 246
 #define LOADIMAGEEX_IMG$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define LOADIMAGEEX_COLKEY num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_createImage 246
+#define FN_createImage 247
 #define CREATEIMAGE_W num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEIMAGE_H num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEIMAGE_BUFFER num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_createImageEx 247
+#define FN_createImageEx 248
 #define CREATEIMAGEEX_W num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEIMAGEEX_H num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEIMAGEEX_BUFFER num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CREATEIMAGEEX_COLOR num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_BufferFromImage 248
+#define FN_BufferFromImage 249
 #define BUFFERFROMIMAGE_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define BUFFERFROMIMAGE_BUFFER num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_ImageExists 249
+#define FN_ImageExists 250
 #define IMAGEEXISTS_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_ColorKey 250
+#define FN_ColorKey 251
 #define COLORKEY_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define COLORKEY_C num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setBilinearFilter 251
+#define FN_setBilinearFilter 252
 #define SETBILINEARFILTER_FLAG num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getBilinearFilter 252
-#define FN_CopyImage 253
+#define FN_getBilinearFilter 253
+#define FN_CopyImage 254
 #define COPYIMAGE_IMG_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_DeleteImage 254
+#define FN_DeleteImage 255
 #define DELETEIMAGE_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetImageAlpha 255
+#define FN_SetImageAlpha 256
 #define SETIMAGEALPHA_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETIMAGEALPHA_A num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetImageAlpha 256
+#define FN_GetImageAlpha 257
 #define GETIMAGEALPHA_IMG_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetImageSize 257
+#define FN_GetImageSize 258
 #define GETIMAGESIZE_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETIMAGESIZE_W num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETIMAGESIZE_H num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetBlendMode 258
+#define FN_SetBlendMode 259
 #define SETBLENDMODE_BLEND_MODE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetBlendMode 259
-#define FN_SetImageColorMod 260
+#define FN_GetBlendMode 260
+#define FN_SetImageColorMod 261
 #define SETIMAGECOLORMOD_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETIMAGECOLORMOD_C num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetImageColorMod 261
+#define FN_GetImageColorMod 262
 #define GETIMAGECOLORMOD_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_DrawImage 262
+#define FN_DrawImage 263
 #define DRAWIMAGE_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DRAWIMAGE_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define DRAWIMAGE_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_DrawImage_Blit 263
+#define FN_DrawImage_Blit 264
 #define DRAWIMAGE_BLIT_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DRAWIMAGE_BLIT_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define DRAWIMAGE_BLIT_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -790,7 +793,7 @@
 #define DRAWIMAGE_BLIT_SRC_Y num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define DRAWIMAGE_BLIT_SRC_W num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define DRAWIMAGE_BLIT_SRC_H num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_DrawImage_BlitEx 264
+#define FN_DrawImage_BlitEx 265
 #define DRAWIMAGE_BLITEX_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DRAWIMAGE_BLITEX_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define DRAWIMAGE_BLITEX_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -800,12 +803,12 @@
 #define DRAWIMAGE_BLITEX_SRC_Y num_var[6].nref[0].value[ num_var[6].byref_offset ]
 #define DRAWIMAGE_BLITEX_SRC_W num_var[7].nref[0].value[ num_var[7].byref_offset ]
 #define DRAWIMAGE_BLITEX_SRC_H num_var[8].nref[0].value[ num_var[8].byref_offset ]
-#define FN_DrawImage_Rotate 265
+#define FN_DrawImage_Rotate 266
 #define DRAWIMAGE_ROTATE_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DRAWIMAGE_ROTATE_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define DRAWIMAGE_ROTATE_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define DRAWIMAGE_ROTATE_ANGLE num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_DrawImage_RotateEx 266
+#define FN_DrawImage_RotateEx 267
 #define DRAWIMAGE_ROTATEEX_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DRAWIMAGE_ROTATEEX_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define DRAWIMAGE_ROTATEEX_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -814,13 +817,13 @@
 #define DRAWIMAGE_ROTATEEX_SRC_W num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define DRAWIMAGE_ROTATEEX_SRC_H num_var[6].nref[0].value[ num_var[6].byref_offset ]
 #define DRAWIMAGE_ROTATEEX_ANGLE num_var[7].nref[0].value[ num_var[7].byref_offset ]
-#define FN_DrawImage_Zoom 267
+#define FN_DrawImage_Zoom 268
 #define DRAWIMAGE_ZOOM_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DRAWIMAGE_ZOOM_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define DRAWIMAGE_ZOOM_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define DRAWIMAGE_ZOOM_ZX num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define DRAWIMAGE_ZOOM_ZY num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_DrawImage_ZoomEx 268
+#define FN_DrawImage_ZoomEx 269
 #define DRAWIMAGE_ZOOMEX_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DRAWIMAGE_ZOOMEX_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define DRAWIMAGE_ZOOMEX_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -830,14 +833,14 @@
 #define DRAWIMAGE_ZOOMEX_SRC_H num_var[6].nref[0].value[ num_var[6].byref_offset ]
 #define DRAWIMAGE_ZOOMEX_ZX num_var[7].nref[0].value[ num_var[7].byref_offset ]
 #define DRAWIMAGE_ZOOMEX_ZY num_var[8].nref[0].value[ num_var[8].byref_offset ]
-#define FN_DrawImage_Rotozoom 269
+#define FN_DrawImage_Rotozoom 270
 #define DRAWIMAGE_ROTOZOOM_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DRAWIMAGE_ROTOZOOM_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define DRAWIMAGE_ROTOZOOM_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define DRAWIMAGE_ROTOZOOM_ANGLE num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define DRAWIMAGE_ROTOZOOM_ZX num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define DRAWIMAGE_ROTOZOOM_ZY num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_DrawImage_RotozoomEx 270
+#define FN_DrawImage_RotozoomEx 271
 #define DRAWIMAGE_ROTOZOOMEX_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DRAWIMAGE_ROTOZOOMEX_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define DRAWIMAGE_ROTOZOOMEX_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -848,13 +851,13 @@
 #define DRAWIMAGE_ROTOZOOMEX_ANGLE num_var[7].nref[0].value[ num_var[7].byref_offset ]
 #define DRAWIMAGE_ROTOZOOMEX_ZX num_var[8].nref[0].value[ num_var[8].byref_offset ]
 #define DRAWIMAGE_ROTOZOOMEX_ZY num_var[9].nref[0].value[ num_var[9].byref_offset ]
-#define FN_DrawImage_Flip 271
+#define FN_DrawImage_Flip 272
 #define DRAWIMAGE_FLIP_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DRAWIMAGE_FLIP_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define DRAWIMAGE_FLIP_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define DRAWIMAGE_FLIP_H num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define DRAWIMAGE_FLIP_V num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_DrawImage_FlipEx 272
+#define FN_DrawImage_FlipEx 273
 #define DRAWIMAGE_FLIPEX_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DRAWIMAGE_FLIPEX_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define DRAWIMAGE_FLIPEX_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -864,941 +867,941 @@
 #define DRAWIMAGE_FLIPEX_SRC_H num_var[6].nref[0].value[ num_var[6].byref_offset ]
 #define DRAWIMAGE_FLIPEX_H num_var[7].nref[0].value[ num_var[7].byref_offset ]
 #define DRAWIMAGE_FLIPEX_V num_var[8].nref[0].value[ num_var[8].byref_offset ]
-#define FN_SaveBMP 273
+#define FN_SaveBMP 274
 #define SAVEBMP_IMG num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SAVEBMP_FILE$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_SetAntiAliasMode 274
+#define FN_SetAntiAliasMode 275
 #define SETANTIALIASMODE_AA_MODE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetAntiAliasMode 275
-#define FN_ConvertToNormalMap 276
+#define FN_GetAntiAliasMode 276
+#define FN_ConvertToNormalMap 277
 #define CONVERTTONORMALMAP_IMG_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CONVERTTONORMALMAP_AMP num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_InKey 277
-#define FN_Key 278
+#define FN_InKey 278
+#define FN_Key 279
 #define KEY_KEY_CODE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_WaitKey 279
-#define FN_HideMouse 280
-#define FN_ShowMouse 281
-#define FN_MouseIsVisible 282
-#define FN_GetMouse 283
+#define FN_WaitKey 280
+#define FN_HideMouse 281
+#define FN_ShowMouse 282
+#define FN_MouseIsVisible 283
+#define FN_GetMouse 284
 #define GETMOUSE_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMOUSE_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETMOUSE_MB1 num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETMOUSE_MB2 num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETMOUSE_MB3 num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_MouseX 284
-#define FN_MouseY 285
-#define FN_MouseButton 286
+#define FN_MouseX 285
+#define FN_MouseY 286
+#define FN_MouseButton 287
 #define MOUSEBUTTON_MB num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetMouseWheel 287
+#define FN_GetMouseWheel 288
 #define GETMOUSEWHEEL_X_AXIS num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMOUSEWHEEL_Y_AXIS num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_MouseWheelX 288
-#define FN_MouseWheelY 289
-#define FN_GetGlobalMouse 290
+#define FN_MouseWheelX 289
+#define FN_MouseWheelY 290
+#define FN_GetGlobalMouse 291
 #define GETGLOBALMOUSE_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETGLOBALMOUSE_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETGLOBALMOUSE_MB1 num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETGLOBALMOUSE_MB2 num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETGLOBALMOUSE_MB3 num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_GlobalMouseX 291
-#define FN_GlobalMouseY 292
-#define FN_WarpMouse 293
+#define FN_GlobalMouseX 292
+#define FN_GlobalMouseY 293
+#define FN_WarpMouse 294
 #define WARPMOUSE_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define WARPMOUSE_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_WarpMouseGlobal 294
+#define FN_WarpMouseGlobal 295
 #define WARPMOUSEGLOBAL_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define WARPMOUSEGLOBAL_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetMouseZone 295
+#define FN_SetMouseZone 296
 #define SETMOUSEZONE_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMOUSEZONE_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMOUSEZONE_W num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETMOUSEZONE_H num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_ClearMouseZone 296
-#define FN_CreateSound 297
+#define FN_ClearMouseZone 297
+#define FN_CreateSound 298
 #define CREATESOUND_BUFFER num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATESOUND_BUFFER_SIZE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATESOUND_VOL num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_LoadSound 298
+#define FN_LoadSound 299
 #define LOADSOUND_SND_FILE$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_LoadMusic 299
+#define FN_LoadMusic 300
 #define LOADMUSIC_MUSIC_FILE$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_PlaySound 300
+#define FN_PlaySound 301
 #define PLAYSOUND_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define PLAYSOUND_CHANNEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define PLAYSOUND_LOOPS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_PlaySoundTimed 301
+#define FN_PlaySoundTimed 302
 #define PLAYSOUNDTIMED_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define PLAYSOUNDTIMED_CHANNEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define PLAYSOUNDTIMED_LOOPS num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define PLAYSOUNDTIMED_MS num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_PlayMusic 302
+#define FN_PlayMusic 303
 #define PLAYMUSIC_MLOOPS num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_PauseSound 303
+#define FN_PauseSound 304
 #define PAUSESOUND_CHANNEL num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_ResumeSound 304
+#define FN_ResumeSound 305
 #define RESUMESOUND_CHANNEL num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_PauseMusic 305
-#define FN_ResumeMusic 306
-#define FN_DeleteSound 307
+#define FN_PauseMusic 306
+#define FN_ResumeMusic 307
+#define FN_DeleteSound 308
 #define DELETESOUND_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_DeleteMusic 308
-#define FN_FadeMusicIn 309
+#define FN_DeleteMusic 309
+#define FN_FadeMusicIn 310
 #define FADEMUSICIN_FADE_TIME num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define FADEMUSICIN_LOOPS num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_FadeMusicOut 310
+#define FN_FadeMusicOut 311
 #define FADEMUSICOUT_FADE_TIME num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_MusicExists 311
-#define FN_SetMusicVolume 312
+#define FN_MusicExists 312
+#define FN_SetMusicVolume 313
 #define SETMUSICVOLUME_VOL num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetMusicVolume 313
-#define FN_SetMusicPosition 314
+#define FN_GetMusicVolume 314
+#define FN_SetMusicPosition 315
 #define SETMUSICPOSITION_POS num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetMusicPosition 315
-#define FN_RewindMusic 316
-#define FN_SetSoundChannels 317
+#define FN_GetMusicPosition 316
+#define FN_RewindMusic 317
+#define FN_SetSoundChannels 318
 #define SETSOUNDCHANNELS_MAX_CHANNELS num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_NumSoundChannels 318
-#define FN_SoundIsEnabled 319
-#define FN_SoundExists 320
+#define FN_NumSoundChannels 319
+#define FN_SoundIsEnabled 320
+#define FN_SoundExists 321
 #define SOUNDEXISTS_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetChannelVolume 321
+#define FN_SetChannelVolume 322
 #define SETCHANNELVOLUME_CHANNEL num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETCHANNELVOLUME_VOL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetChannelVolume 322
+#define FN_GetChannelVolume 323
 #define GETCHANNELVOLUME_CHANNEL num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSoundVolume 323
+#define FN_SetSoundVolume 324
 #define SETSOUNDVOLUME_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSOUNDVOLUME_VOL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSoundVolume 324
+#define FN_GetSoundVolume 325
 #define GETSOUNDVOLUME_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_StopMusic 325
-#define FN_StopSound 326
+#define FN_StopMusic 326
+#define FN_StopSound 327
 #define STOPSOUND_CHANNEL num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetChannelPanning 327
+#define FN_SetChannelPanning 328
 #define SETCHANNELPANNING_CHANNEL num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETCHANNELPANNING_LEFT_VALUE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETCHANNELPANNING_RIGHT_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetChannelDistance 328
+#define FN_SetChannelDistance 329
 #define SETCHANNELDISTANCE_CHANNEL num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETCHANNELDISTANCE_DIST_VALUE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_ChannelIsPlaying 329
+#define FN_ChannelIsPlaying 330
 #define CHANNELISPLAYING_CHANNEL num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_ChannelIsPaused 330
+#define FN_ChannelIsPaused 331
 #define CHANNELISPAUSED_CHANNEL num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_QueryAudioSpec 331
+#define FN_QueryAudioSpec 332
 #define QUERYAUDIOSPEC_FREQ num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define QUERYAUDIOSPEC_FORMAT num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define QUERYAUDIOSPEC_CHANNELS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_MusicIsPlaying 332
-#define FN_SetChannelSpacePosition 333
+#define FN_MusicIsPlaying 333
+#define FN_SetChannelSpacePosition 334
 #define SETCHANNELSPACEPOSITION_CHANNEL num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETCHANNELSPACEPOSITION_ANGLE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETCHANNELSPACEPOSITION_DISTANCE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_NumJoysticks 334
-#define FN_NumJoyAxes 335
+#define FN_NumJoysticks 335
+#define FN_NumJoyAxes 336
 #define NUMJOYAXES_JOY_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_NumJoyButtons 336
+#define FN_NumJoyButtons 337
 #define NUMJOYBUTTONS_JOY_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_NumJoyHats 337
+#define FN_NumJoyHats 338
 #define NUMJOYHATS_JOY_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_NumJoyTrackBalls 338
+#define FN_NumJoyTrackBalls 339
 #define NUMJOYTRACKBALLS_JOY_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_JoyAxis 339
+#define FN_JoyAxis 340
 #define JOYAXIS_JOY_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define JOYAXIS_JOY_AXIS num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_JoyButton 340
+#define FN_JoyButton 341
 #define JOYBUTTON_JOY_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define JOYBUTTON_JOY_BUTTON num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_JoyHat 341
+#define FN_JoyHat 342
 #define JOYHAT_JOY_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define JOYHAT_JOY_HAT num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetJoyTrackBall 342
+#define FN_GetJoyTrackBall 343
 #define GETJOYTRACKBALL_JOY_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETJOYTRACKBALL_BALL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETJOYTRACKBALL_DX num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETJOYTRACKBALL_DY num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_JoyName$ 343
+#define FN_JoyName$ 344
 #define JOYNAME$_JOY_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_JoystickIsConnected 344
+#define FN_JoystickIsConnected 345
 #define JOYSTICKISCONNECTED_JOY_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_JoyRumblePlay 345
+#define FN_JoyRumblePlay 346
 #define JOYRUMBLEPLAY_JOY_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define JOYRUMBLEPLAY_STRENGTH num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define JOYRUMBLEPLAY_DURATION num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_JoyRumbleStop 346
+#define FN_JoyRumbleStop 347
 #define JOYRUMBLESTOP_JOY_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_JoystickIsHaptic 347
+#define FN_JoystickIsHaptic 348
 #define JOYSTICKISHAPTIC_JOY_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_LoadFont 348
+#define FN_LoadFont 349
 #define LOADFONT_FNT_FILE$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define LOADFONT_FONT_SIZE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_DeleteFont 349
+#define FN_DeleteFont 350
 #define DELETEFONT_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_FontExists 350
+#define FN_FontExists 351
 #define FONTEXISTS_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetFont 351
+#define FN_SetFont 352
 #define SETFONT_SLOT num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_DrawText 352
+#define FN_DrawText 353
 #define DRAWTEXT_TXT$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define DRAWTEXT_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DRAWTEXT_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetTextSize 353
+#define FN_GetTextSize 354
 #define GETTEXTSIZE_TXT$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define GETTEXTSIZE_W num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETTEXTSIZE_H num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_TextWidth 354
+#define FN_TextWidth 355
 #define TEXTWIDTH_TXT$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_TextHeight 355
+#define FN_TextHeight 356
 #define TEXTHEIGHT_TXT$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_ActiveFont 356
-#define FN_TouchPressure 357
-#define FN_GetTouch 358
+#define FN_ActiveFont 357
+#define FN_TouchPressure 358
+#define FN_GetTouch 359
 #define GETTOUCH_STATUS num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETTOUCH_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETTOUCH_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETTOUCH_DX num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETTOUCH_DY num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_GetMultiTouch 359
+#define FN_GetMultiTouch 360
 #define GETMULTITOUCH_STATUS num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMULTITOUCH_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETMULTITOUCH_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETMULTITOUCH_FINGERS num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETMULTITOUCH_DIST num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define GETMULTITOUCH_THETA num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_GetTouchFinger 360
+#define FN_GetTouchFinger 361
 #define GETTOUCHFINGER_FINGER num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETTOUCHFINGER_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETTOUCHFINGER_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETTOUCHFINGER_PRESSURE num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_NumFingers 361
-#define FN_GetAccel 362
+#define FN_NumFingers 362
+#define FN_GetAccel 363
 #define GETACCEL_ACCEL_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACCEL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACCEL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACCEL_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_AccelName$ 363
+#define FN_AccelName$ 364
 #define ACCELNAME$_ACCEL_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_NumAccels 364
-#define FN_GetGyro 365
+#define FN_NumAccels 365
+#define FN_GetGyro 366
 #define GETGYRO_GYRO_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETGYRO_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETGYRO_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETGYRO_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GyroName$ 366
+#define FN_GyroName$ 367
 #define GYRONAME$_GYRO_NUM num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_NumGyros 367
-#define FN_TouchX 368
-#define FN_TouchY 369
-#define FN_CheckSockets 370
+#define FN_NumGyros 368
+#define FN_TouchX 369
+#define FN_TouchY 370
+#define FN_CheckSockets 371
 #define CHECKSOCKETS_TIMEOUT_MS num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_TCP_SocketReady 371
+#define FN_TCP_SocketReady 372
 #define TCP_SOCKETREADY_SOCKET num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_UDP_SocketReady 372
+#define FN_UDP_SocketReady 373
 #define UDP_SOCKETREADY_SOCKET num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_TCP_OpenSocket 373
+#define FN_TCP_OpenSocket 374
 #define TCP_OPENSOCKET_HOST$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define TCP_OPENSOCKET_PORT num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_TCP_CloseSocket 374
+#define FN_TCP_CloseSocket 375
 #define TCP_CLOSESOCKET_SOCKET num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_TCP_RemoteHost 375
+#define FN_TCP_RemoteHost 376
 #define TCP_REMOTEHOST_SOCKET num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_TCP_RemotePort 376
+#define FN_TCP_RemotePort 377
 #define TCP_REMOTEPORT_SOCKET num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_TCP_GetData 377
+#define FN_TCP_GetData 378
 #define TCP_GETDATA_SOCKET num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define TCP_GETDATA_NUMBYTES num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define TCP_GETDATA_SDATA$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_TCP_SendData 378
+#define FN_TCP_SendData 379
 #define TCP_SENDDATA_SOCKET num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define TCP_SENDDATA_SDATA$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_TCP_AcceptSocket 379
+#define FN_TCP_AcceptSocket 380
 #define TCP_ACCEPTSOCKET_SERVER num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_UDP_OpenSocket 380
+#define FN_UDP_OpenSocket 381
 #define UDP_OPENSOCKET_PORT num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_UDP_CloseSocket 381
+#define FN_UDP_CloseSocket 382
 #define UDP_CLOSESOCKET_SOCKET num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_UDP_GetData 382
+#define FN_UDP_GetData 383
 #define UDP_GETDATA_SOCKET num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define UDP_GETDATA_HOST$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define UDP_GETDATA_PORT num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define UDP_GETDATA_SDATA$ str_var[1].sref[0].value[ str_var[1].byref_offset ]
-#define FN_UDP_Length 383
-#define FN_UDP_MaxLength 384
-#define FN_UDP_RemoteHost$ 385
+#define FN_UDP_Length 384
+#define FN_UDP_MaxLength 385
+#define FN_UDP_RemoteHost$ 386
 #define UDP_REMOTEHOST$_SOCKET num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_UDP_RemotePort 386
+#define FN_UDP_RemotePort 387
 #define UDP_REMOTEPORT_SOCKET num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_UDP_SendData 387
+#define FN_UDP_SendData 388
 #define UDP_SENDDATA_SOCKET num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define UDP_SENDDATA_HOST$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define UDP_SENDDATA_PORT num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define UDP_SENDDATA_SDATA$ str_var[1].sref[0].value[ str_var[1].byref_offset ]
-#define FN_LoadVideo 388
+#define FN_LoadVideo 389
 #define LOADVIDEO_VID$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_PlayVideo 389
+#define FN_PlayVideo 390
 #define PLAYVIDEO_VLOOPS num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_PauseVideo 390
-#define FN_StopVideo 391
-#define FN_SetVideoPosition 392
+#define FN_PauseVideo 391
+#define FN_StopVideo 392
+#define FN_SetVideoPosition 393
 #define SETVIDEOPOSITION_POS num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_ResumeVideo 393
-#define FN_GetVideoPosition 394
-#define FN_DeleteVideo 395
-#define FN_VideoIsPlaying 396
-#define FN_VideoEnd 397
-#define FN_GetVideoStats 398
+#define FN_ResumeVideo 394
+#define FN_GetVideoPosition 395
+#define FN_DeleteVideo 396
+#define FN_VideoIsPlaying 397
+#define FN_VideoEnd 398
+#define FN_GetVideoStats 399
 #define GETVIDEOSTATS_VFILE$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define GETVIDEOSTATS_VLEN num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETVIDEOSTATS_VFPS num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETVIDEOSTATS_FRAME_W num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETVIDEOSTATS_FRAME_H num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetVideoDrawRect 399
+#define FN_SetVideoDrawRect 400
 #define SETVIDEODRAWRECT_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETVIDEODRAWRECT_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETVIDEODRAWRECT_W num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETVIDEODRAWRECT_H num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetVideoDrawRect 400
+#define FN_GetVideoDrawRect 401
 #define GETVIDEODRAWRECT_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETVIDEODRAWRECT_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETVIDEODRAWRECT_W num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETVIDEODRAWRECT_H num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetVideoSize 401
+#define FN_GetVideoSize 402
 #define GETVIDEOSIZE_W num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETVIDEOSIZE_H num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_VideoExists 402
-#define FN_SetVideoVolume 403
+#define FN_VideoExists 403
+#define FN_SetVideoVolume 404
 #define SETVIDEOVOLUME_VOL num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetVideoVolume 404
-#define FN_System 405
+#define FN_GetVideoVolume 405
+#define FN_System 406
 #define SYSTEM_CMD$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_OS$ 406
-#define FN_Command$ 407
+#define FN_OS$ 407
+#define FN_Command$ 408
 #define COMMAND$_ARG num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_NumCommands 408
-#define FN_Env$ 409
+#define FN_NumCommands 409
+#define FN_Env$ 410
 #define ENV$_V$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_SetEnv 410
+#define FN_SetEnv 411
 #define SETENV_VAR$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define SETENV_VALUE$ str_var[1].sref[0].value[ str_var[1].byref_offset ]
-#define FN_PrefPath$ 411
+#define FN_PrefPath$ 412
 #define PREFPATH$_ORG_NAME$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define PREFPATH$_APP_NAME$ str_var[1].sref[0].value[ str_var[1].byref_offset ]
-#define FN_Android_GetExternalStoragePath$ 412
-#define FN_Android_GetExternalStorageState 413
-#define FN_Android_GetInternalStoragePath$ 414
-#define FN_Android_JNI_Message$ 415
+#define FN_Android_GetExternalStoragePath$ 413
+#define FN_Android_GetExternalStorageState 414
+#define FN_Android_GetInternalStoragePath$ 415
+#define FN_Android_JNI_Message$ 416
 #define ANDROID_JNI_MESSAGE$_ARG$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_Runtime_Utility_Message$ 416
+#define FN_Runtime_Utility_Message$ 417
 #define RUNTIME_UTILITY_MESSAGE$_ARG$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_GetDesktopDisplayMode 417
+#define FN_GetDesktopDisplayMode 418
 #define GETDESKTOPDISPLAYMODE_INDEX num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETDESKTOPDISPLAYMODE_W num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETDESKTOPDISPLAYMODE_H num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETDESKTOPDISPLAYMODE_FREQ num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetPowerInfo 418
+#define FN_GetPowerInfo 419
 #define GETPOWERINFO_STATUS num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETPOWERINFO_SECS num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETPOWERINFO_PCT num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_EvalJS$ 419
+#define FN_EvalJS$ 420
 #define EVALJS$_JS_CODE$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_SystemReturnStdOut$ 420
+#define FN_SystemReturnStdOut$ 421
 #define SYSTEMRETURNSTDOUT$_CMD$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_OpenURL 421
+#define FN_OpenURL 422
 #define OPENURL_URL$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_MessageBox 422
+#define FN_MessageBox 423
 #define MESSAGEBOX_TITLE$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define MESSAGEBOX_MSG$ str_var[1].sref[0].value[ str_var[1].byref_offset ]
-#define FN_Runtime$ 423
-#define FN_NumCPUs 424
-#define FN_SystemRam 425
-#define FN_GetGPUInfo$ 426
-#define FN_Steam_AddAchievement 427
+#define FN_Runtime$ 424
+#define FN_NumCPUs 425
+#define FN_SystemRam 426
+#define FN_GetGPUInfo$ 427
+#define FN_Steam_AddAchievement 428
 #define STEAM_ADDACHIEVEMENT_ACH_ID$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define STEAM_ADDACHIEVEMENT_ACH_NAME$ str_var[1].sref[0].value[ str_var[1].byref_offset ]
-#define FN_Steam_ClearAchievements 428
-#define FN_Steam_FinalizeAchievements 429
-#define FN_Steam_TriggerAchievement 430
+#define FN_Steam_ClearAchievements 429
+#define FN_Steam_FinalizeAchievements 430
+#define FN_Steam_TriggerAchievement 431
 #define STEAM_TRIGGERACHIEVEMENT_ACH_NAME$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_Steam_GetID$ 431
-#define FN_DimMatrix 432
+#define FN_Steam_GetID$ 432
+#define FN_DimMatrix 433
 #define DIMMATRIX_M_ROWS num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DIMMATRIX_M_COLS num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_DeleteMatrix 433
+#define FN_DeleteMatrix 434
 #define DELETEMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_AddMatrix 434
+#define FN_AddMatrix 435
 #define ADDMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ADDMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define ADDMATRIX_MC num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_AugmentMatrix 435
+#define FN_AugmentMatrix 436
 #define AUGMENTMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define AUGMENTMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define AUGMENTMATRIX_MC num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_CopyMatrix 436
+#define FN_CopyMatrix 437
 #define COPYMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define COPYMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_InsertMatrixColumns 437
+#define FN_InsertMatrixColumns 438
 #define INSERTMATRIXCOLUMNS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define INSERTMATRIXCOLUMNS_C num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define INSERTMATRIXCOLUMNS_NUM_COLS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_InsertMatrixRows 438
+#define FN_InsertMatrixRows 439
 #define INSERTMATRIXROWS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define INSERTMATRIXROWS_R num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define INSERTMATRIXROWS_NUM_ROWS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_MultiplyMatrix 439
+#define FN_MultiplyMatrix 440
 #define MULTIPLYMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define MULTIPLYMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define MULTIPLYMATRIX_MC num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_CubeMatrix 440
+#define FN_CubeMatrix 441
 #define CUBEMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CUBEMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_DeleteMatrixColumns 441
+#define FN_DeleteMatrixColumns 442
 #define DELETEMATRIXCOLUMNS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DELETEMATRIXCOLUMNS_C num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define DELETEMATRIXCOLUMNS_NUM_COLS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_DeleteMatrixRows 442
+#define FN_DeleteMatrixRows 443
 #define DELETEMATRIXROWS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DELETEMATRIXROWS_R num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define DELETEMATRIXROWS_NUM_ROWS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_ClearMatrix 443
+#define FN_ClearMatrix 444
 #define CLEARMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_ClearMatrixColumns 444
+#define FN_ClearMatrixColumns 445
 #define CLEARMATRIXCOLUMNS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CLEARMATRIXCOLUMNS_C num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CLEARMATRIXCOLUMNS_NUM_COLS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_ClearMatrixRows 445
+#define FN_ClearMatrixRows 446
 #define CLEARMATRIXROWS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CLEARMATRIXROWS_R num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CLEARMATRIXROWS_NUM_ROWS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_FillMatrix 446
+#define FN_FillMatrix 447
 #define FILLMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define FILLMATRIX_V num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_FillMatrixColumns 447
+#define FN_FillMatrixColumns 448
 #define FILLMATRIXCOLUMNS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define FILLMATRIXCOLUMNS_C num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define FILLMATRIXCOLUMNS_NUM_COLS num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define FILLMATRIXCOLUMNS_V num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_FillMatrixRows 448
+#define FN_FillMatrixRows 449
 #define FILLMATRIXROWS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define FILLMATRIXROWS_R num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define FILLMATRIXROWS_NUM_ROWS num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define FILLMATRIXROWS_V num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_CopyMatrixColumns 449
+#define FN_CopyMatrixColumns 450
 #define COPYMATRIXCOLUMNS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define COPYMATRIXCOLUMNS_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define COPYMATRIXCOLUMNS_C num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define COPYMATRIXCOLUMNS_NUM_COLS num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_CopyMatrixRows 450
+#define FN_CopyMatrixRows 451
 #define COPYMATRIXROWS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define COPYMATRIXROWS_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define COPYMATRIXROWS_R num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define COPYMATRIXROWS_NUM_ROWS num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetIdentityMatrix 451
+#define FN_SetIdentityMatrix 452
 #define SETIDENTITYMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETIDENTITYMATRIX_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SolveMatrix 452
+#define FN_SolveMatrix 453
 #define SOLVEMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SOLVEMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SOLVEMATRIX_MC num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_IsEqualMatrix 453
+#define FN_IsEqualMatrix 454
 #define ISEQUALMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ISEQUALMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define ISEQUALMATRIX_TOLERANCE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_Determinant 454
+#define FN_Determinant 455
 #define DETERMINANT_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_AdjointMatrix 455
+#define FN_AdjointMatrix 456
 #define ADJOINTMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ADJOINTMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_InvertMatrix 456
+#define FN_InvertMatrix 457
 #define INVERTMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define INVERTMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_MatrixFromBuffer 457
+#define FN_MatrixFromBuffer 458
 #define MATRIXFROMBUFFER_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define MATRIXFROMBUFFER_R num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define MATRIXFROMBUFFER_C num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define MATRIXFROMBUFFER_BUFFER num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_BufferFromMatrix 458
+#define FN_BufferFromMatrix 459
 #define BUFFERFROMMATRIX_BUFFER num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define BUFFERFROMMATRIX_MA num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_RandomizeMatrix 459
+#define FN_RandomizeMatrix 460
 #define RANDOMIZEMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define RANDOMIZEMATRIX_VMIN num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define RANDOMIZEMATRIX_VMAX num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_MatrixValue 460
+#define FN_MatrixValue 461
 #define MATRIXVALUE_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define MATRIXVALUE_R num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define MATRIXVALUE_C num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetMatrixValue 461
+#define FN_SetMatrixValue 462
 #define SETMATRIXVALUE_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATRIXVALUE_R num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMATRIXVALUE_C num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETMATRIXVALUE_V num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_ScalarMatrix 462
+#define FN_ScalarMatrix 463
 #define SCALARMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SCALARMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SCALARMATRIX_S_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_ScalarMatrixColumns 463
+#define FN_ScalarMatrixColumns 464
 #define SCALARMATRIXCOLUMNS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SCALARMATRIXCOLUMNS_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SCALARMATRIXCOLUMNS_C num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SCALARMATRIXCOLUMNS_NUM_COLS num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define SCALARMATRIXCOLUMNS_S_VALUE num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_ScalarMatrixRows 464
+#define FN_ScalarMatrixRows 465
 #define SCALARMATRIXROWS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SCALARMATRIXROWS_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SCALARMATRIXROWS_R num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SCALARMATRIXROWS_NUM_ROWS num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define SCALARMATRIXROWS_S_VALUE num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_SquareMatrix 465
+#define FN_SquareMatrix 466
 #define SQUAREMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SQUAREMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_CofactorMatrix 466
+#define FN_CofactorMatrix 467
 #define COFACTORMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define COFACTORMATRIX_R num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define COFACTORMATRIX_C num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SubtractMatrix 467
+#define FN_SubtractMatrix 468
 #define SUBTRACTMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SUBTRACTMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SUBTRACTMATRIX_MC num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SwapMatrix 468
+#define FN_SwapMatrix 469
 #define SWAPMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SWAPMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SwapMatrixColumn 469
+#define FN_SwapMatrixColumn 470
 #define SWAPMATRIXCOLUMN_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SWAPMATRIXCOLUMN_C1 num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SWAPMATRIXCOLUMN_C2 num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SwapMatrixRow 470
+#define FN_SwapMatrixRow 471
 #define SWAPMATRIXROW_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SWAPMATRIXROW_R1 num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SWAPMATRIXROW_R2 num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_TransposeMatrix 471
+#define FN_TransposeMatrix 472
 #define TRANSPOSEMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define TRANSPOSEMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_UnAugmentMatrix 472
+#define FN_UnAugmentMatrix 473
 #define UNAUGMENTMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define UNAUGMENTMATRIX_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define UNAUGMENTMATRIX_MC num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_ZeroMatrix 473
+#define FN_ZeroMatrix 474
 #define ZEROMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetMatrixSize 474
+#define FN_GetMatrixSize 475
 #define GETMATRIXSIZE_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMATRIXSIZE_R num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETMATRIXSIZE_C num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_IncrementMatrixRows 475
+#define FN_IncrementMatrixRows 476
 #define INCREMENTMATRIXROWS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define INCREMENTMATRIXROWS_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define INCREMENTMATRIXROWS_R num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define INCREMENTMATRIXROWS_NUM_ROWS num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define INCREMENTMATRIXROWS_VALUE num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_IncrementMatrixColumns 476
+#define FN_IncrementMatrixColumns 477
 #define INCREMENTMATRIXCOLUMNS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define INCREMENTMATRIXCOLUMNS_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define INCREMENTMATRIXCOLUMNS_C num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define INCREMENTMATRIXCOLUMNS_NUM_COLS num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define INCREMENTMATRIXCOLUMNS_VALUE num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_JoinMatrixRows 477
+#define FN_JoinMatrixRows 478
 #define JOINMATRIXROWS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define JOINMATRIXROWS_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define JOINMATRIXROWS_MC num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_JoinMatrixColumns 478
+#define FN_JoinMatrixColumns 479
 #define JOINMATRIXCOLUMNS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define JOINMATRIXCOLUMNS_MB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define JOINMATRIXCOLUMNS_MC num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_ClipMatrix 479
+#define FN_ClipMatrix 480
 #define CLIPMATRIX_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CLIPMATRIX_R num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CLIPMATRIX_C num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CLIPMATRIX_NUM_ROWS num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define CLIPMATRIX_NUM_COLS num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define CLIPMATRIX_MB num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_SetMatrixTranslation 480
+#define FN_SetMatrixTranslation 481
 #define SETMATRIXTRANSLATION_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATRIXTRANSLATION_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMATRIXTRANSLATION_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETMATRIXTRANSLATION_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetMatrixRotation 481
+#define FN_SetMatrixRotation 482
 #define SETMATRIXROTATION_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATRIXROTATION_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMATRIXROTATION_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETMATRIXROTATION_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetMatrixScale 482
+#define FN_SetMatrixScale 483
 #define SETMATRIXSCALE_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATRIXSCALE_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMATRIXSCALE_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETMATRIXSCALE_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetMatrixTranslation 483
+#define FN_GetMatrixTranslation 484
 #define GETMATRIXTRANSLATION_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMATRIXTRANSLATION_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETMATRIXTRANSLATION_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETMATRIXTRANSLATION_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetMatrixRotation 484
+#define FN_GetMatrixRotation 485
 #define GETMATRIXROTATION_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMATRIXROTATION_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETMATRIXROTATION_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETMATRIXROTATION_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetMatrixScale 485
+#define FN_GetMatrixScale 486
 #define GETMATRIXSCALE_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMATRIXSCALE_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETMATRIXSCALE_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETMATRIXSCALE_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_MatrixExists 486
+#define FN_MatrixExists 487
 #define MATRIXEXISTS_MA num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetClipboardText$ 487
-#define FN_SetClipboardText 488
+#define FN_GetClipboardText$ 488
+#define FN_SetClipboardText 489
 #define SETCLIPBOARDTEXT_TXT$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_HasClipboardText 489
-#define FN_ReadInput_Start 490
-#define FN_ReadInput_Stop 491
-#define FN_ReadInput_GetText$ 492
-#define FN_ReadInput_SetText 493
+#define FN_HasClipboardText 490
+#define FN_ReadInput_Start 491
+#define FN_ReadInput_Stop 492
+#define FN_ReadInput_GetText$ 493
+#define FN_ReadInput_SetText 494
 #define READINPUT_SETTEXT_TXT$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_ReadInput_ToggleBackspace 494
+#define FN_ReadInput_ToggleBackspace 495
 #define READINPUT_TOGGLEBACKSPACE_FLAG num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_CreateSprite 495
+#define FN_CreateSprite 496
 #define CREATESPRITE_IMG num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATESPRITE_FRAME_W num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATESPRITE_FRAME_H num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_DeleteSprite 496
+#define FN_DeleteSprite 497
 #define DELETESPRITE_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpritePosition 497
+#define FN_SetSpritePosition 498
 #define SETSPRITEPOSITION_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEPOSITION_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETSPRITEPOSITION_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_TranslateSprite 498
+#define FN_TranslateSprite 499
 #define TRANSLATESPRITE_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define TRANSLATESPRITE_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define TRANSLATESPRITE_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetSpritePosition 499
+#define FN_GetSpritePosition 500
 #define GETSPRITEPOSITION_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITEPOSITION_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITEPOSITION_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SpriteX 500
+#define FN_SpriteX 501
 #define SPRITEX_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SpriteY 501
+#define FN_SpriteY 502
 #define SPRITEY_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpriteRotation 502
+#define FN_SetSpriteRotation 503
 #define SETSPRITEROTATION_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEROTATION_ANGLE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_RotateSprite 503
+#define FN_RotateSprite 504
 #define ROTATESPRITE_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ROTATESPRITE_ANGLE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSpriteRotation 504
+#define FN_GetSpriteRotation 505
 #define GETSPRITEROTATION_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpriteScale 505
+#define FN_SetSpriteScale 506
 #define SETSPRITESCALE_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITESCALE_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETSPRITESCALE_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_ScaleSprite 506
+#define FN_ScaleSprite 507
 #define SCALESPRITE_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SCALESPRITE_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SCALESPRITE_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetSpriteScale 507
+#define FN_GetSpriteScale 508
 #define GETSPRITESCALE_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITESCALE_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITESCALE_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetSpriteZ 508
+#define FN_SetSpriteZ 509
 #define SETSPRITEZ_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEZ_Z num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SpriteZ 509
+#define FN_SpriteZ 510
 #define SPRITEZ_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetSpriteSize 510
+#define FN_GetSpriteSize 511
 #define GETSPRITESIZE_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITESIZE_W num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITESIZE_H num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SpriteWidth 511
+#define FN_SpriteWidth 512
 #define SPRITEWIDTH_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SpriteHeight 512
+#define FN_SpriteHeight 513
 #define SPRITEHEIGHT_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpriteVisible 513
+#define FN_SetSpriteVisible 514
 #define SETSPRITEVISIBLE_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEVISIBLE_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SpriteIsVisible 514
+#define FN_SpriteIsVisible 515
 #define SPRITEISVISIBLE_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpriteSolid 515
+#define FN_SetSpriteSolid 516
 #define SETSPRITESOLID_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITESOLID_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SpriteIsSolid 516
+#define FN_SpriteIsSolid 517
 #define SPRITEISSOLID_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpriteType 517
+#define FN_SetSpriteType 518
 #define SETSPRITETYPE_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITETYPE_SPRITE_TYPE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSpriteType 518
+#define FN_GetSpriteType 519
 #define GETSPRITETYPE_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpriteSource 519
+#define FN_SetSpriteSource 520
 #define SETSPRITESOURCE_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITESOURCE_IMG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSpriteSource 520
+#define FN_GetSpriteSource 521
 #define GETSPRITESOURCE_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SpriteExists 521
+#define FN_SpriteExists 522
 #define SPRITEEXISTS_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpriteColorMod 522
+#define FN_SetSpriteColorMod 523
 #define SETSPRITECOLORMOD_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITECOLORMOD_COLOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetSpriteAlpha 523
+#define FN_SetSpriteAlpha 524
 #define SETSPRITEALPHA_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEALPHA_ALPHA num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSpriteColorMod 524
+#define FN_GetSpriteColorMod 525
 #define GETSPRITECOLORMOD_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetSpriteAlpha 525
+#define FN_GetSpriteAlpha 526
 #define GETSPRITEALPHA_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_AddSpriteChild 526
+#define FN_AddSpriteChild 527
 #define ADDSPRITECHILD_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ADDSPRITECHILD_CHILD_SPRITE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define ADDSPRITECHILD_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define ADDSPRITECHILD_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_RemoveSpriteChild 527
+#define FN_RemoveSpriteChild 528
 #define REMOVESPRITECHILD_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define REMOVESPRITECHILD_CHILD_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSpriteChildIndex 528
+#define FN_GetSpriteChildIndex 529
 #define GETSPRITECHILDINDEX_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITECHILDINDEX_CHILD_SPRITE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSpriteCollision 529
+#define FN_GetSpriteCollision 530
 #define GETSPRITECOLLISION_SPRITEA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITECOLLISION_SPRITEB num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_CreateSpriteAnimation 530
+#define FN_CreateSpriteAnimation 531
 #define CREATESPRITEANIMATION_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATESPRITEANIMATION_ANIM_LENGTH num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATESPRITEANIMATION_SPEED num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetSpriteFrame 531
+#define FN_SetSpriteFrame 532
 #define SETSPRITEFRAME_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEFRAME_FRAME num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSpriteFrame 532
+#define FN_GetSpriteFrame 533
 #define GETSPRITEFRAME_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpriteAnimationFrame 533
+#define FN_SetSpriteAnimationFrame 534
 #define SETSPRITEANIMATIONFRAME_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEANIMATIONFRAME_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETSPRITEANIMATIONFRAME_ANIM_FRAME num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETSPRITEANIMATIONFRAME_FRAME num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetSpriteAnimationFrame 534
+#define FN_GetSpriteAnimationFrame 535
 #define GETSPRITEANIMATIONFRAME_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITEANIMATIONFRAME_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITEANIMATIONFRAME_ANIM_FRAME num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetSpriteAnimationLength 535
+#define FN_SetSpriteAnimationLength 536
 #define SETSPRITEANIMATIONLENGTH_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEANIMATIONLENGTH_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETSPRITEANIMATIONLENGTH_ANIM_LENGTH num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetSpriteAnimationLength 536
+#define FN_GetSpriteAnimationLength 537
 #define GETSPRITEANIMATIONLENGTH_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITEANIMATIONLENGTH_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetSpriteAnimationSpeed 537
+#define FN_SetSpriteAnimationSpeed 538
 #define SETSPRITEANIMATIONSPEED_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEANIMATIONSPEED_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETSPRITEANIMATIONSPEED_SPEED num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetSpriteAnimationSpeed 538
+#define FN_GetSpriteAnimationSpeed 539
 #define GETSPRITEANIMATIONSPEED_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITEANIMATIONSPEED_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetSpriteAnimation 539
+#define FN_SetSpriteAnimation 540
 #define SETSPRITEANIMATION_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEANIMATION_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETSPRITEANIMATION_NUM_LOOPS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetSpriteAnimation 540
+#define FN_GetSpriteAnimation 541
 #define GETSPRITEANIMATION_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetSpriteCurrentAnimationFrame 541
+#define FN_GetSpriteCurrentAnimationFrame 542
 #define GETSPRITECURRENTANIMATIONFRAME_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_NumSpriteAnimationLoops 542
+#define FN_NumSpriteAnimationLoops 543
 #define NUMSPRITEANIMATIONLOOPS_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SpriteAnimationIsPlaying 543
+#define FN_SpriteAnimationIsPlaying 544
 #define SPRITEANIMATIONISPLAYING_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_DeleteSpriteAnimation 544
+#define FN_DeleteSpriteAnimation 545
 #define DELETESPRITEANIMATION_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DELETESPRITEANIMATION_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSpriteAnimationSource 545
+#define FN_GetSpriteAnimationSource 546
 #define GETSPRITEANIMATIONSOURCE_SPRITE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITEANIMATIONSOURCE_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getSpriteCenter 546
+#define FN_getSpriteCenter 547
 #define GETSPRITECENTER_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITECENTER_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITECENTER_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_setSpriteLinearVelocity 547
+#define FN_setSpriteLinearVelocity 548
 #define SETSPRITELINEARVELOCITY_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITELINEARVELOCITY_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETSPRITELINEARVELOCITY_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getSpriteLinearVelocity 548
+#define FN_getSpriteLinearVelocity 549
 #define GETSPRITELINEARVELOCITY_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITELINEARVELOCITY_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITELINEARVELOCITY_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_setSpriteAngularVelocity 549
+#define FN_setSpriteAngularVelocity 550
 #define SETSPRITEANGULARVELOCITY_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEANGULARVELOCITY_AV num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getSpriteAngularVelocity 550
+#define FN_getSpriteAngularVelocity 551
 #define GETSPRITEANGULARVELOCITY_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_applySpriteForce 551
+#define FN_applySpriteForce 552
 #define APPLYSPRITEFORCE_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYSPRITEFORCE_FX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYSPRITEFORCE_FY num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define APPLYSPRITEFORCE_PX num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define APPLYSPRITEFORCE_PY num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_applySpriteCentralForce 552
+#define FN_applySpriteCentralForce 553
 #define APPLYSPRITECENTRALFORCE_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYSPRITECENTRALFORCE_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYSPRITECENTRALFORCE_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_applySpriteTorque 553
+#define FN_applySpriteTorque 554
 #define APPLYSPRITETORQUE_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYSPRITETORQUE_TORQUE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_applySpriteLinearImpulse 554
+#define FN_applySpriteLinearImpulse 555
 #define APPLYSPRITELINEARIMPULSE_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYSPRITELINEARIMPULSE_IX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYSPRITELINEARIMPULSE_IY num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define APPLYSPRITELINEARIMPULSE_PX num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define APPLYSPRITELINEARIMPULSE_PY num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_applySpriteAngularImpulse 555
+#define FN_applySpriteAngularImpulse 556
 #define APPLYSPRITEANGULARIMPULSE_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYSPRITEANGULARIMPULSE_IMPULSE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getSpriteMass 556
+#define FN_getSpriteMass 557
 #define GETSPRITEMASS_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSpriteInertia 557
+#define FN_getSpriteInertia 558
 #define GETSPRITEINERTIA_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSpriteWorldPoint 558
+#define FN_getSpriteWorldPoint 559
 #define GETSPRITEWORLDPOINT_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITEWORLDPOINT_LX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITEWORLDPOINT_LY num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETSPRITEWORLDPOINT_X num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETSPRITEWORLDPOINT_Y num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_getSpriteWorldVector 559
+#define FN_getSpriteWorldVector 560
 #define GETSPRITEWORLDVECTOR_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITEWORLDVECTOR_LX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITEWORLDVECTOR_LY num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETSPRITEWORLDVECTOR_X num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETSPRITEWORLDVECTOR_Y num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_getSpriteLocalPoint 560
+#define FN_getSpriteLocalPoint 561
 #define GETSPRITELOCALPOINT_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITELOCALPOINT_WX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITELOCALPOINT_WY num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETSPRITELOCALPOINT_X num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETSPRITELOCALPOINT_Y num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_getSpriteLocalVector 561
+#define FN_getSpriteLocalVector 562
 #define GETSPRITELOCALVECTOR_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITELOCALVECTOR_WX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITELOCALVECTOR_WY num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETSPRITELOCALVECTOR_X num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETSPRITELOCALVECTOR_Y num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_getSpriteLinearVelocityFromLocalPoint 562
+#define FN_getSpriteLinearVelocityFromLocalPoint 563
 #define GETSPRITELINEARVELOCITYFROMLOCALPOINT_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITELINEARVELOCITYFROMLOCALPOINT_PX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITELINEARVELOCITYFROMLOCALPOINT_PY num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETSPRITELINEARVELOCITYFROMLOCALPOINT_X num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETSPRITELINEARVELOCITYFROMLOCALPOINT_Y num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_getSpriteLinearVelocityFromWorldPoint 563
+#define FN_getSpriteLinearVelocityFromWorldPoint 564
 #define GETSPRITELINEARVELOCITYFROMWORLDPOINT_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITELINEARVELOCITYFROMWORLDPOINT_WX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITELINEARVELOCITYFROMWORLDPOINT_WY num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETSPRITELINEARVELOCITYFROMWORLDPOINT_X num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETSPRITELINEARVELOCITYFROMWORLDPOINT_Y num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_getSpriteLinearDamping 564
+#define FN_getSpriteLinearDamping 565
 #define GETSPRITELINEARDAMPING_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setSpriteLinearDamping 565
+#define FN_setSpriteLinearDamping 566
 #define SETSPRITELINEARDAMPING_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITELINEARDAMPING_LINEARDAMPING num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getSpriteAngularDamping 566
+#define FN_getSpriteAngularDamping 567
 #define GETSPRITEANGULARDAMPING_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setSpriteAngularDamping 567
+#define FN_setSpriteAngularDamping 568
 #define SETSPRITEANGULARDAMPING_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEANGULARDAMPING_ANGULARDAMPING num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getSpriteGravityScale 568
+#define FN_getSpriteGravityScale 569
 #define GETSPRITEGRAVITYSCALE_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setSpriteGravityScale 569
+#define FN_setSpriteGravityScale 570
 #define SETSPRITEGRAVITYSCALE_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEGRAVITYSCALE_G_SCALE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSpriteBullet 570
+#define FN_setSpriteBullet 571
 #define SETSPRITEBULLET_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEBULLET_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_spriteIsBullet 571
+#define FN_spriteIsBullet 572
 #define SPRITEISBULLET_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setSpriteSleepAllowed 572
+#define FN_setSpriteSleepAllowed 573
 #define SETSPRITESLEEPALLOWED_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITESLEEPALLOWED_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_spriteSleepAllowed 573
+#define FN_spriteSleepAllowed 574
 #define SPRITESLEEPALLOWED_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setSpriteAwake 574
+#define FN_setSpriteAwake 575
 #define SETSPRITEAWAKE_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEAWAKE_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_spriteIsAwake 575
+#define FN_spriteIsAwake 576
 #define SPRITEISAWAKE_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setSpriteFixedRotation 576
+#define FN_setSpriteFixedRotation 577
 #define SETSPRITEFIXEDROTATION_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEFIXEDROTATION_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_spriteIsFixedRotation 577
+#define FN_spriteIsFixedRotation 578
 #define SPRITEISFIXEDROTATION_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpriteDensity 578
+#define FN_SetSpriteDensity 579
 #define SETSPRITEDENSITY_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEDENSITY_DENSITY num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSpriteDensity 579
+#define FN_GetSpriteDensity 580
 #define GETSPRITEDENSITY_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpriteFriction 580
+#define FN_SetSpriteFriction 581
 #define SETSPRITEFRICTION_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEFRICTION_FRICTION num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSpriteFriction 581
+#define FN_GetSpriteFriction 582
 #define GETSPRITEFRICTION_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpriteRestitution 582
+#define FN_SetSpriteRestitution 583
 #define SETSPRITERESTITUTION_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITERESTITUTION_RESTITUTION num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSpriteRestitution 583
+#define FN_GetSpriteRestitution 584
 #define GETSPRITERESTITUTION_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpriteRestitutionThreshold 584
+#define FN_SetSpriteRestitutionThreshold 585
 #define SETSPRITERESTITUTIONTHRESHOLD_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITERESTITUTIONTHRESHOLD_THRESHOLD num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSpriteRestitutionThreshold 585
+#define FN_GetSpriteRestitutionThreshold 586
 #define GETSPRITERESTITUTIONTHRESHOLD_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetSpriteAABB 586
+#define FN_GetSpriteAABB 587
 #define GETSPRITEAABB_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITEAABB_X1 num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITEAABB_Y1 num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETSPRITEAABB_X2 num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETSPRITEAABB_Y2 num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_SetGravity2D 587
+#define FN_SetGravity2D 588
 #define SETGRAVITY2D_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETGRAVITY2D_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetGravity2D 588
+#define FN_GetGravity2D 589
 #define GETGRAVITY2D_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETGRAVITY2D_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetWorld2DTimeStep 589
+#define FN_SetWorld2DTimeStep 590
 #define SETWORLD2DTIMESTEP_TS num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetWorld2DVelocityIterations 590
+#define FN_SetWorld2DVelocityIterations 591
 #define SETWORLD2DVELOCITYITERATIONS_V num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetWorld2DPositionIterations 591
+#define FN_SetWorld2DPositionIterations 592
 #define SETWORLD2DPOSITIONITERATIONS_P num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetWorld2DTimeStep 592
-#define FN_GetWorld2DVelocityIterations 593
-#define FN_GetWorld2DPositionIterations 594
-#define FN_SetWorld2DAutoClearForces 595
+#define FN_GetWorld2DTimeStep 593
+#define FN_GetWorld2DVelocityIterations 594
+#define FN_GetWorld2DPositionIterations 595
+#define FN_SetWorld2DAutoClearForces 596
 #define SETWORLD2DAUTOCLEARFORCES_FLAG num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetWorld2DAutoClearForces 596
-#define FN_CastRay2D 597
+#define FN_GetWorld2DAutoClearForces 597
+#define FN_CastRay2D 598
 #define CASTRAY2D_FROM_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CASTRAY2D_FROM_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CASTRAY2D_TO_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CASTRAY2D_TO_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_CastRay2D_All 598
+#define FN_CastRay2D_All 599
 #define CASTRAY2D_ALL_FROM_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CASTRAY2D_ALL_FROM_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CASTRAY2D_ALL_TO_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CASTRAY2D_ALL_TO_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetRayHit2D 599
+#define FN_GetRayHit2D 600
 #define GETRAYHIT2D_INDEX num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETRAYHIT2D_SPR_ID num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETRAYHIT2D_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETRAYHIT2D_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETRAYHIT2D_NORMAL_X num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define GETRAYHIT2D_NORMAL_Y num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_SetSpriteShape 600
+#define FN_SetSpriteShape 601
 #define SETSPRITESHAPE_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITESHAPE_SHAPE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSpriteShape 601
+#define FN_GetSpriteShape 602
 #define GETSPRITESHAPE_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpriteRadius 602
+#define FN_SetSpriteRadius 603
 #define SETSPRITERADIUS_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITERADIUS_RADIUS num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetSpriteRadius 603
+#define FN_GetSpriteRadius 604
 #define GETSPRITERADIUS_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetSpriteBox 604
+#define FN_SetSpriteBox 605
 #define SETSPRITEBOX_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEBOX_W num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETSPRITEBOX_H num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetSpriteBoxSize 605
+#define FN_GetSpriteBoxSize 606
 #define GETSPRITEBOXSIZE_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITEBOXSIZE_W num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITEBOXSIZE_H num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetSpriteChain 606
+#define FN_SetSpriteChain 607
 #define SETSPRITECHAIN_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITECHAIN_VX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETSPRITECHAIN_VY num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -1807,29 +1810,29 @@
 #define SETSPRITECHAIN_PREV_Y num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define SETSPRITECHAIN_NEXT_X num_var[6].nref[0].value[ num_var[6].byref_offset ]
 #define SETSPRITECHAIN_NEXT_Y num_var[7].nref[0].value[ num_var[7].byref_offset ]
-#define FN_SetSpriteChainLoop 607
+#define FN_SetSpriteChainLoop 608
 #define SETSPRITECHAINLOOP_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITECHAINLOOP_VX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETSPRITECHAINLOOP_VY num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETSPRITECHAINLOOP_V_COUNT num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetSpritePolygon 608
+#define FN_SetSpritePolygon 609
 #define SETSPRITEPOLYGON_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITEPOLYGON_VX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETSPRITEPOLYGON_VY num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETSPRITEPOLYGON_V_COUNT num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetSpriteShapeOffset 609
+#define FN_SetSpriteShapeOffset 610
 #define SETSPRITESHAPEOFFSET_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSPRITESHAPEOFFSET_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETSPRITESHAPEOFFSET_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetSpriteShapeOffset 610
+#define FN_GetSpriteShapeOffset 611
 #define GETSPRITESHAPEOFFSET_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITESHAPEOFFSET_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITESHAPEOFFSET_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetSpriteWorldCenter 611
+#define FN_GetSpriteWorldCenter 612
 #define GETSPRITEWORLDCENTER_SPR_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSPRITEWORLDCENTER_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSPRITEWORLDCENTER_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_createDistanceJoint 612
+#define FN_createDistanceJoint 613
 #define CREATEDISTANCEJOINT_SPRITEA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEDISTANCEJOINT_SPRITEB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEDISTANCEJOINT_AX num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -1837,22 +1840,22 @@
 #define CREATEDISTANCEJOINT_BX num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define CREATEDISTANCEJOINT_BY num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define CREATEDISTANCEJOINT_COLLIDE_CONNECT num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_createFrictionJoint 613
+#define FN_createFrictionJoint 614
 #define CREATEFRICTIONJOINT_SPRITEA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEFRICTIONJOINT_SPRITEB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEFRICTIONJOINT_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CREATEFRICTIONJOINT_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define CREATEFRICTIONJOINT_COLLIDE_CONNECT num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_createGearJoint 614
+#define FN_createGearJoint 615
 #define CREATEGEARJOINT_JOINTA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEGEARJOINT_JOINTB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEGEARJOINT_G_RATIO num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CREATEGEARJOINT_COLLIDE_CONNECT num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_createMotorJoint 615
+#define FN_createMotorJoint 616
 #define CREATEMOTORJOINT_SPRITEA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEMOTORJOINT_SPRITEB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEMOTORJOINT_COLLIDE_CONNECT num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_createPrismaticJoint 616
+#define FN_createPrismaticJoint 617
 #define CREATEPRISMATICJOINT_SPRITEA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEPRISMATICJOINT_SPRITEB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEPRISMATICJOINT_AX num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -1860,7 +1863,7 @@
 #define CREATEPRISMATICJOINT_AXISX num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define CREATEPRISMATICJOINT_AXISY num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define CREATEPRISMATICJOINT_COLLIDE_CONNECT num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_createPulleyJoint 617
+#define FN_createPulleyJoint 618
 #define CREATEPULLEYJOINT_SPRITEA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEPULLEYJOINT_SPRITEB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEPULLEYJOINT_GAX num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -1873,19 +1876,19 @@
 #define CREATEPULLEYJOINT_BY num_var[9].nref[0].value[ num_var[9].byref_offset ]
 #define CREATEPULLEYJOINT_J_RATIO num_var[10].nref[0].value[ num_var[10].byref_offset ]
 #define CREATEPULLEYJOINT_COLLIDE_CONNECT num_var[11].nref[0].value[ num_var[11].byref_offset ]
-#define FN_createRevoluteJoint 618
+#define FN_createRevoluteJoint 619
 #define CREATEREVOLUTEJOINT_SPRITEA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEREVOLUTEJOINT_SPRITEB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEREVOLUTEJOINT_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CREATEREVOLUTEJOINT_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define CREATEREVOLUTEJOINT_COLLIDE_CONNECT num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_createWeldJoint 619
+#define FN_createWeldJoint 620
 #define CREATEWELDJOINT_SPRITEA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEWELDJOINT_SPRITEB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEWELDJOINT_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CREATEWELDJOINT_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define CREATEWELDJOINT_COLLIDE_CONNECT num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_createWheelJoint 620
+#define FN_createWheelJoint 621
 #define CREATEWHEELJOINT_SPRITEA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEWHEELJOINT_SPRITEB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEWHEELJOINT_AX num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -1893,225 +1896,225 @@
 #define CREATEWHEELJOINT_AXISX num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define CREATEWHEELJOINT_AXISY num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define CREATEWHEELJOINT_COLLIDE_CONNECT num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_getJointWorldAnchorA 621
+#define FN_getJointWorldAnchorA 622
 #define GETJOINTWORLDANCHORA_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETJOINTWORLDANCHORA_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETJOINTWORLDANCHORA_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getJointWorldAnchorB 622
+#define FN_getJointWorldAnchorB 623
 #define GETJOINTWORLDANCHORB_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETJOINTWORLDANCHORB_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETJOINTWORLDANCHORB_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getJointReactionForce 623
+#define FN_getJointReactionForce 624
 #define GETJOINTREACTIONFORCE_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETJOINTREACTIONFORCE_INV_DT num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETJOINTREACTIONFORCE_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETJOINTREACTIONFORCE_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getJointReactionTorque 624
+#define FN_getJointReactionTorque 625
 #define GETJOINTREACTIONTORQUE_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETJOINTREACTIONTORQUE_INV_DT num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointLocalAnchorA 625
+#define FN_getJointLocalAnchorA 626
 #define GETJOINTLOCALANCHORA_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETJOINTLOCALANCHORA_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETJOINTLOCALANCHORA_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getJointLocalAnchorB 626
+#define FN_getJointLocalAnchorB 627
 #define GETJOINTLOCALANCHORB_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETJOINTLOCALANCHORB_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETJOINTLOCALANCHORB_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_setJointLength 627
+#define FN_setJointLength 628
 #define SETJOINTLENGTH_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTLENGTH_JLEN num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointLength 628
+#define FN_getJointLength 629
 #define GETJOINTLENGTH_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setJointMinLength 629
+#define FN_setJointMinLength 630
 #define SETJOINTMINLENGTH_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTMINLENGTH_JLEN num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointMinLength 630
+#define FN_getJointMinLength 631
 #define GETJOINTMINLENGTH_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setJointMaxLength 631
+#define FN_setJointMaxLength 632
 #define SETJOINTMAXLENGTH_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTMAXLENGTH_JLEN num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointMaxLength 632
+#define FN_getJointMaxLength 633
 #define GETJOINTMAXLENGTH_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getJointCurrentLength 633
+#define FN_getJointCurrentLength 634
 #define GETJOINTCURRENTLENGTH_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setJointStiffness 634
+#define FN_setJointStiffness 635
 #define SETJOINTSTIFFNESS_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTSTIFFNESS_STIFFNESS num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointStiffness 635
+#define FN_getJointStiffness 636
 #define GETJOINTSTIFFNESS_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setJointDamping 636
+#define FN_setJointDamping 637
 #define SETJOINTDAMPING_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTDAMPING_DAMPING num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointDamping 637
+#define FN_getJointDamping 638
 #define GETJOINTDAMPING_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setJointMaxForce 638
+#define FN_setJointMaxForce 639
 #define SETJOINTMAXFORCE_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTMAXFORCE_FORCE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointMaxForce 639
+#define FN_getJointMaxForce 640
 #define GETJOINTMAXFORCE_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setJointMaxTorque 640
+#define FN_setJointMaxTorque 641
 #define SETJOINTMAXTORQUE_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTMAXTORQUE_TORQUE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointMaxTorque 641
+#define FN_getJointMaxTorque 642
 #define GETJOINTMAXTORQUE_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setJointCorrectionFactor 642
+#define FN_setJointCorrectionFactor 643
 #define SETJOINTCORRECTIONFACTOR_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTCORRECTIONFACTOR_FACTOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointCorrectionFactor 643
+#define FN_getJointCorrectionFactor 644
 #define GETJOINTCORRECTIONFACTOR_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setJointRatio 644
+#define FN_setJointRatio 645
 #define SETJOINTRATIO_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTRATIO_J_RATIO num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointRatio 645
+#define FN_getJointRatio 646
 #define GETJOINTRATIO_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setJointLinearOffset 646
+#define FN_setJointLinearOffset 647
 #define SETJOINTLINEAROFFSET_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTLINEAROFFSET_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETJOINTLINEAROFFSET_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getJointLinearOffset 647
+#define FN_getJointLinearOffset 648
 #define GETJOINTLINEAROFFSET_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETJOINTLINEAROFFSET_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETJOINTLINEAROFFSET_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_setJointAngularOffset 648
+#define FN_setJointAngularOffset 649
 #define SETJOINTANGULAROFFSET_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTANGULAROFFSET_ANGLEOFFSET num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointAngularOffset 649
+#define FN_getJointAngularOffset 650
 #define GETJOINTANGULAROFFSET_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getJointLocalAxisA 650
+#define FN_getJointLocalAxisA 651
 #define GETJOINTLOCALAXISA_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETJOINTLOCALAXISA_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETJOINTLOCALAXISA_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getJointReferenceAngle 651
+#define FN_getJointReferenceAngle 652
 #define GETJOINTREFERENCEANGLE_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getJointTranslation 652
+#define FN_getJointTranslation 653
 #define GETJOINTTRANSLATION_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getJointSpeed 653
+#define FN_getJointSpeed 654
 #define GETJOINTSPEED_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_jointIsLimitEnabled 654
+#define FN_jointIsLimitEnabled 655
 #define JOINTISLIMITENABLED_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_enableJointLimit 655
+#define FN_enableJointLimit 656
 #define ENABLEJOINTLIMIT_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ENABLEJOINTLIMIT_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointLowerLimit 656
+#define FN_getJointLowerLimit 657
 #define GETJOINTLOWERLIMIT_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getJointUpperLimit 657
+#define FN_getJointUpperLimit 658
 #define GETJOINTUPPERLIMIT_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setJointLimits 658
+#define FN_setJointLimits 659
 #define SETJOINTLIMITS_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTLIMITS_LOWER_LIMIT num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETJOINTLIMITS_UPPER_LIMIT num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_jointMotorIsEnabled 659
+#define FN_jointMotorIsEnabled 660
 #define JOINTMOTORISENABLED_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_enableJointMotor 660
+#define FN_enableJointMotor 661
 #define ENABLEJOINTMOTOR_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ENABLEJOINTMOTOR_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setJointMotorSpeed 661
+#define FN_setJointMotorSpeed 662
 #define SETJOINTMOTORSPEED_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTMOTORSPEED_SPEED num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointMotorSpeed 662
+#define FN_getJointMotorSpeed 663
 #define GETJOINTMOTORSPEED_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setJointMaxMotorForce 663
+#define FN_setJointMaxMotorForce 664
 #define SETJOINTMAXMOTORFORCE_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTMAXMOTORFORCE_FORCE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointMaxMotorForce 664
+#define FN_getJointMaxMotorForce 665
 #define GETJOINTMAXMOTORFORCE_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getJointMotorForce 665
+#define FN_getJointMotorForce 666
 #define GETJOINTMOTORFORCE_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETJOINTMOTORFORCE_INV_DT num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setJointMaxMotorTorque 666
+#define FN_setJointMaxMotorTorque 667
 #define SETJOINTMAXMOTORTORQUE_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTMAXMOTORTORQUE_TORQUE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointMaxMotorTorque 667
+#define FN_getJointMaxMotorTorque 668
 #define GETJOINTMAXMOTORTORQUE_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getJointMotorTorque 668
+#define FN_getJointMotorTorque 669
 #define GETJOINTMOTORTORQUE_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETJOINTMOTORTORQUE_INV_DT num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getJointGroundAnchorA 669
+#define FN_getJointGroundAnchorA 670
 #define GETJOINTGROUNDANCHORA_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETJOINTGROUNDANCHORA_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETJOINTGROUNDANCHORA_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getJointGroundAnchorB 670
+#define FN_getJointGroundAnchorB 671
 #define GETJOINTGROUNDANCHORB_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETJOINTGROUNDANCHORB_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETJOINTGROUNDANCHORB_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getJointLengthA 671
+#define FN_getJointLengthA 672
 #define GETJOINTLENGTHA_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getJointLengthB 672
+#define FN_getJointLengthB 673
 #define GETJOINTLENGTHB_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getJointCurrentLengthA 673
+#define FN_getJointCurrentLengthA 674
 #define GETJOINTCURRENTLENGTHA_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getJointCurrentLengthB 674
+#define FN_getJointCurrentLengthB 675
 #define GETJOINTCURRENTLENGTHB_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setJointOrigin 675
+#define FN_setJointOrigin 676
 #define SETJOINTORIGIN_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETJOINTORIGIN_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETJOINTORIGIN_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getJointAngle 676
+#define FN_getJointAngle 677
 #define GETJOINTANGLE_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getJointLinearSpeed 677
+#define FN_getJointLinearSpeed 678
 #define GETJOINTLINEARSPEED_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getJointAngularSpeed 678
+#define FN_getJointAngularSpeed 679
 #define GETJOINTANGULARSPEED_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_DeleteJoint 679
+#define FN_DeleteJoint 680
 #define DELETEJOINT_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_JointExists 680
+#define FN_JointExists 681
 #define JOINTEXISTS_JOINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_CreateTileSet 681
+#define FN_CreateTileSet 682
 #define CREATETILESET_IMG_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATETILESET_TILE_W num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATETILESET_TILE_H num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetTileAnimationLength 682
+#define FN_SetTileAnimationLength 683
 #define SETTILEANIMATIONLENGTH_TILESET num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETTILEANIMATIONLENGTH_BASE_TILE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETTILEANIMATIONLENGTH_NUM_FRAMES num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetTileAnimationLength 683
+#define FN_GetTileAnimationLength 684
 #define GETTILEANIMATIONLENGTH_TILESET num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETTILEANIMATIONLENGTH_BASE_TILE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetTileAnimationFrame 684
+#define FN_SetTileAnimationFrame 685
 #define SETTILEANIMATIONFRAME_TILESET num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETTILEANIMATIONFRAME_BASE_TILE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETTILEANIMATIONFRAME_ANIM_FRAME num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETTILEANIMATIONFRAME_TILE_FRAME num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetTileAnimationFrame 685
+#define FN_GetTileAnimationFrame 686
 #define GETTILEANIMATIONFRAME_TILESET num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETTILEANIMATIONFRAME_BASE_TILE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETTILEANIMATIONFRAME_ANIM_FRAME num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetTileAnimationSpeed 686
+#define FN_SetTileAnimationSpeed 687
 #define SETTILEANIMATIONSPEED_TILESET num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETTILEANIMATIONSPEED_BASE_TILE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETTILEANIMATIONSPEED_SPEED num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetTileAnimationSpeed 687
+#define FN_GetTileAnimationSpeed 688
 #define GETTILEANIMATIONSPEED_TILESET num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETTILEANIMATIONSPEED_BASE_TILE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_CreateTileMap 688
+#define FN_CreateTileMap 689
 #define CREATETILEMAP_TILESET num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATETILEMAP_WIDTHINTILES num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATETILEMAP_HEIGHTINTILES num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetTileMapSize 689
+#define FN_SetTileMapSize 690
 #define SETTILEMAPSIZE_TILEMAP num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETTILEMAPSIZE_WIDTHINTILES num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETTILEMAPSIZE_HEIGHTINTILES num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetTileMapSize 690
+#define FN_GetTileMapSize 691
 #define GETTILEMAPSIZE_TILEMAP num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETTILEMAPSIZE_WIDTHINTILES num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETTILEMAPSIZE_HEIGHTINTILES num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetTile 691
+#define FN_SetTile 692
 #define SETTILE_TILEMAP num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETTILE_TILE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETTILE_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETTILE_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetTile 692
+#define FN_GetTile 693
 #define GETTILE_TILEMAP num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETTILE_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETTILE_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_FillTile 693
+#define FN_FillTile 694
 #define FILLTILE_TILEMAP num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define FILLTILE_TILE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define FILLTILE_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define FILLTILE_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define FILLTILE_WIDTHINTILES num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define FILLTILE_HEIGHTINTILES num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_DrawTileMap 694
+#define FN_DrawTileMap 695
 #define DRAWTILEMAP_TILEMAP num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DRAWTILEMAP_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define DRAWTILEMAP_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2119,20 +2122,20 @@
 #define DRAWTILEMAP_H num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define DRAWTILEMAP_OFFSET_X num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define DRAWTILEMAP_OFFSET_Y num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_DeleteTileSet 695
+#define FN_DeleteTileSet 696
 #define DELETETILESET_TILESET num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_DeleteTileMap 696
+#define FN_DeleteTileMap 697
 #define DELETETILEMAP_TILEMAP num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_TileSetExists 697
+#define FN_TileSetExists 698
 #define TILESETEXISTS_TILESET num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_TileMapExists 698
+#define FN_TileMapExists 699
 #define TILEMAPEXISTS_TILEMAP num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_LoadMesh 699
+#define FN_LoadMesh 700
 #define LOADMESH_MESH_FILE$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_DeleteMesh 700
+#define FN_DeleteMesh 701
 #define DELETEMESH_MESH num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_CreateMesh 701
-#define FN_AddMeshBuffer 702
+#define FN_CreateMesh 702
+#define FN_AddMeshBuffer 703
 #define ADDMESHBUFFER_MESH num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ADDMESHBUFFER_VERTEX_COUNT num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define ADDMESHBUFFER_VERTEX_DATA num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2140,39 +2143,39 @@
 #define ADDMESHBUFFER_UV_DATA num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define ADDMESHBUFFER_INDEX_COUNT num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define ADDMESHBUFFER_INDEX_DATA num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_LoadMeshFromArchive 703
+#define FN_LoadMeshFromArchive 704
 #define LOADMESHFROMARCHIVE_ARCHIVE$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define LOADMESHFROMARCHIVE_MESH_FILE$ str_var[1].sref[0].value[ str_var[1].byref_offset ]
-#define FN_CreatePlaneMesh 704
+#define FN_CreatePlaneMesh 705
 #define CREATEPLANEMESH_W num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEPLANEMESH_H num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEPLANEMESH_TILECOUNT_W num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CREATEPLANEMESH_TILECOUNT_H num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define CREATEPLANEMESH_TXREPEAT_X num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define CREATEPLANEMESH_TXREPEAT_Y num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_LoadAN8 705
+#define FN_LoadAN8 706
 #define LOADAN8_AN8_FILE$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_LoadMeshFromAN8 706
+#define FN_LoadMeshFromAN8 707
 #define LOADMESHFROMAN8_AN8_PROJECT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define LOADMESHFROMAN8_AN8_SCENE$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_GetNumAN8Scenes 707
+#define FN_GetNumAN8Scenes 708
 #define GETNUMAN8SCENES_AN8_PROJECT num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetAN8SceneName$ 708
+#define FN_GetAN8SceneName$ 709
 #define GETAN8SCENENAME$_AN8_PROJECT num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETAN8SCENENAME$_SCENE_NUM num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_CreateConeMesh 709
+#define FN_CreateConeMesh 710
 #define CREATECONEMESH_RADIUS num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATECONEMESH_CONE_LENGTH num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATECONEMESH_TESSELATION num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CREATECONEMESH_TOP_COLOR num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define CREATECONEMESH_BOTTOM_COLOR num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_CreateCylinderMesh 710
+#define FN_CreateCylinderMesh 711
 #define CREATECYLINDERMESH_RADIUS num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATECYLINDERMESH_CYLINDER_LENGTH num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATECYLINDERMESH_TESSELATION num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CREATECYLINDERMESH_COLOR num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define CREATECYLINDERMESH_CLOSE_TOP num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_CreateVolumeLightMesh 711
+#define FN_CreateVolumeLightMesh 712
 #define CREATEVOLUMELIGHTMESH_U num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEVOLUMELIGHTMESH_V num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEVOLUMELIGHTMESH_FOOT_COLOR num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2181,9 +2184,9 @@
 #define CREATEVOLUMELIGHTMESH_DIM_X num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define CREATEVOLUMELIGHTMESH_DIM_Y num_var[6].nref[0].value[ num_var[6].byref_offset ]
 #define CREATEVOLUMELIGHTMESH_DIM_Z num_var[7].nref[0].value[ num_var[7].byref_offset ]
-#define FN_DeleteAN8 712
+#define FN_DeleteAN8 713
 #define DELETEAN8_AN8_PROJECT num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetMeshBoundingBox 713
+#define FN_SetMeshBoundingBox 714
 #define SETMESHBOUNDINGBOX_MESH num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMESHBOUNDINGBOX_MIN_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMESHBOUNDINGBOX_MIN_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2191,7 +2194,7 @@
 #define SETMESHBOUNDINGBOX_MAX_X num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define SETMESHBOUNDINGBOX_MAX_Y num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define SETMESHBOUNDINGBOX_MAX_Z num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_GetMeshBoundingBox 714
+#define FN_GetMeshBoundingBox 715
 #define GETMESHBOUNDINGBOX_MESH num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMESHBOUNDINGBOX_MIN_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETMESHBOUNDINGBOX_MIN_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2199,18 +2202,18 @@
 #define GETMESHBOUNDINGBOX_MAX_X num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define GETMESHBOUNDINGBOX_MAX_Y num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define GETMESHBOUNDINGBOX_MAX_Z num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_ReCalculateMeshBoundingBox 715
+#define FN_ReCalculateMeshBoundingBox 716
 #define RECALCULATEMESHBOUNDINGBOX_MESH num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_MakePlanarTextureMap 716
+#define FN_MakePlanarTextureMap 717
 #define MAKEPLANARTEXTUREMAP_MESH num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define MAKEPLANARTEXTUREMAP_RESOLUTION num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_ReCalculateMeshNormals 717
+#define FN_ReCalculateMeshNormals 718
 #define RECALCULATEMESHNORMALS_MESH num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetMeshPolygonCount 718
+#define FN_GetMeshPolygonCount 719
 #define GETMESHPOLYGONCOUNT_MESH num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_FlipMeshSurfaces 719
+#define FN_FlipMeshSurfaces 720
 #define FLIPMESHSURFACES_MESH num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetMeshBuffer 720
+#define FN_SetMeshBuffer 721
 #define SETMESHBUFFER_MESH_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMESHBUFFER_BUFFER_NUM num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMESHBUFFER_VERTEX_COUNT num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2219,313 +2222,313 @@
 #define SETMESHBUFFER_UV_DATA num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define SETMESHBUFFER_INDEX_COUNT num_var[6].nref[0].value[ num_var[6].byref_offset ]
 #define SETMESHBUFFER_INDEX_DATA num_var[7].nref[0].value[ num_var[7].byref_offset ]
-#define FN_GetMeshBufferCount 721
+#define FN_GetMeshBufferCount 722
 #define GETMESHBUFFERCOUNT_MESH_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetMeshBufferVertexCount 722
+#define FN_GetMeshBufferVertexCount 723
 #define GETMESHBUFFERVERTEXCOUNT_MESH_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMESHBUFFERVERTEXCOUNT_BUFFER_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetMeshBufferIndexCount 723
+#define FN_GetMeshBufferIndexCount 724
 #define GETMESHBUFFERINDEXCOUNT_MESH_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMESHBUFFERINDEXCOUNT_BUFFER_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetMeshBuffer 724
+#define FN_GetMeshBuffer 725
 #define GETMESHBUFFER_MESH_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMESHBUFFER_BUFFER_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETMESHBUFFER_VERTEX_DATA num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETMESHBUFFER_NORMAL_DATA num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETMESHBUFFER_UV_DATA num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define GETMESHBUFFER_INDEX_DATA num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_CreateAnimatedActor 725
+#define FN_CreateAnimatedActor 726
 #define CREATEANIMATEDACTOR_MESH num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_CreateOctreeActor 726
+#define FN_CreateOctreeActor 727
 #define CREATEOCTREEACTOR_MESH num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_CreateCubeActor 727
+#define FN_CreateCubeActor 728
 #define CREATECUBEACTOR_CUBE_SIZE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_CreateSphereActor 728
+#define FN_CreateSphereActor 729
 #define CREATESPHEREACTOR_RADIUS num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_CreateWaterActor 729
+#define FN_CreateWaterActor 730
 #define CREATEWATERACTOR_MESH num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEWATERACTOR_WAVEHEIGHT num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEWATERACTOR_WAVESPEED num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CREATEWATERACTOR_WAVELENGTH num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_CreateLightActor 730
-#define FN_CreateBillboardActor 731
-#define FN_CreateTerrainActor 732
+#define FN_CreateLightActor 731
+#define FN_CreateBillboardActor 732
+#define FN_CreateTerrainActor 733
 #define CREATETERRAINACTOR_HMAP_FILE$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_CreateParticleActor 733
+#define FN_CreateParticleActor 734
 #define CREATEPARTICLEACTOR_PARTICLE_TYPE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_CreateProjectorActor 734
-#define FN_CreateCompositeActor 735
-#define FN_CreateVehicleActor 736
+#define FN_CreateProjectorActor 735
+#define FN_CreateCompositeActor 736
+#define FN_CreateVehicleActor 737
 #define CREATEVEHICLEACTOR_CHASSIS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_DeleteActor 737
+#define FN_DeleteActor 738
 #define DELETEACTOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetActorTransform 738
+#define FN_GetActorTransform 739
 #define GETACTORTRANSFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORTRANSFORM_MATRIX num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetActorPosition 739
+#define FN_SetActorPosition 740
 #define SETACTORPOSITION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORPOSITION_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORPOSITION_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETACTORPOSITION_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_TranslateActorLocal 740
+#define FN_TranslateActorLocal 741
 #define TRANSLATEACTORLOCAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define TRANSLATEACTORLOCAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define TRANSLATEACTORLOCAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define TRANSLATEACTORLOCAL_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_TranslateActorWorld 741
+#define FN_TranslateActorWorld 742
 #define TRANSLATEACTORWORLD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define TRANSLATEACTORWORLD_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define TRANSLATEACTORWORLD_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define TRANSLATEACTORWORLD_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetActorPosition 742
+#define FN_GetActorPosition 743
 #define GETACTORPOSITION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORPOSITION_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORPOSITION_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORPOSITION_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetActorScale 743
+#define FN_SetActorScale 744
 #define SETACTORSCALE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORSCALE_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORSCALE_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETACTORSCALE_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_ScaleActor 744
+#define FN_ScaleActor 745
 #define SCALEACTOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SCALEACTOR_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SCALEACTOR_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SCALEACTOR_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetActorScale 745
+#define FN_GetActorScale 746
 #define GETACTORSCALE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORSCALE_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORSCALE_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORSCALE_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetActorRotation 746
+#define FN_SetActorRotation 747
 #define SETACTORROTATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORROTATION_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORROTATION_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETACTORROTATION_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_RotateActor 747
+#define FN_RotateActor 748
 #define ROTATEACTOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ROTATEACTOR_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define ROTATEACTOR_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define ROTATEACTOR_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetActorRotation 748
+#define FN_GetActorRotation 749
 #define GETACTORROTATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORROTATION_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORROTATION_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORROTATION_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetActorVisible 749
+#define FN_SetActorVisible 750
 #define SETACTORVISIBLE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORVISIBLE_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_ActorIsVisible 750
+#define FN_ActorIsVisible 751
 #define ACTORISVISIBLE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetActorAutoCulling 751
+#define FN_SetActorAutoCulling 752
 #define SETACTORAUTOCULLING_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORAUTOCULLING_CULL_TYPE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetActorAutoCulling 752
+#define FN_GetActorAutoCulling 753
 #define GETACTORAUTOCULLING_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_AddActorShadow 753
+#define FN_AddActorShadow 754
 #define ADDACTORSHADOW_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_RemoveActorShadow 754
+#define FN_RemoveActorShadow 755
 #define REMOVEACTORSHADOW_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_ActorExists 755
+#define FN_ActorExists 756
 #define ACTOREXISTS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetActorType 756
+#define FN_GetActorType 757
 #define GETACTORTYPE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_CreateActorAnimation 757
+#define FN_CreateActorAnimation 758
 #define CREATEACTORANIMATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEACTORANIMATION_START_FRAME num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEACTORANIMATION_END_FRAME num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CREATEACTORANIMATION_SPEED num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetActorAnimation 758
+#define FN_SetActorAnimation 759
 #define SETACTORANIMATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORANIMATION_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORANIMATION_NUM_LOOPS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetActorAnimationSpeed 759
+#define FN_SetActorAnimationSpeed 760
 #define SETACTORANIMATIONSPEED_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORANIMATIONSPEED_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORANIMATIONSPEED_SPEED num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetActorAnimationFrames 760
+#define FN_SetActorAnimationFrames 761
 #define SETACTORANIMATIONFRAMES_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORANIMATIONFRAMES_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORANIMATIONFRAMES_START_FRAME num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETACTORANIMATIONFRAMES_END_FRAME num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetActorCurrentAnimation 761
+#define FN_GetActorCurrentAnimation 762
 #define GETACTORCURRENTANIMATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetActorAnimationSpeed 762
+#define FN_GetActorAnimationSpeed 763
 #define GETACTORANIMATIONSPEED_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORANIMATIONSPEED_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetActorAnimationStartFrame 763
+#define FN_GetActorAnimationStartFrame 764
 #define GETACTORANIMATIONSTARTFRAME_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORANIMATIONSTARTFRAME_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetActorAnimationEndFrame 764
+#define FN_GetActorAnimationEndFrame 765
 #define GETACTORANIMATIONENDFRAME_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORANIMATIONENDFRAME_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetActorFrame 765
+#define FN_SetActorFrame 766
 #define SETACTORFRAME_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORFRAME_FRAME num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetActorFrame 766
+#define FN_GetActorFrame 767
 #define GETACTORFRAME_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_ActorAnimationIsPlaying 767
+#define FN_ActorAnimationIsPlaying 768
 #define ACTORANIMATIONISPLAYING_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_NumActorAnimationLoops 768
+#define FN_NumActorAnimationLoops 769
 #define NUMACTORANIMATIONLOOPS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetActorMD2Animation 769
+#define FN_SetActorMD2Animation 770
 #define SETACTORMD2ANIMATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORMD2ANIMATION_ANIM num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORMD2ANIMATION_NUM_LOOPS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetActorMD2AnimationByName 770
+#define FN_SetActorMD2AnimationByName 771
 #define SETACTORMD2ANIMATIONBYNAME_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORMD2ANIMATIONBYNAME_ANIM_NAME$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define SETACTORMD2ANIMATIONBYNAME_NUM_LOOPS num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_DeleteActorAnimation 771
+#define FN_DeleteActorAnimation 772
 #define DELETEACTORANIMATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define DELETEACTORANIMATION_ANIMATION num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetActorBoneCount 772
+#define FN_GetActorBoneCount 773
 #define GETACTORBONECOUNT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetActorBoneIndex 773
+#define FN_GetActorBoneIndex 774
 #define GETACTORBONEINDEX_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORBONEINDEX_BONE_NAME$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
-#define FN_GetActorBoneName$ 774
+#define FN_GetActorBoneName$ 775
 #define GETACTORBONENAME$_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORBONENAME$_BONE_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetActorBonePosition 775
+#define FN_GetActorBonePosition 776
 #define GETACTORBONEPOSITION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORBONEPOSITION_BONE_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORBONEPOSITION_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORBONEPOSITION_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETACTORBONEPOSITION_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_GetActorBoneRotation 776
+#define FN_GetActorBoneRotation 777
 #define GETACTORBONEROTATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORBONEROTATION_BONE_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORBONEROTATION_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORBONEROTATION_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETACTORBONEROTATION_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_GetActorBoneScale 777
+#define FN_GetActorBoneScale 778
 #define GETACTORBONESCALE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORBONESCALE_BONE_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORBONESCALE_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORBONESCALE_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETACTORBONESCALE_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_GetActorBoneRelativeTranform 778
+#define FN_GetActorBoneRelativeTranform 779
 #define GETACTORBONERELATIVETRANFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORBONERELATIVETRANFORM_BONE_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORBONERELATIVETRANFORM_T_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetActorBoneAbsoluteTranform 779
+#define FN_GetActorBoneAbsoluteTranform 780
 #define GETACTORBONEABSOLUTETRANFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORBONEABSOLUTETRANFORM_BONE_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORBONEABSOLUTETRANFORM_T_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetGravity3D 780
+#define FN_SetGravity3D 781
 #define SETGRAVITY3D_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETGRAVITY3D_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETGRAVITY3D_Z num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetGravity3D 781
+#define FN_GetGravity3D 782
 #define GETGRAVITY3D_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETGRAVITY3D_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETGRAVITY3D_Z num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetActorShape 782
+#define FN_SetActorShape 783
 #define SETACTORSHAPE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORSHAPE_SHAPE_TYPE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORSHAPE_MASS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetActorShape 783
+#define FN_GetActorShape 784
 #define GETACTORSHAPE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetActorSolid 784
+#define FN_SetActorSolid 785
 #define SETACTORSOLID_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORSOLID_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_ActorIsSolid 785
+#define FN_ActorIsSolid 786
 #define ACTORISSOLID_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetActorCollision 786
+#define FN_GetActorCollision 787
 #define GETACTORCOLLISION_ACTOR1 num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORCOLLISION_ACTOR2 num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetActorGravity 787
+#define FN_SetActorGravity 788
 #define SETACTORGRAVITY_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORGRAVITY_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORGRAVITY_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETACTORGRAVITY_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetActorGravity 788
+#define FN_GetActorGravity 789
 #define GETACTORGRAVITY_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORGRAVITY_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORGRAVITY_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORGRAVITY_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_setActorDamping 789
+#define FN_setActorDamping 790
 #define SETACTORDAMPING_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORDAMPING_LIN_DAMPING num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORDAMPING_ANG_DAMPING num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getActorLinearDamping 790
+#define FN_getActorLinearDamping 791
 #define GETACTORLINEARDAMPING_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getActorAngularDamping 791
+#define FN_getActorAngularDamping 792
 #define GETACTORANGULARDAMPING_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getActorLinearSleepThreshold 792
+#define FN_getActorLinearSleepThreshold 793
 #define GETACTORLINEARSLEEPTHRESHOLD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getActorAngularSleepThreshold 793
+#define FN_getActorAngularSleepThreshold 794
 #define GETACTORANGULARSLEEPTHRESHOLD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_applyActorDamping 794
+#define FN_applyActorDamping 795
 #define APPLYACTORDAMPING_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYACTORDAMPING_TIMESTEP num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setActorMassProperties 795
+#define FN_setActorMassProperties 796
 #define SETACTORMASSPROPERTIES_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORMASSPROPERTIES_MASS num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORMASSPROPERTIES_INERTIA_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETACTORMASSPROPERTIES_INERTIA_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define SETACTORMASSPROPERTIES_INERTIA_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_getActorLinearFactor 796
+#define FN_getActorLinearFactor 797
 #define GETACTORLINEARFACTOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORLINEARFACTOR_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORLINEARFACTOR_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORLINEARFACTOR_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_setActorLinearFactor 797
+#define FN_setActorLinearFactor 798
 #define SETACTORLINEARFACTOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORLINEARFACTOR_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORLINEARFACTOR_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETACTORLINEARFACTOR_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getActorInverseMass 798
+#define FN_getActorInverseMass 799
 #define GETACTORINVERSEMASS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_integrateActorVelocities 799
+#define FN_integrateActorVelocities 800
 #define INTEGRATEACTORVELOCITIES_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define INTEGRATEACTORVELOCITIES_V_STEP num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_applyActorCentralForceLocal 800
+#define FN_applyActorCentralForceLocal 801
 #define APPLYACTORCENTRALFORCELOCAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYACTORCENTRALFORCELOCAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYACTORCENTRALFORCELOCAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define APPLYACTORCENTRALFORCELOCAL_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_applyActorCentralForceWorld 801
+#define FN_applyActorCentralForceWorld 802
 #define APPLYACTORCENTRALFORCEWORLD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYACTORCENTRALFORCEWORLD_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYACTORCENTRALFORCEWORLD_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define APPLYACTORCENTRALFORCEWORLD_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getActorTotalForce 802
+#define FN_getActorTotalForce 803
 #define GETACTORTOTALFORCE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORTOTALFORCE_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORTOTALFORCE_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORTOTALFORCE_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getActorTotalTorque 803
+#define FN_getActorTotalTorque 804
 #define GETACTORTOTALTORQUE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORTOTALTORQUE_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORTOTALTORQUE_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORTOTALTORQUE_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getActorInverseInertiaDiagLocal 804
+#define FN_getActorInverseInertiaDiagLocal 805
 #define GETACTORINVERSEINERTIADIAGLOCAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORINVERSEINERTIADIAGLOCAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORINVERSEINERTIADIAGLOCAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORINVERSEINERTIADIAGLOCAL_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_setActorInverseInertiaDiagLocal 805
+#define FN_setActorInverseInertiaDiagLocal 806
 #define SETACTORINVERSEINERTIADIAGLOCAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORINVERSEINERTIADIAGLOCAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORINVERSEINERTIADIAGLOCAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETACTORINVERSEINERTIADIAGLOCAL_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_setActorSleepThresholds 806
+#define FN_setActorSleepThresholds 807
 #define SETACTORSLEEPTHRESHOLDS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORSLEEPTHRESHOLDS_LINEAR num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORSLEEPTHRESHOLDS_ANGULAR num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_applyActorTorqueLocal 807
+#define FN_applyActorTorqueLocal 808
 #define APPLYACTORTORQUELOCAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYACTORTORQUELOCAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYACTORTORQUELOCAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define APPLYACTORTORQUELOCAL_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_applyActorTorqueWorld 808
+#define FN_applyActorTorqueWorld 809
 #define APPLYACTORTORQUEWORLD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYACTORTORQUEWORLD_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYACTORTORQUEWORLD_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define APPLYACTORTORQUEWORLD_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_applyActorForceLocal 809
+#define FN_applyActorForceLocal 810
 #define APPLYACTORFORCELOCAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYACTORFORCELOCAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYACTORFORCELOCAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2533,7 +2536,7 @@
 #define APPLYACTORFORCELOCAL_REL_X num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define APPLYACTORFORCELOCAL_REL_Y num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define APPLYACTORFORCELOCAL_REL_Z num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_applyActorForceWorld 810
+#define FN_applyActorForceWorld 811
 #define APPLYACTORFORCEWORLD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYACTORFORCEWORLD_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYACTORFORCEWORLD_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2541,27 +2544,27 @@
 #define APPLYACTORFORCEWORLD_REL_X num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define APPLYACTORFORCEWORLD_REL_Y num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define APPLYACTORFORCEWORLD_REL_Z num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_applyActorCentralImpulseLocal 811
+#define FN_applyActorCentralImpulseLocal 812
 #define APPLYACTORCENTRALIMPULSELOCAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYACTORCENTRALIMPULSELOCAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYACTORCENTRALIMPULSELOCAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define APPLYACTORCENTRALIMPULSELOCAL_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_applyActorCentralImpulseWorld 812
+#define FN_applyActorCentralImpulseWorld 813
 #define APPLYACTORCENTRALIMPULSEWORLD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYACTORCENTRALIMPULSEWORLD_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYACTORCENTRALIMPULSEWORLD_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define APPLYACTORCENTRALIMPULSEWORLD_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_applyActorTorqueImpulseLocal 813
+#define FN_applyActorTorqueImpulseLocal 814
 #define APPLYACTORTORQUEIMPULSELOCAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYACTORTORQUEIMPULSELOCAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYACTORTORQUEIMPULSELOCAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define APPLYACTORTORQUEIMPULSELOCAL_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_applyActorTorqueImpulseWorld 814
+#define FN_applyActorTorqueImpulseWorld 815
 #define APPLYACTORTORQUEIMPULSEWORLD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYACTORTORQUEIMPULSEWORLD_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYACTORTORQUEIMPULSEWORLD_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define APPLYACTORTORQUEIMPULSEWORLD_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_applyActorImpulseLocal 815
+#define FN_applyActorImpulseLocal 816
 #define APPLYACTORIMPULSELOCAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYACTORIMPULSELOCAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYACTORIMPULSELOCAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2569,7 +2572,7 @@
 #define APPLYACTORIMPULSELOCAL_REL_X num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define APPLYACTORIMPULSELOCAL_REL_Y num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define APPLYACTORIMPULSELOCAL_REL_Z num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_applyActorImpulseWorld 816
+#define FN_applyActorImpulseWorld 817
 #define APPLYACTORIMPULSEWORLD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYACTORIMPULSEWORLD_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYACTORIMPULSEWORLD_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2577,52 +2580,52 @@
 #define APPLYACTORIMPULSEWORLD_REL_X num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define APPLYACTORIMPULSEWORLD_REL_Y num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define APPLYACTORIMPULSEWORLD_REL_Z num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_clearActorForces 817
+#define FN_clearActorForces 818
 #define CLEARACTORFORCES_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_updateActorInertiaTensor 818
+#define FN_updateActorInertiaTensor 819
 #define UPDATEACTORINERTIATENSOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getActorCenter 819
+#define FN_getActorCenter 820
 #define GETACTORCENTER_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORCENTER_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORCENTER_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORCENTER_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getActorRotationQ 820
+#define FN_getActorRotationQ 821
 #define GETACTORROTATIONQ_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORROTATIONQ_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORROTATIONQ_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORROTATIONQ_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETACTORROTATIONQ_W num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_getActorLinearVelocityWorld 821
+#define FN_getActorLinearVelocityWorld 822
 #define GETACTORLINEARVELOCITYWORLD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORLINEARVELOCITYWORLD_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORLINEARVELOCITYWORLD_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORLINEARVELOCITYWORLD_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getActorAngularVelocityWorld 822
+#define FN_getActorAngularVelocityWorld 823
 #define GETACTORANGULARVELOCITYWORLD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORANGULARVELOCITYWORLD_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORANGULARVELOCITYWORLD_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORANGULARVELOCITYWORLD_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_setActorLinearVelocityLocal 823
+#define FN_setActorLinearVelocityLocal 824
 #define SETACTORLINEARVELOCITYLOCAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORLINEARVELOCITYLOCAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORLINEARVELOCITYLOCAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETACTORLINEARVELOCITYLOCAL_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_setActorLinearVelocityWorld 824
+#define FN_setActorLinearVelocityWorld 825
 #define SETACTORLINEARVELOCITYWORLD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORLINEARVELOCITYWORLD_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORLINEARVELOCITYWORLD_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETACTORLINEARVELOCITYWORLD_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_setActorAngularVelocityLocal 825
+#define FN_setActorAngularVelocityLocal 826
 #define SETACTORANGULARVELOCITYLOCAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORANGULARVELOCITYLOCAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORANGULARVELOCITYLOCAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETACTORANGULARVELOCITYLOCAL_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_setActorAngularVelocityWorld 826
+#define FN_setActorAngularVelocityWorld 827
 #define SETACTORANGULARVELOCITYWORLD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORANGULARVELOCITYWORLD_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORANGULARVELOCITYWORLD_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETACTORANGULARVELOCITYWORLD_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getActorVelocityInLocalPoint 827
+#define FN_getActorVelocityInLocalPoint 828
 #define GETACTORVELOCITYINLOCALPOINT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORVELOCITYINLOCALPOINT_REL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORVELOCITYINLOCALPOINT_REL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2630,17 +2633,17 @@
 #define GETACTORVELOCITYINLOCALPOINT_X num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define GETACTORVELOCITYINLOCALPOINT_Y num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define GETACTORVELOCITYINLOCALPOINT_Z num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_getActorLinearVelocityLocal 828
+#define FN_getActorLinearVelocityLocal 829
 #define GETACTORLINEARVELOCITYLOCAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORLINEARVELOCITYLOCAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORLINEARVELOCITYLOCAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORLINEARVELOCITYLOCAL_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getActorAngularVelocityLocal 829
+#define FN_getActorAngularVelocityLocal 830
 #define GETACTORANGULARVELOCITYLOCAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORANGULARVELOCITYLOCAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORANGULARVELOCITYLOCAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORANGULARVELOCITYLOCAL_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getActorAABB 830
+#define FN_getActorAABB 831
 #define GETACTORAABB_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORAABB_MIN_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORAABB_MIN_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2648,7 +2651,7 @@
 #define GETACTORAABB_MAX_X num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define GETACTORAABB_MAX_Y num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define GETACTORAABB_MAX_Z num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_computeActorImpulseDenominator 831
+#define FN_computeActorImpulseDenominator 832
 #define COMPUTEACTORIMPULSEDENOMINATOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define COMPUTEACTORIMPULSEDENOMINATOR_POS_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define COMPUTEACTORIMPULSEDENOMINATOR_POS_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2656,56 +2659,56 @@
 #define COMPUTEACTORIMPULSEDENOMINATOR_NORMAL_X num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define COMPUTEACTORIMPULSEDENOMINATOR_NORMAL_Y num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define COMPUTEACTORIMPULSEDENOMINATOR_NORMAL_Z num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_computeActorAngularImpulseDenominator 832
+#define FN_computeActorAngularImpulseDenominator 833
 #define COMPUTEACTORANGULARIMPULSEDENOMINATOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define COMPUTEACTORANGULARIMPULSEDENOMINATOR_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define COMPUTEACTORANGULARIMPULSEDENOMINATOR_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define COMPUTEACTORANGULARIMPULSEDENOMINATOR_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_setActorAngularFactor 833
+#define FN_setActorAngularFactor 834
 #define SETACTORANGULARFACTOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORANGULARFACTOR_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORANGULARFACTOR_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETACTORANGULARFACTOR_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getActorAngularFactor 834
+#define FN_getActorAngularFactor 835
 #define GETACTORANGULARFACTOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORANGULARFACTOR_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORANGULARFACTOR_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORANGULARFACTOR_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_computeActorGyroImpulseLocal 835
+#define FN_computeActorGyroImpulseLocal 836
 #define COMPUTEACTORGYROIMPULSELOCAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define COMPUTEACTORGYROIMPULSELOCAL_DT num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define COMPUTEACTORGYROIMPULSELOCAL_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define COMPUTEACTORGYROIMPULSELOCAL_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define COMPUTEACTORGYROIMPULSELOCAL_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_computeActorGyroImpulseWorld 836
+#define FN_computeActorGyroImpulseWorld 837
 #define COMPUTEACTORGYROIMPULSEWORLD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define COMPUTEACTORGYROIMPULSEWORLD_DT num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define COMPUTEACTORGYROIMPULSEWORLD_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define COMPUTEACTORGYROIMPULSEWORLD_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define COMPUTEACTORGYROIMPULSEWORLD_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_getActorLocalInertia 837
+#define FN_getActorLocalInertia 838
 #define GETACTORLOCALINERTIA_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORLOCALINERTIA_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORLOCALINERTIA_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETACTORLOCALINERTIA_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetActorSleepState 838
+#define FN_SetActorSleepState 839
 #define SETACTORSLEEPSTATE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORSLEEPSTATE_STATE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_CastRay3D 839
+#define FN_CastRay3D 840
 #define CASTRAY3D_FROM_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CASTRAY3D_FROM_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CASTRAY3D_FROM_Z num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CASTRAY3D_TO_X num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define CASTRAY3D_TO_Y num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define CASTRAY3D_TO_Z num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_CastRay3D_All 840
+#define FN_CastRay3D_All 841
 #define CASTRAY3D_ALL_FROM_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CASTRAY3D_ALL_FROM_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CASTRAY3D_ALL_FROM_Z num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CASTRAY3D_ALL_TO_X num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define CASTRAY3D_ALL_TO_Y num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define CASTRAY3D_ALL_TO_Z num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_GetRayHit3D 841
+#define FN_GetRayHit3D 842
 #define GETRAYHIT3D_INDEX num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETRAYHIT3D_ACTOR_ID num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETRAYHIT3D_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2714,21 +2717,21 @@
 #define GETRAYHIT3D_NORMAL_X num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define GETRAYHIT3D_NORMAL_Y num_var[6].nref[0].value[ num_var[6].byref_offset ]
 #define GETRAYHIT3D_NORMAL_Z num_var[7].nref[0].value[ num_var[7].byref_offset ]
-#define FN_SetActorShapeEx 842
+#define FN_SetActorShapeEx 843
 #define SETACTORSHAPEEX_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORSHAPEEX_SHAPE_TYPE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORSHAPEEX_MASS num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETACTORSHAPEEX_RADIUS num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetActorImpactMesh 843
+#define FN_SetActorImpactMesh 844
 #define SETACTORIMPACTMESH_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORIMPACTMESH_MESH num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORIMPACTMESH_MASS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_createPointConstraint 844
+#define FN_createPointConstraint 845
 #define CREATEPOINTCONSTRAINT_ACTORA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEPOINTCONSTRAINT_PXA num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEPOINTCONSTRAINT_PYA num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CREATEPOINTCONSTRAINT_PZA num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_createPointConstraintEx 845
+#define FN_createPointConstraintEx 846
 #define CREATEPOINTCONSTRAINTEX_ACTORA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEPOINTCONSTRAINTEX_ACTORB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEPOINTCONSTRAINTEX_PXA num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2737,47 +2740,47 @@
 #define CREATEPOINTCONSTRAINTEX_PXB num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define CREATEPOINTCONSTRAINTEX_PYB num_var[6].nref[0].value[ num_var[6].byref_offset ]
 #define CREATEPOINTCONSTRAINTEX_PZB num_var[7].nref[0].value[ num_var[7].byref_offset ]
-#define FN_setPointPivotA 846
+#define FN_setPointPivotA 847
 #define SETPOINTPIVOTA_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPOINTPIVOTA_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETPOINTPIVOTA_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETPOINTPIVOTA_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_setPointPivotB 847
+#define FN_setPointPivotB 848
 #define SETPOINTPIVOTB_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPOINTPIVOTB_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETPOINTPIVOTB_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETPOINTPIVOTB_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_createHingeConstraint 848
+#define FN_createHingeConstraint 849
 #define CREATEHINGECONSTRAINT_ACTORA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEHINGECONSTRAINT_FRAMEA num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEHINGECONSTRAINT_USEREFERENCEFRAMEA num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_createHingeConstraintEx 849
+#define FN_createHingeConstraintEx 850
 #define CREATEHINGECONSTRAINTEX_ACTORA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATEHINGECONSTRAINTEX_ACTORB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATEHINGECONSTRAINTEX_FRAMEA num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CREATEHINGECONSTRAINTEX_FRAMEB num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define CREATEHINGECONSTRAINTEX_USEREFERENCEFRAMEA num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_createSlideConstraint 850
+#define FN_createSlideConstraint 851
 #define CREATESLIDECONSTRAINT_ACTORA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATESLIDECONSTRAINT_FRAMEINB_MATRIX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATESLIDECONSTRAINT_USELINEARREFERENCEFRAMEA num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_createSlideConstraintEx 851
+#define FN_createSlideConstraintEx 852
 #define CREATESLIDECONSTRAINTEX_ACTORA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATESLIDECONSTRAINTEX_ACTORB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATESLIDECONSTRAINTEX_FRAMEINA_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CREATESLIDECONSTRAINTEX_FRAMEINB_MATRIX num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define CREATESLIDECONSTRAINTEX_USELINEARREFERENCEFRAMEA num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_createConeConstraint 852
+#define FN_createConeConstraint 853
 #define CREATECONECONSTRAINT_ACTORA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATECONECONSTRAINT_RBAFRAME_MATRIX num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_createConeConstraintEx 853
+#define FN_createConeConstraintEx 854
 #define CREATECONECONSTRAINTEX_ACTORA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CREATECONECONSTRAINTEX_ACTORB num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CREATECONECONSTRAINTEX_RBAFRAME_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CREATECONECONSTRAINTEX_RBBFRAME_MATRIX num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_deleteConstraint 854
+#define FN_deleteConstraint 855
 #define DELETECONSTRAINT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConstraintFrameOffsetA 855
+#define FN_getConstraintFrameOffsetA 856
 #define GETCONSTRAINTFRAMEOFFSETA_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETCONSTRAINTFRAMEOFFSETA_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETCONSTRAINTFRAMEOFFSETA_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2785,7 +2788,7 @@
 #define GETCONSTRAINTFRAMEOFFSETA_RX num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define GETCONSTRAINTFRAMEOFFSETA_RY num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define GETCONSTRAINTFRAMEOFFSETA_RZ num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_getConstraintFrameOffsetB 856
+#define FN_getConstraintFrameOffsetB 857
 #define GETCONSTRAINTFRAMEOFFSETB_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETCONSTRAINTFRAMEOFFSETB_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETCONSTRAINTFRAMEOFFSETB_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2793,43 +2796,43 @@
 #define GETCONSTRAINTFRAMEOFFSETB_RX num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define GETCONSTRAINTFRAMEOFFSETB_RY num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define GETCONSTRAINTFRAMEOFFSETB_RZ num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_useConstraintFrameOffset 857
+#define FN_useConstraintFrameOffset 858
 #define USECONSTRAINTFRAMEOFFSET_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define USECONSTRAINTFRAMEOFFSET_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getHingeAngle 858
+#define FN_getHingeAngle 859
 #define GETHINGEANGLE_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getHingeAngleEx 859
+#define FN_getHingeAngleEx 860
 #define GETHINGEANGLEEX_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETHINGEANGLEEX_T_MATRIXA num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETHINGEANGLEEX_T_MATRIXB num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getConstraintBreakingImpulseThreshold 860
+#define FN_getConstraintBreakingImpulseThreshold 861
 #define GETCONSTRAINTBREAKINGIMPULSETHRESHOLD_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConstraintAFrame 861
+#define FN_getConstraintAFrame 862
 #define GETCONSTRAINTAFRAME_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETCONSTRAINTAFRAME_MA num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getConstraintBFrame 862
+#define FN_getConstraintBFrame 863
 #define GETCONSTRAINTBFRAME_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETCONSTRAINTBFRAME_MA num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setHingeAxis 863
+#define FN_setHingeAxis 864
 #define SETHINGEAXIS_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETHINGEAXIS_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETHINGEAXIS_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETHINGEAXIS_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_setConstraintBreakingImpulseThreshold 864
+#define FN_setConstraintBreakingImpulseThreshold 865
 #define SETCONSTRAINTBREAKINGIMPULSETHRESHOLD_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETCONSTRAINTBREAKINGIMPULSETHRESHOLD_THRESHOLD num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setConstraintFrames 865
+#define FN_setConstraintFrames 866
 #define SETCONSTRAINTFRAMES_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETCONSTRAINTFRAMES_FRAMEA_MATRIX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETCONSTRAINTFRAMES_FRAMEB_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_setHingeLimit 866
+#define FN_setHingeLimit 867
 #define SETHINGELIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETHINGELIMIT_LOW num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETHINGELIMIT_HIGH num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETHINGELIMIT_SOFTNESS num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define SETHINGELIMIT_BIAS_FACTOR num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define SETHINGELIMIT_RELAXATION_FACTOR num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_setConeLimit 867
+#define FN_setConeLimit 868
 #define SETCONELIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETCONELIMIT_SWINGSPAN1 num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETCONELIMIT_SWINGSPAN2 num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -2837,290 +2840,290 @@
 #define SETCONELIMIT_SOFTNESS num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define SETCONELIMIT_BIAS_FACTOR num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define SETCONELIMIT_RELAXATION_FACTOR num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_getHingeLimitBiasFactor 868
+#define FN_getHingeLimitBiasFactor 869
 #define GETHINGELIMITBIASFACTOR_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getHingeLimitRelaxationFactor 869
+#define FN_getHingeLimitRelaxationFactor 870
 #define GETHINGELIMITRELAXATIONFACTOR_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getHingeLimitSign 870
+#define FN_getHingeLimitSign 871
 #define GETHINGELIMITSIGN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getHingeSolveLimit 871
+#define FN_getHingeSolveLimit 872
 #define GETHINGESOLVELIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_useHingeReferenceFrameA 872
+#define FN_useHingeReferenceFrameA 873
 #define USEHINGEREFERENCEFRAMEA_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define USEHINGEREFERENCEFRAMEA_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getConstraintAppliedImpulse 873
+#define FN_getConstraintAppliedImpulse 874
 #define GETCONSTRAINTAPPLIEDIMPULSE_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConstraintFixedActor 874
+#define FN_getConstraintFixedActor 875
 #define GETCONSTRAINTFIXEDACTOR_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getPointPivotA 875
+#define FN_getPointPivotA 876
 #define GETPOINTPIVOTA_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETPOINTPIVOTA_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETPOINTPIVOTA_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETPOINTPIVOTA_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getPointPivotB 876
+#define FN_getPointPivotB 877
 #define GETPOINTPIVOTB_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETPOINTPIVOTB_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETPOINTPIVOTB_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETPOINTPIVOTB_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getConstraintActorA 877
+#define FN_getConstraintActorA 878
 #define GETCONSTRAINTACTORA_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConstraintActorB 878
+#define FN_getConstraintActorB 879
 #define GETCONSTRAINTACTORB_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setConstraintSolverIterations 879
+#define FN_setConstraintSolverIterations 880
 #define SETCONSTRAINTSOLVERITERATIONS_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETCONSTRAINTSOLVERITERATIONS_NUM num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getConeBiasFactor 880
+#define FN_getConeBiasFactor 881
 #define GETCONEBIASFACTOR_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConeDamping 881
+#define FN_getConeDamping 882
 #define GETCONEDAMPING_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConeFixThresh 882
+#define FN_getConeFixThresh 883
 #define GETCONEFIXTHRESH_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConeLimit 883
+#define FN_getConeLimit 884
 #define GETCONELIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETCONELIMIT_LIMIT_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getConstraintLimitSoftness 884
+#define FN_getConstraintLimitSoftness 885
 #define GETCONSTRAINTLIMITSOFTNESS_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConstraintSolverIterations 885
+#define FN_getConstraintSolverIterations 886
 #define GETCONSTRAINTSOLVERITERATIONS_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConeAnglePoint 886
+#define FN_getConeAnglePoint 887
 #define GETCONEANGLEPOINT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETCONEANGLEPOINT_ANGLE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETCONEANGLEPOINT_C_LEN num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETCONEANGLEPOINT_X num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETCONEANGLEPOINT_Y num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define GETCONEANGLEPOINT_Z num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_getConstraintAngularOnly 887
+#define FN_getConstraintAngularOnly 888
 #define GETCONSTRAINTANGULARONLY_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConeSolveSwingLimit 888
+#define FN_getConeSolveSwingLimit 889
 #define GETCONESOLVESWINGLIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConeSolveTwistLimit 889
+#define FN_getConeSolveTwistLimit 890
 #define GETCONESOLVETWISTLIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConeSwingSpan1 890
+#define FN_getConeSwingSpan1 891
 #define GETCONESWINGSPAN1_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConeSwingSpan2 891
+#define FN_getConeSwingSpan2 892
 #define GETCONESWINGSPAN2_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConeTwistAngle 892
+#define FN_getConeTwistAngle 893
 #define GETCONETWISTANGLE_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConeTwistLimitSign 893
+#define FN_getConeTwistLimitSign 894
 #define GETCONETWISTLIMITSIGN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getConeTwistSpan 894
+#define FN_getConeTwistSpan 895
 #define GETCONETWISTSPAN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setConstraintAngularOnly 895
+#define FN_setConstraintAngularOnly 896
 #define SETCONSTRAINTANGULARONLY_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETCONSTRAINTANGULARONLY_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setConeDamping 896
+#define FN_setConeDamping 897
 #define SETCONEDAMPING_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETCONEDAMPING_DAMPING num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setConeFixThresh 897
+#define FN_setConeFixThresh 898
 #define SETCONEFIXTHRESH_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETCONEFIXTHRESH_FIXTHRESH num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getSlideAnchorA 898
+#define FN_getSlideAnchorA 899
 #define GETSLIDEANCHORA_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSLIDEANCHORA_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSLIDEANCHORA_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETSLIDEANCHORA_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getSlideAnchorB 899
+#define FN_getSlideAnchorB 900
 #define GETSLIDEANCHORB_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSLIDEANCHORB_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSLIDEANCHORB_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETSLIDEANCHORB_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getSlideAngDepth 900
+#define FN_getSlideAngDepth 901
 #define GETSLIDEANGDEPTH_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideAngularPos 901
+#define FN_getSlideAngularPos 902
 #define GETSLIDEANGULARPOS_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideDampingDirAng 902
+#define FN_getSlideDampingDirAng 903
 #define GETSLIDEDAMPINGDIRANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideDampingDirLin 903
+#define FN_getSlideDampingDirLin 904
 #define GETSLIDEDAMPINGDIRLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideDampingLimAng 904
+#define FN_getSlideDampingLimAng 905
 #define GETSLIDEDAMPINGLIMANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideDampingLimLin 905
+#define FN_getSlideDampingLimLin 906
 #define GETSLIDEDAMPINGLIMLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideDampingOrthoAng 906
+#define FN_getSlideDampingOrthoAng 907
 #define GETSLIDEDAMPINGORTHOANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideDampingOrthoLin 907
+#define FN_getSlideDampingOrthoLin 908
 #define GETSLIDEDAMPINGORTHOLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideLinearPos 908
+#define FN_getSlideLinearPos 909
 #define GETSLIDELINEARPOS_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideLinDepth 909
+#define FN_getSlideLinDepth 910
 #define GETSLIDELINDEPTH_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideLowerAngLimit 910
+#define FN_getSlideLowerAngLimit 911
 #define GETSLIDELOWERANGLIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideLowerLinLimit 911
+#define FN_getSlideLowerLinLimit 912
 #define GETSLIDELOWERLINLIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideRestitutionDirAng 912
+#define FN_getSlideRestitutionDirAng 913
 #define GETSLIDERESTITUTIONDIRANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideRestitutionDirLin 913
+#define FN_getSlideRestitutionDirLin 914
 #define GETSLIDERESTITUTIONDIRLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideRestitutionLimAng 914
+#define FN_getSlideRestitutionLimAng 915
 #define GETSLIDERESTITUTIONLIMANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideRestitutionLimLin 915
+#define FN_getSlideRestitutionLimLin 916
 #define GETSLIDERESTITUTIONLIMLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideRestitutionOrthoAng 916
+#define FN_getSlideRestitutionOrthoAng 917
 #define GETSLIDERESTITUTIONORTHOANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideRestitutionOrthoLin 917
+#define FN_getSlideRestitutionOrthoLin 918
 #define GETSLIDERESTITUTIONORTHOLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideSoftnessDirAng 918
+#define FN_getSlideSoftnessDirAng 919
 #define GETSLIDESOFTNESSDIRANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideSoftnessDirLin 919
+#define FN_getSlideSoftnessDirLin 920
 #define GETSLIDESOFTNESSDIRLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideSoftnessLimAng 920
+#define FN_getSlideSoftnessLimAng 921
 #define GETSLIDESOFTNESSLIMANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideSoftnessLimLin 921
+#define FN_getSlideSoftnessLimLin 922
 #define GETSLIDESOFTNESSLIMLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideSoftnessOrthoAng 922
+#define FN_getSlideSoftnessOrthoAng 923
 #define GETSLIDESOFTNESSORTHOANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideSoftnessOrthoLin 923
+#define FN_getSlideSoftnessOrthoLin 924
 #define GETSLIDESOFTNESSORTHOLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideSolveAngLimit 924
+#define FN_getSlideSolveAngLimit 925
 #define GETSLIDESOLVEANGLIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideSolveLinLimit 925
+#define FN_getSlideSolveLinLimit 926
 #define GETSLIDESOLVELINLIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideUpperAngLimit 926
+#define FN_getSlideUpperAngLimit 927
 #define GETSLIDEUPPERANGLIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideUpperLinLimit 927
+#define FN_getSlideUpperLinLimit 928
 #define GETSLIDEUPPERLINLIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getSlideUseFrameOffset 928
+#define FN_getSlideUseFrameOffset 929
 #define GETSLIDEUSEFRAMEOFFSET_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setSlideDampingDirAng 929
+#define FN_setSlideDampingDirAng 930
 #define SETSLIDEDAMPINGDIRANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDEDAMPINGDIRANG_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideDampingDirLin 930
+#define FN_setSlideDampingDirLin 931
 #define SETSLIDEDAMPINGDIRLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDEDAMPINGDIRLIN_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideDampingLimAng 931
+#define FN_setSlideDampingLimAng 932
 #define SETSLIDEDAMPINGLIMANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDEDAMPINGLIMANG_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideDampingLimLin 932
+#define FN_setSlideDampingLimLin 933
 #define SETSLIDEDAMPINGLIMLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDEDAMPINGLIMLIN_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideDampingOrthoAng 933
+#define FN_setSlideDampingOrthoAng 934
 #define SETSLIDEDAMPINGORTHOANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDEDAMPINGORTHOANG_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideDampingOrthoLin 934
+#define FN_setSlideDampingOrthoLin 935
 #define SETSLIDEDAMPINGORTHOLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDEDAMPINGORTHOLIN_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideLowerAngLimit 935
+#define FN_setSlideLowerAngLimit 936
 #define SETSLIDELOWERANGLIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDELOWERANGLIMIT_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideLowerLinLimit 936
+#define FN_setSlideLowerLinLimit 937
 #define SETSLIDELOWERLINLIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDELOWERLINLIMIT_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideRestitutionDirAng 937
+#define FN_setSlideRestitutionDirAng 938
 #define SETSLIDERESTITUTIONDIRANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDERESTITUTIONDIRANG_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideRestitutionDirLin 938
+#define FN_setSlideRestitutionDirLin 939
 #define SETSLIDERESTITUTIONDIRLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDERESTITUTIONDIRLIN_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideRestitutionLimAng 939
+#define FN_setSlideRestitutionLimAng 940
 #define SETSLIDERESTITUTIONLIMANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDERESTITUTIONLIMANG_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideRestitutionLimLin 940
+#define FN_setSlideRestitutionLimLin 941
 #define SETSLIDERESTITUTIONLIMLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDERESTITUTIONLIMLIN_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideRestitutionOrthoAng 941
+#define FN_setSlideRestitutionOrthoAng 942
 #define SETSLIDERESTITUTIONORTHOANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDERESTITUTIONORTHOANG_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideRestitutionOrthoLin 942
+#define FN_setSlideRestitutionOrthoLin 943
 #define SETSLIDERESTITUTIONORTHOLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDERESTITUTIONORTHOLIN_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideSoftnessDirAng 943
+#define FN_setSlideSoftnessDirAng 944
 #define SETSLIDESOFTNESSDIRANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDESOFTNESSDIRANG_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideSoftnessDirLin 944
+#define FN_setSlideSoftnessDirLin 945
 #define SETSLIDESOFTNESSDIRLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDESOFTNESSDIRLIN_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideSoftnessLimAng 945
+#define FN_setSlideSoftnessLimAng 946
 #define SETSLIDESOFTNESSLIMANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDESOFTNESSLIMANG_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideSoftnessLimLin 946
+#define FN_setSlideSoftnessLimLin 947
 #define SETSLIDESOFTNESSLIMLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDESOFTNESSLIMLIN_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideSoftnessOrthoAng 947
+#define FN_setSlideSoftnessOrthoAng 948
 #define SETSLIDESOFTNESSORTHOANG_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDESOFTNESSORTHOANG_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideSoftnessOrthoLin 948
+#define FN_setSlideSoftnessOrthoLin 949
 #define SETSLIDESOFTNESSORTHOLIN_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDESOFTNESSORTHOLIN_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideUpperAngLimit 949
+#define FN_setSlideUpperAngLimit 950
 #define SETSLIDEUPPERANGLIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDEUPPERANGLIMIT_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setSlideUpperLinLimit 950
+#define FN_setSlideUpperLinLimit 951
 #define SETSLIDEUPPERLINLIMIT_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSLIDEUPPERLINLIMIT_N num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_ConstraintExists 951
+#define FN_ConstraintExists 952
 #define CONSTRAINTEXISTS_CONSTRAINT_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetCameraPosition 952
+#define FN_SetCameraPosition 953
 #define SETCAMERAPOSITION_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETCAMERAPOSITION_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETCAMERAPOSITION_Z num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetCameraPosition 953
+#define FN_GetCameraPosition 954
 #define GETCAMERAPOSITION_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETCAMERAPOSITION_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETCAMERAPOSITION_Z num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_TranslateCamera 954
+#define FN_TranslateCamera 955
 #define TRANSLATECAMERA_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define TRANSLATECAMERA_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define TRANSLATECAMERA_Z num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetCameraRotation 955
+#define FN_SetCameraRotation 956
 #define SETCAMERAROTATION_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETCAMERAROTATION_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETCAMERAROTATION_Z num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetCameraRotation 956
+#define FN_GetCameraRotation 957
 #define GETCAMERAROTATION_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETCAMERAROTATION_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETCAMERAROTATION_Z num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_RotateCamera 957
+#define FN_RotateCamera 958
 #define ROTATECAMERA_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ROTATECAMERA_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define ROTATECAMERA_Z num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetCameraFOV 958
+#define FN_SetCameraFOV 959
 #define SETCAMERAFOV_FOV num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetCameraFOV 959
-#define FN_SetCameraAspectRatio 960
+#define FN_GetCameraFOV 960
+#define FN_SetCameraAspectRatio 961
 #define SETCAMERAASPECTRATIO_ASPECT num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetCameraAspectRatio 961
-#define FN_SetCameraFarValue 962
+#define FN_GetCameraAspectRatio 962
+#define FN_SetCameraFarValue 963
 #define SETCAMERAFARVALUE_ZF num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetCameraFarValue 963
-#define FN_SetCameraNearValue 964
+#define FN_GetCameraFarValue 964
+#define FN_SetCameraNearValue 965
 #define SETCAMERANEARVALUE_ZN num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetCameraNearValue 965
-#define FN_SetProjectionMatrix 966
+#define FN_GetCameraNearValue 966
+#define FN_SetProjectionMatrix 967
 #define SETPROJECTIONMATRIX_MATA num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPROJECTIONMATRIX_PROJECTION_TYPE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetProjectionMatrix 967
+#define FN_GetProjectionMatrix 968
 #define GETPROJECTIONMATRIX_MATA num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetWorldToViewportPosition 968
+#define FN_GetWorldToViewportPosition 969
 #define GETWORLDTOVIEWPORTPOSITION_X num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWORLDTOVIEWPORTPOSITION_Y num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETWORLDTOVIEWPORTPOSITION_Z num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETWORLDTOVIEWPORTPOSITION_VX num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETWORLDTOVIEWPORTPOSITION_VY num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_AddSceneSkyBox 969
+#define FN_AddSceneSkyBox 970
 #define ADDSCENESKYBOX_IMG_TOP num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ADDSCENESKYBOX_IMG_BOTTOM num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define ADDSCENESKYBOX_IMG_LEFT num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define ADDSCENESKYBOX_IMG_RIGHT num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define ADDSCENESKYBOX_IMG_FRONT num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define ADDSCENESKYBOX_IMG_BACK num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_AddSceneSkyDome 970
+#define FN_AddSceneSkyDome 971
 #define ADDSCENESKYDOME_IMG num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_AddSceneSkyDomeEx 971
+#define FN_AddSceneSkyDomeEx 972
 #define ADDSCENESKYDOMEEX_IMG num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ADDSCENESKYDOMEEX_HORIRES num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define ADDSCENESKYDOMEEX_VERTRES num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define ADDSCENESKYDOMEEX_TXPERCENTAGE num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define ADDSCENESKYDOMEEX_SPHEREPERCENTAGE num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define ADDSCENESKYDOMEEX_RADIUS num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_RemoveSceneSky 972
-#define FN_SetWorld3DMaxSubSteps 973
+#define FN_RemoveSceneSky 973
+#define FN_SetWorld3DMaxSubSteps 974
 #define SETWORLD3DMAXSUBSTEPS_STEPS num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetWorld3DTimeStep 974
+#define FN_SetWorld3DTimeStep 975
 #define SETWORLD3DTIMESTEP_TS num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetWorld3DMaxSubSteps 975
-#define FN_GetWorld3DTimeStep 976
-#define FN_SetSceneFog 977
+#define FN_GetWorld3DMaxSubSteps 976
+#define FN_GetWorld3DTimeStep 977
+#define FN_SetSceneFog 978
 #define SETSCENEFOG_COLOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETSCENEFOG_FOG_TYPE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETSCENEFOG_START_VAL num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -3128,7 +3131,7 @@
 #define SETSCENEFOG_DENSITY num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define SETSCENEFOG_PIXELFOG num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define SETSCENEFOG_RANGEFOG num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_GetSceneFog 978
+#define FN_GetSceneFog 979
 #define GETSCENEFOG_COLOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETSCENEFOG_FOG_TYPE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETSCENEFOG_START_VAL num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -3136,131 +3139,131 @@
 #define GETSCENEFOG_DENSITY num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define GETSCENEFOG_PIXELFOG num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define GETSCENEFOG_RANGEFOG num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_ClearScene 979
-#define FN_SetSceneShadowColor 980
+#define FN_ClearScene 980
+#define FN_SetSceneShadowColor 981
 #define SETSCENESHADOWCOLOR_COLOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetSceneShadowColor 981
-#define FN_SetSceneAmbientColor 982
+#define FN_GetSceneShadowColor 982
+#define FN_SetSceneAmbientColor 983
 #define SETSCENEAMBIENTCOLOR_COLOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetSceneAmbientColor 983
-#define FN_Pipeline_Begin 984
-#define FN_Pipeline_End 985
-#define FN_Pipeline_Render 986
-#define FN_SetPhysics3D 987
+#define FN_GetSceneAmbientColor 984
+#define FN_Pipeline_Begin 985
+#define FN_Pipeline_End 986
+#define FN_Pipeline_Render 987
+#define FN_SetPhysics3D 988
 #define SETPHYSICS3D_FLAG num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetPhysics3D 988
-#define FN_GetBillboardSize 989
+#define FN_GetPhysics3D 989
+#define FN_GetBillboardSize 990
 #define GETBILLBOARDSIZE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETBILLBOARDSIZE_W num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETBILLBOARDSIZE_H num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetBillboardSize 990
+#define FN_SetBillboardSize 991
 #define SETBILLBOARDSIZE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETBILLBOARDSIZE_W num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETBILLBOARDSIZE_H num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_startParticleEmitter 991
+#define FN_startParticleEmitter 992
 #define STARTPARTICLEEMITTER_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_stopParticleEmitter 992
+#define FN_stopParticleEmitter 993
 #define STOPPARTICLEEMITTER_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setParticleDirection 993
+#define FN_setParticleDirection 994
 #define SETPARTICLEDIRECTION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLEDIRECTION_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETPARTICLEDIRECTION_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETPARTICLEDIRECTION_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getParticleDirection 994
+#define FN_getParticleDirection 995
 #define GETPARTICLEDIRECTION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETPARTICLEDIRECTION_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETPARTICLEDIRECTION_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETPARTICLEDIRECTION_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_useParticleEveryMeshVertex 995
+#define FN_useParticleEveryMeshVertex 996
 #define USEPARTICLEEVERYMESHVERTEX_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define USEPARTICLEEVERYMESHVERTEX_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_particleIsUsingEveryMeshVertex 996
+#define FN_particleIsUsingEveryMeshVertex 997
 #define PARTICLEISUSINGEVERYMESHVERTEX_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setParticleNormalDirectionMod 997
+#define FN_setParticleNormalDirectionMod 998
 #define SETPARTICLENORMALDIRECTIONMOD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLENORMALDIRECTIONMOD_ND_MOD num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getParticleNormalDirectionMod 998
+#define FN_getParticleNormalDirectionMod 999
 #define GETPARTICLENORMALDIRECTIONMOD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_useParticleNormalDirection 999
+#define FN_useParticleNormalDirection 1000
 #define USEPARTICLENORMALDIRECTION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define USEPARTICLENORMALDIRECTION_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_particleIsUsingNormalDirection 1000
+#define FN_particleIsUsingNormalDirection 1001
 #define PARTICLEISUSINGNORMALDIRECTION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setParticleMesh 1001
+#define FN_setParticleMesh 1002
 #define SETPARTICLEMESH_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLEMESH_MESH num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setMinParticlesPerSecond 1002
+#define FN_setMinParticlesPerSecond 1003
 #define SETMINPARTICLESPERSECOND_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMINPARTICLESPERSECOND_MINPARTICLESPERSECOND num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMinParticlesPerSecond 1003
+#define FN_getMinParticlesPerSecond 1004
 #define GETMINPARTICLESPERSECOND_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaxParticlesPerSecond 1004
+#define FN_setMaxParticlesPerSecond 1005
 #define SETMAXPARTICLESPERSECOND_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMAXPARTICLESPERSECOND_MAXPARTICLESPERSECOND num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaxParticlesPerSecond 1005
+#define FN_getMaxParticlesPerSecond 1006
 #define GETMAXPARTICLESPERSECOND_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setParticleMinStartColor 1006
+#define FN_setParticleMinStartColor 1007
 #define SETPARTICLEMINSTARTCOLOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLEMINSTARTCOLOR_COLOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getParticleMinStartColor 1007
+#define FN_getParticleMinStartColor 1008
 #define GETPARTICLEMINSTARTCOLOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setParticleMaxStartColor 1008
+#define FN_setParticleMaxStartColor 1009
 #define SETPARTICLEMAXSTARTCOLOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLEMAXSTARTCOLOR_COLOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getParticleMaxStartColor 1009
+#define FN_getParticleMaxStartColor 1010
 #define GETPARTICLEMAXSTARTCOLOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setParticleMinLife 1010
+#define FN_setParticleMinLife 1011
 #define SETPARTICLEMINLIFE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLEMINLIFE_MINLIFE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getParticleMinLife 1011
+#define FN_getParticleMinLife 1012
 #define GETPARTICLEMINLIFE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setParticleMaxLife 1012
+#define FN_setParticleMaxLife 1013
 #define SETPARTICLEMAXLIFE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLEMAXLIFE_MAXLIFE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getParticleMaxLife 1013
+#define FN_getParticleMaxLife 1014
 #define GETPARTICLEMAXLIFE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setParticleMaxAngle 1014
+#define FN_setParticleMaxAngle 1015
 #define SETPARTICLEMAXANGLE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLEMAXANGLE_MAXANGLE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getParticleMaxAngle 1015
+#define FN_getParticleMaxAngle 1016
 #define GETPARTICLEMAXANGLE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setParticleMinStartSize 1016
+#define FN_setParticleMinStartSize 1017
 #define SETPARTICLEMINSTARTSIZE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLEMINSTARTSIZE_W num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETPARTICLEMINSTARTSIZE_H num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getParticleMinStartSize 1017
+#define FN_getParticleMinStartSize 1018
 #define GETPARTICLEMINSTARTSIZE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETPARTICLEMINSTARTSIZE_W num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETPARTICLEMINSTARTSIZE_H num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_setParticleMaxStartSize 1018
+#define FN_setParticleMaxStartSize 1019
 #define SETPARTICLEMAXSTARTSIZE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLEMAXSTARTSIZE_W num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETPARTICLEMAXSTARTSIZE_H num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getParticleMaxStartSize 1019
+#define FN_getParticleMaxStartSize 1020
 #define GETPARTICLEMAXSTARTSIZE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETPARTICLEMAXSTARTSIZE_W num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETPARTICLEMAXSTARTSIZE_H num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_setParticleCenter 1020
+#define FN_setParticleCenter 1021
 #define SETPARTICLECENTER_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLECENTER_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETPARTICLECENTER_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETPARTICLECENTER_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getParticleCenter 1021
+#define FN_getParticleCenter 1022
 #define GETPARTICLECENTER_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETPARTICLECENTER_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETPARTICLECENTER_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETPARTICLECENTER_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_setParticleRadius 1022
+#define FN_setParticleRadius 1023
 #define SETPARTICLERADIUS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLERADIUS_RADIUS num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getParticleRadius 1023
+#define FN_getParticleRadius 1024
 #define GETPARTICLERADIUS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setParticleRingThickness 1024
+#define FN_setParticleRingThickness 1025
 #define SETPARTICLERINGTHICKNESS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLERINGTHICKNESS_RINGTHICKNESS num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getParticleRingThickness 1025
+#define FN_getParticleRingThickness 1026
 #define GETPARTICLERINGTHICKNESS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setParticleBox 1026
+#define FN_setParticleBox 1027
 #define SETPARTICLEBOX_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLEBOX_MIN_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETPARTICLEBOX_MIN_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -3268,7 +3271,7 @@
 #define SETPARTICLEBOX_MAX_X num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define SETPARTICLEBOX_MAX_Y num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define SETPARTICLEBOX_MAX_Z num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_getParticleBox 1027
+#define FN_getParticleBox 1028
 #define GETPARTICLEBOX_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETPARTICLEBOX_MIN_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETPARTICLEBOX_MIN_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -3276,84 +3279,84 @@
 #define GETPARTICLEBOX_MAX_X num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define GETPARTICLEBOX_MAX_Y num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define GETPARTICLEBOX_MAX_Z num_var[6].nref[0].value[ num_var[6].byref_offset ]
-#define FN_setParticleNormal 1028
+#define FN_setParticleNormal 1029
 #define SETPARTICLENORMAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLENORMAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETPARTICLENORMAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETPARTICLENORMAL_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_getParticleNormal 1029
+#define FN_getParticleNormal 1030
 #define GETPARTICLENORMAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETPARTICLENORMAL_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETPARTICLENORMAL_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETPARTICLENORMAL_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_setParticleLength 1030
+#define FN_setParticleLength 1031
 #define SETPARTICLELENGTH_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPARTICLELENGTH_P_LEN num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getParticleLength 1031
+#define FN_getParticleLength 1032
 #define GETPARTICLELENGTH_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_useParticleOutlineOnly 1032
+#define FN_useParticleOutlineOnly 1033
 #define USEPARTICLEOUTLINEONLY_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define USEPARTICLEOUTLINEONLY_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_particleIsUsingOutlineOnly 1033
+#define FN_particleIsUsingOutlineOnly 1034
 #define PARTICLEISUSINGOUTLINEONLY_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getParticleType 1034
+#define FN_getParticleType 1035
 #define GETPARTICLETYPE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_lightIsCastingShadow 1035
+#define FN_lightIsCastingShadow 1036
 #define LIGHTISCASTINGSHADOW_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getLightType 1036
+#define FN_getLightType 1037
 #define GETLIGHTTYPE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_getLightRadius 1037
+#define FN_getLightRadius 1038
 #define GETLIGHTRADIUS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setLightType 1038
+#define FN_setLightType 1039
 #define SETLIGHTTYPE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETLIGHTTYPE_LIGHT_TYPE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setLightRadius 1039
+#define FN_setLightRadius 1040
 #define SETLIGHTRADIUS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETLIGHTRADIUS_RADIUS num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setLightShadowCast 1040
+#define FN_setLightShadowCast 1041
 #define SETLIGHTSHADOWCAST_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETLIGHTSHADOWCAST_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetLightAmbientColor 1041
+#define FN_SetLightAmbientColor 1042
 #define SETLIGHTAMBIENTCOLOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETLIGHTAMBIENTCOLOR_COLOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetLightAmbientColor 1042
+#define FN_GetLightAmbientColor 1043
 #define GETLIGHTAMBIENTCOLOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetLightAttenuation 1043
+#define FN_SetLightAttenuation 1044
 #define SETLIGHTATTENUATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETLIGHTATTENUATION_L_CONSTANT num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETLIGHTATTENUATION_L_LINEAR num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETLIGHTATTENUATION_L_QUADRATIC num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetLightAttenuation 1044
+#define FN_GetLightAttenuation 1045
 #define GETLIGHTATTENUATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETLIGHTATTENUATION_CONSTANT num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETLIGHTATTENUATION_LINEAR num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETLIGHTATTENUATION_QUADRATIC num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetLightDiffuseColor 1045
+#define FN_SetLightDiffuseColor 1046
 #define SETLIGHTDIFFUSECOLOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETLIGHTDIFFUSECOLOR_COLOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetLightDiffuseColor 1046
+#define FN_GetLightDiffuseColor 1047
 #define GETLIGHTDIFFUSECOLOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetLightFalloff 1047
+#define FN_SetLightFalloff 1048
 #define SETLIGHTFALLOFF_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETLIGHTFALLOFF_FALLOFF num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetLightFalloff 1048
+#define FN_GetLightFalloff 1049
 #define GETLIGHTFALLOFF_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetLightInnerCone 1049
+#define FN_SetLightInnerCone 1050
 #define SETLIGHTINNERCONE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETLIGHTINNERCONE_ANGLE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetLightInnerCone 1050
+#define FN_GetLightInnerCone 1051
 #define GETLIGHTINNERCONE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetLightOuterCone 1051
+#define FN_SetLightOuterCone 1052
 #define SETLIGHTOUTERCONE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETLIGHTOUTERCONE_ANGLE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetLightOuterCone 1052
+#define FN_GetLightOuterCone 1053
 #define GETLIGHTOUTERCONE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetLightSpecularColor 1053
+#define FN_SetLightSpecularColor 1054
 #define SETLIGHTSPECULARCOLOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETLIGHTSPECULARCOLOR_COLOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetLightSpecularColor 1054
+#define FN_GetLightSpecularColor 1055
 #define GETLIGHTSPECULARCOLOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetTerrainPatchAABB 1055
+#define FN_GetTerrainPatchAABB 1056
 #define GETTERRAINPATCHAABB_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETTERRAINPATCHAABB_PATCHX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETTERRAINPATCHAABB_PATCHZ num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -3363,89 +3366,89 @@
 #define GETTERRAINPATCHAABB_MAXX num_var[6].nref[0].value[ num_var[6].byref_offset ]
 #define GETTERRAINPATCHAABB_MAXY num_var[7].nref[0].value[ num_var[7].byref_offset ]
 #define GETTERRAINPATCHAABB_MAXZ num_var[8].nref[0].value[ num_var[8].byref_offset ]
-#define FN_GetTerrainPatchLOD 1056
+#define FN_GetTerrainPatchLOD 1057
 #define GETTERRAINPATCHLOD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETTERRAINPATCHLOD_PATCHX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETTERRAINPATCHLOD_PATCHZ num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetTerrainHeight 1057
+#define FN_GetTerrainHeight 1058
 #define GETTERRAINHEIGHT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETTERRAINHEIGHT_PATCHX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETTERRAINHEIGHT_PATCHZ num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetTerrainCenter 1058
+#define FN_GetTerrainCenter 1059
 #define GETTERRAINCENTER_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETTERRAINCENTER_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETTERRAINCENTER_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETTERRAINCENTER_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetTerrainLODDistance 1059
+#define FN_SetTerrainLODDistance 1060
 #define SETTERRAINLODDISTANCE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETTERRAINLODDISTANCE_LOD num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETTERRAINLODDISTANCE_DISTANCE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_ScaleTerrainTexture 1060
+#define FN_ScaleTerrainTexture 1061
 #define SCALETERRAINTEXTURE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SCALETERRAINTEXTURE_SCALE num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SCALETERRAINTEXTURE_SCALE2 num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetTerrainCameraMovementDelta 1061
+#define FN_SetTerrainCameraMovementDelta 1062
 #define SETTERRAINCAMERAMOVEMENTDELTA_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETTERRAINCAMERAMOVEMENTDELTA_DELTA num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetTerrainCameraRotationDelta 1062
+#define FN_SetTerrainCameraRotationDelta 1063
 #define SETTERRAINCAMERAROTATIONDELTA_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETTERRAINCAMERAROTATIONDELTA_DELTA num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetTerrainPatchLOD 1063
+#define FN_SetTerrainPatchLOD 1064
 #define SETTERRAINPATCHLOD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETTERRAINPATCHLOD_PATCHX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETTERRAINPATCHLOD_PATCHZ num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETTERRAINPATCHLOD_LOD num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetProjectorTarget 1064
+#define FN_SetProjectorTarget 1065
 #define SETPROJECTORTARGET_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPROJECTORTARGET_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETPROJECTORTARGET_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETPROJECTORTARGET_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetProjectorTarget 1065
+#define FN_GetProjectorTarget 1066
 #define GETPROJECTORTARGET_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETPROJECTORTARGET_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETPROJECTORTARGET_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETPROJECTORTARGET_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_SetProjectorFOV 1066
+#define FN_SetProjectorFOV 1067
 #define SETPROJECTORFOV_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPROJECTORFOV_FOV num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetProjectorFOV 1067
+#define FN_GetProjectorFOV 1068
 #define GETPROJECTORFOV_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetProjectorTexture 1068
+#define FN_SetProjectorTexture 1069
 #define SETPROJECTORTEXTURE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETPROJECTORTEXTURE_IMG_ID num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetProjectorTexture 1069
+#define FN_GetProjectorTexture 1070
 #define GETPROJECTORTEXTURE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_AddProjectorEffectActor 1070
+#define FN_AddProjectorEffectActor 1071
 #define ADDPROJECTOREFFECTACTOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ADDPROJECTOREFFECTACTOR_TGT_ACTOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetProjectorEffectActorCount 1071
+#define FN_GetProjectorEffectActorCount 1072
 #define GETPROJECTOREFFECTACTORCOUNT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetProjectorEffectActor 1072
+#define FN_GetProjectorEffectActor 1073
 #define GETPROJECTOREFFECTACTOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETPROJECTOREFFECTACTOR_TGT_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_RemoveProjectorEffectActor 1073
+#define FN_RemoveProjectorEffectActor 1074
 #define REMOVEPROJECTOREFFECTACTOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define REMOVEPROJECTOREFFECTACTOR_TGT_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_AddCompositeChild 1074
+#define FN_AddCompositeChild 1075
 #define ADDCOMPOSITECHILD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ADDCOMPOSITECHILD_CHILD_ACTOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define ADDCOMPOSITECHILD_T_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetCompositeChildCount 1075
+#define FN_GetCompositeChildCount 1076
 #define GETCOMPOSITECHILDCOUNT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetCompositeChild 1076
+#define FN_GetCompositeChild 1077
 #define GETCOMPOSITECHILD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETCOMPOSITECHILD_CHILD_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetCompositeChildIndex 1077
+#define FN_GetCompositeChildIndex 1078
 #define GETCOMPOSITECHILDINDEX_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETCOMPOSITECHILDINDEX_CHILD_ACTOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_RemoveCompositeChild 1078
+#define FN_RemoveCompositeChild 1079
 #define REMOVECOMPOSITECHILD_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define REMOVECOMPOSITECHILD_CHILD_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetCompositeChildTransform 1079
+#define FN_GetCompositeChildTransform 1080
 #define GETCOMPOSITECHILDTRANSFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETCOMPOSITECHILDTRANSFORM_CHILD_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETCOMPOSITECHILDTRANSFORM_T_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetCompositeAABB 1080
+#define FN_GetCompositeAABB 1081
 #define GETCOMPOSITEAABB_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETCOMPOSITEAABB_T_MATRIX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETCOMPOSITEAABB_MIN_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
@@ -3454,373 +3457,373 @@
 #define GETCOMPOSITEAABB_MAX_X num_var[5].nref[0].value[ num_var[5].byref_offset ]
 #define GETCOMPOSITEAABB_MAX_Y num_var[6].nref[0].value[ num_var[6].byref_offset ]
 #define GETCOMPOSITEAABB_MAX_Z num_var[7].nref[0].value[ num_var[7].byref_offset ]
-#define FN_RecalculateCompositeAABB 1081
+#define FN_RecalculateCompositeAABB 1082
 #define RECALCULATECOMPOSITEAABB_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GenerateCompositeAABBFromChildren 1082
+#define FN_GenerateCompositeAABBFromChildren 1083
 #define GENERATECOMPOSITEAABBFROMCHILDREN_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_CalculateCompositePrincipalTransform 1083
+#define FN_CalculateCompositePrincipalTransform 1084
 #define CALCULATECOMPOSITEPRINCIPALTRANSFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define CALCULATECOMPOSITEPRINCIPALTRANSFORM_MASSES num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define CALCULATECOMPOSITEPRINCIPALTRANSFORM_PRINCIPAL_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define CALCULATECOMPOSITEPRINCIPALTRANSFORM_X num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define CALCULATECOMPOSITEPRINCIPALTRANSFORM_Y num_var[4].nref[0].value[ num_var[4].byref_offset ]
 #define CALCULATECOMPOSITEPRINCIPALTRANSFORM_Z num_var[5].nref[0].value[ num_var[5].byref_offset ]
-#define FN_UpdateCompositeChildTransform 1084
+#define FN_UpdateCompositeChildTransform 1085
 #define UPDATECOMPOSITECHILDTRANSFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define UPDATECOMPOSITECHILDTRANSFORM_CHILD_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define UPDATECOMPOSITECHILDTRANSFORM_T_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define UPDATECOMPOSITECHILDTRANSFORM_RECALC_FLAG num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetCompositeUpdateRevision 1085
+#define FN_GetCompositeUpdateRevision 1086
 #define GETCOMPOSITEUPDATEREVISION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_AddVehicleWheel 1086
+#define FN_AddVehicleWheel 1087
 #define ADDVEHICLEWHEEL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define ADDVEHICLEWHEEL_WHEEL_ACTOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define ADDVEHICLEWHEEL_IS_FRONT_WHEEL num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetVehicleAxis 1087
+#define FN_GetVehicleAxis 1088
 #define GETVEHICLEAXIS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETVEHICLEAXIS_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETVEHICLEAXIS_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETVEHICLEAXIS_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetVehicleForwardVector 1088
+#define FN_GetVehicleForwardVector 1089
 #define GETVEHICLEFORWARDVECTOR_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETVEHICLEFORWARDVECTOR_X num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETVEHICLEFORWARDVECTOR_Y num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETVEHICLEFORWARDVECTOR_Z num_var[3].nref[0].value[ num_var[3].byref_offset ]
-#define FN_GetVehicleCurrentSpeed 1089
+#define FN_GetVehicleCurrentSpeed 1090
 #define GETVEHICLECURRENTSPEED_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetWheelCount 1090
+#define FN_GetWheelCount 1091
 #define GETWHEELCOUNT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetVehicleChassisWorldTransform 1091
+#define FN_GetVehicleChassisWorldTransform 1092
 #define GETVEHICLECHASSISWORLDTRANSFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETVEHICLECHASSISWORLDTRANSFORM_T_MATRIX num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelSteeringValue 1092
+#define FN_GetWheelSteeringValue 1093
 #define GETWHEELSTEERINGVALUE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELSTEERINGVALUE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelWorldTransform 1093
+#define FN_GetWheelWorldTransform 1094
 #define GETWHEELWORLDTRANSFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELWORLDTRANSFORM_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETWHEELWORLDTRANSFORM_T_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetWheelConnectionPoint 1094
+#define FN_GetWheelConnectionPoint 1095
 #define GETWHEELCONNECTIONPOINT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELCONNECTIONPOINT_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETWHEELCONNECTIONPOINT_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETWHEELCONNECTIONPOINT_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETWHEELCONNECTIONPOINT_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_GetWheelDirection 1095
+#define FN_GetWheelDirection 1096
 #define GETWHEELDIRECTION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELDIRECTION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETWHEELDIRECTION_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETWHEELDIRECTION_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETWHEELDIRECTION_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_GetWheelAxel 1096
+#define FN_GetWheelAxel 1097
 #define GETWHEELAXEL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELAXEL_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETWHEELAXEL_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define GETWHEELAXEL_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define GETWHEELAXEL_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_GetWheelSuspensionLength 1097
+#define FN_GetWheelSuspensionLength 1098
 #define GETWHEELSUSPENSIONLENGTH_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELSUSPENSIONLENGTH_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelMaxSuspensionTravel 1098
+#define FN_GetWheelMaxSuspensionTravel 1099
 #define GETWHEELMAXSUSPENSIONTRAVEL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELMAXSUSPENSIONTRAVEL_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelRadius 1099
+#define FN_GetWheelRadius 1100
 #define GETWHEELRADIUS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELRADIUS_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelSuspensionStiffness 1100
+#define FN_GetWheelSuspensionStiffness 1101
 #define GETWHEELSUSPENSIONSTIFFNESS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELSUSPENSIONSTIFFNESS_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelDampingCompression 1101
+#define FN_GetWheelDampingCompression 1102
 #define GETWHEELDAMPINGCOMPRESSION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELDAMPINGCOMPRESSION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelDampingRelaxation 1102
+#define FN_GetWheelDampingRelaxation 1103
 #define GETWHEELDAMPINGRELAXATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELDAMPINGRELAXATION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelFrictionSlip 1103
+#define FN_GetWheelFrictionSlip 1104
 #define GETWHEELFRICTIONSLIP_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELFRICTIONSLIP_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelRotation 1104
+#define FN_GetWheelRotation 1105
 #define GETWHEELROTATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELROTATION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelRotationDelta 1105
+#define FN_GetWheelRotationDelta 1106
 #define GETWHEELROTATIONDELTA_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELROTATIONDELTA_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelRollInfluence 1106
+#define FN_GetWheelRollInfluence 1107
 #define GETWHEELROLLINFLUENCE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELROLLINFLUENCE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelEngineForce 1107
+#define FN_GetWheelEngineForce 1108
 #define GETWHEELENGINEFORCE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELENGINEFORCE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelBrake 1108
+#define FN_GetWheelBrake 1109
 #define GETWHEELBRAKE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELBRAKE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_WheelIsFront 1109
+#define FN_WheelIsFront 1110
 #define WHEELISFRONT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define WHEELISFRONT_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelInverseContactSuspension 1110
+#define FN_GetWheelInverseContactSuspension 1111
 #define GETWHEELINVERSECONTACTSUSPENSION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELINVERSECONTACTSUSPENSION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_GetWheelSuspensionVelocity 1111
+#define FN_GetWheelSuspensionVelocity 1112
 #define GETWHEELSUSPENSIONVELOCITY_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELSUSPENSIONVELOCITY_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_ResetVehicleSuspension 1112
+#define FN_ResetVehicleSuspension 1113
 #define RESETVEHICLESUSPENSION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_SetWheelSteeringValue 1113
+#define FN_SetWheelSteeringValue 1114
 #define SETWHEELSTEERINGVALUE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELSTEERINGVALUE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELSTEERINGVALUE_STEERING num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_ApplyWheelEngineForce 1114
+#define FN_ApplyWheelEngineForce 1115
 #define APPLYWHEELENGINEFORCE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define APPLYWHEELENGINEFORCE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define APPLYWHEELENGINEFORCE_FORCE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelBrake 1115
+#define FN_SetWheelBrake 1116
 #define SETWHEELBRAKE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELBRAKE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELBRAKE_BRAKE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetVehiclePitchControl 1116
+#define FN_SetVehiclePitchControl 1117
 #define SETVEHICLEPITCHCONTROL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETVEHICLEPITCHCONTROL_PITCH num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetWheelConnectionPoint 1117
+#define FN_SetWheelConnectionPoint 1118
 #define SETWHEELCONNECTIONPOINT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELCONNECTIONPOINT_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELCONNECTIONPOINT_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETWHEELCONNECTIONPOINT_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define SETWHEELCONNECTIONPOINT_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_SetWheelDirection 1118
+#define FN_SetWheelDirection 1119
 #define SETWHEELDIRECTION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELDIRECTION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELDIRECTION_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETWHEELDIRECTION_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define SETWHEELDIRECTION_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_SetWheelAxel 1119
+#define FN_SetWheelAxel 1120
 #define SETWHEELAXEL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELAXEL_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELAXEL_X num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETWHEELAXEL_Y num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define SETWHEELAXEL_Z num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_SetWheelSuspensionLength 1120
+#define FN_SetWheelSuspensionLength 1121
 #define SETWHEELSUSPENSIONLENGTH_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELSUSPENSIONLENGTH_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELSUSPENSIONLENGTH_S_LENGTH num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelMaxSuspensionTravel 1121
+#define FN_SetWheelMaxSuspensionTravel 1122
 #define SETWHEELMAXSUSPENSIONTRAVEL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELMAXSUSPENSIONTRAVEL_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELMAXSUSPENSIONTRAVEL_MAX_TRAVEL num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelRadius 1122
+#define FN_SetWheelRadius 1123
 #define SETWHEELRADIUS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELRADIUS_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELRADIUS_RADIUS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelSuspensionStiffness 1123
+#define FN_SetWheelSuspensionStiffness 1124
 #define SETWHEELSUSPENSIONSTIFFNESS_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELSUSPENSIONSTIFFNESS_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELSUSPENSIONSTIFFNESS_STIFFNESS num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelDampingCompression 1124
+#define FN_SetWheelDampingCompression 1125
 #define SETWHEELDAMPINGCOMPRESSION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELDAMPINGCOMPRESSION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELDAMPINGCOMPRESSION_DCOMP_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelDampingRelaxation 1125
+#define FN_SetWheelDampingRelaxation 1126
 #define SETWHEELDAMPINGRELAXATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELDAMPINGRELAXATION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELDAMPINGRELAXATION_DREL_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelFrictionSlip 1126
+#define FN_SetWheelFrictionSlip 1127
 #define SETWHEELFRICTIONSLIP_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELFRICTIONSLIP_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELFRICTIONSLIP_FSLIP_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelRotation 1127
+#define FN_SetWheelRotation 1128
 #define SETWHEELROTATION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELROTATION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELROTATION_ROT num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelRollInfluence 1128
+#define FN_SetWheelRollInfluence 1129
 #define SETWHEELROLLINFLUENCE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELROLLINFLUENCE_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELROLLINFLUENCE_ROLL_INFLUENCE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelInverseContactSuspension 1129
+#define FN_SetWheelInverseContactSuspension 1130
 #define SETWHEELINVERSECONTACTSUSPENSION_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELINVERSECONTACTSUSPENSION_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELINVERSECONTACTSUSPENSION_C_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelSuspensionVelocity 1130
+#define FN_SetWheelSuspensionVelocity 1131
 #define SETWHEELSUSPENSIONVELOCITY_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELSUSPENSIONVELOCITY_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELSUSPENSIONVELOCITY_VELOCITY num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_SetWheelActorOffsetTransform 1131
+#define FN_SetWheelActorOffsetTransform 1132
 #define SETWHEELACTOROFFSETTRANSFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETWHEELACTOROFFSETTRANSFORM_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETWHEELACTOROFFSETTRANSFORM_T_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetWheelActorOffsetTransform 1132
+#define FN_GetWheelActorOffsetTransform 1133
 #define GETWHEELACTOROFFSETTRANSFORM_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETWHEELACTOROFFSETTRANSFORM_WHEEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETWHEELACTOROFFSETTRANSFORM_T_MATRIX num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_GetVehiclePitchControl 1133
+#define FN_GetVehiclePitchControl 1134
 #define GETVEHICLEPITCHCONTROL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_createMaterial 1134
-#define FN_deleteMaterial 1135
+#define FN_createMaterial 1135
+#define FN_deleteMaterial 1136
 #define DELETEMATERIAL_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setActorMaterial 1136
+#define FN_setActorMaterial 1137
 #define SETACTORMATERIAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORMATERIAL_MATERIAL_NUM num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORMATERIAL_MATERIAL_ID num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getActorMaterial 1137
+#define FN_getActorMaterial 1138
 #define GETACTORMATERIAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORMATERIAL_MATERIAL_NUM num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_copyActorMaterial 1138
+#define FN_copyActorMaterial 1139
 #define COPYACTORMATERIAL_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define COPYACTORMATERIAL_MATERIAL_NUM num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_copyMaterial 1139
+#define FN_copyMaterial 1140
 #define COPYMATERIAL_SMATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialTextureCanvas 1140
+#define FN_setMaterialTextureCanvas 1141
 #define SETMATERIALTEXTURECANVAS_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALTEXTURECANVAS_LEVEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMATERIALTEXTURECANVAS_CANVAS_ID num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_setMaterialAmbientColor 1141
+#define FN_setMaterialAmbientColor 1142
 #define SETMATERIALAMBIENTCOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALAMBIENTCOLOR_COLOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialAmbientColor 1142
+#define FN_getMaterialAmbientColor 1143
 #define GETMATERIALAMBIENTCOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialAntiAliasing 1143
+#define FN_setMaterialAntiAliasing 1144
 #define SETMATERIALANTIALIASING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALANTIALIASING_AA num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialAntiAliasing 1144
+#define FN_getMaterialAntiAliasing 1145
 #define GETMATERIALANTIALIASING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialBackfaceCulling 1145
+#define FN_setMaterialBackfaceCulling 1146
 #define SETMATERIALBACKFACECULLING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALBACKFACECULLING_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialBackfaceCulling 1146
+#define FN_getMaterialBackfaceCulling 1147
 #define GETMATERIALBACKFACECULLING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialBlendFactor 1147
+#define FN_setMaterialBlendFactor 1148
 #define SETMATERIALBLENDFACTOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALBLENDFACTOR_BF num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialBlendFactor 1148
+#define FN_getMaterialBlendFactor 1149
 #define GETMATERIALBLENDFACTOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialBlendMode 1149
+#define FN_setMaterialBlendMode 1150
 #define SETMATERIALBLENDMODE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALBLENDMODE_BLEND_MODE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialBlendMode 1150
+#define FN_getMaterialBlendMode 1151
 #define GETMATERIALBLENDMODE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialColorMask 1151
+#define FN_setMaterialColorMask 1152
 #define SETMATERIALCOLORMASK_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALCOLORMASK_COLOR_MASK num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialColorMask 1152
+#define FN_getMaterialColorMask 1153
 #define GETMATERIALCOLORMASK_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialColorMode 1153
+#define FN_setMaterialColorMode 1154
 #define SETMATERIALCOLORMODE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALCOLORMODE_COLOR_MODE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialColorMode 1154
+#define FN_getMaterialColorMode 1155
 #define GETMATERIALCOLORMODE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialDiffuseColor 1155
+#define FN_setMaterialDiffuseColor 1156
 #define SETMATERIALDIFFUSECOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALDIFFUSECOLOR_COLOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialDiffuseColor 1156
+#define FN_getMaterialDiffuseColor 1157
 #define GETMATERIALDIFFUSECOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialEmissiveColor 1157
+#define FN_setMaterialEmissiveColor 1158
 #define SETMATERIALEMISSIVECOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALEMISSIVECOLOR_COLOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialEmissiveColor 1158
+#define FN_getMaterialEmissiveColor 1159
 #define GETMATERIALEMISSIVECOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialFog 1159
+#define FN_setMaterialFog 1160
 #define SETMATERIALFOG_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALFOG_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialFog 1160
+#define FN_getMaterialFog 1161
 #define GETMATERIALFOG_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialFrontfaceCulling 1161
+#define FN_setMaterialFrontfaceCulling 1162
 #define SETMATERIALFRONTFACECULLING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALFRONTFACECULLING_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialFrontfaceCulling 1162
+#define FN_getMaterialFrontfaceCulling 1163
 #define GETMATERIALFRONTFACECULLING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialGouraudShading 1163
+#define FN_setMaterialGouraudShading 1164
 #define SETMATERIALGOURAUDSHADING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALGOURAUDSHADING_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_materialIsGouraudShaded 1164
+#define FN_materialIsGouraudShaded 1165
 #define MATERIALISGOURAUDSHADED_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_materialIsAplhaBlend 1165
+#define FN_materialIsAplhaBlend 1166
 #define MATERIALISAPLHABLEND_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_materialIsTransparent 1166
+#define FN_materialIsTransparent 1167
 #define MATERIALISTRANSPARENT_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialLighting 1167
+#define FN_setMaterialLighting 1168
 #define SETMATERIALLIGHTING_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALLIGHTING_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_materialIsLit 1168
+#define FN_materialIsLit 1169
 #define MATERIALISLIT_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialType 1169
+#define FN_setMaterialType 1170
 #define SETMATERIALTYPE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALTYPE_MAT_TYPE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialType 1170
+#define FN_getMaterialType 1171
 #define GETMATERIALTYPE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialNormalize 1171
+#define FN_setMaterialNormalize 1172
 #define SETMATERIALNORMALIZE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALNORMALIZE_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_materialIsNormalized 1172
+#define FN_materialIsNormalized 1173
 #define MATERIALISNORMALIZED_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialPointCloud 1173
+#define FN_setMaterialPointCloud 1174
 #define SETMATERIALPOINTCLOUD_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALPOINTCLOUD_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_materialIsPointCloud 1174
+#define FN_materialIsPointCloud 1175
 #define MATERIALISPOINTCLOUD_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialFlag 1175
+#define FN_setMaterialFlag 1176
 #define SETMATERIALFLAG_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALFLAG_MATERIAL_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMATERIALFLAG_F_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getMaterialFlag 1176
+#define FN_getMaterialFlag 1177
 #define GETMATERIALFLAG_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMATERIALFLAG_MATERIAL_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_setMaterialTexture 1177
+#define FN_setMaterialTexture 1178
 #define SETMATERIALTEXTURE_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALTEXTURE_LEVEL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMATERIALTEXTURE_IMG_ID num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_setMaterialShininess 1178
+#define FN_setMaterialShininess 1179
 #define SETMATERIALSHININESS_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALSHININESS_SHININESS num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialShininess 1179
+#define FN_getMaterialShininess 1180
 #define GETMATERIALSHININESS_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialSpecularColor 1180
+#define FN_setMaterialSpecularColor 1181
 #define SETMATERIALSPECULARCOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALSPECULARCOLOR_COLOR num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialSpecularColor 1181
+#define FN_getMaterialSpecularColor 1182
 #define GETMATERIALSPECULARCOLOR_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialThickness 1182
+#define FN_setMaterialThickness 1183
 #define SETMATERIALTHICKNESS_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALTHICKNESS_THICKNESS num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getMaterialThickness 1183
+#define FN_getMaterialThickness 1184
 #define GETMATERIALTHICKNESS_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setMaterialWireframe 1184
+#define FN_setMaterialWireframe 1185
 #define SETMATERIALWIREFRAME_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALWIREFRAME_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_materialIsWireframe 1185
+#define FN_materialIsWireframe 1186
 #define MATERIALISWIREFRAME_MATERIAL_ID num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setActorTexture 1186
+#define FN_setActorTexture 1187
 #define SETACTORTEXTURE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORTEXTURE_LAYER num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORTEXTURE_IMAGE_ID num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getActorMaterialCount 1187
+#define FN_getActorMaterialCount 1188
 #define GETACTORMATERIALCOUNT_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_setActorMaterialFlag 1188
+#define FN_setActorMaterialFlag 1189
 #define SETACTORMATERIALFLAG_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORMATERIALFLAG_FLAG num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETACTORMATERIALFLAG_FLAG_VALUE num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_getActorMaterialFlag 1189
+#define FN_getActorMaterialFlag 1190
 #define GETACTORMATERIALFLAG_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORMATERIALFLAG_MATERIAL num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define GETACTORMATERIALFLAG_FLAG num_var[2].nref[0].value[ num_var[2].byref_offset ]
-#define FN_setActorMaterialType 1190
+#define FN_setActorMaterialType 1191
 #define SETACTORMATERIALTYPE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETACTORMATERIALTYPE_MATERIAL_TYPE num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_getActorMaterialType 1191
+#define FN_getActorMaterialType 1192
 #define GETACTORMATERIALTYPE_ACTOR num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETACTORMATERIALTYPE_MATERIAL num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_MaterialExists 1192
+#define FN_MaterialExists 1193
 #define MATERIALEXISTS_MATERIAL num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_NumMaterialConstants 1193
+#define FN_NumMaterialConstants 1194
 #define NUMMATERIALCONSTANTS_MATERIAL_TYPE num_var[0].nref[0].value[ num_var[0].byref_offset ]
-#define FN_GetMaterialConstantName$ 1194
+#define FN_GetMaterialConstantName$ 1195
 #define GETMATERIALCONSTANTNAME$_MATERIAL_TYPE num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMATERIALCONSTANTNAME$_INDEX num_var[1].nref[0].value[ num_var[1].byref_offset ]
-#define FN_SetMaterialConstant 1195
+#define FN_SetMaterialConstant 1196
 #define SETMATERIALCONSTANT_MATERIAL num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define SETMATERIALCONSTANT_M_CONSTANT$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define SETMATERIALCONSTANT_N1 num_var[1].nref[0].value[ num_var[1].byref_offset ]
 #define SETMATERIALCONSTANT_N2 num_var[2].nref[0].value[ num_var[2].byref_offset ]
 #define SETMATERIALCONSTANT_N3 num_var[3].nref[0].value[ num_var[3].byref_offset ]
 #define SETMATERIALCONSTANT_N4 num_var[4].nref[0].value[ num_var[4].byref_offset ]
-#define FN_GetMaterialConstant 1196
+#define FN_GetMaterialConstant 1197
 #define GETMATERIALCONSTANT_MATERIAL num_var[0].nref[0].value[ num_var[0].byref_offset ]
 #define GETMATERIALCONSTANT_M_CONSTANT$ str_var[0].sref[0].value[ str_var[0].byref_offset ]
 #define GETMATERIALCONSTANT_N1 num_var[1].nref[0].value[ num_var[1].byref_offset ]
