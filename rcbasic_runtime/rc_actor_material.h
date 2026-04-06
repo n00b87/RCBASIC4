@@ -149,16 +149,20 @@ int rc_createMaterial()
 		if(!rc_material[i].isUsed)
 		{
 			material_id = i;
-			rc_material[i].isFX = false;
-			rc_material[i].mat = irr::video::SMaterial();
-			rc_material[i].isReference = false;
-			rc_material[i].refActor = -1;
-			rc_material[i].refMatNum = -1;
+
+			rc_material_obj mat;
+            mat.isUsed = true;
+            mat.isReference = false;
+            mat.isFX = false;
+            mat.shader = NULL;
+
 			if(rc_material[i].shader)
 			{
 				delete rc_material[i].shader;
 				rc_material[i].shader = NULL;
 			}
+
+			rc_material[i] = mat;
 			break;
 		}
 	}
