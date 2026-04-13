@@ -703,7 +703,7 @@ class rc_animEndCallBack : public IAnimationEndCallBack
     void OnAnimationEnd( IAnimatedMeshSceneNode *node)
     {
     	rc_scene_node* ref_actor = &rc_actor[ref_id];
-    	if(ref_actor->current_animation_loop < ref_actor->num_animation_loops || ref_actor->num_animation_loops < 0)
+    	if( (ref_actor->current_animation_loop < ref_actor->num_animation_loops) || (ref_actor->num_animation_loops < 0) )
 		{
 			//std::cout << "animating" << std::endl;
 			irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*) ref_actor->mesh_node;
@@ -739,6 +739,7 @@ class rc_animEndCallBack : public IAnimationEndCallBack
 		}
 		else
 		{
+		    //std::cout << "DBG: Animation Ended" << std::endl;
 			ref_actor->isPlaying = false;
 		}
       //std::cout << "The animation has ended!" << std::endl;
