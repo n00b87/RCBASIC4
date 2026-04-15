@@ -58,11 +58,15 @@ int rc_createDistanceJoint(int spriteA, int spriteB, double aX, double aY, doubl
 	rc_joint[joint_id].canvas = rc_active_canvas;
 
 	b2DistanceJointDef joint_def;
-	joint_def.Initialize(rc_sprite[spriteA].physics.body, rc_sprite[spriteB].physics.body, b2Vec2(aX, aY), b2Vec2(bX, bY));
+	b2Vec2 sprA_pos = rc_sprite[spriteA].physics.body->GetPosition() - b2Vec2(rc_sprite[spriteA].frame_size.Width/2, rc_sprite[spriteA].frame_size.Height/2);
+	b2Vec2 sprB_pos = rc_sprite[spriteB].physics.body->GetPosition() - b2Vec2(rc_sprite[spriteB].frame_size.Width/2, rc_sprite[spriteB].frame_size.Height/2);
+	joint_def.Initialize(rc_sprite[spriteA].physics.body, rc_sprite[spriteB].physics.body, sprA_pos + b2Vec2(aX, aY), sprB_pos + b2Vec2(bX, bY));
 	joint_def.collideConnected = collide_connected;
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_DISTANCE;
+	rc_joint[joint_id].spriteA = spriteA;
+	rc_joint[joint_id].spriteB = spriteB;
 
 	return joint_id;
 }
@@ -106,11 +110,15 @@ int rc_createFrictionJoint(int spriteA, int spriteB, double x, double y, bool co
 	rc_joint[joint_id].canvas = rc_active_canvas;
 
 	b2FrictionJointDef joint_def;
+	b2Vec2 sprA_pos = rc_sprite[spriteA].physics.body->GetPosition() - b2Vec2(rc_sprite[spriteA].frame_size.Width/2, rc_sprite[spriteA].frame_size.Height/2);
+	b2Vec2 sprB_pos = rc_sprite[spriteB].physics.body->GetPosition() - b2Vec2(rc_sprite[spriteB].frame_size.Width/2, rc_sprite[spriteB].frame_size.Height/2);
 	joint_def.Initialize(rc_sprite[spriteA].physics.body, rc_sprite[spriteB].physics.body, b2Vec2(x, y));
 	joint_def.collideConnected = collide_connected;
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_FRICTION;
+	rc_joint[joint_id].spriteA = spriteA;
+	rc_joint[joint_id].spriteB = spriteB;
 
 	return joint_id;
 }
@@ -163,6 +171,8 @@ int rc_createGearJoint(int jointA, int jointB, double g_ratio, bool collide_conn
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_GEAR;
+	rc_joint[joint_id].spriteA = -1;
+	rc_joint[joint_id].spriteB = -1;
 
 	return joint_id;
 }
@@ -211,6 +221,8 @@ int rc_createMotorJoint(int spriteA, int spriteB, bool collide_connected)
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_MOTOR;
+	rc_joint[joint_id].spriteA = spriteA;
+	rc_joint[joint_id].spriteB = spriteB;
 
 	return joint_id;
 }
@@ -259,6 +271,8 @@ int rc_createPrismaticJoint(int spriteA, int spriteB, double aX, double aY, doub
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_PRISMATIC;
+	rc_joint[joint_id].spriteA = spriteA;
+	rc_joint[joint_id].spriteB = spriteB;
 
 	return joint_id;
 }
@@ -302,11 +316,15 @@ int rc_createPulleyJoint(int spriteA, int spriteB, double gaX, double gaY, doubl
 	rc_joint[joint_id].canvas = rc_active_canvas;
 
 	b2PulleyJointDef joint_def;
-	joint_def.Initialize(rc_sprite[spriteA].physics.body, rc_sprite[spriteB].physics.body, b2Vec2(gaX, gaY), b2Vec2(gbX, gbY), b2Vec2(aX, aY), b2Vec2(bX, bY), j_ratio);
+	b2Vec2 sprA_pos = rc_sprite[spriteA].physics.body->GetPosition() - b2Vec2(rc_sprite[spriteA].frame_size.Width/2, rc_sprite[spriteA].frame_size.Height/2);
+	b2Vec2 sprB_pos = rc_sprite[spriteB].physics.body->GetPosition() - b2Vec2(rc_sprite[spriteB].frame_size.Width/2, rc_sprite[spriteB].frame_size.Height/2);
+	joint_def.Initialize(rc_sprite[spriteA].physics.body, rc_sprite[spriteB].physics.body, b2Vec2(gaX, gaY), b2Vec2(gbX, gbY), sprA_pos + b2Vec2(aX, aY), sprB_pos + b2Vec2(bX, bY), j_ratio);
 	joint_def.collideConnected = collide_connected;
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_PULLEY;
+	rc_joint[joint_id].spriteA = spriteA;
+	rc_joint[joint_id].spriteB = spriteB;
 
 	return joint_id;
 }
@@ -355,6 +373,8 @@ int rc_createRevoluteJoint(int spriteA, int spriteB, double x, double y, bool co
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_REVOLUTE;
+	rc_joint[joint_id].spriteA = spriteA;
+	rc_joint[joint_id].spriteB = spriteB;
 
 	return joint_id;
 }
@@ -403,6 +423,8 @@ int rc_createWeldJoint(int spriteA, int spriteB, double x, double y, bool collid
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_WELD;
+	rc_joint[joint_id].spriteA = spriteA;
+	rc_joint[joint_id].spriteB = spriteB;
 
 	return joint_id;
 }
@@ -451,6 +473,8 @@ int rc_createWheelJoint(int spriteA, int spriteB, double aX, double aY, double a
 
 	rc_joint[joint_id].joint = rc_canvas[rc_active_canvas].physics2D.world->CreateJoint(&joint_def);
 	rc_joint[joint_id].type = RC_JOINT_TYPE_WHEEL;
+	rc_joint[joint_id].spriteA = spriteA;
+	rc_joint[joint_id].spriteB = spriteB;
 
 	return joint_id;
 }
@@ -469,6 +493,8 @@ void rc_deleteJoint(int joint_id)
 	rc_joint[joint_id].joint = NULL;
 	rc_joint[joint_id].canvas = -1;
 	rc_joint[joint_id].active = false;
+	rc_joint[joint_id].spriteA = -1;
+	rc_joint[joint_id].spriteB = -1;
 }
 
 void rc_getJointWorldAnchorA(int joint_id, double* x, double* y)
@@ -480,6 +506,7 @@ void rc_getJointWorldAnchorA(int joint_id, double* x, double* y)
 		return;
 
 	b2Vec2 anchor = rc_joint[joint_id].joint->GetAnchorA();
+
 	*x = anchor.x;
 	*y = anchor.y;
 }
@@ -529,12 +556,22 @@ void rc_getJointLocalAnchorA(int joint_id, double* x, double* y)
 	if(!rc_joint[joint_id].active)
 		return;
 
+    b2Vec2 sprA_pos(0,0);
+
+    int spriteA = rc_joint[joint_id].spriteA;
+
+    if(spriteA >= 0 && spriteA < rc_sprite.size())
+        sprA_pos = b2Vec2(rc_sprite[spriteA].frame_size.Width/2, rc_sprite[spriteA].frame_size.Height/2);
+
 	switch(rc_joint[joint_id].type)
 	{
 		case RC_JOINT_TYPE_DISTANCE:
 		{
 			b2DistanceJoint* j = (b2DistanceJoint*)rc_joint[joint_id].joint;
 			b2Vec2 anchor = j->GetLocalAnchorA();
+
+            anchor += sprA_pos;
+
 			*x = anchor.x;
 			*y = anchor.y;
 		}
@@ -544,6 +581,9 @@ void rc_getJointLocalAnchorA(int joint_id, double* x, double* y)
 		{
 			b2FrictionJoint* j = (b2FrictionJoint*)rc_joint[joint_id].joint;
 			b2Vec2 anchor = j->GetLocalAnchorA();
+
+			anchor += sprA_pos;
+
 			*x = anchor.x;
 			*y = anchor.y;
 		}
@@ -553,6 +593,9 @@ void rc_getJointLocalAnchorA(int joint_id, double* x, double* y)
 		{
 			b2PrismaticJoint* j = (b2PrismaticJoint*)rc_joint[joint_id].joint;
 			b2Vec2 anchor = j->GetLocalAnchorA();
+
+			anchor += sprA_pos;
+
 			*x = anchor.x;
 			*y = anchor.y;
 		}
@@ -562,6 +605,9 @@ void rc_getJointLocalAnchorA(int joint_id, double* x, double* y)
 		{
 			b2RevoluteJoint* j = (b2RevoluteJoint*)rc_joint[joint_id].joint;
 			b2Vec2 anchor = j->GetLocalAnchorA();
+
+			anchor += sprA_pos;
+
 			*x = anchor.x;
 			*y = anchor.y;
 		}
@@ -571,6 +617,9 @@ void rc_getJointLocalAnchorA(int joint_id, double* x, double* y)
 		{
 			b2WeldJoint* j = (b2WeldJoint*)rc_joint[joint_id].joint;
 			b2Vec2 anchor = j->GetLocalAnchorA();
+
+			anchor += sprA_pos;
+
 			*x = anchor.x;
 			*y = anchor.y;
 		}
@@ -580,6 +629,9 @@ void rc_getJointLocalAnchorA(int joint_id, double* x, double* y)
 		{
 			b2WheelJoint* j = (b2WheelJoint*)rc_joint[joint_id].joint;
 			b2Vec2 anchor = j->GetLocalAnchorA();
+
+			anchor += sprA_pos;
+
 			*x = anchor.x;
 			*y = anchor.y;
 		}
@@ -596,12 +648,22 @@ void rc_getJointLocalAnchorB(int joint_id, double* x, double* y)
 	if(!rc_joint[joint_id].active)
 		return;
 
+    b2Vec2 sprB_pos(0,0);
+
+    int spriteB = rc_joint[joint_id].spriteB;
+
+    if(spriteB >= 0 && spriteB < rc_sprite.size())
+        sprB_pos = b2Vec2(rc_sprite[spriteB].frame_size.Width/2, rc_sprite[spriteB].frame_size.Height/2);
+
 	switch(rc_joint[joint_id].type)
 	{
 		case RC_JOINT_TYPE_DISTANCE:
 		{
 			b2DistanceJoint* j = (b2DistanceJoint*)rc_joint[joint_id].joint;
 			b2Vec2 anchor = j->GetLocalAnchorB();
+
+			anchor += sprB_pos;
+
 			*x = anchor.x;
 			*y = anchor.y;
 		}
@@ -611,6 +673,9 @@ void rc_getJointLocalAnchorB(int joint_id, double* x, double* y)
 		{
 			b2FrictionJoint* j = (b2FrictionJoint*)rc_joint[joint_id].joint;
 			b2Vec2 anchor = j->GetLocalAnchorB();
+
+			anchor += sprB_pos;
+
 			*x = anchor.x;
 			*y = anchor.y;
 		}
@@ -620,6 +685,9 @@ void rc_getJointLocalAnchorB(int joint_id, double* x, double* y)
 		{
 			b2PrismaticJoint* j = (b2PrismaticJoint*)rc_joint[joint_id].joint;
 			b2Vec2 anchor = j->GetLocalAnchorB();
+
+			anchor += sprB_pos;
+
 			*x = anchor.x;
 			*y = anchor.y;
 		}
@@ -629,6 +697,9 @@ void rc_getJointLocalAnchorB(int joint_id, double* x, double* y)
 		{
 			b2RevoluteJoint* j = (b2RevoluteJoint*)rc_joint[joint_id].joint;
 			b2Vec2 anchor = j->GetLocalAnchorB();
+
+			anchor += sprB_pos;
+
 			*x = anchor.x;
 			*y = anchor.y;
 		}
@@ -638,6 +709,9 @@ void rc_getJointLocalAnchorB(int joint_id, double* x, double* y)
 		{
 			b2WeldJoint* j = (b2WeldJoint*)rc_joint[joint_id].joint;
 			b2Vec2 anchor = j->GetLocalAnchorB();
+
+			anchor += sprB_pos;
+
 			*x = anchor.x;
 			*y = anchor.y;
 		}
@@ -647,6 +721,9 @@ void rc_getJointLocalAnchorB(int joint_id, double* x, double* y)
 		{
 			b2WheelJoint* j = (b2WheelJoint*)rc_joint[joint_id].joint;
 			b2Vec2 anchor = j->GetLocalAnchorB();
+
+			anchor += sprB_pos;
+
 			*x = anchor.x;
 			*y = anchor.y;
 		}

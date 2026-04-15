@@ -9,7 +9,7 @@ Parameters
 #list ul
 #li spriteA - first body
 #li spriteB - second body
-#li aX, aY - Anchor point on spriteA
-#li bX, bY - Anchor point on spriteB
+#li aX, aY - Anchor point on spriteA (local coordinates)
+#li bX, bY - Anchor point on spriteB (local coordinates)
 #/list
 
