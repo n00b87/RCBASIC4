@@ -700,6 +700,9 @@ case FN_PostEffectIsActive: //Number Function
 case FN_GetPostEffectType: //Number Function
 	 rc_push_num(rc_getPostEffectType( GETPOSTEFFECTTYPE_C_NUM ));
 	break;
+case FN_SetCanvasBackgroundRender: //Sub Procedure
+	rc_setCanvasBackgroundRender( SETCANVASBACKGROUNDRENDER_C_NUM,  SETCANVASBACKGROUNDRENDER_FLAG );
+	break;
 case FN_Circle: //Sub Procedure
 	rc_drawCircle( CIRCLE_X,  CIRCLE_Y,  CIRCLE_RADIUS );
 	break;

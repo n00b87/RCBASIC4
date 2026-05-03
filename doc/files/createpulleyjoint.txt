@@ -3,5 +3,7 @@
 
 Creates a pulley joint
 
+NOTE: (aX, aY) and (bX, bY) are local coordinates relative to spriteA and spriteB positions
+
 The pulley joint is connected to two bodies and two fixed ground points. The pulley supports a ratio such that: length1 + ratio * length2 <= constant Yes, the force transmitted is scaled by the ratio. Warning: the pulley joint can get a bit squirrelly by itself. They often work better when combined with prismatic joints. You should also cover the the anchor points with static shapes to prevent one side from going to zero length. 
 

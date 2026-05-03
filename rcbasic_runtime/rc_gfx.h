@@ -1088,6 +1088,14 @@ int rc_activeCanvas()
     return rc_active_canvas;
 }
 
+void rc_setCanvasBackgroundRender( int canvas_id, bool flag )
+{
+    if(canvas_id <= 0 || canvas_id >= rc_canvas.size()) //canvas 0 is being excluded because its the back buffer
+        return;
+
+    rc_canvas[canvas_id].bkg_render = flag;
+}
+
 int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int canvas_type=RC_CANVAS_TYPE_2D)
 {
     if(!VideoDriver)
@@ -1100,6 +1108,7 @@ int rc_canvasOpen(int w, int h, int vx, int vy, int vw, int vh, int mode, int ca
     canvas.post_effect.object = NULL;
     canvas.post_effect.type = -1;
     canvas.post_effect.is_active = false;
+    canvas.bkg_render = true;
 
     #ifdef RC_DRIVER_GLES2
     Uint32 size_n = 2;

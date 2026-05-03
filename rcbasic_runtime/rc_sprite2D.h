@@ -116,6 +116,9 @@ struct rc_b2Joint_obj
 	bool active;
 
 	int canvas;
+
+	int spriteA;
+	int spriteB;
 };
 
 irr::core::array<rc_b2Joint_obj> rc_joint;

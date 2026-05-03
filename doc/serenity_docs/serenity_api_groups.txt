@@ -19,3 +19,10 @@
 #li Returns the group name
 #/list
 <br>
+
+<b>Function Serenity_GetActorIndexFromGroup(group_index, group_actor_index)</b>
+#list ul
+#li Returns the actor index based on its order in a group
+#li NOTE: This is mainly used for when you want to loop through all the actors in a group
+#/list
+<br>
