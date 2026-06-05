@@ -4456,7 +4456,7 @@ int main(int argc, char * argv[])
     //ogles2 test
     #ifdef RC_TESTING
     //rc_intern_dirChange("/home/n00b/GameDev/Ambient/Ambient_Project");
-	rc_intern_dirChange("/home/n00b/Videos/Joint2D Demo");
+	rc_intern_dirChange("/home/n00b/Videos/test_nirvana");
 	rc_filename = "main.cbc";
 	//rc_filename = "debug.cbc";
 
