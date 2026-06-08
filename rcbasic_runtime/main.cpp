@@ -5135,7 +5135,7 @@ int main(int argc, char * argv[])
     }
 
     #ifdef RCBASIC_DEBUG
-    //rc_filename = "debug.cbc";
+    rc_filename = "debug.cbc";
     #endif // RCBASIC_DEBUG
 
     //DEBUG START
