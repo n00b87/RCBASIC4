@@ -968,7 +968,7 @@ int main(int argc, char * argv[])
 
     if(rc_filename.compare("--version")==0)
     {
-        cout << "RCBASIC Compiler v4.9" << endl;
+        cout << "RCBASIC Compiler v4.10" << endl;
         return 0;
     }
 
@@ -985,6 +985,9 @@ int main(int argc, char * argv[])
 
     if(is_file_exist("rcbasic.dbgi"))
         remove("rcbasic.dbgi");
+
+    if(is_file_exist("rcbasic.dbgm"))
+        remove("rcbasic.dbgm");
 
     if(rc_filename.compare("")==0)
         return 0;
