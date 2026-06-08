@@ -99,6 +99,9 @@ void rc_preUpdate()
 
 	for(int i = 0; i < rc_canvas.size(); i++)
 	{
+	    if(!rc_canvas[i].texture)
+            continue;
+
 		if(rc_canvas[i].type != RC_CANVAS_TYPE_SPRITE)
 			continue;
 
