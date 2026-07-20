@@ -418,7 +418,12 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
 	{
 		SDL_DisplayMode dm;
 		SDL_GetDesktopDisplayMode(0, &dm);
+		#ifdef RC_WEB
+		rc_setfps_refresh_rate = 60;
+		#else
 		rc_setfps_refresh_rate = dm.refresh_rate;
+		#endif // RC_WEB
+
 		rc_setfps_timer = SDL_GetTicks();
 	}
 

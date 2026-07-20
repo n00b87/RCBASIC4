@@ -5133,7 +5133,7 @@ int main(int argc, char * argv[])
         #ifdef RCBASIC_DEBUG
         cout << "RCBASIC Debugger v4.10" << endl;
         #else
-        cout << "RCBASIC Runtime v4.10" << endl;
+        cout << "RCBASIC Runtime v4.11" << endl;
         #endif
         return 0;
     }
@@ -5189,9 +5189,9 @@ int main(int argc, char * argv[])
     //ogles2 test
     #ifdef RC_TESTING
     //rc_intern_dirChange("/home/n00b/GameDev/Ambient/Ambient_Project");
-	rc_intern_dirChange("/home/n00b/Documents/forum_stuff");
+	rc_intern_dirChange("/home/n00b/Programs/rcbasic/examples/Nirvana_Demo");
 	//rc_filename = "main.cbc";
-	rc_filename = "debug.cbc";
+	//rc_filename = "debug.cbc";
 
 	//rc_intern_dirChange("/home/n00b/Pictures/UNTITLED");
 	//rc_filename = "nv_test.cbc";
