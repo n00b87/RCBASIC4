@@ -1095,7 +1095,7 @@ void rc_setActorContactStiffnessAndDamping(int actor, double stiffness, double d
 
 
 
-void rc_getActorPushVelocityWorld(int actor, double* x, double* y, double* z)
+void rc_getActorPushVelocity(int actor, double* x, double* y, double* z)
 {
 	if(actor < 0 || actor >= rc_actor.size())
         return;
