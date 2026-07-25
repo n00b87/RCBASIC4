@@ -2719,7 +2719,7 @@ irr::video::ITexture* getPOTTexture(std::string img_file)
 	// Create a texture with padding
 	irr::video::ITexture * logoPadded = 0;
 	const core::dimension2du origDim = src_img->getDimension();
-	const bool needSquare = false;
+	const bool needSquare = true;
 	const u32 maxTextureSize = core::min_(VideoDriver->getMaxTextureSize().Width, VideoDriver->getMaxTextureSize().Height);
 	irr::core::dimension2du dimOptimal = origDim.getOptimalSize(true, needSquare, true, maxTextureSize);
 
@@ -2729,12 +2729,14 @@ irr::video::ITexture* getPOTTexture(std::string img_file)
 
 	if ( dimOptimal != origDim)
 	{
-		irr::video::IImage* imgLogo2 = VideoDriver->createImage(src_img->getColorFormat(), dimOptimal);
+	    std::cout << "actual (" << origDim.Width << ", " << origDim.Height << ")  padded(" << dimOptimal.Width << ", " << dimOptimal.Height << ") " << std::endl;
+	    irr::video::IImage* imgLogo2 = VideoDriver->createImage(irr::video::ECF_A8R8G8B8, dimOptimal);
 		memset(imgLogo2->getData(), 0, imgLogo2->getDataSizeFromFormat(imgLogo2->getColorFormat(), dimOptimal.Width, dimOptimal.Height));	// set to black
-		irr::core::vector2di pos(0, 0);
+		core::vector2di pos((dimOptimal.Width-origDim.Width)/2, (dimOptimal.Height-origDim.Height)/2);
+		//core::vector2di pos(0, 0);
 		src_img->copyTo(imgLogo2, pos, core::recti(0,0, origDim.Width, origDim.Height), 0);
 
-		logoPadded =  VideoDriver->addTexture("logopadded", imgLogo2);
+		logoPadded =  VideoDriver->addTexture(img_file.c_str(), imgLogo2);
 		imgLogo2->drop();
 	}
 	else
@@ -2751,11 +2753,11 @@ int rc_loadImageEx(std::string img_file, Uint32 color_key = 0, bool use_color_ke
 {
     rc_image_obj img;
 
-    #ifdef RC_DRIVER_GLES2
-    img.image = getPOTTexture(img_file.c_str());
-    #else
+    //#ifdef RC_DRIVER_GLES2
+    //img.image = getPOTTexture(img_file.c_str());
+    //#else
     img.image = VideoDriver->getTexture(img_file.c_str());
-    #endif // RC_DRIVER_GLES2
+    //#endif // RC_DRIVER_GLES2
 
     if(img.image == NULL)
         return -1;
