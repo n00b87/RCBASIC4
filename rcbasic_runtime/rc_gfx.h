@@ -2712,10 +2712,50 @@ void rc_readInput_ToggleBackspace(bool flag)
 }
 
 
+irr::video::ITexture* getPOTTexture(std::string img_file)
+{
+    irr::video::IImage* src_img = VideoDriver->createImageFromFile(img_file.c_str());
+
+	// Create a texture with padding
+	irr::video::ITexture * logoPadded = 0;
+	const core::dimension2du origDim = src_img->getDimension();
+	const bool needSquare = false;
+	const u32 maxTextureSize = core::min_(VideoDriver->getMaxTextureSize().Width, VideoDriver->getMaxTextureSize().Height);
+	irr::core::dimension2du dimOptimal = origDim.getOptimalSize(true, needSquare, true, maxTextureSize);
+
+	//Uint32 size_n = 2;
+    //Uint32 dim_max = (w > h ? w : h);
+    //while(size_n < dim_max) size_n *= 2;
+
+	if ( dimOptimal != origDim)
+	{
+		irr::video::IImage* imgLogo2 = VideoDriver->createImage(src_img->getColorFormat(), dimOptimal);
+		memset(imgLogo2->getData(), 0, imgLogo2->getDataSizeFromFormat(imgLogo2->getColorFormat(), dimOptimal.Width, dimOptimal.Height));	// set to black
+		irr::core::vector2di pos(0, 0);
+		src_img->copyTo(imgLogo2, pos, core::recti(0,0, origDim.Width, origDim.Height), 0);
+
+		logoPadded =  VideoDriver->addTexture("logopadded", imgLogo2);
+		imgLogo2->drop();
+	}
+	else
+    {
+        logoPadded = VideoDriver->getTexture(img_file.c_str());
+    }
+
+	src_img->drop();
+
+	return logoPadded;
+}
+
 int rc_loadImageEx(std::string img_file, Uint32 color_key = 0, bool use_color_key = true)
 {
     rc_image_obj img;
+
+    #ifdef RC_DRIVER_GLES2
+    img.image = getPOTTexture(img_file.c_str());
+    #else
     img.image = VideoDriver->getTexture(img_file.c_str());
+    #endif // RC_DRIVER_GLES2
 
     if(img.image == NULL)
         return -1;
