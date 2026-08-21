@@ -592,5 +592,25 @@ bool rc_getMeshBuffer(int mesh_id, int buffer_index, double* vertex_data, double
     return true;
 }
 
+int rc_getMeshFrameCount(int mesh_id)
+{
+    if(mesh_id < 0 || mesh_id >= rc_mesh.size())
+        return 0;
+
+    int frame_count = 0;
+
+    switch(rc_mesh[mesh_id].mesh_type)
+    {
+        case RC_MESH_TYPE_ANIMATED:
+        {
+            irr::scene::IAnimatedMesh * mesh = (irr::scene::IAnimatedMesh*) rc_mesh[mesh_id].mesh;
+            frame_count = mesh->getFrameCount();
+        }
+        break;
+    }
+
+    return frame_count;
+}
+
 
 #endif // RC_MESH_H_INCLUDED

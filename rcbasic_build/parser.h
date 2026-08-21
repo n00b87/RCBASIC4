@@ -6095,6 +6095,13 @@ bool check_rule()
                             rc_setError(var_id + " is not a valid identifier");
                             return false;
                         }
+
+                        if(option_explicit)
+                        {
+                            rc_setError("OPTION EXPLICIT is enabled; DIM expected when creating new variable");
+                            return false;
+                        }
+
                         if(isInFunctionScope)
                         {
                             if(!create_function_variable(var_id, var_type, ""))

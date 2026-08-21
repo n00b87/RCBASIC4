@@ -2204,6 +2204,9 @@ case FN_GetMeshBufferIndexCount: //Number Function
 case FN_GetMeshBuffer: //Number Function
 	 rc_push_num(rc_getMeshBuffer( GETMESHBUFFER_MESH_ID,  GETMESHBUFFER_BUFFER_INDEX,  &GETMESHBUFFER_VERTEX_DATA,  &GETMESHBUFFER_NORMAL_DATA,  &GETMESHBUFFER_UV_DATA,  &GETMESHBUFFER_INDEX_DATA ));
 	break;
+case FN_GetMeshFrameCount: //Number Function
+	 rc_push_num(rc_getMeshFrameCount( GETMESHFRAMECOUNT_MESH_ID ));
+	break;
 case FN_CreateAnimatedActor: //Number Function
 	 rc_push_num(rc_createAnimatedActor( CREATEANIMATEDACTOR_MESH ));
 	break;
@@ -2299,6 +2302,9 @@ case FN_ActorExists: //Number Function
 	break;
 case FN_GetActorType: //Number Function
 	 rc_push_num(rc_getActorType( GETACTORTYPE_ACTOR ));
+	break;
+case FN_SetActorTransform: //Sub Procedure
+	rc_setActorTransform( SETACTORTRANSFORM_ACTOR,  SETACTORTRANSFORM_MA );
 	break;
 case FN_CreateActorAnimation: //Number Function
 	 rc_push_num(rc_createActorAnimation( CREATEACTORANIMATION_ACTOR,  CREATEACTORANIMATION_START_FRAME,  CREATEACTORANIMATION_END_FRAME,  CREATEACTORANIMATION_SPEED ));
@@ -2560,6 +2566,102 @@ case FN_SetActorShapeEx: //Sub Procedure
 	break;
 case FN_SetActorImpactMesh: //Sub Procedure
 	rc_setActorImpactMesh( SETACTORIMPACTMESH_ACTOR,  SETACTORIMPACTMESH_MESH,  SETACTORIMPACTMESH_MASS );
+	break;
+case FN_GetActorTurnVelocity: //Sub Procedure
+	rc_getActorTurnVelocity( GETACTORTURNVELOCITY_ACTOR,  &GETACTORTURNVELOCITY_X,  &GETACTORTURNVELOCITY_Y,  &GETACTORTURNVELOCITY_Z );
+	break;
+case FN_SetActorTurnVelocity: //Sub Procedure
+	rc_setActorTurnVelocity( SETACTORTURNVELOCITY_ACTOR,  SETACTORTURNVELOCITY_X,  SETACTORTURNVELOCITY_Y,  SETACTORTURNVELOCITY_Z );
+	break;
+case FN_GetActorFriction: //Number Function
+	 rc_push_num(rc_getActorFriction( GETACTORFRICTION_ACTOR ));
+	break;
+case FN_SetActorFriction: //Sub Procedure
+	rc_setActorFriction( SETACTORFRICTION_ACTOR,  SETACTORFRICTION_FRICTION );
+	break;
+case FN_ActorHasAniFriction: //Number Function
+	 rc_push_num(rc_actorHasAniFriction( ACTORHASANIFRICTION_ACTOR ));
+	break;
+case FN_GetActorAniFriction: //Sub Procedure
+	rc_getActorAniFriction( GETACTORANIFRICTION_ACTOR,  &GETACTORANIFRICTION_X,  &GETACTORANIFRICTION_Y,  &GETACTORANIFRICTION_Z );
+	break;
+case FN_SetActorAniFriction: //Sub Procedure
+	rc_setActorAniFriction( SETACTORANIFRICTION_ACTOR,  SETACTORANIFRICTION_X,  SETACTORANIFRICTION_Y,  SETACTORANIFRICTION_Z );
+	break;
+case FN_GetActorRollingFriction: //Number Function
+	 rc_push_num(rc_getActorRollingFriction( GETACTORROLLINGFRICTION_ACTOR ));
+	break;
+case FN_SetActorRollingFriction: //Sub Procedure
+	rc_setActorRollingFriction( SETACTORROLLINGFRICTION_ACTOR,  SETACTORROLLINGFRICTION_FRICTION );
+	break;
+case FN_GetActorSpinningFriction: //Number Function
+	 rc_push_num(rc_getActorSpinningFriction( GETACTORSPINNINGFRICTION_ACTOR ));
+	break;
+case FN_SetActorSpinningFriction: //Sub Procedure
+	rc_setActorSpinningFriction( SETACTORSPINNINGFRICTION_ACTOR,  SETACTORSPINNINGFRICTION_FRICTION );
+	break;
+case FN_GetActorContactProcessingThreshold: //Number Function
+	 rc_push_num(rc_getActorContactProcessingThreshold( GETACTORCONTACTPROCESSINGTHRESHOLD_ACTOR ));
+	break;
+case FN_SetActorContactProcessingThreshold: //Sub Procedure
+	rc_setActorContactProcessingThreshold( SETACTORCONTACTPROCESSINGTHRESHOLD_ACTOR,  SETACTORCONTACTPROCESSINGTHRESHOLD_CPT );
+	break;
+case FN_GetActorHitFraction: //Number Function
+	 rc_push_num(rc_getActorHitFraction( GETACTORHITFRACTION_ACTOR ));
+	break;
+case FN_SetActorHitFraction: //Sub Procedure
+	rc_setActorHitFraction( SETACTORHITFRACTION_ACTOR,  SETACTORHITFRACTION_HIT_FRACTION );
+	break;
+case FN_GetActorInterpolationAngularVelocity: //Sub Procedure
+	rc_getActorInterpolationAngularVelocity( GETACTORINTERPOLATIONANGULARVELOCITY_ACTOR,  &GETACTORINTERPOLATIONANGULARVELOCITY_X,  &GETACTORINTERPOLATIONANGULARVELOCITY_Y,  &GETACTORINTERPOLATIONANGULARVELOCITY_Z );
+	break;
+case FN_SetActorInterpolationAngularVelocity: //Sub Procedure
+	rc_setActorInterpolationAngularVelocity( SETACTORINTERPOLATIONANGULARVELOCITY_ACTOR,  SETACTORINTERPOLATIONANGULARVELOCITY_X,  SETACTORINTERPOLATIONANGULARVELOCITY_Y,  SETACTORINTERPOLATIONANGULARVELOCITY_Z );
+	break;
+case FN_GetActorInterpolationLinearVelocity: //Sub Procedure
+	rc_getActorInterpolationLinearVelocity( GETACTORINTERPOLATIONLINEARVELOCITY_ACTOR,  &GETACTORINTERPOLATIONLINEARVELOCITY_X,  &GETACTORINTERPOLATIONLINEARVELOCITY_Y,  &GETACTORINTERPOLATIONLINEARVELOCITY_Z );
+	break;
+case FN_SetActorInterpolationLinearVelocity: //Sub Procedure
+	rc_setActorInterpolationLinearVelocity( SETACTORINTERPOLATIONLINEARVELOCITY_ACTOR,  SETACTORINTERPOLATIONLINEARVELOCITY_X,  SETACTORINTERPOLATIONLINEARVELOCITY_Y,  SETACTORINTERPOLATIONLINEARVELOCITY_Z );
+	break;
+case FN_GetActorConstraintRefCount: //Number Function
+	 rc_push_num(rc_getActorConstraintRefCount( GETACTORCONSTRAINTREFCOUNT_ACTOR ));
+	break;
+case FN_GetActorRestitution: //Number Function
+	 rc_push_num(rc_getActorRestitution( GETACTORRESTITUTION_ACTOR ));
+	break;
+case FN_SetActorRestitution: //Sub Procedure
+	rc_setActorRestitution( SETACTORRESTITUTION_ACTOR,  SETACTORRESTITUTION_REST );
+	break;
+case FN_GetActorCcdMotionThreshold: //Number Function
+	 rc_push_num(rc_getActorCcdMotionThreshold( GETACTORCCDMOTIONTHRESHOLD_ACTOR ));
+	break;
+case FN_GetActorCCDSquareMotionThreshold: //Number Function
+	 rc_push_num(rc_getActorCCDSquareMotionThreshold( GETACTORCCDSQUAREMOTIONTHRESHOLD_ACTOR ));
+	break;
+case FN_GetActorCCDSweepRadius: //Number Function
+	 rc_push_num(rc_getActorCCDSweepRadius( GETACTORCCDSWEEPRADIUS_ACTOR ));
+	break;
+case FN_SetActorCCD: //Sub Procedure
+	rc_setActorCCD( SETACTORCCD_ACTOR,  SETACTORCCD_M_THRESHOLD,  SETACTORCCD_RADIUS );
+	break;
+case FN_SetActorContactStiffnessAndDamping: //Sub Procedure
+	rc_setActorContactStiffnessAndDamping( SETACTORCONTACTSTIFFNESSANDDAMPING_ACTOR,  SETACTORCONTACTSTIFFNESSANDDAMPING_STIFFNESS,  SETACTORCONTACTSTIFFNESSANDDAMPING_DAMPING );
+	break;
+case FN_GetActorContactDamping: //Number Function
+	 rc_push_num(rc_getActorContactDamping( GETACTORCONTACTDAMPING_ACTOR ));
+	break;
+case FN_GetActorContactStiffness: //Number Function
+	 rc_push_num(rc_getActorContactStiffness( GETACTORCONTACTSTIFFNESS_ACTOR ));
+	break;
+case FN_GetActorPushVelocity: //Sub Procedure
+	rc_getActorPushVelocity( GETACTORPUSHVELOCITY_ACTOR,  &GETACTORPUSHVELOCITY_X,  &GETACTORPUSHVELOCITY_Y,  &GETACTORPUSHVELOCITY_Z );
+	break;
+case FN_GetActorPushVelocityInLocalPoint: //Sub Procedure
+	rc_getActorPushVelocityInLocalPoint( GETACTORPUSHVELOCITYINLOCALPOINT_ACTOR,  GETACTORPUSHVELOCITYINLOCALPOINT_REL_X,  GETACTORPUSHVELOCITYINLOCALPOINT_REL_Y,  GETACTORPUSHVELOCITYINLOCALPOINT_REL_Z,  &GETACTORPUSHVELOCITYINLOCALPOINT_X,  &GETACTORPUSHVELOCITYINLOCALPOINT_Y,  &GETACTORPUSHVELOCITYINLOCALPOINT_Z );
+	break;
+case FN_SetActorPushVelocity: //Sub Procedure
+	rc_setActorPushVelocity( SETACTORPUSHVELOCITY_ACTOR,  SETACTORPUSHVELOCITY_X,  SETACTORPUSHVELOCITY_Y,  SETACTORPUSHVELOCITY_Z );
 	break;
 case FN_createPointConstraint: //Number Function
 	 rc_push_num(rc_createPointConstraint(  CREATEPOINTCONSTRAINT_ACTORA,   CREATEPOINTCONSTRAINT_PXA,   CREATEPOINTCONSTRAINT_PYA,   CREATEPOINTCONSTRAINT_PZA ));

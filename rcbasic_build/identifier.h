@@ -64,6 +64,8 @@ bool isFunctionArg_flag = false;
 
 bool enable_presets = true;
 
+bool option_explicit = false;
+
 struct if_data
 {
     uint64_t index = 0;

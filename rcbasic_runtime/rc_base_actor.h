@@ -1484,6 +1484,46 @@ bool rc_getActorTransform(int actor, int t_mat)
 	return true;
 }
 
+
+void rc_setActorTransform(int actor, int t_mat)
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(t_mat < 0 || t_mat >= rc_matrix.size())
+		return;
+
+	if(!rc_matrix[t_mat].active)
+		return;
+
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		//std::cout << "Set POS" << std::endl;
+		irr::core::matrix4 actor_transform = rc_actor[actor].physics.rigid_body->getWorldTransform();
+		double x, y, z;
+
+		rc_getMatrixTranslation(t_mat, &x, &y, &z);
+		actor_transform.setTranslation(irr::core::vector3df((irr::f32)x, (irr::f32)y, (irr::f32)z));
+
+		rc_getMatrixRotation(t_mat, &x, &y, &z);
+		actor_transform.setRotationDegrees(irr::core::vector3df((irr::f32)x, (irr::f32)y, (irr::f32)z));
+
+		rc_getMatrixScale(t_mat, &x, &y, &z);
+		actor_transform.setScale(irr::core::vector3df((irr::f32)x, (irr::f32)y, (irr::f32)z));
+
+		rc_actor[actor].physics.rigid_body->clearForces();
+		rc_actor[actor].physics.rigid_body->setWorldTransform(actor_transform);
+		rc_actor[actor].mesh_node->setPosition(actor_transform.getTranslation());
+		rc_actor[actor].mesh_node->setRotation(actor_transform.getRotationDegrees());
+		rc_actor[actor].mesh_node->setScale(actor_transform.getScale());
+		rc_actor[actor].mesh_node->updateAbsolutePosition();
+	}
+
+}
+
+
+
 //set actor position
 void rc_setActorPosition(int actor, double x, double y, double z)
 {

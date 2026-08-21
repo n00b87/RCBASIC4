@@ -710,4 +710,438 @@ void rc_getActorLocalInertia(int actor, double* x, double* y, double* z)
 }
 
 
+// v4.11 functions
+void rc_getActorTurnVelocity(int actor, double* x, double* y, double* z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+	*x = 0;
+	*y = 0;
+	*z = 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		btVector3 v = rc_actor[actor].physics.rigid_body->getPointer()->getTurnVelocity();
+		*x = v.getX();
+		*y = v.getY();
+		*z = v.getZ();
+	}
+}
+
+void rc_setActorTurnVelocity(int actor, double x, double y, double z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		rc_actor[actor].physics.rigid_body->getPointer()->setTurnVelocity(btVector3((btScalar)x, (btScalar)y, (btScalar)z));
+	}
+}
+
+double rc_getActorFriction(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		return rc_actor[actor].physics.rigid_body->getPointer()->getFriction();
+	}
+
+	return 0;
+}
+
+void rc_setActorFriction(int actor, double friction)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		rc_actor[actor].physics.rigid_body->getPointer()->setFriction((btScalar)friction);
+	}
+}
+
+bool rc_actorHasAniFriction(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return false;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		return rc_actor[actor].physics.rigid_body->getPointer()->hasAnisotropicFriction();
+	}
+
+	return false;
+}
+
+void rc_getActorAniFriction(int actor, double* x, double* y, double* z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+	*x = 0;
+	*y = 0;
+	*z = 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		btVector3 v = rc_actor[actor].physics.rigid_body->getPointer()->getAnisotropicFriction();
+		*x = v.getX();
+		*y = v.getY();
+		*z = v.getZ();
+	}
+}
+
+void rc_setActorAniFriction(int actor, double x, double y, double z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		rc_actor[actor].physics.rigid_body->getPointer()->setAnisotropicFriction(btVector3((btScalar)x, (btScalar)y, (btScalar)z));
+	}
+}
+
+double rc_getActorRollingFriction(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		return rc_actor[actor].physics.rigid_body->getPointer()->getRollingFriction();
+	}
+
+	return 0;
+}
+
+void rc_setActorRollingFriction(int actor, double friction)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		rc_actor[actor].physics.rigid_body->getPointer()->setRollingFriction((btScalar)friction);
+	}
+}
+
+double rc_getActorSpinningFriction(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		return rc_actor[actor].physics.rigid_body->getPointer()->getSpinningFriction();
+	}
+
+	return 0;
+}
+
+void rc_setActorSpinningFriction(int actor, double friction)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		rc_actor[actor].physics.rigid_body->getPointer()->setSpinningFriction((btScalar)friction);
+	}
+}
+
+
+double rc_getActorContactProcessingThreshold(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		return rc_actor[actor].physics.rigid_body->getPointer()->getContactProcessingThreshold();
+	}
+
+	return 0;
+}
+
+void rc_setActorContactProcessingThreshold(int actor, double cpt)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		rc_actor[actor].physics.rigid_body->getPointer()->setContactProcessingThreshold((btScalar)cpt);
+	}
+}
+
+
+double rc_getActorHitFraction(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		return rc_actor[actor].physics.rigid_body->getPointer()->getHitFraction();
+	}
+
+	return 0;
+}
+
+void rc_setActorHitFraction(int actor, double hit_fraction)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		rc_actor[actor].physics.rigid_body->getPointer()->setHitFraction((btScalar)hit_fraction);
+	}
+}
+
+
+void rc_getActorInterpolationAngularVelocity(int actor, double* x, double* y, double* z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+	*x = 0;
+	*y = 0;
+	*z = 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		btVector3 v = rc_actor[actor].physics.rigid_body->getPointer()->getInterpolationAngularVelocity();
+		*x = v.getX();
+		*y = v.getY();
+		*z = v.getZ();
+	}
+}
+
+void rc_setActorInterpolationAngularVelocity(int actor, double x, double y, double z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		rc_actor[actor].physics.rigid_body->getPointer()->setInterpolationAngularVelocity(btVector3((btScalar)x, (btScalar)y, (btScalar)z));
+	}
+}
+
+
+void rc_getActorInterpolationLinearVelocity(int actor, double* x, double* y, double* z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+	*x = 0;
+	*y = 0;
+	*z = 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		btVector3 v = rc_actor[actor].physics.rigid_body->getPointer()->getInterpolationLinearVelocity();
+		*x = v.getX();
+		*y = v.getY();
+		*z = v.getZ();
+	}
+}
+
+void rc_setActorInterpolationLinearVelocity(int actor, double x, double y, double z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		rc_actor[actor].physics.rigid_body->getPointer()->setInterpolationLinearVelocity(btVector3((btScalar)x, (btScalar)y, (btScalar)z));
+	}
+}
+
+
+int rc_getActorConstraintRefCount(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		return rc_actor[actor].physics.rigid_body->getPointer()->getNumConstraintRefs();
+	}
+
+	return 0;
+}
+
+
+double rc_getActorRestitution(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		return rc_actor[actor].physics.rigid_body->getPointer()->getRestitution();
+	}
+
+	return 0;
+}
+
+void rc_setActorRestitution(int actor, double rest)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		rc_actor[actor].physics.rigid_body->getPointer()->setRestitution((btScalar)rest);
+	}
+}
+
+
+double rc_getActorCcdMotionThreshold(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		return rc_actor[actor].physics.rigid_body->getPointer()->getCcdMotionThreshold();
+	}
+
+	return 0;
+}
+
+double rc_getActorCCDSquareMotionThreshold(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		return rc_actor[actor].physics.rigid_body->getPointer()->getCcdSquareMotionThreshold();
+	}
+
+	return 0;
+}
+
+double rc_getActorCCDSweepRadius(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		return rc_actor[actor].physics.rigid_body->getPointer()->getCcdSweptSphereRadius();
+	}
+
+	return 0;
+}
+
+void rc_setActorCCD(int actor, double m_threshold, double radius)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		rc_actor[actor].physics.rigid_body->setCcdValues((irr::f32)m_threshold, (irr::f32)radius);
+	}
+}
+
+
+
+double rc_getActorContactDamping(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		return rc_actor[actor].physics.rigid_body->getPointer()->getContactDamping();
+	}
+
+	return 0;
+}
+
+double rc_getActorContactStiffness(int actor)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		return rc_actor[actor].physics.rigid_body->getPointer()->getContactStiffness();
+	}
+
+	return 0;
+}
+
+void rc_setActorContactStiffnessAndDamping(int actor, double stiffness, double damping)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		rc_actor[actor].physics.rigid_body->getPointer()->setContactStiffnessAndDamping((irr::f32)stiffness, (irr::f32)damping);
+	}
+}
+
+
+
+void rc_getActorPushVelocity(int actor, double* x, double* y, double* z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    *x = 0;
+    *y = 0;
+    *z = 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		btVector3 pos = rc_actor[actor].physics.rigid_body->getPointer()->getPushVelocity();
+		*x = pos.getX();
+		*y = pos.getY();
+		*z = pos.getZ();
+	}
+}
+
+void rc_getActorPushVelocityInLocalPoint(int actor, double rel_x, double rel_y, double rel_z, double* x, double* y, double* z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    *x = 0;
+    *y = 0;
+    *z = 0;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		btVector3 pos = rc_actor[actor].physics.rigid_body->getPointer()->getPushVelocityInLocalPoint(btVector3((btScalar)rel_x, (btScalar)rel_y, (btScalar)rel_z));
+		*x = pos.getX();
+		*y = pos.getY();
+		*z = pos.getZ();
+	}
+}
+
+
+void rc_setActorPushVelocity(int actor, double x, double y, double z)
+{
+	if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    if(rc_actor[actor].physics.rigid_body)
+	{
+		rc_actor[actor].physics.rigid_body->getPointer()->setPushVelocity(btVector3(x, y, z));
+	}
+}
+
+
 #endif // RC_ACTOR_PHYSICS_H_INCLUDED
