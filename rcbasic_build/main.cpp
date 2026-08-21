@@ -934,7 +934,8 @@ int main(int argc, char * argv[])
 	//rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Constraint/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v401_Linux64/examples/Simple_3D_Platformer/main.bas";
     //chdir("/home/n00b/Pictures/UNTITLED");
-    //rc_filename = "/home/n00b/Pictures/UNTITLED/nv_test.bas";
+    //rc_filename = "/home/n00b/Experimental/rc_dev_test/main.bas";
+    //option_explicit = true;
     //DEBUG END
 
     //enable_presets = true;
@@ -963,6 +964,10 @@ int main(int argc, char * argv[])
         else if(cmd_arg.compare("--no-clean")==0)
         {
             clean_after_build = false;
+        }
+        else if(cmd_arg.compare("--option-explicit")==0)
+        {
+            option_explicit = true;
         }
     }
 
