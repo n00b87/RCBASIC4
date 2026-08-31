@@ -68,6 +68,17 @@ void rc_setActorAnimation(int actor, int animation, int num_loops)
     }
 }
 
+void rc_updateActorAnimation(int actor)
+{
+    if(actor < 0 || actor >= rc_actor.size())
+        return;
+
+    irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor].mesh_node;
+    node->OnAnimate( SDL_GetTicks() );
+    node->animateJoints();
+    node->updateAbsolutePosition();
+}
+
 int rc_getActorCurrentAnimation(int actor)
 {
 	if(actor < 0 || actor >= rc_actor.size())

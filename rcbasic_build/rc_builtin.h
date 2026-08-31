@@ -2424,6 +2424,8 @@ void init_embedded_functions()
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	add_embedded_arg("bone_index", ID_TYPE_NUM);
 	add_embedded_arg("t_matrix", ID_TYPE_NUM);
+	embed_function("UpdateActorAnimation", ID_TYPE_SUB);
+	add_embedded_arg("actor", ID_TYPE_NUM);
 	embed_function("SetGravity3D", ID_TYPE_SUB);
 	add_embedded_arg("x", ID_TYPE_NUM);
 	add_embedded_arg("y", ID_TYPE_NUM);
