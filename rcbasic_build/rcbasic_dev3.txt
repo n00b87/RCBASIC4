@@ -2375,6 +2375,9 @@ case FN_GetActorBoneRelativeTranform: //Number Function
 case FN_GetActorBoneAbsoluteTranform: //Number Function
 	 rc_push_num(rc_getActorBoneAbsoluteTranform( GETACTORBONEABSOLUTETRANFORM_ACTOR,  GETACTORBONEABSOLUTETRANFORM_BONE_INDEX,  GETACTORBONEABSOLUTETRANFORM_T_MATRIX ));
 	break;
+case FN_UpdateActorAnimation: //Sub Procedure
+	rc_updateActorAnimation( UPDATEACTORANIMATION_ACTOR );
+	break;
 case FN_SetGravity3D: //Sub Procedure
 	rc_setGravity3D( SETGRAVITY3D_X,  SETGRAVITY3D_Y,  SETGRAVITY3D_Z );
 	break;
