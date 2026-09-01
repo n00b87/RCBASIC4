@@ -41,6 +41,7 @@ void rc_pipeline_Begin()
         {
             //std::cout << "Animate dammit" << std::endl;
             irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[t_actor].mesh_node;
+            node->OnAnimate(SDL_GetTicks());
             node->animateJoints();
             i++;
         }

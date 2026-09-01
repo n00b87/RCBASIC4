@@ -519,6 +519,7 @@ bool rc_update()
                 {
                     //std::cout << "Animate dammit" << std::endl;
                     irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[t_actor].mesh_node;
+                    node->OnAnimate(SDL_GetTicks());
                     node->animateJoints();
                     i++;
                 }
