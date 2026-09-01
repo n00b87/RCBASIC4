@@ -1,0 +1,6 @@
+#title SetActorFriction [RCBasic Doc]
+#header Sub SetActorFriction( actor, friction )
+
+Set the friction on an actor
+
+#ref GetActorFriction

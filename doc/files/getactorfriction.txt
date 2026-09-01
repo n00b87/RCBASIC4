@@ -1,0 +1,6 @@
+#title GetActorFriction [RCBasic Doc]
+#header Function GetActorFriction( actor )
+
+Returns the current friction on an actor
+
+#ref SetActorFriction

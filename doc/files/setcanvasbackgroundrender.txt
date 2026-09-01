@@ -1,0 +1,6 @@
+#title SetCanvasBackgroundRender [RCBasic Doc]
+#header Sub SetCanvasBackgroundRender( c_num, flag )
+
+Enables or disables rendering a canvas when the canvas is not visible
+
+#ref SetCanvasVisible

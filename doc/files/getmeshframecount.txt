@@ -1,0 +1,4 @@
+#title GetMeshFrameCount [RCBasic Doc]
+#header Function GetMeshFrameCount( mesh_id )
+	Returns the number of animation frames for a mesh
+

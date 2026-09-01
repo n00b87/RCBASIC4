@@ -1,0 +1,6 @@
+#title GetActorSpinningFriction [RCBasic Doc]
+#header Function GetActorSpinningFriction( actor )
+
+Returns an actor's spinning friction
+
+#ref SetActorSpinningFriction

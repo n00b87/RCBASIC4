@@ -1,0 +1,6 @@
+#title GetActorRollingFriction [RCBasic Doc]
+#header Function GetActorRollingFriction( actor )
+
+Returns the rolling friction on an actor
+
+#ref SetActorRollingFriction

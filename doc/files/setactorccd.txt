@@ -1,0 +1,10 @@
+#title SetActorCCD [RCBasic Doc]
+#header Sub SetActorCCD( actor, m_threshold, radius )
+
+Sets the motion threshold and the radius for continuous collision detection for an actor
+	
+NOTE: This threshold is the minimum distance an object can move before CCD is processed
+	
+NOTE: This is mainly useful for adding extra collision checking to stop fast moving objects
+
+#ref GetActorCCDSweepRadius GetActorCcdMotionThreshold GetActorCCDSquareMotionThreshold

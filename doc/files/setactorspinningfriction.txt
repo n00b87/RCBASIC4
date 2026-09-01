@@ -1,0 +1,6 @@
+#title SetActorSpinningFriction [RCBasic Doc]
+#header Sub SetActorSpinningFriction( actor, friction )
+
+Set the spinning friction on an actor
+
+#ref GetActorSpinningFriction

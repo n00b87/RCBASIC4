@@ -1,0 +1,6 @@
+#title SetActorAniFriction [RCBasic Doc]
+#header Sub SetActorAniFriction( actor, x, y, z )
+
+Set the anisotropic friction on an actor
+
+#ref GetActorAniFriction ActorHasAniFriction

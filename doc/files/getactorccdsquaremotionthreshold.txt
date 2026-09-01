@@ -1,0 +1,6 @@
+#title GetActorCCDSquareMotionThreshold [RCBasic Doc]
+#header Function GetActorCCDSquareMotionThreshold( actor )
+
+Returns the squared distance of Continuous Collision Detection threshold for an actor
+
+#ref GetActorCcdMotionThreshold GetActorCCDSweepRadius SetActorCCD

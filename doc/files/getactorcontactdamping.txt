@@ -1,0 +1,8 @@
+#title GetActorContactDamping [RCBasic Doc]
+#header Function GetActorContactDamping( actor )
+
+Returns an actor's damping value
+	
+Damping: Acts on the velocity level to dissipate relative motion between colliding objects, bringing bouncing or vibrating contacts to rest.
+
+#ref SetActorContactStiffnessAndDamping GetActorContactStiffness
