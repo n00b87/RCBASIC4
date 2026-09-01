@@ -2379,6 +2379,16 @@ void init_embedded_functions()
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	embed_function("NumActorAnimationLoops", ID_TYPE_FN_NUM);
 	add_embedded_arg("actor", ID_TYPE_NUM);
+	embed_function("StartActorTransition", ID_TYPE_SUB);
+	add_embedded_arg("actor", ID_TYPE_NUM);
+	add_embedded_arg("frame", ID_TYPE_NUM);
+	add_embedded_arg("transition_time", ID_TYPE_NUM);
+	embed_function("StopActorTransition", ID_TYPE_SUB);
+	add_embedded_arg("actor", ID_TYPE_NUM);
+	embed_function("ActorIsInTransition", ID_TYPE_FN_NUM);
+	add_embedded_arg("actor", ID_TYPE_NUM);
+	embed_function("GetActorTransitionTime", ID_TYPE_FN_NUM);
+	add_embedded_arg("actor", ID_TYPE_NUM);
 	embed_function("SetActorMD2Animation", ID_TYPE_SUB);
 	add_embedded_arg("actor", ID_TYPE_NUM);
 	add_embedded_arg("anim", ID_TYPE_NUM);

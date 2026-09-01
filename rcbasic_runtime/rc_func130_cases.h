@@ -2342,6 +2342,18 @@ case FN_ActorAnimationIsPlaying: //Number Function
 case FN_NumActorAnimationLoops: //Number Function
 	 rc_push_num(rc_numActorAnimationLoops( NUMACTORANIMATIONLOOPS_ACTOR ));
 	break;
+case FN_StartActorTransition: //Sub Procedure
+	rc_startActorTransition( STARTACTORTRANSITION_ACTOR,  STARTACTORTRANSITION_FRAME,  STARTACTORTRANSITION_TRANSITION_TIME );
+	break;
+case FN_StopActorTransition: //Sub Procedure
+	rc_stopActorTransition( STOPACTORTRANSITION_ACTOR );
+	break;
+case FN_ActorIsInTransition: //Number Function
+	 rc_push_num(rc_actorIsInTransition( ACTORISINTRANSITION_ACTOR ));
+	break;
+case FN_GetActorTransitionTime: //Number Function
+	 rc_push_num(rc_getActorTransitionTime( GETACTORTRANSITIONTIME_ACTOR ));
+	break;
 case FN_SetActorMD2Animation: //Sub Procedure
 	rc_setActorMD2Animation( SETACTORMD2ANIMATION_ACTOR,  SETACTORMD2ANIMATION_ANIM,  SETACTORMD2ANIMATION_NUM_LOOPS );
 	break;
