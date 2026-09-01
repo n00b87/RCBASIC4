@@ -1,0 +1,8 @@
+#title SetActorInterpolationAngularVelocity [RCBasic Doc]
+#header Sub SetActorInterpolationAngularVelocity( actor, x, y, z )
+
+Set a transform interpolation that is used to sync rendering with the physics update step
+	
+NOTE: This is largely unnecessary unless you are decoupling the physics timestep from the frame rate
+	
+#ref GetActorInterpolationAngularVelocity

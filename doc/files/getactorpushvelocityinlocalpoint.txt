@@ -1,0 +1,6 @@
+#title GetActorPushVelocityInLocalPoint [RCBasic Doc]
+#header Sub GetActorPushVelocityInLocalPoint( actor, rel_x, rel_y, rel_z, ByRef x, ByRef y, ByRef z )
+
+Gets the push velocity in local coordinates relative to an actor's center of mass
+
+#ref GetActorPushVelocity SetActorPushVelocity

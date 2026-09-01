@@ -1,0 +1,6 @@
+#title SetActorHitFraction [RCBasic Doc]
+#header Sub SetActorHitFraction( actor, hit_fraction )
+
+Sets the fraction along the travel ray that collisions will be determined on
+
+#ref GetActorHitFraction

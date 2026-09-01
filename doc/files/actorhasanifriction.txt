@@ -1,0 +1,6 @@
+#title ActorHasAniFriction [RCBasic Doc]
+#header Function ActorHasAniFriction( actor )
+
+Returns true if the actor has anisotropic friction
+
+#ref GetActorAniFriction SetActorAniFriction

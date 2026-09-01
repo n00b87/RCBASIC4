@@ -1,0 +1,9 @@
+#title SetActorRestitution [RCBasic Doc]
+#header Sub SetActorRestitution( actor, rest )
+
+Set an actor's restitution value
+	
+NOTE: This value determines how bouncy an actor is
+
+
+#ref GetActorRestitution

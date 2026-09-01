@@ -1,0 +1,10 @@
+#title GetActorContactStiffness [RCBasic Doc]
+#header Function GetActorContactStiffness( actor )
+
+Returns an actor's stiffness value
+
+#list ul	
+#li Stiffness: Acts on the positional level to determine how much resistive force is generated per unit of penetration depth. Higher values mean harder, less compressible collisions.
+#/list
+
+#ref SetActorContactStiffnessAndDamping GetActorContactDamping 

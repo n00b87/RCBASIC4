@@ -1,0 +1,6 @@
+#title GetActorAniFriction [RCBasic Doc]
+#header Sub GetActorAniFriction( actor, ByRef x, ByRef y, ByRef z )
+
+Get the anisotropic friction on an actor
+
+#ref SetActorAniFriction ActorHasAniFriction

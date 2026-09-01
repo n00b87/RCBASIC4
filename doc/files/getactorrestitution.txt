@@ -1,0 +1,8 @@
+#title GetActorRestitution [RCBasic Doc]
+#header Function GetActorRestitution( actor )
+
+Returns an actor's restitution value
+	
+NOTE: This value determines how bouncy an actor is
+
+#ref SetActorRestitution

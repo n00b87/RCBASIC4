@@ -1,0 +1,6 @@
+#title GetActorTransitionTime [RCBasic Doc]
+#header function GetActorTransitionTime( actor )
+
+Returns the time that the current transition is set to
+
+#ref SetActorTransition

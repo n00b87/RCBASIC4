@@ -1,0 +1,11 @@
+#title SetActorContactStiffnessAndDamping [RCBasic Doc]
+#header Sub SetActorContactStiffnessAndDamping( actor, stiffness, damping )
+
+Sets an actor's stiffness and damping values
+
+#list ul	
+#li Stiffness: Acts on the positional level to determine how much resistive force is generated per unit of penetration depth. Higher values mean harder, less compressible collisions.
+#li Damping: Acts on the velocity level to dissipate relative motion between colliding objects, bringing bouncing or vibrating contacts to rest.
+#/list
+
+#ref GetActorContactDamping GetActorContactStiffness

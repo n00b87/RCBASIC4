@@ -1,0 +1,8 @@
+#title GetActorContactProcessingThreshold [RCBasic Doc]
+#header Function GetActorContactProcessingThreshold( actor )
+
+Returns the distance where collision response is no longer checked.
+	
+NOTE: A lower threshold can make physics run faster but it could result in objects passing through each other if they are going too fast
+	
+#ref SetActorContactProcessingThreshold

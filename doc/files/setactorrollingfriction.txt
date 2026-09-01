@@ -1,0 +1,6 @@
+#title SetActorRollingFriction [RCBasic Doc]
+#header Sub SetActorRollingFriction( actor, friction )
+
+Sets the rolling friction on an actor
+
+#ref GetActorRollingFriction

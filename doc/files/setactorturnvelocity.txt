@@ -1,0 +1,6 @@
+#title SetActorTurnVelocity [RCBasic Doc]
+#header Sub SetActorTurnVelocity( actor, x, y, z )
+
+Set the turning velocity for an actor
+
+#ref GetActorTurnVelocity

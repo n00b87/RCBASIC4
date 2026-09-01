@@ -1,0 +1,8 @@
+#title GetActorInterpolationLinearVelocity [RCBasic Doc]
+#header Sub GetActorInterpolationLinearVelocity( actor, ByRef x, ByRef y, ByRef z )
+
+Get a transform interpolation that is used to sync rendering with the physics update step
+	
+NOTE: This is largely unnecessary unless you are decoupling the physics timestep from the frame rate
+
+#ref SetActorInterpolationLinearVelocity

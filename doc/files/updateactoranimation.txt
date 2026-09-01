@@ -1,0 +1,5 @@
+#title UpdateActorAnimation [RCBasic Doc]
+#header sub UpdateActorAnimation( actor )
+
+Calculate the transform for the next frame in an actor's animation
+

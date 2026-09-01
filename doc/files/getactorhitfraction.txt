@@ -1,0 +1,6 @@
+#title GetActorHitFraction [RCBasic Doc]
+#header Function GetActorHitFraction( actor )
+
+Returns a number between 0.0 and 1.0 representing the fractional distance of the closest collision
+
+#ref SetActorHitFraction

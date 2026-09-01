@@ -1,0 +1,4 @@
+#title GetSpriteCollision [RCBasic Doc]
+#header Function GetSpriteCollision(spriteA, spriteB)
+
+

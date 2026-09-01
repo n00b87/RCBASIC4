@@ -1,0 +1,8 @@
+#title GetActorPushVelocity [RCBasic Doc]
+#header Sub GetActorPushVelocity( actor, ByRef x, ByRef y, ByRef z )
+
+Returns the push velocity for an actor
+	
+NOTE: This velocity is based on impulse rather than linear velocity
+
+#ref SetActorPushVelocity GetActorPushVelocityInLocalPoint

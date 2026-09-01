@@ -1,0 +1,4 @@
+#title ActorIsInTransition [RCBasic Doc]
+#header function ActorIsInTransition( actor )
+
+Returns TRUE if a manual frame transition is in process

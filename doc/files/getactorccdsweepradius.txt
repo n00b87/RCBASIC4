@@ -1,0 +1,6 @@
+#title GetActorCCDSweepRadius [RCBasic Doc]
+#header Function GetActorCCDSweepRadius( actor )
+
+Returns the distance around an actor to check CCD with
+
+#ref GetActorCcdMotionThreshold GetActorCCDSquareMotionThreshold SetActorCCD

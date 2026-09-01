@@ -1,0 +1,8 @@
+#title SetActorTransform [RCBasic Doc]
+#header Sub SetActorTransform( actor, mA )
+
+Sets an actor's absolute world transform
+
+NOTE: mA is a matrix for the world transform to set
+
+#ref GetActorTransform

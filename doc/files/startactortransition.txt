@@ -1,0 +1,7 @@
+#title StartActorTransition [RCBasic Doc]
+#header sub StartActorTransition( actor, frame, transition_time )
+
+Transition to a target frame over a specified period of time in seconds
+
+
+#ref StopActorTransition

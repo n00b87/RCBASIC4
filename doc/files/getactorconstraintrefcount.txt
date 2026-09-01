@@ -1,0 +1,5 @@
+#title GetActorConstraintRefCount [RCBasic Doc]
+#header Function GetActorConstraintRefCount( actor )
+
+Returns the number of constraints an actor is linked to
+

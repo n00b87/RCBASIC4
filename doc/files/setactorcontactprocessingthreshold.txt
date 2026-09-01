@@ -1,0 +1,6 @@
+#title SetActorContactProcessingThreshold [RCBasic Doc]
+#header Sub SetActorContactProcessingThreshold( actor, cpt )
+
+Set the distance between this actor and other actor's where collision response is no longer checked
+
+#ref GetActorContactProcessingThreshold
