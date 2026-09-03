@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+	
+	<style>
+	body { background-color: #212837; color: #FFFFFF; }
+	a { color: #40bfb8; }
+	a::before {
+	  font-family: monospace, monospace;
+	  display: inline-block;
+	  margin-right: 6px;
+	  color: #40bfb8;
+	}
+	</style>
+		
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title> RCBasic Library Reference </title>
+	</head>
+
+	<body>
+    
+<div class="search-container">
+    <form id="searchForm">
+      <input type="text" placeholder="Search.." id="searchInput">
+      <button type="submit"><img src="images/search.png" alt="Search" style="width:14px; height:14px; vertical-align:middle;"></button>
+    </form>
+  </div>
+
+
+
+<script>
+var form = document.getElementById('searchForm');
+
+var file_word = new Map()
+
+
+[SEARCH_WORDS]
+
+form.addEventListener('submit', function(event) {
+    // Prevent the browser from refreshing the page
+    event.preventDefault(); 
+    
+    // 3. Target the input and extract its current text value
+    var searchText = document.getElementById('searchInput').value;
+    var search_list = searchText.split(' ')
+    
+    var search_result_file = []
+    // 4. Use the text (e.g., log it, send to an API, filter a list)
+    console.log("Search string submitted:", searchText);
+    
+    
+    for( const [d_file, d_word] of file_word )
+    {
+		console.log(`looking at ${d_file}`)
+		
+		for(let i = 0; i < d_word.length; i++)
+		{
+			for(let j = 0; j < search_list.length; j++)
+			{
+				if(search_list[j].toLowerCase() == d_word[i].toLowerCase())
+				{
+					search_result_file.push(d_file)
+				}
+			}
+		}
+	}
+	
+	for( let i = 0; i < search_result_file.length; i++)
+	{
+		console.log(`result: ${search_result_file[i]}`)
+	}
+	
+	const iframe = document.getElementByName('main');
+	const frameDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+	// Open the document stream, write to it, and close it
+	frameDoc.open();
+	frameDoc.write("<html><body><h2>Generated Content</h2></body></html>");
+	frameDoc.close();
+	
+  });
+
+</script>
+
+    
+	</body>
+</html>

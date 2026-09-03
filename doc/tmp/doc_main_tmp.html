@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	
+	<script>
+	var doc_frame_loaded = false
+		
+	function onIframeLoad() 
+	{
+		if(!doc_frame_loaded)
+		{
+			var cover_page_contents = ""
+			cover_page_contents += "<!DOCTYPE html>"
+			cover_page_contents += "<html><head>"
+			cover_page_contents += "<link rel=\"stylesheet\" href=\"style.css\">"
+			cover_page_contents += "<meta content=\"text/html; charset=UTF-8\" http-equiv=\"content-type\"><title>RC BASIC Title</title></head><body>"
+			cover_page_contents += "<div style=\"text-align: center;\"><br>"
+			cover_page_contents += "<br><br><br><br><br>"
+			cover_page_contents += "<h1><b>RC BASIC</b></h1><br><img style=\"width: 358px; height: 367px;\" alt=\"\" src=\"images/rcbasic_icon.png\"><br>"
+			cover_page_contents += "<br><br><br>"
+			cover_page_contents += "The Revolution will be written in BASIC</div>"
+			cover_page_contents += "</body></html>"
+			
+			
+			const m_frame = window.frames['main']
+			console.log("loaded")
+			doc_frame_loaded = true
+			m_frame.document.open()
+			m_frame.document.write(cover_page_contents)
+			m_frame.document.close()
+		}
+	}
+	</script>
+	
+	<link rel="stylesheet" href="style.css">
+	
+	<style>
+	/* The search container stays locked at the top */
+    .search-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000; /* Keeps it above other elements */
+    }
+
+    
+    
+    /* Reset and prepare the page container */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Prevents whole-page scrolling */
+            display: flex;
+            flex-direction: column;
+        }
+
+        
+
+        /* The iframe automatically fills all remaining vertical space */
+        .fill-remaining-iframe {
+            flex-grow: 1;
+            width: 100%;
+            border: none;
+            display: block;
+        }
+        
+        .iframe-positioned {
+			position: fixed;
+			top: 30px;  /* Starts 100px from the top */
+			bottom: 0;   /* Stretches to the very bottom */
+			left: 0;
+			right: 0;
+			width: 100%;
+			height: calc(100vh - 30px); /* Explicitly calculates remaining viewport height */
+			border: none;
+		}
+    </style>
+		
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title> [RCBasic Doc] </title>
+	</head>
+
+	<body>
+	<div class="search-container">
+		<form id="searchForm">
+			<input type="text" placeholder="Search.." id="searchInput">
+			<button type="submit"><img src="images/search.png" alt="Search" style="width:14px; height:14px; vertical-align:middle;"></button>
+		</form>
+	</div>
+
+  <div class="main-content">
+		<iframe name="main" class="iframe-positioned" onload="onIframeLoad()"> </iframe>
+		
+  </div>
+  </body>
+  
+
+<script>
+var form = document.getElementById('searchForm');
+
+var file_word = new Map()
+var file_title = new Map()
+
+[SEARCH_TITLES]
+
+[SEARCH_WORDS]
+
+
+form.addEventListener('submit', function(event) {
+    // Prevent the browser from refreshing the page
+    event.preventDefault(); 
+    
+    // 3. Target the input and extract its current text value
+    var searchText = document.getElementById('searchInput').value;
+    var search_list = searchText.split(' ')
+    
+    var search_result_file = new Map()
+    // 4. Use the text (e.g., log it, send to an API, filter a list)
+    console.log("Search string submitted:", searchText);
+    
+    console.log("test 1: ", file_word.get('file1.html'))
+    
+    for( const [d_file, d_word] of file_word )
+    {
+		console.log(`looking at ${d_file}`)
+		
+		for(let i = 0; i < d_word.length; i++)
+		{
+			for(let j = 0; j < search_list.length; j++)
+			{
+				if(search_list[j].toLowerCase() == d_word[i].toLowerCase())
+				{
+					search_result_file.set(d_file, file_title.get(d_file))
+				}
+			}
+		}
+	}
+	
+    
+    
+	
+	
+	const m_frame = window.frames['main']
+	m_frame.document.open()
+	m_frame.document.write("<html><head><link rel=\"stylesheet\" href=\"style.css\"></head><body><br> <h2><u>Search Results</u></h2><ul>")
+	
+	for( const [d_file, d_title] of search_result_file )
+	{
+		m_frame.document.write("<li class=\"toctree-l1\"><a href=\"" + d_file + "\">" + d_title + "</a></li>")
+	}
+	
+	m_frame.document.write("</ul></body></html>")
+	
+	m_frame.document.close()
+    
+  });
+  
+
+</script>
+
+</html>

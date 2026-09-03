@@ -14,6 +14,21 @@
 	  margin-right: 6px;
 	  color: #40bfb8;
 	}
+	
+	
+	/* The search container stays locked at the top */
+    .float-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #173E47;
+      padding: 2px;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+      z-index: 1000; /* Keeps it above other elements */
+    }
+
+	
 	</style>
 		
 		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
@@ -21,7 +36,19 @@
 	</head>
 
 	<body>
+		
+	<div class="float-container">
+		<table style="border:1px solid #45AFC4;">
+		  <tr>
+			<th style="border:1px solid #45AFC4;"><a href="nav_bottom.html" >By Category</a></th>
+			<th style="border:1px solid #45AFC4;"><a href="nav_bottom_az.html">By Name</a></th>
+		  </tr>
+		</table>
+	</div>
+
+<br><br>	
     
+<br>
 <ul id="myUL">
 <li><span class="box">Console IO</span>
 <ul class="nested">
