@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+	
+	<style>
+	body { background-color: #212837; color: #FFFFFF; }
+	a { color: #40bfb8; }
+	a::before {
+	  font-family: monospace, monospace;
+	  display: inline-block;
+	  margin-right: 6px;
+	  color: #40bfb8;
+	}
+	</style>
+		
+		<meta  content="text/html; charset=UTF-8"  http-equiv="content-type">
+		<title> RCBasic Library Reference </title>
+	</head>
+
+	<body>
+    
+<div class="search-container">
+    <form id="searchForm">
+      <input type="text" placeholder="Search.." id="searchInput">
+      <button type="submit"><img src="images/search.png" alt="Search" style="width:14px; height:14px; vertical-align:middle;"></button>
+    </form>
+  </div>
+  
+  <a  href="var_data.html" target="main">Variables and Data Types</a>
+
+
+<script>
+var form = document.getElementById('searchForm');
+
+var file_word = new Map()
+
+
+file_word.set('clearstack_s.html', [ 'clearstack_s', 'removes', 'elements', 'stack' ])
+file_word.set('setactormd2animation.html', [ 'setactormd2animation', 'sets', 'current', 'animation', 'md2', 'model', 'animations', 'md2_animation_stand', 'md2_animation_run', 'md2_animation_attack', 'md2_animation_pain_a', 'md2_animation_pain_b', 'md2_animation_pain_c', 'md2_animation_jump', 'md2_animation_flip', 'md2_animation_salute', 'md2_animation_fallback', 'md2_animation_wave', 'md2_animation_point', 'md2_animation_crouch_stand', 'md2_animation_crouch_walk', 'md2_animation_crouch_attack', 'md2_animation_crouch_pain', 'md2_animation_crouch_death', 'md2_animation_death_fallback', 'md2_animation_death_fallforward', 'md2_animation_death_fallbackslow', 'md2_animation_boom' ])
+file_word.set('inkey.html', [ 'inkey', 'character', 'key', 'pressed' ])
+file_word.set('sign.html', [ 'sign', '>' ])
+
+
+form.addEventListener('submit', function(event) {
+    // Prevent the browser from refreshing the page
+    event.preventDefault(); 
+    
+    // 3. Target the input and extract its current text value
+    var searchText = document.getElementById('searchInput').value;
+    var search_list = searchText.split(' ')
+    
+    var search_result_file = []
+    // 4. Use the text (e.g., log it, send to an API, filter a list)
+    console.log("Search string submitted:", searchText);
+    
+    console.log("test 1: ", file_word.get('file1.html'))
+    
+    for( const [d_file, d_word] of file_word )
+    {
+		console.log(`looking at ${d_file}`)
+		
+		for(let i = 0; i < d_word.length; i++)
+		{
+			for(let j = 0; j < search_list.length; j++)
+			{
+				if(search_list[j].toLowerCase() == d_word[i].toLowerCase())
+				{
+					search_result_file.push(d_file)
+				}
+			}
+		}
+	}
+	
+	for( let i = 0; i < search_result_file.length; i++)
+	{
+		console.log(`result: ${search_result_file[i]}`)
+	}
+	
+    console.log("test 2: ", file_word.values('yolo.html'))
+    
+    
+    
+	// Open the document stream, write to it, and close it
+	//window.frames['main'].document.open();
+	//window.frames['main'].document.write("<html><body><h2>Generated Content</h2></body></html>");
+	//window.frames['main'].document.close();
+	
+	//const m_frame = window.parent.frames['main']
+	//m_frame.document.open()
+	
+	//m_frame.document.close()
+	
+	window.parent.testFrame()
+	
+	console.log("frame: ", m_frame)
+    
+  });
+
+</script>
+
+    
+	</body>
+</html>
+
