@@ -1646,7 +1646,10 @@ void rc_scaleActor(int actor, double x, double y, double z)
 	{
 		//std::cout << "Set POS" << std::endl;
 		irr::core::matrix4 actor_transform = rc_actor[actor].physics.rigid_body->getWorldTransform();
-		actor_transform.setScale( actor_transform.getScale() * irr::core::vector3df(x, y, z) );
+		irr::core::matrix4 id_mat;
+		id_mat.makeIdentity();
+		id_mat.setScale(x, y, z);
+		actor_transform *= id_mat;
 		rc_actor[actor].physics.rigid_body->clearForces();
 		rc_actor[actor].physics.rigid_body->setWorldTransform(actor_transform);
 		rc_actor[actor].mesh_node->setScale(actor_transform.getScale());
