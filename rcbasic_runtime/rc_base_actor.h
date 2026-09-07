@@ -1620,9 +1620,16 @@ void rc_setActorScale(int actor, double x, double y, double z)
 	{
 		//std::cout << "Set POS" << std::endl;
 		irr::core::matrix4 actor_transform = rc_actor[actor].physics.rigid_body->getWorldTransform();
-		actor_transform.setScale( irr::core::vector3df(x, y, z) );
+		//std::cout << "PRE_SCALE_T: " << actor_transform.getScale().X << ", " << actor_transform.getScale().Y << ", " << actor_transform.getScale().Z << std::endl;
+		irr::core::matrix4 id_mat;
+		id_mat.makeIdentity();
+		id_mat.setScale(irr::core::vector3df(x, y, z));
+		actor_transform = actor_transform * id_mat;
+		//actor_transform.setScale( irr::core::vector3df(x, y, z) );
+		//std::cout << "SCALE_T: " << actor_transform.getScale().X << ", " << actor_transform.getScale().Y << ", " << actor_transform.getScale().Z << " ~ " << x << ", " << y << ", " << z << std::endl << std::endl;
 		rc_actor[actor].physics.rigid_body->clearForces();
 		rc_actor[actor].physics.rigid_body->setWorldTransform(actor_transform);
+		//std::cout << "SCALE_T: " << actor_transform.getScale().X << ", " << actor_transform.getScale().Y << ", " << actor_transform.getScale().Z << " ~ " << x << ", " << y << ", " << z << std::endl;
 		rc_actor[actor].mesh_node->setScale(actor_transform.getScale());
 		rc_actor[actor].mesh_node->updateAbsolutePosition();
 	}

@@ -5189,7 +5189,7 @@ int main(int argc, char * argv[])
     //ogles2 test
     #ifdef RC_TESTING
     //rc_intern_dirChange("/home/n00b/GameDev/Ambient/Ambient_Project");
-	rc_intern_dirChange("/home/n00b/Programs/rcbasic/examples/Nirvana_Demo");
+	rc_intern_dirChange("/home/n00b/GameDev/FPS_Demo/Serenity_Demo");
 	//rc_filename = "main.cbc";
 	//rc_filename = "debug.cbc";
 
