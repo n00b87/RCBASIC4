@@ -1648,7 +1648,7 @@ void rc_scaleActor(int actor, double x, double y, double z)
 		irr::core::matrix4 actor_transform = rc_actor[actor].physics.rigid_body->getWorldTransform();
 		irr::core::matrix4 id_mat;
 		id_mat.makeIdentity();
-		id_mat.setScale(x, y, z);
+		id_mat.setScale( irr::core::vector3df(x, y, z));
 		actor_transform *= id_mat;
 		rc_actor[actor].physics.rigid_body->clearForces();
 		rc_actor[actor].physics.rigid_body->setWorldTransform(actor_transform);
