@@ -5,6 +5,8 @@
 //#define RC_TESTING
 //#define RCBASIC_DEBUG
 
+#define RCBASIC_VERSION "v4.11"
+
 //I am checking Android first since I think it also defines __linux__
 
 #if defined(__ANDROID__)
