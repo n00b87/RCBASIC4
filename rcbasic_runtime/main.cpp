@@ -5131,9 +5131,9 @@ int main(int argc, char * argv[])
     if(rc_filename.compare("--version")==0)
     {
         #ifdef RCBASIC_DEBUG
-        cout << "RCBASIC Debugger v4.10" << endl;
+        cout << "RCBASIC Debugger " << RCBASIC_VERSION << endl;
         #else
-        cout << "RCBASIC Runtime v4.11" << endl;
+        cout << "RCBASIC Runtime " << RCBASIC_VERSION << endl;
         #endif
         return 0;
     }
