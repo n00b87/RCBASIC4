@@ -470,7 +470,7 @@ bool rc_windowOpenEx(std::string title, int x, int y, int w, int h, uint32_t win
 	//rc_physics3D.fixedTimeStep = irr::f32(1.) / irr::f64(60.);
 	rc_physics3D.fixedTimeStep = -1;
 
-	rc_physics3D.world->setInternalTickCallback((btInternalTickCallback)myTickCallback2);
+	rc_physics3D.world->setInternalTickCallback((btInternalTickCallback)myTickCallback2, NULL, true);
 
 	rc_physics3D.enabled = true;
 

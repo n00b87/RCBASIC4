@@ -557,6 +557,37 @@ struct rc_node_physics_collision
 
 irr::core::array<rc_node_physics_collision> rc_collisions;
 
+struct rc_custom_contact
+{
+    int actorA;
+    int actorB;
+
+    int index_a;
+    int index_b;
+
+    double m_appliedImpulse;
+    double m_combinedFriction;
+    double m_combinedRestitution;
+    double m_combinedRollingFriction;
+    double m_combinedSpinningFriction;
+    double m_contactCFM;
+    double m_contactERP;
+    double m_frictionCFM;
+    int m_lifeTime;
+
+    bool use_appliedImpulse;
+    bool use_combinedFriction;
+    bool use_combinedRestitution;
+    bool use_combinedRollingFriction;
+    bool use_combinedSpinningFriction;
+    bool use_contactCFM;
+    bool use_contactERP;
+    bool use_frictionCFM;
+    bool use_lifeTime;
+};
+
+irr::core::array<rc_custom_contact> rc_contact_process;
+
 struct rc_node_physics
 {
 	IRigidBody* rigid_body;
@@ -570,6 +601,8 @@ struct rc_node_physics
 	irr::core::vector3df gravity; //only used when changing from Solid to Non-Solid and vice versa
 
 	irr::core::array<irr::u32> collisions;
+
+	irr::core::array<int> custom_contact;
 };
 
 #define RC_PARTICLE_TYPE_POINT		1
@@ -795,6 +828,120 @@ void myTickCallback2(btSoftRigidDynamicsWorld* dynamicsWorld, btScalar timeStep)
         rc_collisions.push_back(collision);
         rc_actor[actorA].physics.collisions.push_back(c_index);
         rc_actor[actorB].physics.collisions.push_back(c_index);
+
+        bool use_custom_contact = false;
+
+        double m_appliedImpulse = 0;
+        double m_combinedFriction = 0;
+        double m_combinedRestitution = 0;
+        double m_combinedRollingFriction = 0;
+        double m_combinedSpinningFriction = 0;
+        double m_contactCFM = 0;
+        double m_contactERP = 0;
+        double m_frictionCFM = 0;
+        double m_lifeTime = 0;
+
+        bool use_appliedImpulse = false;
+        bool use_combinedFriction = false;
+        bool use_combinedRestitution = false;
+        bool use_combinedRollingFriction = false;
+        bool use_combinedSpinningFriction = false;
+        bool use_contactCFM = false;
+        bool use_contactERP = false;
+        bool use_frictionCFM = false;
+        bool use_lifeTime = false;
+
+        // The custom contact is stored in both actors so checking the one with less custom contacts to improve the speed
+        int cc_actorA = ( ( rc_actor[actorA].physics.custom_contact.size() < rc_actor[actorB].physics.custom_contact.size() ) ? actorA : actorB );
+        int cc_actorB = ( (cc_actorA == actorA) ? actorB : actorA );
+
+        for(int cc_i = 0; cc_i < rc_actor[cc_actorA].physics.custom_contact.size(); cc_i++)
+        {
+            int contact_id = rc_actor[cc_actorA].physics.custom_contact[cc_i];
+
+            // NOTE: I am checking if cc_actorB is equal to actorA or actorB because it could be either one depending on which actor was set in CreateContactProcess()
+            if(rc_contact_process[contact_id].actorA == cc_actorB || rc_contact_process[contact_id].actorB == cc_actorB)
+            {
+                use_custom_contact = true;
+
+                m_appliedImpulse = rc_contact_process[contact_id].m_appliedImpulse;
+                m_combinedFriction = rc_contact_process[contact_id].m_combinedFriction;
+                m_combinedRestitution = rc_contact_process[contact_id].m_combinedRestitution;
+                m_combinedRollingFriction = rc_contact_process[contact_id].m_combinedRollingFriction;
+                m_combinedSpinningFriction = rc_contact_process[contact_id].m_combinedSpinningFriction;
+                m_contactCFM = rc_contact_process[contact_id].m_frictionCFM;
+                m_contactERP = rc_contact_process[contact_id].m_contactERP;
+                m_frictionCFM = rc_contact_process[contact_id].m_frictionCFM;
+                m_lifeTime = rc_contact_process[contact_id].m_lifeTime;
+
+                use_appliedImpulse = rc_contact_process[contact_id].use_appliedImpulse;
+                use_combinedFriction = rc_contact_process[contact_id].use_combinedFriction;
+                use_combinedRestitution = rc_contact_process[contact_id].use_combinedRestitution;
+                use_combinedRollingFriction = rc_contact_process[contact_id].use_combinedRollingFriction;
+                use_combinedSpinningFriction = rc_contact_process[contact_id].use_combinedSpinningFriction;
+                use_contactCFM = rc_contact_process[contact_id].use_contactCFM;
+                use_contactERP = rc_contact_process[contact_id].use_contactERP;
+                use_frictionCFM = rc_contact_process[contact_id].use_frictionCFM;
+                use_lifeTime = rc_contact_process[contact_id].use_lifeTime;
+
+                break;
+            }
+        }
+
+        if(use_custom_contact)
+        {
+            for (int j = 0; j < numContacts; j++)
+            {
+                btManifoldPoint new_point = manifold->getContactPoint(j).getUnderlyingManifoldPoint();
+
+                if(use_appliedImpulse)
+                {
+                    new_point.m_appliedImpulse = m_appliedImpulse;
+                }
+
+                if(use_combinedFriction)
+                {
+                    new_point.m_combinedFriction = m_combinedFriction;
+                }
+
+                if(use_combinedRestitution)
+                {
+                    new_point.m_combinedRestitution = m_combinedRestitution;
+                }
+
+                if(use_combinedRollingFriction)
+                {
+                    new_point.m_combinedRollingFriction = m_combinedRollingFriction;
+                }
+
+                if(use_combinedSpinningFriction)
+                {
+                    new_point.m_combinedSpinningFriction = m_combinedSpinningFriction;
+                }
+
+                if(use_contactCFM)
+                {
+                    new_point.m_contactCFM = m_contactCFM;
+                }
+
+                if(use_contactERP)
+                {
+                    new_point.m_contactERP = m_contactERP;
+                }
+
+                if(use_frictionCFM)
+                {
+                    new_point.m_frictionCFM = m_frictionCFM;
+                }
+
+                if(use_lifeTime)
+                {
+                    new_point.m_lifeTime = m_lifeTime;
+                }
+
+                manifold->getContactPoint(j).setInfo(new_point);
+            }
+        }
 
         delete manifold;
     }

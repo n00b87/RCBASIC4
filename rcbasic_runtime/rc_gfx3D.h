@@ -29,6 +29,7 @@
 #include "rc_actor_material.h"
 #include "rc_actor_animation.h"
 #include "rc_actor_physics.h"
+#include "rc_contact_process.h"
 #include "rc_constraint.h"
 #include "rc_mesh.h"
 #include "rc_particles.h"
