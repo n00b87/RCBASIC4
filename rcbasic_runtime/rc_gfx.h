@@ -232,6 +232,9 @@ bool rc_gfx_init()
     SDL_SetHint("SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS", "1");
     SDL_SetHint("SDL_HINT_EMSCRIPTEN_ASYNCIFY", "1");
 
+    //gContactAddedCallback = &MyContactAddedCallback;
+    //gContactProcessedCallback = (ContactProcessedCallback)MyContactProcessedCallback;
+
     return true;
 
 }

@@ -6,11 +6,16 @@
 	#include "btBulletDynamicsCommon.h"
 	#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 	#include "BulletCollision/NarrowPhaseCollision/btRaycastCallback.h"
+	#include "BulletCollision/CollisionDispatch/btManifoldResult.h"
 #else
 	#include <SDL2/SDL.h>
 	#include <bullet/btBulletDynamicsCommon.h>
 	#include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 	#include <bullet/BulletCollision/NarrowPhaseCollision/btRaycastCallback.h>
+
+    #include <bullet/BulletCollision/CollisionDispatch/btCollisionObject.h>
+
+	#include <bullet/BulletCollision/CollisionDispatch/btManifoldResult.h>
 #endif // _IRR_ANDROID_PLATFORM_
 #include <irrlicht.h>
 #include <iostream>
@@ -305,8 +310,32 @@ class rc_contactListener_obj : public b2ContactListener
 
 		rc_sprite2D_obj* spriteB = &rc_sprite[contact->GetFixtureB()->GetBody()->GetUserData().pointer];
 
-		spriteA->contact_sprites.push_back(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
-		spriteB->contact_sprites.push_back(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
+		bool add_to_spriteA = true;
+		bool add_to_spriteB = true;
+
+		for(int i = 0; i < spriteA->contact_sprites.size(); i++)
+        {
+            if(spriteA->contact_sprites[i] == contact->GetFixtureB()->GetBody()->GetUserData().pointer)
+            {
+                add_to_spriteA = false;
+                break;
+            }
+        }
+
+        for(int i = 0; i < spriteB->contact_sprites.size(); i++)
+        {
+            if(spriteB->contact_sprites[i] == contact->GetFixtureA()->GetBody()->GetUserData().pointer)
+            {
+                add_to_spriteB = false;
+                break;
+            }
+        }
+
+		if(add_to_spriteA)
+            spriteA->contact_sprites.push_back(contact->GetFixtureB()->GetBody()->GetUserData().pointer);
+
+		if(add_to_spriteB)
+            spriteB->contact_sprites.push_back(contact->GetFixtureA()->GetBody()->GetUserData().pointer);
 
 	  //std::cout << "sprite[" << spriteA->id << "] collide with sprite[" << spriteB->id << "]" << std::endl;
 
@@ -314,8 +343,99 @@ class rc_contactListener_obj : public b2ContactListener
 
 	void EndContact(b2Contact* contact)
 	{
+	    rc_sprite2D_obj* spriteA = &rc_sprite[contact->GetFixtureA()->GetBody()->GetUserData().pointer];
 
+		rc_sprite2D_obj* spriteB = &rc_sprite[contact->GetFixtureB()->GetBody()->GetUserData().pointer];
+
+		for(int i = spriteA->contact_sprites.size()-1; i >= 0; i--)
+        {
+            if(spriteA->contact_sprites[i] == contact->GetFixtureB()->GetBody()->GetUserData().pointer)
+            {
+                spriteA->contact_sprites.erase(i);
+            }
+        }
+
+        for(int i = spriteB->contact_sprites.size()-1; i >= 0; i--)
+        {
+            if(spriteB->contact_sprites[i] == contact->GetFixtureA()->GetBody()->GetUserData().pointer)
+            {
+                spriteB->contact_sprites.erase(i);
+            }
+        }
 	}
+
+
+	void 	PreSolve(b2Contact *contact, const b2Manifold *oldManifold)
+	{
+	    return;
+	    rc_sprite2D_obj* spriteA = &rc_sprite[contact->GetFixtureA()->GetBody()->GetUserData().pointer];
+
+		rc_sprite2D_obj* spriteB = &rc_sprite[contact->GetFixtureB()->GetBody()->GetUserData().pointer];
+
+		int spr_a = contact->GetFixtureA()->GetBody()->GetUserData().pointer;
+		int spr_b = contact->GetFixtureB()->GetBody()->GetUserData().pointer;
+
+		int contact_id = -1;
+
+		for(int i = 0; i < spriteA->contact_process.size(); i++)
+        {
+            int c_id = spriteA->contact_process[i];
+
+            if(rc_sprite_contact[c_id].spriteA == spr_b || rc_sprite_contact[c_id].spriteB == spr_b)
+            {
+                contact_id = c_id;
+                break;
+            }
+        }
+
+        if(contact_id < 0)
+            return;
+
+        if(!rc_sprite_contact[contact_id].collision_enabled)
+        {
+            contact->SetEnabled(false);
+        }
+
+        if(rc_sprite_contact[contact_id].reset_friction)
+        {
+            contact->ResetFriction();
+        }
+
+        if(rc_sprite_contact[contact_id].reset_restitution)
+        {
+            contact->ResetRestitution();
+        }
+
+        if(rc_sprite_contact[contact_id].reset_restitutionThreshold)
+        {
+            contact->ResetRestitutionThreshold();
+        }
+
+        if(rc_sprite_contact[contact_id].use_friction)
+        {
+            contact->SetFriction((float)rc_sprite_contact[contact_id].friction);
+        }
+
+        if(rc_sprite_contact[contact_id].use_restitution)
+        {
+            contact->SetRestitution((float)rc_sprite_contact[contact_id].restitution);
+        }
+
+        if(rc_sprite_contact[contact_id].use_restitutionThreshold)
+        {
+            contact->SetRestitutionThreshold((float)rc_sprite_contact[contact_id].restitutionThreshold);
+        }
+
+        if(rc_sprite_contact[contact_id].use_tangentSpeed)
+        {
+            contact->SetTangentSpeed((float)rc_sprite_contact[contact_id].tangentSpeed);
+        }
+	}
+
+    void 	PostSolve(b2Contact *contact, const b2ContactImpulse *impulse)
+    {
+
+    }
 };
 
 struct rc_physicsWorld2D_obj
@@ -829,6 +949,7 @@ void myTickCallback2(btSoftRigidDynamicsWorld* dynamicsWorld, btScalar timeStep)
         rc_actor[actorA].physics.collisions.push_back(c_index);
         rc_actor[actorB].physics.collisions.push_back(c_index);
 
+        /*
         bool use_custom_contact = false;
 
         double m_appliedImpulse = 0;
@@ -926,7 +1047,12 @@ void myTickCallback2(btSoftRigidDynamicsWorld* dynamicsWorld, btScalar timeStep)
 
                 if(use_contactERP)
                 {
-                    new_point.m_contactERP = m_contactERP;
+                    //std::cout << "USE ERP" << std::endl;
+                    new_point.m_contactERP = -10; //m_contactERP;
+                    new_point.m_combinedRestitution = 0;
+
+                    //manifold->getPointer()->getContactPoint(j).m_contactERP = 10000;
+                    //manifold->getPointer()->getContactPoint(j).m_combinedRestitution = 0;
                 }
 
                 if(use_frictionCFM)
@@ -939,9 +1065,10 @@ void myTickCallback2(btSoftRigidDynamicsWorld* dynamicsWorld, btScalar timeStep)
                     new_point.m_lifeTime = m_lifeTime;
                 }
 
-                manifold->getContactPoint(j).setInfo(new_point);
+                //manifold->getContactPoint(j).setInfo(new_point);
             }
         }
+        */
 
         delete manifold;
     }
@@ -960,6 +1087,55 @@ void myTickCallback2(btSoftRigidDynamicsWorld* dynamicsWorld, btScalar timeStep)
 		}
 	}
 }
+
+
+
+bool MyContactAddedCallback( btManifoldPoint& cp,
+                            const btCollisionObjectWrapper* colObj0Wrap, int partId0, int index0,
+                            const btCollisionObjectWrapper* colObj1Wrap, int partId1, int index1)
+{
+    // Check if one of the object wrappers matches your moving body or ground mesh tag
+    // (e.g., via colObj0Wrap->getCollisionObject()->getUserPointer())
+
+    // Explicitly modify the ERP for this specific localized contact point
+    // Setting m_lateralFrictionInitialized manually tells the solver to respect your changes
+    //cp.m_contactERP = 100000.0f;
+
+    return true; // Return true to apply changes
+}
+
+
+bool MyContactProcessedCallback(
+    btManifoldPoint& cp,
+    void* body0,
+    void* body1)
+{
+    // Cast the raw body pointers back to Bullet collision objects
+    btCollisionObject* obj0 = static_cast<btCollisionObject*>(body0);
+    btCollisionObject* obj1 = static_cast<btCollisionObject*>(body1);
+
+    // Fetch the user pointers we assigned in Step 1
+    void* userPtr0 = obj0->getUserPointer();
+    void* userPtr1 = obj1->getUserPointer();
+
+    // Check if either colliding body is our specific moving object
+    // Replace 'myMovingBodyInstancePointer' with your game/engine's object reference
+    //if (userPtr0 == myMovingBodyInstancePointer || userPtr1 == myMovingBodyInstancePointer)
+    //{
+        // 1. Soften the bump pop response (Bullet default is ~0.2)
+        // Lowering this forces the engine to resolve the penetration smoothly across
+        // multiple frames instead of explosively snapping the object vertically.
+        cp.m_contactERP = 1.0f;
+        //cp.m_contactCFM = 0;
+
+        // 2. Optional: Adjust friction/restitution on the fly for this specific contact
+        // cp.m_combinedFriction = 0.6f;
+        // cp.m_combinedRestitution = 0.0f;
+    //}
+
+    return true;
+}
+
 
 
 #define RC_ACTOR_TEXTURE_TYPE_IMAGE     0

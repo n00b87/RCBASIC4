@@ -601,6 +601,300 @@ void rc_getGravity2D(double* x, double* y)
 }
 
 
+// Contact Processing
+
+int rc_createSpriteContactProcess(int spriteA, int spriteB)
+{
+    if(spriteA < 0 || spriteA >= rc_sprite.size())
+        return -1;
+
+    if(spriteB < 0 || spriteB >= rc_sprite.size())
+        return -1;
+
+    int id = -1;
+
+    for(int i = 0; i < rc_sprite_contact.size(); i++)
+    {
+        int cc_spriteA = rc_sprite_contact[i].spriteA;
+        int cc_spriteB = rc_sprite_contact[i].spriteB;
+
+        if( (cc_spriteA == spriteA || cc_spriteA == spriteB) && (cc_spriteB == spriteA || cc_spriteB == spriteB) )
+        {
+            id = i;
+        }
+    }
+
+    if(id < 0)
+    {
+        for(int i = 0; i < rc_sprite_contact.size(); i++)
+        {
+            if(rc_sprite_contact[i].spriteA < 0)
+            {
+                id = i;
+                break;
+            }
+        }
+    }
+
+    if(id < 0)
+    {
+        id = rc_sprite_contact.size();
+        rc_sprite2D_custom_contact c;
+        rc_sprite_contact.push_back(c);
+    }
+
+
+    rc_sprite_contact[id].collision_enabled = true;
+
+    rc_sprite_contact[id].friction = -1;
+    rc_sprite_contact[id].restitution = -1;
+    rc_sprite_contact[id].restitutionThreshold = -1;
+    rc_sprite_contact[id].tangentSpeed = -1;
+
+    rc_sprite_contact[id].reset_friction = false;
+    rc_sprite_contact[id].reset_restitution = false;
+    rc_sprite_contact[id].reset_restitutionThreshold = false;
+
+    rc_sprite_contact[id].use_friction = false;
+    rc_sprite_contact[id].use_restitution = false;
+    rc_sprite_contact[id].use_restitutionThreshold = false;
+    rc_sprite_contact[id].use_tangentSpeed = false;
+
+    rc_sprite_contact[id].spriteA = spriteA;
+    rc_sprite_contact[id].spriteB = spriteB;
+
+
+    bool add_to_a = true;
+    bool add_to_b = true;
+
+    int a_index = -1;
+    int b_index = -1;
+
+    for(int i = 0; i < rc_sprite[spriteA].contact_process.size(); i++)
+    {
+        if(rc_sprite[spriteA].contact_process[i] == id)
+        {
+            add_to_a = false;
+            break;
+        }
+        else if(rc_sprite[spriteA].contact_process[i] < 0)
+        {
+            a_index = i;
+        }
+    }
+
+    for(int i = 0; i < rc_sprite[spriteB].contact_process.size(); i++)
+    {
+        if(rc_sprite[spriteB].contact_process[i] == id)
+        {
+            add_to_b = false;
+            break;
+        }
+        else if(rc_sprite[spriteB].contact_process[i] < 0)
+        {
+            b_index = i;
+        }
+    }
+
+    if(add_to_a)
+    {
+        if(a_index >= 0)
+        {
+            rc_sprite[spriteA].contact_process[a_index] = id;
+        }
+        else
+        {
+            rc_sprite[spriteA].contact_process.push_back(id);
+        }
+    }
+
+    if(add_to_b)
+    {
+        if(b_index >= 0)
+        {
+            rc_sprite[spriteB].contact_process[b_index] = id;
+        }
+        else
+        {
+            rc_sprite[spriteB].contact_process.push_back(id);
+        }
+    }
+
+    return id;
+}
+
+void rc_deleteSpriteContactProcess(int contact_id)
+{
+    if(contact_id < 0 || contact_id >= rc_sprite_contact.size())
+        return;
+
+    int spriteA = rc_sprite_contact[contact_id].spriteA;
+    int spriteB = rc_sprite_contact[contact_id].spriteB;
+
+    if(spriteA >= 0 && spriteA < rc_sprite.size())
+    {
+        for(int i = 0; i < rc_sprite[spriteA].contact_process.size(); i++)
+        {
+            if(rc_sprite[spriteA].contact_process[i] == contact_id)
+            {
+                rc_sprite[spriteA].contact_process[i] = -1;
+            }
+        }
+    }
+
+    if(spriteB >= 0 && spriteB < rc_sprite.size())
+    {
+        for(int i = 0; i < rc_sprite[spriteB].contact_process.size(); i++)
+        {
+            if(rc_sprite[spriteB].contact_process[i] == contact_id)
+            {
+                rc_sprite[spriteB].contact_process[i] = -1;
+            }
+        }
+    }
+
+    rc_sprite_contact[contact_id].spriteA = -1;
+    rc_sprite_contact[contact_id].spriteB = -1;
+}
+
+int rc_getSpriteContactProcess(int spriteA, int spriteB)
+{
+    if(spriteA < 0 || spriteA >= rc_sprite.size())
+        return -1;
+
+    if(spriteB < 0 || spriteB >= rc_sprite.size())
+        return -1;
+
+    int id = -1;
+
+    for(int i = 0; i < rc_sprite_contact.size(); i++)
+    {
+        int cc_spriteA = rc_sprite_contact[i].spriteA;
+        int cc_spriteB = rc_sprite_contact[i].spriteB;
+
+        if( (cc_spriteA == spriteA || cc_spriteA == spriteB) && (cc_spriteB == spriteA || cc_spriteB == spriteB) )
+        {
+            id = i;
+        }
+    }
+
+    return id;
+}
+
+
+void rc_setSpriteContactFriction(int contact_id, double friction)
+{
+    if(contact_id < 0 || contact_id >= rc_sprite_contact.size())
+        return;
+
+    rc_sprite_contact[contact_id].friction = friction;
+    rc_sprite_contact[contact_id].use_friction = true;
+}
+
+void rc_setSpriteContactRestitution(int contact_id, double restitution)
+{
+    if(contact_id < 0 || contact_id >= rc_sprite_contact.size())
+        return;
+
+    rc_sprite_contact[contact_id].restitution = restitution;
+    rc_sprite_contact[contact_id].use_restitution = true;
+}
+
+void rc_setSpriteContactRestitutionThreshold(int contact_id, double restitution_threshold)
+{
+    if(contact_id < 0 || contact_id >= rc_sprite_contact.size())
+        return;
+
+    rc_sprite_contact[contact_id].restitutionThreshold = restitution_threshold;
+    rc_sprite_contact[contact_id].use_restitutionThreshold = true;
+}
+
+void rc_setSpriteContactTangentSpeed(int contact_id, double tangentSpeed)
+{
+    if(contact_id < 0 || contact_id >= rc_sprite_contact.size())
+        return;
+
+    rc_sprite_contact[contact_id].tangentSpeed = tangentSpeed;
+    rc_sprite_contact[contact_id].use_tangentSpeed = true;
+}
+
+void rc_setSpriteContactSolid(int contact_id, bool isSolid)
+{
+    if(contact_id < 0 || contact_id >= rc_sprite_contact.size())
+        return;
+
+    rc_sprite_contact[contact_id].collision_enabled = isSolid;
+}
+
+
+double rc_getSpriteContactFriction(int contact_id)
+{
+    if(contact_id < 0 || contact_id >= rc_sprite_contact.size())
+        return -1;
+
+    return rc_sprite_contact[contact_id].friction;
+}
+
+double rc_getSpriteContactRestitution(int contact_id)
+{
+    if(contact_id < 0 || contact_id >= rc_sprite_contact.size())
+        return -1;
+
+    return rc_sprite_contact[contact_id].restitution;
+}
+
+double rc_getSpriteContactRestitutionThreshold(int contact_id)
+{
+    if(contact_id < 0 || contact_id >= rc_sprite_contact.size())
+        return -1;
+
+    return rc_sprite_contact[contact_id].restitutionThreshold;
+}
+
+double rc_getSpriteContactTangentSpeed(int contact_id)
+{
+    if(contact_id < 0 || contact_id >= rc_sprite_contact.size())
+        return -1;
+
+    return rc_sprite_contact[contact_id].tangentSpeed;
+}
+
+bool rc_getSpriteContactSolid(int contact_id)
+{
+    if(contact_id < 0 || contact_id >= rc_sprite_contact.size())
+        return false;
+
+    return rc_sprite_contact[contact_id].collision_enabled;
+}
+
+
+void rc_resetSpriteContactFriction(int contact_id)
+{
+    if(contact_id < 0 || contact_id >= rc_sprite_contact.size())
+        return;
+
+    rc_sprite_contact[contact_id].reset_friction = true;;
+}
+
+void rc_resetSpriteContactRestitution(int contact_id)
+{
+    if(contact_id < 0 || contact_id >= rc_sprite_contact.size())
+        return;
+
+    rc_sprite_contact[contact_id].reset_restitution = true;
+}
+
+void rc_resetSpriteContactRestitutionThreshold(int contact_id)
+{
+    if(contact_id < 0 || contact_id >= rc_sprite_contact.size())
+        return;
+
+    rc_sprite_contact[contact_id].reset_restitutionThreshold = true;
+}
+
+
+
+
 
 
 // Custom callback to collect all ray cast hits
