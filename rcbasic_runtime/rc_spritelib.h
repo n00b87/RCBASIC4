@@ -1975,7 +1975,7 @@ void drawSprites(int canvas_id)
     for(int spr_index = 0; spr_index < rc_canvas[canvas_id].sprite_id.size(); spr_index++)
     {
         int spr_id = rc_canvas[canvas_id].sprite_id[spr_index];
-        rc_sprite[spr_id].contact_sprites.clear();
+        //rc_sprite[spr_id].contact_sprites.clear();
     }
 
 	Uint32 delta_time = SDL_GetTicks() - rc_canvas[canvas_id].physics2D.time_stamp;

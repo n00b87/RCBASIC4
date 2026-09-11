@@ -9,6 +9,30 @@
 #define RC_SPRITE_SHAPE_CIRCLE	3
 #define RC_SPRITE_SHAPE_CHAIN	4
 
+struct rc_sprite2D_custom_contact
+{
+    int spriteA;
+    int spriteB;
+
+    bool reset_friction;
+    bool reset_restitution;
+    bool reset_restitutionThreshold;
+
+    bool collision_enabled;
+
+    bool use_friction;
+    double friction;
+
+    bool use_restitution;
+    double restitution;
+
+    bool use_restitutionThreshold;
+    double restitutionThreshold;
+
+    bool use_tangentSpeed;
+    double tangentSpeed;
+};
+
 struct rc_sprite2D_physics_obj
 {
 	b2Body* body;
@@ -93,9 +117,12 @@ struct rc_sprite2D_obj
 	irr::core::array<int> child_sprites;
 
 	irr::core::array<int> contact_sprites;
+	irr::core::array<int> contact_process;
 };
 
 irr::core::array<rc_sprite2D_obj> rc_sprite;
+
+irr::core::array<rc_sprite2D_custom_contact> rc_sprite_contact;
 
 
 #define RC_JOINT_TYPE_DISTANCE 1

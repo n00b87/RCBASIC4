@@ -211,7 +211,8 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass, double
 				if(rc_actor[actor_id].node_type == RC_NODE_TYPE_MESH)
 				{
 					irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)rc_actor[actor_id].mesh_node;
-					shape = new IBvhTriangleMeshShape(rc_actor[actor_id].mesh_node, node->getMesh(), mass);
+					//std::cout << "DBG [1] = " << node->getMesh()->getMesh(0)->getMeshBufferCount() << std::endl;
+					shape = new IBvhTriangleMeshShape(rc_actor[actor_id].mesh_node, node->getMesh()->getMesh(0), mass);
 				}
 				else if(rc_actor[actor_id].node_type == RC_NODE_TYPE_STMESH)
                 {
@@ -322,6 +323,8 @@ void rc_setActorCollisionShape(int actor_id, int shape_type, double mass, double
 		rc_actor[actor_id].physics.rigid_body->getPointer()->setActivationState(ACTIVE_TAG);
 		rc_actor[actor_id].physics.rigid_body->getPointer()->setActivationState(DISABLE_DEACTIVATION);
 		rc_actor[actor_id].physics.rigid_body->getPointer()->updateInertiaTensor();
+
+		rc_actor[actor_id].physics.rigid_body->setCollisionFlags( (ECollisionFlag) ( (int)rc_actor[actor_id].physics.rigid_body->getCollisionFlags() | (int) ECollisionFlag::ECF_CUSTOM_MATERIAL_CALLBACK ) );
 	}
 }
 

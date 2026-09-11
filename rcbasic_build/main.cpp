@@ -928,7 +928,7 @@ int main(int argc, char * argv[])
     //DEBUG START
     //rcbasic_build_debug = true;
     //chdir("/home/n00b/Programs/rcbasic/examples/Sprite_Test");
-    //chdir("/home/n00b/GameDev/Ambient/Ambient_Project");
+    //chdir("/home/n00b/Programs/out/rcbasic/examples/BSP_Map_Demo");
     rc_filename = "main.bas";
 	//rc_filename = "/home/n00b/test/SpriteShapeTest/main.bas";
 	//rc_filename = "/home/n00b/Programs/RCBasic_v400_Linux64/examples/Constraint/main.bas";

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1788816842 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
+1789083529 source:/home/n00b/Projects/RCBASIC4/rcbasic_runtime/main.cpp
 	"rc_os_defines.h"
 	<emscripten.h>
 	<sys/param.h>
@@ -35,10 +35,10 @@
 	<irrtheora.h>
 	"rc_func130_cases.h"
 
-1788819600 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
+1788861959 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_os_defines.h
 	<TargetConditionals.h>
 
-1788233197 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
+1789087545 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_defines.h
 
 1772593300 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_stdlib.h
 	"rc_os_defines.h"
@@ -1250,7 +1250,7 @@
 1734372058 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/RealisticWater.h
 	<irrlicht.h>
 
-1784968296 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx.h
+1789086689 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx.h
 	"SDL.h"
 	<SDL2/SDL.h>
 	<irrlicht.h>
@@ -1276,15 +1276,18 @@
 	"rc_post_fx.h"
 	<irrtheora.h>
 
-1777786496 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx_core.h
+1789087374 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx_core.h
 	"SDL.h"
 	"btBulletDynamicsCommon.h"
 	"BulletSoftBody/btSoftRigidDynamicsWorld.h"
 	"BulletCollision/NarrowPhaseCollision/btRaycastCallback.h"
+	"BulletCollision/CollisionDispatch/btManifoldResult.h"
 	<SDL2/SDL.h>
 	<bullet/btBulletDynamicsCommon.h>
 	<BulletSoftBody/btSoftRigidDynamicsWorld.h>
 	<bullet/BulletCollision/NarrowPhaseCollision/btRaycastCallback.h>
+	<bullet/BulletCollision/CollisionDispatch/btCollisionObject.h>
+	<bullet/BulletCollision/CollisionDispatch/btManifoldResult.h>
 	<irrlicht.h>
 	<iostream>
 	<sstream>
@@ -1311,7 +1314,7 @@
 	<irrlicht.h>
 	<iostream>
 
-1777786496 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_sprite2D.h
+1789021861 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_sprite2D.h
 	<irrlicht.h>
 	<box2d/box2d.h>
 
@@ -2200,7 +2203,7 @@
 
 1686539631 /home/n00b/Projects/irrTheora/theoraplay.h
 
-1772593300 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx3D.h
+1789011494 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_gfx3D.h
 	"SDL.h"
 	<btBulletDynamicsCommon.h>
 	<BulletCollision/CollisionDispatch/btGhostObject.h>
@@ -2223,6 +2226,7 @@
 	"rc_actor_material.h"
 	"rc_actor_animation.h"
 	"rc_actor_physics.h"
+	"rc_contact_process.h"
 	"rc_constraint.h"
 	"rc_mesh.h"
 	"rc_particles.h"
@@ -2282,7 +2286,7 @@
 	"rc_gfx_core.h"
 	<irrtheora.h>
 
-1788233197 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
+1789087545 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_func130_cases.h
 
 1760243468 source:/home/n00b/Projects/irrBullet/src/irrBullet.cpp
 	"irrBullet.h"
@@ -2293,7 +2297,7 @@
 	"btBulletCollisionCommon.h"
 	"irrBulletBoxShape.h"
 
-1760243468 source:/home/n00b/Projects/irrBullet/src/irrBulletBvhTriangleMeshShape.cpp
+1788866841 source:/home/n00b/Projects/irrBullet/src/irrBulletBvhTriangleMeshShape.cpp
 	<btBulletDynamicsCommon.h>
 	<btBulletCollisionCommon.h>
 	"irrBulletBvhTriangleMeshShape.h"
@@ -2449,7 +2453,7 @@
 	<btBulletCollisionCommon.h>
 	"irrBulletSphereShape.h"
 
-1760243468 source:/home/n00b/Projects/irrBullet/src/irrBulletTriangleMeshShape.cpp
+1788866834 source:/home/n00b/Projects/irrBullet/src/irrBulletTriangleMeshShape.cpp
 	<ITerrainSceneNode.h>
 	<IMesh.h>
 	<IMeshBuffer.h>
@@ -2504,7 +2508,7 @@
 	<SDL.h>
 	<SDL2/SDL.h>
 
-1777786496 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_spritelib.h
+1789015590 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_spritelib.h
 	"SDL.h"
 	<SDL2/SDL.h>
 	"rc_sprite2D.h"
@@ -2522,7 +2526,7 @@
 	<irrlicht.h>
 	<vector>
 
-1777786496 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_sprite_physics.h
+1789025201 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_sprite_physics.h
 	"rc_sprite2D.h"
 
 1777786496 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_joints.h
@@ -2534,7 +2538,7 @@
 1772593300 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_physics3D_base.h
 	"rc_gfx_core.h"
 
-1788820469 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_base_actor.h
+1788907752 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_base_actor.h
 	"ProjectiveTextures.h"
 	"rc_matrix.h"
 
@@ -2774,4 +2778,6 @@
 
 1772614928 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_vectorMath.h
 	<irrlicht.h>
+
+1789030640 /home/n00b/Projects/RCBASIC4/rcbasic_runtime/rc_contact_process.h
 
