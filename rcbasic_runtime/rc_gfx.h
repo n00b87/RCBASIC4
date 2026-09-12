@@ -3507,6 +3507,8 @@ void rc_floodFill(int x, int y)
 		img_pixels[i] = flood_buffer[i];
 	}
 
+	delete[] flood_buffer;
+
     rc_canvas[rc_active_canvas].texture->unlock();
 
     Uint32 nw = rc_canvas[rc_active_canvas].dimension.Width;
