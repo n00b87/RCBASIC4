@@ -1889,12 +1889,25 @@ void rc_drawTriangle(double x1, double y1, double x2, double y2, double x3, doub
     v.push_back(video::S3DVertex(x2, y2, 0.f, 0.f, 1.f, 0.f, rc_active_color, 0.5f, 0.5f));
     v.push_back(video::S3DVertex(x3, y3, 0.f, 0.f, 1.f, 0.f, rc_active_color, 0.5f, 0.5f));
 
+    irr::video::S3DVertex tmp_v;
+
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            if( v[i].Pos.X < v[j].Pos.X )
+            {
+                tmp_v = v[i];
+                v[i] = v[j];
+                v[j] = tmp_v;
+            }
+        }
+    }
+
     irr::core::array<irr::u16> i;
     i.push_back(0);
     i.push_back(1);
     i.push_back(2);
-
-    v.sort();
 
     VideoDriver->draw2DVertexPrimitiveList(v.pointer(), 3, i.pointer(), 1);
 }
@@ -3479,7 +3492,7 @@ void rc_floodFill(int x, int y)
 
     Uint32* img_pixels = (Uint32*)rc_canvas[rc_active_canvas].texture->lock();
 
-    Uint32 flood_size = rc_canvas[rc_active_canvas].texture->getSize().Width*rc_canvas[rc_active_canvas].texture->getSize().Height;
+    Uint32 flood_size = rc_canvas[rc_active_canvas].texture->getSize().Width*rc_canvas[rc_active_canvas].texture->getSize().Height*2;
     Uint32* flood_buffer = new Uint32[flood_size];
 
     for(int i = 0; i < flood_size; i++)
@@ -3493,6 +3506,8 @@ void rc_floodFill(int x, int y)
 	{
 		img_pixels[i] = flood_buffer[i];
 	}
+
+	delete[] flood_buffer;
 
     rc_canvas[rc_active_canvas].texture->unlock();
 

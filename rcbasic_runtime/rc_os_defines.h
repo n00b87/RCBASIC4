@@ -2,7 +2,7 @@
 #define RC_OS_DEFINES_H_INCLUDED
 
 //USED FOR TESTING ONLY
-//#define RC_TESTING
+#define RC_TESTING
 //#define RCBASIC_DEBUG
 
 #define RCBASIC_VERSION "v4.11"
