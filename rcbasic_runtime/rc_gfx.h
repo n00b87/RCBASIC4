@@ -1904,6 +1904,15 @@ void rc_drawTriangle(double x1, double y1, double x2, double y2, double x3, doub
         }
     }
 
+    // swap the 1st and 3rd vertex if the middle vertex is greater
+    // NOTE: These are 2D coordinates so Y increases going down
+    if(v[1].Pos.Y > v[2].Pos.Y)
+    {
+        tmp_v = v[0];
+        v[0] = v[2];
+        v[2] = tmp_v;
+    }
+
     irr::core::array<irr::u16> i;
     i.push_back(0);
     i.push_back(1);

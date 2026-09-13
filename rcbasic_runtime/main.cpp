@@ -5191,11 +5191,11 @@ int main(int argc, char * argv[])
     //rc_intern_dirChange("/home/n00b/GameDev/Ambient/Ambient_Project");
 	//rc_intern_dirChange("/home/n00b/Programs/rcbasic/examples/Nirvana_Platform_Game");
 	//rc_intern_dirChange("/home/n00b/Programs/out/rcbasic/examples/BSP_Map_Demo");
-	rc_intern_dirChange("/home/n00b/Programs/out/rcbasic/examples/Gold_Waves");
+	rc_intern_dirChange("/home/n00b/Programs/rcbasic/examples/Boundary_Check");
 	//rc_filename = "main.cbc";
 	//rc_filename = "debug.cbc";
 
-	rc_filename = "GoldWaves_Solid.cbc";
+	//rc_filename = "GoldWaves_Solid.cbc";
 
 	//rc_intern_dirChange("/home/n00b/Pictures/UNTITLED");
 	//rc_filename = "nv_test.cbc";
