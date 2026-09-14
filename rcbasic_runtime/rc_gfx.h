@@ -1882,6 +1882,24 @@ void rc_drawTriangle3D(double x1, double y1, double z1, double x2, double y2, do
     rc_prim3d_operation.push_back(op);
 }
 
+#define RC_TRI_ORIENTATION_COLLINEAR        0
+#define RC_TRI_ORIENTATION_CLOCKWISE        1
+#define RC_TRI_ORIENTATION_COUNTERCLOCKWISE 2
+// Determines the orientation of an ordered triplet (p1, p2, p3)
+int getOrientation(const irr::core::vector2df& p1, const irr::core::vector2df& p2, const irr::core::vector2df& p3) {
+    // Cross product of vector (p2 - p1) and (p3 - p2)
+    double val = (p2.Y - p1.Y) * (p3.X - p2.X) - (p2.X - p1.X) * (p3.Y - p2.Y);
+
+    if (val == 0)
+        return RC_TRI_ORIENTATION_COLLINEAR;
+
+    // If the cross product is less than 0, it turns clockwise.
+    // If it's greater than 0, it turns counter-clockwise.
+    // NOTE: This is based on screen coordinates. In cartesian coordinates its the opposite.
+    return ((val < 0) ? RC_TRI_ORIENTATION_CLOCKWISE : RC_TRI_ORIENTATION_COUNTERCLOCKWISE);
+}
+
+
 void rc_drawTriangle(double x1, double y1, double x2, double y2, double x3, double y3)
 {
 	irr::core::array<irr::video::S3DVertex> v;
@@ -1890,6 +1908,8 @@ void rc_drawTriangle(double x1, double y1, double x2, double y2, double x3, doub
     v.push_back(video::S3DVertex(x3, y3, 0.f, 0.f, 1.f, 0.f, rc_active_color, 0.5f, 0.5f));
 
     irr::video::S3DVertex tmp_v;
+
+    irr::core::vector2df test_v[3];
 
     for(int i = 0; i < 3; i++)
     {
@@ -1904,9 +1924,13 @@ void rc_drawTriangle(double x1, double y1, double x2, double y2, double x3, doub
         }
     }
 
-    // swap the 1st and 3rd vertex if the middle vertex is greater
-    // NOTE: These are 2D coordinates so Y increases going down
-    if(v[1].Pos.Y > v[2].Pos.Y)
+
+    for(int i = 0; i < 3; i++)
+    {
+        test_v[i].set(v[i].Pos.X, v[i].Pos.Y);
+    }
+
+    if( getOrientation(test_v[0], test_v[1], test_v[2]) == RC_TRI_ORIENTATION_COUNTERCLOCKWISE )
     {
         tmp_v = v[0];
         v[0] = v[2];
