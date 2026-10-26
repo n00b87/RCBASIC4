@@ -2,10 +2,10 @@
 #define RC_OS_DEFINES_H_INCLUDED
 
 //USED FOR TESTING ONLY
-#define RC_TESTING
+//#define RC_TESTING
 //#define RCBASIC_DEBUG
 
-#define RCBASIC_VERSION "v4.11"
+#define RCBASIC_VERSION "v4.12"
 
 //I am checking Android first since I think it also defines __linux__
 
