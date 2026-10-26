@@ -1972,12 +1972,6 @@ void draw2DImage_sprite(int canvas_id, irr::video::IVideoDriver *driver, irr::vi
 //This function is called on each canvas on update
 void drawSprites(int canvas_id)
 {
-    for(int spr_index = 0; spr_index < rc_canvas[canvas_id].sprite_id.size(); spr_index++)
-    {
-        int spr_id = rc_canvas[canvas_id].sprite_id[spr_index];
-        //rc_sprite[spr_id].contact_sprites.clear();
-    }
-
 	Uint32 delta_time = SDL_GetTicks() - rc_canvas[canvas_id].physics2D.time_stamp;
 	rc_canvas[canvas_id].physics2D.time_stamp = SDL_GetTicks();
 	float step = rc_canvas[canvas_id].physics2D.timeStep < 0 ? (delta_time*0.001f) : rc_canvas[canvas_id].physics2D.timeStep;
