@@ -91,6 +91,8 @@ void rc_clearScene()
 		}
 
 		rc_removeSceneSky();
+
+		rc_prim3d_operation.clear();
 	}
 }
 
