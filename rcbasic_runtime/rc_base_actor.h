@@ -1690,14 +1690,18 @@ void rc_setActorRotation(int actor, double x, double y, double z)
     if(rc_actor[actor].physics.rigid_body)
 	{
 		//std::cout << "Set POS" << std::endl;
-		irr::core::matrix4 actor_transform;
-		actor_transform.makeIdentity();
 
-		irr::core::matrix4 n;
-		irr::core::vector3df rot(x, y, z);
-		n.setRotationDegrees(rot);
-		actor_transform *= n;
+		if( x != 0 && ( ((int)x)%180) == 0 )
+            x += 0.01;
 
+        if( y != 0 && ( ((int)y)%180) == 0 )
+            y += 0.01;
+
+        if( z != 0 && ( ((int)z)%180) == 0 )
+            z += 0.01;
+
+		irr::core::matrix4 actor_transform = rc_actor[actor].physics.rigid_body->getWorldTransform();
+		actor_transform.setRotationDegrees( irr::core::vector3df(x, y, z) );
 		rc_actor[actor].physics.rigid_body->clearForces();
 		rc_actor[actor].physics.rigid_body->setWorldTransform(actor_transform);
 		rc_actor[actor].mesh_node->setRotation( actor_transform.getRotationDegrees() );
@@ -1715,6 +1719,16 @@ void rc_rotateActor(int actor, double x, double y, double z)
 	{
 		//std::cout << "Set POS" << std::endl;
 		irr::core::matrix4 actor_transform = rc_actor[actor].physics.rigid_body->getWorldTransform();
+
+
+		if( x != 0 && ( ((int)(x + actor_transform.getRotationDegrees().X))%180) == 0 )
+            x += 0.01;
+
+        if( y != 0 && ( ((int)(y + actor_transform.getRotationDegrees().Y))%180) == 0 )
+            y += 0.01;
+
+        if( z != 0 && ( ((int)(z + actor_transform.getRotationDegrees().Z))%180) == 0 )
+            z += 0.01;
 
 		irr::core::matrix4 n;
 		irr::core::vector3df rot(x, y, z);
