@@ -1690,8 +1690,14 @@ void rc_setActorRotation(int actor, double x, double y, double z)
     if(rc_actor[actor].physics.rigid_body)
 	{
 		//std::cout << "Set POS" << std::endl;
-		irr::core::matrix4 actor_transform = rc_actor[actor].physics.rigid_body->getWorldTransform();
-		actor_transform.setRotationDegrees( irr::core::vector3df(x, y, z) );
+		irr::core::matrix4 actor_transform;
+		actor_transform.makeIdentity();
+
+		irr::core::matrix4 n;
+		irr::core::vector3df rot(x, y, z);
+		n.setRotationDegrees(rot);
+		actor_transform *= n;
+
 		rc_actor[actor].physics.rigid_body->clearForces();
 		rc_actor[actor].physics.rigid_body->setWorldTransform(actor_transform);
 		rc_actor[actor].mesh_node->setRotation( actor_transform.getRotationDegrees() );
